@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "VCCryptorBase.h"
 
-@interface VCCryptor : VCCryptorBase
+@interface VCCryptor : NSObject
 
 - (instancetype)init NS_DESIGNATED_INITIALIZER;
 
@@ -17,5 +16,16 @@
 
 - (NSData *)decryptData:(NSData *)encryptedData publicKeyId:(NSString *)publicKeyId privateKey:(NSData *)privateKey keyPassword:(NSString *)keyPassword;
 - (NSData *)decryptData:(NSData *)encryptedData password:(NSString *)password;
+
+- (void)addKeyRecepient:(NSString *)publicKeyId publicKey:(NSData *)publicKey;
+- (void)removeKeyRecipient:(NSString *)publicKeyId;
+
+- (void)addPasswordRecipient:(NSString *)password;
+- (void)removePasswordRecipient:(NSString *)password;
+
+- (void)removeAllRecipients;
+
+- (NSData *)contentInfo;
+- (void) setContentInfo:(NSData *) contentInfo;
 
 @end
