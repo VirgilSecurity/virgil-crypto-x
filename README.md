@@ -7,41 +7,56 @@ Basic low-level framework which allows to perform some most important security o
 If you about to use any of high-level Virgil frameworks such as VirgilKeys or VirgilPrivateKeys then you don't need to install VirgilCrypto directly. It will be installed with all necessary dependencies of high-level framework.
 
 The rest of this chapter describes how to install VirgilCrypto framework directly. 
-The easiest and recommended way to use VirgilCrypto framework for iOS applcations is to install and maintain it using CocoaPods. 
-1. First of all you need to install CocoaPods to your computer. It might be done by executing the following line in terminal:
+The easiest and recommended way to use VirgilCrypto framework for iOS applcations is to install and maintain it using CocoaPods.
+ 
+- First of all you need to install CocoaPods to your computer. It might be done by executing the following line in terminal:
+
 ```
 $ sudo gem install cocoapods
 ``` 
 CocoaPods is built with Ruby and it will be installable with the default Ruby available on OS X.
-2. Open Xcode and create a new project (in the Xcode menu: File->New->Project), or navigate to existing Xcode project using:
+
+- Open Xcode and create a new project (in the Xcode menu: File->New->Project), or navigate to existing Xcode project using:
+
 ```
 $ cd <Path to Xcode project folder>
 ```
-3. In the Xcode project's folder create a new file, give it a name *Podfile* (with a capital *P* and without any extension). Put the following lines in Podfile and save it.
+
+- In the Xcode project's folder create a new file, give it a name *Podfile* (with a capital *P* and without any extension). Put the following lines in Podfile and save it.
+
 ```
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 pod 'VirgilCryptoiOS'
 ```
-4. Get back to your terminal window and execute the following line:
+
+- Get back to your terminal window and execute the following line:
+
 ```
 $ pod install
-``` 
-5. Close Xcode project (if it is still opened). For any further development purposes you should use Xcode *.xcworkspace* file created for you by CocoaPods. 
-
+```
+ 
+- Close Xcode project (if it is still opened). For any further development purposes you should use Xcode *.xcworkspace* file created for you by CocoaPods.
+ 
 At this point you should be able to use Virgil cryptographic functionality in your code. See examples for most common tasks below.
 If you encountered any issues with CocoaPods installations try to find more information at [cocoapods.org](https://guides.cocoapods.org/using/getting-started.html).
 
 ##### Swift note
 Although VirgilCrypto is using Objective-C as its primary language it might be quite easily used in a Swift application.
 After VirgilCrypto is installed as described in the *Getting started* section it is necessary to perform the following:
-1. Create a new header file in the Swift project.
-2. Name it something like *VirgilCryptoiOS-BridgingHeader.h*
-3. Put there the following line:
+
+- Create a new header file in the Swift project.
+
+- Name it something like *VirgilCryptoiOS-BridgingHeader.h*
+
+- Put there the following line:
+
 ``` objective-c
 #import <VirgilCryptoiOS/VirgilCryptoiOS.h>
 ```
-4. In the Xcode build settings find the setting called *Objective-C Bridging Header* and set the path to your VirgilCryptoiOS-BridgingHeader.h file. Be aware that this path is relative to your Xcode project's folder. After adding bridging header setting you should be able to use it, e.g.:
+
+- In the Xcode build settings find the setting called *Objective-C Bridging Header* and set the path to your VirgilCryptoiOS-BridgingHeader.h file. Be aware that this path is relative to your Xcode project's folder. After adding bridging header setting you should be able to use it, e.g.:
+
 ```swift
 //...
 let keyPair = VCKeyPair();
@@ -72,6 +87,7 @@ NSLog(@"%@", privateKey);
 VCCryptor objects can perform two ways of encryption/decryption:
 
 - Key-based encryption/decryption.
+
 - Password-based encryption/decryption.
 
 #### Key-based encryption
@@ -184,7 +200,7 @@ To verify some signature it is necessary to have a public key of a user whose si
 // Assuming that we have a NSData object with a signature.
 // Create a new VCSigner instance
 VCSigner *verifier = [[VCSigner alloc] init];
-// Sign the initial data
+// Verify the signature.
 BOOL verified = [verifier verifyData:<# NSData that was signed #> sign:<# NSData with the signature #> publicKey:<# NSData with public key #>];
 ```
 
