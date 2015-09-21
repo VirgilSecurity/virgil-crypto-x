@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 VirgilSecurity. All rights reserved.
 //
 
-#import "VCVersion.h"
+#import "VCVirgilVersion.h"
 #import "VCKeyPair.h"
 #import "VCCryptor.h"
 #import "VCSigner.h"
