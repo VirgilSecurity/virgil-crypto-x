@@ -121,8 +121,8 @@ NSString* const kHashNameSHA512 = @"sha512";
     return signData;
 }
 
-- (BOOL)verifyData:(NSData *)data sign:(NSData *)sign publicKey:(NSData *)publicKey {
-    if (data.length == 0 || sign.length == 0 || publicKey.length == 0) {
+- (BOOL)verifySignature:(NSData *)signature data:(NSData *)data publicKey:(NSData *)publicKey {
+    if (data.length == 0 || signature.length == 0 || publicKey.length == 0) {
         return NO;
     }
     
@@ -133,8 +133,8 @@ NSString* const kHashNameSHA512 = @"sha512";
             const char *signedDataPtr = (const char *)[data bytes];
             VirgilByteArray signedData = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(signedDataPtr, [data length]);
             // Convert NSData sign
-            const char *signDataPtr = (const char *)[sign bytes];
-            VirgilByteArray signData = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(signDataPtr, [sign length]);
+            const char *signDataPtr = (const char *)[signature bytes];
+            VirgilByteArray signData = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(signDataPtr, [signature length]);
             // Convert NSData Key
             const char *keyDataPtr = (const char *)[publicKey bytes];
             VirgilByteArray pKey = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(keyDataPtr, [publicKey length]);

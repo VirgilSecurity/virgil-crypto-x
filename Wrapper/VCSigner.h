@@ -28,11 +28,11 @@ extern NSString* const kHashNameSHA512;
 - (NSData *)signData:(NSData *)data privateKey:(NSData *)privateKey keyPassword:(NSString *)keyPassword;
 /** 
  * Performs verification of a signature for given data using a public key.
+ * @param signature NSData Data object containing signature data.
  * @param data NSData Data object which was signed.
- * @param sign NSData Data object containing signature data.
  * @param publicKey NSData Data object containing a public key data of a user whose signature needs to be verified.
  * @return BOOL If YES then signature is verified and can be trusted. No - otherwise. 
  */
-- (BOOL)verifyData:(NSData *)data sign:(NSData *)sign publicKey:(NSData *)publicKey;
+- (BOOL)verifySignature:(NSData *)signature data:(NSData *)data publicKey:(NSData *)publicKey;
 
 @end

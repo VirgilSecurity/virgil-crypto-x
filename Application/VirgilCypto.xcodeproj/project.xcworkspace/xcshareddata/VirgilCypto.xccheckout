@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>90D05333-E09F-4699-8BD9-4C603552B346</string>
+	<key>IDESourceControlProjectName</key>
+	<string>VirgilCypto</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>2F73A8B746D18A8B425F56665E00E13EBFDD692D</key>
+		<string>https://github.com/VirgilSecurity/VirgilCryptoiOS.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Application/VirgilCypto.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>2F73A8B746D18A8B425F56665E00E13EBFDD692D</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/VirgilSecurity/VirgilCryptoiOS.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>2F73A8B746D18A8B425F56665E00E13EBFDD692D</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2F73A8B746D18A8B425F56665E00E13EBFDD692D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>VirgilCryptoiOS</string>
+		</dict>
+	</array>
+</dict>
+</plist>
