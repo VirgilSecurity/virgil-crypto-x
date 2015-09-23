@@ -137,9 +137,7 @@
 		3614026C1BB2A6CB002E69CA = {
 			isa = PBXGroup;
 			children = (
-				361402EA1BB2C186002E69CA /* BridgingHeader.h */,
-				3614029E1BB2A731002E69CA /* Frameworks */,
-				361402A01BB2A731002E69CA /* Wrapper */,
+				361403801BB2E129002E69CA /* VirgilCrypto Pod Content */,
 				361402771BB2A6CB002E69CA /* VirgilCypto */,
 				361402911BB2A6CB002E69CA /* VirgilCyptoTests */,
 				361402B81BB2AC5B002E69CA /* VirgilCryptoSwift */,
@@ -266,6 +264,16 @@
 				361402D01BB2AC5B002E69CA /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		361403801BB2E129002E69CA /* VirgilCrypto Pod Content */ = {
+			isa = PBXGroup;
+			children = (
+				361402EA1BB2C186002E69CA /* BridgingHeader.h */,
+				3614029E1BB2A731002E69CA /* Frameworks */,
+				361402A01BB2A731002E69CA /* Wrapper */,
+			);
+			name = "VirgilCrypto Pod Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -823,6 +831,7 @@
 				361402D51BB2AC5B002E69CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		361402D61BB2AC5B002E69CA /* Build configuration list for PBXNativeTarget "VirgilCryptoSwiftTests" */ = {
 			isa = XCConfigurationList;
@@ -831,6 +840,7 @@
 				361402D81BB2AC5B002E69CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
