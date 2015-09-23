@@ -47,7 +47,7 @@ After VirgilCrypto is installed as described in the *Getting started* section it
 
 - Create a new header file in the Swift project.
 
-- Name it something like *VirgilCryptoiOS-BridgingHeader.h*
+- Name it something like *BridgingHeader.h*
 
 - Put there the following line:
 
@@ -55,18 +55,11 @@ After VirgilCrypto is installed as described in the *Getting started* section it
 #import <VirgilCryptoiOS/VirgilCryptoiOS.h>
 ```
 
-- In the Xcode build settings find the setting called *Objective-C Bridging Header* and set the path to your VirgilCryptoiOS-BridgingHeader.h file. Be aware that this path is relative to your Xcode project's folder. After adding bridging header setting you should be able to use it, e.g.:
-
-```swift
-//...
-let keyPair = VCKeyPair();
-println(NSString(data: keyPair.publicKey(), encoding: NSUTF8StringEncoding))
-//...
-```
+- In the Xcode build settings find the setting called *Objective-C Bridging Header* and set the path to your BridgingHeader.h file. Be aware that this path is relative to your Xcode project's folder.
 
 You can find more information about using Objective-C and Swift in the same project [here](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/BuildingCocoaApps/MixandMatch.html).  
 
-### Creating a new key pair
+## Creating a new key pair
 
 VCKeyPair instance should be used to generate a pair of keys. It is possible to generate a password-protected private key. In case of password is not given private key will be generated as a plain data. 
 
@@ -75,14 +68,22 @@ VCKeyPair instance should be used to generate a pair of keys. It is possible to 
 #import <VirgilCryptoiOS/VCKeyPair.h>
 //...
 
-VCKeyPair *keyPair = [[VCKeyPair alloc] initWithPassword:<# password or nil #>];
+VCKeyPair *keyPair = [[VCKeyPair alloc] initWithPassword:<#Password or nil#>];
 NSString *publicKey = [[NSString alloc] initWithData:keyPair.publicKey encoding:NSUTF8StringEncoding];
 NSLog(@"%@", publicKey);
 NSString *privateKey = [[NSString alloc] initWithData:keyPair.privateKey encoding:NSUTF8StringEncoding];
 NSLog(@"%@", privateKey);
 ```
 
-### Encrypt/decrypt data
+```swift
+//...
+let keyPair = VCKeyPair(password:<#Password or nil#>)
+println(NSString(data: keyPair.publicKey(), encoding: NSUTF8StringEncoding))
+println(NSString(data: keyPair.privateKey(), encoding: NSUTF8StringEncoding))
+//...
+```
+
+## Encrypt/decrypt data
 
 VCCryptor objects can perform two ways of encryption/decryption:
 
@@ -105,9 +106,25 @@ NSData *toEncrypt = [message dataUsingEncoding:NSUTF8StringEncoding allowLossyCo
 // Create a new VCCryptor instance
 VCCryptor *cryptor = [[VCCryptor alloc] init];
 // Now we should add a key recepient
-[cryptor addKeyRecepient:<# Public Key ID (e.g. UUID) #> publicKey:keyPair.publicKey];
+[cryptor addKeyRecepient:<# Public Key ID (e.g. UUID) #> publicKey:<#keyPair.publicKey#>];
 // And now we can easily encrypt the plain data
 NSData *encryptedData = [cryptor encryptData:toEncrypt embedContentInfo:@YES];
+```
+
+```swift
+//...
+// Assuming that we have some initial string message.
+let message = NSString(string: "This is a secret message which should be encrypted.")
+// Convert it to the NSData
+let toEncrypt = message.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+// Assuming that we have some key pair generated earlier.
+// Create a new VCCryptor instance
+let cryptor = VCCryptor()
+// Now we should add a key recepient
+cryptor.addKeyRecepient(<#Public Key ID (e.g. UUID)#>, publicKey:<#keyPair.publicKey()#>)
+// And now we can easily encrypt the plain data
+var encryptedData = cryptor.encryptData(toEncrypt, embedContentInfo: true)
+//...
 ```
 
 #### Key-based decryption
@@ -122,9 +139,24 @@ NSData *encryptedData = [cryptor encryptData:toEncrypt embedContentInfo:@YES];
 // Create a new VCCryptor instance
 VCCryptor *decryptor = [[VCCryptor alloc] init];
 // Decrypt data
-NSData *plainData = [decryptor decryptData:<# NSData to decrypt #> publicKeyId:<# Public Key ID (e.g. UUID) #> privateKey:keyPair.privateKey keyPassword:<# Private key password or nil #>];
+NSData *plainData = [decryptor decryptData:<#encryptedData#> publicKeyId:<#Public Key ID (e.g. UUID)#> privateKey:<#keyPair.privateKey#> keyPassword:<#Private key password or nil#>];
 // Compose initial message from the plain decrypted data
 NSString *initialMessage = [[NSString alloc] initWithData:plainData encoding:NSUTF8StringEncoding];
+```
+
+```swift
+//...
+
+// Assuming that we have received some key-based encrypted data.
+// Assuming that we have some key pair generated earlier.
+// Create a new VCCryptor instance
+let decryptor = VCCryptor()
+// Decrypt data
+var plainData = decryptor.decryptData(<#encryptedData#>, publicKeyId: <#Public Key ID (e.g. UUID)#>, privateKey: ,<#keyPair.privateKey()#>, keyPassword: <#Private key password or nil#>)
+// Compose initial message from the plain decrypted data
+if let data = plainData {
+	var initialMessage = NSString(data: data, encoding: NSUTF8StringEncoding)
+}
 ```
 
 #### Password-based encryption
@@ -142,9 +174,24 @@ NSData *toEncrypt = [message dataUsingEncoding:NSUTF8StringEncoding allowLossyCo
 // Create a new VCCryptor instance
 VCCryptor *cryptor = [[VCCryptor alloc] init];
 // Now we should add a password recepient
-[cryptor addPasswordRecipient:<# Password to encrypt data with #>];
+[cryptor addPasswordRecipient:<#Password to encrypt data with#>];
 // And now we can encrypt the plain data
 NSData *encryptedData = [cryptor encryptData:toEncrypt embedContentInfo:@YES];
+```
+
+```swift
+//...
+// Assuming that we have some initial string message.
+let message = NSString(string: "This is a secret message which should be encrypted.")
+// Convert it to the NSData
+let toEncrypt = message.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+// Create a cryptor instance
+let cryptor = VCCryptor()
+// Add a password recepient to enable password-based encryption
+cryptor.addPasswordRecipient(<#Password#>)
+// Encrypt the data
+var encryptedData = cryptor.encryptData(oEncrypt, embedContentInfo: true)
+//...
 ```
 
 #### Password-based decryption
@@ -164,9 +211,24 @@ NSData *plainData = [decryptor decryptData:<# NSData to decrypt #> password:<# P
 NSString *initialMessage = [[NSString alloc] initWithData:plainData encoding:NSUTF8StringEncoding];
 ```
 
-### Sign/Verify
+```swift
+//...
+// Assuming that we have received some password-based encrypted data.
+// Assuming that we have some key pair generated earlier.
+// Create a new VCCryptor instance
+let decryptor = VCCryptor()
+// Decrypt data
+var plainData = decryptor.decryptData(<#encryptedData#>, password:<#Password used to encrypt the data#>)
+// Compose initial message from the plain decrypted data
+if let data = plainData {
+	var initialMessage = NSString(data: data, encoding: NSUTF8StringEncoding)
+}
+//...
+```
 
-VCSigner instances allows to sign some data with a given private key. This is used to make sure that some message/data was really composed and sent by the holder of the private key.
+### Compose/Verify a signature
+
+VCSigner instances allows to sign some data with a given private key. This can be used to make sure that some message/data was really composed and sent by the holder of the private key.
 
 #### Compose a signature
 
@@ -183,7 +245,20 @@ NSData *toSign = [message dataUsingEncoding:NSUTF8StringEncoding allowLossyConve
 // Create a new VCSigner instance
 VCSigner *signer = [[VCSigner alloc] init];
 // Sign the initial data
-NSData *signature = [signer signData:toSign privateKey:keyPair.privateKey keyPassword:<# Private key password or nil #>];
+NSData *signature = [signer signData:toSign privateKey:<#keyPair.privateKey#> keyPassword:<#Private key password or nil#>];
+```
+
+```swift
+//...
+// Assuming that we have some initial string message.
+let message = NSString(string: "This is a secret message which should be signed.")
+// Convert it to the NSData
+let toSign = message.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+// Create the signer
+let signer = VCSigner()
+// Compose the signature
+var signature = signer.signData(toSign, privateKey: <#keyPair.privateKey()#>, keyPassword: <#Private key password or nil#>)
+//...
 ```
 
 #### Verify a signature
@@ -201,7 +276,25 @@ To verify some signature it is necessary to have a public key of a user whose si
 // Create a new VCSigner instance
 VCSigner *verifier = [[VCSigner alloc] init];
 // Verify the signature.
-BOOL verified = [verifier verifyData:<# NSData that was signed #> sign:<# NSData with the signature #> publicKey:<# NSData with public key #>];
+BOOL verified = [verifier verifySignature:<#signature#> data:toSign publicKey:<#keyPair.publicKey#>];
+if (verified) {
+	// Signature seems OK.
+}
+```
+
+```swift
+//...
+// Assuming that we have the public key of a person whose signature we need to verify
+// Assuming that we have a NSData object with signed data.
+// Assuming that we have a NSData object with a signature.
+// Create a new VCSigner instance
+let verifier = VCSigner()
+// Verify the signature.
+let verified = verifier.verifySignature(<#signature#>, data: toSign, publicKey:<#keyPair.publicKey()#>)
+if verified {
+	// Signature seems OK.
+}
+//...
 ```
 
 ## Requirements
