@@ -38,7 +38,7 @@ class VC003_SignerSwiftTests: XCTestCase {
         // Create the signer
         let signer = VCSigner()
         // Compose the signature
-        var signature = signer.signData(self.toSign, privateKey: keyPair.privateKey(), keyPassword: nil)
+        let signature = signer.signData(self.toSign, privateKey: keyPair.privateKey(), keyPassword: nil)
         XCTAssertNotNil(signature, "Signature should be composed properly.")
         XCTAssertTrue(signature.length > 0, "Signature should have an actual content.");
     

@@ -17,15 +17,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    VCKeyPair *keyPair = [[VCKeyPair alloc] initWithPassword:nil];
-    NSLog(@"%@", [[NSString alloc] initWithData:keyPair.publicKey encoding:NSUTF8StringEncoding]);
-    NSLog(@"%@", [[NSString alloc] initWithData:keyPair.privateKey encoding:NSUTF8StringEncoding]);
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

@@ -20,7 +20,7 @@ class VC001_KeyPairSwiftTests: XCTestCase {
         XCTAssertTrue(keyPair.privateKey().length > 0, "Private key should have actual content.");
         
         if let keyString = NSString(data: keyPair.privateKey(), encoding: NSUTF8StringEncoding) {
-            let range = keyString.rangeOfString("ENCRYPTED", options: .LiteralSearch | .CaseInsensitiveSearch)
+            let range = keyString.rangeOfString("ENCRYPTED", options: [.LiteralSearch, .CaseInsensitiveSearch])
             XCTAssertTrue(range.length == 0, "Private key should be generated in plain form.");
         }
     }
@@ -35,7 +35,7 @@ class VC001_KeyPairSwiftTests: XCTestCase {
         XCTAssertTrue(keyPair.privateKey().length > 0, "Private key should be generated for the new key pair.");
     
         if let keyString = NSString(data: keyPair.privateKey(), encoding: NSUTF8StringEncoding) {
-            let range = keyString.rangeOfString("ENCRYPTED", options: .LiteralSearch | .CaseInsensitiveSearch)
+            let range = keyString.rangeOfString("ENCRYPTED", options: [.LiteralSearch, .CaseInsensitiveSearch])
             XCTAssertTrue(range.length != 0, "Private key should be generated protected by the password provided to initializer.");
         }
     }

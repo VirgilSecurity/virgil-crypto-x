@@ -41,7 +41,7 @@ class VC002_CryptorSwiftTests: XCTestCase {
         // Add a key recepient to enable key-based encryption
         cryptor.addKeyRecepient(publicKeyId, publicKey: keyPair.publicKey())
         // Encrypt the data
-        var encryptedData = cryptor.encryptData(self.toEncrypt, embedContentInfo: true)
+        let encryptedData = cryptor.encryptData(self.toEncrypt, embedContentInfo: true)
         XCTAssertNotNil(encryptedData, "Plain data should be encrypted.")
         XCTAssertTrue(encryptedData!.length > 0, "The data encrypted with key-based encryption should have an actual content.");
     
@@ -49,7 +49,7 @@ class VC002_CryptorSwiftTests: XCTestCase {
         // Create a completely new instance of the VCCryptor object
         let decryptor = VCCryptor()
         // Decrypt data using key-based decryption
-        var plainData = decryptor.decryptData(encryptedData!, publicKeyId: publicKeyId, privateKey: keyPair.privateKey(), keyPassword: nil)
+        let plainData = decryptor.decryptData(encryptedData!, publicKeyId: publicKeyId, privateKey: keyPair.privateKey(), keyPassword: nil)
         XCTAssertNotNil(plainData, "Encrypted data should be decrypted.")
         XCTAssertEqual(plainData!, self.toEncrypt, "Initial data and decrypted data should be equal.")
     }
@@ -62,7 +62,7 @@ class VC002_CryptorSwiftTests: XCTestCase {
         // Add a password recepient to enable password-based encryption
         cryptor.addPasswordRecipient(password)
         // Encrypt the data
-        var encryptedData = cryptor.encryptData(self.toEncrypt, embedContentInfo: true)
+        let encryptedData = cryptor.encryptData(self.toEncrypt, embedContentInfo: true)
         XCTAssertNotNil(encryptedData, "Plain data should be encrypted.")
         XCTAssertTrue(encryptedData!.length > 0, "The data encrypted with password-based encryption should have an actual content.");
     
@@ -70,7 +70,7 @@ class VC002_CryptorSwiftTests: XCTestCase {
         // Create a completely new instance of the VCCryptor object
         let decryptor = VCCryptor()
         // Decrypt data using password-based decryption
-        var plainData = decryptor.decryptData(encryptedData!, password: password)
+        let plainData = decryptor.decryptData(encryptedData!, password: password)
         XCTAssertNotNil(plainData, "Encrypted data should be decrypted.")
         XCTAssertEqual(plainData!, self.toEncrypt, "Initial data and decrypted data should be equal.")
     }
