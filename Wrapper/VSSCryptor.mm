@@ -1,18 +1,18 @@
 //
-//  VCCryptor.mm
+//  VSSCryptor.mm
 //  VirgilCrypto
 //
 //  Created by Pavel Gorb on 2/3/15.
 //  Copyright (c) 2015 VirgilSecurity, Inc. All rights reserved.
 //
 
-#import "VCCryptor.h"
+#import "VSSCryptor.h"
 #import <VirgilSecurity/virgil/crypto/VirgilCipher.h>
 
 using virgil::crypto::VirgilByteArray;
 using virgil::crypto::VirgilCipher;
 
-@interface VCCryptor ()
+@interface VSSCryptor ()
 
 @property (nonatomic, assign) VirgilCipher * __nullable cipher;
 
@@ -20,7 +20,7 @@ using virgil::crypto::VirgilCipher;
 
 @end
 
-@implementation VCCryptor
+@implementation VSSCryptor
 
 @synthesize cipher = _cipher;
 

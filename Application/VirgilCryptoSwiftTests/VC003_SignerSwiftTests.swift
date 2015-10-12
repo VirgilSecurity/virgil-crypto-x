@@ -26,24 +26,24 @@ class VC003_SignerSwiftTests: XCTestCase {
     }
     
     func test001_createSigner() {
-        let signer = VCSigner()
+        let signer = VSSSigner()
         XCTAssertNotNil(signer, "VCSigner instance should be created.");
     }
     
     func test002_composeAndVerifySignature() {
         // Generate a new key pair
-        let keyPair = VCKeyPair()
+        let keyPair = VSSKeyPair()
     
         // Compose signature:
         // Create the signer
-        let signer = VCSigner()
+        let signer = VSSSigner()
         // Compose the signature
         if let signature = signer.signData(self.toSign, privateKey: keyPair.privateKey(), keyPassword: nil) {
             XCTAssertTrue(signature.length > 0, "Signature should have an actual content.");
             
             // Verify signature:
             // Create a verifier
-            let verifier = VCSigner()
+            let verifier = VSSSigner()
             let trusted = verifier.verifySignature(signature, data: self.toSign, publicKey: keyPair.publicKey())
             XCTAssertTrue(trusted, "Signature should be correct and verified.");
         }

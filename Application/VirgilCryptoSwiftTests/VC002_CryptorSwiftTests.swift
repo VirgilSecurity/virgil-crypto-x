@@ -26,18 +26,18 @@ class VC002_CryptorSwiftTests: XCTestCase {
     }
     
     func test001_createCryptor() {
-        let cryptor = VCCryptor()
+        let cryptor = VSSCryptor()
         XCTAssertNotNil(cryptor, "VCCryptor instance should be created.");
     }
     
     func test002_keyBasedEncryptDecrypt() {
         // Generate a new key pair
-        let keyPair = VCKeyPair()
+        let keyPair = VSSKeyPair()
         // Generate a public key id
         let publicKeyId = NSUUID().UUIDString
         // Encrypt:
         // Create a cryptor instance
-        let cryptor = VCCryptor()
+        let cryptor = VSSCryptor()
         // Add a key recepient to enable key-based encryption
         cryptor.addKeyRecepient(publicKeyId, publicKey: keyPair.publicKey())
         // Encrypt the data
@@ -47,7 +47,7 @@ class VC002_CryptorSwiftTests: XCTestCase {
     
         // Decrypt:
         // Create a completely new instance of the VCCryptor object
-        let decryptor = VCCryptor()
+        let decryptor = VSSCryptor()
         // Decrypt data using key-based decryption
         let plainData = decryptor.decryptData(encryptedData!, publicKeyId: publicKeyId, privateKey: keyPair.privateKey(), keyPassword: nil)
         XCTAssertNotNil(plainData, "Encrypted data should be decrypted.")
@@ -58,7 +58,7 @@ class VC002_CryptorSwiftTests: XCTestCase {
         // Encrypt:
         let password = "secret"
         // Create a cryptor instance
-        let cryptor = VCCryptor()
+        let cryptor = VSSCryptor()
         // Add a password recepient to enable password-based encryption
         cryptor.addPasswordRecipient(password)
         // Encrypt the data
@@ -68,7 +68,7 @@ class VC002_CryptorSwiftTests: XCTestCase {
     
         // Decrypt:
         // Create a completely new instance of the VCCryptor object
-        let decryptor = VCCryptor()
+        let decryptor = VSSCryptor()
         // Decrypt data using password-based decryption
         let plainData = decryptor.decryptData(encryptedData!, password: password)
         XCTAssertNotNil(plainData, "Encrypted data should be decrypted.")

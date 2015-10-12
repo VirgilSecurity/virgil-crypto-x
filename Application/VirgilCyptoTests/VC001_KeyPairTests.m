@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
 
-#import "VCKeyPair.h"
+#import "VSSKeyPair.h"
 
 @interface VC001_KeyPairTests : XCTestCase
 
@@ -18,8 +18,8 @@
 @implementation VC001_KeyPairTests
 
 - (void)test001_createKeyPair {
-    VCKeyPair *keyPair = [[VCKeyPair alloc] init];
-    XCTAssertNotNil(keyPair, @"VCKeyPair instance should be created.");
+    VSSKeyPair *keyPair = [[VSSKeyPair alloc] init];
+    XCTAssertNotNil(keyPair, @"VSSKeyPair instance should be created.");
     XCTAssertTrue(keyPair.publicKey.length > 0, @"Public key should be generated for the new key pair.");
     XCTAssertTrue(keyPair.privateKey.length > 0, @"Private key should be generated for the new key pair.");
     
@@ -30,8 +30,8 @@
 
 - (void)test002_createKeyPairWithPassword {
     NSString *password = @"secret";
-    VCKeyPair *keyPair = [[VCKeyPair alloc] initWithPassword:password];
-    XCTAssertNotNil(keyPair, @"VCKeyPair instance should be created.");
+    VSSKeyPair *keyPair = [[VSSKeyPair alloc] initWithPassword:password];
+    XCTAssertNotNil(keyPair, @"VSSKeyPair instance should be created.");
     XCTAssertTrue(keyPair.publicKey.length > 0, @"Public key should be generated for the new key pair.");
     XCTAssertTrue(keyPair.privateKey.length > 0, @"Private key should be generated for the new key pair.");
     

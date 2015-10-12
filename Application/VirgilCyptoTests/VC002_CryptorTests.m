@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
 
-#import "VCCryptor.h"
-#import "VCKeyPair.h"
+#import "VSSCryptor.h"
+#import "VSSKeyPair.h"
 
 @interface VC002_CryptorTests : XCTestCase
 
@@ -35,18 +35,18 @@
 }
 
 - (void)test001_createCryptor {
-    VCCryptor *cryptor = [[VCCryptor alloc] init];
-    XCTAssertNotNil(cryptor, @"VCCryptor instance should be created.");
+    VSSCryptor *cryptor = [[VSSCryptor alloc] init];
+    XCTAssertNotNil(cryptor, @"VSSCryptor instance should be created.");
 }
 
 - (void)test002_keyBasedEncryptDecrypt {
     // Encrypt:
     // Generate a new key pair
-    VCKeyPair *keyPair = [[VCKeyPair alloc] init];
+    VSSKeyPair *keyPair = [[VSSKeyPair alloc] init];
     // Generate a public key id
     NSString *publicKeyId = [[[NSUUID UUID] UUIDString] lowercaseString];
     // Create a cryptor instance
-    VCCryptor *cryptor = [[VCCryptor alloc] init];
+    VSSCryptor *cryptor = [[VSSCryptor alloc] init];
     // Add a key recepient to enable key-based encryption
     [cryptor addKeyRecepient:publicKeyId publicKey:keyPair.publicKey];
     // Encrypt the data
@@ -55,7 +55,7 @@
     
     // Decrypt:
     // Create a completely new instance of the VCCryptor object
-    VCCryptor *decryptor = [[VCCryptor alloc] init];
+    VSSCryptor *decryptor = [[VSSCryptor alloc] init];
     // Decrypt data using key-based decryption
     NSData *plainData = [decryptor decryptData:encryptedData publicKeyId:publicKeyId privateKey:keyPair.privateKey keyPassword:nil];
     XCTAssertEqualObjects(plainData, self.toEncrypt, @"Initial data and decrypted data should be equal.");
@@ -65,7 +65,7 @@
     // Encrypt:
     NSString *password = @"secret";
     // Create a cryptor instance
-    VCCryptor *cryptor = [[VCCryptor alloc] init];
+    VSSCryptor *cryptor = [[VSSCryptor alloc] init];
     // Add a password recepient to enable password-based encryption
     [cryptor addPasswordRecipient:password];
     // Encrypt the data
@@ -74,7 +74,7 @@
     
     // Decrypt:
     // Create a completely new instance of the VCCryptor object
-    VCCryptor *decryptor = [[VCCryptor alloc] init];
+    VSSCryptor *decryptor = [[VSSCryptor alloc] init];
     // Decrypt data using password-based decryption
     NSData *plainData = [decryptor decryptData:encryptedData password:password];
     XCTAssertEqualObjects(plainData, self.toEncrypt, @"Initial data and decrypted data should be equal.");

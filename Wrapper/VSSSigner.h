@@ -1,5 +1,5 @@
 //
-//  VCSigner.h
+//  VSSSigner.h
 //  VirgilCrypto
 //
 //  Created by Pavel Gorb on 2/3/15.
@@ -13,7 +13,7 @@ extern NSString * __nonnull const kHashNameSHA256;
 extern NSString * __nonnull const kHashNameSHA384;
 extern NSString * __nonnull const kHashNameSHA512;
 
-@interface VCSigner : NSObject
+@interface VSSSigner : NSObject
 
 - (instancetype __nonnull)init;
 - (instancetype __nonnull)initWithHash:(NSString * __nullable)hash NS_DESIGNATED_INITIALIZER;

@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
 
-#import "VCSigner.h"
-#import "VCKeyPair.h"
+#import "VSSSigner.h"
+#import "VSSKeyPair.h"
 
 @interface VC003_SignerTests : XCTestCase
 
@@ -35,24 +35,24 @@
 }
 
 - (void)test001_createSigner {
-    VCSigner *signer = [[VCSigner alloc] init];
+    VSSSigner *signer = [[VSSSigner alloc] init];
     XCTAssertNotNil(signer, @"VCSigner instance should be created.");
 }
 
 - (void)test002_composeAndVerifySignature {
     // Generate a new key pair
-    VCKeyPair *keyPair = [[VCKeyPair alloc] init];
+    VSSKeyPair *keyPair = [[VSSKeyPair alloc] init];
     
     // Compose signature:
     // Create the signer
-    VCSigner *signer = [[VCSigner alloc] init];
+    VSSSigner *signer = [[VSSSigner alloc] init];
     // Compose the signature
     NSData *signature = [signer signData:self.toSign privateKey:keyPair.privateKey keyPassword:nil];
     XCTAssertTrue(signature.length > 0, @"Signature should be composed.");
     
     // Verify signature:
     // Create a verifier
-    VCSigner *verifier = [[VCSigner alloc] init];
+    VSSSigner *verifier = [[VSSSigner alloc] init];
     BOOL trusted = [verifier verifySignature:signature data:self.toSign publicKey:keyPair.publicKey];
     XCTAssertTrue(trusted, @"Signature should be correct and verified.");
 }

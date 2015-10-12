@@ -1,25 +1,25 @@
 //
-//  VCKeyPair.mm
+//  VSSKeyPair.mm
 //  VirgilCrypto
 //
 //  Created by Pavel Gorb on 2/3/15.
 //  Copyright (c) 2015 VirgilSecurity, Inc. All rights reserved.
 //
 
-#import "VCKeyPair.h"
+#import "VSSKeyPair.h"
 #import <VirgilSecurity/virgil/crypto/VirgilByteArray.h>
 #import <VirgilSecurity/virgil/crypto/VirgilKeyPair.h>
 
 using virgil::crypto::VirgilByteArray;
 using namespace virgil::crypto;
 
-@interface VCKeyPair ()
+@interface VSSKeyPair ()
 
 @property (nonatomic, assign) VirgilKeyPair * __nullable keyPair;
 
 @end
 
-@implementation VCKeyPair
+@implementation VSSKeyPair
 
 @synthesize keyPair = _keyPair;
 

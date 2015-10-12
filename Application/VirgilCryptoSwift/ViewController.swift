@@ -13,6 +13,9 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let version = VSSVirgilVersion()
+        print("Virgil Version: \(version.versionString())")
     }
 
     override func didReceiveMemoryWarning() {

@@ -1,5 +1,5 @@
 //
-//  VWCryptor.h
+//  VSSCryptor.h
 //  VirgilCrypto
 //
 //  Created by Pavel Gorb on 2/3/15.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface VCCryptor : NSObject
+@interface VSSCryptor : NSObject
 
 - (instancetype __nonnull)init NS_DESIGNATED_INITIALIZER;
 

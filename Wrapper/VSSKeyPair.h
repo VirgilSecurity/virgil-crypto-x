@@ -1,5 +1,5 @@
 //
-//  VCKeyPair.h
+//  VSSKeyPair.h
 //  VirgilCrypto
 //
 //  Created by Pavel Gorb on 2/3/15.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface VCKeyPair : NSObject
+@interface VSSKeyPair : NSObject
 
 - (instancetype __nonnull)init;
 - (instancetype __nonnull)initWithPassword:(NSString * __nullable)password NS_DESIGNATED_INITIALIZER;

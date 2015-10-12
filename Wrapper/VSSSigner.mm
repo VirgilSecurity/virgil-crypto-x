@@ -1,12 +1,12 @@
 //
-//  VCSigner.mm
+//  VSSSigner.mm
 //  VirgilCrypto
 //
 //  Created by Pavel Gorb on 2/3/15.
 //  Copyright (c) 2015 VirgilSecurity, Inc. All rights reserved.
 //
 
-#import "VCSigner.h"
+#import "VSSSigner.h"
 #import <VirgilSecurity/virgil/crypto/VirgilByteArray.h>
 #import <VirgilSecurity/virgil/crypto/VirgilSigner.h>
 #import <VirgilSecurity/virgil/crypto/foundation/VirgilHash.h>
@@ -20,13 +20,13 @@ NSString* const kHashNameSHA256 = @"sha256";
 NSString* const kHashNameSHA384 = @"sha384";
 NSString* const kHashNameSHA512 = @"sha512";
 
-@interface VCSigner ()
+@interface VSSSigner ()
 
 @property (nonatomic, assign) VirgilSigner * __nullable signer;
 
 @end
 
-@implementation VCSigner
+@implementation VSSSigner
 
 @synthesize signer = _signer;
 

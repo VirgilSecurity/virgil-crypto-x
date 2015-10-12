@@ -1,5 +1,5 @@
 //
-//  VCVirgilVersion.h
+//  VSSVirgilVersion.h
 //  VirgilCrypto
 //
 //  Created by Pavel Gorb on 2/3/15.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface VCVirgilVersion : NSObject
+@interface VSSVirgilVersion : NSObject
 
 - (instancetype __nonnull)init NS_DESIGNATED_INITIALIZER;
 

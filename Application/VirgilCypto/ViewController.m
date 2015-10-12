@@ -17,6 +17,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    VSSVirgilVersion *version = [[VSSVirgilVersion alloc] init];
+    NSLog(@"Virgil Version: %@", [version versionString]);
 }
 
 - (void)didReceiveMemoryWarning {
