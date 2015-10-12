@@ -10,15 +10,15 @@
 
 @interface VCVirgilVersion : NSObject
 
-- (instancetype)init NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)init NS_DESIGNATED_INITIALIZER;
 
 /**
  * Returns string version of the low-level virgil cryptographic library. E.g. @"1.0.0"
  */
-- (NSString *)versionString;
+- (NSString * __nonnull)versionString;
 /**
  * Returns numeric representation of the low-level virgil cryptographic library.
  */
-- (NSNumber *)version;
+- (NSNumber * __nonnull)version;
 
 @end

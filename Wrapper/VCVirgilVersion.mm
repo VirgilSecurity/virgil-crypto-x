@@ -35,7 +35,8 @@ using virgil::crypto::VirgilVersion;
     }
     @catch(NSException *exc) {
         NSLog(@"Error creating VirgilVersion object: %@, %@", [exc name], [exc reason]);
-        return nil;
+        _frameworkVersion = NULL;
+        return self;
     }
 }
 
@@ -50,7 +51,7 @@ using virgil::crypto::VirgilVersion;
 
 - (NSString *)versionString {
     if (self.frameworkVersion == NULL) {
-        return nil;
+        return @"";
     }
     NSString *version = nil;
     @try {
@@ -59,7 +60,7 @@ using virgil::crypto::VirgilVersion;
     }
     @catch(NSException* exc) {
         NSLog(@"Error getting string version of Virgil: %@, %@", [exc name], [exc reason]);
-        version = nil;
+        version = @"";
     }
     @finally {
         return version;
@@ -68,7 +69,7 @@ using virgil::crypto::VirgilVersion;
 
 - (NSNumber *)version {
     if (self.frameworkVersion == NULL) {
-        return nil;
+        return @0;
     }
     NSNumber *version = nil;
     @try {
@@ -77,7 +78,7 @@ using virgil::crypto::VirgilVersion;
     }
     @catch(NSException* exc) {
         NSLog(@"Error getting number version of Virgil: %@, %@", [exc name], [exc reason]);
-        version = nil;
+        version = @0;
     }
     @finally {
         return version;

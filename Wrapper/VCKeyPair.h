@@ -10,16 +10,16 @@
 
 @interface VCKeyPair : NSObject
 
-- (instancetype)init;
-- (instancetype)initWithPassword:(NSString *)password NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)init;
+- (instancetype __nonnull)initWithPassword:(NSString * __nullable)password NS_DESIGNATED_INITIALIZER;
 
 /**
  * Returns NSData object containing the generated public key data.
  */
-- (NSData *)publicKey;
+- (NSData * __nonnull)publicKey;
 /**
  * Returns NSData object containing the generated private key data. In case of non-nil password used in -initWithPassword: initializer private key data will be encrypted using given password.
  */ 
-- (NSData *)privateKey;
+- (NSData * __nonnull)privateKey;
 
 @end

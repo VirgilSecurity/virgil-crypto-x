@@ -14,7 +14,9 @@ using virgil::crypto::VirgilCipher;
 
 @interface VCCryptor ()
 
-@property (nonatomic, assign) VirgilCipher *cipher;
+@property (nonatomic, assign) VirgilCipher * __nullable cipher;
+
+- (VirgilCipher * __nullable)createCipher;
 
 @end
 

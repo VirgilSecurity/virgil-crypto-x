@@ -8,15 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString* const kHashNameMD5;
-extern NSString* const kHashNameSHA256;
-extern NSString* const kHashNameSHA384;
-extern NSString* const kHashNameSHA512;
+extern NSString * __nonnull const kHashNameMD5;
+extern NSString * __nonnull const kHashNameSHA256;
+extern NSString * __nonnull const kHashNameSHA384;
+extern NSString * __nonnull const kHashNameSHA512;
 
 @interface VCSigner : NSObject
 
-- (instancetype)init;
-- (instancetype)initWithHash:(NSString *)hash NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)init;
+- (instancetype __nonnull)initWithHash:(NSString * __nullable)hash NS_DESIGNATED_INITIALIZER;
 
 /** 
  * Composes a signature data for given data using a private key.
@@ -25,7 +25,7 @@ extern NSString* const kHashNameSHA512;
  * @param keyPassword NSString Password which was used to create key pair object or nil.
  * @return NSData Signature data object. 
  */ 
-- (NSData *)signData:(NSData *)data privateKey:(NSData *)privateKey keyPassword:(NSString *)keyPassword;
+- (NSData * __nullable)signData:(NSData * __nonnull)data privateKey:(NSData * __nonnull)privateKey keyPassword:(NSString * __nullable)keyPassword;
 /** 
  * Performs verification of a signature for given data using a public key.
  * @param signature NSData Data object containing signature data.
@@ -33,6 +33,6 @@ extern NSString* const kHashNameSHA512;
  * @param publicKey NSData Data object containing a public key data of a user whose signature needs to be verified.
  * @return BOOL If YES then signature is verified and can be trusted. No - otherwise. 
  */
-- (BOOL)verifySignature:(NSData *)signature data:(NSData *)data publicKey:(NSData *)publicKey;
+- (BOOL)verifySignature:(NSData * __nonnull)signature data:(NSData * __nonnull)data publicKey:(NSData * __nonnull)publicKey;
 
 @end

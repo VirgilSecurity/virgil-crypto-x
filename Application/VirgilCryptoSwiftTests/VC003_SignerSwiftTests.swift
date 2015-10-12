@@ -38,15 +38,18 @@ class VC003_SignerSwiftTests: XCTestCase {
         // Create the signer
         let signer = VCSigner()
         // Compose the signature
-        let signature = signer.signData(self.toSign, privateKey: keyPair.privateKey(), keyPassword: nil)
-        XCTAssertNotNil(signature, "Signature should be composed properly.")
-        XCTAssertTrue(signature.length > 0, "Signature should have an actual content.");
-    
-        // Verify signature:
-        // Create a verifier
-        let verifier = VCSigner()
-        let trusted = verifier.verifySignature(signature, data: self.toSign, publicKey: keyPair.publicKey())
-        XCTAssertTrue(trusted, "Signature should be correct and verified.");
+        if let signature = signer.signData(self.toSign, privateKey: keyPair.privateKey(), keyPassword: nil) {
+            XCTAssertTrue(signature.length > 0, "Signature should have an actual content.");
+            
+            // Verify signature:
+            // Create a verifier
+            let verifier = VCSigner()
+            let trusted = verifier.verifySignature(signature, data: self.toSign, publicKey: keyPair.publicKey())
+            XCTAssertTrue(trusted, "Signature should be correct and verified.");
+        }
+        else {
+            XCTFail("Signature should be composed properly.")
+        }
     }
     
 }

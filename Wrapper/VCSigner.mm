@@ -22,7 +22,7 @@ NSString* const kHashNameSHA512 = @"sha512";
 
 @interface VCSigner ()
 
-@property (nonatomic, assign) VirgilSigner *signer;
+@property (nonatomic, assign) VirgilSigner * __nullable signer;
 
 @end
 

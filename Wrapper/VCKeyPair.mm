@@ -15,7 +15,7 @@ using namespace virgil::crypto;
 
 @interface VCKeyPair ()
 
-@property (nonatomic, assign) VirgilKeyPair* keyPair;
+@property (nonatomic, assign) VirgilKeyPair * __nullable keyPair;
 
 @end
 
@@ -47,7 +47,8 @@ using namespace virgil::crypto;
     }
     @catch(NSException* exc) {
         NSLog(@"Error creating VirgilKeyPair object: %@, %@", [exc name], [exc reason]);
-        return nil;
+        _keyPair = NULL;
+        return self;
     }
 }
 
@@ -62,7 +63,7 @@ using namespace virgil::crypto;
 
 - (NSData *)publicKey {
     if( self.keyPair == NULL ) {
-        return nil;
+        return [NSData data];
     }
     NSData *publicKey = nil;
     @try {
@@ -71,7 +72,7 @@ using namespace virgil::crypto;
     }
     @catch(NSException* exc) {
         NSLog(@"Error getting Public Key object: %@, %@", [exc name], [exc reason]);
-        publicKey = nil;
+        publicKey = [NSData data];
     }
     @finally {
         return publicKey;
@@ -81,7 +82,7 @@ using namespace virgil::crypto;
 
 - (NSData *)privateKey {
     if( self.keyPair == NULL ) {
-        return nil;
+        return [NSData data];
     }
     
     NSData *privateKey = nil;
@@ -91,7 +92,7 @@ using namespace virgil::crypto;
     }
     @catch(NSException* exc) {
         NSLog(@"Error getting Private Key object: %@, %@", [exc name], [exc reason]);
-        privateKey = nil;
+        privateKey = [NSData data];
     }
     @finally {
         return privateKey;
