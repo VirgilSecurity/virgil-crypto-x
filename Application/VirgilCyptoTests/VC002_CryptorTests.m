@@ -50,14 +50,18 @@
     // Add a key recepient to enable key-based encryption
     [cryptor addKeyRecepient:publicKeyId publicKey:keyPair.publicKey];
     // Encrypt the data
+    NSTimeInterval ti = [NSDate timeIntervalSinceReferenceDate];
     NSData *encryptedData = [cryptor encryptData:self.toEncrypt embedContentInfo:@YES];
+    NSLog(@"Encryption key-based time: %.2f", [NSDate timeIntervalSinceReferenceDate] - ti);
     XCTAssertTrue(encryptedData.length > 0, @"Cryptor should encrypt the given plain data using key-based encryption.");
     
     // Decrypt:
     // Create a completely new instance of the VCCryptor object
     VSSCryptor *decryptor = [[VSSCryptor alloc] init];
     // Decrypt data using key-based decryption
+    ti = [NSDate timeIntervalSinceReferenceDate];
     NSData *plainData = [decryptor decryptData:encryptedData publicKeyId:publicKeyId privateKey:keyPair.privateKey keyPassword:nil];
+    NSLog(@"Decryption key-based time: %.2f", [NSDate timeIntervalSinceReferenceDate] - ti);
     XCTAssertEqualObjects(plainData, self.toEncrypt, @"Initial data and decrypted data should be equal.");
 }
 
@@ -69,14 +73,18 @@
     // Add a password recepient to enable password-based encryption
     [cryptor addPasswordRecipient:password];
     // Encrypt the data
+    NSTimeInterval ti = [NSDate timeIntervalSinceReferenceDate];
     NSData *encryptedData = [cryptor encryptData:self.toEncrypt embedContentInfo:@YES];
+    NSLog(@"Encryption password-based time: %.2f", [NSDate timeIntervalSinceReferenceDate] - ti);
     XCTAssertTrue(encryptedData.length > 0, @"Cryptor should encrypt the given plain data using password-based encryption.");
     
     // Decrypt:
     // Create a completely new instance of the VCCryptor object
     VSSCryptor *decryptor = [[VSSCryptor alloc] init];
     // Decrypt data using password-based decryption
+    ti = [NSDate timeIntervalSinceReferenceDate];
     NSData *plainData = [decryptor decryptData:encryptedData password:password];
+    NSLog(@"Decryption key-based time: %.2f", [NSDate timeIntervalSinceReferenceDate] - ti);
     XCTAssertEqualObjects(plainData, self.toEncrypt, @"Initial data and decrypted data should be equal.");
 }
 

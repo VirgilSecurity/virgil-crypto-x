@@ -7,7 +7,7 @@
 //
 
 #import "VSSCryptor.h"
-#import <VirgilSecurity/virgil/crypto/VirgilCipher.h>
+#import <VirgilCrypto/virgil/crypto/VirgilCipher.h>
 
 using virgil::crypto::VirgilByteArray;
 using virgil::crypto::VirgilCipher;
@@ -45,16 +45,8 @@ using virgil::crypto::VirgilCipher;
 
 - (VirgilCipher *)createCipher {
     VirgilCipher *cipher = NULL;
-    @try {
-        cipher = new VirgilCipher();
-    }
-    @catch(NSException *exc) {
-        NSLog(@"Error creating VirgilCipher object: %@, %@", [exc name], [exc reason]);
-        cipher = NULL;
-    }
-    @finally {
-        return cipher;
-    }
+    cipher = new VirgilCipher();
+    return cipher;
 }
 
 #pragma mark - Public class logic
@@ -67,22 +59,13 @@ using virgil::crypto::VirgilCipher;
     
     NSData *encData = nil;
     if (self.cipher != NULL) {
-        @try {
-            // Convert NSData to
-            const char *dataToEncrypt = (const char *)[plainData bytes];
-            VirgilByteArray plainDataArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(dataToEncrypt, [plainData length]);
-            
-            // Encrypt data.
-            VirgilByteArray encryptedData = ((VirgilCipher *)self.cipher)->encrypt(plainDataArray, (bool)[embedContentInfo boolValue]);
-            encData = [NSData dataWithBytes:encryptedData.data() length:encryptedData.size()];
-        }
-        @catch(NSException *exc) {
-            NSLog(@"Error encrypting data: %@, %@", [exc name], [exc reason]);
-            encData = nil;
-        }
-        @finally {
-            return encData;
-        }
+        // Convert NSData to
+        const char *dataToEncrypt = (const char *)[plainData bytes];
+        VirgilByteArray plainDataArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(dataToEncrypt, [plainData length]);
+        
+        // Encrypt data.
+        VirgilByteArray encryptedData = ((VirgilCipher *)self.cipher)->encrypt(plainDataArray, (bool)[embedContentInfo boolValue]);
+        encData = [NSData dataWithBytes:encryptedData.data() length:encryptedData.size()];
     }
     return encData;
 }
@@ -95,34 +78,25 @@ using virgil::crypto::VirgilCipher;
     
     NSData *decData = nil;
     if (self.cipher != NULL) {
-        @try {
-            const char *dataToDecrypt = (const char *)[encryptedData bytes];
-            VirgilByteArray encryptedDataArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(dataToDecrypt, [encryptedData length]);
-            
-            std::string certId = std::string([publicKeyId UTF8String]);
-            VirgilByteArray certIdArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(certId.data(), certId.size());
-            
-            const char *pKeyData = (const char *)[privateKey bytes];
-            VirgilByteArray pKey = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKeyData, [privateKey length]);
-            
-            VirgilByteArray decrypted;
-            if (keyPassword.length > 0) {
-                std::string pKeyPassS = std::string([keyPassword UTF8String]);
-                VirgilByteArray pKeyPass = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKeyPassS.data(), pKeyPassS.size());
-                decrypted = ((VirgilCipher *)self.cipher)->decryptWithKey(encryptedDataArray, certIdArray, pKey, pKeyPass);
-            }
-            else {
-                decrypted = ((VirgilCipher *)self.cipher)->decryptWithKey(encryptedDataArray, certIdArray, pKey);
-            }
-            decData = [NSData dataWithBytes:decrypted.data() length:decrypted.size()];
+        const char *dataToDecrypt = (const char *)[encryptedData bytes];
+        VirgilByteArray encryptedDataArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(dataToDecrypt, [encryptedData length]);
+        
+        std::string certId = std::string([publicKeyId UTF8String]);
+        VirgilByteArray certIdArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(certId.data(), certId.size());
+        
+        const char *pKeyData = (const char *)[privateKey bytes];
+        VirgilByteArray pKey = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKeyData, [privateKey length]);
+        
+        VirgilByteArray decrypted;
+        if (keyPassword.length > 0) {
+            std::string pKeyPassS = std::string([keyPassword UTF8String]);
+            VirgilByteArray pKeyPass = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKeyPassS.data(), pKeyPassS.size());
+            decrypted = ((VirgilCipher *)self.cipher)->decryptWithKey(encryptedDataArray, certIdArray, pKey, pKeyPass);
         }
-        @catch(NSException *exc) {
-            NSLog(@"Error decrypting data with key: %@, %@", [exc name], [exc reason]);
-            decData = nil;
+        else {
+            decrypted = ((VirgilCipher *)self.cipher)->decryptWithKey(encryptedDataArray, certIdArray, pKey);
         }
-        @finally {
-            return decData;
-        }
+        decData = [NSData dataWithBytes:decrypted.data() length:decrypted.size()];
     }
     return decData;
 }
@@ -134,23 +108,14 @@ using virgil::crypto::VirgilCipher;
     
     NSData *decData = nil;
     if (self.cipher != NULL) {
-        @try {
-            const char *dataToDecrypt = (const char*)[encryptedData bytes];
-            VirgilByteArray data = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(dataToDecrypt, [encryptedData length]);
-            
-            std::string pass = std::string([password UTF8String]);
-            VirgilByteArray pwd = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pass.data(), pass.size());
-            
-            VirgilByteArray plain = ((VirgilCipher *)self.cipher)->decryptWithPassword(data, pwd);
-            decData = [NSData dataWithBytes:plain.data() length:plain.size()];
-        }
-        @catch(NSException *exc) {
-            NSLog(@"Error decrypting data with password: %@, %@", [exc name], [exc reason]);
-            decData = nil;
-        }
-        @finally {
-            return decData;
-        }
+        const char *dataToDecrypt = (const char*)[encryptedData bytes];
+        VirgilByteArray data = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(dataToDecrypt, [encryptedData length]);
+        
+        std::string pass = std::string([password UTF8String]);
+        VirgilByteArray pwd = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pass.data(), pass.size());
+        
+        VirgilByteArray plain = ((VirgilCipher *)self.cipher)->decryptWithPassword(data, pwd);
+        decData = [NSData dataWithBytes:plain.data() length:plain.size()];
     }
     
     return decData;
@@ -163,18 +128,13 @@ using virgil::crypto::VirgilCipher;
     }
     
     if (self.cipher != NULL) {
-        @try {
-            std::string certId = std::string([publicKeyId UTF8String]);
-            VirgilByteArray certIdArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(certId.data(), certId.size());
-            
-            const char *pKeyBytes = (const char *)[publicKey bytes];
-            VirgilByteArray pKeyArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKeyBytes, [publicKey length]);
-            
-            self.cipher->addKeyRecipient(certIdArray, pKeyArray);
-        }
-        @catch(NSException *exc) {
-            NSLog(@"Error adding Key Recepient object: %@, %@", [exc name], [exc reason]);
-        }
+        std::string certId = std::string([publicKeyId UTF8String]);
+        VirgilByteArray certIdArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(certId.data(), certId.size());
+        
+        const char *pKeyBytes = (const char *)[publicKey bytes];
+        VirgilByteArray pKeyArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKeyBytes, [publicKey length]);
+        
+        self.cipher->addKeyRecipient(certIdArray, pKeyArray);
     }
 }
 
@@ -185,15 +145,10 @@ using virgil::crypto::VirgilCipher;
     }
     
     if (self.cipher != NULL) {
-        @try {
-            std::string certId = std::string([publicKeyId UTF8String]);
-            VirgilByteArray certIdArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(certId.data(), certId.size());
-            
-            self.cipher->removeKeyRecipient(certIdArray);
-        }
-        @catch(NSException *exc) {
-            NSLog(@"Error removing Key Recepient object: %@, %@", [exc name], [exc reason]);
-        }
+        std::string certId = std::string([publicKeyId UTF8String]);
+        VirgilByteArray certIdArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(certId.data(), certId.size());
+        
+        self.cipher->removeKeyRecipient(certIdArray);
     }
 }
 
@@ -203,15 +158,10 @@ using virgil::crypto::VirgilCipher;
     }
     
     if (self.cipher != NULL) {
-        @try {
-            std::string pass = std::string([password UTF8String]);
-            VirgilByteArray passArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pass.data(), pass.size());
-            
-            self.cipher->addPasswordRecipient(passArray);
-        }
-        @catch(NSException *exc) {
-            NSLog(@"Error adding Password Recepient object: %@, %@", [exc name], [exc reason]);
-        }
+        std::string pass = std::string([password UTF8String]);
+        VirgilByteArray passArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pass.data(), pass.size());
+        
+        self.cipher->addPasswordRecipient(passArray);
     }
 }
 
@@ -221,57 +171,33 @@ using virgil::crypto::VirgilCipher;
     }
     
     if (self.cipher != NULL) {
-        @try {
-            std::string pass = std::string([password UTF8String]);
-            VirgilByteArray passArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pass.data(), pass.size());
-            
-            self.cipher->removePasswordRecipient(passArray);
-        }
-        @catch(NSException *exc) {
-            NSLog(@"Error removing Password Recepient object: %@, %@", [exc name], [exc reason]);
-        }
+        std::string pass = std::string([password UTF8String]);
+        VirgilByteArray passArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pass.data(), pass.size());
+        
+        self.cipher->removePasswordRecipient(passArray);
     }
 }
 
 - (void)removeAllRecipients {
     if (self.cipher != NULL) {
-        @try {
-            self.cipher->removeAllRecipients();
-        }
-        @catch(NSException *exc) {
-            NSLog(@"Error removing all Recepient objects: %@, %@", [exc name], [exc reason]);
-        }
+        self.cipher->removeAllRecipients();
     }
 }
 
 - (NSData *)contentInfo {
     NSData* contentInfo = nil;
     if (self.cipher != NULL) {
-        @try {
-            VirgilByteArray content = self.cipher->getContentInfo();
-            contentInfo = [NSData dataWithBytes:content.data() length:content.size()];
-        }
-        @catch(NSException *exc) {
-            NSLog(@"Error getting Content Info object: %@, %@", [exc name], [exc reason]);
-            contentInfo = nil;
-        }
-        @finally {
-            return contentInfo;
-        }
+        VirgilByteArray content = self.cipher->getContentInfo();
+        contentInfo = [NSData dataWithBytes:content.data() length:content.size()];
     }
     return contentInfo;
 }
 
 - (void) setContentInfo:(NSData *) contentInfo {
     if (self.cipher != NULL) {
-        @try {
-            const char *contentInfoBytes = (const char *)[contentInfo bytes];
-            VirgilByteArray contentInfoArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(contentInfoBytes, [contentInfo length]);
-            self.cipher->setContentInfo(contentInfoArray);
-        }
-        @catch(NSException *exc) {
-            NSLog(@"Error setting Content Info object: %@, %@", [exc name], [exc reason]);
-        }
+        const char *contentInfoBytes = (const char *)[contentInfo bytes];
+        VirgilByteArray contentInfoArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(contentInfoBytes, [contentInfo length]);
+        self.cipher->setContentInfo(contentInfoArray);
     }
 }
 

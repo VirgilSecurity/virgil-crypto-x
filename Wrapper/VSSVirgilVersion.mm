@@ -7,7 +7,7 @@
 //
 
 #import "VSSVirgilVersion.h"
-#import <VirgilSecurity/virgil/crypto/VirgilVersion.h>
+#import <VirgilCrypto/virgil/crypto/VirgilVersion.h>
 
 using virgil::crypto::VirgilVersion;
 
@@ -29,15 +29,8 @@ using virgil::crypto::VirgilVersion;
         return nil;
     }
     
-    @try {
-        _frameworkVersion = new VirgilVersion();
-        return self;
-    }
-    @catch(NSException *exc) {
-        NSLog(@"Error creating VirgilVersion object: %@, %@", [exc name], [exc reason]);
-        _frameworkVersion = NULL;
-        return self;
-    }
+    _frameworkVersion = new VirgilVersion();
+    return self;
 }
 
 - (void)dealloc {
@@ -54,17 +47,9 @@ using virgil::crypto::VirgilVersion;
         return @"";
     }
     NSString *version = nil;
-    @try {
-        std::string ver = self.frameworkVersion->asString();
-        version = [[NSString alloc] initWithCString:ver.c_str() encoding:NSUTF8StringEncoding];
-    }
-    @catch(NSException* exc) {
-        NSLog(@"Error getting string version of Virgil: %@, %@", [exc name], [exc reason]);
-        version = @"";
-    }
-    @finally {
-        return version;
-    }
+    std::string ver = self.frameworkVersion->asString();
+    version = [[NSString alloc] initWithCString:ver.c_str() encoding:NSUTF8StringEncoding];
+    return version;
 }
 
 - (NSNumber *)version {
@@ -72,17 +57,9 @@ using virgil::crypto::VirgilVersion;
         return @0;
     }
     NSNumber *version = nil;
-    @try {
-        size_t ver = self.frameworkVersion->asNumber();
-        version = [NSNumber numberWithUnsignedLongLong:ver];
-    }
-    @catch(NSException* exc) {
-        NSLog(@"Error getting number version of Virgil: %@, %@", [exc name], [exc reason]);
-        version = @0;
-    }
-    @finally {
-        return version;
-    }
+    size_t ver = self.frameworkVersion->asNumber();
+    version = [NSNumber numberWithUnsignedLongLong:ver];
+    return version;
 }
 
 @end

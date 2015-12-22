@@ -7,9 +7,9 @@
 //
 
 #import "VSSSigner.h"
-#import <VirgilSecurity/virgil/crypto/VirgilByteArray.h>
-#import <VirgilSecurity/virgil/crypto/VirgilSigner.h>
-#import <VirgilSecurity/virgil/crypto/foundation/VirgilHash.h>
+#import <VirgilCrypto/virgil/crypto/VirgilByteArray.h>
+#import <VirgilCrypto/virgil/crypto/VirgilSigner.h>
+#import <VirgilCrypto/virgil/crypto/foundation/VirgilHash.h>
 
 using virgil::crypto::VirgilByteArray;
 using virgil::crypto::VirgilSigner;
@@ -41,37 +41,28 @@ NSString* const kHashNameSHA512 = @"sha512";
     if (self == nil) {
         return nil;
     }
-    
-    @try {
-        if ([hash isEqualToString:kHashNameMD5]) {
-            _signer = new VirgilSigner(VirgilHash::md5());
-        }
-        else if ([hash isEqualToString:kHashNameSHA256]) {
-            _signer = new VirgilSigner(VirgilHash::sha256());
-        }
-        else if ([hash isEqualToString:kHashNameSHA384]) {
-            _signer = new VirgilSigner(VirgilHash::sha384());
-        }
-        else if ([hash isEqualToString:kHashNameSHA512]) {
-            _signer = new VirgilSigner(VirgilHash::sha512());
-        }
-        else if (hash.length > 0)
-        {
-            std::string hashName = std::string([hash UTF8String]);
-            VirgilByteArray hashNameArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(hashName.data(), hashName.size());
-            _signer = new VirgilSigner(VirgilHash::withName(hashNameArray));
-        }
-        else {
-            _signer = new VirgilSigner();
-        }
+    if ([hash isEqualToString:kHashNameMD5]) {
+        _signer = new VirgilSigner(VirgilHash::md5());
     }
-    @catch (NSException *exc) {
-        NSLog(@"Error creating VirgilSigner object: %@, %@", [exc name], [exc reason]);
-        _signer = NULL;
+    else if ([hash isEqualToString:kHashNameSHA256]) {
+        _signer = new VirgilSigner(VirgilHash::sha256());
     }
-    @finally {
-        return self;
+    else if ([hash isEqualToString:kHashNameSHA384]) {
+        _signer = new VirgilSigner(VirgilHash::sha384());
     }
+    else if ([hash isEqualToString:kHashNameSHA512]) {
+        _signer = new VirgilSigner(VirgilHash::sha512());
+    }
+    else if (hash.length > 0)
+    {
+        std::string hashName = std::string([hash UTF8String]);
+        VirgilByteArray hashNameArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(hashName.data(), hashName.size());
+        _signer = new VirgilSigner(VirgilHash::withName(hashNameArray));
+    }
+    else {
+        _signer = new VirgilSigner();
+    }
+    return self;
 }
 
 - (void)dealloc {
@@ -90,33 +81,23 @@ NSString* const kHashNameSHA512 = @"sha512";
     
     NSData *signData = nil;
     if (self.signer != NULL) {
-        @try {
-            // Convert NSData to
-            const char *dataToSign = (const char *)[data bytes];
-            VirgilByteArray plainData = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(dataToSign, [data length]);
-            // Convert NSData to
-            const char *pKeyData = (const char *)[privateKey bytes];
-            VirgilByteArray pKey = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKeyData, [privateKey length]);
-            
-            VirgilByteArray sign;
-            if (keyPassword.length > 0) {
-                std::string pKeyPassS = std::string([keyPassword UTF8String]);
-                VirgilByteArray pKeyPassword = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKeyPassS.data(), pKeyPassS.size());
-                sign = self.signer->sign(plainData, pKey, pKeyPassword);
-            }
-            else {
-                sign = self.signer->sign(plainData, pKey);
-            }
-            signData = [NSData dataWithBytes:sign.data() length:sign.size()];
-        }
-        @catch (NSException *exception) {
-            NSLog(@"Error signing data: %@, %@", [exception name], [exception reason]);
-            signData = nil;
-        }
-        @finally {
-            return signData;
-        }
+        // Convert NSData to
+        const char *dataToSign = (const char *)[data bytes];
+        VirgilByteArray plainData = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(dataToSign, [data length]);
+        // Convert NSData to
+        const char *pKeyData = (const char *)[privateKey bytes];
+        VirgilByteArray pKey = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKeyData, [privateKey length]);
         
+        VirgilByteArray sign;
+        if (keyPassword.length > 0) {
+            std::string pKeyPassS = std::string([keyPassword UTF8String]);
+            VirgilByteArray pKeyPassword = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKeyPassS.data(), pKeyPassS.size());
+            sign = self.signer->sign(plainData, pKey, pKeyPassword);
+        }
+        else {
+            sign = self.signer->sign(plainData, pKey);
+        }
+        signData = [NSData dataWithBytes:sign.data() length:sign.size()];
     }
     return signData;
 }
@@ -128,31 +109,22 @@ NSString* const kHashNameSHA512 = @"sha512";
     
     BOOL verified = NO;
     if (self.signer != NULL) {
-        @try {
-            // Convert NSData data
-            const char *signedDataPtr = (const char *)[data bytes];
-            VirgilByteArray signedData = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(signedDataPtr, [data length]);
-            // Convert NSData sign
-            const char *signDataPtr = (const char *)[signature bytes];
-            VirgilByteArray signData = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(signDataPtr, [signature length]);
-            // Convert NSData Key
-            const char *keyDataPtr = (const char *)[publicKey bytes];
-            VirgilByteArray pKey = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(keyDataPtr, [publicKey length]);
-            
-            bool result = self.signer->verify(signedData, signData, pKey);
-            if (result) {
-                verified = YES;
-            }
-            else {
-                verified = NO;
-            }
+        // Convert NSData data
+        const char *signedDataPtr = (const char *)[data bytes];
+        VirgilByteArray signedData = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(signedDataPtr, [data length]);
+        // Convert NSData sign
+        const char *signDataPtr = (const char *)[signature bytes];
+        VirgilByteArray signData = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(signDataPtr, [signature length]);
+        // Convert NSData Key
+        const char *keyDataPtr = (const char *)[publicKey bytes];
+        VirgilByteArray pKey = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(keyDataPtr, [publicKey length]);
+        
+        bool result = self.signer->verify(signedData, signData, pKey);
+        if (result) {
+            verified = YES;
         }
-        @catch (NSException* exception) {
-            NSLog(@"Error verifying data: %@, %@", [exception name], [exception reason]);
+        else {
             verified = NO;
-        }
-        @finally {
-            return verified;
         }
     }
     return verified;
