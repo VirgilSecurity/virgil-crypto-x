@@ -9,6 +9,6 @@
 #ifndef VirgilCypto_BridgingHeader_h
 #define VirgilCypto_BridgingHeader_h
 
-#import "VirgilCryptoiOS.h"
+#import "VirgilFoundation.h"
 
 #endif

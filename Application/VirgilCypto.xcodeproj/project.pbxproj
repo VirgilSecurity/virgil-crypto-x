@@ -74,7 +74,6 @@
 		361402A61BB2A731002E69CA /* VSSSigner.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VSSSigner.mm; sourceTree = "<group>"; };
 		361402A71BB2A731002E69CA /* VSSVirgilVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSVirgilVersion.h; sourceTree = "<group>"; };
 		361402A81BB2A731002E69CA /* VSSVirgilVersion.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VSSVirgilVersion.mm; sourceTree = "<group>"; };
-		361402A91BB2A731002E69CA /* VirgilCryptoiOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirgilCryptoiOS.h; sourceTree = "<group>"; };
 		361402AF1BB2A897002E69CA /* VC001_KeyPairTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VC001_KeyPairTests.m; sourceTree = "<group>"; };
 		361402B11BB2AB60002E69CA /* VC002_CryptorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VC002_CryptorTests.m; sourceTree = "<group>"; };
 		361402B71BB2AC5B002E69CA /* VirgilCryptoSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirgilCryptoSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,6 +91,7 @@
 		361403021BB2D232002E69CA /* VC001_KeyPairSwiftTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VC001_KeyPairSwiftTests.swift; sourceTree = "<group>"; };
 		361403031BB2D232002E69CA /* VC003_SignerSwiftTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VC003_SignerSwiftTests.swift; sourceTree = "<group>"; };
 		369D04E91C29DEE90071FB18 /* VirgilCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VirgilCrypto.framework; sourceTree = "<group>"; };
+		36AA779D1C3FD6480066C398 /* VirgilFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirgilFoundation.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +206,7 @@
 		361402A01BB2A731002E69CA /* Wrapper */ = {
 			isa = PBXGroup;
 			children = (
+				36AA779D1C3FD6480066C398 /* VirgilFoundation.h */,
 				361402A11BB2A731002E69CA /* VSSCryptor.h */,
 				361402A21BB2A731002E69CA /* VSSCryptor.mm */,
 				361402A31BB2A731002E69CA /* VSSKeyPair.h */,
@@ -214,7 +215,6 @@
 				361402A61BB2A731002E69CA /* VSSSigner.mm */,
 				361402A71BB2A731002E69CA /* VSSVirgilVersion.h */,
 				361402A81BB2A731002E69CA /* VSSVirgilVersion.mm */,
-				361402A91BB2A731002E69CA /* VirgilCryptoiOS.h */,
 			);
 			name = Wrapper;
 			path = ../Wrapper;

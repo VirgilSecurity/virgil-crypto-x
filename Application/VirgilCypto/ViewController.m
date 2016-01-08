@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "VirgilCryptoiOS.h"
+#import "VirgilFoundation.h"
 
 @interface ViewController ()
 
