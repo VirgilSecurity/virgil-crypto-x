@@ -1,6 +1,6 @@
 //
 //  VSSKeyPair.h
-//  VirgilCrypto
+//  VirgilFoundation
 //
 //  Created by Pavel Gorb on 2/3/15.
 //  Copyright (c) 2015 VirgilSecurity, Inc. All rights reserved.

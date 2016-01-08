@@ -4,10 +4,10 @@ Basic low-level framework which allows to perform some most important security o
 
 ## Getting started
 
-If you about to use any of high-level Virgil frameworks such as VirgilKeys or VirgilPrivateKeys then you don't need to install VirgilCrypto directly. It will be installed with all necessary dependencies of high-level framework.
+If you about to use any of high-level Virgil frameworks such as VirgilKeys or VirgilPrivateKeys then you don't need to install VirgilFoundation directly. It will be installed with all necessary dependencies of high-level framework.
 
-The rest of this chapter describes how to install VirgilCrypto framework directly. 
-The easiest and recommended way to use VirgilCrypto framework for iOS applcations is to install and maintain it using CocoaPods.
+The rest of this chapter describes how to install VirgilFoundation framework directly. 
+The easiest and recommended way to use VirgilFoundation framework for iOS applcations is to install and maintain it using CocoaPods.
  
 - First of all you need to install CocoaPods to your computer. It might be done by executing the following line in terminal:
 
@@ -27,7 +27,7 @@ $ cd <Path to Xcode project folder>
 ```
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
-pod 'VirgilCryptoiOS'
+pod 'VirgilFoundation'
 ```
 
 - Get back to your terminal window and execute the following line:
@@ -42,8 +42,8 @@ At this point you should be able to use Virgil cryptographic functionality in yo
 If you encountered any issues with CocoaPods installations try to find more information at [cocoapods.org](https://guides.cocoapods.org/using/getting-started.html).
 
 ##### Swift note
-Although VirgilCrypto is using Objective-C as its primary language it might be quite easily used in a Swift application.
-After VirgilCrypto is installed as described in the *Getting started* section it is necessary to perform the following:
+Although VirgilFoundation is using Objective-C as its primary language it might be quite easily used in a Swift application.
+After VirgilFoundation is installed as described in the *Getting started* section it is necessary to perform the following:
 
 - Create a new header file in the Swift project.
 
@@ -52,7 +52,7 @@ After VirgilCrypto is installed as described in the *Getting started* section it
 - Put there the following line:
 
 ``` objective-c
-#import <VirgilCryptoiOS/VirgilCryptoiOS.h>
+#import <VirgilFoundation/VirgilFoundation.h>
 ```
 
 - In the Xcode build settings find the setting called *Objective-C Bridging Header* and set the path to your BridgingHeader.h file. Be aware that this path is relative to your Xcode project's folder.
@@ -66,7 +66,7 @@ VSSKeyPair instance should be used to generate a pair of keys. It is possible to
 ###### Objective-C
 ```objective-c
 //...
-#import <VirgilCryptoiOS/VirgilCryptoiOS.h>
+#import <VirgilFoundation/VirgilFoundation.h>
 //...
 
 VSSKeyPair *keyPair = [[VSSKeyPair alloc] initWithPassword:<#Password or nil#>];
@@ -98,7 +98,7 @@ VSSCryptor objects can perform two ways of encryption/decryption:
 ###### Objective-C
 ```objective-c
 //...
-#import <VirgilCryptoiOS/VirgilCryptoiOS.h>
+#import <VirgilFoundation/VirgilFoundation.h>
 //...
 
 // Assuming that we have some initial string message.
@@ -136,7 +136,7 @@ var encryptedData = cryptor.encryptData(toEncrypt, embedContentInfo: true)
 ###### Objective-C
 ```objective-c
 //...
-#import <VirgilCryptoiOS/VirgilCryptoiOS.h>
+#import <VirgilFoundation/VirgilFoundation.h>
 //...
 
 // Assuming that we have received some key-based encrypted data.
@@ -170,7 +170,7 @@ if let data = plainData {
 ###### Objective-C
 ```objective-c
 //...
-#import <VirgilCryptoiOS/VirgilCryptoiOS.h>
+#import <VirgilFoundation/VirgilFoundation.h>
 //...
 
 // Assuming that we have some initial string message.
@@ -207,7 +207,7 @@ var encryptedData = cryptor.encryptData(oEncrypt, embedContentInfo: true)
 ###### Objective-C
 ```objective-c
 //...
-#import <VirgilCryptoiOS/VirgilCryptoiOS.h>
+#import <VirgilFoundation/VirgilFoundation.h>
 //...
 
 // Assuming that we have received some password-based encrypted data.
@@ -245,7 +245,7 @@ VSSSigner instances allows to sign some data with a given private key. This can 
 ###### Objective-C
 ```objective-c
 //...
-#import <VirgilCryptoiOS/VirgilCryptoiOS.h>
+#import <VirgilFoundation/VirgilFoundation.h>
 //...
 
 // Assuming that we have some initial string message that we want to sign.
@@ -280,7 +280,7 @@ To verify some signature it is necessary to have a public key of a user whose si
 ###### Objective-C
 ```objective-c
 //...
-#import <VirgilCryptoiOS/VirgilCryptoiOS.h>
+#import <VirgilFoundation/VirgilFoundation.h>
 //...
 
 // Assuming that we have the public key of a person whose signature we need to verify
