@@ -91,7 +91,6 @@
 		361403021BB2D232002E69CA /* VC001_KeyPairSwiftTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VC001_KeyPairSwiftTests.swift; sourceTree = "<group>"; };
 		361403031BB2D232002E69CA /* VC003_SignerSwiftTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VC003_SignerSwiftTests.swift; sourceTree = "<group>"; };
 		369D04E91C29DEE90071FB18 /* VirgilCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VirgilCrypto.framework; sourceTree = "<group>"; };
-		36AA779D1C3FD6480066C398 /* VirgilFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirgilFoundation.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,7 +205,6 @@
 		361402A01BB2A731002E69CA /* Wrapper */ = {
 			isa = PBXGroup;
 			children = (
-				36AA779D1C3FD6480066C398 /* VirgilFoundation.h */,
 				361402A11BB2A731002E69CA /* VSSCryptor.h */,
 				361402A21BB2A731002E69CA /* VSSCryptor.mm */,
 				361402A31BB2A731002E69CA /* VSSKeyPair.h */,
