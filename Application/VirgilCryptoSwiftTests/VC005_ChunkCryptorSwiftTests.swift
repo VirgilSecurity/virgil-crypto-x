@@ -49,11 +49,12 @@ class VC005_ChunkCryptorSwiftTests: XCTestCase {
             XCTFail()
         }
         
-        var actualSize: UInt64 = 0
+        var actualSize = 0
         let encryptedData = NSMutableData()
         do {
             var error: NSError? = nil
-            actualSize = cryptor.startEncryptionWithPreferredChunkSize(UInt64(kDesiredDataChunkLength), error: &error)
+
+            actualSize = cryptor.startEncryptionWithPreferredChunkSize(kDesiredDataChunkLength, error: &error)
             if let err = error {
                 XCTFail("Error starting chunk encryption: \(err.localizedDescription)")
             }
@@ -143,11 +144,11 @@ class VC005_ChunkCryptorSwiftTests: XCTestCase {
             XCTFail()
         }
         
-        var actualSize: UInt64 = 0
+        var actualSize = 0
         let encryptedData = NSMutableData()
         do {
             var error: NSError? = nil
-            actualSize = cryptor.startEncryptionWithPreferredChunkSize(UInt64(kDesiredDataChunkLength), error: &error)
+            actualSize = cryptor.startEncryptionWithPreferredChunkSize(kDesiredDataChunkLength, error: &error)
             if let err = error {
                 XCTFail("Error starting chunk encryption: \(err.localizedDescription)")
             }

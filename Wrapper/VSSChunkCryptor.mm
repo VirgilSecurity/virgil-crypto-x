@@ -46,7 +46,7 @@ NSString *const kVSSChunkCryptorErrorDomain = @"VSSChunkCryptorErrorDomain";
     return static_cast<VirgilChunkCipher *>(self.llCryptor);
 }
 
-- (unsigned long long)startEncryptionWithPreferredChunkSize:(unsigned long long)chunkSize error:(NSError * __nullable * __nullable)error {
+- (size_t)startEncryptionWithPreferredChunkSize:(size_t)chunkSize error:(NSError * __nullable * __nullable)error {
     unsigned long long actualSize = 0;
     try {
         if ([self cryptor] != NULL) {
@@ -87,7 +87,7 @@ NSString *const kVSSChunkCryptorErrorDomain = @"VSSChunkCryptorErrorDomain";
     return actualSize;
 }
 
-- (unsigned long long)startDecryptionWithRecipientId:(NSString * __nonnull)recipientId privateKey:(NSData * __nonnull)privateKey keyPassword:(NSString * __nullable)keyPassword error:(NSError * __nullable * __nullable)error {
+- (size_t)startDecryptionWithRecipientId:(NSString * __nonnull)recipientId privateKey:(NSData * __nonnull)privateKey keyPassword:(NSString * __nullable)keyPassword error:(NSError * __nullable * __nullable)error {
     if (recipientId.length == 0 || privateKey.length == 0) {
         if (error) {
             *error = [NSError errorWithDomain:kVSSChunkCryptorErrorDomain code:-1003 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to start chunk decryption with key: At least one of the required parameters is missing.", @"Chunk decryption error.") }];
@@ -95,7 +95,7 @@ NSString *const kVSSChunkCryptorErrorDomain = @"VSSChunkCryptorErrorDomain";
         return 0;
     }
     
-    unsigned long long actualSize = 0;
+    size_t actualSize = 0;
     try {
         if ([self cryptor] != NULL) {
             std::string recId = std::string([recipientId UTF8String]);
@@ -138,7 +138,7 @@ NSString *const kVSSChunkCryptorErrorDomain = @"VSSChunkCryptorErrorDomain";
     return actualSize;
 }
 
-- (unsigned long long)startDecryptionWithPassword:(NSString * __nonnull)password error:(NSError * __nullable * __nullable)error {
+- (size_t)startDecryptionWithPassword:(NSString * __nonnull)password error:(NSError * __nullable * __nullable)error {
     if (password.length == 0) {
         if (error) {
             *error = [NSError errorWithDomain:kVSSChunkCryptorErrorDomain code:-1007 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to start chunk decryption with password: Required parameter is missing.", @"Chunk decryption error.") }];
@@ -146,7 +146,7 @@ NSString *const kVSSChunkCryptorErrorDomain = @"VSSChunkCryptorErrorDomain";
         return 0;
     }
     
-    unsigned long long actualSize = 0;
+    size_t actualSize = 0;
     try {
         if ([self cryptor] != NULL) {
             std::string pass = std::string([password UTF8String]);

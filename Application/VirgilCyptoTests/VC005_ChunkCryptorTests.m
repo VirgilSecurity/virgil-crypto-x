@@ -62,7 +62,7 @@ static const NSUInteger kDesiredDataChunkLength = 1024;
     // Encrypt the data
     NSMutableData *encryptedData = [[NSMutableData alloc] init];
     error = nil;
-    unsigned long long actualSize = [cryptor startEncryptionWithPreferredChunkSize:kDesiredDataChunkLength error:&error];
+    size_t actualSize = [cryptor startEncryptionWithPreferredChunkSize:kDesiredDataChunkLength error:&error];
     if (actualSize == 0 || error != nil) {
         NSLog(@"Start chunk encryption error: %@", [error localizedDescription]);
         XCTAssertTrue(FALSE);
@@ -140,7 +140,7 @@ static const NSUInteger kDesiredDataChunkLength = 1024;
     // Encrypt the data
     NSMutableData *encryptedData = [[NSMutableData alloc] init];
     error = nil;
-    unsigned long long actualSize = [cryptor startEncryptionWithPreferredChunkSize:kDesiredDataChunkLength error:&error];
+    size_t actualSize = [cryptor startEncryptionWithPreferredChunkSize:kDesiredDataChunkLength error:&error];
     if (actualSize == 0 || error != nil) {
         NSLog(@"Start chunk encryption error: %@", [error localizedDescription]);
         XCTAssertTrue(FALSE);
