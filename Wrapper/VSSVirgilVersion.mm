@@ -29,7 +29,13 @@ using virgil::crypto::VirgilVersion;
         return nil;
     }
     
-    _frameworkVersion = new VirgilVersion();
+    try {
+        _frameworkVersion = new VirgilVersion();
+    }
+    catch(...) {
+        _frameworkVersion = NULL;
+    }
+
     return self;
 }
 
@@ -47,18 +53,77 @@ using virgil::crypto::VirgilVersion;
         return @"";
     }
     NSString *version = nil;
-    std::string ver = self.frameworkVersion->asString();
-    version = [[NSString alloc] initWithCString:ver.c_str() encoding:NSUTF8StringEncoding];
+    try {
+        std::string ver = self.frameworkVersion->asString();
+        version = [[NSString alloc] initWithCString:ver.c_str() encoding:NSUTF8StringEncoding];
+    }
+    catch(...) {
+        version = @"";
+    }
+    
     return version;
 }
 
-- (NSNumber *)version {
+- (unsigned long long)version {
     if (self.frameworkVersion == NULL) {
-        return @0;
+        return 0;
     }
-    NSNumber *version = nil;
-    size_t ver = self.frameworkVersion->asNumber();
-    version = [NSNumber numberWithUnsignedLongLong:ver];
+    size_t version = 0;
+    try {
+        version = self.frameworkVersion->asNumber();
+    }
+    catch(...) {
+        version = 0;
+    }
+    
+    return version;
+}
+
+- (unsigned long long)majorVersion {
+    if (self.frameworkVersion == NULL) {
+        return 0;
+    }
+    
+    size_t version = 0;
+    try {
+        version = self.frameworkVersion->majorVersion();
+    }
+    catch(...) {
+        version = 0;
+    }
+    
+    return version;
+}
+
+- (unsigned long long)minorVersion {
+    if (self.frameworkVersion == NULL) {
+        return 0;
+    }
+    
+    size_t version = 0;
+    try {
+        version = self.frameworkVersion->minorVersion();
+    }
+    catch(...) {
+        version = 0;
+    }
+    
+    return version;
+}
+
+- (unsigned long long)patchVersion {
+    if (self.frameworkVersion == NULL) {
+        return 0;
+    }
+    
+    size_t version = 0;
+    try {
+        version = self.frameworkVersion->patchVersion();
+    }
+    catch(...) {
+        version = 0;
+    }
+    
     return version;
 }
 

@@ -11,13 +11,14 @@
 #import <VirgilCrypto/virgil/crypto/VirgilKeyPair.h>
 
 using virgil::crypto::VirgilByteArray;
+using Type = virgil::crypto::VirgilKeyPair::Type;
 using namespace virgil::crypto;
 
 @interface VSSKeyPair ()
 
-@property (nonatomic, assign) VirgilKeyPair * __nullable keyPair;
+@property (nonatomic, assign) VirgilKeyPair *keyPair;
 
-- (instancetype __nonnull)initWithVirgilKeyPair:(VirgilKeyPair)candidate NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithKeyPairType:(Type)keyPairType password:(NSString * __nullable)password NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -27,32 +28,34 @@ using namespace virgil::crypto;
 
 #pragma mark - Lifecycle
 
-- (instancetype)init {
-    return [self initWithPassword:nil];
-}
-
-- (instancetype)initWithPassword:(NSString *)password {
+- (instancetype)initWithKeyPairType:(Type)keyPairType password:(NSString *)password {
     self = [super init];
-    if( nil == self ) {
-        return nil;
-    }
-    if( 0 >= [password length] ) {
-        _keyPair = new VirgilKeyPair();
-    } else {
-        std::string pwd = std::string([password UTF8String]);
-        _keyPair = new VirgilKeyPair(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pwd.data(), pwd.size()));
-    }
-    return self;
-}
-
-- (instancetype __nonnull)initWithVirgilKeyPair:(VirgilKeyPair)candidate {
-    self = [super init];
-    if( nil == self ) {
+    if (self == nil) {
         return nil;
     }
     
-    _keyPair = new VirgilKeyPair(candidate);
+    try {
+        if (password.length == 0) {
+            _keyPair = new VirgilKeyPair(VirgilKeyPair::generate());
+        }
+        else {
+            std::string pwd = std::string([password UTF8String]);
+            _keyPair = new VirgilKeyPair(VirgilKeyPair::generate(keyPairType, VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pwd.data(), pwd.size())));
+        }
+    }
+    catch(...) {
+        _keyPair = NULL;
+    }
+    
     return self;
+}
+
+- (instancetype)init {
+    return [self initWithKeyPairType:Type::Type_Default password:nil];
+}
+
+- (instancetype)initWithPassword:(NSString *)password {
+    return [self initWithKeyPairType:Type::Type_Default password:password];
 }
 
 - (void)dealloc {
@@ -62,196 +65,68 @@ using namespace virgil::crypto;
     }
 }
 
-- (instancetype __nonnull)initECNist192WithPassword:(NSString * __nullable)password {
-    VirgilKeyPair candidate;
-    if( 0 >= [password length] ) {
-        candidate = VirgilKeyPair::ecNist192();
-    }
-    else {
-        std::string pwd = std::string([password UTF8String]);
-        candidate = VirgilKeyPair::ecNist192(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pwd.data(), pwd.size()));
-    }
-    return [self initWithVirgilKeyPair:candidate];
++ (VSSKeyPair *)ecNist192WithPassword:(NSString *)password {
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_EC_SECP192R1 password:password];
 }
 
-- (instancetype __nonnull)initECNist224WithPassword:(NSString * __nullable)password {
-    VirgilKeyPair candidate;
-    if( 0 >= [password length] ) {
-        candidate = VirgilKeyPair::ecNist224();
-    }
-    else {
-        std::string pwd = std::string([password UTF8String]);
-        candidate = VirgilKeyPair::ecNist224(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pwd.data(), pwd.size()));
-    }
-    return [self initWithVirgilKeyPair:candidate];
++ (VSSKeyPair *)ecNist224WithPassword:(NSString *)password {
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_EC_SECP224R1 password:password];
 }
 
-- (instancetype __nonnull)initECNist256WithPassword:(NSString * __nullable)password {
-    VirgilKeyPair candidate;
-    if( 0 >= [password length] ) {
-        candidate = VirgilKeyPair::ecNist256();
-    }
-    else {
-        std::string pwd = std::string([password UTF8String]);
-        candidate = VirgilKeyPair::ecNist256(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pwd.data(), pwd.size()));
-    }
-    return [self initWithVirgilKeyPair:candidate];
++ (VSSKeyPair *)ecNist256WithPassword:(NSString *)password {
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_EC_SECP256R1 password:password];
 }
 
-- (instancetype __nonnull)initECNist384WithPassword:(NSString * __nullable)password {
-    VirgilKeyPair candidate;
-    if( 0 >= [password length] ) {
-        candidate = VirgilKeyPair::ecNist384();
-    }
-    else {
-        std::string pwd = std::string([password UTF8String]);
-        candidate = VirgilKeyPair::ecNist384(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pwd.data(), pwd.size()));
-    }
-    return [self initWithVirgilKeyPair:candidate];
++ (VSSKeyPair *)ecNist384WithPassword:(NSString *)password {
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_EC_SECP384R1 password:password];
 }
 
-- (instancetype __nonnull)initECNist521WithPassword:(NSString * __nullable)password {
-    VirgilKeyPair candidate;
-    if( 0 >= [password length] ) {
-        candidate = VirgilKeyPair::ecNist521();
-    }
-    else {
-        std::string pwd = std::string([password UTF8String]);
-        candidate = VirgilKeyPair::ecNist521(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pwd.data(), pwd.size()));
-    }
-    return [self initWithVirgilKeyPair:candidate];
++ (VSSKeyPair *)ecNist521WithPassword:(NSString *)password {
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_EC_SECP521R1 password:password];
 }
 
-- (instancetype __nonnull)initECBrainpool256WithPassword:(NSString * __nullable)password {
-    VirgilKeyPair candidate;
-    if( 0 >= [password length] ) {
-        candidate = VirgilKeyPair::ecBrainpool256();
-    }
-    else {
-        std::string pwd = std::string([password UTF8String]);
-        candidate = VirgilKeyPair::ecBrainpool256(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pwd.data(), pwd.size()));
-    }
-    return [self initWithVirgilKeyPair:candidate];
++ (VSSKeyPair *)ecBrainpool256WithPassword:(NSString *)password {
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_EC_BP256R1 password:password];
 }
 
-- (instancetype __nonnull)initECBrainpool384WithPassword:(NSString * __nullable)password {
-    VirgilKeyPair candidate;
-    if( 0 >= [password length] ) {
-        candidate = VirgilKeyPair::ecBrainpool384();
-    }
-    else {
-        std::string pwd = std::string([password UTF8String]);
-        candidate = VirgilKeyPair::ecBrainpool384(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pwd.data(), pwd.size()));
-    }
-    return [self initWithVirgilKeyPair:candidate];
++ (VSSKeyPair *)ecBrainpool384WithPassword:(NSString *)password {
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_EC_BP384R1 password:password];
 }
 
-- (instancetype __nonnull)initECBrainpool512WithPassword:(NSString * __nullable)password {
-    VirgilKeyPair candidate;
-    if( 0 >= [password length] ) {
-        candidate = VirgilKeyPair::ecBrainpool512();
-    }
-    else {
-        std::string pwd = std::string([password UTF8String]);
-        candidate = VirgilKeyPair::ecBrainpool512(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pwd.data(), pwd.size()));
-    }
-    return [self initWithVirgilKeyPair:candidate];
++ (VSSKeyPair *)ecBrainpool512WithPassword:(NSString *)password {
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_EC_BP512R1 password:password];
 }
 
-- (instancetype __nonnull)initECKoblitz192WithPassword:(NSString * __nullable)password {
-    VirgilKeyPair candidate;
-    if( 0 >= [password length] ) {
-        candidate = VirgilKeyPair::ecKoblitz192();
-    }
-    else {
-        std::string pwd = std::string([password UTF8String]);
-        candidate = VirgilKeyPair::ecKoblitz192(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pwd.data(), pwd.size()));
-    }
-    return [self initWithVirgilKeyPair:candidate];
++ (VSSKeyPair *)ecKoblitz192WithPassword:(NSString *)password {
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_EC_SECP192K1 password:password];
 }
 
-- (instancetype __nonnull)initECKoblitz224WithPassword:(NSString * __nullable)password {
-    VirgilKeyPair candidate;
-    if( 0 >= [password length] ) {
-        candidate = VirgilKeyPair::ecKoblitz224();
-    }
-    else {
-        std::string pwd = std::string([password UTF8String]);
-        candidate = VirgilKeyPair::ecKoblitz224(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pwd.data(), pwd.size()));
-    }
-    return [self initWithVirgilKeyPair:candidate];
++ (VSSKeyPair *)ecKoblitz224WithPassword:(NSString *)password {
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_EC_SECP224K1 password:password];
 }
 
-- (instancetype __nonnull)initECKoblitz256WithPassword:(NSString * __nullable)password {
-    VirgilKeyPair candidate;
-    if( 0 >= [password length] ) {
-        candidate = VirgilKeyPair::ecKoblitz256();
-    }
-    else {
-        std::string pwd = std::string([password UTF8String]);
-        candidate = VirgilKeyPair::ecKoblitz256(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pwd.data(), pwd.size()));
-    }
-    return [self initWithVirgilKeyPair:candidate];
++ (VSSKeyPair *)ecKoblitz256WithPassword:(NSString *)password {
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_EC_SECP256K1 password:password];
 }
 
-- (instancetype __nonnull)initRSA256WithPassword:(NSString * __nullable)password {
-    VirgilKeyPair candidate;
-    if( 0 >= [password length] ) {
-        candidate = VirgilKeyPair::rsa256();
-    }
-    else {
-        std::string pwd = std::string([password UTF8String]);
-        candidate = VirgilKeyPair::rsa256(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pwd.data(), pwd.size()));
-    }
-    return [self initWithVirgilKeyPair:candidate];
++ (VSSKeyPair *)rsa256WithPassword:(NSString *)password {
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_RSA_256 password:password];
 }
 
-- (instancetype __nonnull)initRSA512WithPassword:(NSString * __nullable)password {
-    VirgilKeyPair candidate;
-    if( 0 >= [password length] ) {
-        candidate = VirgilKeyPair::rsa512();
-    }
-    else {
-        std::string pwd = std::string([password UTF8String]);
-        candidate = VirgilKeyPair::rsa512(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pwd.data(), pwd.size()));
-    }
-    return [self initWithVirgilKeyPair:candidate];
++ (VSSKeyPair *)rsa512WithPassword:(NSString *)password {
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_RSA_512 password:password];
 }
 
-- (instancetype __nonnull)initRSA1024WithPassword:(NSString * __nullable)password {
-    VirgilKeyPair candidate;
-    if( 0 >= [password length] ) {
-        candidate = VirgilKeyPair::rsa1024();
-    }
-    else {
-        std::string pwd = std::string([password UTF8String]);
-        candidate = VirgilKeyPair::rsa1024(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pwd.data(), pwd.size()));
-    }
-    return [self initWithVirgilKeyPair:candidate];
++ (VSSKeyPair *)rsa1024WithPassword:(NSString *)password {
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_RSA_1024 password:password];
 }
 
-- (instancetype __nonnull)initRSA2048WithPassword:(NSString * __nullable)password {
-    VirgilKeyPair candidate;
-    if( 0 >= [password length] ) {
-        candidate = VirgilKeyPair::rsa2048();
-    }
-    else {
-        std::string pwd = std::string([password UTF8String]);
-        candidate = VirgilKeyPair::rsa2048(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pwd.data(), pwd.size()));
-    }
-    return [self initWithVirgilKeyPair:candidate];
++ (VSSKeyPair *)rsa2048WithPassword:(NSString *)password {
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_RSA_2048 password:password];
 }
 
-- (instancetype __nonnull)initRSA4096WithPassword:(NSString * __nullable)password {
-    VirgilKeyPair candidate;
-    if( 0 >= [password length] ) {
-        candidate = VirgilKeyPair::rsa4096();
-    }
-    else {
-        std::string pwd = std::string([password UTF8String]);
-        candidate = VirgilKeyPair::rsa4096(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pwd.data(), pwd.size()));
-    }
-    return [self initWithVirgilKeyPair:candidate];
++ (VSSKeyPair *)rsa4096WithPassword:(NSString *)password {
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_RSA_4096 password:password];
 }
 
 #pragma mark - Public class logic
@@ -261,9 +136,13 @@ using namespace virgil::crypto;
         return [NSData data];
     }
     NSData *publicKey = nil;
-
-    VirgilByteArray pkey = self.keyPair->publicKey();
-    publicKey = [NSData dataWithBytes:pkey.data() length:pkey.size()];
+    try {
+        VirgilByteArray pkey = self.keyPair->publicKey();
+        publicKey = [NSData dataWithBytes:pkey.data() length:pkey.size()];
+    }
+    catch(...) {
+        publicKey = [NSData data];
+    }
     return publicKey;
 }
 
@@ -273,9 +152,85 @@ using namespace virgil::crypto;
     }
     
     NSData *privateKey = nil;
-    VirgilByteArray pkey = self.keyPair->privateKey();
-    privateKey = [NSData dataWithBytes:pkey.data() length:pkey.size()];
+    try {
+        VirgilByteArray pkey = self.keyPair->privateKey();
+        privateKey = [NSData dataWithBytes:pkey.data() length:pkey.size()];
+    }
+    catch(...) {
+        privateKey = [NSData data];
+    }
     return privateKey;
+}
+
++ (BOOL)isEncryptedPrivateKey:(NSData *)keyData {
+    if (keyData.length == 0) {
+        return NO;
+    }
+    
+    bool isEncrypted = false;
+    try {
+        const unsigned char *data = static_cast<const unsigned char *>([keyData bytes]);
+        isEncrypted = VirgilKeyPair::isPrivateKeyEncrypted(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(data, [keyData length]));
+    }
+    catch(...) {
+        isEncrypted = false;
+    }
+    
+    if (isEncrypted) {
+        return YES;
+    }
+    
+    return NO;
+}
+
++ (BOOL)isPrivateKey:(NSData *)keyData matchesPassword:(NSString *)password {
+    if (keyData.length == 0 || password.length == 0) {
+        return NO;
+    }
+    
+    bool isMatches = false;
+    try {
+        const unsigned char *data = static_cast<const unsigned char *>([keyData bytes]);
+        std::string pwd = std::string([password UTF8String]);
+        isMatches = VirgilKeyPair::checkPrivateKeyPassword(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(data, [keyData length]), VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pwd.data(), pwd.size()));
+    }
+    catch(...) {
+        isMatches = false;
+    }
+    
+    if (isMatches) {
+        return YES;
+    }
+    
+    return NO;
+}
+
++ (BOOL)isPublicKey:(NSData *)publicKeyData matchesPrivateKey:(NSData *)privateKeyData withPassword:(NSString *)password {
+    if (publicKeyData.length == 0 || privateKeyData.length == 0) {
+        return NO;
+    }
+    
+    bool isMatches = false;
+    try {
+        const unsigned char *pubKeyData = static_cast<const unsigned char *>([publicKeyData bytes]);
+        const unsigned char *privKeyData = static_cast<const unsigned char *>([privateKeyData bytes]);
+        if (password.length == 0) {
+            isMatches = VirgilKeyPair::isKeyPairMatch(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pubKeyData, [publicKeyData length]), VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(privKeyData, [privateKeyData length]));
+        }
+        else {
+            std::string pwd = std::string([password UTF8String]);
+            isMatches = VirgilKeyPair::isKeyPairMatch(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pubKeyData, [publicKeyData length]), VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(privKeyData, [privateKeyData length]), VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pwd.data(), pwd.size()));
+        }
+    }
+    catch(...) {
+        isMatches = false;
+    }
+    
+    if (isMatches) {
+        return YES;
+    }
+    
+    return NO;
 }
 
 @end

@@ -48,20 +48,30 @@
     // Create a cryptor instance
     VSSCryptor *cryptor = [[VSSCryptor alloc] init];
     // Add a key recepient to enable key-based encryption
-    [cryptor addKeyRecepient:publicKeyId publicKey:keyPair.publicKey];
+    NSError *error = nil;
+    BOOL success = [cryptor addKeyRecipient:publicKeyId publicKey:keyPair.publicKey error:&error];
+    if (!success || error != nil) {
+        XCTFail(@"Error adding key recipient: %@", [error localizedDescription]);
+    }
     // Encrypt the data
+    error = nil;
     NSTimeInterval ti = [NSDate timeIntervalSinceReferenceDate];
-    NSData *encryptedData = [cryptor encryptData:self.toEncrypt embedContentInfo:@YES];
+    NSData *encryptedData = [cryptor encryptData:self.toEncrypt embedContentInfo:YES error:&error];
     NSLog(@"Encryption key-based time: %.2f", [NSDate timeIntervalSinceReferenceDate] - ti);
-    XCTAssertTrue(encryptedData.length > 0, @"Cryptor should encrypt the given plain data using key-based encryption.");
-    
+    if (encryptedData.length == 0 || error != nil) {
+        XCTFail(@"Error encrypting data: %@", [error localizedDescription]);
+    }
     // Decrypt:
     // Create a completely new instance of the VCCryptor object
     VSSCryptor *decryptor = [[VSSCryptor alloc] init];
     // Decrypt data using key-based decryption
+    error = nil;
     ti = [NSDate timeIntervalSinceReferenceDate];
-    NSData *plainData = [decryptor decryptData:encryptedData publicKeyId:publicKeyId privateKey:keyPair.privateKey keyPassword:nil];
+    NSData *plainData = [decryptor decryptData:encryptedData recipientId:publicKeyId privateKey:keyPair.privateKey keyPassword:nil error:&error];
     NSLog(@"Decryption key-based time: %.2f", [NSDate timeIntervalSinceReferenceDate] - ti);
+    if (plainData.length == 0 || error != nil) {
+        XCTFail(@"Error decrypting data: %@", [error localizedDescription]);
+    }
     XCTAssertEqualObjects(plainData, self.toEncrypt, @"Initial data and decrypted data should be equal.");
 }
 
@@ -71,20 +81,40 @@
     // Create a cryptor instance
     VSSCryptor *cryptor = [[VSSCryptor alloc] init];
     // Add a password recepient to enable password-based encryption
-    [cryptor addPasswordRecipient:password];
+    NSError *error = nil;
+    BOOL success = [cryptor addPasswordRecipient:password error:&error];
+    if (!success || error != nil) {
+        XCTFail(@"Error adding password recipient: %@", [error localizedDescription]);
+    }
     // Encrypt the data
+    error = nil;
     NSTimeInterval ti = [NSDate timeIntervalSinceReferenceDate];
-    NSData *encryptedData = [cryptor encryptData:self.toEncrypt embedContentInfo:@YES];
+    NSData *encryptedData = [cryptor encryptData:self.toEncrypt embedContentInfo:NO error:&error];
     NSLog(@"Encryption password-based time: %.2f", [NSDate timeIntervalSinceReferenceDate] - ti);
-    XCTAssertTrue(encryptedData.length > 0, @"Cryptor should encrypt the given plain data using password-based encryption.");
-    
+    if (encryptedData.length == 0 || error != nil) {
+        XCTFail(@"Error encrypting data: %@", [error localizedDescription]);
+    }
+    error = nil;
+    NSData *contentInfo = [cryptor contentInfoWithError:&error];
+    if (contentInfo.length == 0 || error != nil) {
+        XCTFail(@"Error getting content info data: %@", [error localizedDescription]);
+    }
     // Decrypt:
     // Create a completely new instance of the VCCryptor object
     VSSCryptor *decryptor = [[VSSCryptor alloc] init];
     // Decrypt data using password-based decryption
+    error = nil;
+    success = [decryptor setContentInfo:contentInfo error:&error];
+    if (!success || error != nil) {
+        XCTFail(@"Error setting content info: %@", [error localizedDescription]);
+    }
+    error = nil;
     ti = [NSDate timeIntervalSinceReferenceDate];
-    NSData *plainData = [decryptor decryptData:encryptedData password:password];
+    NSData *plainData = [decryptor decryptData:encryptedData password:password error:&error];
     NSLog(@"Decryption key-based time: %.2f", [NSDate timeIntervalSinceReferenceDate] - ti);
+    if (plainData.length == 0 || error != nil) {
+        XCTFail(@"Error decryption data: %@", [error localizedDescription]);
+    }
     XCTAssertEqualObjects(plainData, self.toEncrypt, @"Initial data and decrypted data should be equal.");
 }
 

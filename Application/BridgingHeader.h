@@ -9,9 +9,18 @@
 #ifndef VirgilCypto_BridgingHeader_h
 #define VirgilCypto_BridgingHeader_h
 
-#import "VSSKeyPair.h"
-#import "VSSCryptor.h"
-#import "VSSSigner.h"
+#import "VSSFoundationCommons.h"
 #import "VSSVirgilVersion.h"
+
+#import "VSSKeyPair.h"
+
+#import "VSSBaseCryptor.h"
+#import "VSSBaseCryptor_Private.h"
+#import "VSSCryptor.h"
+#import "VSSStreamCryptor.h"
+#import "VSSChunkCryptor.h"
+
+#import "VSSSigner.h"
+#import "VSSStreamSigner.h"
 
 #endif

@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "VirgilFoundation.h"
+#import "VSSVirgilVersion.h"
 
 @interface ViewController ()
 

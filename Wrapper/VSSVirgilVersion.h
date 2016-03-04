@@ -10,15 +10,29 @@
 
 @interface VSSVirgilVersion : NSObject
 
-- (instancetype __nonnull)init NS_DESIGNATED_INITIALIZER;
-
 /**
- * Returns string version of the low-level virgil cryptographic library. E.g. @"1.0.0"
+ * @return Returns string version of the low-level virgil cryptographic library. E.g. @"1.0.0"
  */
 - (NSString * __nonnull)versionString;
+
 /**
- * Returns numeric representation of the low-level virgil cryptographic library.
+ * @brief Returns numeric representation of the low-level virgil cryptographic library: (major << 16) | (minor << 8) | patch.
  */
-- (NSNumber * __nonnull)version;
+- (unsigned long long)version;
+
+/**
+ * @brief Returns numeric representation of the major version of low-level virgil cryptographic library.
+ */
+- (unsigned long long)majorVersion;
+
+/**
+ * @brief Returns numeric representation of the minor version of low-level virgil cryptographic library.
+ */
+- (unsigned long long)minorVersion;
+
+/**
+ * @brief Returns numeric representation of the patch version low-level virgil cryptographic library.
+ */
+- (unsigned long long)patchVersion;
 
 @end
