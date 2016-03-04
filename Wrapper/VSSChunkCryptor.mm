@@ -47,7 +47,7 @@ NSString *const kVSSChunkCryptorErrorDomain = @"VSSChunkCryptorErrorDomain";
 }
 
 - (size_t)startEncryptionWithPreferredChunkSize:(size_t)chunkSize error:(NSError * __nullable * __nullable)error {
-    unsigned long long actualSize = 0;
+    size_t actualSize = 0;
     try {
         if ([self cryptor] != NULL) {
             if (chunkSize > 0) {

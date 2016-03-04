@@ -145,7 +145,7 @@ extern NSString * __nonnull const kVSSBaseCryptorErrorDomain;
  
  * @return Size of the content info if it exists as part of the data, 0 - otherwise.
  */
-- (unsigned long long)contentInfoSizeInData:(NSData * __nonnull)data error:(NSError * __nullable * __nullable)error;
+- (size_t)contentInfoSizeInData:(NSData * __nonnull)data error:(NSError * __nullable * __nullable)error;
 
 /**
  * @brief Allows to set integer value for custom parameter name as a part of the content info in unencrypted form.

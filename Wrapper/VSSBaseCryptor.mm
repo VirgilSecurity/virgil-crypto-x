@@ -383,7 +383,7 @@ NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
     return success;
 }
 
-- (unsigned long long)contentInfoSizeInData:(NSData *)data error:(NSError **)error {
+- (size_t)contentInfoSizeInData:(NSData *)data error:(NSError **)error {
     if (data.length == 0) {
         if (error) {
             *error = [NSError errorWithDomain:kVSSBaseCryptorErrorDomain code:-1025 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to calculate size of the content info. Required argument is missing." }];
@@ -391,7 +391,7 @@ NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
         return 0;
     }
     
-    unsigned long long size = 0;
+    size_t size = 0;
     try {
         if ([self cryptor] != NULL) {
             const unsigned char *bytes = static_cast<const unsigned char *>([data bytes]);

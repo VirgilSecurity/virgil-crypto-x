@@ -64,7 +64,7 @@ using virgil::crypto::VirgilVersion;
     return version;
 }
 
-- (unsigned long long)version {
+- (size_t)version {
     if (self.frameworkVersion == NULL) {
         return 0;
     }
@@ -79,7 +79,7 @@ using virgil::crypto::VirgilVersion;
     return version;
 }
 
-- (unsigned long long)majorVersion {
+- (size_t)majorVersion {
     if (self.frameworkVersion == NULL) {
         return 0;
     }
@@ -95,7 +95,7 @@ using virgil::crypto::VirgilVersion;
     return version;
 }
 
-- (unsigned long long)minorVersion {
+- (size_t)minorVersion {
     if (self.frameworkVersion == NULL) {
         return 0;
     }
@@ -111,7 +111,7 @@ using virgil::crypto::VirgilVersion;
     return version;
 }
 
-- (unsigned long long)patchVersion {
+- (size_t)patchVersion {
     if (self.frameworkVersion == NULL) {
         return 0;
     }

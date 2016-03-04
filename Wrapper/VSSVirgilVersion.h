@@ -18,21 +18,21 @@
 /**
  * @brief Returns numeric representation of the low-level virgil cryptographic library: (major << 16) | (minor << 8) | patch.
  */
-- (unsigned long long)version;
+- (size_t)version;
 
 /**
  * @brief Returns numeric representation of the major version of low-level virgil cryptographic library.
  */
-- (unsigned long long)majorVersion;
+- (size_t)majorVersion;
 
 /**
  * @brief Returns numeric representation of the minor version of low-level virgil cryptographic library.
  */
-- (unsigned long long)minorVersion;
+- (size_t)minorVersion;
 
 /**
  * @brief Returns numeric representation of the patch version low-level virgil cryptographic library.
  */
-- (unsigned long long)patchVersion;
+- (size_t)patchVersion;
 
 @end
