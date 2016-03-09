@@ -126,10 +126,18 @@ NSData *toEncrypt = [message dataUsingEncoding:NSUTF8StringEncoding allowLossyCo
 // Assuming that we have some key pair generated earlier.
 // Create a new VSSCryptor instance
 VSSCryptor *cryptor = [[VSSCryptor alloc] init];
-// Now we should add a key recepient
-[cryptor addKeyRecepient:<#Public Key ID (e.g. UUID)#> publicKey:<#keyPair.publicKey#>];
+// Now we should add a key recipient
+NSError *error = nil;
+if (![cryptor addKeyRecipient:<# Recipient ID #> publicKey:<# keyPair.publicKey #> error:&error]) {
+    NSLog(@"Error adding key recipient: %@", [error localizedDescription]);
+    return;
+}
 // And now we can easily encrypt the plain data
-NSData *encryptedData = [cryptor encryptData:toEncrypt embedContentInfo:@YES];
+NSData *encryptedData = [cryptor encryptData:toEncrypt embedContentInfo:YES error:&error];
+if (error != nil) {
+    NSLog(@"Error encrypting data: %@", [error localizedDescription]);
+    return;
+}
 //...
 ```
 
@@ -139,14 +147,22 @@ NSData *encryptedData = [cryptor encryptData:toEncrypt embedContentInfo:@YES];
 // Assuming that we have some initial string message.
 let message = NSString(string: "This is a secret message which should be encrypted.")
 // Convert it to the NSData
-let toEncrypt = message.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
-// Assuming that we have some key pair generated earlier.
-// Create a new VSSCryptor instance
-let cryptor = VSSCryptor()
-// Now we should add a key recepient
-cryptor.addKeyRecepient(<#Public Key ID (e.g. UUID)#>, publicKey:<#keyPair.publicKey()#>)
-// And now we can easily encrypt the plain data
-var encryptedData = cryptor.encryptData(toEncrypt, embedContentInfo: true)
+if let toEncrypt = message.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+    // Assuming that we have some key pair generated earlier.
+    // Create a new VSSCryptor instance
+    let cryptor = VSSCryptor()
+    // Now we should add a key recipient
+    var encryptedData = NSData()
+    do {
+        try cryptor.addKeyRecipient(<# Recipient ID #>, publicKey: <# keyPair.publicKey() #>, error: ())
+        // And now we can easily encrypt the plain data
+        encryptedData = try cryptor.encryptData(toEncrypt, embedContentInfo: true, error: ())
+    }
+    catch let error as NSError {
+        print("Error: \(error.localizedDescription)")
+    }
+    //...
+}
 //...
 ```
 
@@ -160,7 +176,12 @@ var encryptedData = cryptor.encryptData(toEncrypt, embedContentInfo: true)
 // Create a new VSSCryptor instance
 VSSCryptor *decryptor = [[VSSCryptor alloc] init];
 // Decrypt data
-NSData *plainData = [decryptor decryptData:<#encryptedData#> publicKeyId:<#Public Key ID (e.g. UUID)#> privateKey:<#keyPair.privateKey#> keyPassword:<#Private key password or nil#>];
+NSError *error = nil;
+NSData *plainData = [decryptor decryptData:<# NSData containing encrypted data #> recipientId:<# Recipient ID #> privateKey:<# keyPair.privateKey #> keyPassword:<# Private key password or nil #> error:&error];
+if (error != nil) {
+    NSLog(@"Error decrypting data: %@", [error localizedDescription]);
+    return;
+}
 // Compose initial message from the plain decrypted data
 NSString *initialMessage = [[NSString alloc] initWithData:plainData encoding:NSUTF8StringEncoding];
 //...
@@ -174,11 +195,18 @@ NSString *initialMessage = [[NSString alloc] initWithData:plainData encoding:NSU
 // Create a new VSSCryptor instance
 let decryptor = VSSCryptor()
 // Decrypt data
-var plainData = decryptor.decryptData(<#encryptedData#>, publicKeyId: <#Public Key ID (e.g. UUID)#>, privateKey: <#keyPair.privateKey()#>, keyPassword: <#Private key password or nil#>)
-// Compose initial message from the plain decrypted data
-if let data = plainData {
-	var initialMessage = NSString(data: data, encoding: NSUTF8StringEncoding)
-}//...
+do {
+    let plainData = try decryptor.decryptData(<# NSData with encrypted data #>, recipientId: <# Recipient ID #>, privateKey: <# keyPair.privateKey() #>, keyPassword: <# Private key password or nil #>, error: ())
+    // Compose initial message from the plain decrypted data
+    if let initialMessage = NSString(data: plainData, encoding: NSUTF8StringEncoding) {
+        // Use initialMessage.
+        //...
+    }
+}
+catch let error as NSError {
+    print("Error: \(error.localizedDescription)")
+}
+//...
 ```
 
 #### Password-based encryption
@@ -193,10 +221,17 @@ NSData *toEncrypt = [message dataUsingEncoding:NSUTF8StringEncoding allowLossyCo
 // Assuming that we have some key pair generated earlier.
 // Create a new VSSCryptor instance
 VSSCryptor *cryptor = [[VSSCryptor alloc] init];
-// Now we should add a password recepient
-[cryptor addPasswordRecipient:<#Password to encrypt data with#>];
+NSError *error = nil;
+if (![cryptor addPasswordRecipient:<# Password to encrypt data with #> error:&error]) {
+    NSLog(@"Error adding password recipient: %@", [error localizedDescription]);
+    return;
+}
 // And now we can encrypt the plain data
-NSData *encryptedData = [cryptor encryptData:toEncrypt embedContentInfo:@YES];
+NSData *encryptedData = [cryptor encryptData:toEncrypt embedContentInfo:YES error:&error];
+if (error != nil) {
+    NSLog(@"Error encrypting data: %@", [error localizedDescription]);
+    return;
+}
 //...
 ```
 
@@ -206,13 +241,18 @@ NSData *encryptedData = [cryptor encryptData:toEncrypt embedContentInfo:@YES];
 // Assuming that we have some initial string message.
 let message = NSString(string: "This is a secret message which should be encrypted.")
 // Convert it to the NSData
-let toEncrypt = message.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
-// Create a cryptor instance
-let cryptor = VSSCryptor()
-// Add a password recepient to enable password-based encryption
-cryptor.addPasswordRecipient(<#Password to encrypt data with#>)
-// Encrypt the data
-var encryptedData = cryptor.encryptData(oEncrypt, embedContentInfo: true)
+if let toEncrypt = message.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+    // Create a cryptor instance
+    var encryptedData = NSData()
+    let cryptor = VSSCryptor()
+    do {
+        try cryptor.addPasswordRecipient(<# Password to encrypt data with #>, error: ())
+        encryptedData = try cryptor.encryptData(toEncrypt, embedContentInfo: true, error: ())
+    }
+    catch let error as NSError {
+        print("Error: \(error.localizedDescription)")
+    }
+}
 //...
 ```
 
@@ -226,7 +266,12 @@ var encryptedData = cryptor.encryptData(oEncrypt, embedContentInfo: true)
 // Create a new VSSCryptor instance
 VSSCryptor *decryptor = [[VSSCryptor alloc] init];
 // Decrypt data
-NSData *plainData = [decryptor decryptData:<#NSData to decrypt#> password:<#Password used to encrypt the data#>];
+NSError *error = nil;
+NSData *plainData = [decryptor decryptData:<# NSData with encrypted data #> password:<# Password used for encryption #> error:&error];
+if (error != nil) {
+    NSLog(@"Error decrypting data: %@", [error localizedDescription]);
+    return;
+}
 // Compose initial message from the plain decrypted data
 NSString *initialMessage = [[NSString alloc] initWithData:plainData encoding:NSUTF8StringEncoding];
 //...
@@ -240,10 +285,16 @@ NSString *initialMessage = [[NSString alloc] initWithData:plainData encoding:NSU
 // Create a new VSSCryptor instance
 let decryptor = VSSCryptor()
 // Decrypt data
-var plainData = decryptor.decryptData(<#encryptedData#>, password:<#Password used to encrypt the data#>)
-// Compose initial message from the plain decrypted data
-if let data = plainData {
-	var initialMessage = NSString(data: data, encoding: NSUTF8StringEncoding)
+do {
+    let plainData = try decryptor.decryptData(NSData(), password: "", error: ())
+    // Compose initial message from the plain decrypted data
+    if let initialMessage = NSString(data: plainData, encoding: NSUTF8StringEncoding) {
+        // Use initialMessage.
+        //...
+    }
+}
+catch let error as NSError {
+    print("Error: \(error.localizedDescription)")
 }
 //...
 ```
@@ -257,9 +308,6 @@ VSSSigner instances allows to sign some data with a given private key. This can 
 ###### Objective-C
 ```objective-c
 //...
-#import <VirgilFoundation/VirgilFoundation.h>
-//...
-
 // Assuming that we have some initial string message that we want to sign.
 NSString *message = @"This is a secret message which should be signed.";
 // Convert it to the NSData
@@ -268,7 +316,14 @@ NSData *toSign = [message dataUsingEncoding:NSUTF8StringEncoding allowLossyConve
 // Create a new VSSSigner instance
 VSSSigner *signer = [[VSSSigner alloc] init];
 // Sign the initial data
-NSData *signature = [signer signData:toSign privateKey:<#keyPair.privateKey#> keyPassword:<#Private key password or nil#>];
+NSError *error = nil;
+NSData *signature = [signer signData:toSign privateKey:<# keyPair.privateKey #> keyPassword:<# Private key password or nil #> error:&error];
+if (error != nil) {
+    NSLog(@"Error composing a signature: %@", [error localizedDescription]);
+    return;
+}
+// Use the signature.
+//...
 ```
 
 ###### Swift
@@ -277,11 +332,19 @@ NSData *signature = [signer signData:toSign privateKey:<#keyPair.privateKey#> ke
 // Assuming that we have some initial string message.
 let message = NSString(string: "This is a secret message which should be signed.")
 // Convert it to the NSData
-let toSign = message.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
-// Create the signer
-let signer = VSSSigner()
-// Compose the signature
-var signature = signer.signData(toSign, privateKey: <#keyPair.privateKey()#>, keyPassword: <#Private key password or nil#>)
+if let toSign = message.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+    // Create the signer
+    let signer = VSSSigner()
+    // Compose the signature
+    do {
+        let signature = try signer.signData(toSign, privateKey: <# keyPair.privateKey() #>, keyPassword: <# Private key password or nil #>, error: ())
+        // Use the signature.
+        //...
+    }
+    catch let error as NSError {
+        print("Error composing a signature: \(error.localizedDescription)")
+    }
+}
 //...
 ```
 
@@ -298,10 +361,13 @@ To verify some signature it is necessary to have a public key of a user whose si
 // Create a new VSSSigner instance
 VSSSigner *verifier = [[VSSSigner alloc] init];
 // Verify the signature.
-BOOL verified = [verifier verifySignature:<#signature#> data:toSign publicKey:<#keyPair.publicKey#>];
-if (verified) {
-	// Signature seems OK.
+NSError *error = nil;
+if (![verifier verifySignature:<# NSData containing the signature #> data:<# NSData used to compose the signature #> publicKey:<# keyPair.publicKey #> error:&error]) {
+    NSLog(@"Error signature verification: %@", [error localizedDescription]);
+    return;
 }
+// Signature seems OK.
+//...
 ```
 
 ###### Swift
@@ -313,9 +379,13 @@ if (verified) {
 // Create a new VSSSigner instance
 let verifier = VSSSigner()
 // Verify the signature.
-let verified = verifier.verifySignature(<#signature#>, data: toSign, publicKey:<#keyPair.publicKey()#>)
-if verified {
-	// Signature seems OK.
+do {
+    try verifier.verifySignature(<# NSData containing the signature #>, data: <# NSData used to compose the signature #>, publicKey: <# keyPair.publicKey() #>, error: ())
+    // Signature seems OK.
+    //...
+}
+catch let error as NSError {
+    print("Error signature verification: \(error.localizedDescription)")
 }
 //...
 ```
