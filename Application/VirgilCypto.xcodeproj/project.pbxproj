@@ -37,12 +37,12 @@
 		361403061BB2D232002E69CA /* VC003_SignerSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361403031BB2D232002E69CA /* VC003_SignerSwiftTests.swift */; };
 		36182BEC1C8629B700CDF68F /* VSSChunkCryptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36182BEB1C8629B700CDF68F /* VSSChunkCryptor.mm */; };
 		36182BED1C8629B700CDF68F /* VSSChunkCryptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36182BEB1C8629B700CDF68F /* VSSChunkCryptor.mm */; };
+		361D75EB1C90BAE6004AD980 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 361D75EA1C90BAE6004AD980 /* VirgilCrypto.framework */; };
+		361D75EC1C90BB15004AD980 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 361D75EA1C90BAE6004AD980 /* VirgilCrypto.framework */; };
 		3620406D1C7C859E003A477D /* VSSBaseCryptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3620406C1C7C859E003A477D /* VSSBaseCryptor.mm */; };
 		3620406E1C7C859E003A477D /* VSSBaseCryptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3620406C1C7C859E003A477D /* VSSBaseCryptor.mm */; };
 		36AFED921C7F495400F5D6F0 /* VSSStreamCryptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36AFED911C7F495400F5D6F0 /* VSSStreamCryptor.mm */; };
 		36AFED931C7F495400F5D6F0 /* VSSStreamCryptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36AFED911C7F495400F5D6F0 /* VSSStreamCryptor.mm */; };
-		36C2F1671C8844170042AF96 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36D1906C1C872C6300C5C40D /* VirgilCrypto.framework */; };
-		36D1906D1C872C6300C5C40D /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36D1906C1C872C6300C5C40D /* VirgilCrypto.framework */; };
 		36D1906F1C87904700C5C40D /* VC005_ChunkCryptorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D1906E1C87904700C5C40D /* VC005_ChunkCryptorTests.m */; };
 		36D190711C87906100C5C40D /* VC006_StreamSignerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D190701C87906100C5C40D /* VC006_StreamSignerTests.m */; };
 		36D3FE341C86D9B300319255 /* VSSStreamSigner.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36D3FE331C86D9B300319255 /* VSSStreamSigner.mm */; };
@@ -111,12 +111,12 @@
 		361403031BB2D232002E69CA /* VC003_SignerSwiftTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VC003_SignerSwiftTests.swift; sourceTree = "<group>"; };
 		36182BEA1C8629B700CDF68F /* VSSChunkCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSChunkCryptor.h; sourceTree = "<group>"; };
 		36182BEB1C8629B700CDF68F /* VSSChunkCryptor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VSSChunkCryptor.mm; sourceTree = "<group>"; };
+		361D75EA1C90BAE6004AD980 /* VirgilCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VirgilCrypto.framework; sourceTree = "<group>"; };
 		3620406B1C7C859E003A477D /* VSSBaseCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSBaseCryptor.h; sourceTree = "<group>"; };
 		3620406C1C7C859E003A477D /* VSSBaseCryptor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VSSBaseCryptor.mm; sourceTree = "<group>"; };
 		3620406F1C7C889F003A477D /* VSSBaseCryptor_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSBaseCryptor_Private.h; sourceTree = "<group>"; };
 		36AFED901C7F495400F5D6F0 /* VSSStreamCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSStreamCryptor.h; sourceTree = "<group>"; };
 		36AFED911C7F495400F5D6F0 /* VSSStreamCryptor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VSSStreamCryptor.mm; sourceTree = "<group>"; };
-		36D1906C1C872C6300C5C40D /* VirgilCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VirgilCrypto.framework; sourceTree = "<group>"; };
 		36D1906E1C87904700C5C40D /* VC005_ChunkCryptorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VC005_ChunkCryptorTests.m; sourceTree = "<group>"; };
 		36D190701C87906100C5C40D /* VC006_StreamSignerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VC006_StreamSignerTests.m; sourceTree = "<group>"; };
 		36D3FE321C86D9B300319255 /* VSSStreamSigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSStreamSigner.h; sourceTree = "<group>"; };
@@ -131,7 +131,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				36D1906D1C872C6300C5C40D /* VirgilCrypto.framework in Frameworks */,
+				361D75EB1C90BAE6004AD980 /* VirgilCrypto.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,7 +146,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				36C2F1671C8844170042AF96 /* VirgilCrypto.framework in Frameworks */,
+				361D75EC1C90BB15004AD980 /* VirgilCrypto.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,7 +233,7 @@
 		3614029E1BB2A731002E69CA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				36D1906B1C872C6300C5C40D /* ios */,
+				361D75E91C90BAE6004AD980 /* ios */,
 			);
 			name = Frameworks;
 			path = ../Frameworks;
@@ -318,10 +318,10 @@
 			name = "VirgilCrypto Pod Content";
 			sourceTree = "<group>";
 		};
-		36D1906B1C872C6300C5C40D /* ios */ = {
+		361D75E91C90BAE6004AD980 /* ios */ = {
 			isa = PBXGroup;
 			children = (
-				36D1906C1C872C6300C5C40D /* VirgilCrypto.framework */,
+				361D75EA1C90BAE6004AD980 /* VirgilCrypto.framework */,
 			);
 			path = ios;
 			sourceTree = "<group>";
