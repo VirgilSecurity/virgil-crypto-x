@@ -135,6 +135,13 @@
 + (VSSKeyPair * __nonnull)rsa4096WithPassword:(NSString * __nullable)password;
 
 /**
+ * @brief Generates key pair using curve 25519 with given password.
+ *
+ * @param password NSString password for encrypting the private key of the key pair or nil.
+ */
++ (VSSKeyPair * __nonnull)m255WithPassword:(NSString * __nullable)password;
+
+/**
  * @brief Getter for the public key's data.
  *
  * @return NSData object containing the generated public key data.

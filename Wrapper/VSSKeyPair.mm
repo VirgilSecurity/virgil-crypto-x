@@ -129,6 +129,10 @@ using namespace virgil::crypto;
     return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_RSA_4096 password:password];
 }
 
++ (VSSKeyPair *)m255WithPassword:(NSString *)password {
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_EC_M255 password:password];
+}
+
 #pragma mark - Public class logic
 
 - (NSData *)publicKey {

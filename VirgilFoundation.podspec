@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                        = "VirgilFoundation"
-  s.version                     = "1.4.3"
+  s.version                     = "1.4.4-rc1"
   s.summary                     = "Contains basic classes for creating key pairs, encrypting/decrypting data, signing data and verifying signs."
   s.homepage                    = "https://github.com/VirgilSecurity/virgil-foundation-x"
   s.cocoapods_version           = ">= 0.36"
