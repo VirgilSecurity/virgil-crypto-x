@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * __nonnull const kVSSKeyPairErrorDomain;
+
 @interface VSSKeyPair : NSObject
 
 /**
@@ -135,11 +137,18 @@
 + (VSSKeyPair * __nonnull)rsa4096WithPassword:(NSString * __nullable)password;
 
 /**
- * @brief Generates key pair using curve 25519 with given password.
+ * @brief Generates key pair using curve 25519 with given password. Similar to -curve25519WithPassword:
  *
  * @param password NSString password for encrypting the private key of the key pair or nil.
  */
 + (VSSKeyPair * __nonnull)m255WithPassword:(NSString * __nullable)password;
+
+/**
+ * @brief Generates key pair using curve 25519 with given password. Similar to -m255WithPassword:
+ *
+ * @param password NSString password for encrypting the private key of the key pair or nil.
+ */
++ (VSSKeyPair * __nonnull)curve25519WithPassword:(NSString * __nullable)password;
 
 /**
  * @brief Getter for the public key's data.
@@ -184,5 +193,19 @@
  * @return BOOL YES in case when given public key matches given private key, NO - otherwise.
  */
 + (BOOL)isPublicKey:(NSData * __nonnull)publicKeyData matchesPrivateKey:(NSData * __nonnull)privateKeyData withPassword:(NSString * __nullable)password;
+
+/**
+ * @brief Change password for the given private key.
+ *
+ * Re-encrypt given Private Key with a new password.
+ *
+ * @param password NSString current password for the private key.
+ * @param newPassword NSString password which should be used for the private key protection further.
+ * @param keyData NSData object containing the private key.
+ * @param error NSError pointer to get an object in case of error, nil - otherwise.
+ *
+ * @return NSData object containing the private key that is encrypted with the new password or nil if error happens.
+ */
++ (NSData * __nullable)resetPassword:(NSString * __nonnull)password toPassword:(NSString * __nonnull)newPassword forPrivateKey:(NSData * __nonnull)keyData error:(NSError * __nullable * __nullable)error;
 
 @end

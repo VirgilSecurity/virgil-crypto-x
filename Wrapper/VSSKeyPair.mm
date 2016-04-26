@@ -14,6 +14,8 @@ using virgil::crypto::VirgilByteArray;
 using Type = virgil::crypto::VirgilKeyPair::Type;
 using namespace virgil::crypto;
 
+NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
+
 @interface VSSKeyPair ()
 
 @property (nonatomic, assign) VirgilKeyPair *keyPair;
@@ -133,6 +135,10 @@ using namespace virgil::crypto;
     return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_EC_M255 password:password];
 }
 
++ (VSSKeyPair *)curve25519WithPassword:(NSString *)password {
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_EC_Curve25519 password:password];
+}
+
 #pragma mark - Public class logic
 
 - (NSData *)publicKey {
@@ -235,6 +241,52 @@ using namespace virgil::crypto;
     }
     
     return NO;
+}
+
++ (NSData * __nullable)resetPassword:(NSString *)password toPassword:(NSString *)newPassword forPrivateKey:(NSData *)keyData error:(NSError **)error {
+    if (password.length == 0 || newPassword.length == 0 || keyData.length == 0) {
+        // Can't reset password.
+        if (error) {
+            *error = [NSError errorWithDomain:kVSSKeyPairErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to reset password: Required parameter is missing.", @"Reset password error.") }];
+        }
+        return nil;
+    }
+    
+    NSData *pkeyData = nil;
+    try {
+        std::string sPwd = std::string([password UTF8String]);
+        VirgilByteArray vbaPwd = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(sPwd.data(), sPwd.size());
+        
+        std::string sNewPwd = std::string([newPassword UTF8String]);
+        VirgilByteArray vbaNewPwd = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(sNewPwd.data(), sNewPwd.size());
+        
+        const unsigned char *pKeyData = static_cast<const unsigned char *>([keyData bytes]);
+        VirgilByteArray pKey = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKeyData, [keyData length]);
+        
+        VirgilByteArray pNewKey = VirgilKeyPair::resetPrivateKeyPassword(pKey, vbaPwd, vbaNewPwd);
+        pkeyData = [NSData dataWithBytes:pNewKey.data() length:pNewKey.size()];
+        if (error) {
+            *error = nil;
+        }
+    }
+    catch(std::exception &ex) {
+        if (error) {
+            NSString *description = [[NSString alloc] initWithCString:ex.what() encoding:NSUTF8StringEncoding];
+            if (description.length == 0) {
+                description = @"Unknown exception during password reset.";
+            }
+            *error = [NSError errorWithDomain:kVSSKeyPairErrorDomain code:-1001 userInfo:@{ NSLocalizedDescriptionKey: description }];
+        }
+        pkeyData = nil;
+    }
+    catch(...) {
+        if (error) {
+            *error = [NSError errorWithDomain:kVSSKeyPairErrorDomain code:-1002 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown exception during password reset." }];
+        }
+        pkeyData = nil;
+    }
+    
+    return pkeyData;
 }
 
 @end
