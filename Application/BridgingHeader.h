@@ -23,4 +23,6 @@
 #import "VSSSigner.h"
 #import "VSSStreamSigner.h"
 
+#import "VSSPBKDF.h"
+
 #endif

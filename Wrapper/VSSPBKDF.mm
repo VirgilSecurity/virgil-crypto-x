@@ -16,7 +16,7 @@
 using virgil::crypto::VirgilByteArray;
 using virgil::crypto::foundation::VirgilPBKDF;
 
-const size_t kVSSDefaultSaltSize = 1024;
+const size_t kVSSDefaultRandomBytesSize = 128;
 NSString *const kVSSPBKDFErrorDomain = @"VSSPBKDFErrorDomain";
 
 @interface VSSPBKDF ()
@@ -161,7 +161,7 @@ NSString *const kVSSPBKDFErrorDomain = @"VSSPBKDFErrorDomain";
     }
     
     if (salt.length == 0) {
-        salt = [[self class] randomSaltOfSize:0];
+        salt = [[self class] randomBytesOfSize:0];
     }
     
     if (iterations == 0) {
@@ -312,9 +312,9 @@ NSString *const kVSSPBKDFErrorDomain = @"VSSPBKDFErrorDomain";
 }
 
 
-+ (NSData*)randomSaltOfSize:(size_t)size {
++ (NSData*)randomBytesOfSize:(size_t)size {
     if (size == 0) {
-        size = kVSSDefaultSaltSize;
+        size = kVSSDefaultRandomBytesSize;
     }
     uint8_t randomDataBytes[size];
     if (SecRandomCopyBytes(kSecRandomDefault, sizeof(randomDataBytes), randomDataBytes) == 0) {

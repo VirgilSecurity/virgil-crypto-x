@@ -49,6 +49,8 @@
 		36D3FE351C86D9B300319255 /* VSSStreamSigner.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36D3FE331C86D9B300319255 /* VSSStreamSigner.mm */; };
 		36D3FE391C86DA7F00319255 /* VSSFoundationCommons.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36D3FE381C86DA7F00319255 /* VSSFoundationCommons.mm */; };
 		36D3FE3A1C86DA7F00319255 /* VSSFoundationCommons.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36D3FE381C86DA7F00319255 /* VSSFoundationCommons.mm */; };
+		36D601E61CD14D090096C784 /* VC007_PBKDFTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D601E51CD14D090096C784 /* VC007_PBKDFTests.m */; };
+		36D601E81CD162CF0096C784 /* VC007_PBKDFTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D601E71CD162CF0096C784 /* VC007_PBKDFTests.swift */; };
 		36D841281CCFC7490011BC02 /* VSSPBKDF.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36D841271CCFC7490011BC02 /* VSSPBKDF.mm */; };
 		36D841291CCFC7490011BC02 /* VSSPBKDF.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36D841271CCFC7490011BC02 /* VSSPBKDF.mm */; };
 		36E95C111C84EA2C00D8BAEB /* VC004_StreamCryptorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E95C101C84EA2C00D8BAEB /* VC004_StreamCryptorTests.m */; };
@@ -125,6 +127,8 @@
 		36D3FE331C86D9B300319255 /* VSSStreamSigner.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VSSStreamSigner.mm; sourceTree = "<group>"; };
 		36D3FE371C86DA7F00319255 /* VSSFoundationCommons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSFoundationCommons.h; sourceTree = "<group>"; };
 		36D3FE381C86DA7F00319255 /* VSSFoundationCommons.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VSSFoundationCommons.mm; sourceTree = "<group>"; };
+		36D601E51CD14D090096C784 /* VC007_PBKDFTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VC007_PBKDFTests.m; sourceTree = "<group>"; };
+		36D601E71CD162CF0096C784 /* VC007_PBKDFTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VC007_PBKDFTests.swift; sourceTree = "<group>"; };
 		36D841261CCFC7490011BC02 /* VSSPBKDF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSPBKDF.h; sourceTree = "<group>"; };
 		36D841271CCFC7490011BC02 /* VSSPBKDF.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VSSPBKDF.mm; sourceTree = "<group>"; };
 		36E95C101C84EA2C00D8BAEB /* VC004_StreamCryptorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VC004_StreamCryptorTests.m; sourceTree = "<group>"; };
@@ -221,6 +225,7 @@
 				36E95C101C84EA2C00D8BAEB /* VC004_StreamCryptorTests.m */,
 				36D1906E1C87904700C5C40D /* VC005_ChunkCryptorTests.m */,
 				36D190701C87906100C5C40D /* VC006_StreamSignerTests.m */,
+				36D601E51CD14D090096C784 /* VC007_PBKDFTests.m */,
 				361402921BB2A6CB002E69CA /* Supporting Files */,
 			);
 			path = VirgilCyptoTests;
@@ -302,6 +307,7 @@
 				360949791C88D73A00CCF563 /* VC004_StreamCryptorSwiftTests.swift */,
 				3609497B1C88D75500CCF563 /* VC005_ChunkCryptorSwiftTests.swift */,
 				3609497D1C88D76800CCF563 /* VC006_StreamSignerSwiftTests.swift */,
+				36D601E71CD162CF0096C784 /* VC007_PBKDFTests.swift */,
 				361402CF1BB2AC5B002E69CA /* Supporting Files */,
 			);
 			path = VirgilCryptoSwiftTests;
@@ -519,6 +525,7 @@
 				361402B01BB2A897002E69CA /* VC001_KeyPairTests.m in Sources */,
 				361402B21BB2AB60002E69CA /* VC002_CryptorTests.m in Sources */,
 				361402DA1BB2AFFD002E69CA /* VC003_SignerTests.m in Sources */,
+				36D601E61CD14D090096C784 /* VC007_PBKDFTests.m in Sources */,
 				36E95C111C84EA2C00D8BAEB /* VC004_StreamCryptorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -548,6 +555,7 @@
 			files = (
 				361403061BB2D232002E69CA /* VC003_SignerSwiftTests.swift in Sources */,
 				3609497A1C88D73A00CCF563 /* VC004_StreamCryptorSwiftTests.swift in Sources */,
+				36D601E81CD162CF0096C784 /* VC007_PBKDFTests.swift in Sources */,
 				361403051BB2D232002E69CA /* VC001_KeyPairSwiftTests.swift in Sources */,
 				361403041BB2D232002E69CA /* VC002_CryptorSwiftTests.swift in Sources */,
 				3609497C1C88D75500CCF563 /* VC005_ChunkCryptorSwiftTests.swift in Sources */,

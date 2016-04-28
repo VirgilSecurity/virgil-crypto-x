@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-extern const size_t kVSSDefaultSaltSize;
+extern const size_t kVSSDefaultRandomBytesSize;
 extern NSString * __nonnull const kVSSPBKDFErrorDomain;
 
 typedef NS_ENUM(NSInteger, VSSPBKDFAlgorithm) {
@@ -33,7 +33,7 @@ typedef NS_ENUM(NSInteger, VSSPBKDFHash) {
 @property (nonatomic, assign) VSSPBKDFHash hash;
 
 /**
- * @brief Creates PBKDF wrapper object. 
+ * @brief Creates PBKDF wrapper object. By default algoritm is set to VSSPBKDFAlgorithmPBKDF2 and hash is set to VSSPBKDFHashSHA384.
  *
  * @param salt NSData with salt for key derivation. In case when salt.length == 0 default salt will be generated atomatically.
  * @param iterations unsigned int with count of iterations for key derivation function. In case of 0 - default iterations count will be used automatically.
@@ -68,9 +68,9 @@ typedef NS_ENUM(NSInteger, VSSPBKDFHash) {
 /**
  * @brief Generates cryptographically secure random bytes with required length.
  *
- * @param size size_t Required size of the generated array. When given size equals 0 then kVSSDefaultSaltSize will be used instead.
+ * @param size size_t Required size in bytes of the generated array. When given size equals 0 then kVSSDefaultRandomBytesSize will be used instead.
  * @return NSData with cryptographically secure random bytes.
  */
-+ (NSData * __nonnull)randomSaltOfSize:(size_t)size;
++ (NSData * __nonnull)randomBytesOfSize:(size_t)size;
 
 @end
