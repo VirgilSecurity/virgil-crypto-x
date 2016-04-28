@@ -13,6 +13,7 @@
     - [Compose and verify a signature](#compose-and-verify-a-signature)
         - [Compose a signature](#compose-a-signature)
         - [Verify a signature](#verify-a-signature)
+    - [Derivation of a key from a password](#derivation-of-a-key-from-a-password)     
 - [License](#license)
 - [See also](#see-also)
 
@@ -386,6 +387,61 @@ do {
 }
 catch let error as NSError {
     print("Error signature verification: \(error.localizedDescription)")
+}
+//...
+```
+
+### Derivation of a key from a password
+
+This functionality allows to generate sequences of bytes based on the given initial parameters so that the same parameters give the same sequence of bytes. This might come in handy when the application does not want to use some sensitive data in a plain form (saving password between sessions, or manipulating other pieces of user data, e.g. emails, phone numbers, etc.). In this situation the application can produce secure sequence based on the password or email address or any other plain data, so this data will not be exposed. It is not possible (or at least it is impossible in reasonable time) to restore initial plain data using the generated sequence of bytes. See examples below.
+
+###### Objective-C
+```objective-c
+//...
+// Assuming that we have some password which the application does not to expose in plain form.
+NSString *password = <# NSString: user password in plain form#>;
+// Create a new VSSPBKDF instance
+// Salt parameter should contain the random sequence of bytes. In general, salt is public information. 
+// If salt parameter is nil then VSSPBKDF will generate random salt automatically.
+// If it is necessary to generate the same data later based on the user's input of the password
+// it is recommended to generate salt data and store it for further use in VSSPBKDF instance creations:
+NSData *salt = [VSSPBKDF randomBytesOfSize:<#size_t: size of the salt in bytes or 0 #>];       
+// Iterations parameter should contain number of iterations for derivation function.
+// If iterations == 0 then VSSPBKDF will use default number of iterations.
+VSSPBKDF *pbkdf = [[VSSPBKDF alloc] initWithSalt:<#NSData: salt or nil for default new salt generation#> iterations:<#unsigned int: iterations count or 0 for default count #>];
+NSError *error = nil;
+// Derive secure sequence of bytes with required size based on the plain password.
+NSData *data = [pbkdf keyFromPassword:password size:<# size_t: Desired length in bytes of the output data sequence #> error:&error];
+if (error != nil) {
+    NSLog(@"Error: %@", [error localizedDescription]);
+    return;
+} 
+// Use the data instead of plain password.
+//...
+```
+
+###### Swift
+```swift
+//...
+// Assuming that we have some password which the application does not to expose in plain form.
+let password = <# String: user password in plain form#>;
+// Create a new VSSPBKDF instance
+// Salt parameter should contain the random sequence of bytes. In general, salt is public information. 
+// If salt parameter is nil then VSSPBKDF will generate random salt automatically.
+// If it is necessary to generate the same data later based on the user's input of the password
+// it is recommended to generate salt data and store it for further use in VSSPBKDF instance creations:
+let salt = VSSPBKDF.randomBytesOfSize(<#size_t: size of the salt in bytes or 0 #>)       
+// Iterations parameter should contain number of iterations for derivation function.
+// If iterations == 0 then VSSPBKDF will use default number of iterations.
+let pbkdf = VSSPBKDF(salt:<# NSData: salt or nil for default new salt generation #>, iterations: <#unsigned int: iterations count or 0 for default count #>)
+do {
+    // Derive secure sequence of bytes with required size based on the plain password.
+    let data = try pbkdf.keyFromPassword(password, size: <# size_t: Desired length in bytes of the output data sequence #>)
+    // Use the data instead of plain password.
+}
+catch (let error as NSError) {
+    print("Error: \(error.localizedDescription)")
+    return
 }
 //...
 ```
