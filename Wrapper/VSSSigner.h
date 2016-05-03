@@ -25,7 +25,7 @@ extern NSString * __nonnull const kVSSSignerErrorDomain;
  *
  * @return NSData Signature data object. 
  */ 
-- (NSData * __nullable)signData:(NSData * __nonnull)data privateKey:(NSData * __nonnull)privateKey keyPassword:(NSString * __nullable)keyPassword;
+- (NSData * __nullable)signData:(NSData * __nonnull)data privateKey:(NSData * __nonnull)privateKey keyPassword:(NSString * __nullable)keyPassword __attribute__((deprecated("Use -signData:privateKey:keyPassword:error: instead.")));
 
 /**
  * @brief Composes a signature data for given data using a private key.
@@ -41,7 +41,7 @@ extern NSString * __nonnull const kVSSSignerErrorDomain;
 
 /**
  * @brief Performs verification of a signature for given data using a public key.
- * @deprecated Use verifySignature:data:publicKey:error instead.
+ * @deprecated Use -verifySignature:data:publicKey:error instead.
  *
  * @param signature NSData Data object containing signature data.
  * @param data NSData Data object which was signed.
@@ -49,7 +49,7 @@ extern NSString * __nonnull const kVSSSignerErrorDomain;
  *
  * @return BOOL YES if signature is verified and can be trusted, NO - otherwise.
  */
-- (BOOL)verifySignature:(NSData * __nonnull)signature data:(NSData * __nonnull)data publicKey:(NSData * __nonnull)publicKey;
+- (BOOL)verifySignature:(NSData * __nonnull)signature data:(NSData * __nonnull)data publicKey:(NSData * __nonnull)publicKey __attribute__((deprecated("Use -verifySignature:data:publicKey:error instead.")));
 
 /**
  * @brief Performs verification of a signature for given data using a public key.

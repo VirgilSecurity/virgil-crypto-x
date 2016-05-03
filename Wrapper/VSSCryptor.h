@@ -22,7 +22,7 @@ extern NSString * __nonnull const kVSSCryptorErrorDomain;
  *
  * @return NSData Data object with encrypted data or nil in case of error.
  */
-- (NSData * __nullable)encryptData:(NSData * __nonnull)plainData embedContentInfo:(NSNumber * __nonnull)embedContentInfo;
+- (NSData * __nullable)encryptData:(NSData * __nonnull)plainData embedContentInfo:(NSNumber * __nonnull)embedContentInfo __attribute__((deprecated("Use -encryptData:embedContentInfo:error: instead.")));
 
 /**
  * @brief Encrypt some data using added recepients. Allows to embed info about the recipients so it will be easier to decrypt.
@@ -45,7 +45,7 @@ extern NSString * __nonnull const kVSSCryptorErrorDomain;
  *
  * @return NSData Data object containing the decrypted data or nil in case of error.
  */
-- (NSData * __nullable)decryptData:(NSData * __nonnull)encryptedData recipientId:(NSString * __nonnull)recipientId privateKey:(NSData * __nonnull)privateKey keyPassword:(NSString * __nullable)keyPassword;
+- (NSData * __nullable)decryptData:(NSData * __nonnull)encryptedData recipientId:(NSString * __nonnull)recipientId privateKey:(NSData * __nonnull)privateKey keyPassword:(NSString * __nullable)keyPassword __attribute__((deprecated("Use -decryptData:recipientId:privateKey:keyPassword:error: instead.")));
 
 /**
  * @brief Decrypt data using key-based decryption.
@@ -69,7 +69,7 @@ extern NSString * __nonnull const kVSSCryptorErrorDomain;
  *
  * @return NSData Data object containing the decrypted data or nil in case of error.
  */
-- (NSData * __nullable)decryptData:(NSData * __nonnull)encryptedData password:(NSString * __nonnull)password;
+- (NSData * __nullable)decryptData:(NSData * __nonnull)encryptedData password:(NSString * __nonnull)password __attribute__((deprecated("-decryptData:password:error: instead.")));
 
 /**
  * @brief Decrypt data using password-based decryption.

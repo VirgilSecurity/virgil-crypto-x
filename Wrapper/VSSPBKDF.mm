@@ -16,7 +16,7 @@
 using virgil::crypto::VirgilByteArray;
 using virgil::crypto::foundation::VirgilPBKDF;
 
-const size_t kVSSDefaultRandomBytesSize = 128;
+const size_t kVSSDefaultRandomBytesSize = 64;
 NSString *const kVSSPBKDFErrorDomain = @"VSSPBKDFErrorDomain";
 
 @interface VSSPBKDF ()

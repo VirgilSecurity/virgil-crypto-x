@@ -47,13 +47,13 @@
     // Create the signer
     VSSSigner *signer = [[VSSSigner alloc] init];
     // Compose the signature
-    NSData *signature = [signer signData:self.toSign privateKey:keyPair.privateKey keyPassword:nil];
+    NSData *signature = [signer signData:self.toSign privateKey:keyPair.privateKey keyPassword:nil error:nil];
     XCTAssertTrue(signature.length > 0, @"Signature should be composed.");
     
     // Verify signature:
     // Create a verifier
     VSSSigner *verifier = [[VSSSigner alloc] init];
-    BOOL trusted = [verifier verifySignature:signature data:self.toSign publicKey:keyPair.publicKey];
+    BOOL trusted = [verifier verifySignature:signature data:self.toSign publicKey:keyPair.publicKey error:nil];
     XCTAssertTrue(trusted, @"Signature should be correct and verified.");
 }
 

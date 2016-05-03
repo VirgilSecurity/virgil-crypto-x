@@ -111,7 +111,7 @@
         XCTAssertTrue(FALSE);
     }
     NSData *encryptedData = (NSData *)[ostream propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
-    NSData *contentInfo = [cryptor contentInfo];
+    NSData *contentInfo = [cryptor contentInfoWithError:nil];
     if (contentInfo == nil) {
         NSLog(@"There is no content info after encryption.");
         XCTAssertTrue(FALSE);

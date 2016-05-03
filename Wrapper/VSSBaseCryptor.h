@@ -21,7 +21,7 @@ extern NSString * __nonnull const kVSSBaseCryptorErrorDomain;
  * @param recipientId NSString String containing identifier for the public key used for encryption.
  * @param publicKey NSData Data object containing public key which will be used for encryption.
  */
-- (void)addKeyRecipient:(NSString * __nonnull)recipientId publicKey:(NSData * __nonnull)publicKey;
+- (void)addKeyRecipient:(NSString * __nonnull)recipientId publicKey:(NSData * __nonnull)publicKey __attribute__((deprecated("Use -addKeyRecipient:publicKey:error: instead.")));
 
 /**
  * Adds given public key as a recipient for encryption. This method should be called before -encryptData:embedContentInfo: in case of using key-based encryption.
@@ -39,7 +39,7 @@ extern NSString * __nonnull const kVSSBaseCryptorErrorDomain;
  *
  * @param recipientId NSString String containing identifier for the public key which should be removed.
  */
-- (void)removeKeyRecipient:(NSString * __nonnull)recipientId;
+- (void)removeKeyRecipient:(NSString * __nonnull)recipientId __attribute__((deprecated("Use -removeKeyRecipient:error: instead.")));
 
 /**
  * @brief Removes a public key with given identifier from the recipients list for encryption.
@@ -53,11 +53,11 @@ extern NSString * __nonnull const kVSSBaseCryptorErrorDomain;
 
 /**
  * @brief Adds given password as a recipient for encryption. This method should be called before -encryptData:embedContentInfo: in case of using pasword-based encryption.
- * @deprecated Use addPasswordRecipient:error: instead.
+ * @deprecated Use -addPasswordRecipient:error: instead.
  *
  * @param password NSString Password which will be used for encryption.
  */
-- (void)addPasswordRecipient:(NSString * __nonnull)password;
+- (void)addPasswordRecipient:(NSString * __nonnull)password __attribute__((deprecated("Use -addPasswordRecipient:error: instead.")));
 
 /**
  * @brief Adds given password as a recipient for encryption. This method should be called before -encryptData:embedContentInfo: in case of using pasword-based encryption.
@@ -71,11 +71,11 @@ extern NSString * __nonnull const kVSSBaseCryptorErrorDomain;
 
 /**
  * @brief Removes given password from the recipients list for encryption.
- * @deprecated Use removePasswordRecipient:error: instead.
+ * @deprecated Use -removePasswordRecipient:error: instead.
  *
  * @param password NSString Password which should be removed.
  */
-- (void)removePasswordRecipient:(NSString * __nonnull)password;
+- (void)removePasswordRecipient:(NSString * __nonnull)password __attribute__((deprecated("Use -removePasswordRecipient:error: instead.")));
 
 /**
  * @brief Removes given password from the recipients list for encryption.
@@ -89,9 +89,9 @@ extern NSString * __nonnull const kVSSBaseCryptorErrorDomain;
 
 /**
  * @brief Removes all recepients which would be used for encryption.
- * @deprecated Use -removeAllRecipientsWithError: instead
+ * @deprecated Use -removeAllRecipientsWithError: instead.
  */
-- (void)removeAllRecipients;
+- (void)removeAllRecipients __attribute__((deprecated("Use -removeAllRecipientsWithError: instead")));
 
 /**
  * @brief Removes all recepients which would be used for encryption.
@@ -108,7 +108,7 @@ extern NSString * __nonnull const kVSSBaseCryptorErrorDomain;
  *
  * @return NSData Data object with content info for encryption data or nil in case of error or if no content info present.
  */
-- (NSData * __nullable)contentInfo;
+- (NSData * __nullable)contentInfo __attribute__((deprecated("Use -contentInfoWithError: instead.")));
 
 /**
  * Allows to get the content info data with information about the encryption recipients in case of parameter embedContentInfo of the -encryptData:embedContentInfo: is set to @NO or nil.
@@ -121,11 +121,11 @@ extern NSString * __nonnull const kVSSBaseCryptorErrorDomain;
 
 /**
  * @brief Allows to set the content info data with information about the encryption recipients before any calls to -decryptData: methods in case when data was encrypted with parameter embedContentInfo of the -encryptData:embedContentInfo: was set to @NO or nil.
- * @deprecated Use -setContentInfo:error: instead
+ * @deprecated Use -setContentInfo:error: instead.
  *
  * @param NSData Data object with content info for the data decryption.
  */
-- (void)setContentInfo:(NSData * __nonnull)contentInfo;
+- (void)setContentInfo:(NSData * __nonnull)contentInfo __attribute__((deprecated("Use -setContentInfo:error: instead.")));
 
 /**
  * Allows to set the content info data with information about the encryption recipients before any calls to -decryptData: methods in case when data was encrypted with parameter embedContentInfo of the -encryptData:embedContentInfo: was set to false.

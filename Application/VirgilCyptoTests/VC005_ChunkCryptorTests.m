@@ -84,7 +84,7 @@ static const NSUInteger kDesiredDataChunkLength = 1024;
         XCTAssertTrue(FALSE);
     }
     XCTAssertTrue(encryptedData.length > 0, @"Encrypted data should not be empty.");
-    NSData *contentInfo = [cryptor contentInfo];
+    NSData *contentInfo = [cryptor contentInfoWithError:nil];
     if (contentInfo == nil) {
         NSLog(@"There is no content info after encryption.");
         XCTAssertTrue(FALSE);
@@ -162,7 +162,7 @@ static const NSUInteger kDesiredDataChunkLength = 1024;
         XCTAssertTrue(FALSE);
     }
     XCTAssertTrue(encryptedData.length > 0, @"Encrypted data should not be empty.");
-    NSData *contentInfo = [cryptor contentInfo];
+    NSData *contentInfo = [cryptor contentInfoWithError:nil];
     if (contentInfo == nil) {
         NSLog(@"There is no content info after encryption.");
         XCTAssertTrue(FALSE);
