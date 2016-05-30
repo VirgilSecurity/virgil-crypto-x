@@ -15,7 +15,6 @@
 #import "VSSKeyPair.h"
 
 #import "VSSBaseCryptor.h"
-#import "VSSBaseCryptor_Private.h"
 #import "VSSCryptor.h"
 #import "VSSStreamCryptor.h"
 #import "VSSChunkCryptor.h"
