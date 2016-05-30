@@ -1,0 +1,1711 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>VSSKeyPair Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">VirgilFoundation </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Virgil Security, Inc.</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+
+	
+	<optgroup label="Class Methods">
+		
+		<option value="//api/name/curve25519WithPassword:">+ curve25519WithPassword:</option>
+		
+		<option value="//api/name/ecBrainpool256WithPassword:">+ ecBrainpool256WithPassword:</option>
+		
+		<option value="//api/name/ecBrainpool384WithPassword:">+ ecBrainpool384WithPassword:</option>
+		
+		<option value="//api/name/ecBrainpool512WithPassword:">+ ecBrainpool512WithPassword:</option>
+		
+		<option value="//api/name/ecKoblitz192WithPassword:">+ ecKoblitz192WithPassword:</option>
+		
+		<option value="//api/name/ecKoblitz224WithPassword:">+ ecKoblitz224WithPassword:</option>
+		
+		<option value="//api/name/ecKoblitz256WithPassword:">+ ecKoblitz256WithPassword:</option>
+		
+		<option value="//api/name/ecNist192WithPassword:">+ ecNist192WithPassword:</option>
+		
+		<option value="//api/name/ecNist224WithPassword:">+ ecNist224WithPassword:</option>
+		
+		<option value="//api/name/ecNist256WithPassword:">+ ecNist256WithPassword:</option>
+		
+		<option value="//api/name/ecNist384WithPassword:">+ ecNist384WithPassword:</option>
+		
+		<option value="//api/name/ecNist521WithPassword:">+ ecNist521WithPassword:</option>
+		
+		<option value="//api/name/isEncryptedPrivateKey:">+ isEncryptedPrivateKey:</option>
+		
+		<option value="//api/name/isPrivateKey:matchesPassword:">+ isPrivateKey:matchesPassword:</option>
+		
+		<option value="//api/name/isPublicKey:matchesPrivateKey:withPassword:">+ isPublicKey:matchesPrivateKey:withPassword:</option>
+		
+		<option value="//api/name/m255WithPassword:">+ m255WithPassword:</option>
+		
+		<option value="//api/name/resetPassword:toPassword:forPrivateKey:error:">+ resetPassword:toPassword:forPrivateKey:error:</option>
+		
+		<option value="//api/name/rsa1024WithPassword:">+ rsa1024WithPassword:</option>
+		
+		<option value="//api/name/rsa2048WithPassword:">+ rsa2048WithPassword:</option>
+		
+		<option value="//api/name/rsa256WithPassword:">+ rsa256WithPassword:</option>
+		
+		<option value="//api/name/rsa4096WithPassword:">+ rsa4096WithPassword:</option>
+		
+		<option value="//api/name/rsa512WithPassword:">+ rsa512WithPassword:</option>
+		
+	</optgroup>
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/init">- init</option>
+		
+		<option value="//api/name/initWithPassword:">- initWithPassword:</option>
+		
+		<option value="//api/name/privateKey">- privateKey</option>
+		
+		<option value="//api/name/publicKey">- publicKey</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">VSSKeyPair Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td>NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>VSSKeyPair.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Class for generating asymmetric key pairs using a number of alghorithms.</p>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						<a title="Lifecycle" name="task_Lifecycle"></a>
+						<h2 class="task-title">Lifecycle</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/init" title="init"></a>
+	<h3 class="method-title"><code><a href="#//api/name/init">&ndash;&nbsp;init</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Generates a new key pair using curve 25519 without a password.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (instancetype __nonnull)init</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyPair.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/initWithPassword:" title="initWithPassword:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithPassword:">&ndash;&nbsp;initWithPassword:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Generates a new key pair using curve 25519 with given password.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (instancetype __nonnull)initWithPassword:(NSString *__nullable)<em>password</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>Password for encrypting the private key of the key pair or <code>nil</code>.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>instance of the <code>VSSKeyPair</code>.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyPair.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/ecNist192WithPassword:" title="ecNist192WithPassword:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/ecNist192WithPassword:">+&nbsp;ecNist192WithPassword:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Generates key pair using 192-bits NIST curve with given password.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (VSSKeyPair *__nonnull)ecNist192WithPassword:(NSString *__nullable)<em>password</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>Password for encrypting the private key of the key pair or <code>nil</code>.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>instance of the <code>VSSKeyPair</code>.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyPair.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/ecNist224WithPassword:" title="ecNist224WithPassword:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/ecNist224WithPassword:">+&nbsp;ecNist224WithPassword:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Generates key pair using 224-bits NIST curve with given password.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (VSSKeyPair *__nonnull)ecNist224WithPassword:(NSString *__nullable)<em>password</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>Password for encrypting the private key of the key pair or <code>nil</code>.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>instance of the <code>VSSKeyPair</code>.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyPair.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/ecNist256WithPassword:" title="ecNist256WithPassword:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/ecNist256WithPassword:">+&nbsp;ecNist256WithPassword:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Generates key pair using 256-bits NIST curve with given password.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (VSSKeyPair *__nonnull)ecNist256WithPassword:(NSString *__nullable)<em>password</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>Password for encrypting the private key of the key pair or <code>nil</code>.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>instance of the <code>VSSKeyPair</code>.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyPair.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/ecNist384WithPassword:" title="ecNist384WithPassword:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/ecNist384WithPassword:">+&nbsp;ecNist384WithPassword:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Generates key pair using 384-bits NIST curve with given password.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (VSSKeyPair *__nonnull)ecNist384WithPassword:(NSString *__nullable)<em>password</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>Password for encrypting the private key of the key pair or <code>nil</code>.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>instance of the <code>VSSKeyPair</code> class.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyPair.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/ecNist521WithPassword:" title="ecNist521WithPassword:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/ecNist521WithPassword:">+&nbsp;ecNist521WithPassword:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Generates key pair using 521-bits NIST curve with given password.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (VSSKeyPair *__nonnull)ecNist521WithPassword:(NSString *__nullable)<em>password</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>Password for encrypting the private key of the key pair or <code>nil</code>.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>instance of the <code>VSSKeyPair</code>.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyPair.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/ecBrainpool256WithPassword:" title="ecBrainpool256WithPassword:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/ecBrainpool256WithPassword:">+&nbsp;ecBrainpool256WithPassword:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Generates key pair using 256-bits Brainpool curve with given password.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (VSSKeyPair *__nonnull)ecBrainpool256WithPassword:(NSString *__nullable)<em>password</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>Password for encrypting the private key of the key pair or <code>nil</code>.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>instance of the <code>VSSKeyPair</code>.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyPair.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/ecBrainpool384WithPassword:" title="ecBrainpool384WithPassword:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/ecBrainpool384WithPassword:">+&nbsp;ecBrainpool384WithPassword:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Generates key pair using 384-bits Brainpool curve with given password.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (VSSKeyPair *__nonnull)ecBrainpool384WithPassword:(NSString *__nullable)<em>password</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>Password for encrypting the private key of the key pair or <code>nil</code>.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>instance of the <code>VSSKeyPair</code>.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyPair.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/ecBrainpool512WithPassword:" title="ecBrainpool512WithPassword:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/ecBrainpool512WithPassword:">+&nbsp;ecBrainpool512WithPassword:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Generates key pair using 512-bits Brainpool curve with given password.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (VSSKeyPair *__nonnull)ecBrainpool512WithPassword:(NSString *__nullable)<em>password</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>Password for encrypting the private key of the key pair or <code>nil</code>.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>instance of the <code>VSSKeyPair</code>.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyPair.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/ecKoblitz192WithPassword:" title="ecKoblitz192WithPassword:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/ecKoblitz192WithPassword:">+&nbsp;ecKoblitz192WithPassword:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Generates key pair using 192-bits &ldquo;Koblitz&rdquo; curve with given password.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (VSSKeyPair *__nonnull)ecKoblitz192WithPassword:(NSString *__nullable)<em>password</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>Password for encrypting the private key of the key pair or <code>nil</code>.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>instance of the <code>VSSKeyPair</code>.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyPair.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/ecKoblitz224WithPassword:" title="ecKoblitz224WithPassword:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/ecKoblitz224WithPassword:">+&nbsp;ecKoblitz224WithPassword:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Generates key pair using 224-bits &ldquo;Koblitz&rdquo; curve with given password.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (VSSKeyPair *__nonnull)ecKoblitz224WithPassword:(NSString *__nullable)<em>password</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>Password for encrypting the private key of the key pair or <code>nil</code>.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>instance of the <code>VSSKeyPair</code>.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyPair.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/ecKoblitz256WithPassword:" title="ecKoblitz256WithPassword:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/ecKoblitz256WithPassword:">+&nbsp;ecKoblitz256WithPassword:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Generates key pair using 256-bits &ldquo;Koblitz&rdquo; curve with given password.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (VSSKeyPair *__nonnull)ecKoblitz256WithPassword:(NSString *__nullable)<em>password</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>Password for encrypting the private key of the key pair or <code>nil</code>.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>instance of the <code>VSSKeyPair</code>.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyPair.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/rsa256WithPassword:" title="rsa256WithPassword:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/rsa256WithPassword:">+&nbsp;rsa256WithPassword:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Generates key pair using RSA 256-bits with given password.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (VSSKeyPair *__nonnull)rsa256WithPassword:(NSString *__nullable)<em>password</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>Password for encrypting the private key of the key pair or <code>nil</code>.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>instance of the <code>VSSKeyPair</code>.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyPair.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/rsa512WithPassword:" title="rsa512WithPassword:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/rsa512WithPassword:">+&nbsp;rsa512WithPassword:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Generates key pair using RSA 512-bits with given password.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (VSSKeyPair *__nonnull)rsa512WithPassword:(NSString *__nullable)<em>password</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>Password for encrypting the private key of the key pair or <code>nil</code>.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>instance of the <code>VSSKeyPair</code>.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyPair.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/rsa1024WithPassword:" title="rsa1024WithPassword:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/rsa1024WithPassword:">+&nbsp;rsa1024WithPassword:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Generates key pair using RSA 1024-bits with given password.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (VSSKeyPair *__nonnull)rsa1024WithPassword:(NSString *__nullable)<em>password</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>Password for encrypting the private key of the key pair or <code>nil</code>.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>instance of the <code>VSSKeyPair</code>.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyPair.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/rsa2048WithPassword:" title="rsa2048WithPassword:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/rsa2048WithPassword:">+&nbsp;rsa2048WithPassword:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Generates key pair using RSA 2048-bits with given password.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (VSSKeyPair *__nonnull)rsa2048WithPassword:(NSString *__nullable)<em>password</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>Password for encrypting the private key of the key pair or nil.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>instance of the VSSKeyPair.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyPair.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/rsa4096WithPassword:" title="rsa4096WithPassword:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/rsa4096WithPassword:">+&nbsp;rsa4096WithPassword:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Generates key pair using RSA 4096-bits with given password.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (VSSKeyPair *__nonnull)rsa4096WithPassword:(NSString *__nullable)<em>password</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>Password for encrypting the private key of the key pair or nil.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>instance of the VSSKeyPair.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyPair.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/m255WithPassword:" title="m255WithPassword:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/m255WithPassword:">+&nbsp;m255WithPassword:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Generates key pair using curve 25519 with given password. Similar to <a href="#//api/name/curve25519WithPassword:"><code>curve25519WithPassword:</code></a></p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (VSSKeyPair *__nonnull)m255WithPassword:(NSString *__nullable)<em>password</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>Password for encrypting the private key of the key pair or <code>nil</code>.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>instance of the <code>VSSKeyPair</code>.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyPair.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/curve25519WithPassword:" title="curve25519WithPassword:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/curve25519WithPassword:">+&nbsp;curve25519WithPassword:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Generates key pair using curve 25519 with given password. Similar to <a href="#//api/name/m255WithPassword:"><code>m255WithPassword:</code></a></p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (VSSKeyPair *__nonnull)curve25519WithPassword:(NSString *__nullable)<em>password</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>Password for encrypting the private key of the key pair or <code>nil</code>.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>instance of the <code>VSSKeyPair</code>.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyPair.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						<a title="Obtaining the key data" name="task_Obtaining the key data"></a>
+						<h2 class="task-title">Obtaining the key data</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/publicKey" title="publicKey"></a>
+	<h3 class="method-title"><code><a href="#//api/name/publicKey">&ndash;&nbsp;publicKey</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Getter for the public key&rsquo;s data.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSData *__nonnull)publicKey</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>Data object containing the generated public key data.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyPair.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/privateKey" title="privateKey"></a>
+	<h3 class="method-title"><code><a href="#//api/name/privateKey">&ndash;&nbsp;privateKey</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Getter for the private key&rsquo;s data.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSData *__nonnull)privateKey</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>Data object containing the generated private key data.
+In case of not <code>nil</code> password used in <a href="#//api/name/initWithPassword:"><code>initWithPassword:</code></a> initializer,
+private key data will be encrypted using given password.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyPair.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						<a title="Utility" name="task_Utility"></a>
+						<h2 class="task-title">Utility</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/isEncryptedPrivateKey:" title="isEncryptedPrivateKey:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/isEncryptedPrivateKey:">+&nbsp;isEncryptedPrivateKey:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Checks if given private key is actually encrypted.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (BOOL)isEncryptedPrivateKey:(NSData *__nonnull)<em>keyData</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>keyData</code></th>
+						<td><p>Data representing the private key which needs to be checked.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p><code>YES</code> if the private key is encrypted, <code>NO</code> - otherwise.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyPair.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/isPrivateKey:matchesPassword:" title="isPrivateKey:matchesPassword:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/isPrivateKey:matchesPassword:">+&nbsp;isPrivateKey:matchesPassword:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Checks if given private key and given password match each other.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (BOOL)isPrivateKey:(NSData *__nonnull)<em>keyData</em> matchesPassword:(NSString *__nonnull)<em>password</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>keyData</code></th>
+						<td><p>Data representing the private key.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>String with private key password candidate.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p><code>YES</code> if the private key and the password match, <code>NO</code> - otherwise.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyPair.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/isPublicKey:matchesPrivateKey:withPassword:" title="isPublicKey:matchesPrivateKey:withPassword:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/isPublicKey:matchesPrivateKey:withPassword:">+&nbsp;isPublicKey:matchesPrivateKey:withPassword:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Checks if a public key matches private key, so that they are actual key pair.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (BOOL)isPublicKey:(NSData *__nonnull)<em>publicKeyData</em> matchesPrivateKey:(NSData *__nonnull)<em>privateKeyData</em> withPassword:(NSString *__nullable)<em>password</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>publicKeyData</code></th>
+						<td><p>Data representing a public key.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>privateKeyData</code></th>
+						<td><p>Data representing a private key.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>Private key password or nil.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p><code>YES</code> in case when given public key matches given private key, <code>NO</code> - otherwise.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyPair.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/resetPassword:toPassword:forPrivateKey:error:" title="resetPassword:toPassword:forPrivateKey:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/resetPassword:toPassword:forPrivateKey:error:">+&nbsp;resetPassword:toPassword:forPrivateKey:error:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Changes password for the given private key by re-encrypting given private key with a new password.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (NSData *__nullable)resetPassword:(NSString *__nonnull)<em>password</em> toPassword:(NSString *__nonnull)<em>newPassword</em> forPrivateKey:(NSData *__nonnull)<em>keyData</em> error:(NSError *__nullable *__nullable)<em>error</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>Current password for the private key.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>newPassword</code></th>
+						<td><p>Password which should be used for the private key protection further.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>keyData</code></th>
+						<td><p>Data object containing the private key.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>error</code></th>
+						<td><p>Pointer to <code>NSError</code> object in case of error, <code>nil</code> - otherwise.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>Data object containing the private key that is encrypted with the new password or <code>nil</code> if error has happened.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyPair.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2016 Virgil Security, Inc. All rights reserved. Updated: 2016-05-30</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

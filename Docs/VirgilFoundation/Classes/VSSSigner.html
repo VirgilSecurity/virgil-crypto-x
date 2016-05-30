@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>VSSSigner Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">VirgilFoundation </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Virgil Security, Inc.</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/initWithHash:">- initWithHash:</option>
+		
+		<option value="//api/name/signData:privateKey:keyPassword:">- signData:privateKey:keyPassword:</option>
+		
+		<option value="//api/name/signData:privateKey:keyPassword:error:">- signData:privateKey:keyPassword:error:</option>
+		
+		<option value="//api/name/verifySignature:data:publicKey:">- verifySignature:data:publicKey:</option>
+		
+		<option value="//api/name/verifySignature:data:publicKey:error:">- verifySignature:data:publicKey:error:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">VSSSigner Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td>NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>VSSSigner.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Wrapper for the functionality of composing/verifying signatures.</p>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						<a title="Lifecycle" name="task_Lifecycle"></a>
+						<h2 class="task-title">Lifecycle</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/initWithHash:" title="initWithHash:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithHash:">&ndash;&nbsp;initWithHash:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Designated constructor.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (instancetype __nonnull)initWithHash:(NSString *__nullable)<em>hash</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>hash</code></th>
+						<td><p>NSString name of the preferred hash function. In case of <code>nil</code> default hash function will be used (SHA384).
+One of the following names should be used: <code>kHashNameMD5</code>, <code>kHashNameSHA256</code>, <code>kHashNameSHA384</code>, <code>kHashNameSHA512</code>.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>Instance of the <code>VSSSigner</code>.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSSigner.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						<a title="Compose a signature" name="task_Compose a signature"></a>
+						<h2 class="task-title">Compose a signature</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/signData:privateKey:keyPassword:error:" title="signData:privateKey:keyPassword:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/signData:privateKey:keyPassword:error:">&ndash;&nbsp;signData:privateKey:keyPassword:error:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Composes a signature data for given data using a private key.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSData *__nullable)signData:(NSData *__nonnull)<em>data</em> privateKey:(NSData *__nonnull)<em>privateKey</em> keyPassword:(NSString *__nullable)<em>keyPassword</em> error:(NSError *__nullable *__nullable)<em>error</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>data</code></th>
+						<td><p>Data object which needs to be signed.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>privateKey</code></th>
+						<td><p>Data object containing user&rsquo;s private key.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>keyPassword</code></th>
+						<td><p>Password which was used to create key pair object or <code>nil</code>.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>error</code></th>
+						<td><p>Pointer to <code>NSError</code> object if signing process has finished with exception.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>Signature data object.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSSigner.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						<a title="Verify a signature" name="task_Verify a signature"></a>
+						<h2 class="task-title">Verify a signature</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/verifySignature:data:publicKey:error:" title="verifySignature:data:publicKey:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/verifySignature:data:publicKey:error:">&ndash;&nbsp;verifySignature:data:publicKey:error:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Performs verification of a signature for given data using a public key.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)verifySignature:(NSData *__nonnull)<em>signature</em> data:(NSData *__nonnull)<em>data</em> publicKey:(NSData *__nonnull)<em>publicKey</em> error:(NSError *__nullable *__nullable)<em>error</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>signature</code></th>
+						<td><p>Data object containing a signature data.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>data</code></th>
+						<td><p>Data object which was used to compose the signature on.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>publicKey</code></th>
+						<td><p>Data object containing a public key data of the user whose signature needs to be verified.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>error</code></th>
+						<td><p>Pointer to <code>NSError</code> object if verification process has finished with exception.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p><code>YES</code> if signature is verified and can be trusted, <code>NO</code> - otherwise.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSSigner.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						<a title="Deprecated functionality" name="task_Deprecated functionality"></a>
+						<h2 class="task-title">Deprecated functionality</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/signData:privateKey:keyPassword:" title="signData:privateKey:keyPassword:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/signData:privateKey:keyPassword:">&ndash;&nbsp;signData:privateKey:keyPassword:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Composes a signature data for given data using a private key.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSData *__nullable)signData:(NSData *__nonnull)<em>data</em> privateKey:(NSData *__nonnull)<em>privateKey</em> keyPassword:(NSString *__nullable)<em>keyPassword</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>data</code></th>
+						<td><p>Data object which needs to be signed.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>privateKey</code></th>
+						<td><p>Data object containing user&rsquo;s private key.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>keyPassword</code></th>
+						<td><p>Password which was used to create key pair object or <code>nil</code>.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>Signature data object.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p><strong>Deprecated:</strong> Use <a href="#//api/name/signData:privateKey:keyPassword:error:"><code>signData:privateKey:keyPassword:error:</code></a> instead.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSSigner.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/verifySignature:data:publicKey:" title="verifySignature:data:publicKey:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/verifySignature:data:publicKey:">&ndash;&nbsp;verifySignature:data:publicKey:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Performs verification of a signature for given data using a public key.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)verifySignature:(NSData *__nonnull)<em>signature</em> data:(NSData *__nonnull)<em>data</em> publicKey:(NSData *__nonnull)<em>publicKey</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>signature</code></th>
+						<td><p>Data object containing a signature data.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>data</code></th>
+						<td><p>Data object which was used to compose the signature on.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>publicKey</code></th>
+						<td><p>Data object containing a public key data of the user whose signature needs to be verified.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p><code>YES</code> if signature is verified and can be trusted, <code>NO</code> - otherwise.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p><strong>Deprecated:</strong> Use <a href="#//api/name/verifySignature:data:publicKey:error:"><code>verifySignature:data:publicKey:error:</code></a> instead.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSSigner.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2016 Virgil Security, Inc. All rights reserved. Updated: 2016-05-30</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>VSSStreamSigner Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">VirgilFoundation </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Virgil Security, Inc.</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/initWithHash:">- initWithHash:</option>
+		
+		<option value="//api/name/signStreamData:privateKey:keyPassword:error:">- signStreamData:privateKey:keyPassword:error:</option>
+		
+		<option value="//api/name/verifySignature:fromStream:publicKey:error:">- verifySignature:fromStream:publicKey:error:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">VSSStreamSigner Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td>NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>VSSStreamSigner.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Wrapper for the functionality for composing/verifying signatures.</p>
+
+<p>This wrapper works with <code>NSInputStream</code> instead of <code>NSData</code> objects.</p>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						<a title="Lifecycle" name="task_Lifecycle"></a>
+						<h2 class="task-title">Lifecycle</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/initWithHash:" title="initWithHash:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithHash:">&ndash;&nbsp;initWithHash:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Designated constructor.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (instancetype __nonnull)initWithHash:(NSString *__nullable)<em>hash</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>hash</code></th>
+						<td><p>Name of the preferred hash function. In case of <code>nil</code> default hash function will be used (SHA384).
+One of the following names should be used: <code>kHashNameMD5</code>, <code>kHashNameSHA256</code>, <code>kHashNameSHA384</code>, <code>kHashNameSHA512</code>.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>Instance of the <a href="../Classes/VSSSigner.html"><code>VSSSigner</code></a>.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSStreamSigner.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						<a title="Compose a signature" name="task_Compose a signature"></a>
+						<h2 class="task-title">Compose a signature</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/signStreamData:privateKey:keyPassword:error:" title="signStreamData:privateKey:keyPassword:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/signStreamData:privateKey:keyPassword:error:">&ndash;&nbsp;signStreamData:privateKey:keyPassword:error:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates a signature data for the data from given stream using a private key.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSData *__nullable)signStreamData:(NSInputStream *__nonnull)<em>source</em> privateKey:(NSData *__nonnull)<em>privateKey</em> keyPassword:(NSString *__nullable)<em>keyPassword</em> error:(NSError *__nullable *__nullable)<em>error</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>source</code></th>
+						<td><p>Input stream object containing the data which needs to be signed.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>privateKey</code></th>
+						<td><p>Data object containing user&rsquo;s private key.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>keyPassword</code></th>
+						<td><p>Password which was used to create key pair object or <code>nil</code>.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>error</code></th>
+						<td><p>Pointer with <code>NSError</code> object if signing process finished with exception. May be <code>nil</code>.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>Signature data object.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSStreamSigner.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						<a title="Verify a signature" name="task_Verify a signature"></a>
+						<h2 class="task-title">Verify a signature</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/verifySignature:fromStream:publicKey:error:" title="verifySignature:fromStream:publicKey:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/verifySignature:fromStream:publicKey:error:">&ndash;&nbsp;verifySignature:fromStream:publicKey:error:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Performs verification of a signature based on the data from given stream using a public key.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)verifySignature:(NSData *__nonnull)<em>signature</em> fromStream:(NSInputStream *__nonnull)<em>source</em> publicKey:(NSData *__nonnull)<em>publicKey</em> error:(NSError *__nullable *__nullable)<em>error</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>signature</code></th>
+						<td><p>Data object containing a signature.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>source</code></th>
+						<td><p>Input Stream object containing the data which was used to compose the signature on.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>publicKey</code></th>
+						<td><p>Data object containing a public key data of a user whose signature needs to be verified.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>error</code></th>
+						<td><p>Pointer with <code>NSError</code> object if signing process finished with exception. May be <code>nil</code>.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p><code>YES</code> if signature is verified and can be trusted, <code>NO</code> - otherwise.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSStreamSigner.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2016 Virgil Security, Inc. All rights reserved. Updated: 2016-05-30</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

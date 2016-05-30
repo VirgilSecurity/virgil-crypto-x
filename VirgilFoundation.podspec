@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                        = "VirgilFoundation"
-  s.version                     = "1.5.0"
+  s.version                     = "1.5.1"
   s.summary                     = "Contains basic classes for creating key pairs, encrypting/decrypting data, signing data and verifying signs."
   s.homepage                    = "https://github.com/VirgilSecurity/virgil-foundation-x"
   s.cocoapods_version           = ">= 0.36"
@@ -11,6 +11,7 @@ Pod::Spec.new do |s|
   s.module_name                 = "VirgilFoundation"
   s.source_files                = "Wrapper/*"
   s.public_header_files         = "Wrapper/*.h"
+  s.private_header_files        = "Wrapper/*Private.h"
   s.requires_arc                = true
   s.library                     = "stdc++"
   s.osx.vendored_frameworks     = "Frameworks/osx/*.framework"

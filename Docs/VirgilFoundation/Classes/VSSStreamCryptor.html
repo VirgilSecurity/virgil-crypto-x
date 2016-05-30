@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>VSSStreamCryptor Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">VirgilFoundation </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Virgil Security, Inc.</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/decryptFromStream:toStream:password:error:">- decryptFromStream:toStream:password:error:</option>
+		
+		<option value="//api/name/decryptFromStream:toStream:recipientId:privateKey:keyPassword:error:">- decryptFromStream:toStream:recipientId:privateKey:keyPassword:error:</option>
+		
+		<option value="//api/name/encryptDataFromStream:toStream:embedContentInfo:error:">- encryptDataFromStream:toStream:embedContentInfo:error:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">VSSStreamCryptor Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td><a href="../Classes/VSSBaseCryptor.html">VSSBaseCryptor</a> : NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>VSSStreamCryptor.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Class for performing encryption/decryption using <code>NSInputStream</code> as a source of the data and <code>NSOutputStream</code> as a receiver.</p>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						<a title="Encryption" name="task_Encryption"></a>
+						<h2 class="task-title">Encryption</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/encryptDataFromStream:toStream:embedContentInfo:error:" title="encryptDataFromStream:toStream:embedContentInfo:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/encryptDataFromStream:toStream:embedContentInfo:error:">&ndash;&nbsp;encryptDataFromStream:toStream:embedContentInfo:error:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Encrypts the given data using added recepients. Allows to embed info about the recipients so it will be easier to setup decryption.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)encryptDataFromStream:(NSInputStream *__nonnull)<em>source</em> toStream:(NSOutputStream *__nonnull)<em>destination</em> embedContentInfo:(BOOL)<em>embedContentInfo</em> error:(NSError *__nullable *__nullable)<em>error</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>source</code></th>
+						<td><p>Input stream object representing the data which needs to be encrypted.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>destination</code></th>
+						<td><p>Output stream object representing the encrypted data location.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>embedContentInfo</code></th>
+						<td><p><code>YES</code> in case when some amount of data with recipients info will be added to the result data, <code>NO</code> - otherwise.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>error</code></th>
+						<td><p><code>NSError</code> pointer to get an object in case of error, <code>nil</code> - otherwise.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p><code>YES</code> in case when operation completed successfully, <code>NO</code> - otherwise.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSStreamCryptor.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						<a title="Decryption" name="task_Decryption"></a>
+						<h2 class="task-title">Decryption</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/decryptFromStream:toStream:recipientId:privateKey:keyPassword:error:" title="decryptFromStream:toStream:recipientId:privateKey:keyPassword:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/decryptFromStream:toStream:recipientId:privateKey:keyPassword:error:">&ndash;&nbsp;decryptFromStream:toStream:recipientId:privateKey:keyPassword:error:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Decrypts data using key-based decryption.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)decryptFromStream:(NSInputStream *__nonnull)<em>source</em> toStream:(NSOutputStream *__nonnull)<em>destination</em> recipientId:(NSString *__nonnull)<em>recipientId</em> privateKey:(NSData *__nonnull)<em>privateKey</em> keyPassword:(NSString *__nullable)<em>keyPassword</em> error:(NSError *__nullable *__nullable)<em>error</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>source</code></th>
+						<td><p>Input stream object representing the data which needs to be decrypted.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>destination</code></th>
+						<td><p>Output stream object representing the plain data location.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>recipientId</code></th>
+						<td><p>Recipient identifier used for encryption of the data.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>privateKey</code></th>
+						<td><p>Data object containing the private key for decryption (should correspond the public key used for encryption).</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>keyPassword</code></th>
+						<td><p>Password string used to generate the key pair or <code>nil</code>.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>error</code></th>
+						<td><p><code>NSError</code> pointer to get an object in case of error, <code>nil</code> - otherwise.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p><code>YES</code> in case when operation completed successfully, <code>NO</code> - otherwise.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSStreamCryptor.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/decryptFromStream:toStream:password:error:" title="decryptFromStream:toStream:password:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/decryptFromStream:toStream:password:error:">&ndash;&nbsp;decryptFromStream:toStream:password:error:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Decrypts data using password-based decryption.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)decryptFromStream:(NSInputStream *__nonnull)<em>source</em> toStream:(NSOutputStream *__nonnull)<em>destination</em> password:(NSString *__nonnull)<em>password</em> error:(NSError *__nullable *__nullable)<em>error</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>source</code></th>
+						<td><p>Input stream object representing the data which needs to be decrypted.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>destination</code></th>
+						<td><p>Output stream object representing the plain data location.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>Password which was used to encrypt the data.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>error</code></th>
+						<td><p><code>NSError</code> pointer to get an object in case of error, <code>nil</code> - otherwise.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p><code>YES</code> in case when operation completed successfully, <code>NO</code> - otherwise.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSStreamCryptor.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2016 Virgil Security, Inc. All rights reserved. Updated: 2016-05-30</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

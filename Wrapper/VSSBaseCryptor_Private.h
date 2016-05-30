@@ -10,10 +10,20 @@
 
 @interface VSSBaseCryptor ()
 
+/** 
+ * This property is supposed to be used by subclasses.
+ * It is managed automatically and not supposed to be changed
+ * by the third party code.
+ * 
+ * Any changes to this property will lead to unpredicted results.
+ */
 @property (nonatomic, assign, readwrite) void * __nullable llCryptor;
 
-/**
- * @brief This method supposed to be overwritten in subclasses to create proper cryptor object. It is called from constructor automatically. It is not supposed to be called manually.
+/** 
+ * This method supposed to be overwritten in subclasses to create proper cryptor object.
+ * It is called from constructor automatically. 
+ *
+ * It is not supposed to be called manually. 
  */
 - (void)initializeCryptor;
 

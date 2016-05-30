@@ -9,58 +9,90 @@
 #import <Foundation/Foundation.h>
 #import "VSSFoundationCommons.h"
 
+/** 
+ * Error domain constant for the `VSSSigner` errors.
+ */
 extern NSString * __nonnull const kVSSSignerErrorDomain;
 
+/** 
+ * Wrapper for the functionality of composing/verifying signatures.
+ */
 @interface VSSSigner : NSObject
 
-- (instancetype __nonnull)initWithHash:(NSString * __nullable)hash NS_DESIGNATED_INITIALIZER;
+///---------------------------
+/// @name Lifecycle
+///---------------------------
 
 /** 
- * @brief Composes a signature data for given data using a private key.
- * @deprecated Use -signData:privateKey:keyPassword:error: instead.
+ * Designated constructor.
  *
- * @param data NSData Data object which needs to be signed.
- * @param privateKey NSData Data object containing user's private key.
- * @param keyPassword NSString Password which was used to create key pair object or nil.
+ * @param hash NSString name of the preferred hash function. In case of `nil` default hash function will be used (SHA384).
+ * One of the following names should be used: `kHashNameMD5`, `kHashNameSHA256`, `kHashNameSHA384`, `kHashNameSHA512`.
  *
- * @return NSData Signature data object. 
- */ 
-- (NSData * __nullable)signData:(NSData * __nonnull)data privateKey:(NSData * __nonnull)privateKey keyPassword:(NSString * __nullable)keyPassword __attribute__((deprecated("Use -signData:privateKey:keyPassword:error: instead.")));
+ * @return Instance of the `VSSSigner`.
+ */
+- (instancetype __nonnull)initWithHash:(NSString * __nullable)hash NS_DESIGNATED_INITIALIZER;
 
-/**
- * @brief Composes a signature data for given data using a private key.
+///---------------------------
+/// @name Compose a signature
+///---------------------------
+
+/** 
+ * Composes a signature data for given data using a private key.
  *
- * @param data NSData Data object which needs to be signed.
- * @param privateKey NSData Data object containing user's private key.
- * @param keyPassword NSString Password which was used to create key pair object or nil.
- * @param error NSError object if signing process finished with exception.
+ * @param data Data object which needs to be signed.
+ * @param privateKey Data object containing user's private key.
+ * @param keyPassword Password which was used to create key pair object or `nil`.
+ * @param error Pointer to `NSError` object if signing process has finished with exception.
  *
- * @return NSData Signature data object.
+ * @return Signature data object.
  */
 - (NSData * __nullable)signData:(NSData * __nonnull)data privateKey:(NSData * __nonnull)privateKey keyPassword:(NSString * __nullable)keyPassword error:(NSError * __nullable * __nullable)error;
 
-/**
- * @brief Performs verification of a signature for given data using a public key.
- * @deprecated Use -verifySignature:data:publicKey:error instead.
- *
- * @param signature NSData Data object containing signature data.
- * @param data NSData Data object which was signed.
- * @param publicKey NSData Data object containing a public key data of a user whose signature needs to be verified.
- *
- * @return BOOL YES if signature is verified and can be trusted, NO - otherwise.
- */
-- (BOOL)verifySignature:(NSData * __nonnull)signature data:(NSData * __nonnull)data publicKey:(NSData * __nonnull)publicKey __attribute__((deprecated("Use -verifySignature:data:publicKey:error instead.")));
+///---------------------------
+/// @name Verify a signature
+///---------------------------
 
-/**
- * @brief Performs verification of a signature for given data using a public key.
+/** 
+ * Performs verification of a signature for given data using a public key.
  *
- * @param signature NSData Data object containing signature data.
- * @param data NSData Data object which was signed.
- * @param publicKey NSData Data object containing a public key data of a user whose signature needs to be verified.
- * @param error NSError object if signing process finished with exception.
+ * @param signature Data object containing a signature data.
+ * @param data Data object which was used to compose the signature on.
+ * @param publicKey Data object containing a public key data of the user whose signature needs to be verified.
+ * @param error Pointer to `NSError` object if verification process has finished with exception.
  *
- * @return BOOL YES if signature is verified and can be trusted, NO - otherwise.
+ * @return `YES` if signature is verified and can be trusted, `NO` - otherwise.
  */
 - (BOOL)verifySignature:(NSData * __nonnull)signature data:(NSData * __nonnull)data publicKey:(NSData * __nonnull)publicKey error:(NSError * __nullable * __nullable)error;
+
+///---------------------------
+/// @name Deprecated functionality
+///---------------------------
+
+/** 
+ * Composes a signature data for given data using a private key.
+ *
+ * **Deprecated:** Use `signData:privateKey:keyPassword:error:` instead.
+ *
+ * @param data Data object which needs to be signed.
+ * @param privateKey Data object containing user's private key.
+ * @param keyPassword Password which was used to create key pair object or `nil`.
+ *
+ * @return Signature data object.
+ */
+- (NSData * __nullable)signData:(NSData * __nonnull)data privateKey:(NSData * __nonnull)privateKey keyPassword:(NSString * __nullable)keyPassword __attribute__((deprecated("Use -signData:privateKey:keyPassword:error: instead.")));
+
+/** 
+ * Performs verification of a signature for given data using a public key.
+ *
+ * **Deprecated:** Use `verifySignature:data:publicKey:error:` instead.
+ *
+ * @param signature Data object containing a signature data.
+ * @param data Data object which was used to compose the signature on.
+ * @param publicKey Data object containing a public key data of the user whose signature needs to be verified.
+ *
+ * @return `YES` if signature is verified and can be trusted, `NO` - otherwise.
+ */
+- (BOOL)verifySignature:(NSData * __nonnull)signature data:(NSData * __nonnull)data publicKey:(NSData * __nonnull)publicKey __attribute__((deprecated("Use -verifySignature:data:publicKey:error instead.")));
 
 @end
