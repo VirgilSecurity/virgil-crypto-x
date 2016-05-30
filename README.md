@@ -453,5 +453,5 @@ Usage is provided under the [The BSD 3-Clause License](http://opensource.org/lic
 
 ## See also
 
-* [Virgil Foundation API Reference](https://github.com/VirgilSecurity/virgil-foundation-x/Docs/VirgilFoundation/index.html)
+* [Virgil Foundation API Reference](http://virgilsecurity.github.io/virgil-foundation-x)
 * [Virgil SDK Quickstart guide](https://github.com/VirgilSecurity/virgil-sdk-x/blob/v3/Docs/quickstart.md)
