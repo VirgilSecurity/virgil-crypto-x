@@ -18,6 +18,7 @@
 #import "VSSCryptor.h"
 #import "VSSStreamCryptor.h"
 #import "VSSChunkCryptor.h"
+#import "VSSTinyCryptor.h"
 
 #import "VSSSigner.h"
 #import "VSSStreamSigner.h"
