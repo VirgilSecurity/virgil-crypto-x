@@ -23,8 +23,35 @@ typedef NS_ENUM(size_t, VSSPackageSize) {
     VSSLongSMSPackageSize = 1200      ///< Long SMS
 };
 
+/**
+ * This class aim is to minimize encryption output.
+ *
+ * Motivation: If encrypted data is transmitted over GSM module, it very important that encryption output was as small as possible.
+ *
+ * Solution: Throw out crypto agility and transfer minimum public information required for decryption.
+ *
+ * Pros:
+ * - Tiny messages.
+ *
+ * Cons:
+ * - Crypto agility is not included in the message, so encrypted messages should not be stored for a long term.
+ *
+ * Details:
+ * During encryption ciper packs encrypted message and service information to the set of packages,
+ * which length is limited by maximim package length.
+ *
+ * Restrictions:
+ * Currently supported public/private keys:
+ * - Curve25519
+ *
+ * Minimum package length:
+ * - 113 bytes
+ */
 @interface VSSTinyCryptor : NSObject
 
+/**
+ *  Maximum number of bytes in one package.
+ */
 @property (nonatomic, assign, readonly) size_t packageSize;
 
 ///-------------------------
@@ -42,6 +69,8 @@ typedef NS_ENUM(size_t, VSSPackageSize) {
 
 /**
  * Prepare cryptor for the next encryption.
+ *
+ * @param error NSError pointer to get an object in case of error, `nil` - otherwise.
  *
  * **Note:** should be used before the next encryption.
  */
