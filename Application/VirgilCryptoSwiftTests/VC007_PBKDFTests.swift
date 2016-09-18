@@ -17,11 +17,11 @@ class VC007_PBKDFTests: XCTestCase {
         
         XCTAssertTrue(pbkdf.iterations > 1024, "VSSPBKDF iterations count should be set to value which is more than 1024.")
         XCTAssertNotNil(pbkdf.salt, "VSSPBKDF salt should be automatically instantiated.")
-        XCTAssertEqual(pbkdf.salt.length, kVSSDefaultRandomBytesSize, "VSSPBKDF salt size should be equal the default size.")
+        XCTAssertEqual(pbkdf.salt.count, kVSSDefaultRandomBytesSize, "VSSPBKDF salt size should be equal the default size.")
         
         XCTAssertEqual(pbkdf.algorithm, VSSPBKDFAlgorithm.PBKDF2, "VSSPBKSD algorithm should be properly set to PBKDF2.")
-        pbkdf.algorithm = .None;
-        XCTAssertEqual(pbkdf.algorithm, VSSPBKDFAlgorithm.None, "VSSPBKSD algorithm should be properly changed to None.")
+        pbkdf.algorithm = .none;
+        XCTAssertEqual(pbkdf.algorithm, VSSPBKDFAlgorithm.none, "VSSPBKSD algorithm should be properly changed to None.")
         pbkdf.algorithm = .PBKDF2;
         XCTAssertEqual(pbkdf.algorithm, VSSPBKDFAlgorithm.PBKDF2, "VSSPBKSD algorithm should be properly set to PBKDF2 again.")
         
@@ -34,38 +34,38 @@ class VC007_PBKDFTests: XCTestCase {
         let password = "secret"
         let keySize: size_t = 64
         
-        let salt = VSSPBKDF.randomBytesOfSize(0)
+        let salt = VSSPBKDF.randomBytes(ofSize: 0)
         
         let pbkdf_a = VSSPBKDF(salt: salt, iterations: 0)
-        var key_a: NSData? = nil
+        var key_a: Data? = nil
         do {
-            key_a = try pbkdf_a.keyFromPassword(password, size: keySize)
+            key_a = try pbkdf_a.key(fromPassword: password, size: keySize)
         }
         catch (let error as NSError) {
             XCTFail("VSSPBKDF: key should be derived: \(error.localizedDescription)")
         }
-        XCTAssertEqual(key_a!.length, keySize, "VSSPBKDF: key should be generated having the requested size.")
+        XCTAssertEqual(key_a!.count, keySize, "VSSPBKDF: key should be generated having the requested size.")
         
         let pbkdf_b = VSSPBKDF(salt: salt, iterations: 0)
-        var key_b: NSData? = nil
+        var key_b: Data? = nil
         do {
-            key_b = try pbkdf_b.keyFromPassword(password, size: keySize)
+            key_b = try pbkdf_b.key(fromPassword: password, size: keySize)
         }
         catch (let error as NSError) {
             XCTFail("VSSPBKDF: key should be derived: \(error.localizedDescription)")
         }
-        XCTAssertEqual(key_b!.length, keySize, "VSSPBKDF: key should be generated having the requested size.")
+        XCTAssertEqual(key_b!.count, keySize, "VSSPBKDF: key should be generated having the requested size.")
         XCTAssertEqual(key_a!, key_b!, "VSSPBKDF: two keys generated independently from the same parameters should match")
         
         let pbkdf_c = VSSPBKDF(salt: nil, iterations: 0)
-        var key_c: NSData? = nil
+        var key_c: Data? = nil
         do {
-            key_c = try pbkdf_c.keyFromPassword(password, size: keySize)
+            key_c = try pbkdf_c.key(fromPassword: password, size: keySize)
         }
         catch (let error as NSError) {
             XCTFail("VSSPBKDF: key should be derived: \(error.localizedDescription)")
         }
-        XCTAssertEqual(key_c!.length, keySize, "VSSPBKDF: key should be generated having the requested size.")
+        XCTAssertEqual(key_c!.count, keySize, "VSSPBKDF: key should be generated having the requested size.")
         XCTAssertNotEqual(key_a!, key_c!, "VSSPBKDF: keys generated with different salt should differ.")
     }
     
@@ -89,18 +89,18 @@ class VC007_PBKDFTests: XCTestCase {
 
     func test004_algoritmSettings() {
         let pbkdf = VSSPBKDF(salt: nil, iterations: 0)
-        pbkdf.algorithm = .None
+        pbkdf.algorithm = .none
         
-        var key: NSData? = nil
+        var key: Data? = nil
         do {
-            key = try pbkdf.keyFromPassword("secret", size: 0)
+            key = try pbkdf.key(fromPassword: "secret", size: 0)
             XCTFail("VSSPBKDF: error should happen due to absense of algoritm for key derivation.")
         }
         catch { }
         
         pbkdf.algorithm = .PBKDF2
         do {
-            key = try pbkdf.keyFromPassword("secret", size: 0)
+            key = try pbkdf.key(fromPassword: "secret", size: 0)
         }
         catch (let error as NSError) {
             XCTFail("VSSPBKDF: key should be derived successfully: \(error.localizedDescription)")

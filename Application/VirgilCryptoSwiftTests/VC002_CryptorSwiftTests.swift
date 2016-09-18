@@ -11,13 +11,13 @@ import XCTest
 
 class VC002_CryptorSwiftTests: XCTestCase {
     
-    var toEncrypt: NSData! = nil
+    var toEncrypt: Data! = nil
     
     override func setUp() {
         super.setUp()
         
         let message = NSString(string: "Secret message which is necessary to be encrypted.")
-        self.toEncrypt = message.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+        self.toEncrypt = message.data(using: String.Encoding.utf8.rawValue, allowLossyConversion: false)
     }
     
     override func tearDown() {
@@ -34,7 +34,7 @@ class VC002_CryptorSwiftTests: XCTestCase {
         // Generate a new key pair
         let keyPair = VSSKeyPair()
         // Generate a public key id
-        let recipientId = NSUUID().UUIDString
+        let recipientId = UUID().uuidString
         // Encrypt:
         // Create a cryptor instance
         let cryptor = VSSCryptor()
@@ -47,7 +47,7 @@ class VC002_CryptorSwiftTests: XCTestCase {
             XCTFail()
         }
         // Encrypt the data
-        var encryptedData = NSData()
+        var encryptedData = Data()
         do {
             encryptedData = try cryptor.encryptData(self.toEncrypt, embedContentInfo: true, error: ())
         }
@@ -55,13 +55,13 @@ class VC002_CryptorSwiftTests: XCTestCase {
             print("Error encrypting data: \(error.localizedDescription)")
             XCTFail()
         }
-        XCTAssertTrue(encryptedData.length > 0, "The data encrypted with key-based encryption should have an actual content.");
+        XCTAssertTrue(encryptedData.count > 0, "The data encrypted with key-based encryption should have an actual content.");
     
         // Decrypt:
         // Create a completely new instance of the VCCryptor object
         let decryptor = VSSCryptor()
         // Decrypt data using key-based decryption
-        var plainData = NSData()
+        var plainData = Data()
         do {
             plainData = try decryptor.decryptData(encryptedData, recipientId: recipientId, privateKey: keyPair.privateKey(), keyPassword: nil, error: ())
         }
@@ -86,7 +86,7 @@ class VC002_CryptorSwiftTests: XCTestCase {
             XCTFail()
         }
         // Encrypt the data
-        var encryptedData = NSData()
+        var encryptedData = Data()
         do {
             encryptedData = try cryptor.encryptData(self.toEncrypt, embedContentInfo: false, error: ())
         }
@@ -94,9 +94,9 @@ class VC002_CryptorSwiftTests: XCTestCase {
             print("Error encrypting data: \(error.localizedDescription)")
             XCTFail()
         }
-        XCTAssertTrue(encryptedData.length > 0, "The data encrypted with password-based encryption should have an actual content.");
+        XCTAssertTrue(encryptedData.count > 0, "The data encrypted with password-based encryption should have an actual content.");
         
-        var contentInfo = NSData()
+        var contentInfo = Data()
         do {
             contentInfo = try cryptor.contentInfoWithError()
         }
@@ -104,7 +104,7 @@ class VC002_CryptorSwiftTests: XCTestCase {
             print("Error getting content info from cryptor: \(error.localizedDescription)")
             XCTFail()
         }
-        XCTAssertTrue(contentInfo.length > 0, "Content Info should contain necessary information.");
+        XCTAssertTrue(contentInfo.count > 0, "Content Info should contain necessary information.");
         // Decrypt:
         // Create a completely new instance of the VCCryptor object
         let decryptor = VSSCryptor()
@@ -116,7 +116,7 @@ class VC002_CryptorSwiftTests: XCTestCase {
             XCTFail()
         }
         // Decrypt data using password-based decryption
-        var plainData = NSData()
+        var plainData = Data()
         do {
             plainData = try decryptor.decryptData(encryptedData, password: password, error: ())
         }

@@ -13,11 +13,11 @@ class VC001_KeyPairSwiftTests: XCTestCase {
     
     func test001_createKeyPair() {
         let keyPair = VSSKeyPair()
-        XCTAssertTrue(keyPair.publicKey().length > 0, "Public key should have actual content.");
-        XCTAssertTrue(keyPair.privateKey().length > 0, "Private key should have actual content.");
+        XCTAssertTrue(keyPair.publicKey().count > 0, "Public key should have actual content.");
+        XCTAssertTrue(keyPair.privateKey().count > 0, "Private key should have actual content.");
         
-        if let keyString = NSString(data: keyPair.privateKey(), encoding: NSUTF8StringEncoding) {
-            let range = keyString.rangeOfString("ENCRYPTED", options: [.LiteralSearch, .CaseInsensitiveSearch])
+        if let keyString = NSString(data: keyPair.privateKey(), encoding: String.Encoding.utf8.rawValue) {
+            let range = keyString.range(of: "ENCRYPTED", options: [.literal, .caseInsensitive])
             XCTAssertTrue(range.length == 0, "Private key should be generated in plain form.");
         }
     }
@@ -25,11 +25,11 @@ class VC001_KeyPairSwiftTests: XCTestCase {
     func test002_createKeyPairWithPassword() {
         let password = "secret"
         let keyPair = VSSKeyPair(password: password)
-        XCTAssertTrue(keyPair.publicKey().length > 0, "Public key should be generated for the new key pair.");
-        XCTAssertTrue(keyPair.privateKey().length > 0, "Private key should be generated for the new key pair.");
+        XCTAssertTrue(keyPair.publicKey().count > 0, "Public key should be generated for the new key pair.");
+        XCTAssertTrue(keyPair.privateKey().count > 0, "Private key should be generated for the new key pair.");
     
-        if let keyString = NSString(data: keyPair.privateKey(), encoding: NSUTF8StringEncoding) {
-            let range = keyString.rangeOfString("ENCRYPTED", options: [.LiteralSearch, .CaseInsensitiveSearch])
+        if let keyString = NSString(data: keyPair.privateKey(), encoding: String.Encoding.utf8.rawValue) {
+            let range = keyString.range(of: "ENCRYPTED", options: [.literal, .caseInsensitive])
             XCTAssertTrue(range.length != 0, "Private key should be generated protected by the password provided to initializer.");
         }
     }

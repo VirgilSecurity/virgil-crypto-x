@@ -10,13 +10,13 @@ import XCTest
 
 class VC004_StreamCryptorSwiftTests: XCTestCase {
 
-    var toEncrypt: NSData! = nil
+    var toEncrypt: Data! = nil
     
     override func setUp() {
         super.setUp()
         
         let message = NSString(string: "Secret message which is necessary to be encrypted.")
-        self.toEncrypt = message.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+        self.toEncrypt = message.data(using: String.Encoding.utf8.rawValue, allowLossyConversion: false)
     }
     
     override func tearDown() {
@@ -34,7 +34,7 @@ class VC004_StreamCryptorSwiftTests: XCTestCase {
         // Generate a new key pair
         let keyPair = VSSKeyPair()
         // Generate a public key id
-        let recipientId = NSUUID().UUIDString
+        let recipientId = UUID().uuidString
         // Encrypt:
         // Create a cryptor instance
         let cryptor = VSSStreamCryptor()
@@ -47,32 +47,32 @@ class VC004_StreamCryptorSwiftTests: XCTestCase {
             XCTFail()
         }
         
-        let eis = NSInputStream(data: self.toEncrypt)
-        let eos = NSOutputStream(toMemory: ())
+        let eis = InputStream(data: self.toEncrypt)
+        let eos = OutputStream(toMemory: ())
         do {
-            try cryptor.encryptDataFromStream(eis, toStream: eos, embedContentInfo: true)
+            try cryptor.encryptData(from: eis, to: eos, embedContentInfo: true)
         }
         catch let error as NSError {
             XCTFail("Error encrypting input stream: \(error.localizedDescription)")
         }
 
-        let encryptedData = eos.propertyForKey(NSStreamDataWrittenToMemoryStreamKey) as! NSData
-        XCTAssertTrue(encryptedData.length > 0, "The data encrypted with key-based encryption should have an actual content.")
+        let encryptedData = eos.property(forKey: Stream.PropertyKey.dataWrittenToMemoryStreamKey) as! Data
+        XCTAssertTrue(encryptedData.count > 0, "The data encrypted with key-based encryption should have an actual content.")
 
         // Decrypt:
         // Create a completely new instance of the VCCryptor object
         let decryptor = VSSStreamCryptor()
         
-        let dis = NSInputStream(data: encryptedData)
-        let dos = NSOutputStream(toMemory: ())
+        let dis = InputStream(data: encryptedData)
+        let dos = OutputStream(toMemory: ())
         do {
-            try decryptor.decryptFromStream(dis, toStream: dos, recipientId: recipientId, privateKey: keyPair.privateKey(), keyPassword: nil)
+            try decryptor.decrypt(from: dis, to: dos, recipientId: recipientId, privateKey: keyPair.privateKey(), keyPassword: nil)
         }
         catch let error as NSError {
             XCTFail("Error decrypting data: \(error.localizedDescription)")
         }
-        let plainData = dos.propertyForKey(NSStreamDataWrittenToMemoryStreamKey) as! NSData
-        XCTAssertTrue(plainData.length > 0, "Decrypted data should contain actual data.")
+        let plainData = dos.property(forKey: Stream.PropertyKey.dataWrittenToMemoryStreamKey) as! Data
+        XCTAssertTrue(plainData.count > 0, "Decrypted data should contain actual data.")
         XCTAssertEqual(plainData, self.toEncrypt, "Initial data and decrypted data should be equal.")
     }
     
@@ -90,25 +90,25 @@ class VC004_StreamCryptorSwiftTests: XCTestCase {
             XCTFail()
         }
         
-        let eis = NSInputStream(data: self.toEncrypt)
-        let eos = NSOutputStream(toMemory: ())
+        let eis = InputStream(data: self.toEncrypt)
+        let eos = OutputStream(toMemory: ())
         do {
-            try cryptor.encryptDataFromStream(eis, toStream: eos, embedContentInfo: false)
+            try cryptor.encryptData(from: eis, to: eos, embedContentInfo: false)
         }
         catch let error as NSError {
             XCTFail("Error encrypting data: \(error.localizedDescription)")
         }
-        let encryptedData = eos.propertyForKey(NSStreamDataWrittenToMemoryStreamKey) as! NSData
-        XCTAssertTrue(encryptedData.length > 0, "The data encrypted with password-based encryption should have an actual content.");
+        let encryptedData = eos.property(forKey: Stream.PropertyKey.dataWrittenToMemoryStreamKey) as! Data
+        XCTAssertTrue(encryptedData.count > 0, "The data encrypted with password-based encryption should have an actual content.");
         
-        var contentInfo = NSData()
+        var contentInfo = Data()
         do {
             contentInfo = try cryptor.contentInfoWithError()
         }
         catch let error as NSError {
             XCTFail("Error getting content info from cryptor: \(error.localizedDescription)")
         }
-        XCTAssertTrue(contentInfo.length > 0, "Content Info should contain necessary information.");
+        XCTAssertTrue(contentInfo.count > 0, "Content Info should contain necessary information.");
         // Decrypt:
         // Create a completely new instance of the VCCryptor object
         let decryptor = VSSStreamCryptor()
@@ -119,17 +119,17 @@ class VC004_StreamCryptorSwiftTests: XCTestCase {
             XCTFail("Error setting content info to decryptor: \(error.localizedDescription)")
         }
         
-        let dis = NSInputStream(data: encryptedData)
-        let dos = NSOutputStream(toMemory: ())
+        let dis = InputStream(data: encryptedData)
+        let dos = OutputStream(toMemory: ())
         do {
-            try decryptor.decryptFromStream(dis, toStream: dos, password: password)
+            try decryptor.decrypt(from: dis, to: dos, password: password)
         }
         catch let error as NSError {
             XCTFail("Error decrypting data: \(error.localizedDescription)")
         }
         
-        let plainData = dos.propertyForKey(NSStreamDataWrittenToMemoryStreamKey) as! NSData
-         XCTAssertTrue(plainData.length > 0, "The data decrypted with password-based decryption should have an actual content.");
+        let plainData = dos.property(forKey: Stream.PropertyKey.dataWrittenToMemoryStreamKey) as! Data
+         XCTAssertTrue(plainData.count > 0, "The data decrypted with password-based decryption should have an actual content.");
         XCTAssertEqual(plainData, self.toEncrypt, "Initial data and decrypted data should be equal.")
     }
 

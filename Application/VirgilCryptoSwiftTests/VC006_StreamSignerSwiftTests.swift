@@ -10,13 +10,13 @@ import XCTest
 
 class VC006_StreamSignerSwiftTests: XCTestCase {
 
-    var toSign: NSData! = nil
+    var toSign: Data! = nil
     
     override func setUp() {
         super.setUp()
 
         let message = NSString(string: "Message which is need to be signed.")
-        self.toSign = message.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion:false)
+        self.toSign = message.data(using: String.Encoding.utf8.rawValue, allowLossyConversion:false)
     }
     
     override func tearDown() {
@@ -37,9 +37,9 @@ class VC006_StreamSignerSwiftTests: XCTestCase {
         // Create the signer
         let signer = VSSStreamSigner()
         // Compose the signature
-        var signature = NSData()
+        var signature = Data()
         do {
-            let sis = NSInputStream(data: self.toSign)
+            let sis = InputStream(data: self.toSign)
             signature = try signer.signStreamData(sis, privateKey: keyPair.privateKey(), keyPassword: nil)
         }
         catch let error as NSError {
@@ -48,8 +48,8 @@ class VC006_StreamSignerSwiftTests: XCTestCase {
         
         let verifier = VSSStreamSigner()
         do {
-            let vis = NSInputStream(data: self.toSign)
-            try verifier.verifySignature(signature, fromStream: vis, publicKey: keyPair.publicKey())
+            let vis = InputStream(data: self.toSign)
+            try verifier.verifySignature(signature, from: vis, publicKey: keyPair.publicKey())
         }
         catch let error as NSError {
             XCTFail("Error verification the signature: \(error.localizedDescription)")

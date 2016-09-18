@@ -13,7 +13,7 @@ let kDesiredDataChunkLength: Int = 1024
 
 class VC005_ChunkCryptorSwiftTests: XCTestCase {
 
-    var toEncrypt: NSData! = nil
+    var toEncrypt: Data! = nil
     
     override func setUp() {
         super.setUp()
@@ -36,7 +36,7 @@ class VC005_ChunkCryptorSwiftTests: XCTestCase {
         // Generate a new key pair
         let keyPair = VSSKeyPair()
         // Generate a public key id
-        let recipientId = NSUUID().UUIDString
+        let recipientId = UUID().uuidString
         // Encrypt:
         // Create a cryptor instance
         let cryptor = VSSChunkCryptor()
@@ -54,17 +54,17 @@ class VC005_ChunkCryptorSwiftTests: XCTestCase {
         do {
             var error: NSError? = nil
 
-            actualSize = cryptor.startEncryptionWithPreferredChunkSize(kDesiredDataChunkLength, error: &error)
+            actualSize = cryptor.startEncryption(withPreferredChunkSize: kDesiredDataChunkLength, error: &error)
             if let err = error {
                 XCTFail("Error starting chunk encryption: \(err.localizedDescription)")
             }
             
-            for var offset = 0; offset < self.toEncrypt.length; offset += Int(actualSize) {
+            for var offset = 0; offset < self.toEncrypt.count; offset += Int(actualSize) {
                 let bytesPtr = self.toEncrypt.bytes + offset
                 let mutBytes = UnsafeMutablePointer<UInt8>(bytesPtr)
-                let chunk = NSData(bytesNoCopy:mutBytes, length: Int(actualSize), freeWhenDone: false)
+                let chunk = Data(bytesNoCopy: UnsafeMutablePointer<UInt8>(mutBytes), count: Int(actualSize), deallocator: .none)
                 let encryptedChunk = try cryptor.processDataChunk(chunk)
-                encryptedData.appendData(encryptedChunk)
+                encryptedData.append(encryptedChunk)
             }
         }
         catch let error as NSError {
@@ -79,14 +79,14 @@ class VC005_ChunkCryptorSwiftTests: XCTestCase {
             XCTFail("Error finishing chunks processing: \(error.localizedDescription)")
         }
         
-        var contentInfo = NSData()
+        var contentInfo = Data()
         do {
             contentInfo = try cryptor.contentInfoWithError()
         }
         catch let error as NSError {
             XCTFail("Error getting content info from cryptor: \(error.localizedDescription)")
         }
-        XCTAssertTrue(contentInfo.length > 0, "Content Info should contain necessary information.");
+        XCTAssertTrue(contentInfo.count > 0, "Content Info should contain necessary information.");
         
         let decryptor = VSSChunkCryptor()
         
@@ -101,7 +101,7 @@ class VC005_ChunkCryptorSwiftTests: XCTestCase {
         let plainData = NSMutableData()
         do {
             var error: NSError? = nil
-            actualSize = decryptor.startDecryptionWithRecipientId(recipientId, privateKey: keyPair.privateKey(), keyPassword: nil, error: &error)
+            actualSize = decryptor.startDecryption(withRecipientId: recipientId, privateKey: keyPair.privateKey(), keyPassword: nil, error: &error)
             if let err = error {
                 XCTFail("Error starting chunk decryption: \(err.localizedDescription)")
             }
@@ -109,9 +109,9 @@ class VC005_ChunkCryptorSwiftTests: XCTestCase {
             for var offset = 0; offset < encryptedData.length; offset += Int(actualSize) {
                 let bytesPtr = encryptedData.bytes + offset
                 let mutBytes = UnsafeMutablePointer<UInt8>(bytesPtr)
-                let chunk = NSData(bytesNoCopy:mutBytes, length: Int(actualSize), freeWhenDone: false)
+                let chunk = Data(bytesNoCopy: UnsafeMutablePointer<UInt8>(mutBytes), count: Int(actualSize), deallocator: .none)
                 let decryptedChunk = try decryptor.processDataChunk(chunk)
-                plainData.appendData(decryptedChunk)
+                plainData.append(decryptedChunk)
             }
         }
         catch let error as NSError {
@@ -126,7 +126,7 @@ class VC005_ChunkCryptorSwiftTests: XCTestCase {
             XCTFail("Error finishing chunks processing: \(error.localizedDescription)")
         }
         
-        XCTAssertEqual(plainData, self.toEncrypt, "Initial data and decrypted data should be equal.")
+        XCTAssertEqual(plainData as Data, self.toEncrypt, "Initial data and decrypted data should be equal.")
     }
     
     func test003_passwordBasedEncryptDecrypt() {
@@ -148,17 +148,17 @@ class VC005_ChunkCryptorSwiftTests: XCTestCase {
         let encryptedData = NSMutableData()
         do {
             var error: NSError? = nil
-            actualSize = cryptor.startEncryptionWithPreferredChunkSize(kDesiredDataChunkLength, error: &error)
+            actualSize = cryptor.startEncryption(withPreferredChunkSize: kDesiredDataChunkLength, error: &error)
             if let err = error {
                 XCTFail("Error starting chunk encryption: \(err.localizedDescription)")
             }
             
-            for var offset = 0; offset < self.toEncrypt.length; offset += Int(actualSize) {
+            for var offset = 0; offset < self.toEncrypt.count; offset += Int(actualSize) {
                 let bytesPtr = self.toEncrypt.bytes + offset
                 let mutBytes = UnsafeMutablePointer<UInt8>(bytesPtr)
-                let chunk = NSData(bytesNoCopy:mutBytes, length: Int(actualSize), freeWhenDone: false)
+                let chunk = Data(bytesNoCopy: UnsafeMutablePointer<UInt8>(mutBytes), count: Int(actualSize), deallocator: .none)
                 let encryptedChunk = try cryptor.processDataChunk(chunk)
-                encryptedData.appendData(encryptedChunk)
+                encryptedData.append(encryptedChunk)
             }
         }
         catch let error as NSError {
@@ -173,14 +173,14 @@ class VC005_ChunkCryptorSwiftTests: XCTestCase {
             XCTFail("Error finishing chunks processing: \(error.localizedDescription)")
         }
         
-        var contentInfo = NSData()
+        var contentInfo = Data()
         do {
             contentInfo = try cryptor.contentInfoWithError()
         }
         catch let error as NSError {
             XCTFail("Error getting content info from cryptor: \(error.localizedDescription)")
         }
-        XCTAssertTrue(contentInfo.length > 0, "Content Info should contain necessary information.");
+        XCTAssertTrue(contentInfo.count > 0, "Content Info should contain necessary information.");
         
         let decryptor = VSSChunkCryptor()
         
@@ -195,7 +195,7 @@ class VC005_ChunkCryptorSwiftTests: XCTestCase {
         let plainData = NSMutableData()
         do {
             var error: NSError? = nil
-            actualSize = decryptor.startDecryptionWithPassword(password, error: &error)
+            actualSize = decryptor.startDecryption(withPassword: password, error: &error)
             if let err = error {
                 XCTFail("Error starting chunk decryption: \(err.localizedDescription)")
             }
@@ -203,9 +203,9 @@ class VC005_ChunkCryptorSwiftTests: XCTestCase {
             for var offset = 0; offset < encryptedData.length; offset += Int(actualSize) {
                 let bytesPtr = encryptedData.bytes + offset
                 let mutBytes = UnsafeMutablePointer<UInt8>(bytesPtr)
-                let chunk = NSData(bytesNoCopy:mutBytes, length: Int(actualSize), freeWhenDone: false)
+                let chunk = Data(bytesNoCopy: UnsafeMutablePointer<UInt8>(mutBytes), count: Int(actualSize), deallocator: .none)
                 let decryptedChunk = try decryptor.processDataChunk(chunk)
-                plainData.appendData(decryptedChunk)
+                plainData.append(decryptedChunk)
             }
         }
         catch let error as NSError {
@@ -220,13 +220,13 @@ class VC005_ChunkCryptorSwiftTests: XCTestCase {
             XCTFail("Error finishing chunks processing: \(error.localizedDescription)")
         }
         
-        XCTAssertEqual(plainData, self.toEncrypt, "Initial data and decrypted data should be equal.")
+        XCTAssertEqual(plainData as Data, self.toEncrypt, "Initial data and decrypted data should be equal.")
     }
     
-    func randomDataWithBytes(length: Int) -> NSData {
-        var array = Array<UInt8>(count: length, repeatedValue: 0)
+    func randomDataWithBytes(_ length: Int) -> Data {
+        var array = Array<UInt8>(repeating: 0, count: length)
         arc4random_buf(&array, length)
-        return NSData(bytes: array, length: length)
+        return Data(bytes: UnsafePointer<UInt8>(array), count: length)
     }
 
 

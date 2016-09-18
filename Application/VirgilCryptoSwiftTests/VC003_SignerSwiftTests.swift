@@ -11,13 +11,13 @@ import XCTest
 
 class VC003_SignerSwiftTests: XCTestCase {
     
-    var toSign: NSData! = nil
+    var toSign: Data! = nil
     
     override func setUp() {
         super.setUp()
         
         let message = NSString(string: "Message which is need to be signed.")
-        self.toSign = message.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion:false)
+        self.toSign = message.data(using: String.Encoding.utf8.rawValue, allowLossyConversion:false)
     }
     
     override func tearDown() {
@@ -38,9 +38,9 @@ class VC003_SignerSwiftTests: XCTestCase {
         // Create the signer
         let signer = VSSSigner()
         // Compose the signature
-        var signature = NSData()
+        var signature = Data()
         do {
-            signature = try signer.signData(self.toSign, privateKey: keyPair.privateKey(), keyPassword: nil, error: ())
+            signature = try signer.sign(self.toSign, privateKey: keyPair.privateKey(), keyPassword: nil, error: ())
         }
         catch let error as NSError {
             XCTFail("Error composing the signature: \(error.localizedDescription)")
