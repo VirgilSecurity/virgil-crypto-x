@@ -49,7 +49,7 @@ class VC005_ChunkCryptorSwiftTests: XCTestCase {
             XCTFail()
         }
         
-        var actualSize = 0
+        var actualSize:Int = 0
         let encryptedData = NSMutableData()
         do {
             var error: NSError? = nil
@@ -59,10 +59,14 @@ class VC005_ChunkCryptorSwiftTests: XCTestCase {
                 XCTFail("Error starting chunk encryption: \(err.localizedDescription)")
             }
             
-            for var offset = 0; offset < self.toEncrypt.count; offset += Int(actualSize) {
-                let bytesPtr = self.toEncrypt.bytes + offset
-                let mutBytes = UnsafeMutablePointer<UInt8>(bytesPtr)
-                let chunk = Data(bytesNoCopy: UnsafeMutablePointer<UInt8>(mutBytes), count: Int(actualSize), deallocator: .none)
+            
+            for offset in stride(from:0, to: self.toEncrypt.count, by: actualSize) {
+                let bytesPtr = self.toEncrypt.withUnsafeBytes({ (bytes:UnsafePointer<CChar>) -> UnsafePointer<CChar> in
+                    return bytes + offset
+                })
+                
+                let mutBytes = UnsafeMutablePointer(mutating: bytesPtr)
+                let chunk = Data(bytesNoCopy: UnsafeMutablePointer(mutBytes), count: Int(actualSize), deallocator: .none)
                 let encryptedChunk = try cryptor.processDataChunk(chunk)
                 encryptedData.append(encryptedChunk)
             }
@@ -106,10 +110,10 @@ class VC005_ChunkCryptorSwiftTests: XCTestCase {
                 XCTFail("Error starting chunk decryption: \(err.localizedDescription)")
             }
             
-            for var offset = 0; offset < encryptedData.length; offset += Int(actualSize) {
+            for offset in stride(from:0, to: self.toEncrypt.count, by: actualSize) {
                 let bytesPtr = encryptedData.bytes + offset
-                let mutBytes = UnsafeMutablePointer<UInt8>(bytesPtr)
-                let chunk = Data(bytesNoCopy: UnsafeMutablePointer<UInt8>(mutBytes), count: Int(actualSize), deallocator: .none)
+                let mutBytes = UnsafeMutableRawPointer(mutating: bytesPtr)
+                let chunk = Data(bytesNoCopy: UnsafeMutableRawPointer(mutBytes), count: Int(actualSize), deallocator: .none)
                 let decryptedChunk = try decryptor.processDataChunk(chunk)
                 plainData.append(decryptedChunk)
             }
@@ -153,10 +157,13 @@ class VC005_ChunkCryptorSwiftTests: XCTestCase {
                 XCTFail("Error starting chunk encryption: \(err.localizedDescription)")
             }
             
-            for var offset = 0; offset < self.toEncrypt.count; offset += Int(actualSize) {
-                let bytesPtr = self.toEncrypt.bytes + offset
-                let mutBytes = UnsafeMutablePointer<UInt8>(bytesPtr)
-                let chunk = Data(bytesNoCopy: UnsafeMutablePointer<UInt8>(mutBytes), count: Int(actualSize), deallocator: .none)
+            for offset in stride(from:0, to: self.toEncrypt.count, by: actualSize) {
+                let bytesPtr = self.toEncrypt.withUnsafeBytes({ (bytes:UnsafePointer<CChar>) -> UnsafePointer<CChar> in
+                    return bytes + offset
+                })
+                
+                let mutBytes = UnsafeMutablePointer(mutating: bytesPtr)
+                let chunk = Data(bytesNoCopy: UnsafeMutablePointer(mutBytes), count: Int(actualSize), deallocator: .none)
                 let encryptedChunk = try cryptor.processDataChunk(chunk)
                 encryptedData.append(encryptedChunk)
             }
@@ -200,10 +207,10 @@ class VC005_ChunkCryptorSwiftTests: XCTestCase {
                 XCTFail("Error starting chunk decryption: \(err.localizedDescription)")
             }
             
-            for var offset = 0; offset < encryptedData.length; offset += Int(actualSize) {
+            for offset in stride(from:0, to: self.toEncrypt.count, by: actualSize) {
                 let bytesPtr = encryptedData.bytes + offset
-                let mutBytes = UnsafeMutablePointer<UInt8>(bytesPtr)
-                let chunk = Data(bytesNoCopy: UnsafeMutablePointer<UInt8>(mutBytes), count: Int(actualSize), deallocator: .none)
+                let mutBytes = UnsafeMutableRawPointer(mutating: bytesPtr)
+                let chunk = Data(bytesNoCopy: UnsafeMutableRawPointer(mutBytes), count: Int(actualSize), deallocator: .none)
                 let decryptedChunk = try decryptor.processDataChunk(chunk)
                 plainData.append(decryptedChunk)
             }

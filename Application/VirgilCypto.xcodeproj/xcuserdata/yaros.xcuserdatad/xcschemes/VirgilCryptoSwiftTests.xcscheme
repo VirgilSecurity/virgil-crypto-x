@@ -9,14 +9,28 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "361402741BB2A6CB002E69CA"
-               BuildableName = "VirgilCypto.app"
-               BlueprintName = "VirgilCypto"
+               BlueprintIdentifier = "361402B61BB2AC5B002E69CA"
+               BuildableName = "VirgilCryptoSwift.app"
+               BlueprintName = "VirgilCryptoSwift"
+               ReferencedContainer = "container:VirgilCypto.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "361402CA1BB2AC5B002E69CA"
+               BuildableName = "VirgilCryptoSwiftTests.xctest"
+               BlueprintName = "VirgilCryptoSwiftTests"
                ReferencedContainer = "container:VirgilCypto.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,16 +46,6 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3614028D1BB2A6CB002E69CA"
-               BuildableName = "VirgilCyptoTests.xctest"
-               BlueprintName = "VirgilCyptoTests"
-               ReferencedContainer = "container:VirgilCypto.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "361402CA1BB2AC5B002E69CA"
                BuildableName = "VirgilCryptoSwiftTests.xctest"
                BlueprintName = "VirgilCryptoSwiftTests"
@@ -52,9 +56,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "361402741BB2A6CB002E69CA"
-            BuildableName = "VirgilCypto.app"
-            BlueprintName = "VirgilCypto"
+            BlueprintIdentifier = "361402CA1BB2AC5B002E69CA"
+            BuildableName = "VirgilCryptoSwiftTests.xctest"
+            BlueprintName = "VirgilCryptoSwiftTests"
             ReferencedContainer = "container:VirgilCypto.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -71,16 +75,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "361402741BB2A6CB002E69CA"
-            BuildableName = "VirgilCypto.app"
-            BlueprintName = "VirgilCypto"
+            BlueprintIdentifier = "361402CA1BB2AC5B002E69CA"
+            BuildableName = "VirgilCryptoSwiftTests.xctest"
+            BlueprintName = "VirgilCryptoSwiftTests"
             ReferencedContainer = "container:VirgilCypto.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -90,16 +93,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "361402741BB2A6CB002E69CA"
-            BuildableName = "VirgilCypto.app"
-            BlueprintName = "VirgilCypto"
-            ReferencedContainer = "container:VirgilCypto.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

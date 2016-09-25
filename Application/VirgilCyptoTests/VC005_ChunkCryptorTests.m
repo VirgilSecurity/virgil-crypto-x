@@ -67,6 +67,7 @@ static const NSUInteger kDesiredDataChunkLength = 1024;
         NSLog(@"Start chunk encryption error: %@", [error localizedDescription]);
         XCTAssertTrue(FALSE);
     }
+    
     for (NSUInteger offset = 0; offset <= [self.toEncrypt length] - 1; offset += actualSize) {
         NSData *chunk = [NSData dataWithBytesNoCopy:(char *)[self.toEncrypt bytes] + offset length:actualSize freeWhenDone:NO];
         error = nil;
