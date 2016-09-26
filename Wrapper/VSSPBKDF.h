@@ -22,10 +22,6 @@ extern NSString * __nonnull const kVSSPBKDFErrorDomain;
  */
 typedef NS_ENUM(NSInteger, VSSPBKDFAlgorithm) {
     /** 
-     * Unknown algorithm for a key derivation.
-     */
-    VSSPBKDFAlgorithmNone = 0,
-    /** 
      * PBKDF2 algorithm for a key derivation. 
      */
     VSSPBKDFAlgorithmPBKDF2
@@ -66,12 +62,12 @@ typedef NS_ENUM(NSInteger, VSSPBKDFHash) {
  * Data containing the salt for key derivation. 
  */
 @property (nonatomic, strong, readonly) NSData * __nonnull salt;
-/** 
- * Number of iterations for the key derivation function. 
+/**
+ * Number of iterations for the key derivation function.
  */
 @property (nonatomic, assign, readonly) unsigned int iterations;
 
-/** 
+/**
  * Algorithm used for the key derivation.
  * @see `VSSPBKDFAlgorithm`
  */

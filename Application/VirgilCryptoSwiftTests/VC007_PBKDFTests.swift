@@ -20,8 +20,7 @@ class VC007_PBKDFTests: XCTestCase {
         XCTAssertEqual(pbkdf.salt.count, kVSSDefaultRandomBytesSize, "VSSPBKDF salt size should be equal the default size.")
         
         XCTAssertEqual(pbkdf.algorithm, VSSPBKDFAlgorithm.PBKDF2, "VSSPBKSD algorithm should be properly set to PBKDF2.")
-        pbkdf.algorithm = .none;
-        XCTAssertEqual(pbkdf.algorithm, VSSPBKDFAlgorithm.none, "VSSPBKSD algorithm should be properly changed to None.")
+
         pbkdf.algorithm = .PBKDF2;
         XCTAssertEqual(pbkdf.algorithm, VSSPBKDFAlgorithm.PBKDF2, "VSSPBKSD algorithm should be properly set to PBKDF2 again.")
         
@@ -89,14 +88,7 @@ class VC007_PBKDFTests: XCTestCase {
 
     func test004_algoritmSettings() {
         let pbkdf = VSSPBKDF(salt: nil, iterations: 0)
-        pbkdf.algorithm = .none
-        
         var key: Data? = nil
-        do {
-            key = try pbkdf.key(fromPassword: "secret", size: 0)
-            XCTFail("VSSPBKDF: error should happen due to absense of algoritm for key derivation.")
-        }
-        catch { }
         
         pbkdf.algorithm = .PBKDF2
         do {

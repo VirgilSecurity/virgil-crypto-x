@@ -12,8 +12,11 @@
 
 using virgil::crypto::VirgilByteArray;
 using virgil::crypto::VirgilChunkCipher;
+using virgil::crypto::VirgilDataSink;
+using virgil::crypto::VirgilDataSource;
 
 NSString *const kVSSChunkCryptorErrorDomain = @"VSSChunkCryptorErrorDomain";
+
 
 @implementation VSSChunkCryptor
 
@@ -46,15 +49,15 @@ NSString *const kVSSChunkCryptorErrorDomain = @"VSSChunkCryptorErrorDomain";
     return static_cast<VirgilChunkCipher *>(self.llCryptor);
 }
 
-- (size_t)startEncryptionWithPreferredChunkSize:(size_t)chunkSize error:(NSError * __nullable * __nullable)error {
+- (size_t)startEncryption:(VirgilDataSource &)dataSource dataSink:(VirgilDataSink &)dataSink chunkSize:(size_t)chunkSize error:(NSError * __nullable * __nullable)error {
     size_t actualSize = 0;
     try {
         if ([self cryptor] != NULL) {
             if (chunkSize > 0) {
-                actualSize = [self cryptor]->startEncryption(chunkSize);
+                //actualSize = [self cryptor]->encrypt(dataSource, dataSink, true, chunkSize);
             }
             else {
-                actualSize = [self cryptor]->startEncryption();
+                //actualSize = [self cryptor]->encrypt();
             }
             if (error) {
                 *error = nil;
@@ -101,11 +104,11 @@ NSString *const kVSSChunkCryptorErrorDomain = @"VSSChunkCryptorErrorDomain";
             std::string recId = std::string([recipientId UTF8String]);
             const unsigned char *pKey = static_cast<const unsigned char *>([privateKey bytes]);
             if (keyPassword.length == 0) {
-                actualSize = [self cryptor]->startDecryptionWithKey(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(recId.data(), recId.size()), VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKey, [privateKey length]));
+                //actualSize = [self cryptor]->startDecryptionWithKey(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(recId.data(), recId.size()), VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKey, [privateKey length]));
             }
             else {
                 std::string keyPass = std::string([keyPassword UTF8String]);
-                actualSize = [self cryptor]->startDecryptionWithKey(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(recId.data(), recId.size()), VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKey, [privateKey length]), VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(keyPass.data(), keyPass.size()));
+                //actualSize = [self cryptor]->startDecryptionWithKey(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(recId.data(), recId.size()), VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKey, [privateKey length]), VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(keyPass.data(), keyPass.size()));
             }
             if (error) {
                 *error = nil;
@@ -150,7 +153,7 @@ NSString *const kVSSChunkCryptorErrorDomain = @"VSSChunkCryptorErrorDomain";
     try {
         if ([self cryptor] != NULL) {
             std::string pass = std::string([password UTF8String]);
-            actualSize = [self cryptor]->startDecryptionWithPassword(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pass.data(), pass.size()));
+            //actualSize = [self cryptor]->startDecryptionWithPassword(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pass.data(), pass.size()));
             if (error) {
                 *error = nil;
             }
@@ -194,8 +197,8 @@ NSString *const kVSSChunkCryptorErrorDomain = @"VSSChunkCryptorErrorDomain";
     try {
         if ([self cryptor] != NULL) {
             const unsigned char *bytes = static_cast<const unsigned char *>([chunk bytes]);
-            VirgilByteArray proc = [self cryptor]->process(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(bytes, [chunk length]));
-            processed = [NSData dataWithBytes:proc.data() length:proc.size()];
+            //VirgilByteArray proc = [self cryptor]->process(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(bytes, [chunk length]));
+            //processed = [NSData dataWithBytes:proc.data() length:proc.size()];
             if (error) {
                 *error = nil;
             }
@@ -231,7 +234,7 @@ NSString *const kVSSChunkCryptorErrorDomain = @"VSSChunkCryptorErrorDomain";
     BOOL success = NO;
     try {
         if ([self cryptor] != NULL) {
-            [self cryptor]->finish();
+            //[self cryptor]->finish();
             success = YES;
             if (error) {
                 *error = nil;

@@ -12,9 +12,11 @@
 
 #import <VirgilCrypto/virgil/crypto/VirgilByteArray.h>
 #import <VirgilCrypto/virgil/crypto/foundation/VirgilPBKDF.h>
+#import <VirgilCrypto/virgil/crypto/foundation/VirgilHash.h>
 
 using virgil::crypto::VirgilByteArray;
 using virgil::crypto::foundation::VirgilPBKDF;
+using virgil::crypto::foundation::VirgilHash;
 
 const size_t kVSSDefaultRandomBytesSize = 64;
 NSString *const kVSSPBKDFErrorDomain = @"VSSPBKDFErrorDomain";
@@ -69,14 +71,14 @@ NSString *const kVSSPBKDFErrorDomain = @"VSSPBKDFErrorDomain";
 
 - (VSSPBKDFAlgorithm)algorithm {
     if (self.pbkdf == NULL) {
-        return VSSPBKDFAlgorithmNone;
+        return VSSPBKDFAlgorithmPBKDF2;
     }
     
-    VirgilPBKDF::Algorithm alg = VirgilPBKDF::Algorithm_None;
+    VirgilPBKDF::Algorithm alg = VirgilPBKDF::Algorithm::PBKDF2;
     try {
         alg = self.pbkdf->getAlgorithm();
     } catch (...) {
-        alg = VirgilPBKDF::Algorithm_None;
+        alg = VirgilPBKDF::Algorithm::PBKDF2;
     }
     return (VSSPBKDFAlgorithm)alg;
 }
@@ -86,10 +88,10 @@ NSString *const kVSSPBKDFErrorDomain = @"VSSPBKDFErrorDomain";
         return;
     }
     
-    VirgilPBKDF::Algorithm alg = VirgilPBKDF::Algorithm_None;
+    VirgilPBKDF::Algorithm alg = VirgilPBKDF::Algorithm::PBKDF2;
     switch(algorithm) {
         case VSSPBKDFAlgorithmPBKDF2:
-            alg = VirgilPBKDF::Algorithm_PBKDF2;
+            alg = VirgilPBKDF::Algorithm::PBKDF2;
             break;
         default:
             break;
@@ -105,13 +107,13 @@ NSString *const kVSSPBKDFErrorDomain = @"VSSPBKDFErrorDomain";
     if (self.pbkdf == NULL) {
         return (VSSPBKDFHash)0;
     }
-    
-    VirgilPBKDF::Hash hsh = (VirgilPBKDF::Hash)0;
+
+    VirgilHash::Algorithm hsh = (VirgilHash::Algorithm)0;
     try {
-        hsh = self.pbkdf->getHash();
+        hsh = self.pbkdf->getHashAlgorithm();
     }
     catch(...) {
-        hsh = (VirgilPBKDF::Hash)0;
+        hsh = (VirgilHash::Algorithm)0;
     }
     return (VSSPBKDFHash)hsh;
 }
@@ -120,34 +122,30 @@ NSString *const kVSSPBKDFErrorDomain = @"VSSPBKDFErrorDomain";
     if (self.pbkdf == NULL) {
         return;
     }
-    
-    VirgilPBKDF::Hash hsh = (VirgilPBKDF::Hash)0;
+
+    VirgilHash::Algorithm hsh = (VirgilHash::Algorithm)0;
     switch(hash) {
         case VSSPBKDFHashSHA1:
-            hsh = VirgilPBKDF::Hash_SHA1;
+            hsh = VirgilHash::Algorithm::SHA1;
             break;
         case VSSPBKDFHashSHA224:
-            hsh = VirgilPBKDF::Hash_SHA224;
+            hsh = VirgilHash::Algorithm::SHA224;
             break;
         case VSSPBKDFHashSHA256:
-            hsh = VirgilPBKDF::Hash_SHA256;
+            hsh = VirgilHash::Algorithm::SHA256;
             break;
         case VSSPBKDFHashSHA384:
-            hsh = VirgilPBKDF::Hash_SHA384;
+            hsh = VirgilHash::Algorithm::SHA384;
             break;
         case VSSPBKDFHashSHA512:
-            hsh = VirgilPBKDF::Hash_SHA512;
+            hsh = VirgilHash::Algorithm::SHA512;
             break;
         default:
             break;
     }
     
-    if (hsh == 0) {
-        return;
-    }
-    
     try {
-        self.pbkdf->setHash(hsh);
+        self.pbkdf->setHashAlgorithm(hsh);
     }
     catch(...) {}
 }

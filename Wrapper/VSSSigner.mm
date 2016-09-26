@@ -46,22 +46,16 @@ NSString *const kVSSSignerErrorDomain = @"VSSSignerErrorDomain";
     }
     try {
         if ([hash isEqualToString:kHashNameMD5]) {
-            _signer = new VirgilSigner(VirgilHash::md5());
+            _signer = new VirgilSigner(VirgilHash::Algorithm::MD5);
         }
         else if ([hash isEqualToString:kHashNameSHA256]) {
-            _signer = new VirgilSigner(VirgilHash::sha256());
+            _signer = new VirgilSigner(VirgilHash::Algorithm::SHA256);
         }
         else if ([hash isEqualToString:kHashNameSHA384]) {
-            _signer = new VirgilSigner(VirgilHash::sha384());
+            _signer = new VirgilSigner(VirgilHash::Algorithm::SHA384);
         }
         else if ([hash isEqualToString:kHashNameSHA512]) {
-            _signer = new VirgilSigner(VirgilHash::sha512());
-        }
-        else if (hash.length > 0)
-        {
-            std::string hashName = std::string([hash UTF8String]);
-            VirgilByteArray hashNameArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(hashName.data(), hashName.size());
-            _signer = new VirgilSigner(VirgilHash::withName(hashNameArray));
+            _signer = new VirgilSigner(VirgilHash::Algorithm::SHA512);
         }
         else {
             _signer = new VirgilSigner();
@@ -171,7 +165,7 @@ NSString *const kVSSSignerErrorDomain = @"VSSSignerErrorDomain";
             VirgilByteArray pKey = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(keyDataPtr, [publicKey length]);
             
             bool result = self.signer->verify(signedData, signData, pKey);
-            verified = (result) ? YES : NO;
+            verified = result;
             if (error) {
                 *error = nil;
             }

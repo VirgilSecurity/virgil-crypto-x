@@ -22,19 +22,10 @@ extern NSString * __nonnull const kVSSKeyPairErrorDomain;
 /// @name Lifecycle
 ///---------------------------
 
-/** 
+/** <Need to Update>
  * Generates a new key pair using curve 25519 without a password. 
  */
 - (instancetype __nonnull)init;
-
-/**
- * Generates a new key pair using curve 25519 with given password.
- *
- * @param password Password for encrypting the private key of the key pair or `nil`.
- * 
- * @return instance of the `VSSKeyPair`.
- */
-- (instancetype __nonnull)initWithPassword:(NSString * __nullable)password;
 
 /** 
  * Generates key pair using 192-bits NIST curve with given password.
@@ -178,15 +169,6 @@ extern NSString * __nonnull const kVSSKeyPairErrorDomain;
  * @return instance of the VSSKeyPair.
  */
 + (VSSKeyPair * __nonnull)rsa4096WithPassword:(NSString * __nullable)password;
-
-/** 
- * Generates key pair using curve 25519 with given password. Similar to `curve25519WithPassword:`
- *
- * @param password Password for encrypting the private key of the key pair or `nil`.
- *
- * @return instance of the `VSSKeyPair`.
- */
-+ (VSSKeyPair * __nonnull)m255WithPassword:(NSString * __nullable)password;
 
 /** 
  * Generates key pair using curve 25519 with given password. Similar to `m255WithPassword:`
