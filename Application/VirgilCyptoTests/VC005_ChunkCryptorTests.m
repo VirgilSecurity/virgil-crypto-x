@@ -54,76 +54,42 @@ static const NSUInteger kDesiredDataChunkLength = 1024;
     // Create a cryptor instance
     VSSChunkCryptor *cryptor = [[VSSChunkCryptor alloc] init];
     // Add a key recepient to enable key-based encryption
-    BOOL success = [cryptor addKeyRecipient:recipientId publicKey:keyPair.publicKey error:&error];
-    if (!success || error != nil) {
+    [cryptor addKeyRecipient:recipientId publicKey:keyPair.publicKey error:&error];
+    if (error != nil) {
         NSLog(@"Add key recipient error: %@", [error localizedDescription]);
         XCTAssertTrue(FALSE);
     }
     // Encrypt the data
-    NSMutableData *encryptedData = [[NSMutableData alloc] init];
-    error = nil;
-    size_t actualSize = [cryptor startEncryptionWithPreferredChunkSize:kDesiredDataChunkLength error:&error];
-    if (actualSize == 0 || error != nil) {
-        NSLog(@"Start chunk encryption error: %@", [error localizedDescription]);
+    NSInputStream *istream = [NSInputStream inputStreamWithData:self.toEncrypt];
+    NSOutputStream *ostream = [NSOutputStream outputStreamToMemory];
+
+    NSTimeInterval ti = [NSDate timeIntervalSinceReferenceDate];
+    [cryptor encryptDataFromStream:istream toStream:ostream preferredChunkSize:kDesiredDataChunkLength embedContentInfo:YES error:&error];
+    NSLog(@"Encryption key-based time: %.2f", [NSDate timeIntervalSinceReferenceDate] - ti);
+    if (error != nil) {
+        NSLog(@"Encryption error: %@", [error localizedDescription]);
         XCTAssertTrue(FALSE);
     }
-    
-    for (NSUInteger offset = 0; offset <= [self.toEncrypt length] - 1; offset += actualSize) {
-        NSData *chunk = [NSData dataWithBytesNoCopy:(char *)[self.toEncrypt bytes] + offset length:actualSize freeWhenDone:NO];
-        error = nil;
-        NSData *encryptedChunk = [cryptor processDataChunk:chunk error:&error];
-        if (encryptedChunk.length == 0 || error != nil) {
-            NSLog(@"Chunk encryption error: %@", [error localizedDescription]);
-            XCTAssertTrue(FALSE);
-        }
-        [encryptedData appendData:encryptedChunk];
-    }
-    error = nil;
-    success = [cryptor finishWithError:&error];
-    if (!success || error != nil) {
-        NSLog(@"Error finalizing cryptor: %@", [error localizedDescription]);
-        XCTAssertTrue(FALSE);
-    }
-    XCTAssertTrue(encryptedData.length > 0, @"Encrypted data should not be empty.");
-    NSData *contentInfo = [cryptor contentInfoWithError:nil];
-    if (contentInfo == nil) {
-        NSLog(@"There is no content info after encryption.");
-        XCTAssertTrue(FALSE);
-    }
-    
+    NSData *encryptedData = (NSData *)[ostream propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
+    XCTAssertTrue(encryptedData.length > 0, @"Cryptor should encrypt the given input stream data using key-based encryption.");
+
+    // Decrypt:
+    // Create a completely new instance of the VCCryptor object
     VSSChunkCryptor *decryptor = [[VSSChunkCryptor alloc] init];
+    NSInputStream *idecstream = [NSInputStream inputStreamWithData:encryptedData];
+    NSOutputStream *odecsctream = [NSOutputStream outputStreamToMemory];
+
+    // Decrypt data using key-based decryption
     error = nil;
-    success = [decryptor setContentInfo:contentInfo error:&error];
-    if (!success || error != nil) {
-        NSLog(@"Error setting content info: %@", [error localizedDescription]);
+    ti = [NSDate timeIntervalSinceReferenceDate];
+    [decryptor decryptFromStream:idecstream toStream:odecsctream recipientId:recipientId privateKey:keyPair.privateKey keyPassword:nil error:&error];
+    NSLog(@"Decryption key-based time: %.2f", [NSDate timeIntervalSinceReferenceDate] - ti);
+    if (error != nil) {
+        NSLog(@"Decryption error: %@", [error localizedDescription]);
         XCTAssertTrue(FALSE);
     }
-    actualSize = 0;
-    actualSize = [decryptor startDecryptionWithRecipientId:recipientId privateKey:keyPair.privateKey keyPassword:nil error:&error];
-    if (actualSize == 0 || error != nil) {
-        NSLog(@"Start chunk decryption error: %@", [error localizedDescription]);
-        XCTAssertTrue(FALSE);
-    }
-    
-    NSMutableData *decryptedData = [[NSMutableData alloc] init];
-    for (NSUInteger offset = 0; offset <= [encryptedData length] - 1; offset += actualSize) {
-        NSData *chunk = [NSData dataWithBytesNoCopy:(char *)[encryptedData bytes] + offset length:actualSize freeWhenDone:NO];
-        error = nil;
-        NSData *decryptedChunk = [decryptor processDataChunk:chunk error:&error];
-        if (decryptedChunk.length == 0 || error != nil) {
-            NSLog(@"Chunk decryption error: %@", [error localizedDescription]);
-            XCTAssertTrue(FALSE);
-        }
-        [decryptedData appendData:decryptedChunk];
-    }
-    error = nil;
-    success = [decryptor finishWithError:&error];
-    if (!success || error != nil) {
-        NSLog(@"Error finalizing decryptor: %@", [error localizedDescription]);
-        XCTAssertTrue(FALSE);
-    }
-    XCTAssertTrue(decryptedData.length > 0, @"Decrypted data should not be empty.");
-    XCTAssertEqualObjects(self.toEncrypt, decryptedData, @"Initial data and decrypted data should be equal.");
+    NSData *plainData = (NSData *)[odecsctream propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
+    XCTAssertEqualObjects(plainData, self.toEncrypt, @"Initial data and decrypted data should be equal.");
 }
 
 - (void)test003_passwordBasedEncryptDecrypt {
@@ -132,76 +98,53 @@ static const NSUInteger kDesiredDataChunkLength = 1024;
     NSString *password = @"secret";
     // Create a cryptor instance
     VSSChunkCryptor *cryptor = [[VSSChunkCryptor alloc] init];
-    // Add a key recepient to enable key-based encryption
-    BOOL success = [cryptor addPasswordRecipient:password error:&error];
-    if (!success || error != nil) {
+    // Add a password recepient to enable password-based encryption
+    [cryptor addPasswordRecipient:password error:&error];
+    if (error != nil) {
         NSLog(@"Add password recipient error: %@", [error localizedDescription]);
         XCTAssertTrue(FALSE);
     }
+    
+    NSInputStream *istream = [NSInputStream inputStreamWithData:self.toEncrypt];
+    NSOutputStream *ostream = [NSOutputStream outputStreamToMemory];
     // Encrypt the data
-    NSMutableData *encryptedData = [[NSMutableData alloc] init];
-    error = nil;
-    size_t actualSize = [cryptor startEncryptionWithPreferredChunkSize:kDesiredDataChunkLength error:&error];
-    if (actualSize == 0 || error != nil) {
-        NSLog(@"Start chunk encryption error: %@", [error localizedDescription]);
+    NSTimeInterval ti = [NSDate timeIntervalSinceReferenceDate];
+    [cryptor encryptDataFromStream:istream toStream:ostream preferredChunkSize:kDesiredDataChunkLength embedContentInfo:NO error:&error];
+    NSLog(@"Encryption password-based time: %.2f", [NSDate timeIntervalSinceReferenceDate] - ti);
+    if (error != nil) {
+        NSLog(@"Encryption error: %@", [error localizedDescription]);
         XCTAssertTrue(FALSE);
     }
-    for (NSUInteger offset = 0; offset <= [self.toEncrypt length] - 1; offset += actualSize) {
-        NSData *chunk = [NSData dataWithBytesNoCopy:(char *)[self.toEncrypt bytes] + offset length:actualSize freeWhenDone:NO];
-        error = nil;
-        NSData *encryptedChunk = [cryptor processDataChunk:chunk error:&error];
-        if (encryptedChunk.length == 0 || error != nil) {
-            NSLog(@"Chunk encryption error: %@", [error localizedDescription]);
-            XCTAssertTrue(FALSE);
-        }
-        [encryptedData appendData:encryptedChunk];
-    }
-    error = nil;
-    success = [cryptor finishWithError:&error];
-    if (!success || error != nil) {
-        NSLog(@"Error finalizing cryptor: %@", [error localizedDescription]);
-        XCTAssertTrue(FALSE);
-    }
-    XCTAssertTrue(encryptedData.length > 0, @"Encrypted data should not be empty.");
+    NSData *encryptedData = (NSData *)[ostream propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
     NSData *contentInfo = [cryptor contentInfoWithError:nil];
     if (contentInfo == nil) {
         NSLog(@"There is no content info after encryption.");
         XCTAssertTrue(FALSE);
     }
+    XCTAssertTrue(encryptedData.length > 0, @"Cryptor should encrypt the given plain data using password-based encryption.");
     
+    // Decrypt:
+    // Create a completely new instance of the VCCryptor object
     VSSChunkCryptor *decryptor = [[VSSChunkCryptor alloc] init];
     error = nil;
-    success = [decryptor setContentInfo:contentInfo error:&error];
-    if (!success || error != nil) {
+    [decryptor setContentInfo:contentInfo error:&error];
+    if (error != nil) {
         NSLog(@"Error setting content info: %@", [error localizedDescription]);
         XCTAssertTrue(FALSE);
     }
-    actualSize = 0;
-    actualSize = [decryptor startDecryptionWithPassword:password error:&error];
-    if (actualSize == 0 || error != nil) {
-        NSLog(@"Start chunk decryption error: %@", [error localizedDescription]);
-        XCTAssertTrue(FALSE);
-    }
-    
-    NSMutableData *decryptedData = [[NSMutableData alloc] init];
-    for (NSUInteger offset = 0; offset <= [encryptedData length] - 1; offset += actualSize) {
-        NSData *chunk = [NSData dataWithBytesNoCopy:(char *)[encryptedData bytes] + offset length:actualSize freeWhenDone:NO];
-        error = nil;
-        NSData *decryptedChunk = [decryptor processDataChunk:chunk error:&error];
-        if (decryptedChunk.length == 0 || error != nil) {
-            NSLog(@"Chunk decryption error: %@", [error localizedDescription]);
-            XCTAssertTrue(FALSE);
-        }
-        [decryptedData appendData:decryptedChunk];
-    }
+    NSInputStream *idecstream = [NSInputStream inputStreamWithData:encryptedData];
+    NSOutputStream *odecsctream = [NSOutputStream outputStreamToMemory];
     error = nil;
-    success = [decryptor finishWithError:&error];
-    if (!success || error != nil) {
-        NSLog(@"Error finalizing decryptor: %@", [error localizedDescription]);
+    // Decrypt data using password-based decryption
+    ti = [NSDate timeIntervalSinceReferenceDate];
+    [decryptor decryptFromStream:idecstream toStream:odecsctream password:password error:&error];
+    NSLog(@"Decryption password-based time: %.2f", [NSDate timeIntervalSinceReferenceDate] - ti);
+    if (error != nil) {
+        NSLog(@"Decryption error: %@", [error localizedDescription]);
         XCTAssertTrue(FALSE);
     }
-    XCTAssertTrue(decryptedData.length > 0, @"Decrypted data should not be empty.");
-    XCTAssertEqualObjects(self.toEncrypt, decryptedData, @"Initial data and decrypted data should be equal.");
+    NSData *plainData = (NSData *)[odecsctream propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
+    XCTAssertEqualObjects(plainData, self.toEncrypt, @"Initial data and decrypted data should be equal.");
 }
 
 - (NSData *)randomDataWithBytes:(NSUInteger)length {

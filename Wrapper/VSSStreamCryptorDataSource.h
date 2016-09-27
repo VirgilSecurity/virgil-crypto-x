@@ -7,7 +7,7 @@
 #define VIRGILCYPTO_VSSSTREAMCRYPTORDATASOURCE_H
 
 #import <Foundation/Foundation.h>
-#import <VirgilCrypto/virgil/crypto/VirgilStreamCipher.h>
+#import <VirgilCrypto/virgil/crypto/VirgilDataSource.h>
 
 using virgil::crypto::VirgilByteArray;
 

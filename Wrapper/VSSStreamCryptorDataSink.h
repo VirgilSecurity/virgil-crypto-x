@@ -7,7 +7,7 @@
 #define VIRGILCYPTO_VSSSTREAMCRYPTORDATASINK_H
 
 #import <Foundation/Foundation.h>
-#import <VirgilCrypto/virgil/crypto/VirgilStreamCipher.h>
+#import <VirgilCrypto/virgil/crypto/VirgilDataSink.h>
 
 
 class VSSStreamCryptorDataSink : public virgil::crypto::VirgilDataSink {
