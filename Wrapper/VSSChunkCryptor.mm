@@ -8,8 +8,6 @@
 
 #import "VSSChunkCryptor.h"
 #import "VSSBaseCryptor_Private.h"
-#import "VSSStreamCryptorDataSource.h"
-#import "VSSStreamCryptorDataSink.h"
 #import <VirgilCrypto/virgil/crypto/VirgilChunkCipher.h>
 
 using virgil::crypto::VirgilByteArray;
@@ -18,6 +16,113 @@ using virgil::crypto::VirgilDataSink;
 using virgil::crypto::VirgilDataSource;
 
 NSString *const kVSSChunkCryptorErrorDomain = @"VSSChunkCryptorErrorDomain";
+
+class VSSChunkCryptorDataSource : public VirgilDataSource {
+
+    NSInputStream *istream;
+public:
+    VSSChunkCryptorDataSource(NSInputStream *is);
+
+    ~VSSChunkCryptorDataSource();
+
+    bool hasData();
+
+    VirgilByteArray read();
+};
+
+VSSChunkCryptorDataSource::VSSChunkCryptorDataSource(NSInputStream *is) {
+    /// Assign pointer.
+    this->istream = is;
+    if ([this->istream streamStatus] == NSStreamStatusNotOpen) {
+        [this->istream open];
+    }
+}
+
+VSSChunkCryptorDataSource::~VSSChunkCryptorDataSource() {
+    /// Drop pointer.
+    [this->istream close];
+    this->istream = NULL;
+}
+
+bool VSSChunkCryptorDataSource::hasData() {
+    if (this->istream != NULL) {
+        NSStreamStatus st = [this->istream streamStatus];
+        if (st == NSStreamStatusNotOpen || st == NSStreamStatusError || st == NSStreamStatusClosed) {
+            return false;
+        }
+
+        if ([this->istream hasBytesAvailable]) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+VirgilByteArray VSSChunkCryptorDataSource::read() {
+    std::vector<unsigned char> buffer;
+    unsigned long desiredSize = 1024;
+    long actualSize = 0;
+
+    buffer.resize(desiredSize);
+    if (this->istream != NULL) {
+        actualSize = [this->istream read:buffer.data() maxLength:desiredSize];
+        if (actualSize < 0) {
+            actualSize = 0;
+        }
+    }
+    buffer.resize((unsigned long) actualSize);
+    buffer.shrink_to_fit();
+
+    return static_cast<VirgilByteArray>(buffer);
+}
+
+class VSSChunkCryptorDataSink : public VirgilDataSink {
+
+    NSOutputStream *ostream;
+public:
+    VSSChunkCryptorDataSink(NSOutputStream *os);
+
+    ~VSSChunkCryptorDataSink();
+    bool isGood();
+
+    void write(const VirgilByteArray& data);
+};
+
+VSSChunkCryptorDataSink::VSSChunkCryptorDataSink(NSOutputStream *os) {
+    /// Assign pointer.
+    this->ostream = os;
+    if ([this->ostream streamStatus] == NSStreamStatusNotOpen) {
+        [this->ostream open];
+    }
+}
+
+VSSChunkCryptorDataSink::~VSSChunkCryptorDataSink() {
+    /// Drop pointer.
+    [this->ostream close];
+    this->ostream = NULL;
+}
+
+bool VSSChunkCryptorDataSink::isGood() {
+    if (this->ostream != NULL) {
+        NSStreamStatus st = [this->ostream streamStatus];
+        if (st == NSStreamStatusNotOpen || st == NSStreamStatusError || st == NSStreamStatusClosed) {
+            return false;
+        }
+
+        if ([this->ostream hasSpaceAvailable]) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+void VSSChunkCryptorDataSink::write(const VirgilByteArray &data) {
+    if (this->ostream != NULL) {
+        [this->ostream write:data.data() maxLength:data.size()];
+    }
+}
 
 @implementation VSSChunkCryptor
 
@@ -60,8 +165,8 @@ NSString *const kVSSChunkCryptorErrorDomain = @"VSSChunkCryptorErrorDomain";
 
     try {
         if ([self cryptor] != NULL) {
-            VSSStreamCryptorDataSource src = VSSStreamCryptorDataSource(source);
-            VSSStreamCryptorDataSink dest = VSSStreamCryptorDataSink(destination);
+            VSSChunkCryptorDataSource src = VSSChunkCryptorDataSource(source);
+            VSSChunkCryptorDataSink dest = VSSChunkCryptorDataSink(destination);
             [self cryptor]->encrypt(src, dest, embedContentInfo, chunkSize);
 
             if (error) {
@@ -99,8 +204,8 @@ NSString *const kVSSChunkCryptorErrorDomain = @"VSSChunkCryptorErrorDomain";
 
     try {
         if ([self cryptor] != NULL) {
-            VSSStreamCryptorDataSource src = VSSStreamCryptorDataSource(source);
-            VSSStreamCryptorDataSink dest = VSSStreamCryptorDataSink(destination);
+            VSSChunkCryptorDataSource src = VSSChunkCryptorDataSource(source);
+            VSSChunkCryptorDataSink dest = VSSChunkCryptorDataSink(destination);
             std::string recId = std::string([recipientId UTF8String]);
             const unsigned char *pKey = static_cast<const unsigned char *>([privateKey bytes]);
             if (keyPassword.length == 0) {
@@ -146,8 +251,8 @@ NSString *const kVSSChunkCryptorErrorDomain = @"VSSChunkCryptorErrorDomain";
     BOOL success = NO;
     try {
         if ([self cryptor] != NULL) {
-            VSSStreamCryptorDataSource src = VSSStreamCryptorDataSource(source);
-            VSSStreamCryptorDataSink dest = VSSStreamCryptorDataSink(destination);
+            VSSChunkCryptorDataSource src = VSSChunkCryptorDataSource(source);
+            VSSChunkCryptorDataSink dest = VSSChunkCryptorDataSink(destination);
             std::string pwd = std::string([password UTF8String]);
             [self cryptor]->decryptWithPassword(src, dest, VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pwd.data(), pwd.size()));
             if (error) {

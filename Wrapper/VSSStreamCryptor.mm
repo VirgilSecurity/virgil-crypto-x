@@ -8,8 +8,6 @@
 
 #import "VSSStreamCryptor.h"
 #import "VSSBaseCryptor_Private.h"
-#include "VSSStreamCryptorDataSource.h"
-#include "VSSStreamCryptorDataSink.h"
 #import <VirgilCrypto/virgil/crypto/VirgilStreamCipher.h>
 #import <VirgilCrypto/virgil/crypto/VirgilDataSource.h>
 #import <VirgilCrypto/virgil/crypto/VirgilDataSink.h>
@@ -20,6 +18,113 @@ using virgil::crypto::VirgilDataSource;
 using virgil::crypto::VirgilDataSink;
 
 NSString *const kVSSStreamCryptorErrorDomain = @"VSSStreamCryptorErrorDomain";
+
+class VSSStreamCryptorDataSource : public ::virgil::crypto::VirgilDataSource {
+
+    NSInputStream *istream;
+public:
+    VSSStreamCryptorDataSource(NSInputStream *is);
+
+    ~VSSStreamCryptorDataSource();
+
+    bool hasData();
+
+    VirgilByteArray read();
+};
+
+VSSStreamCryptorDataSource::VSSStreamCryptorDataSource(NSInputStream *is) {
+    /// Assign pointer.
+    this->istream = is;
+    if ([this->istream streamStatus] == NSStreamStatusNotOpen) {
+        [this->istream open];
+    }
+}
+
+VSSStreamCryptorDataSource::~VSSStreamCryptorDataSource() {
+    /// Drop pointer.
+    [this->istream close];
+    this->istream = NULL;
+}
+
+bool VSSStreamCryptorDataSource::hasData() {
+    if (this->istream != NULL) {
+        NSStreamStatus st = [this->istream streamStatus];
+        if (st == NSStreamStatusNotOpen || st == NSStreamStatusError || st == NSStreamStatusClosed) {
+            return false;
+        }
+
+        if ([this->istream hasBytesAvailable]) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+VirgilByteArray VSSStreamCryptorDataSource::read() {
+    std::vector<unsigned char> buffer;
+    unsigned long desiredSize = 1024;
+    long actualSize = 0;
+
+    buffer.resize(desiredSize);
+    if (this->istream != NULL) {
+        actualSize = [this->istream read:buffer.data() maxLength:desiredSize];
+        if (actualSize < 0) {
+            actualSize = 0;
+        }
+    }
+    buffer.resize((unsigned long) actualSize);
+    buffer.shrink_to_fit();
+
+    return static_cast<VirgilByteArray>(buffer);
+}
+
+class VSSStreamCryptorDataSink : public virgil::crypto::VirgilDataSink {
+
+    NSOutputStream *ostream;
+public:
+    VSSStreamCryptorDataSink(NSOutputStream *os);
+
+    ~VSSStreamCryptorDataSink();
+    bool isGood();
+
+    void write(const VirgilByteArray& data);
+};
+
+VSSStreamCryptorDataSink::VSSStreamCryptorDataSink(NSOutputStream *os) {
+    /// Assign pointer.
+    this->ostream = os;
+    if ([this->ostream streamStatus] == NSStreamStatusNotOpen) {
+        [this->ostream open];
+    }
+}
+
+VSSStreamCryptorDataSink::~VSSStreamCryptorDataSink() {
+    /// Drop pointer.
+    [this->ostream close];
+    this->ostream = NULL;
+}
+
+bool VSSStreamCryptorDataSink::isGood() {
+    if (this->ostream != NULL) {
+        NSStreamStatus st = [this->ostream streamStatus];
+        if (st == NSStreamStatusNotOpen || st == NSStreamStatusError || st == NSStreamStatusClosed) {
+            return false;
+        }
+
+        if ([this->ostream hasSpaceAvailable]) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+void VSSStreamCryptorDataSink::write(const VirgilByteArray &data) {
+    if (this->ostream != NULL) {
+        [this->ostream write:data.data() maxLength:data.size()];
+    }
+}
 
 @interface VSSStreamCryptor ()
 
