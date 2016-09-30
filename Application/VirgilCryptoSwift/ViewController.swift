@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let version = VSSVirgilVersion()
+        let version = VSCVirgilVersion()
         print("Virgil Version: \(version.versionString())")
     }
 

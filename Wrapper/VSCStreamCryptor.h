@@ -1,12 +1,12 @@
 //
-//  VSSStreamCryptor.h
+//  VSCStreamCryptor.h
 //  VirgilCypto
 //
 //  Created by Pavel Gorb on 2/25/16.
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSBaseCryptor.h"
+#import "VSCBaseCryptor.h"
 
 /**
  * Error domain constant for the VSSStreamCryptor errors.
@@ -16,7 +16,7 @@ extern NSString * __nonnull const kVSSStreamCryptorErrorDomain;
 /**
  * Class for performing encryption/decryption using `NSInputStream` as a source of the data and `NSOutputStream` as a receiver.
  */
-@interface VSSStreamCryptor : VSSBaseCryptor
+@interface VSCStreamCryptor : VSCBaseCryptor
 
 ///---------------------------
 /// @name Encryption

@@ -1,5 +1,5 @@
 //
-//  VSSBaseCryptor.h
+//  VSCBaseCryptor.h
 //  VirgilCypto
 //
 //  Created by Pavel Gorb on 2/23/16.
@@ -18,7 +18,7 @@ extern NSString * __nonnull const kVSSBaseCryptorErrorDomain;
  * 
  * Contains utility functionality for adding/removing the recipients and content info management.
  */
-@interface VSSBaseCryptor : NSObject
+@interface VSCBaseCryptor : NSObject
 
 ///---------------------------
 /// @name Properties

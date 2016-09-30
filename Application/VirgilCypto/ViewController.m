@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "VSSVirgilVersion.h"
+#import "VSCVirgilVersion.h"
 
 @interface ViewController ()
 
@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    VSSVirgilVersion *version = [[VSSVirgilVersion alloc] init];
+    VSCVirgilVersion *version = [[VSCVirgilVersion alloc] init];
     NSLog(@"Virgil Version: %@", [version versionString]);
 }
 

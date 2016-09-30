@@ -1,5 +1,5 @@
 //
-//  VSSStreamSigner.h
+//  VSCStreamSigner.h
 //  VirgilCypto
 //
 //  Created by Pavel Gorb on 3/2/16.
@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "VSSFoundationCommons.h"
+#import "VSCFoundationCommons.h"
 
 /** 
  * Error domain constant for the `VSSStreamSigner` errors.
@@ -19,7 +19,7 @@ extern NSString * __nonnull const kVSSStreamSignerErrorDomain;
  * 
  * This wrapper works with `NSInputStream` instead of `NSData` objects.
  */
-@interface VSSStreamSigner : NSObject
+@interface VSCStreamSigner : NSObject
 
 ///------------------------
 /// @name Lifecycle

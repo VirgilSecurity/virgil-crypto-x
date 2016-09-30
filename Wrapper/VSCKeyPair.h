@@ -1,5 +1,5 @@
 //
-//  VSSKeyPair.h
+//  VSCKeyPair.h
 //  VirgilFoundation
 //
 //  Created by Pavel Gorb on 2/3/15.
@@ -16,7 +16,7 @@ extern NSString * __nonnull const kVSSKeyPairErrorDomain;
 /** 
  * Class for generating asymmetric key pairs using a number of alghorithms. 
  */
-@interface VSSKeyPair : NSObject
+@interface VSCKeyPair : NSObject
 
 ///---------------------------
 /// @name Lifecycle
@@ -34,7 +34,7 @@ extern NSString * __nonnull const kVSSKeyPairErrorDomain;
  *
  * @return instance of the `VSSKeyPair`.
  */
-+ (VSSKeyPair * __nonnull)ecNist192WithPassword:(NSString * __nullable)password;
++ (VSCKeyPair * __nonnull)ecNist192WithPassword:(NSString * __nullable)password;
 
 /** 
  * Generates key pair using 224-bits NIST curve with given password.
@@ -43,7 +43,7 @@ extern NSString * __nonnull const kVSSKeyPairErrorDomain;
  *
  * @return instance of the `VSSKeyPair`.
  */
-+ (VSSKeyPair * __nonnull)ecNist224WithPassword:(NSString * __nullable)password;
++ (VSCKeyPair * __nonnull)ecNist224WithPassword:(NSString * __nullable)password;
 
 /** 
  * Generates key pair using 256-bits NIST curve with given password.
@@ -52,7 +52,7 @@ extern NSString * __nonnull const kVSSKeyPairErrorDomain;
  *
  * @return instance of the `VSSKeyPair`.
  */
-+ (VSSKeyPair * __nonnull)ecNist256WithPassword:(NSString * __nullable)password;
++ (VSCKeyPair * __nonnull)ecNist256WithPassword:(NSString * __nullable)password;
 
 /** 
  * Generates key pair using 384-bits NIST curve with given password.
@@ -61,7 +61,7 @@ extern NSString * __nonnull const kVSSKeyPairErrorDomain;
  *
  * @return instance of the `VSSKeyPair` class.
  */
-+ (VSSKeyPair * __nonnull)ecNist384WithPassword:(NSString * __nullable)password;
++ (VSCKeyPair * __nonnull)ecNist384WithPassword:(NSString * __nullable)password;
 
 /** 
  * Generates key pair using 521-bits NIST curve with given password.
@@ -70,7 +70,7 @@ extern NSString * __nonnull const kVSSKeyPairErrorDomain;
  *
  * @return instance of the `VSSKeyPair`.
  */
-+ (VSSKeyPair * __nonnull)ecNist521WithPassword:(NSString * __nullable)password;
++ (VSCKeyPair * __nonnull)ecNist521WithPassword:(NSString * __nullable)password;
 
 /** 
  * Generates key pair using 256-bits Brainpool curve with given password.
@@ -79,7 +79,7 @@ extern NSString * __nonnull const kVSSKeyPairErrorDomain;
  *
  * @return instance of the `VSSKeyPair`.
  */
-+ (VSSKeyPair * __nonnull)ecBrainpool256WithPassword:(NSString * __nullable)password;
++ (VSCKeyPair * __nonnull)ecBrainpool256WithPassword:(NSString * __nullable)password;
 
 /** 
  * Generates key pair using 384-bits Brainpool curve with given password.
@@ -88,7 +88,7 @@ extern NSString * __nonnull const kVSSKeyPairErrorDomain;
  *
  * @return instance of the `VSSKeyPair`.
  */
-+ (VSSKeyPair * __nonnull)ecBrainpool384WithPassword:(NSString * __nullable)password;
++ (VSCKeyPair * __nonnull)ecBrainpool384WithPassword:(NSString * __nullable)password;
 
 /** 
  * Generates key pair using 512-bits Brainpool curve with given password.
@@ -97,7 +97,7 @@ extern NSString * __nonnull const kVSSKeyPairErrorDomain;
  *
  * @return instance of the `VSSKeyPair`.
  */
-+ (VSSKeyPair * __nonnull)ecBrainpool512WithPassword:(NSString * __nullable)password;
++ (VSCKeyPair * __nonnull)ecBrainpool512WithPassword:(NSString * __nullable)password;
 
 /** 
  * Generates key pair using 192-bits "Koblitz" curve with given password.
@@ -106,7 +106,7 @@ extern NSString * __nonnull const kVSSKeyPairErrorDomain;
  *
  * @return instance of the `VSSKeyPair`.
  */
-+ (VSSKeyPair * __nonnull)ecKoblitz192WithPassword:(NSString * __nullable)password;
++ (VSCKeyPair * __nonnull)ecKoblitz192WithPassword:(NSString * __nullable)password;
 
 /** 
  * Generates key pair using 224-bits "Koblitz" curve with given password.
@@ -115,7 +115,7 @@ extern NSString * __nonnull const kVSSKeyPairErrorDomain;
  *
  * @return instance of the `VSSKeyPair`.
  */
-+ (VSSKeyPair * __nonnull)ecKoblitz224WithPassword:(NSString * __nullable)password;
++ (VSCKeyPair * __nonnull)ecKoblitz224WithPassword:(NSString * __nullable)password;
 
 /** 
  * Generates key pair using 256-bits "Koblitz" curve with given password.
@@ -124,7 +124,7 @@ extern NSString * __nonnull const kVSSKeyPairErrorDomain;
  *
  * @return instance of the `VSSKeyPair`.
  */
-+ (VSSKeyPair * __nonnull)ecKoblitz256WithPassword:(NSString * __nullable)password;
++ (VSCKeyPair * __nonnull)ecKoblitz256WithPassword:(NSString * __nullable)password;
 
 /** 
  * Generates key pair using RSA 256-bits with given password.
@@ -133,7 +133,7 @@ extern NSString * __nonnull const kVSSKeyPairErrorDomain;
  *
  * @return instance of the `VSSKeyPair`.
  */
-+ (VSSKeyPair * __nonnull)rsa256WithPassword:(NSString * __nullable)password;
++ (VSCKeyPair * __nonnull)rsa256WithPassword:(NSString * __nullable)password;
 
 /** 
  * Generates key pair using RSA 512-bits with given password.
@@ -142,7 +142,7 @@ extern NSString * __nonnull const kVSSKeyPairErrorDomain;
  *
  * @return instance of the `VSSKeyPair`.
  */
-+ (VSSKeyPair * __nonnull)rsa512WithPassword:(NSString * __nullable)password;
++ (VSCKeyPair * __nonnull)rsa512WithPassword:(NSString * __nullable)password;
 
 /** Generates key pair using RSA 1024-bits with given password.
  *
@@ -150,7 +150,7 @@ extern NSString * __nonnull const kVSSKeyPairErrorDomain;
  *
  * @return instance of the `VSSKeyPair`.
  */
-+ (VSSKeyPair * __nonnull)rsa1024WithPassword:(NSString * __nullable)password;
++ (VSCKeyPair * __nonnull)rsa1024WithPassword:(NSString * __nullable)password;
 
 /** 
  * Generates key pair using RSA 2048-bits with given password.
@@ -159,7 +159,7 @@ extern NSString * __nonnull const kVSSKeyPairErrorDomain;
  *
  * @return instance of the VSSKeyPair.
  */
-+ (VSSKeyPair * __nonnull)rsa2048WithPassword:(NSString * __nullable)password;
++ (VSCKeyPair * __nonnull)rsa2048WithPassword:(NSString * __nullable)password;
 
 /** 
  * Generates key pair using RSA 4096-bits with given password.
@@ -168,7 +168,7 @@ extern NSString * __nonnull const kVSSKeyPairErrorDomain;
  *
  * @return instance of the VSSKeyPair.
  */
-+ (VSSKeyPair * __nonnull)rsa4096WithPassword:(NSString * __nullable)password;
++ (VSCKeyPair * __nonnull)rsa4096WithPassword:(NSString * __nullable)password;
 
 /** 
  * Generates key pair using curve 25519 with given password. Similar to `m255WithPassword:`
@@ -177,7 +177,7 @@ extern NSString * __nonnull const kVSSKeyPairErrorDomain;
  *
  * @return instance of the `VSSKeyPair`.
  */
-+ (VSSKeyPair * __nonnull)curve25519WithPassword:(NSString * __nullable)password;
++ (VSCKeyPair * __nonnull)curve25519WithPassword:(NSString * __nullable)password;
 
 ///---------------------------
 /// @name Obtaining the key data

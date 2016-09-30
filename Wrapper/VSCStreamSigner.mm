@@ -1,5 +1,5 @@
 //
-//  VSSStreamSigner.m
+//  VSCStreamSigner.m
 //  VirgilCypto
 //
 //  Created by Pavel Gorb on 3/2/16.
@@ -12,7 +12,7 @@
 # undef verify
 #endif
 
-#import "VSSStreamSigner.h"
+#import "VSCStreamSigner.h"
 #import <VirgilCrypto/virgil/crypto/VirgilByteArray.h>
 #import <VirgilCrypto/virgil/crypto/VirgilStreamSigner.h>
 #import <VirgilCrypto/virgil/crypto/foundation/VirgilHash.h>
@@ -89,13 +89,13 @@ VirgilByteArray VirgilStreamSignerDataSource::read() {
 
 #pragma mark -
 
-@interface VSSStreamSigner ()
+@interface VSCStreamSigner ()
 
 @property (nonatomic, assign) VirgilStreamSigner *signer;
 
 @end
 
-@implementation VSSStreamSigner
+@implementation VSCStreamSigner
 
 @synthesize signer = _signer;
 

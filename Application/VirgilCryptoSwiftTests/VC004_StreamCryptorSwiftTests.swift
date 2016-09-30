@@ -26,18 +26,18 @@ class VC004_StreamCryptorSwiftTests: XCTestCase {
     }
 
     func test001_createCryptor() {
-        let cryptor = VSSStreamCryptor()
+        let cryptor = VSCStreamCryptor()
         XCTAssertNotNil(cryptor, "VSSStreamCryptor instance should be created.");
     }
     
     func test002_keyBasedEncryptDecrypt() {
         // Generate a new key pair
-        let keyPair = VSSKeyPair()
+        let keyPair = VSCKeyPair()
         // Generate a public key id
         let recipientId = UUID().uuidString
         // Encrypt:
         // Create a cryptor instance
-        let cryptor = VSSStreamCryptor()
+        let cryptor = VSCStreamCryptor()
         // Add a key recepient to enable key-based encryption
         do {
             try cryptor.addKeyRecipient(recipientId, publicKey: keyPair.publicKey(), error: ())
@@ -61,7 +61,7 @@ class VC004_StreamCryptorSwiftTests: XCTestCase {
 
         // Decrypt:
         // Create a completely new instance of the VCCryptor object
-        let decryptor = VSSStreamCryptor()
+        let decryptor = VSCStreamCryptor()
         
         let dis = InputStream(data: encryptedData)
         let dos = OutputStream(toMemory: ())
@@ -80,7 +80,7 @@ class VC004_StreamCryptorSwiftTests: XCTestCase {
         // Encrypt:
         let password = "secret"
         // Create a cryptor instance
-        let cryptor = VSSStreamCryptor()
+        let cryptor = VSCStreamCryptor()
         // Add a password recepient to enable password-based encryption
         do {
             try cryptor.addPasswordRecipient(password, error: ())
@@ -111,7 +111,7 @@ class VC004_StreamCryptorSwiftTests: XCTestCase {
         XCTAssertTrue(contentInfo.count > 0, "Content Info should contain necessary information.");
         // Decrypt:
         // Create a completely new instance of the VCCryptor object
-        let decryptor = VSSStreamCryptor()
+        let decryptor = VSCStreamCryptor()
         do {
             try decryptor.setContentInfo(contentInfo, error: ())
         }

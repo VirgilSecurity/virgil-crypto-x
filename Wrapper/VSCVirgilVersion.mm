@@ -1,23 +1,23 @@
 //
-//  VSSVirgilVersion.mm
+//  VSCVirgilVersion.mm
 //  VirgilFoundation
 //
 //  Created by Pavel Gorb on 2/3/15.
 //  Copyright (c) 2015 VirgilSecurity, Inc. All rights reserved.
 //
 
-#import "VSSVirgilVersion.h"
+#import "VSCVirgilVersion.h"
 #import <VirgilCrypto/virgil/crypto/VirgilVersion.h>
 
 using virgil::crypto::VirgilVersion;
 
-@interface VSSVirgilVersion ()
+@interface VSCVirgilVersion ()
 
 @property(nonatomic, assign) VirgilVersion *frameworkVersion;
 
 @end
 
-@implementation VSSVirgilVersion
+@implementation VSCVirgilVersion
 
 @synthesize frameworkVersion = _frameworkVersion;
 

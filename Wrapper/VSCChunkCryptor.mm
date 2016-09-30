@@ -1,13 +1,13 @@
 //
-//  VSSChunkCryptor.m
+//  VSCChunkCryptor.m
 //  VirgilCypto
 //
 //  Created by Pavel Gorb on 3/1/16.
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSChunkCryptor.h"
-#import "VSSBaseCryptor_Private.h"
+#import "VSCChunkCryptor.h"
+#import "VSCBaseCryptor_Private.h"
 #import <VirgilCrypto/virgil/crypto/VirgilChunkCipher.h>
 
 using virgil::crypto::VirgilByteArray;
@@ -124,7 +124,7 @@ void VSSChunkCryptorDataSink::write(const VirgilByteArray &data) {
     }
 }
 
-@implementation VSSChunkCryptor
+@implementation VSCChunkCryptor
 
 - (void)initializeCryptor {
     if (self.llCryptor != NULL) {

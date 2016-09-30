@@ -1,13 +1,13 @@
 //
-//  VSSStreamCryptor.m
+//  VSCStreamCryptor.m
 //  VirgilCypto
 //
 //  Created by Pavel Gorb on 2/25/16.
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSStreamCryptor.h"
-#import "VSSBaseCryptor_Private.h"
+#import "VSCStreamCryptor.h"
+#import "VSCBaseCryptor_Private.h"
 #import <VirgilCrypto/virgil/crypto/VirgilStreamCipher.h>
 #import <VirgilCrypto/virgil/crypto/VirgilDataSource.h>
 #import <VirgilCrypto/virgil/crypto/VirgilDataSink.h>
@@ -126,11 +126,11 @@ void VSSStreamCryptorDataSink::write(const VirgilByteArray &data) {
     }
 }
 
-@interface VSSStreamCryptor ()
+@interface VSCStreamCryptor ()
 
 @end
 
-@implementation VSSStreamCryptor
+@implementation VSCStreamCryptor
 
 - (void)initializeCryptor {
     if (self.llCryptor != NULL) {

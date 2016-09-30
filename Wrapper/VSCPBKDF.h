@@ -1,5 +1,5 @@
 //
-//  VSSPBKDF.h
+//  VSCPBKDF.h
 //  VirgilCypto
 //
 //  Created by Pavel Gorb on 4/26/16.
@@ -56,7 +56,7 @@ typedef NS_ENUM(NSInteger, VSSPBKDFHash) {
 /** 
  * Wrapper object for the key derivation functionality. 
  */
-@interface VSSPBKDF : NSObject
+@interface VSCPBKDF : NSObject
 
 /** 
  * Data containing the salt for key derivation. 

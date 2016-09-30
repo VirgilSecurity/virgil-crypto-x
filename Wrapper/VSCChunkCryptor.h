@@ -1,12 +1,12 @@
 //
-//  VSSChunkCryptor.h
+//  VSCChunkCryptor.h
 //  VirgilCypto
 //
 //  Created by Pavel Gorb on 3/1/16.
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSBaseCryptor.h"
+#import "VSCBaseCryptor.h"
 
 /** 
  * Error domain constant for the VSSChunkCryptor errors.
@@ -16,7 +16,7 @@ extern NSString * __nonnull const kVSSChunkCryptorErrorDomain;
 /**
  * Class for performing encryption/decryption of relatively small parts of data.
  */
-@interface VSSChunkCryptor : VSSBaseCryptor
+@interface VSCChunkCryptor : VSCBaseCryptor
 
 - (void)encryptDataFromStream:(NSInputStream * __nonnull)source toStream:(NSOutputStream * __nonnull)destination preferredChunkSize:(size_t)chunkSize embedContentInfo:(BOOL)embedContentInfo error:(NSError * __nullable * __nullable)error;
 

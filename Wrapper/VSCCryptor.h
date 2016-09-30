@@ -1,5 +1,5 @@
 //
-//  VSSCryptor.h
+//  VSCCryptor.h
 //  VirgilFoundation
 //
 //  Created by Pavel Gorb on 2/3/15.
@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "VSSBaseCryptor.h"
+#import "VSCBaseCryptor.h"
 
 /**
  * Error domain constant for the VSSCryptor errors.
@@ -17,7 +17,7 @@ extern NSString * __nonnull const kVSSCryptorErrorDomain;
 /**
  * Class for encryption/decryption functionality.
  */
-@interface VSSCryptor : VSSBaseCryptor
+@interface VSCCryptor : VSCBaseCryptor
 
 ///---------------------------
 /// @name Encryption

@@ -6,7 +6,7 @@
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSFoundationCommons.h"
+#import "VSCFoundationCommons.h"
 
 NSString* const kHashNameMD5 = @"md5";
 NSString* const kHashNameSHA256 = @"sha256";

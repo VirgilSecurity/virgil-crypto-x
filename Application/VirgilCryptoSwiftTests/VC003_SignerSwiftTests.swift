@@ -26,17 +26,17 @@ class VC003_SignerSwiftTests: XCTestCase {
     }
     
     func test001_createSigner() {
-        let signer = VSSSigner()
+        let signer = VSCSigner()
         XCTAssertNotNil(signer, "VCSigner instance should be created.");
     }
     
     func test002_composeAndVerifySignature() {
         // Generate a new key pair
-        let keyPair = VSSKeyPair()
+        let keyPair = VSCKeyPair()
     
         // Compose signature:
         // Create the signer
-        let signer = VSSSigner()
+        let signer = VSCSigner()
         // Compose the signature
         var signature = Data()
         do {
@@ -46,7 +46,7 @@ class VC003_SignerSwiftTests: XCTestCase {
             XCTFail("Error composing the signature: \(error.localizedDescription)")
         }
         
-        let verifier = VSSSigner()
+        let verifier = VSCSigner()
         do {
             try verifier.verifySignature(signature, data: self.toSign, publicKey: keyPair.publicKey(), error: ())
         }

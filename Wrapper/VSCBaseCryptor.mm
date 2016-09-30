@@ -1,13 +1,13 @@
 //
-//  VSSBaseCryptor.m
+//  VSCBaseCryptor.m
 //  VirgilCypto
 //
 //  Created by Pavel Gorb on 2/23/16.
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSBaseCryptor.h"
-#import "VSSBaseCryptor_Private.h"
+#import "VSCBaseCryptor.h"
+#import "VSCBaseCryptor_Private.h"
 #import <VirgilCrypto/virgil/crypto/VirgilCipherBase.h>
 
 using virgil::crypto::VirgilByteArray;
@@ -15,13 +15,13 @@ using virgil::crypto::VirgilCipherBase;
 
 NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
 
-@interface VSSBaseCryptor ()
+@interface VSCBaseCryptor ()
 
 - (VirgilCipherBase *)cryptor;
 
 @end
 
-@implementation VSSBaseCryptor
+@implementation VSCBaseCryptor
 
 @synthesize llCryptor = _llCryptor;
 

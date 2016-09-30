@@ -1,5 +1,5 @@
 //
-//  VSSVirgilVersion.h
+//  VSCVirgilVersion.h
 //  VirgilFoundation
 //
 //  Created by Pavel Gorb on 2/3/15.
@@ -18,7 +18,7 @@
  * This is utility class which might come in handy when some bugs are observed and it is
  * crucial to know exact versions of every single component used in the application.
  */
-@interface VSSVirgilVersion : NSObject
+@interface VSCVirgilVersion : NSObject
 
 ///-------------------------
 /// @name Version

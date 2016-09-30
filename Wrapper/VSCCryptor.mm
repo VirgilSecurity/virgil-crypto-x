@@ -1,13 +1,13 @@
 //
-//  VSSCryptor.mm
+//  VSCCryptor.mm
 //  VirgilFoundation
 //
 //  Created by Pavel Gorb on 2/3/15.
 //  Copyright (c) 2015 VirgilSecurity, Inc. All rights reserved.
 //
 
-#import "VSSCryptor.h"
-#import "VSSBaseCryptor_Private.h"
+#import "VSCCryptor.h"
+#import "VSCBaseCryptor_Private.h"
 #import <VirgilCrypto/virgil/crypto/VirgilCipher.h>
 
 using virgil::crypto::VirgilByteArray;
@@ -15,13 +15,13 @@ using virgil::crypto::VirgilCipher;
 
 NSString *const kVSSCryptorErrorDomain = @"VSSCryptorErrorDomain";
 
-@interface VSSCryptor ()
+@interface VSCCryptor ()
 
 - (VirgilCipher *)cryptor;
 
 @end
 
-@implementation VSSCryptor
+@implementation VSCCryptor
 
 #pragma mark - Lifecycle
 

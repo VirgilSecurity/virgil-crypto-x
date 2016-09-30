@@ -6,9 +6,9 @@
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSBaseCryptor.h"
+#import "VSCBaseCryptor.h"
 
-@interface VSSBaseCryptor ()
+@interface VSCBaseCryptor ()
 
 /** 
  * This property is supposed to be used by subclasses.

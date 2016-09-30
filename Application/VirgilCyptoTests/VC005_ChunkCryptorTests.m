@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
 
-#import "VSSChunkCryptor.h"
-#import "VSSKeyPair.h"
+#import "VSCChunkCryptor.h"
+#import "VSCKeyPair.h"
 
 static const NSUInteger kPlainDataLength = 5120;
 static const NSUInteger kDesiredDataChunkLength = 1024;
@@ -40,19 +40,19 @@ static const NSUInteger kDesiredDataChunkLength = 1024;
 }
 
 - (void)test001_createStreamCryptor {
-    VSSChunkCryptor *cryptor = [[VSSChunkCryptor alloc] init];
-    XCTAssertNotNil(cryptor, @"VSSChunkCryptor instance should be created.");
+    VSCChunkCryptor *cryptor = [[VSCChunkCryptor alloc] init];
+    XCTAssertNotNil(cryptor, @"VSCChunkCryptor instance should be created.");
 }
 
 - (void)test002_keyBasedEncryptDecrypt {
     // Encrypt:
     // Generate a new key pair
     NSError *error = nil;
-    VSSKeyPair *keyPair = [[VSSKeyPair alloc] init];
+    VSCKeyPair *keyPair = [[VSCKeyPair alloc] init];
     // Generate a recepient id
     NSString *recipientId = [[[NSUUID UUID] UUIDString] lowercaseString];
     // Create a cryptor instance
-    VSSChunkCryptor *cryptor = [[VSSChunkCryptor alloc] init];
+    VSCChunkCryptor *cryptor = [[VSCChunkCryptor alloc] init];
     // Add a key recepient to enable key-based encryption
     [cryptor addKeyRecipient:recipientId publicKey:keyPair.publicKey error:&error];
     if (error != nil) {
@@ -75,7 +75,7 @@ static const NSUInteger kDesiredDataChunkLength = 1024;
 
     // Decrypt:
     // Create a completely new instance of the VCCryptor object
-    VSSChunkCryptor *decryptor = [[VSSChunkCryptor alloc] init];
+    VSCChunkCryptor *decryptor = [[VSCChunkCryptor alloc] init];
     NSInputStream *idecstream = [NSInputStream inputStreamWithData:encryptedData];
     NSOutputStream *odecsctream = [NSOutputStream outputStreamToMemory];
 
@@ -97,7 +97,7 @@ static const NSUInteger kDesiredDataChunkLength = 1024;
     NSError *error = nil;
     NSString *password = @"secret";
     // Create a cryptor instance
-    VSSChunkCryptor *cryptor = [[VSSChunkCryptor alloc] init];
+    VSCChunkCryptor *cryptor = [[VSCChunkCryptor alloc] init];
     // Add a password recepient to enable password-based encryption
     [cryptor addPasswordRecipient:password error:&error];
     if (error != nil) {
@@ -125,7 +125,7 @@ static const NSUInteger kDesiredDataChunkLength = 1024;
     
     // Decrypt:
     // Create a completely new instance of the VCCryptor object
-    VSSChunkCryptor *decryptor = [[VSSChunkCryptor alloc] init];
+    VSCChunkCryptor *decryptor = [[VSCChunkCryptor alloc] init];
     error = nil;
     [decryptor setContentInfo:contentInfo error:&error];
     if (error != nil) {

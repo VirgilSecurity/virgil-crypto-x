@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
 
-#import "VSSStreamCryptor.h"
-#import "VSSKeyPair.h"
+#import "VSCStreamCryptor.h"
+#import "VSCKeyPair.h"
 
 @interface VC004_StreamCryptorTests : XCTestCase
 
@@ -35,19 +35,19 @@
 }
 
 - (void)test001_createStreamCryptor {
-    VSSStreamCryptor *cryptor = [[VSSStreamCryptor alloc] init];
-    XCTAssertNotNil(cryptor, @"VSSStreamCryptor instance should be created.");
+    VSCStreamCryptor *cryptor = [[VSCStreamCryptor alloc] init];
+    XCTAssertNotNil(cryptor, @"VSCStreamCryptor instance should be created.");
 }
 
 - (void)test002_keyBasedEncryptDecrypt {
     // Encrypt:
     // Generate a new key pair
     NSError *error = nil;
-    VSSKeyPair *keyPair = [[VSSKeyPair alloc] init];
+    VSCKeyPair *keyPair = [[VSCKeyPair alloc] init];
     // Generate a recepient id
     NSString *recipientId = [[[NSUUID UUID] UUIDString] lowercaseString];
     // Create a cryptor instance
-    VSSStreamCryptor *cryptor = [[VSSStreamCryptor alloc] init];
+    VSCStreamCryptor *cryptor = [[VSCStreamCryptor alloc] init];
     // Add a key recepient to enable key-based encryption
     BOOL success = [cryptor addKeyRecipient:recipientId publicKey:keyPair.publicKey error:&error];
     if (!success || error != nil) {
@@ -70,7 +70,7 @@
     
     // Decrypt:
     // Create a completely new instance of the VCCryptor object
-    VSSStreamCryptor *decryptor = [[VSSStreamCryptor alloc] init];
+    VSCStreamCryptor *decryptor = [[VSCStreamCryptor alloc] init];
     NSInputStream *idecstream = [NSInputStream inputStreamWithData:encryptedData];
     NSOutputStream *odecsctream = [NSOutputStream outputStreamToMemory];
     
@@ -92,7 +92,7 @@
     NSError *error = nil;
     NSString *password = @"secret";
     // Create a cryptor instance
-    VSSStreamCryptor *cryptor = [[VSSStreamCryptor alloc] init];
+    VSCStreamCryptor *cryptor = [[VSCStreamCryptor alloc] init];
     // Add a password recepient to enable password-based encryption
     BOOL success = [cryptor addPasswordRecipient:password error:&error];
     if (!success || error != nil) {
@@ -120,7 +120,7 @@
     
     // Decrypt:
     // Create a completely new instance of the VCCryptor object
-    VSSStreamCryptor *decryptor = [[VSSStreamCryptor alloc] init];
+    VSCStreamCryptor *decryptor = [[VSCStreamCryptor alloc] init];
     error = nil;
     success = [decryptor setContentInfo:contentInfo error:&error];
     if (!success || error != nil) {

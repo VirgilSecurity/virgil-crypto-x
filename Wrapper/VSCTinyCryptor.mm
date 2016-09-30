@@ -1,26 +1,26 @@
 //
-//  VSSTinyCryptor.m
+//  VSCTinyCryptor.m
 //  VirgilCypto
 //
 //  Created by Pavel Gorb on 7/12/16.
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSTinyCryptor.h"
+#import "VSCTinyCryptor.h"
 #import <VirgilCrypto/virgil/crypto/VirgilTinyCipher.h>
 
 using namespace virgil::crypto;
 
 NSString * const kVSSTinyCryptorErrorDomain = @"TinyCryptorErrorDomain";
 
-@interface VSSTinyCryptor ()
+@interface VSCTinyCryptor ()
 
 @property (nonatomic, assign, readwrite) size_t packageSize;
 @property (nonatomic, assign) VirgilTinyCipher *tinyCipher;
 
 @end
 
-@implementation VSSTinyCryptor
+@implementation VSCTinyCryptor
 
 @synthesize packageSize = _packageSize;
 @synthesize tinyCipher = _tinyCipher;

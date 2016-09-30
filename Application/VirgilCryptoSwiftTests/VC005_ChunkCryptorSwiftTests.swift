@@ -28,18 +28,18 @@ class VC005_ChunkCryptorSwiftTests: XCTestCase {
     }
     
     func test001_createCryptor() {
-        let cryptor = VSSChunkCryptor()
+        let cryptor = VSCChunkCryptor()
         XCTAssertNotNil(cryptor, "VSSChunkCryptor instance should be created.");
     }
     
     func test002_keyBasedEncryptDecrypt() {
         // Generate a new key pair
-        let keyPair = VSSKeyPair()
+        let keyPair = VSCKeyPair()
         // Generate a public key id
         let recipientId = UUID().uuidString
         // Encrypt:
         // Create a cryptor instance
-        let cryptor = VSSChunkCryptor()
+        let cryptor = VSCChunkCryptor()
         // Add a key recepient to enable key-based encryption
         do {
             try cryptor.addKeyRecipient(recipientId, publicKey: keyPair.publicKey(), error: ())
@@ -92,7 +92,7 @@ class VC005_ChunkCryptorSwiftTests: XCTestCase {
         }
         XCTAssertTrue(contentInfo.count > 0, "Content Info should contain necessary information.");
         
-        let decryptor = VSSChunkCryptor()
+        let decryptor = VSCChunkCryptor()
         
         do {
             try decryptor.setContentInfo(contentInfo, error: ())
@@ -138,7 +138,7 @@ class VC005_ChunkCryptorSwiftTests: XCTestCase {
         let password = "secret"
         // Encrypt:
         // Create a cryptor instance
-        let cryptor = VSSChunkCryptor()
+        let cryptor = VSCChunkCryptor()
         // Add a key recepient to enable key-based encryption
         do {
             try cryptor.addPasswordRecipient(password, error: ())
@@ -189,7 +189,7 @@ class VC005_ChunkCryptorSwiftTests: XCTestCase {
         }
         XCTAssertTrue(contentInfo.count > 0, "Content Info should contain necessary information.");
         
-        let decryptor = VSSChunkCryptor()
+        let decryptor = VSCChunkCryptor()
         
         do {
             try decryptor.setContentInfo(contentInfo, error: ())

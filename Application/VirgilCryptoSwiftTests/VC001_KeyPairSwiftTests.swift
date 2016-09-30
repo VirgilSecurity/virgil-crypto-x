@@ -12,7 +12,7 @@ import XCTest
 class VC001_KeyPairSwiftTests: XCTestCase {
     
     func test001_createKeyPair() {
-        let keyPair = VSSKeyPair()
+        let keyPair = VSCKeyPair()
         XCTAssertTrue(keyPair.publicKey().count > 0, "Public key should have actual content.");
         XCTAssertTrue(keyPair.privateKey().count > 0, "Private key should have actual content.");
         
@@ -24,7 +24,7 @@ class VC001_KeyPairSwiftTests: XCTestCase {
     
     func test002_createKeyPairWithPassword() {
 //        let password = "secret"
-//        let keyPair = VSSKeyPair(password: password)
+//        let keyPair = VSCKeyPair(password: password)
 //        XCTAssertTrue(keyPair.publicKey().count > 0, "Public key should be generated for the new key pair.");
 //        XCTAssertTrue(keyPair.privateKey().count > 0, "Private key should be generated for the new key pair.");
 //    

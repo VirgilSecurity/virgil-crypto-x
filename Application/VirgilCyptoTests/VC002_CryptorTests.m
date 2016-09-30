@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
 
-#import "VSSCryptor.h"
-#import "VSSKeyPair.h"
+#import "VSCCryptor.h"
+#import "VSCKeyPair.h"
 
 @interface VC002_CryptorTests : XCTestCase
 
@@ -35,18 +35,18 @@
 }
 
 - (void)test001_createCryptor {
-    VSSCryptor *cryptor = [[VSSCryptor alloc] init];
-    XCTAssertNotNil(cryptor, @"VSSCryptor instance should be created.");
+    VSCCryptor *cryptor = [[VSCCryptor alloc] init];
+    XCTAssertNotNil(cryptor, @"VSCCryptor instance should be created.");
 }
 
 - (void)test002_keyBasedEncryptDecrypt {
     // Encrypt:
     // Generate a new key pair
-    VSSKeyPair *keyPair = [[VSSKeyPair alloc] init];
+    VSCKeyPair *keyPair = [[VSCKeyPair alloc] init];
     // Generate a public key id
     NSString *publicKeyId = [[[NSUUID UUID] UUIDString] lowercaseString];
     // Create a cryptor instance
-    VSSCryptor *cryptor = [[VSSCryptor alloc] init];
+    VSCCryptor *cryptor = [[VSCCryptor alloc] init];
     // Add a key recepient to enable key-based encryption
     NSError *error = nil;
     BOOL success = [cryptor addKeyRecipient:publicKeyId publicKey:keyPair.publicKey error:&error];
@@ -63,7 +63,7 @@
     }
     // Decrypt:
     // Create a completely new instance of the VCCryptor object
-    VSSCryptor *decryptor = [[VSSCryptor alloc] init];
+    VSCCryptor *decryptor = [[VSCCryptor alloc] init];
     // Decrypt data using key-based decryption
     error = nil;
     ti = [NSDate timeIntervalSinceReferenceDate];
@@ -79,7 +79,7 @@
     // Encrypt:
     NSString *password = @"secret";
     // Create a cryptor instance
-    VSSCryptor *cryptor = [[VSSCryptor alloc] init];
+    VSCCryptor *cryptor = [[VSCCryptor alloc] init];
     // Add a password recepient to enable password-based encryption
     NSError *error = nil;
     BOOL success = [cryptor addPasswordRecipient:password error:&error];
@@ -101,7 +101,7 @@
     }
     // Decrypt:
     // Create a completely new instance of the VCCryptor object
-    VSSCryptor *decryptor = [[VSSCryptor alloc] init];
+    VSCCryptor *decryptor = [[VSCCryptor alloc] init];
     // Decrypt data using password-based decryption
     error = nil;
     success = [decryptor setContentInfo:contentInfo error:&error];

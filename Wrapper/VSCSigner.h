@@ -1,5 +1,5 @@
 //
-//  VSSSigner.h
+//  VSCSigner.h
 //  VirgilFoundation
 //
 //  Created by Pavel Gorb on 2/3/15.
@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "VSSFoundationCommons.h"
+#import "VSCFoundationCommons.h"
 
 /** 
  * Error domain constant for the `VSSSigner` errors.
@@ -17,7 +17,7 @@ extern NSString * __nonnull const kVSSSignerErrorDomain;
 /** 
  * Wrapper for the functionality of composing/verifying signatures.
  */
-@interface VSSSigner : NSObject
+@interface VSCSigner : NSObject
 
 ///---------------------------
 /// @name Lifecycle

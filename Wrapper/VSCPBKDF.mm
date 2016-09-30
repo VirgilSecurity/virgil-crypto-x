@@ -1,12 +1,12 @@
 //
-//  VSSPBKDF.m
+//  VSCPBKDF.m
 //  VirgilCypto
 //
 //  Created by Pavel Gorb on 4/26/16.
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSPBKDF.h"
+#import "VSCPBKDF.h"
 #import <Security/Security.h>
 #import <CommonCrypto/CommonCrypto.h>
 
@@ -21,13 +21,13 @@ using virgil::crypto::foundation::VirgilHash;
 const size_t kVSSDefaultRandomBytesSize = 64;
 NSString *const kVSSPBKDFErrorDomain = @"VSSPBKDFErrorDomain";
 
-@interface VSSPBKDF ()
+@interface VSCPBKDF ()
 
 @property (nonatomic, assign) VirgilPBKDF *pbkdf;
 
 @end
 
-@implementation VSSPBKDF
+@implementation VSCPBKDF
 
 @dynamic salt;
 @dynamic iterations;

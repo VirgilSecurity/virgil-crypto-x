@@ -1,5 +1,5 @@
 //
-//  VSSSigner.mm
+//  VSCSigner.mm
 //  VirgilFoundation
 //
 //  Created by Pavel Gorb on 2/3/15.
@@ -12,7 +12,7 @@
 # undef verify
 #endif
 
-#import "VSSSigner.h"
+#import "VSCSigner.h"
 #import <VirgilCrypto/virgil/crypto/VirgilByteArray.h>
 #import <VirgilCrypto/virgil/crypto/VirgilSigner.h>
 #import <VirgilCrypto/virgil/crypto/foundation/VirgilHash.h>
@@ -23,13 +23,13 @@ using virgil::crypto::foundation::VirgilHash;
 
 NSString *const kVSSSignerErrorDomain = @"VSSSignerErrorDomain";
 
-@interface VSSSigner ()
+@interface VSCSigner ()
 
 @property (nonatomic, assign) VirgilSigner *signer;
 
 @end
 
-@implementation VSSSigner
+@implementation VSCSigner
 
 @synthesize signer = _signer;
 

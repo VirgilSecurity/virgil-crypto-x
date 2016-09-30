@@ -11,7 +11,7 @@ import XCTest
 class VC007_PBKDFTests: XCTestCase {
 
     func test001_createPBKDF() {
-        let pbkdf = VSSPBKDF(salt: nil, iterations: 0)
+        let pbkdf = VSCPBKDF(salt: nil, iterations: 0)
      
         XCTAssertNotNil(pbkdf, "VSSPBKDF instance should be created.")
         
@@ -33,9 +33,9 @@ class VC007_PBKDFTests: XCTestCase {
         let password = "secret"
         let keySize: size_t = 64
         
-        let salt = VSSPBKDF.randomBytes(ofSize: 0)
+        let salt = VSCPBKDF.randomBytes(ofSize: 0)
         
-        let pbkdf_a = VSSPBKDF(salt: salt, iterations: 0)
+        let pbkdf_a = VSCPBKDF(salt: salt, iterations: 0)
         var key_a: Data? = nil
         do {
             key_a = try pbkdf_a.key(fromPassword: password, size: keySize)
@@ -45,7 +45,7 @@ class VC007_PBKDFTests: XCTestCase {
         }
         XCTAssertEqual(key_a!.count, keySize, "VSSPBKDF: key should be generated having the requested size.")
         
-        let pbkdf_b = VSSPBKDF(salt: salt, iterations: 0)
+        let pbkdf_b = VSCPBKDF(salt: salt, iterations: 0)
         var key_b: Data? = nil
         do {
             key_b = try pbkdf_b.key(fromPassword: password, size: keySize)
@@ -56,7 +56,7 @@ class VC007_PBKDFTests: XCTestCase {
         XCTAssertEqual(key_b!.count, keySize, "VSSPBKDF: key should be generated having the requested size.")
         XCTAssertEqual(key_a!, key_b!, "VSSPBKDF: two keys generated independently from the same parameters should match")
         
-        let pbkdf_c = VSSPBKDF(salt: nil, iterations: 0)
+        let pbkdf_c = VSCPBKDF(salt: nil, iterations: 0)
         var key_c: Data? = nil
         do {
             key_c = try pbkdf_c.key(fromPassword: password, size: keySize)
@@ -69,7 +69,7 @@ class VC007_PBKDFTests: XCTestCase {
     }
     
     func test003_securityChecks() {
-        let pbkdf = VSSPBKDF(salt: nil, iterations: 0)
+        let pbkdf = VSCPBKDF(salt: nil, iterations: 0)
         
         do {
             try pbkdf.disableRecommendationsCheck()
@@ -87,7 +87,7 @@ class VC007_PBKDFTests: XCTestCase {
     }
 
     func test004_algoritmSettings() {
-        let pbkdf = VSSPBKDF(salt: nil, iterations: 0)
+        let pbkdf = VSCPBKDF(salt: nil, iterations: 0)
         var key: Data? = nil
         
         pbkdf.algorithm = .PBKDF2

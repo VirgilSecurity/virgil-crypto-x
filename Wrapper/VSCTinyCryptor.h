@@ -1,5 +1,5 @@
 //
-//  VSSTinyCryptor.h
+//  VSCTinyCryptor.h
 //  VirgilCypto
 //
 //  Created by Pavel Gorb on 7/12/16.
@@ -47,7 +47,7 @@ typedef NS_ENUM(size_t, VSSPackageSize) {
  * Minimum package length:
  * - 113 bytes
  */
-@interface VSSTinyCryptor : NSObject
+@interface VSCTinyCryptor : NSObject
 
 /**
  *  Maximum number of bytes in one package.

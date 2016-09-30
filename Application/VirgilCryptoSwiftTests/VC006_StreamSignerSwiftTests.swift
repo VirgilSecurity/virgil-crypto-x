@@ -25,17 +25,17 @@ class VC006_StreamSignerSwiftTests: XCTestCase {
     }
 
     func test001_createSigner() {
-        let signer = VSSStreamSigner()
+        let signer = VSCStreamSigner()
         XCTAssertNotNil(signer, "VSSStreamSigner instance should be created.");
     }
     
     func test002_composeAndVerifySignature() {
         // Generate a new key pair
-        let keyPair = VSSKeyPair()
+        let keyPair = VSCKeyPair()
         
         // Compose signature:
         // Create the signer
-        let signer = VSSStreamSigner()
+        let signer = VSCStreamSigner()
         // Compose the signature
         var signature = Data()
         do {
@@ -46,7 +46,7 @@ class VC006_StreamSignerSwiftTests: XCTestCase {
             XCTFail("Error composing the signature: \(error.localizedDescription)")
         }
         
-        let verifier = VSSStreamSigner()
+        let verifier = VSCStreamSigner()
         do {
             let vis = InputStream(data: self.toSign)
             try verifier.verifySignature(signature, from: vis, publicKey: keyPair.publicKey())

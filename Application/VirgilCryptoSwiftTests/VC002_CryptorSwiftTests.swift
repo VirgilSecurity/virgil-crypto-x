@@ -26,18 +26,18 @@ class VC002_CryptorSwiftTests: XCTestCase {
     }
     
     func test001_createCryptor() {
-        let cryptor = VSSCryptor()
+        let cryptor = VSCCryptor()
         XCTAssertNotNil(cryptor, "VCCryptor instance should be created.");
     }
     
     func test002_keyBasedEncryptDecrypt() {
         // Generate a new key pair
-        let keyPair = VSSKeyPair()
+        let keyPair = VSCKeyPair()
         // Generate a public key id
         let recipientId = UUID().uuidString
         // Encrypt:
         // Create a cryptor instance
-        let cryptor = VSSCryptor()
+        let cryptor = VSCCryptor()
         // Add a key recepient to enable key-based encryption
         do {
             try cryptor.addKeyRecipient(recipientId, publicKey: keyPair.publicKey(), error: ())
@@ -59,7 +59,7 @@ class VC002_CryptorSwiftTests: XCTestCase {
     
         // Decrypt:
         // Create a completely new instance of the VCCryptor object
-        let decryptor = VSSCryptor()
+        let decryptor = VSCCryptor()
         // Decrypt data using key-based decryption
         var plainData = Data()
         do {
@@ -76,7 +76,7 @@ class VC002_CryptorSwiftTests: XCTestCase {
         // Encrypt:
         let password = "secret"
         // Create a cryptor instance
-        let cryptor = VSSCryptor()
+        let cryptor = VSCCryptor()
         // Add a password recepient to enable password-based encryption
         do {
             try cryptor.addPasswordRecipient(password, error: ())
@@ -107,7 +107,7 @@ class VC002_CryptorSwiftTests: XCTestCase {
         XCTAssertTrue(contentInfo.count > 0, "Content Info should contain necessary information.");
         // Decrypt:
         // Create a completely new instance of the VCCryptor object
-        let decryptor = VSSCryptor()
+        let decryptor = VSCCryptor()
         do {
             try decryptor.setContentInfo(contentInfo, error: ())
         }

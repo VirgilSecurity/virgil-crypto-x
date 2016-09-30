@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
 
-#import "VSSStreamSigner.h"
-#import "VSSKeyPair.h"
+#import "VSCStreamSigner.h"
+#import "VSCKeyPair.h"
 
 @interface VC006_StreamSignerTests : XCTestCase
 
@@ -35,18 +35,18 @@
 }
 
 - (void)test001_createSigner {
-    VSSStreamSigner *signer = [[VSSStreamSigner alloc] init];
-    XCTAssertNotNil(signer, @"VSSStreamSigner instance should be created.");
+    VSCStreamSigner *signer = [[VSCStreamSigner alloc] init];
+    XCTAssertNotNil(signer, @"VSCStreamSigner instance should be created.");
 }
 
 - (void)test002_composeAndVerifySignature {
     // Generate a new key pair
-    VSSKeyPair *keyPair = [[VSSKeyPair alloc] init];
+    VSCKeyPair *keyPair = [[VSCKeyPair alloc] init];
     
     NSError *error = nil;
     // Compose signature:
     // Create the signer
-    VSSStreamSigner *signer = [[VSSStreamSigner alloc] init];
+    VSCStreamSigner *signer = [[VSCStreamSigner alloc] init];
     // Compose the signature
     NSInputStream *is = [NSInputStream inputStreamWithData:self.toSign];
     NSData *signature = [signer signStreamData:is privateKey:keyPair.privateKey keyPassword:nil error:&error];
@@ -57,7 +57,7 @@
     
     // Verify signature:
     // Create a verifier
-    VSSStreamSigner *verifier = [[VSSStreamSigner alloc] init];
+    VSCStreamSigner *verifier = [[VSCStreamSigner alloc] init];
     NSInputStream *isv = [NSInputStream inputStreamWithData:self.toSign];
     error = nil;
     BOOL trusted = [verifier verifySignature:signature fromStream:isv publicKey:keyPair.publicKey error:&error];
