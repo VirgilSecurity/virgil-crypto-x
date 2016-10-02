@@ -62,7 +62,19 @@ extern NSString * __nonnull const kVSSBaseCryptorErrorDomain;
  */
 - (BOOL)removeKeyRecipient:(NSString * __nonnull)recipientId error:(NSError * __nullable * __nullable)error;
 
-/** 
+/**
+ * @brief Check whether recipient with given identifier exists.
+ *
+ * Search order:
+ *     1. Local structures - useful when cipher is used for encryption.
+ *     2. ContentInfo structure - useful when cipher is used for decryption.
+ *
+ * @param recipientId Recipient's unique identifier.
+ * @return true if recipient with given identifier exists, false - otherwise.
+ */
+- (BOOL)isKeyRecipientExists:(NSString * __nonnull)recipientId;
+
+/**
  * Adds given password as a recipient for an encryption.
  *
  * This method should be called before methods:

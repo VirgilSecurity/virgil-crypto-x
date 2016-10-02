@@ -18,6 +18,7 @@ NSString *const kVSSCryptorErrorDomain = @"VSSCryptorErrorDomain";
 @interface VSCCryptor ()
 
 - (VirgilCipher *)cryptor;
+- (VirgilByteArray)convertVirgilByteArrayFromData:(NSData *)data;
 
 @end
 
@@ -54,6 +55,12 @@ NSString *const kVSSCryptorErrorDomain = @"VSSCryptorErrorDomain";
     return static_cast<VirgilCipher *>(self.llCryptor);
 }
 
+- (VirgilByteArray)convertVirgilByteArrayFromData:(NSData *)data {
+    const unsigned char *dataToEncrypt = static_cast<const unsigned char *>(data.bytes);
+    VirgilByteArray plainDataArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(dataToEncrypt, [data length]);
+    return plainDataArray;
+}
+
 #pragma mark - Public class logic
 
 - (NSData *)encryptData:(NSData *)plainData embedContentInfo:(NSNumber *) embedContentInfo {
@@ -72,10 +79,8 @@ NSString *const kVSSCryptorErrorDomain = @"VSSCryptorErrorDomain";
     NSData *encData = nil;
     try {
         if ([self cryptor] != NULL) {
-            // Convert NSData to VirgilByteArray
-            const unsigned char *dataToEncrypt = static_cast<const unsigned char *>(plainData.bytes);
-            VirgilByteArray plainDataArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(dataToEncrypt, [plainData length]);
-            
+            VirgilByteArray plainDataArray = [self convertVirgilByteArrayFromData:plainData];
+
             // Encrypt data.
             VirgilByteArray encryptedData = [self cryptor]->encrypt(plainDataArray, (bool)embedContentInfo);
             encData = [NSData dataWithBytes:encryptedData.data() length:encryptedData.size()];

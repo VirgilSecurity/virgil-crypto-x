@@ -20,6 +20,9 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
 
 @property (nonatomic, assign) VirgilKeyPair *keyPair;
 
++ (VirgilByteArray)convertVirgilByteArrayFromData:(NSData *)data;
++ (VirgilByteArray)convertVirgilByteArrayFromString:(NSString *)string;
+
 @end
 
 @implementation VSCKeyPair
@@ -73,72 +76,90 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
     }
 }
 
++ (VirgilByteArray)convertVirgilByteArrayFromData:(NSData *)data {
+    if (!data || data.length == 0) {
+        return VirgilByteArray();
+    }
+
+    const unsigned char *dataToEncrypt = static_cast<const unsigned char *>(data.bytes);
+    return VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(dataToEncrypt, [data length]);
+}
+
++ (VirgilByteArray)convertVirgilByteArrayFromString:(NSString *)string {
+    if (!string || string.length == 0) {
+        return VirgilByteArray();
+    }
+
+    std::__1::string pass = std::__1::string(string.UTF8String);
+    return VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pass.data(), pass.size());
+}
+
 + (VSCKeyPair *)ecNist192WithPassword:(NSString *)password {
-    return (VSCKeyPair *)[[self alloc] initWithKeyPairType:Type::EC_SECP192R1 password:password];
+    return [[self alloc] initWithKeyPairType:Type::EC_SECP192R1 password:password];
 }
 
 + (VSCKeyPair *)ecNist224WithPassword:(NSString *)password {
-    return (VSCKeyPair *)[[self alloc] initWithKeyPairType:Type::EC_SECP224R1 password:password];
+    return [[self alloc] initWithKeyPairType:Type::EC_SECP224R1 password:password];
 }
 
 + (VSCKeyPair *)ecNist256WithPassword:(NSString *)password {
-    return (VSCKeyPair *)[[self alloc] initWithKeyPairType:Type::EC_SECP256R1 password:password];
+    return [[self alloc] initWithKeyPairType:Type::EC_SECP256R1 password:password];
 }
 
 + (VSCKeyPair *)ecNist384WithPassword:(NSString *)password {
-    return (VSCKeyPair *)[[self alloc] initWithKeyPairType:Type::EC_SECP384R1 password:password];
+    return [[self alloc] initWithKeyPairType:Type::EC_SECP384R1 password:password];
 }
 
 + (VSCKeyPair *)ecNist521WithPassword:(NSString *)password {
-    return (VSCKeyPair *)[[self alloc] initWithKeyPairType:Type::EC_SECP521R1 password:password];
+    return [[self alloc] initWithKeyPairType:Type::EC_SECP521R1 password:password];
 }
 
 + (VSCKeyPair *)ecBrainpool256WithPassword:(NSString *)password {
-    return (VSCKeyPair *)[[self alloc] initWithKeyPairType:Type::EC_BP256R1 password:password];
+    return [[self alloc] initWithKeyPairType:Type::EC_BP256R1 password:password];
 }
 
 + (VSCKeyPair *)ecBrainpool384WithPassword:(NSString *)password {
-    return (VSCKeyPair *)[[self alloc] initWithKeyPairType:Type::EC_BP384R1 password:password];
+    return [[self alloc] initWithKeyPairType:Type::EC_BP384R1 password:password];
 }
 
 + (VSCKeyPair *)ecBrainpool512WithPassword:(NSString *)password {
-    return (VSCKeyPair *)[[self alloc] initWithKeyPairType:Type::EC_BP512R1 password:password];
+    return [[self alloc] initWithKeyPairType:Type::EC_BP512R1 password:password];
 }
 
 + (VSCKeyPair *)ecKoblitz192WithPassword:(NSString *)password {
-    return (VSCKeyPair *)[[self alloc] initWithKeyPairType:Type::EC_SECP192K1 password:password];
+    return [[self alloc] initWithKeyPairType:Type::EC_SECP192K1 password:password];
 }
 
 + (VSCKeyPair *)ecKoblitz224WithPassword:(NSString *)password {
-    return (VSCKeyPair *)[[self alloc] initWithKeyPairType:Type::EC_SECP224K1 password:password];
+    return [[self alloc] initWithKeyPairType:Type::EC_SECP224K1 password:password];
 }
 
 + (VSCKeyPair *)ecKoblitz256WithPassword:(NSString *)password {
-    return (VSCKeyPair *)[[self alloc] initWithKeyPairType:Type::EC_SECP256K1 password:password];
+    return [[self alloc] initWithKeyPairType:Type::EC_SECP256K1 password:password];
 }
 
 + (VSCKeyPair *)rsa256WithPassword:(NSString *)password {
-    return (VSCKeyPair *)[[self alloc] initWithKeyPairType:Type::RSA_256 password:password];
+    return [[self alloc] initWithKeyPairType:Type::RSA_256 password:password];
 }
 
 + (VSCKeyPair *)rsa512WithPassword:(NSString *)password {
-    return (VSCKeyPair *)[[self alloc] initWithKeyPairType:Type::RSA_512 password:password];
+    return [[self alloc] initWithKeyPairType:Type::RSA_512 password:password];
 }
 
 + (VSCKeyPair *)rsa1024WithPassword:(NSString *)password {
-    return (VSCKeyPair *)[[self alloc] initWithKeyPairType:Type::RSA_1024 password:password];
+    return [[self alloc] initWithKeyPairType:Type::RSA_1024 password:password];
 }
 
 + (VSCKeyPair *)rsa2048WithPassword:(NSString *)password {
-    return (VSCKeyPair *)[[self alloc] initWithKeyPairType:Type::RSA_2048 password:password];
+    return [[self alloc] initWithKeyPairType:Type::RSA_2048 password:password];
 }
 
 + (VSCKeyPair *)rsa4096WithPassword:(NSString *)password {
-    return (VSCKeyPair *)[[self alloc] initWithKeyPairType:Type::RSA_4096 password:password];
+    return [[self alloc] initWithKeyPairType:Type::RSA_4096 password:password];
 }
 
 + (VSCKeyPair *)curve25519WithPassword:(NSString *)password {
-    return (VSCKeyPair *)[[self alloc] initWithKeyPairType:Type::FAST_EC_X25519 password:password];
+    return [[self alloc] initWithKeyPairType:Type::FAST_EC_X25519 password:password];
 }
 
 #pragma mark - Public class logic
@@ -174,12 +195,51 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
     return privateKey;
 }
 
++ (NSData *__nonnull)encryptPrivateKey:(NSData *)privateKey privateKeyPassword:(NSString *)password {
+    if(!privateKey || !password) {
+        return [NSData data];
+    }
+
+    NSData *encryptedPrivateKey = nil;
+    try {
+        const VirgilByteArray &prvtKey = [self convertVirgilByteArrayFromData:privateKey];
+        const VirgilByteArray &pass = [self convertVirgilByteArrayFromString:password];
+        VirgilByteArray array = VirgilKeyPair::encryptPrivateKey(prvtKey, pass);
+        encryptedPrivateKey = [NSData dataWithBytes:array.data() length:array.size()];
+    }
+    catch (...) {
+        encryptedPrivateKey = [NSData data];
+    }
+
+    return encryptedPrivateKey;
+}
+
++ (NSData *__nonnull)decryptPrivateKey:(NSData *)privateKey privateKeyPassword:(NSString *)password {
+    if(!privateKey || !password) {
+        return [NSData data];
+    }
+
+    NSData *decryptedPrivateKey = nil;
+
+    try {
+        const VirgilByteArray &prvtKey = [self convertVirgilByteArrayFromData:privateKey];
+        const VirgilByteArray &pass = [self convertVirgilByteArrayFromString:password];
+        VirgilByteArray array = VirgilKeyPair::decryptPrivateKey(prvtKey, pass);
+        decryptedPrivateKey = [NSData dataWithBytes:array.data() length:array.size()];
+    }
+    catch (...) {
+        decryptedPrivateKey = [NSData data];
+    }
+
+    return decryptedPrivateKey;
+}
+
 + (BOOL)isEncryptedPrivateKey:(NSData *)keyData {
     if (keyData.length == 0) {
         return NO;
     }
     
-    bool isEncrypted = false;
+    BOOL isEncrypted;
     try {
         const unsigned char *data = static_cast<const unsigned char *>(keyData.bytes);
         isEncrypted = VirgilKeyPair::isPrivateKeyEncrypted(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(data, [keyData length]));
@@ -197,7 +257,7 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
         return NO;
     }
     
-    bool isMatches = false;
+    BOOL isMatches;
     try {
         const unsigned char *data = static_cast<const unsigned char *>(keyData.bytes);
         std::string pwd = std::string(password.UTF8String);
@@ -216,7 +276,7 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
         return NO;
     }
     
-    bool isMatches = false;
+    BOOL isMatches;
     try {
         const unsigned char *pubKeyData = static_cast<const unsigned char *>(publicKeyData.bytes);
         const unsigned char *privKeyData = static_cast<const unsigned char *>(privateKeyData.bytes);
@@ -280,6 +340,94 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
     }
     
     return pkeyData;
+}
+
++ (NSData *)publicKeyToPEM:(NSData *)publicKey {
+    if(!publicKey) {
+        return [NSData data];
+    }
+
+    NSData *pemData = nil;
+
+    try {
+        const VirgilByteArray &pubKey = [self convertVirgilByteArrayFromData:publicKey];
+        const VirgilByteArray &array = VirgilKeyPair::publicKeyToPEM(pubKey);
+        pemData = [NSData dataWithBytes:array.data() length:array.size()];
+    }
+    catch (...) {
+        pemData = [NSData data];
+    }
+
+    return pemData;
+}
+
++ (NSData *)publicKeyToDER:(NSData *)publicKey {
+    if(!publicKey) {
+        return [NSData data];
+    }
+
+    NSData *result = nil;
+
+    try {
+        const VirgilByteArray &key = [self convertVirgilByteArrayFromData:publicKey];
+        const VirgilByteArray &der = VirgilKeyPair::publicKeyToDER(key);
+        result = [NSData dataWithBytes:der.data() length:der.size()];
+    }
+    catch (...) {
+        result = [NSData data];
+    }
+
+    return result;
+}
+
++ (NSData *)privateKeyToPEM:(NSData *)privateKey {
+    return [VSCKeyPair privateKeyToPEM:privateKey privateKeyPassword:nil];
+}
+
++ (NSData *)privateKeyToDER:(NSData *)privateKey {
+    return [VSCKeyPair privateKeyToDER:privateKey privateKeyPassword:nil];
+}
+
++ (NSData *)privateKeyToPEM:(NSData *)privateKey privateKeyPassword:(NSString *)password {
+    if(!privateKey) {
+        return [NSData data];
+    }
+
+    NSData *result = nil;
+
+    try {
+        const VirgilByteArray &pass = [self convertVirgilByteArrayFromString:password];
+        const VirgilByteArray &key = [self convertVirgilByteArrayFromData:privateKey];
+        const VirgilByteArray &pem = VirgilKeyPair::privateKeyToPEM(key, pass);
+
+        result = [NSData dataWithBytes:pem.data() length:pem.size()];
+    }
+    catch (...) {
+        result = [NSData data];
+    }
+
+    return result;
+}
+
++ (NSData *)privateKeyToDER:(NSData *)privateKey privateKeyPassword:(NSString *)password {
+    if(!privateKey) {
+        return [NSData data];
+    }
+
+    NSData *result = nil;
+
+    try {
+        const VirgilByteArray &pass = [self convertVirgilByteArrayFromString:password];
+        const VirgilByteArray &key = [self convertVirgilByteArrayFromData:privateKey];
+        const VirgilByteArray &der = VirgilKeyPair::privateKeyToDER(key, pass);
+
+        result = [NSData dataWithBytes:der.data() length:der.size()];
+    }
+    catch (...) {
+        result = [NSData data];
+    }
+
+    return result;
 }
 
 @end

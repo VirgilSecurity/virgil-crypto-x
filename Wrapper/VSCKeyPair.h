@@ -203,6 +203,10 @@ extern NSString * __nonnull const kVSSKeyPairErrorDomain;
 /// @name Utility
 ///---------------------------
 
++ (NSData * __nonnull)encryptPrivateKey:(NSData * __nonnull)privateKey privateKeyPassword:(NSString * __nonnull)password;
+
++ (NSData * __nonnull)decryptPrivateKey:(NSData * __nonnull)privateKey privateKeyPassword:(NSString * __nonnull)password;
+
 /** Checks if given private key is actually encrypted.
  *
  * @param keyData Data representing the private key which needs to be checked.
@@ -240,5 +244,14 @@ extern NSString * __nonnull const kVSSKeyPairErrorDomain;
  * @return Data object containing the private key that is encrypted with the new password or `nil` if error has happened.
  */
 + (NSData * __nullable)resetPassword:(NSString * __nonnull)password toPassword:(NSString * __nonnull)newPassword forPrivateKey:(NSData * __nonnull)keyData error:(NSError * __nullable * __nullable)error;
+
++ (NSData * __nonnull)publicKeyToPEM:(NSData * __nonnull)publicKey;
++ (NSData * __nonnull)publicKeyToDER:(NSData * __nonnull)publicKey;
+
++ (NSData * __nonnull)privateKeyToPEM:(NSData *__nonnull)privateKey;
++ (NSData * __nonnull)privateKeyToDER:(NSData *__nonnull)privateKey;
+
++ (NSData * __nonnull)privateKeyToPEM:(NSData *__nonnull)privateKey privateKeyPassword:(NSString * __nullable)password;
++ (NSData * __nonnull)privateKeyToDER:(NSData *__nonnull)privateKey privateKeyPassword:(NSString * __nullable)password;
 
 @end

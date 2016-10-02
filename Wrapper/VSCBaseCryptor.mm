@@ -18,6 +18,8 @@ NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
 @interface VSCBaseCryptor ()
 
 - (VirgilCipherBase *)cryptor;
+- (VirgilByteArray)convertVirgilByteArrayFromData:(NSData *)data;
+- (VirgilByteArray)convertVirgilByteArrayFromString:(NSString *)string;
 
 @end
 
@@ -57,6 +59,16 @@ NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
     return static_cast<VirgilCipherBase *>(self.llCryptor);
 }
 
+- (VirgilByteArray)convertVirgilByteArrayFromData:(NSData *)data {
+    const unsigned char *dataToEncrypt = static_cast<const unsigned char *>(data.bytes);
+    return VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(dataToEncrypt, [data length]);
+}
+
+- (VirgilByteArray)convertVirgilByteArrayFromString:(NSString *)string {
+    std::string pass = std::string(string.UTF8String);
+    return VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pass.data(), pass.size());
+}
+
 - (void)addKeyRecipient:(NSString *)recipientId publicKey:(NSData *)publicKey {
     [self addKeyRecipient:recipientId publicKey:publicKey error:nil];
 }
@@ -70,12 +82,12 @@ NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
         return NO;
     }
     
-    BOOL success = NO;
+    BOOL success;
     try {
         if ([self cryptor] != NULL) {
-            std::string recId = std::string(recipientId.UTF8String);
-            const unsigned char *pKeyBytes = static_cast<const unsigned char *>(publicKey.bytes);
-            [self cryptor]->addKeyRecipient(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(recId.data(), recId.size()), VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKeyBytes, [publicKey length]));
+            const VirgilByteArray &recId = [self convertVirgilByteArrayFromString:recipientId];
+            const VirgilByteArray &pKeyBytes = [self convertVirgilByteArrayFromData:publicKey];
+            [self cryptor]->addKeyRecipient(recId, pKeyBytes);
             if (error) {
                 *error = nil;
             }
@@ -122,11 +134,11 @@ NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
         return NO;
     }
     
-    BOOL success = NO;
+    BOOL success;
     try {
         if ([self cryptor] != NULL) {
-            std::string recId = std::string(recipientId.UTF8String);
-            [self cryptor]->removeKeyRecipient(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(recId.data(), recId.size()));
+            const VirgilByteArray &recId = [self convertVirgilByteArrayFromString:recipientId];
+            [self cryptor]->removeKeyRecipient(recId);
             if (error) {
                 *error = nil;
             }
@@ -159,6 +171,15 @@ NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
     return success;
 }
 
+- (BOOL)isKeyRecipientExists:(NSString *)recipientId {
+    if (!recipientId || recipientId.length == 0) {
+        return NO;
+    }
+
+    VirgilByteArray virgilRecipientId = [self convertVirgilByteArrayFromString:recipientId];
+    return [self cryptor]->keyRecipientExists(virgilRecipientId);
+}
+
 - (void)addPasswordRecipient:(NSString *)password {
     [self addPasswordRecipient:password error:nil];
 }
@@ -171,11 +192,11 @@ NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
         return NO;
     }
     
-    BOOL success = NO;
+    BOOL success;
     try {
         if ([self cryptor] != NULL) {
-            std::string pass = std::string(password.UTF8String);
-            [self cryptor]->addPasswordRecipient(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pass.data(), pass.size()));
+            const VirgilByteArray &vPass = [self convertVirgilByteArrayFromString:password];
+            [self cryptor]->addPasswordRecipient(vPass);
             if (error) {
                 *error = nil;
             }
@@ -220,11 +241,11 @@ NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
         return NO;
     }
     
-    BOOL success = NO;
+    BOOL success;
     try {
         if ([self cryptor] != NULL) {
-            std::string pass = std::string(password.UTF8String);
-            [self cryptor]->removePasswordRecipient(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pass.data(), pass.size()));
+            const VirgilByteArray &vPass = [self convertVirgilByteArrayFromString:password];
+            [self cryptor]->removePasswordRecipient(vPass);
             if (error) {
                 *error = nil;
             }
@@ -303,7 +324,7 @@ NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
     NSData* contentInfo = nil;
     try {
         if ([self cryptor] != NULL) {
-            VirgilByteArray content = [self cryptor]->getContentInfo();
+            const VirgilByteArray &content = [self cryptor]->getContentInfo();
             contentInfo = [NSData dataWithBytes:content.data() length:content.size()];
             if (error) {
                 *error = nil;
@@ -335,7 +356,7 @@ NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
     return contentInfo;
 }
 
-- (void) setContentInfo:(NSData *) contentInfo {
+- (void)setContentInfo:(NSData *) contentInfo {
     [self setContentInfo:contentInfo error:nil];
 }
 
@@ -347,11 +368,11 @@ NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
         return NO;
     }
     
-    BOOL success = NO;
+    BOOL success;
     try {
         if ([self cryptor] != NULL) {
-            const unsigned char *contentInfoBytes = static_cast<const unsigned char *>(contentInfo.bytes);
-            [self cryptor]->setContentInfo(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(contentInfoBytes, [contentInfo length]));
+            const VirgilByteArray &contentInfoBytes = [self convertVirgilByteArrayFromData:contentInfo];
+            [self cryptor]->setContentInfo(contentInfoBytes);
             if (error) {
                 *error = nil;
             }
@@ -394,8 +415,8 @@ NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
     size_t size = 0;
     try {
         if ([self cryptor] != NULL) {
-            const unsigned char *bytes = static_cast<const unsigned char *>(data.bytes);
-            size = [self cryptor]->defineContentInfoSize(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(bytes, [data length]));
+            const VirgilByteArray &bytes = [self convertVirgilByteArrayFromData:data];
+            size = [self cryptor]->defineContentInfoSize(bytes);
             if (error) {
                 *error = nil;
             }
@@ -434,11 +455,11 @@ NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
         return NO;
     }
     
-    BOOL success = NO;
+    BOOL success;
     try {
         if ([self cryptor] != NULL) {
-            std::string strKey = std::string(key.UTF8String);
-            [self cryptor]->customParams().setInteger(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(strKey.data(), strKey.size()), value);
+            const VirgilByteArray &strKey = [self convertVirgilByteArrayFromString:key];
+            [self cryptor]->customParams().setInteger(strKey, value);
             if (error) {
                 *error = nil;
             }
@@ -481,8 +502,8 @@ NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
     int value = 0;
     try {
         if ([self cryptor] != NULL) {
-            std::string strKey = std::string(key.UTF8String);
-            value = [self cryptor]->customParams().getInteger(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(strKey.data(), strKey.size()));
+            const VirgilByteArray &vStrKey = [self convertVirgilByteArrayFromString:key];
+            value = [self cryptor]->customParams().getInteger(vStrKey);
             if (error) {
                 *error = nil;
             }
@@ -521,11 +542,11 @@ NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
         return NO;
     }
     
-    BOOL success = NO;
+    BOOL success;
     try {
         if ([self cryptor] != NULL) {
-            std::string strKey = std::string(key.UTF8String);
-            [self cryptor]->customParams().removeInteger(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(strKey.data(), strKey.size()));
+            const VirgilByteArray &vStrKey = [self convertVirgilByteArrayFromString:key];
+            [self cryptor]->customParams().removeInteger(vStrKey);
             if (error) {
                 *error = nil;
             }
@@ -568,9 +589,10 @@ NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
     BOOL success = NO;
     try {
         if ([self cryptor] != NULL) {
-            std::string strKey = std::string(key.UTF8String);
-            std::string strVal = std::string(value.UTF8String);
-            [self cryptor]->customParams().setString(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(strKey.data(), strKey.size()), VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(strVal.data(), strVal.size()));
+            const VirgilByteArray &vStrKey = [self convertVirgilByteArrayFromString:key];
+            const VirgilByteArray &vStrVal = [self convertVirgilByteArrayFromString:value];
+
+            [self cryptor]->customParams().setString(vStrKey, vStrVal);
             if (error) {
                 *error = nil;
             }
@@ -613,9 +635,9 @@ NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
     NSString *value = nil;
     try {
         if ([self cryptor] != NULL) {
-            std::string strKey = std::string(key.UTF8String);
-            VirgilByteArray strVal = [self cryptor]->customParams().getString(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(strKey.data(), strKey.size()));
-            std::string str = virgil::crypto::bytes2str(strVal);
+            const VirgilByteArray &vStrKey = [self convertVirgilByteArrayFromString:key];
+            const VirgilByteArray &vStrVal = [self cryptor]->customParams().getString(vStrKey);
+            std::string str = virgil::crypto::bytes2str(vStrVal);
             value = [[NSString alloc] initWithCString:str.c_str() encoding:NSUTF8StringEncoding];
             if (error) {
                 *error = nil;
@@ -658,8 +680,8 @@ NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
     BOOL success = NO;
     try {
         if ([self cryptor] != NULL) {
-            std::string strKey = std::string(key.UTF8String);
-            [self cryptor]->customParams().removeString(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(strKey.data(), strKey.size()));
+            const VirgilByteArray &vStrKey = [self convertVirgilByteArrayFromString:key];
+            [self cryptor]->customParams().removeString(vStrKey);
             if (error) {
                 *error = nil;
             }
@@ -702,9 +724,10 @@ NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
     BOOL success = NO;
     try {
         if ([self cryptor] != NULL) {
-            std::string strKey = std::string(key.UTF8String);
-            const unsigned char *bytes = static_cast<const unsigned char *>(value.bytes);
-            [self cryptor]->customParams().setData(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(strKey.data(), strKey.size()), VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(bytes, [value length]));
+            const VirgilByteArray &vStrKey = [self convertVirgilByteArrayFromString:key];
+            const VirgilByteArray &vBytes = [self convertVirgilByteArrayFromData:value];
+            [self cryptor]->customParams().setData(vStrKey, vBytes);
+
             if (error) {
                 *error = nil;
             }
@@ -747,8 +770,8 @@ NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
     NSData *value = nil;
     try {
         if ([self cryptor] != NULL) {
-            std::string strKey = std::string(key.UTF8String);
-            VirgilByteArray dataVal = [self cryptor]->customParams().getData(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(strKey.data(), strKey.size()));
+            const VirgilByteArray &vStrKey = [self convertVirgilByteArrayFromString:key];
+            const VirgilByteArray &dataVal = [self cryptor]->customParams().getData(vStrKey);
             value = [[NSData alloc] initWithBytes:dataVal.data() length:dataVal.size()];
             if (error) {
                 *error = nil;
@@ -788,11 +811,11 @@ NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
         return NO;
     }
     
-    BOOL success = NO;
+    BOOL success;
     try {
         if ([self cryptor] != NULL) {
-            std::string strKey = std::string(key.UTF8String);
-            [self cryptor]->customParams().removeData(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(strKey.data(), strKey.size()));
+            const VirgilByteArray &vStrKey = [self convertVirgilByteArrayFromString:key];
+            [self cryptor]->customParams().removeData(vStrKey);
             if (error) {
                 *error = nil;
             }
@@ -832,10 +855,10 @@ NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
         return YES;
     }
     
-    BOOL success = YES;
+    BOOL success;
     try {
         bool empty = [self cryptor]->customParams().isEmpty();
-        success = (empty) ? YES : NO;
+        success = empty;
         if (error) {
             *error = nil;
         }
@@ -867,7 +890,7 @@ NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
         return NO;
     }
     
-    BOOL success = NO;
+    BOOL success;
     try {
         [self cryptor]->customParams().clear();
         success = YES;
@@ -893,6 +916,5 @@ NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
     }
     return success;
 }
-
 
 @end

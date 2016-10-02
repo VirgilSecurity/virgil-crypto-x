@@ -47,12 +47,18 @@
     NSString *publicKeyId = [NSUUID UUID].UUIDString.lowercaseString;
     // Create a cryptor instance
     VSCCryptor *cryptor = [[VSCCryptor alloc] init];
+
+    XCTAssertFalse([cryptor isKeyRecipientExists:publicKeyId], @"It should not contain recipient key after initialization");
+    XCTAssertFalse([cryptor isKeyRecipientExists:@""], @"it should not crash with empty value");
+
     // Add a key recepient to enable key-based encryption
     NSError *error = nil;
     BOOL success = [cryptor addKeyRecipient:publicKeyId publicKey:keyPair.publicKey error:&error];
     if (!success || error != nil) {
         XCTFail(@"Error adding key recipient: %@", [error localizedDescription]);
     }
+    XCTAssertTrue([cryptor isKeyRecipientExists:publicKeyId], @"It should contain key");
+
     // Encrypt the data
     error = nil;
     NSTimeInterval ti = [NSDate timeIntervalSinceReferenceDate];
