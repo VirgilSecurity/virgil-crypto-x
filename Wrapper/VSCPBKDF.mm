@@ -167,7 +167,7 @@ NSString *const kVSSPBKDFErrorDomain = @"VSSPBKDFErrorDomain";
     }
     
     try {
-        const unsigned char *saltBytes = static_cast<const unsigned char *>([salt bytes]);
+        const unsigned char *saltBytes = static_cast<const unsigned char *>(salt.bytes);
         VirgilByteArray saltArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(saltBytes, [salt length]);
         _pbkdf = new VirgilPBKDF(saltArray, iterations);
     }
@@ -274,7 +274,7 @@ NSString *const kVSSPBKDFErrorDomain = @"VSSPBKDFErrorDomain";
     NSData *keyData = nil;
     try {
         if (self.pbkdf != NULL) {
-            std::string sPwd = std::string([password UTF8String]);
+            std::string sPwd = std::string(password.UTF8String);
             VirgilByteArray vbaPwd = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(sPwd.data(), sPwd.size());
             VirgilByteArray vbaKey = self.pbkdf->derive(vbaPwd, size);
             

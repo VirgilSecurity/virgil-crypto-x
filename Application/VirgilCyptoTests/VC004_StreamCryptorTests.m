@@ -45,13 +45,13 @@
     NSError *error = nil;
     VSCKeyPair *keyPair = [[VSCKeyPair alloc] init];
     // Generate a recepient id
-    NSString *recipientId = [[[NSUUID UUID] UUIDString] lowercaseString];
+    NSString *recipientId = [NSUUID UUID].UUIDString.lowercaseString;
     // Create a cryptor instance
     VSCStreamCryptor *cryptor = [[VSCStreamCryptor alloc] init];
     // Add a key recepient to enable key-based encryption
     BOOL success = [cryptor addKeyRecipient:recipientId publicKey:keyPair.publicKey error:&error];
     if (!success || error != nil) {
-        NSLog(@"Add key recipient error: %@", [error localizedDescription]);
+        NSLog(@"Add key recipient error: %@", error.localizedDescription);
         XCTAssertTrue(FALSE);
     }
     // Encrypt the data
@@ -62,7 +62,7 @@
     success = [cryptor encryptDataFromStream:istream toStream:ostream embedContentInfo:YES error:&error];
     NSLog(@"Encryption key-based time: %.2f", [NSDate timeIntervalSinceReferenceDate] - ti);
     if (!success || error != nil) {
-        NSLog(@"Encryption error: %@", [error localizedDescription]);
+        NSLog(@"Encryption error: %@", error.localizedDescription);
         XCTAssertTrue(FALSE);
     }
     NSData *encryptedData = (NSData *)[ostream propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
@@ -80,7 +80,7 @@
     success = [decryptor decryptFromStream:idecstream toStream:odecsctream recipientId:recipientId privateKey:keyPair.privateKey keyPassword:nil error:&error];
     NSLog(@"Decryption key-based time: %.2f", [NSDate timeIntervalSinceReferenceDate] - ti);;
     if (!success || error != nil) {
-        NSLog(@"Decryption error: %@", [error localizedDescription]);
+        NSLog(@"Decryption error: %@", error.localizedDescription);
         XCTAssertTrue(FALSE);
     }
     NSData *plainData = (NSData *)[odecsctream propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
@@ -96,7 +96,7 @@
     // Add a password recepient to enable password-based encryption
     BOOL success = [cryptor addPasswordRecipient:password error:&error];
     if (!success || error != nil) {
-        NSLog(@"Add password recipient error: %@", [error localizedDescription]);
+        NSLog(@"Add password recipient error: %@", error.localizedDescription);
         XCTAssertTrue(FALSE);
     }
     
@@ -107,7 +107,7 @@
     success = [cryptor encryptDataFromStream:istream toStream:ostream embedContentInfo:NO error:&error];
     NSLog(@"Encryption password-based time: %.2f", [NSDate timeIntervalSinceReferenceDate] - ti);
     if (!success || error != nil) {
-        NSLog(@"Encryption error: %@", [error localizedDescription]);
+        NSLog(@"Encryption error: %@", error.localizedDescription);
         XCTAssertTrue(FALSE);
     }
     NSData *encryptedData = (NSData *)[ostream propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
@@ -124,7 +124,7 @@
     error = nil;
     success = [decryptor setContentInfo:contentInfo error:&error];
     if (!success || error != nil) {
-        NSLog(@"Error setting content info: %@", [error localizedDescription]);
+        NSLog(@"Error setting content info: %@", error.localizedDescription);
         XCTAssertTrue(FALSE);
     }
     NSInputStream *idecstream = [NSInputStream inputStreamWithData:encryptedData];
@@ -135,7 +135,7 @@
     success = [decryptor decryptFromStream:idecstream toStream:odecsctream password:password error:&error];
     NSLog(@"Decryption password-based time: %.2f", [NSDate timeIntervalSinceReferenceDate] - ti);
     if (!success || error != nil) {
-        NSLog(@"Decryption error: %@", [error localizedDescription]);
+        NSLog(@"Decryption error: %@", error.localizedDescription);
         XCTAssertTrue(FALSE);
     }
     NSData *plainData = (NSData *)[odecsctream propertyForKey:NSStreamDataWrittenToMemoryStreamKey];

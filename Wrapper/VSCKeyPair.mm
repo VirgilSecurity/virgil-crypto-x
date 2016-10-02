@@ -39,7 +39,7 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
             _keyPair = new VirgilKeyPair(VirgilKeyPair::generate(keyPairType));
         }
         else {
-            std::string pwd = std::string([password UTF8String]);
+            std::string pwd = std::string(password.UTF8String);
             _keyPair = new VirgilKeyPair(VirgilKeyPair::generate(keyPairType, VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pwd.data(), pwd.size())));
         }
     }
@@ -181,7 +181,7 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
     
     bool isEncrypted = false;
     try {
-        const unsigned char *data = static_cast<const unsigned char *>([keyData bytes]);
+        const unsigned char *data = static_cast<const unsigned char *>(keyData.bytes);
         isEncrypted = VirgilKeyPair::isPrivateKeyEncrypted(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(data, [keyData length]));
     }
     catch(...) {
@@ -199,8 +199,8 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
     
     bool isMatches = false;
     try {
-        const unsigned char *data = static_cast<const unsigned char *>([keyData bytes]);
-        std::string pwd = std::string([password UTF8String]);
+        const unsigned char *data = static_cast<const unsigned char *>(keyData.bytes);
+        std::string pwd = std::string(password.UTF8String);
         isMatches = VirgilKeyPair::checkPrivateKeyPassword(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(data, [keyData length]), VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pwd.data(), pwd.size()));
     }
     catch(...) {
@@ -218,13 +218,13 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
     
     bool isMatches = false;
     try {
-        const unsigned char *pubKeyData = static_cast<const unsigned char *>([publicKeyData bytes]);
-        const unsigned char *privKeyData = static_cast<const unsigned char *>([privateKeyData bytes]);
+        const unsigned char *pubKeyData = static_cast<const unsigned char *>(publicKeyData.bytes);
+        const unsigned char *privKeyData = static_cast<const unsigned char *>(privateKeyData.bytes);
         if (password.length == 0) {
             isMatches = VirgilKeyPair::isKeyPairMatch(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pubKeyData, [publicKeyData length]), VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(privKeyData, [privateKeyData length]));
         }
         else {
-            std::string pwd = std::string([password UTF8String]);
+            std::string pwd = std::string(password.UTF8String);
             isMatches = VirgilKeyPair::isKeyPairMatch(VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pubKeyData, [publicKeyData length]), VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(privKeyData, [privateKeyData length]), VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pwd.data(), pwd.size()));
         }
     }
@@ -247,13 +247,13 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
     
     NSData *pkeyData = nil;
     try {
-        std::string sPwd = std::string([password UTF8String]);
+        std::string sPwd = std::string(password.UTF8String);
         VirgilByteArray vbaPwd = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(sPwd.data(), sPwd.size());
         
-        std::string sNewPwd = std::string([newPassword UTF8String]);
+        std::string sNewPwd = std::string(newPassword.UTF8String);
         VirgilByteArray vbaNewPwd = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(sNewPwd.data(), sNewPwd.size());
         
-        const unsigned char *pKeyData = static_cast<const unsigned char *>([keyData bytes]);
+        const unsigned char *pKeyData = static_cast<const unsigned char *>(keyData.bytes);
         VirgilByteArray pKey = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKeyData, [keyData length]);
         
         VirgilByteArray pNewKey = VirgilKeyPair::resetPrivateKeyPassword(pKey, vbaPwd, vbaNewPwd);

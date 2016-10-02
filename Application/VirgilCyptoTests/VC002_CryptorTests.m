@@ -44,7 +44,7 @@
     // Generate a new key pair
     VSCKeyPair *keyPair = [[VSCKeyPair alloc] init];
     // Generate a public key id
-    NSString *publicKeyId = [[[NSUUID UUID] UUIDString] lowercaseString];
+    NSString *publicKeyId = [NSUUID UUID].UUIDString.lowercaseString;
     // Create a cryptor instance
     VSCCryptor *cryptor = [[VSCCryptor alloc] init];
     // Add a key recepient to enable key-based encryption

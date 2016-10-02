@@ -100,11 +100,11 @@ NSString * const kVSSTinyCryptorErrorDomain = @"TinyCryptorErrorDomain";
     try {
         if (self.tinyCipher != NULL) {
             // Convert NSData to VirgilByteArray
-            const unsigned char *dataToEncrypt = static_cast<const unsigned char *>([data bytes]);
+            const unsigned char *dataToEncrypt = static_cast<const unsigned char *>(data.bytes);
             VirgilByteArray plainDataArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(dataToEncrypt, [data length]);
             
             // Convert NSData to VirgilByteArray
-            const unsigned char *pKeyData = static_cast<const unsigned char *>([recipientKey bytes]);
+            const unsigned char *pKeyData = static_cast<const unsigned char *>(recipientKey.bytes);
             VirgilByteArray keyDataArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKeyData, [recipientKey length]);
             
             // Encrypt data.
@@ -154,19 +154,19 @@ NSString * const kVSSTinyCryptorErrorDomain = @"TinyCryptorErrorDomain";
     try {
         if (self.tinyCipher != NULL) {
             // Convert NSData to VirgilByteArray
-            const unsigned char *dataToEncrypt = static_cast<const unsigned char *>([data bytes]);
+            const unsigned char *dataToEncrypt = static_cast<const unsigned char *>(data.bytes);
             VirgilByteArray plainDataArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(dataToEncrypt, [data length]);
             
             // Convert NSData to VirgilByteArray
-            const unsigned char *keyData = static_cast<const unsigned char *>([recipientKey bytes]);
+            const unsigned char *keyData = static_cast<const unsigned char *>(recipientKey.bytes);
             VirgilByteArray keyDataArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(keyData, [recipientKey length]);
             
             // Convert NSData to VirgilByteArray
-            const unsigned char *senderKeyData = static_cast<const unsigned char *>([senderKey bytes]);
+            const unsigned char *senderKeyData = static_cast<const unsigned char *>(senderKey.bytes);
             VirgilByteArray senderKeyDataArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(senderKeyData, [senderKey length]);
             
             if (keyPassword.length > 0) {
-                std::string pKeyPassS = std::string([keyPassword UTF8String]);
+                std::string pKeyPassS = std::string(keyPassword.UTF8String);
                 VirgilByteArray pKeyPassword = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKeyPassS.data(), pKeyPassS.size());
                 self.tinyCipher->encryptAndSign(plainDataArray, keyDataArray, senderKeyDataArray, pKeyPassword);
             }
@@ -271,7 +271,7 @@ NSString * const kVSSTinyCryptorErrorDomain = @"TinyCryptorErrorDomain";
     try {
         if (self.tinyCipher != NULL) {
             // Convert NSData to VirgilByteArray
-            const unsigned char *data = static_cast<const unsigned char *>([package bytes]);
+            const unsigned char *data = static_cast<const unsigned char *>(package.bytes);
             VirgilByteArray dataArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(data, [package length]);
             
             self.tinyCipher->addPackage(dataArray);
@@ -335,12 +335,12 @@ NSString * const kVSSTinyCryptorErrorDomain = @"TinyCryptorErrorDomain";
     try {
         if (self.tinyCipher != NULL) {
             // Convert NSData to VirgilByteArray
-            const unsigned char *keyData = static_cast<const unsigned char *>([recipientKey bytes]);
+            const unsigned char *keyData = static_cast<const unsigned char *>(recipientKey.bytes);
             VirgilByteArray keyDataArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(keyData, [recipientKey length]);
             
             VirgilByteArray decryptedArray;
             if (keyPassword.length > 0) {
-                std::string pKeyPassS = std::string([keyPassword UTF8String]);
+                std::string pKeyPassS = std::string(keyPassword.UTF8String);
                 VirgilByteArray pKeyPassword = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKeyPassS.data(), pKeyPassS.size());
                 decryptedArray = self.tinyCipher->decrypt(keyDataArray, pKeyPassword);
             }
@@ -392,16 +392,16 @@ NSString * const kVSSTinyCryptorErrorDomain = @"TinyCryptorErrorDomain";
     try {
         if (self.tinyCipher != NULL) {
             // Convert NSData to VirgilByteArray
-            const unsigned char *senderKeyData = static_cast<const unsigned char *>([senderKey bytes]);
+            const unsigned char *senderKeyData = static_cast<const unsigned char *>(senderKey.bytes);
             VirgilByteArray senderKeyDataArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(senderKeyData, [senderKey length]);
             
             // Convert NSData to VirgilByteArray
-            const unsigned char *keyData = static_cast<const unsigned char *>([recipientKey bytes]);
+            const unsigned char *keyData = static_cast<const unsigned char *>(recipientKey.bytes);
             VirgilByteArray keyDataArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(keyData, [recipientKey length]);
             
             VirgilByteArray decryptedArray;
             if (keyPassword.length > 0) {
-                std::string pKeyPassS = std::string([keyPassword UTF8String]);
+                std::string pKeyPassS = std::string(keyPassword.UTF8String);
                 VirgilByteArray pKeyPassword = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKeyPassS.data(), pKeyPassS.size());
                 decryptedArray = self.tinyCipher->verifyAndDecrypt(senderKeyDataArray, keyDataArray, pKeyPassword);
             }

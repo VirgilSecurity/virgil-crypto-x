@@ -58,7 +58,7 @@
     if (count == 0) {
         XCTFail(@"There is no encrypted data packages.");
     }
-    NSMutableData *encryptedData = [[NSMutableData alloc] initWithCapacity:count * [cryptor packageSize]];
+    NSMutableData *encryptedData = [[NSMutableData alloc] initWithCapacity:count * cryptor.packageSize];
     for (size_t i = 0; i < count; i++) {
         error = nil;
         NSData *package = [cryptor packageAtIndex:i error:&error];
@@ -79,9 +79,9 @@
     // Create a completely new instance of the VCCryptor object
     VSCTinyCryptor *decryptor = [[VSCTinyCryptor alloc] initWithPackageSize:VSSShortSMSPackageSize];
     size_t len = (encryptedData.length > decryptor.packageSize) ? decryptor.packageSize : encryptedData.length;
-    for (NSUInteger offset = 0; offset <= [encryptedData length] - 1; offset += len) {
+    for (NSUInteger offset = 0; offset <= encryptedData.length - 1; offset += len) {
         
-        NSData *package = [NSData dataWithBytesNoCopy:(char *)[encryptedData bytes] + offset length:len freeWhenDone:NO];
+        NSData *package = [NSData dataWithBytesNoCopy:(char *)encryptedData.bytes + offset length:len freeWhenDone:NO];
         error = nil;
         ok = [decryptor addPackage:package error:&error];
         if (!ok || error != nil) {
@@ -127,7 +127,7 @@
     if (count == 0) {
         XCTFail(@"There is no encrypted/signed data packages.");
     }
-    NSMutableData *encryptedData = [[NSMutableData alloc] initWithCapacity:count * [cryptor packageSize]];
+    NSMutableData *encryptedData = [[NSMutableData alloc] initWithCapacity:count * cryptor.packageSize];
     for (size_t i = 0; i < count; i++) {
         error = nil;
         NSData *package = [cryptor packageAtIndex:i error:&error];
@@ -148,10 +148,10 @@
     // Create a completely new instance of the VCCryptor object
     VSCTinyCryptor *decryptor = [[VSCTinyCryptor alloc] initWithPackageSize:VSSShortSMSPackageSize];
     size_t len = decryptor.packageSize;
-    for (NSUInteger offset = 0; offset <= [encryptedData length] - 1; offset += len) {
+    for (NSUInteger offset = 0; offset <= encryptedData.length - 1; offset += len) {
         // Recalculate len:
         len = ((double)encryptedData.length - (double)(offset + len) > 0) ? decryptor.packageSize : encryptedData.length - offset;
-        NSData *package = [NSData dataWithBytesNoCopy:(char *)[encryptedData bytes] + offset length:len freeWhenDone:NO];
+        NSData *package = [NSData dataWithBytesNoCopy:(char *)encryptedData.bytes + offset length:len freeWhenDone:NO];
         error = nil;
         ok = [decryptor addPackage:package error:&error];
         if (!ok || error != nil) {

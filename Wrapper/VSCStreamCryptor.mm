@@ -35,7 +35,7 @@ public:
 VSSStreamCryptorDataSource::VSSStreamCryptorDataSource(NSInputStream *is) {
     /// Assign pointer.
     this->istream = is;
-    if ([this->istream streamStatus] == NSStreamStatusNotOpen) {
+    if (this->istream.streamStatus == NSStreamStatusNotOpen) {
         [this->istream open];
     }
 }
@@ -48,12 +48,12 @@ VSSStreamCryptorDataSource::~VSSStreamCryptorDataSource() {
 
 bool VSSStreamCryptorDataSource::hasData() {
     if (this->istream != NULL) {
-        NSStreamStatus st = [this->istream streamStatus];
+        NSStreamStatus st = this->istream.streamStatus;
         if (st == NSStreamStatusNotOpen || st == NSStreamStatusError || st == NSStreamStatusClosed) {
             return false;
         }
 
-        if ([this->istream hasBytesAvailable]) {
+        if (this->istream.hasBytesAvailable) {
             return true;
         }
     }
@@ -94,7 +94,7 @@ public:
 VSSStreamCryptorDataSink::VSSStreamCryptorDataSink(NSOutputStream *os) {
     /// Assign pointer.
     this->ostream = os;
-    if ([this->ostream streamStatus] == NSStreamStatusNotOpen) {
+    if (this->ostream.streamStatus == NSStreamStatusNotOpen) {
         [this->ostream open];
     }
 }
@@ -107,12 +107,12 @@ VSSStreamCryptorDataSink::~VSSStreamCryptorDataSink() {
 
 bool VSSStreamCryptorDataSink::isGood() {
     if (this->ostream != NULL) {
-        NSStreamStatus st = [this->ostream streamStatus];
+        NSStreamStatus st = this->ostream.streamStatus;
         if (st == NSStreamStatusNotOpen || st == NSStreamStatusError || st == NSStreamStatusClosed) {
             return false;
         }
 
-        if ([this->ostream hasSpaceAvailable]) {
+        if (this->ostream.hasSpaceAvailable) {
             return true;
         }
     }
@@ -222,13 +222,13 @@ void VSSStreamCryptorDataSink::write(const VirgilByteArray &data) {
         if ([self cryptor] != NULL) {
             VSSStreamCryptorDataSource src = VSSStreamCryptorDataSource(source);
             VSSStreamCryptorDataSink dest = VSSStreamCryptorDataSink(destination);
-            std::string recId = std::string([recipientId UTF8String]);
-            const unsigned char *pKey = static_cast<const unsigned char *>([privateKey bytes]);
+            std::string recId = std::string(recipientId.UTF8String);
+            const unsigned char *pKey = static_cast<const unsigned char *>(privateKey.bytes);
             if (keyPassword.length == 0) {
                 [self cryptor]->decryptWithKey(src, dest, VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(recId.data(), recId.size()), VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKey, [privateKey length]));
             }
             else {
-                std::string keyPass = std::string([keyPassword UTF8String]);
+                std::string keyPass = std::string(keyPassword.UTF8String);
                 [self cryptor]->decryptWithKey(src, dest, VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(recId.data(), recId.size()), VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKey, [privateKey length]), VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(keyPass.data(), keyPass.size()));
             }
             if (error) {
@@ -275,7 +275,7 @@ void VSSStreamCryptorDataSink::write(const VirgilByteArray &data) {
         if ([self cryptor] != NULL) {
             VSSStreamCryptorDataSource src = VSSStreamCryptorDataSource(source);
             VSSStreamCryptorDataSink dest = VSSStreamCryptorDataSink(destination);
-            std::string pwd = std::string([password UTF8String]);
+            std::string pwd = std::string(password.UTF8String);
             [self cryptor]->decryptWithPassword(src, dest, VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pwd.data(), pwd.size()));
             if (error) {
                 *error = nil;

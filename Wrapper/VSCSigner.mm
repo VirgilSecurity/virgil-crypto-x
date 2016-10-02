@@ -39,7 +39,7 @@ NSString *const kVSSSignerErrorDomain = @"VSSSignerErrorDomain";
     return [self initWithHash:nil];
 }
 
-- (instancetype) initWithHash:(NSString *)hash {
+- (instancetype)initWithHash:(NSString *)hash {
     self = [super init];
     if (self == nil) {
         return nil;
@@ -92,15 +92,15 @@ NSString *const kVSSSignerErrorDomain = @"VSSSignerErrorDomain";
     try {
         if (self.signer != NULL) {
             // Convert NSData to
-            const unsigned char *dataToSign = static_cast<const unsigned char *>([data bytes]);
+            const unsigned char *dataToSign = static_cast<const unsigned char *>(data.bytes);
             VirgilByteArray plainData = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(dataToSign, [data length]);
             // Convert NSData to
-            const unsigned char *pKeyData = static_cast<const unsigned char *>([privateKey bytes]);
+            const unsigned char *pKeyData = static_cast<const unsigned char *>(privateKey.bytes);
             VirgilByteArray pKey = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKeyData, [privateKey length]);
             
             VirgilByteArray sign;
             if (keyPassword.length > 0) {
-                std::string pKeyPassS = std::string([keyPassword UTF8String]);
+                std::string pKeyPassS = std::string(keyPassword.UTF8String);
                 VirgilByteArray pKeyPassword = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKeyPassS.data(), pKeyPassS.size());
                 sign = self.signer->sign(plainData, pKey, pKeyPassword);
             }
@@ -155,13 +155,13 @@ NSString *const kVSSSignerErrorDomain = @"VSSSignerErrorDomain";
     try {
         if (self.signer != NULL) {
             // Convert NSData data
-            const unsigned char *signedDataPtr = static_cast<const unsigned char *>([data bytes]);
+            const unsigned char *signedDataPtr = static_cast<const unsigned char *>(data.bytes);
             VirgilByteArray signedData = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(signedDataPtr, [data length]);
             // Convert NSData sign
-            const unsigned char *signDataPtr = static_cast<const unsigned char *>([signature bytes]);
+            const unsigned char *signDataPtr = static_cast<const unsigned char *>(signature.bytes);
             VirgilByteArray signData = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(signDataPtr, [signature length]);
             // Convert NSData Key
-            const unsigned char *keyDataPtr = static_cast<const unsigned char *>([publicKey bytes]);
+            const unsigned char *keyDataPtr = static_cast<const unsigned char *>(publicKey.bytes);
             VirgilByteArray pKey = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(keyDataPtr, [publicKey length]);
             
             bool result = self.signer->verify(signedData, signData, pKey);

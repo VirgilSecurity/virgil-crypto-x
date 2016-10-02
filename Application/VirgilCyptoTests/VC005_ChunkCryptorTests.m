@@ -50,13 +50,13 @@ static const NSUInteger kDesiredDataChunkLength = 1024;
     NSError *error = nil;
     VSCKeyPair *keyPair = [[VSCKeyPair alloc] init];
     // Generate a recepient id
-    NSString *recipientId = [[[NSUUID UUID] UUIDString] lowercaseString];
+    NSString *recipientId = [NSUUID UUID].UUIDString.lowercaseString;
     // Create a cryptor instance
     VSCChunkCryptor *cryptor = [[VSCChunkCryptor alloc] init];
     // Add a key recepient to enable key-based encryption
     [cryptor addKeyRecipient:recipientId publicKey:keyPair.publicKey error:&error];
     if (error != nil) {
-        NSLog(@"Add key recipient error: %@", [error localizedDescription]);
+        NSLog(@"Add key recipient error: %@", error.localizedDescription);
         XCTAssertTrue(FALSE);
     }
     // Encrypt the data
@@ -67,7 +67,7 @@ static const NSUInteger kDesiredDataChunkLength = 1024;
     [cryptor encryptDataFromStream:istream toStream:ostream preferredChunkSize:kDesiredDataChunkLength embedContentInfo:YES error:&error];
     NSLog(@"Encryption key-based time: %.2f", [NSDate timeIntervalSinceReferenceDate] - ti);
     if (error != nil) {
-        NSLog(@"Encryption error: %@", [error localizedDescription]);
+        NSLog(@"Encryption error: %@", error.localizedDescription);
         XCTAssertTrue(FALSE);
     }
     NSData *encryptedData = (NSData *)[ostream propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
@@ -85,7 +85,7 @@ static const NSUInteger kDesiredDataChunkLength = 1024;
     [decryptor decryptFromStream:idecstream toStream:odecsctream recipientId:recipientId privateKey:keyPair.privateKey keyPassword:nil error:&error];
     NSLog(@"Decryption key-based time: %.2f", [NSDate timeIntervalSinceReferenceDate] - ti);
     if (error != nil) {
-        NSLog(@"Decryption error: %@", [error localizedDescription]);
+        NSLog(@"Decryption error: %@", error.localizedDescription);
         XCTAssertTrue(FALSE);
     }
     NSData *plainData = (NSData *)[odecsctream propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
@@ -101,7 +101,7 @@ static const NSUInteger kDesiredDataChunkLength = 1024;
     // Add a password recepient to enable password-based encryption
     [cryptor addPasswordRecipient:password error:&error];
     if (error != nil) {
-        NSLog(@"Add password recipient error: %@", [error localizedDescription]);
+        NSLog(@"Add password recipient error: %@", error.localizedDescription);
         XCTAssertTrue(FALSE);
     }
     
@@ -112,7 +112,7 @@ static const NSUInteger kDesiredDataChunkLength = 1024;
     [cryptor encryptDataFromStream:istream toStream:ostream preferredChunkSize:kDesiredDataChunkLength embedContentInfo:NO error:&error];
     NSLog(@"Encryption password-based time: %.2f", [NSDate timeIntervalSinceReferenceDate] - ti);
     if (error != nil) {
-        NSLog(@"Encryption error: %@", [error localizedDescription]);
+        NSLog(@"Encryption error: %@", error.localizedDescription);
         XCTAssertTrue(FALSE);
     }
     NSData *encryptedData = (NSData *)[ostream propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
@@ -129,7 +129,7 @@ static const NSUInteger kDesiredDataChunkLength = 1024;
     error = nil;
     [decryptor setContentInfo:contentInfo error:&error];
     if (error != nil) {
-        NSLog(@"Error setting content info: %@", [error localizedDescription]);
+        NSLog(@"Error setting content info: %@", error.localizedDescription);
         XCTAssertTrue(FALSE);
     }
     NSInputStream *idecstream = [NSInputStream inputStreamWithData:encryptedData];
@@ -140,7 +140,7 @@ static const NSUInteger kDesiredDataChunkLength = 1024;
     [decryptor decryptFromStream:idecstream toStream:odecsctream password:password error:&error];
     NSLog(@"Decryption password-based time: %.2f", [NSDate timeIntervalSinceReferenceDate] - ti);
     if (error != nil) {
-        NSLog(@"Decryption error: %@", [error localizedDescription]);
+        NSLog(@"Decryption error: %@", error.localizedDescription);
         XCTAssertTrue(FALSE);
     }
     NSData *plainData = (NSData *)[odecsctream propertyForKey:NSStreamDataWrittenToMemoryStreamKey];

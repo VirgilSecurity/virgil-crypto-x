@@ -51,7 +51,7 @@
     NSInputStream *is = [NSInputStream inputStreamWithData:self.toSign];
     NSData *signature = [signer signStreamData:is privateKey:keyPair.privateKey keyPassword:nil error:&error];
     if (error != nil) {
-        NSLog(@"Error composing the signature: %@", [error localizedDescription]);
+        NSLog(@"Error composing the signature: %@", error.localizedDescription);
     }
     XCTAssertTrue(signature.length > 0, @"Signature should be composed.");
     
@@ -62,7 +62,7 @@
     error = nil;
     BOOL trusted = [verifier verifySignature:signature fromStream:isv publicKey:keyPair.publicKey error:&error];
     if (error != nil) {
-        NSLog(@"Error composing the signature: %@", [error localizedDescription]);
+        NSLog(@"Error composing the signature: %@", error.localizedDescription);
     }
     XCTAssertTrue(trusted, @"Signature should be correct and verified.");
 }

@@ -43,7 +43,7 @@ public:
 VirgilStreamSignerDataSource::VirgilStreamSignerDataSource(NSInputStream *is) {
     /// Assign pointer.
     this->istream = is;
-    if ([this->istream streamStatus] == NSStreamStatusNotOpen) {
+    if (this->istream.streamStatus == NSStreamStatusNotOpen) {
         [this->istream open];
     }
 }
@@ -56,12 +56,12 @@ VirgilStreamSignerDataSource::~VirgilStreamSignerDataSource() {
 
 bool VirgilStreamSignerDataSource::hasData() {
     if (this->istream != NULL) {
-        NSStreamStatus st = [this->istream streamStatus];
+        NSStreamStatus st = this->istream.streamStatus;
         if (st == NSStreamStatusNotOpen || st == NSStreamStatusError || st == NSStreamStatusClosed) {
             return false;
         }
         
-        if ([this->istream hasBytesAvailable]) {
+        if (this->istream.hasBytesAvailable) {
             return true;
         }
     }
@@ -155,10 +155,10 @@ VirgilByteArray VirgilStreamSignerDataSource::read() {
         if (self.signer != NULL) {
             VirgilStreamSignerDataSource src = VirgilStreamSignerDataSource(source);
             // Convert NSData to Virgil Byte Array
-            const unsigned char *pKey = static_cast<const unsigned char *>([privateKey bytes]);
+            const unsigned char *pKey = static_cast<const unsigned char *>(privateKey.bytes);
             VirgilByteArray signature;
             if (keyPassword.length > 0) {
-                std::string keyPass = std::string([keyPassword UTF8String]);
+                std::string keyPass = std::string(keyPassword.UTF8String);
                 signature = self.signer->sign(src, VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKey, [privateKey length]), VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(keyPass.data(), keyPass.size()));
             }
             else {
@@ -208,8 +208,8 @@ VirgilByteArray VirgilStreamSignerDataSource::read() {
     try {
         if (self.signer != NULL) {
             VirgilStreamSignerDataSource src = VirgilStreamSignerDataSource(source);
-            const unsigned char *signBytes = static_cast<const unsigned char *>([signature bytes]);
-            const unsigned char *pKey = static_cast<const unsigned char *>([publicKey bytes]);
+            const unsigned char *signBytes = static_cast<const unsigned char *>(signature.bytes);
+            const unsigned char *pKey = static_cast<const unsigned char *>(publicKey.bytes);
             
             bool result = self.signer->verify(src, VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(signBytes, [signature length]), VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKey, [publicKey length]));
             verified = (result) ? YES : NO;
