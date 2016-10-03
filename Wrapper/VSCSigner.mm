@@ -13,9 +13,9 @@
 #endif
 
 #import "VSCSigner.h"
-#import <VirgilCrypto/virgil/crypto/VirgilByteArray.h>
-#import <VirgilCrypto/virgil/crypto/VirgilSigner.h>
-#import <VirgilCrypto/virgil/crypto/foundation/VirgilHash.h>
+#import <VSCCrypto/virgil/crypto/VirgilByteArray.h>
+#import <VSCCrypto/virgil/crypto/VirgilSigner.h>
+#import <VSCCrypto/virgil/crypto/foundation/VirgilHash.h>
 
 using virgil::crypto::VirgilByteArray;
 using virgil::crypto::VirgilSigner;

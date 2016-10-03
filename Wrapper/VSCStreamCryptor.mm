@@ -8,9 +8,9 @@
 
 #import "VSCStreamCryptor.h"
 #import "VSCBaseCryptor_Private.h"
-#import <VirgilCrypto/virgil/crypto/VirgilStreamCipher.h>
-#import <VirgilCrypto/virgil/crypto/VirgilDataSource.h>
-#import <VirgilCrypto/virgil/crypto/VirgilDataSink.h>
+#import <VSCCrypto/virgil/crypto/VirgilStreamCipher.h>
+#import <VSCCrypto/virgil/crypto/VirgilDataSource.h>
+#import <VSCCrypto/virgil/crypto/VirgilDataSink.h>
 
 using virgil::crypto::VirgilByteArray;
 using virgil::crypto::VirgilStreamCipher;

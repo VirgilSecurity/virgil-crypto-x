@@ -8,7 +8,7 @@
 
 #import "VSCChunkCryptor.h"
 #import "VSCBaseCryptor_Private.h"
-#import <VirgilCrypto/virgil/crypto/VirgilChunkCipher.h>
+#import <VSCCrypto/virgil/crypto/VirgilChunkCipher.h>
 
 using virgil::crypto::VirgilByteArray;
 using virgil::crypto::VirgilChunkCipher;

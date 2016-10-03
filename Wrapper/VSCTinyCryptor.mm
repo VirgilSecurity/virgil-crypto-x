@@ -7,7 +7,7 @@
 //
 
 #import "VSCTinyCryptor.h"
-#import <VirgilCrypto/virgil/crypto/VirgilTinyCipher.h>
+#import <VSCCrypto/virgil/crypto/VirgilTinyCipher.h>
 
 using namespace virgil::crypto;
 

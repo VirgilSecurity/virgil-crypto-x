@@ -13,10 +13,10 @@
 #endif
 
 #import "VSCStreamSigner.h"
-#import <VirgilCrypto/virgil/crypto/VirgilByteArray.h>
-#import <VirgilCrypto/virgil/crypto/VirgilStreamSigner.h>
-#import <VirgilCrypto/virgil/crypto/foundation/VirgilHash.h>
-#import <VirgilCrypto/virgil/crypto/VirgilDataSource.h>
+#import <VSCCrypto/virgil/crypto/VirgilByteArray.h>
+#import <VSCCrypto/virgil/crypto/VirgilStreamSigner.h>
+#import <VSCCrypto/virgil/crypto/foundation/VirgilHash.h>
+#import <VSCCrypto/virgil/crypto/VirgilDataSource.h>
 
 NSString *const kVSSStreamSignerErrorDomain = @"VSSStreamSignerErrorDomain";
 

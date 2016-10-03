@@ -55,8 +55,8 @@
 		36D841281CCFC7490011BC02 /* VSCPBKDF.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36D841271CCFC7490011BC02 /* VSCPBKDF.mm */; };
 		36D841291CCFC7490011BC02 /* VSCPBKDF.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36D841271CCFC7490011BC02 /* VSCPBKDF.mm */; };
 		36E95C111C84EA2C00D8BAEB /* VC004_StreamCryptorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E95C101C84EA2C00D8BAEB /* VC004_StreamCryptorTests.m */; };
-		7AE0F64C1D9D8A1B0002BF75 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AE0F64B1D9D8A1B0002BF75 /* VirgilCrypto.framework */; };
-		7AE0F64D1D9D8A1B0002BF75 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AE0F64B1D9D8A1B0002BF75 /* VirgilCrypto.framework */; };
+		7A612DDF1DA2C8B4001D12D7 /* VSCCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A612DDE1DA2C8B4001D12D7 /* VSCCrypto.framework */; };
+		7A612DE01DA2C8B4001D12D7 /* VSCCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A612DDE1DA2C8B4001D12D7 /* VSCCrypto.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,7 +137,7 @@
 		36D841261CCFC7490011BC02 /* VSCPBKDF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSCPBKDF.h; sourceTree = "<group>"; };
 		36D841271CCFC7490011BC02 /* VSCPBKDF.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VSCPBKDF.mm; sourceTree = "<group>"; };
 		36E95C101C84EA2C00D8BAEB /* VC004_StreamCryptorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VC004_StreamCryptorTests.m; sourceTree = "<group>"; };
-		7AE0F64B1D9D8A1B0002BF75 /* VirgilCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCrypto.framework; path = ../Frameworks/ios/VirgilCrypto.framework; sourceTree = "<group>"; };
+		7A612DDE1DA2C8B4001D12D7 /* VSCCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VSCCrypto.framework; path = ../Frameworks/ios/VSCCrypto.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,7 +145,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7AE0F64C1D9D8A1B0002BF75 /* VirgilCrypto.framework in Frameworks */,
+				7A612DDF1DA2C8B4001D12D7 /* VSCCrypto.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,7 +160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7AE0F64D1D9D8A1B0002BF75 /* VirgilCrypto.framework in Frameworks */,
+				7A612DE01DA2C8B4001D12D7 /* VSCCrypto.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,7 +333,7 @@
 		7ABB78811D98434C00A83A14 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7AE0F64B1D9D8A1B0002BF75 /* VirgilCrypto.framework */,
+				7A612DDE1DA2C8B4001D12D7 /* VSCCrypto.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
