@@ -13,6 +13,30 @@
  */
 extern NSString * __nonnull const kVSSKeyPairErrorDomain;
 
+typedef NS_ENUM(NSInteger, VSCKeyType) {
+    VSCKeyTypeRSA_256, ///< RSA 1024 bit (not recommended)
+    VSCKeyTypeRSA_512, ///< RSA 1024 bit (not recommended)
+    VSCKeyTypeRSA_1024, ///< RSA 1024 bit (not recommended)
+    VSCKeyTypeRSA_2048, ///< RSA 2048 bit (not recommended)
+    VSCKeyTypeRSA_3072, ///< RSA 3072 bit
+    VSCKeyTypeRSA_4096, ///< RSA 4096 bit
+    VSCKeyTypeRSA_8192, ///< RSA 8192 bit
+    VSCKeyTypeEC_SECP192R1, ///< 192-bits NIST curve
+    VSCKeyTypeEC_SECP224R1, ///< 224-bits NIST curve
+    VSCKeyTypeEC_SECP256R1, ///< 256-bits NIST curve
+    VSCKeyTypeEC_SECP384R1, ///< 384-bits NIST curve
+    VSCKeyTypeEC_SECP521R1, ///< 521-bits NIST curve
+    VSCKeyTypeEC_BP256R1, ///< 256-bits Brainpool curve
+    VSCKeyTypeEC_BP384R1, ///< 384-bits Brainpool curve
+    VSCKeyTypeEC_BP512R1, ///< 512-bits Brainpool curve
+    VSCKeyTypeEC_SECP192K1, ///< 192-bits "Koblitz" curve
+    VSCKeyTypeEC_SECP224K1, ///< 224-bits "Koblitz" curve
+    VSCKeyTypeEC_SECP256K1, ///< 256-bits "Koblitz" curve
+    VSCKeyTypeEC_CURVE25519, ///< Curve25519 as ECP deprecated format
+    VSCKeyTypeFAST_EC_X25519,  ///< Curve25519
+    VSCKeyTypeFAST_EC_ED25519, ///< Ed25519
+};
+
 /** 
  * Class for generating asymmetric key pairs using a number of alghorithms. 
  */
@@ -27,157 +51,9 @@ extern NSString * __nonnull const kVSSKeyPairErrorDomain;
  */
 - (instancetype __nonnull)init;
 
-/** 
- * Generates key pair using 192-bits NIST curve with given password.
- *
- * @param password Password for encrypting the private key of the key pair or `nil`.
- *
- * @return instance of the `VSSKeyPair`.
- */
-+ (VSCKeyPair * __nonnull)ecNist192WithPassword:(NSString * __nullable)password;
 
-/** 
- * Generates key pair using 224-bits NIST curve with given password.
- *
- * @param password Password for encrypting the private key of the key pair or `nil`.
- *
- * @return instance of the `VSSKeyPair`.
- */
-+ (VSCKeyPair * __nonnull)ecNist224WithPassword:(NSString * __nullable)password;
+- (instancetype __nonnull)initWithKeyPairType:(VSCKeyType)keyPairType password:(NSString *)password;
 
-/** 
- * Generates key pair using 256-bits NIST curve with given password.
- *
- * @param password Password for encrypting the private key of the key pair or `nil`.
- *
- * @return instance of the `VSSKeyPair`.
- */
-+ (VSCKeyPair * __nonnull)ecNist256WithPassword:(NSString * __nullable)password;
-
-/** 
- * Generates key pair using 384-bits NIST curve with given password.
- *
- * @param password Password for encrypting the private key of the key pair or `nil`.
- *
- * @return instance of the `VSSKeyPair` class.
- */
-+ (VSCKeyPair * __nonnull)ecNist384WithPassword:(NSString * __nullable)password;
-
-/** 
- * Generates key pair using 521-bits NIST curve with given password.
- *
- * @param password Password for encrypting the private key of the key pair or `nil`.
- *
- * @return instance of the `VSSKeyPair`.
- */
-+ (VSCKeyPair * __nonnull)ecNist521WithPassword:(NSString * __nullable)password;
-
-/** 
- * Generates key pair using 256-bits Brainpool curve with given password.
- *
- * @param password Password for encrypting the private key of the key pair or `nil`.
- *
- * @return instance of the `VSSKeyPair`.
- */
-+ (VSCKeyPair * __nonnull)ecBrainpool256WithPassword:(NSString * __nullable)password;
-
-/** 
- * Generates key pair using 384-bits Brainpool curve with given password.
- *
- * @param password Password for encrypting the private key of the key pair or `nil`.
- *
- * @return instance of the `VSSKeyPair`.
- */
-+ (VSCKeyPair * __nonnull)ecBrainpool384WithPassword:(NSString * __nullable)password;
-
-/** 
- * Generates key pair using 512-bits Brainpool curve with given password.
- *
- * @param password Password for encrypting the private key of the key pair or `nil`.
- *
- * @return instance of the `VSSKeyPair`.
- */
-+ (VSCKeyPair * __nonnull)ecBrainpool512WithPassword:(NSString * __nullable)password;
-
-/** 
- * Generates key pair using 192-bits "Koblitz" curve with given password.
- *
- * @param password Password for encrypting the private key of the key pair or `nil`.
- *
- * @return instance of the `VSSKeyPair`.
- */
-+ (VSCKeyPair * __nonnull)ecKoblitz192WithPassword:(NSString * __nullable)password;
-
-/** 
- * Generates key pair using 224-bits "Koblitz" curve with given password.
- *
- * @param password Password for encrypting the private key of the key pair or `nil`.
- *
- * @return instance of the `VSSKeyPair`.
- */
-+ (VSCKeyPair * __nonnull)ecKoblitz224WithPassword:(NSString * __nullable)password;
-
-/** 
- * Generates key pair using 256-bits "Koblitz" curve with given password.
- *
- * @param password Password for encrypting the private key of the key pair or `nil`.
- *
- * @return instance of the `VSSKeyPair`.
- */
-+ (VSCKeyPair * __nonnull)ecKoblitz256WithPassword:(NSString * __nullable)password;
-
-/** 
- * Generates key pair using RSA 256-bits with given password.
- *
- * @param password Password for encrypting the private key of the key pair or `nil`.
- *
- * @return instance of the `VSSKeyPair`.
- */
-+ (VSCKeyPair * __nonnull)rsa256WithPassword:(NSString * __nullable)password;
-
-/** 
- * Generates key pair using RSA 512-bits with given password.
- *
- * @param password Password for encrypting the private key of the key pair or `nil`.
- *
- * @return instance of the `VSSKeyPair`.
- */
-+ (VSCKeyPair * __nonnull)rsa512WithPassword:(NSString * __nullable)password;
-
-/** Generates key pair using RSA 1024-bits with given password.
- *
- * @param password Password for encrypting the private key of the key pair or `nil`.
- *
- * @return instance of the `VSSKeyPair`.
- */
-+ (VSCKeyPair * __nonnull)rsa1024WithPassword:(NSString * __nullable)password;
-
-/** 
- * Generates key pair using RSA 2048-bits with given password.
- *
- * @param password Password for encrypting the private key of the key pair or nil.
- *
- * @return instance of the VSSKeyPair.
- */
-+ (VSCKeyPair * __nonnull)rsa2048WithPassword:(NSString * __nullable)password;
-
-/** 
- * Generates key pair using RSA 4096-bits with given password.
- *
- * @param password Password for encrypting the private key of the key pair or nil.
- *
- * @return instance of the VSSKeyPair.
- */
-+ (VSCKeyPair * __nonnull)rsa4096WithPassword:(NSString * __nullable)password;
-
-/** 
- * Generates key pair using curve 25519 with given password. Similar to `m255WithPassword:`
- *
- * @param password Password for encrypting the private key of the key pair or `nil`.
- *
- * @return instance of the `VSSKeyPair`.
- */
-+ (VSCKeyPair * __nonnull)curve25519WithPassword:(NSString * __nullable)password;
 
 ///---------------------------
 /// @name Obtaining the key data

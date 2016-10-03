@@ -11,7 +11,7 @@
 #import <VSCCrypto/virgil/crypto/VirgilKeyPair.h>
 
 using virgil::crypto::VirgilByteArray;
-using Type = virgil::crypto::VirgilKeyPair::Type;
+using CType = virgil::crypto::VirgilKeyPair::Type;
 using namespace virgil::crypto;
 
 NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
@@ -19,11 +19,17 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
 @interface VSCKeyPair ()
 
 @property (nonatomic, assign) VirgilKeyPair *keyPair;
+@property (nonatomic, strong) NSDictionary *enumsDict;
+
+- (NSValue *)valueFromCType:(CType)type;
+- (CType)ctypeFromValue:(NSValue *)value;
+- (CType)convertVSCKeyTypeToCType:(VSCKeyType)keyType;
 
 + (VirgilByteArray)convertVirgilByteArrayFromData:(NSData *)data;
 + (VirgilByteArray)convertVirgilByteArrayFromString:(NSString *)string;
 
 @end
+
 
 @implementation VSCKeyPair
 
@@ -31,19 +37,22 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithKeyPairType:(Type)keyPairType password:(NSString *)password {
+- (instancetype)initWithKeyPairType:(VSCKeyType)keyPairType password:(NSString *)password {
     self = [super init];
     if (self == nil) {
         return nil;
     }
     
+    [self initializeEnumsDictionary];
+    
     try {
+        CType type = [self convertVSCKeyTypeToCType:keyPairType];
         if (password.length == 0) {
-            _keyPair = new VirgilKeyPair(VirgilKeyPair::generate(keyPairType));
+            _keyPair = new VirgilKeyPair(VirgilKeyPair::generate(type));
         }
         else {
-            std::string pwd = std::string(password.UTF8String);
-            _keyPair = new VirgilKeyPair(VirgilKeyPair::generate(keyPairType, VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pwd.data(), pwd.size())));
+            const VirgilByteArray &pwd = [VSCKeyPair convertVirgilByteArrayFromString:password];
+            _keyPair = new VirgilKeyPair(VirgilKeyPair::generate(type, pwd));
         }
     }
     catch(...) {
@@ -58,7 +67,7 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
     if (self == nil) {
         return nil;
     }
-    
+
     try {
         _keyPair = new VirgilKeyPair(VirgilKeyPair::generateRecommended());
     }
@@ -76,6 +85,46 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
     }
 }
 
+#pragma mark - Private
+
+- (void)initializeEnumsDictionary {
+    self.enumsDict = @{
+        @(VSCKeyTypeRSA_256) : [self valueFromCType:CType::RSA_256],
+        @(VSCKeyTypeRSA_512) : [self valueFromCType:CType::RSA_512],
+        @(VSCKeyTypeRSA_1024) : [self valueFromCType:CType::RSA_1024],
+        @(VSCKeyTypeRSA_2048) : [self valueFromCType:CType::RSA_2048],
+        @(VSCKeyTypeRSA_3072) : [self valueFromCType:CType::RSA_3072],
+        @(VSCKeyTypeRSA_4096) : [self valueFromCType:CType::RSA_4096],
+        @(VSCKeyTypeRSA_8192) : [self valueFromCType:CType::RSA_8192],
+        @(VSCKeyTypeEC_SECP192R1) : [self valueFromCType:CType::EC_SECP192R1],
+        @(VSCKeyTypeEC_SECP224R1) : [self valueFromCType:CType::EC_SECP224R1],
+        @(VSCKeyTypeEC_SECP256R1) : [self valueFromCType:CType::EC_SECP256R1],
+        @(VSCKeyTypeEC_SECP384R1) : [self valueFromCType:CType::EC_SECP384R1],
+        @(VSCKeyTypeEC_SECP521R1) : [self valueFromCType:CType::EC_SECP521R1],
+        @(VSCKeyTypeEC_BP256R1) : [self valueFromCType:CType::EC_BP256R1],
+        @(VSCKeyTypeEC_BP384R1) : [self valueFromCType:CType::EC_BP384R1],
+        @(VSCKeyTypeEC_BP512R1) : [self valueFromCType:CType::EC_BP512R1],
+        @(VSCKeyTypeEC_SECP192K1) : [self valueFromCType:CType::EC_SECP192K1],
+        @(VSCKeyTypeEC_SECP224K1) : [self valueFromCType:CType::EC_SECP224K1],
+        @(VSCKeyTypeEC_SECP256K1) : [self valueFromCType:CType::EC_SECP256K1],
+        @(VSCKeyTypeEC_CURVE25519) : [self valueFromCType:CType::EC_CURVE25519],
+        @(VSCKeyTypeFAST_EC_X25519) : [self valueFromCType:CType::FAST_EC_X25519],
+        @(VSCKeyTypeFAST_EC_ED25519) : [self valueFromCType:CType::FAST_EC_ED25519],
+    };
+}
+
+- (NSValue *)valueFromCType:(CType)type {
+    return [NSValue value:(const void *) &type withObjCType:@encode(VirgilKeyPair::Type)];
+}
+
+- (CType)ctypeFromValue:(NSValue *)value {
+    return (CType)reinterpret_cast<int>(value.pointerValue);
+}
+
+- (CType)convertVSCKeyTypeToCType:(VSCKeyType)keyType {
+    return [self ctypeFromValue:self.enumsDict[@(keyType)]];
+}
+
 + (VirgilByteArray)convertVirgilByteArrayFromData:(NSData *)data {
     if (!data || data.length == 0) {
         return VirgilByteArray();
@@ -90,79 +139,11 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
         return VirgilByteArray();
     }
 
-    std::__1::string pass = std::__1::string(string.UTF8String);
+    std::string pass = std::string(string.UTF8String);
     return VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pass.data(), pass.size());
 }
 
-+ (VSCKeyPair *)ecNist192WithPassword:(NSString *)password {
-    return [[self alloc] initWithKeyPairType:Type::EC_SECP192R1 password:password];
-}
-
-+ (VSCKeyPair *)ecNist224WithPassword:(NSString *)password {
-    return [[self alloc] initWithKeyPairType:Type::EC_SECP224R1 password:password];
-}
-
-+ (VSCKeyPair *)ecNist256WithPassword:(NSString *)password {
-    return [[self alloc] initWithKeyPairType:Type::EC_SECP256R1 password:password];
-}
-
-+ (VSCKeyPair *)ecNist384WithPassword:(NSString *)password {
-    return [[self alloc] initWithKeyPairType:Type::EC_SECP384R1 password:password];
-}
-
-+ (VSCKeyPair *)ecNist521WithPassword:(NSString *)password {
-    return [[self alloc] initWithKeyPairType:Type::EC_SECP521R1 password:password];
-}
-
-+ (VSCKeyPair *)ecBrainpool256WithPassword:(NSString *)password {
-    return [[self alloc] initWithKeyPairType:Type::EC_BP256R1 password:password];
-}
-
-+ (VSCKeyPair *)ecBrainpool384WithPassword:(NSString *)password {
-    return [[self alloc] initWithKeyPairType:Type::EC_BP384R1 password:password];
-}
-
-+ (VSCKeyPair *)ecBrainpool512WithPassword:(NSString *)password {
-    return [[self alloc] initWithKeyPairType:Type::EC_BP512R1 password:password];
-}
-
-+ (VSCKeyPair *)ecKoblitz192WithPassword:(NSString *)password {
-    return [[self alloc] initWithKeyPairType:Type::EC_SECP192K1 password:password];
-}
-
-+ (VSCKeyPair *)ecKoblitz224WithPassword:(NSString *)password {
-    return [[self alloc] initWithKeyPairType:Type::EC_SECP224K1 password:password];
-}
-
-+ (VSCKeyPair *)ecKoblitz256WithPassword:(NSString *)password {
-    return [[self alloc] initWithKeyPairType:Type::EC_SECP256K1 password:password];
-}
-
-+ (VSCKeyPair *)rsa256WithPassword:(NSString *)password {
-    return [[self alloc] initWithKeyPairType:Type::RSA_256 password:password];
-}
-
-+ (VSCKeyPair *)rsa512WithPassword:(NSString *)password {
-    return [[self alloc] initWithKeyPairType:Type::RSA_512 password:password];
-}
-
-+ (VSCKeyPair *)rsa1024WithPassword:(NSString *)password {
-    return [[self alloc] initWithKeyPairType:Type::RSA_1024 password:password];
-}
-
-+ (VSCKeyPair *)rsa2048WithPassword:(NSString *)password {
-    return [[self alloc] initWithKeyPairType:Type::RSA_2048 password:password];
-}
-
-+ (VSCKeyPair *)rsa4096WithPassword:(NSString *)password {
-    return [[self alloc] initWithKeyPairType:Type::RSA_4096 password:password];
-}
-
-+ (VSCKeyPair *)curve25519WithPassword:(NSString *)password {
-    return [[self alloc] initWithKeyPairType:Type::FAST_EC_X25519 password:password];
-}
-
-#pragma mark - Public class logic
+#pragma mark - Public
 
 - (NSData *)publicKey {
     if( self.keyPair == NULL ) {

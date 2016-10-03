@@ -29,15 +29,14 @@
 }
 
 - (void)test002_createKeyPairWithPassword {
-//    NSString *password = @"secret";
-//    VSCKeyPair *keyPair = [[VSCKeyPair alloc] initWithPassword:password];
-//    XCTAssertNotNil(keyPair, @"VSCKeyPair instance should be created.");
-//    XCTAssertTrue(keyPair.publicKey.length > 0, @"Public key should be generated for the new key pair.");
-//    XCTAssertTrue(keyPair.privateKey.length > 0, @"Private key should be generated for the new key pair.");
-//    
-//    NSString *privateKeyString = [[NSString alloc] initWithData:keyPair.privateKey encoding:NSUTF8StringEncoding];
-//    NSRange range = [privateKeyString rangeOfString:@"ENCRYPTED" options:NSLiteralSearch | NSCaseInsensitiveSearch];
-//    XCTAssertTrue(range.length != 0, @"Private key should be generated protected by the password provided to initializer.");
+    VSCKeyPair *keyPair = [[VSCKeyPair alloc] initWithKeyPairType:VSCKeyTypeRSA_512 password:@"secret"];
+    XCTAssertNotNil(keyPair, @"VSCKeyPair instance should be created.");
+    XCTAssertTrue(keyPair.publicKey.length > 0, @"Public key should be generated for the new key pair.");
+    XCTAssertTrue(keyPair.privateKey.length > 0, @"Private key should be generated for the new key pair.");
+
+    NSString *privateKeyString = [[NSString alloc] initWithData:keyPair.privateKey encoding:NSUTF8StringEncoding];
+    NSRange range = [privateKeyString rangeOfString:@"ENCRYPTED" options:NSLiteralSearch | NSCaseInsensitiveSearch];
+    XCTAssertTrue(range.length != 0, @"Private key should be generated protected by the password provided to initializer.");
 }
 
 - (void)test003_encryptDecryptPrivateKey {
