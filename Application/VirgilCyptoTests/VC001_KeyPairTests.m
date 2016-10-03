@@ -53,7 +53,19 @@
     XCTAssertEqualObjects(decryptedPrivateKey, keyPair.privateKey, @"");
 }
 
-- (void)test004_extractPublicKeysToPemAndDerFormats {
+- (void)test004_extractPublicKeys {
+    NSString *password = @"secret";
+    VSCKeyPair *keyPair = [[VSCKeyPair alloc] initWithKeyPairType:VSCKeyTypeRSA_512 password:password];
+
+    NSData *pubKeyData = [VSCKeyPair extractPublicKeyWithPrivateKey:keyPair.privateKey privateKeyPassword:password];
+    NSString *pubKey = [[NSString alloc] initWithData:pubKeyData encoding:NSUTF8StringEncoding];
+    NSRange isRange = [pubKey rangeOfString:@"BEGIN PUBLIC KEY" options:NSCaseInsensitiveSearch];
+    
+    XCTAssertTrue(pubKeyData.length > 0, @"Public key data should not be empty");
+    XCTAssertTrue(isRange.location != NSNotFound, @"Public key string should contains 'BEGIN PUBLIC KEY' symbols");
+}
+
+- (void)test005_extractPublicKeysToPemAndDerFormats {
     VSCKeyPair *keyPair = [VSCKeyPair new];
 
     NSData *pemData = [VSCKeyPair publicKeyToPEM:keyPair.publicKey];
@@ -66,7 +78,7 @@
     XCTAssertTrue(derData.length > 0, @"DER data should not be empty");
 }
 
-- (void)test005_extractPrivateKeysToPemAndDerFormats {
+- (void)test006_extractPrivateKeysToPemAndDerFormats {
     VSCKeyPair *keyPair = [VSCKeyPair new];
 
     NSData *pemData = [VSCKeyPair privateKeyToPEM:keyPair.privateKey];
@@ -79,7 +91,7 @@
     XCTAssertTrue(derData.length > 0, @"DER data should not be empty");
 }
 
-- (void)test006_extractPrivateKeysWithPasswordToPemAndDerFormats {
+- (void)test007_extractPrivateKeysWithPasswordToPemAndDerFormats {
     VSCKeyPair *keyPair = [VSCKeyPair new];
     NSString *password = @"secret";
 
