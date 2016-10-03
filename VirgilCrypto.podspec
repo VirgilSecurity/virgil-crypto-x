@@ -1,14 +1,14 @@
 Pod::Spec.new do |s|
-  s.name                        = "VirgilFoundation"
-  s.version                     = "2.0.0-beta4"
+  s.name                        = "VirgilCrypto"
+  s.version                     = "2.0.0-beta5"
   s.summary                     = "Contains basic classes for creating key pairs, encrypting/decrypting data, signing data and verifying signs."
   s.homepage                    = "https://github.com/VirgilSecurity/virgil-foundation-x"
   s.cocoapods_version           = ">= 0.36"
   s.license                     = { :type => "BSD", :file => "LICENSE" }
-  s.author                      = { "Pavlo Gorb" => "virgil.orbitum@gmail.com" }
+  s.author                      = { "Yaroslav T" => "yaros8t@gmail.com" }
   s.platforms                   = { :ios => "7.0" }
   s.source                      = { :git => "https://github.com/VirgilSecurity/virgil-foundation-x.git", :tag => s.version }
-  s.module_name                 = "VirgilFoundation"
+  s.module_name                 = "VirgilCrypto"
   s.source_files                = "Wrapper/*"
   s.public_header_files         = "Wrapper/*.h"
   s.private_header_files        = "Wrapper/*Private.h"
