@@ -49,7 +49,7 @@ extern NSString * __nonnull const kVSSCryptorErrorDomain;
  *
  * @return Data object containing the decrypted data or `nil` in case of error.
  */
-- (NSData * __nullable)decryptData:(NSData * __nonnull)encryptedData recipientId:(NSString * __nonnull)recipientId privateKey:(NSData * __nonnull)privateKey keyPassword:(NSString * __nullable)keyPassword error:(NSError *__nullable * __nullable)error;
+- (NSData * __nullable)decryptData:(NSData * __nonnull)encryptedData recipientId:(NSData * __nonnull)recipientId privateKey:(NSData * __nonnull)privateKey keyPassword:(NSString * __nullable)keyPassword error:(NSError *__nullable * __nullable)error;
 
 /** 
  * Decrypts data using password-based decryption.
@@ -90,7 +90,7 @@ extern NSString * __nonnull const kVSSCryptorErrorDomain;
  *
  * @return Data object containing the decrypted data or `nil` in case of error.
  */
-- (NSData * __nullable)decryptData:(NSData * __nonnull)encryptedData recipientId:(NSString * __nonnull)recipientId privateKey:(NSData * __nonnull)privateKey keyPassword:(NSString * __nullable)keyPassword __attribute__((deprecated("Use -decryptData:recipientId:privateKey:keyPassword:error: instead.")));
+- (NSData * __nullable)decryptData:(NSData * __nonnull)encryptedData recipientId:(NSData * __nonnull)recipientId privateKey:(NSData * __nonnull)privateKey keyPassword:(NSString * __nullable)keyPassword __attribute__((deprecated("Use -decryptData:recipientId:privateKey:keyPassword:error: instead.")));
 
 /** Decrypts data using password-based decryption.
  *

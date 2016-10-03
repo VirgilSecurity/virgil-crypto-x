@@ -20,6 +20,7 @@ NSString *const kVSSCryptorErrorDomain = @"VSSCryptorErrorDomain";
 - (VirgilCipher *)cryptor;
 - (VirgilByteArray)convertVirgilByteArrayFromData:(NSData *)data;
 
+- (VirgilByteArray)convertVirgilByteArrayFromString:(NSString *)string;
 @end
 
 @implementation VSCCryptor
@@ -57,8 +58,12 @@ NSString *const kVSSCryptorErrorDomain = @"VSSCryptorErrorDomain";
 
 - (VirgilByteArray)convertVirgilByteArrayFromData:(NSData *)data {
     const unsigned char *dataToEncrypt = static_cast<const unsigned char *>(data.bytes);
-    VirgilByteArray plainDataArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(dataToEncrypt, [data length]);
-    return plainDataArray;
+    return VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(dataToEncrypt, [data length]);
+}
+
+- (VirgilByteArray)convertVirgilByteArrayFromString:(NSString *)string {
+    std::string pass = std::string(string.UTF8String);
+    return VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pass.data(), pass.size());
 }
 
 #pragma mark - Public class logic
@@ -115,11 +120,11 @@ NSString *const kVSSCryptorErrorDomain = @"VSSCryptorErrorDomain";
     return encData;
 }
 
-- (NSData *)decryptData:(NSData *)encryptedData recipientId:(NSString *)recipientId privateKey:(NSData *)privateKey keyPassword:(NSString *)keyPassword {
+- (NSData *)decryptData:(NSData *)encryptedData recipientId:(NSData *)recipientId privateKey:(NSData *)privateKey keyPassword:(NSString *)keyPassword {
     return [self decryptData:encryptedData recipientId:recipientId privateKey:privateKey keyPassword:keyPassword error:nil];
 }
 
-- (NSData *)decryptData:(NSData *)encryptedData recipientId:(NSString *)recipientId privateKey:(NSData *)privateKey keyPassword:(NSString *)keyPassword error:(NSError **)error {
+- (NSData *)decryptData:(NSData *)encryptedData recipientId:(NSData *)recipientId privateKey:(NSData *)privateKey keyPassword:(NSString *)keyPassword error:(NSError **)error {
     if (encryptedData.length == 0 || recipientId.length == 0 || privateKey.length == 0) {
         // Can't decrypt
         if (error) {
@@ -131,19 +136,13 @@ NSString *const kVSSCryptorErrorDomain = @"VSSCryptorErrorDomain";
     NSData *decData = nil;
     try {
         if ([self cryptor] != NULL) {
-            const unsigned char *dataToDecrypt = static_cast<const unsigned char *>(encryptedData.bytes);
-            VirgilByteArray encryptedDataArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(dataToDecrypt, [encryptedData length]);
-            
-            std::string recId = std::string(recipientId.UTF8String);
-            VirgilByteArray recIdArray = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(recId.data(), recId.size());
-            
-            const unsigned char *pKeyData = static_cast<const unsigned char *>(privateKey.bytes);
-            VirgilByteArray pKey = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKeyData, [privateKey length]);
+            const VirgilByteArray &encryptedDataArray = [self convertVirgilByteArrayFromData:encryptedData];
+            const VirgilByteArray &recIdArray = [self convertVirgilByteArrayFromData:recipientId];
+            const VirgilByteArray &pKey = [self convertVirgilByteArrayFromData:privateKey];
             
             VirgilByteArray decrypted;
             if (keyPassword.length > 0) {
-                std::string pKeyPassS = std::string(keyPassword.UTF8String);
-                VirgilByteArray pKeyPass = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKeyPassS.data(), pKeyPassS.size());
+                const VirgilByteArray &pKeyPass = [self convertVirgilByteArrayFromString:keyPassword];
                 decrypted = [self cryptor]->decryptWithKey(encryptedDataArray, recIdArray, pKey, pKeyPass);
             }
             else {
@@ -195,11 +194,8 @@ NSString *const kVSSCryptorErrorDomain = @"VSSCryptorErrorDomain";
     NSData *decData = nil;
     try {
         if ([self cryptor] != NULL) {
-            const unsigned char *dataToDecrypt = (const unsigned char *)encryptedData.bytes;
-            VirgilByteArray data = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(dataToDecrypt, [encryptedData length]);
-            
-            std::string pass = std::string(password.UTF8String);
-            VirgilByteArray pwd = VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pass.data(), pass.size());
+            const VirgilByteArray &data = [self convertVirgilByteArrayFromData:encryptedData];
+            const VirgilByteArray &pwd =[self convertVirgilByteArrayFromString:password];
             
             VirgilByteArray plain = [self cryptor]->decryptWithPassword(data, pwd);
             decData = [NSData dataWithBytes:plain.data() length:plain.size()];

@@ -50,7 +50,7 @@ extern NSString * __nonnull const kVSSBaseCryptorErrorDomain;
  *
  * @return `YES` in case when operation completed successfully, `NO` - otherwise.
  */
-- (BOOL)addKeyRecipient:(NSString * __nonnull)recipientId publicKey:(NSData * __nonnull)publicKey error:(NSError * __nullable * __nullable)error;
+- (BOOL)addKeyRecipient:(NSData * __nonnull)recipientId publicKey:(NSData * __nonnull)publicKey error:(NSError * __nullable * __nullable)error;
 
 /** 
  * Removes a public key with given identifier from the recipients list for an encryption.
@@ -60,7 +60,7 @@ extern NSString * __nonnull const kVSSBaseCryptorErrorDomain;
  *
  * @return `YES` in case when operation completed successfully, `NO` - otherwise.
  */
-- (BOOL)removeKeyRecipient:(NSString * __nonnull)recipientId error:(NSError * __nullable * __nullable)error;
+- (BOOL)removeKeyRecipient:(NSData * __nonnull)recipientId error:(NSError * __nullable * __nullable)error;
 
 /**
  * @brief Check whether recipient with given identifier exists.
@@ -72,7 +72,7 @@ extern NSString * __nonnull const kVSSBaseCryptorErrorDomain;
  * @param recipientId Recipient's unique identifier.
  * @return true if recipient with given identifier exists, false - otherwise.
  */
-- (BOOL)isKeyRecipientExists:(NSString * __nonnull)recipientId;
+- (BOOL)isKeyRecipientExists:(NSData *__nonnull)recipientId;
 
 /**
  * Adds given password as a recipient for an encryption.
@@ -302,7 +302,7 @@ extern NSString * __nonnull const kVSSBaseCryptorErrorDomain;
  * @param recipientId String containing identifier for the public key used for an encryption.
  * @param publicKey Data object containing public key which will be used for an encryption.
  */
-- (void)addKeyRecipient:(NSString * __nonnull)recipientId publicKey:(NSData * __nonnull)publicKey __attribute__((deprecated("Use -addKeyRecipient:publicKey:error: instead.")));
+- (void)addKeyRecipient:(NSData * __nonnull)recipientId publicKey:(NSData * __nonnull)publicKey __attribute__((deprecated("Use -addKeyRecipient:publicKey:error: instead.")));
 
 /** 
  * Removes a public key with given identifier from the recipients list for an encryption.
@@ -311,7 +311,7 @@ extern NSString * __nonnull const kVSSBaseCryptorErrorDomain;
  *
  * @param recipientId Identifier for the public key which should be removed.
  */
-- (void)removeKeyRecipient:(NSString * __nonnull)recipientId __attribute__((deprecated("Use -removeKeyRecipient:error: instead.")));
+- (void)removeKeyRecipient:(NSData * __nonnull)recipientId __attribute__((deprecated("Use -removeKeyRecipient:error: instead.")));
 
 /** 
  * Adds given password as a recipient for an encryption.

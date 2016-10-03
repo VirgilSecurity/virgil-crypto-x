@@ -161,6 +161,16 @@ void VSSStreamCryptorDataSink::write(const VirgilByteArray &data) {
     return static_cast<VirgilStreamCipher *>(self.llCryptor);
 }
 
+- (VirgilByteArray)convertVirgilByteArrayFromData:(NSData *)data {
+    const unsigned char *dataToEncrypt = static_cast<const unsigned char *>(data.bytes);
+    return VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(dataToEncrypt, [data length]);
+}
+
+- (VirgilByteArray)convertVirgilByteArrayFromString:(NSString *)string {
+    std::string pass = std::string(string.UTF8String);
+    return VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pass.data(), pass.size());
+}
+
 - (BOOL)encryptDataFromStream:(NSInputStream *)source toStream:(NSOutputStream *)destination embedContentInfo:(BOOL)embedContentInfo error:(NSError **)error {
     if (source == nil || destination == nil) {
         if (error) {
@@ -209,7 +219,7 @@ void VSSStreamCryptorDataSink::write(const VirgilByteArray &data) {
     return success;
 }
 
-- (BOOL)decryptFromStream:(NSInputStream * __nonnull)source toStream:(NSOutputStream * __nonnull)destination recipientId:(NSString * __nonnull)recipientId privateKey:(NSData * __nonnull)privateKey keyPassword:(NSString * __nullable)keyPassword error:(NSError * __nullable * __nullable)error {
+- (BOOL)decryptFromStream:(NSInputStream * __nonnull)source toStream:(NSOutputStream * __nonnull)destination recipientId:(NSData * __nonnull)recipientId privateKey:(NSData * __nonnull)privateKey keyPassword:(NSString * __nullable)keyPassword error:(NSError * __nullable * __nullable)error {
     if (source == nil || destination == nil || recipientId.length == 0 || privateKey.length == 0) {
         if (error) {
             *error = [NSError errorWithDomain:kVSSStreamCryptorErrorDomain code:-1004 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to decrypt stream: At least one of the required parameters is missing.", @"Decrypt stream data error.") }];
@@ -222,14 +232,15 @@ void VSSStreamCryptorDataSink::write(const VirgilByteArray &data) {
         if ([self cryptor] != NULL) {
             VSSStreamCryptorDataSource src = VSSStreamCryptorDataSource(source);
             VSSStreamCryptorDataSink dest = VSSStreamCryptorDataSink(destination);
-            std::string recId = std::string(recipientId.UTF8String);
-            const unsigned char *pKey = static_cast<const unsigned char *>(privateKey.bytes);
+            const VirgilByteArray &recId = [self convertVirgilByteArrayFromData:recipientId];
+            const VirgilByteArray &pKey = [self convertVirgilByteArrayFromData:privateKey];
+
             if (keyPassword.length == 0) {
-                [self cryptor]->decryptWithKey(src, dest, VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(recId.data(), recId.size()), VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKey, [privateKey length]));
+                [self cryptor]->decryptWithKey(src, dest, recId, pKey);
             }
             else {
-                std::string keyPass = std::string(keyPassword.UTF8String);
-                [self cryptor]->decryptWithKey(src, dest, VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(recId.data(), recId.size()), VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKey, [privateKey length]), VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(keyPass.data(), keyPass.size()));
+                const VirgilByteArray &keyPass = [self convertVirgilByteArrayFromString:keyPassword];
+                [self cryptor]->decryptWithKey(src, dest, recId, pKey, keyPass);
             }
             if (error) {
                 *error = nil;
@@ -275,8 +286,10 @@ void VSSStreamCryptorDataSink::write(const VirgilByteArray &data) {
         if ([self cryptor] != NULL) {
             VSSStreamCryptorDataSource src = VSSStreamCryptorDataSource(source);
             VSSStreamCryptorDataSink dest = VSSStreamCryptorDataSink(destination);
-            std::string pwd = std::string(password.UTF8String);
-            [self cryptor]->decryptWithPassword(src, dest, VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pwd.data(), pwd.size()));
+            const VirgilByteArray &pwd = [self convertVirgilByteArrayFromString:password];
+
+            [self cryptor]->decryptWithPassword(src, dest,pwd);
+
             if (error) {
                 *error = nil;
             }

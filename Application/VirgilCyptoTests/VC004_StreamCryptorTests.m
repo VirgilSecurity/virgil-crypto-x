@@ -46,10 +46,12 @@
     VSCKeyPair *keyPair = [[VSCKeyPair alloc] init];
     // Generate a recepient id
     NSString *recipientId = [NSUUID UUID].UUIDString.lowercaseString;
+    NSData *recipientIdData = [recipientId dataUsingEncoding:NSUTF8StringEncoding];
+
     // Create a cryptor instance
     VSCStreamCryptor *cryptor = [[VSCStreamCryptor alloc] init];
     // Add a key recepient to enable key-based encryption
-    BOOL success = [cryptor addKeyRecipient:recipientId publicKey:keyPair.publicKey error:&error];
+    BOOL success = [cryptor addKeyRecipient:recipientIdData publicKey:keyPair.publicKey error:&error];
     if (!success || error != nil) {
         NSLog(@"Add key recipient error: %@", error.localizedDescription);
         XCTAssertTrue(FALSE);
@@ -77,7 +79,7 @@
     // Decrypt data using key-based decryption
     error = nil;
     ti = [NSDate timeIntervalSinceReferenceDate];
-    success = [decryptor decryptFromStream:idecstream toStream:odecsctream recipientId:recipientId privateKey:keyPair.privateKey keyPassword:nil error:&error];
+    success = [decryptor decryptFromStream:idecstream toStream:odecsctream recipientId:recipientIdData privateKey:keyPair.privateKey keyPassword:nil error:&error];
     NSLog(@"Decryption key-based time: %.2f", [NSDate timeIntervalSinceReferenceDate] - ti);;
     if (!success || error != nil) {
         NSLog(@"Decryption error: %@", error.localizedDescription);

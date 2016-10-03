@@ -45,19 +45,20 @@
     VSCKeyPair *keyPair = [[VSCKeyPair alloc] init];
     // Generate a public key id
     NSString *publicKeyId = [NSUUID UUID].UUIDString.lowercaseString;
+    NSData *publicKeyIdData= [publicKeyId dataUsingEncoding:NSUTF8StringEncoding];
     // Create a cryptor instance
     VSCCryptor *cryptor = [[VSCCryptor alloc] init];
 
-    XCTAssertFalse([cryptor isKeyRecipientExists:publicKeyId], @"It should not contain recipient key after initialization");
-    XCTAssertFalse([cryptor isKeyRecipientExists:@""], @"it should not crash with empty value");
+    XCTAssertFalse([cryptor isKeyRecipientExists:publicKeyIdData], @"It should not contain recipient key after initialization");
+    XCTAssertFalse([cryptor isKeyRecipientExists:[NSData data]], @"it should not crash with empty value");
 
     // Add a key recepient to enable key-based encryption
     NSError *error = nil;
-    BOOL success = [cryptor addKeyRecipient:publicKeyId publicKey:keyPair.publicKey error:&error];
+    BOOL success = [cryptor addKeyRecipient:publicKeyIdData publicKey:keyPair.publicKey error:&error];
     if (!success || error != nil) {
         XCTFail(@"Error adding key recipient: %@", [error localizedDescription]);
     }
-    XCTAssertTrue([cryptor isKeyRecipientExists:publicKeyId], @"It should contain key");
+    XCTAssertTrue([cryptor isKeyRecipientExists:publicKeyIdData], @"It should contain key");
 
     // Encrypt the data
     error = nil;
@@ -73,7 +74,7 @@
     // Decrypt data using key-based decryption
     error = nil;
     ti = [NSDate timeIntervalSinceReferenceDate];
-    NSData *plainData = [decryptor decryptData:encryptedData recipientId:publicKeyId privateKey:keyPair.privateKey keyPassword:nil error:&error];
+    NSData *plainData = [decryptor decryptData:encryptedData recipientId:publicKeyIdData privateKey:keyPair.privateKey keyPassword:nil error:&error];
     NSLog(@"Decryption key-based time: %.2f", [NSDate timeIntervalSinceReferenceDate] - ti);
     if (plainData.length == 0 || error != nil) {
         XCTFail(@"Error decrypting data: %@", [error localizedDescription]);

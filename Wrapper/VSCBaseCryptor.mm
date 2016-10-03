@@ -69,11 +69,11 @@ NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
     return VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pass.data(), pass.size());
 }
 
-- (void)addKeyRecipient:(NSString *)recipientId publicKey:(NSData *)publicKey {
+- (void)addKeyRecipient:(NSData *)recipientId publicKey:(NSData *)publicKey {
     [self addKeyRecipient:recipientId publicKey:publicKey error:nil];
 }
 
-- (BOOL)addKeyRecipient:(NSString * __nonnull)recipientId publicKey:(NSData * __nonnull)publicKey error:(NSError * __nullable * __nullable)error {
+- (BOOL)addKeyRecipient:(NSData * __nonnull)recipientId publicKey:(NSData * __nonnull)publicKey error:(NSError * __nullable * __nullable)error {
     if (recipientId.length == 0 || publicKey.length == 0) {
         // Can't add recipient.
         if (error) {
@@ -85,7 +85,7 @@ NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
     BOOL success;
     try {
         if ([self cryptor] != NULL) {
-            const VirgilByteArray &recId = [self convertVirgilByteArrayFromString:recipientId];
+            const VirgilByteArray &recId = [self convertVirgilByteArrayFromData:recipientId];
             const VirgilByteArray &pKeyBytes = [self convertVirgilByteArrayFromData:publicKey];
             [self cryptor]->addKeyRecipient(recId, pKeyBytes);
             if (error) {
@@ -121,11 +121,11 @@ NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
     return success;
 }
 
-- (void)removeKeyRecipient:(NSString *)recipientId {
+- (void)removeKeyRecipient:(NSData *)recipientId {
     [self removeKeyRecipient:recipientId error:nil];
 }
 
-- (BOOL)removeKeyRecipient:(NSString *)recipientId error:(NSError **)error {
+- (BOOL)removeKeyRecipient:(NSData *)recipientId error:(NSError **)error {
     if (recipientId.length == 0) {
         // Can't remove recipient
         if (error) {
@@ -137,7 +137,7 @@ NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
     BOOL success;
     try {
         if ([self cryptor] != NULL) {
-            const VirgilByteArray &recId = [self convertVirgilByteArrayFromString:recipientId];
+            const VirgilByteArray &recId = [self convertVirgilByteArrayFromData:recipientId];
             [self cryptor]->removeKeyRecipient(recId);
             if (error) {
                 *error = nil;
@@ -171,12 +171,12 @@ NSString *const kVSSBaseCryptorErrorDomain = @"VSSBaseCryptorErrorDomain";
     return success;
 }
 
-- (BOOL)isKeyRecipientExists:(NSString *)recipientId {
+- (BOOL)isKeyRecipientExists:(NSData *__nonnull)recipientId {
     if (!recipientId || recipientId.length == 0) {
         return NO;
     }
 
-    VirgilByteArray virgilRecipientId = [self convertVirgilByteArrayFromString:recipientId];
+    VirgilByteArray virgilRecipientId = [self convertVirgilByteArrayFromData:recipientId];
     return [self cryptor]->keyRecipientExists(virgilRecipientId);
 }
 

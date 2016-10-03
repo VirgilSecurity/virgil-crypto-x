@@ -155,6 +155,11 @@ void VSSChunkCryptorDataSink::write(const VirgilByteArray &data) {
     return static_cast<VirgilChunkCipher *>(self.llCryptor);
 }
 
+- (VirgilByteArray)convertVirgilByteArrayFromData:(NSData *)data {
+    const unsigned char *dataToEncrypt = static_cast<const unsigned char *>(data.bytes);
+    return VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(dataToEncrypt, [data length]);
+}
+
 - (void)encryptDataFromStream:(NSInputStream *)source toStream:(NSOutputStream *)destination preferredChunkSize:(size_t)chunkSize embedContentInfo:(BOOL)embedContentInfo error:(NSError **)error {
     if (source == nil || destination == nil) {
         if (error) {
@@ -195,7 +200,7 @@ void VSSChunkCryptorDataSink::write(const VirgilByteArray &data) {
     }
 }
 
-- (void)decryptFromStream:(NSInputStream * __nonnull)source toStream:(NSOutputStream * __nonnull)destination recipientId:(NSString * __nonnull)recipientId privateKey:(NSData * __nonnull)privateKey keyPassword:(NSString * __nullable)keyPassword error:(NSError * __nullable * __nullable)error {
+- (void)decryptFromStream:(NSInputStream * __nonnull)source toStream:(NSOutputStream * __nonnull)destination recipientId:(NSData * __nonnull)recipientId privateKey:(NSData * __nonnull)privateKey keyPassword:(NSString * __nullable)keyPassword error:(NSError * __nullable * __nullable)error {
     if (source == nil || destination == nil || recipientId.length == 0 || privateKey.length == 0) {
         if (error) {
             *error = [NSError errorWithDomain:kVSSChunkCryptorErrorDomain code:-1004 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to decrypt stream: At least one of the required parameters is missing.", @"Decrypt stream data error.") }];
@@ -206,14 +211,14 @@ void VSSChunkCryptorDataSink::write(const VirgilByteArray &data) {
         if ([self cryptor] != NULL) {
             VSSChunkCryptorDataSource src = VSSChunkCryptorDataSource(source);
             VSSChunkCryptorDataSink dest = VSSChunkCryptorDataSink(destination);
-            std::string recId = std::string(recipientId.UTF8String);
+            const VirgilByteArray &recId = [self convertVirgilByteArrayFromData:recipientId];
             const unsigned char *pKey = static_cast<const unsigned char *>(privateKey.bytes);
             if (keyPassword.length == 0) {
-                [self cryptor]->decryptWithKey(src, dest, VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(recId.data(), recId.size()), VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKey, [privateKey length]));
+                [self cryptor]->decryptWithKey(src, dest, recId, VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKey, [privateKey length]));
             }
             else {
                 std::string keyPass = std::string(keyPassword.UTF8String);
-                [self cryptor]->decryptWithKey(src, dest, VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(recId.data(), recId.size()), VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKey, [privateKey length]), VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(keyPass.data(), keyPass.size()));
+                [self cryptor]->decryptWithKey(src, dest, recId, VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKey, [privateKey length]), VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(keyPass.data(), keyPass.size()));
             }
             if (error) {
                 *error = nil;
