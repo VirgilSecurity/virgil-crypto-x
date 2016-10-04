@@ -40,7 +40,7 @@
 #include <memory>
 #include <string>
 
-#include <VSCCrypto/virgil/crypto/VirgilByteArray.h>
+#include <virgil/crypto/VirgilByteArray.h>
 
 namespace virgil { namespace crypto {
 

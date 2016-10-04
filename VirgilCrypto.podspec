@@ -18,5 +18,5 @@ Pod::Spec.new do |s|
   s.ios.vendored_frameworks     = "Frameworks/ios/*.framework"
   # s.watchos.vendored_frameworks = "Frameworks/watchos/*.framework"
   # s.tvos.vendored_frameworks    = "Frameworks/tvos/*.framework"
-  s.xcconfig                    = { "HEADER_SEARCH_PATHS" => "$(FRAMEWORK_SEARCH_PATHS)/VirgilCrypto.framework/Headers" }
+  s.xcconfig                    = { "HEADER_SEARCH_PATHS" => "$(FRAMEWORK_SEARCH_PATHS)/VSCCrypto.framework/Headers" }
 end

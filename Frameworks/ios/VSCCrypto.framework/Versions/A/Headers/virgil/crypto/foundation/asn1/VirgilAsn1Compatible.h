@@ -37,7 +37,7 @@
 #ifndef VIRGIL_CRYPTO_VIRGIL_ASN1_COMPATIBLE_H
 #define VIRGIL_CRYPTO_VIRGIL_ASN1_COMPATIBLE_H
 
-#include <VSCCrypto/virgil/crypto/VirgilByteArray.h>
+#include <virgil/crypto/VirgilByteArray.h>
 
 /**
  * @name Forward declaration

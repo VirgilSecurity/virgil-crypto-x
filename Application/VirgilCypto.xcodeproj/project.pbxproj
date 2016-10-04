@@ -718,7 +718,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"${PROJECT_DIR}/../Frameworks/ios/VirgilCrypto.framework/Headers",
+					"${PROJECT_DIR}/../Frameworks/ios/VSCCrypto.framework/Headers",
 				);
 				INFOPLIST_FILE = VirgilCypto/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -737,7 +737,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"${PROJECT_DIR}/../Frameworks/ios/VirgilCrypto.framework/Headers",
+					"${PROJECT_DIR}/../Frameworks/ios/VSCCrypto.framework/Headers",
 				);
 				INFOPLIST_FILE = VirgilCypto/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;

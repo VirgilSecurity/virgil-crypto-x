@@ -78,7 +78,7 @@ typedef NS_ENUM(NSInteger, VSCKeyType) {
 /// @name Utility
 ///---------------------------
 
-+ (NSData * __nullable)extractPublicKeyWithPrivateKey:(NSData * __nonnull)privateKey privateKeyPassword:(NSString * __nonnull)password ;
++ (NSData * __nullable)extractPublicKeyWithPrivateKey:(NSData * __nonnull)privateKey privateKeyPassword:(NSString * __nullable)password ;
 
 + (NSData * __nullable)encryptPrivateKey:(NSData * __nonnull)privateKey privateKeyPassword:(NSString * __nonnull)password;
 + (NSData * __nullable)decryptPrivateKey:(NSData * __nonnull)privateKey privateKeyPassword:(NSString * __nonnull)password;

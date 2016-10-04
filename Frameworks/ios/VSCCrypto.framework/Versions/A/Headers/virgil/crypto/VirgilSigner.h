@@ -37,8 +37,8 @@
 #ifndef VIRGIL_SIGNER_H
 #define VIRGIL_SIGNER_H
 
-#include <VSCCrypto/virgil/crypto/VirgilByteArray.h>
-#include <VSCCrypto/virgil/crypto/foundation/VirgilHash.h>
+#include <virgil/crypto/VirgilByteArray.h>
+#include <virgil/crypto/foundation/VirgilHash.h>
 
 namespace virgil { namespace crypto {
 

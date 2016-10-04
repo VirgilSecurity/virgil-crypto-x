@@ -18,14 +18,17 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
 
 @interface VSCKeyPair ()
 
-@property (nonatomic, assign) VirgilKeyPair *keyPair;
-@property (nonatomic, strong) NSDictionary *enumsDict;
+@property(nonatomic, assign) VirgilKeyPair *keyPair;
+@property(nonatomic, strong) NSDictionary *enumsDict;
 
 - (NSValue *)valueFromCType:(CType)type;
+
 - (CType)ctypeFromValue:(NSValue *)value;
+
 - (CType)convertVSCKeyTypeToCType:(VSCKeyType)keyType;
 
 + (VirgilByteArray)convertVirgilByteArrayFromData:(NSData *)data;
+
 + (VirgilByteArray)convertVirgilByteArrayFromString:(NSString *)string;
 
 @end
@@ -42,23 +45,22 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
     if (self == nil) {
         return nil;
     }
-    
+
     [self initializeEnumsDictionary];
-    
+
     try {
         CType type = [self convertVSCKeyTypeToCType:keyPairType];
         if (!password || password.length == 0) {
             _keyPair = new VirgilKeyPair(VirgilKeyPair::generate(type));
-        }
-        else {
+        } else {
             const VirgilByteArray &pwd = [VSCKeyPair convertVirgilByteArrayFromString:password];
             _keyPair = new VirgilKeyPair(VirgilKeyPair::generate(type, pwd));
         }
     }
-    catch(...) {
+    catch (...) {
         _keyPair = NULL;
     }
-    
+
     return self;
 }
 
@@ -71,10 +73,10 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
     try {
         _keyPair = new VirgilKeyPair(VirgilKeyPair::generateRecommended());
     }
-    catch(...) {
+    catch (...) {
         _keyPair = NULL;
     }
-    
+
     return self;
 }
 
@@ -89,27 +91,27 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
 
 - (void)initializeEnumsDictionary {
     self.enumsDict = @{
-        @(VSCKeyTypeRSA_256) : [self valueFromCType:CType::RSA_256],
-        @(VSCKeyTypeRSA_512) : [self valueFromCType:CType::RSA_512],
-        @(VSCKeyTypeRSA_1024) : [self valueFromCType:CType::RSA_1024],
-        @(VSCKeyTypeRSA_2048) : [self valueFromCType:CType::RSA_2048],
-        @(VSCKeyTypeRSA_3072) : [self valueFromCType:CType::RSA_3072],
-        @(VSCKeyTypeRSA_4096) : [self valueFromCType:CType::RSA_4096],
-        @(VSCKeyTypeRSA_8192) : [self valueFromCType:CType::RSA_8192],
-        @(VSCKeyTypeEC_SECP192R1) : [self valueFromCType:CType::EC_SECP192R1],
-        @(VSCKeyTypeEC_SECP224R1) : [self valueFromCType:CType::EC_SECP224R1],
-        @(VSCKeyTypeEC_SECP256R1) : [self valueFromCType:CType::EC_SECP256R1],
-        @(VSCKeyTypeEC_SECP384R1) : [self valueFromCType:CType::EC_SECP384R1],
-        @(VSCKeyTypeEC_SECP521R1) : [self valueFromCType:CType::EC_SECP521R1],
-        @(VSCKeyTypeEC_BP256R1) : [self valueFromCType:CType::EC_BP256R1],
-        @(VSCKeyTypeEC_BP384R1) : [self valueFromCType:CType::EC_BP384R1],
-        @(VSCKeyTypeEC_BP512R1) : [self valueFromCType:CType::EC_BP512R1],
-        @(VSCKeyTypeEC_SECP192K1) : [self valueFromCType:CType::EC_SECP192K1],
-        @(VSCKeyTypeEC_SECP224K1) : [self valueFromCType:CType::EC_SECP224K1],
-        @(VSCKeyTypeEC_SECP256K1) : [self valueFromCType:CType::EC_SECP256K1],
-        @(VSCKeyTypeEC_CURVE25519) : [self valueFromCType:CType::EC_CURVE25519],
-        @(VSCKeyTypeFAST_EC_X25519) : [self valueFromCType:CType::FAST_EC_X25519],
-        @(VSCKeyTypeFAST_EC_ED25519) : [self valueFromCType:CType::FAST_EC_ED25519],
+            @(VSCKeyTypeRSA_256): [self valueFromCType:CType::RSA_256],
+            @(VSCKeyTypeRSA_512): [self valueFromCType:CType::RSA_512],
+            @(VSCKeyTypeRSA_1024): [self valueFromCType:CType::RSA_1024],
+            @(VSCKeyTypeRSA_2048): [self valueFromCType:CType::RSA_2048],
+            @(VSCKeyTypeRSA_3072): [self valueFromCType:CType::RSA_3072],
+            @(VSCKeyTypeRSA_4096): [self valueFromCType:CType::RSA_4096],
+            @(VSCKeyTypeRSA_8192): [self valueFromCType:CType::RSA_8192],
+            @(VSCKeyTypeEC_SECP192R1): [self valueFromCType:CType::EC_SECP192R1],
+            @(VSCKeyTypeEC_SECP224R1): [self valueFromCType:CType::EC_SECP224R1],
+            @(VSCKeyTypeEC_SECP256R1): [self valueFromCType:CType::EC_SECP256R1],
+            @(VSCKeyTypeEC_SECP384R1): [self valueFromCType:CType::EC_SECP384R1],
+            @(VSCKeyTypeEC_SECP521R1): [self valueFromCType:CType::EC_SECP521R1],
+            @(VSCKeyTypeEC_BP256R1): [self valueFromCType:CType::EC_BP256R1],
+            @(VSCKeyTypeEC_BP384R1): [self valueFromCType:CType::EC_BP384R1],
+            @(VSCKeyTypeEC_BP512R1): [self valueFromCType:CType::EC_BP512R1],
+            @(VSCKeyTypeEC_SECP192K1): [self valueFromCType:CType::EC_SECP192K1],
+            @(VSCKeyTypeEC_SECP224K1): [self valueFromCType:CType::EC_SECP224K1],
+            @(VSCKeyTypeEC_SECP256K1): [self valueFromCType:CType::EC_SECP256K1],
+            @(VSCKeyTypeEC_CURVE25519): [self valueFromCType:CType::EC_CURVE25519],
+            @(VSCKeyTypeFAST_EC_X25519): [self valueFromCType:CType::FAST_EC_X25519],
+            @(VSCKeyTypeFAST_EC_ED25519): [self valueFromCType:CType::FAST_EC_ED25519],
     };
 }
 
@@ -118,7 +120,7 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
 }
 
 - (CType)ctypeFromValue:(NSValue *)value {
-    return (CType)reinterpret_cast<int64_t >(value.pointerValue);
+    return (CType) reinterpret_cast<int64_t >(value.pointerValue);
 }
 
 - (CType)convertVSCKeyTypeToCType:(VSCKeyType)keyType {
@@ -146,7 +148,7 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
 #pragma mark - Public
 
 - (NSData *)publicKey {
-    if( self.keyPair == NULL ) {
+    if (self.keyPair == NULL) {
         return [NSData data];
     }
     NSData *publicKey = nil;
@@ -154,30 +156,30 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
         VirgilByteArray pkey = self.keyPair->publicKey();
         publicKey = [NSData dataWithBytes:pkey.data() length:pkey.size()];
     }
-    catch(...) {
+    catch (...) {
         publicKey = [NSData data];
     }
     return publicKey;
 }
 
 - (NSData *)privateKey {
-    if( self.keyPair == NULL ) {
+    if (self.keyPair == NULL) {
         return [NSData data];
     }
-    
+
     NSData *privateKey = nil;
     try {
         VirgilByteArray pkey = self.keyPair->privateKey();
         privateKey = [NSData dataWithBytes:pkey.data() length:pkey.size()];
     }
-    catch(...) {
+    catch (...) {
         privateKey = [NSData data];
     }
     return privateKey;
 }
 
-+ (NSData * __nullable)extractPublicKeyWithPrivateKey:(NSData *)privateKey privateKeyPassword:(NSString *)password {
-    if(!privateKey || !password) {
++ (NSData *__nullable)extractPublicKeyWithPrivateKey:(NSData *__nonnull)privateKey privateKeyPassword:(NSString *__nullable)password {
+    if (!privateKey || !password) {
         return nil;
     }
 
@@ -195,8 +197,9 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
     return result;
 }
 
+
 + (NSData *__nullable)encryptPrivateKey:(NSData *)privateKey privateKeyPassword:(NSString *)password {
-    if(!privateKey || !password) {
+    if (!privateKey || !password) {
         return nil;
     }
 
@@ -214,8 +217,8 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
     return encryptedPrivateKey;
 }
 
-+ (NSData * __nullable)decryptPrivateKey:(NSData *)privateKey privateKeyPassword:(NSString *)password {
-    if(!privateKey || !password) {
++ (NSData *__nullable)decryptPrivateKey:(NSData *)privateKey privateKeyPassword:(NSString *)password {
+    if (!privateKey || !password) {
         return nil;
     }
 
@@ -237,13 +240,13 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
     if (keyData.length == 0) {
         return NO;
     }
-    
+
     BOOL isEncrypted;
     try {
         const VirgilByteArray &data = [VSCKeyPair convertVirgilByteArrayFromData:keyData];
         isEncrypted = VirgilKeyPair::isPrivateKeyEncrypted(data);
     }
-    catch(...) {
+    catch (...) {
         isEncrypted = false;
     }
 
@@ -255,14 +258,14 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
     if (keyData.length == 0 || password.length == 0) {
         return NO;
     }
-    
+
     BOOL isMatches;
     try {
         const VirgilByteArray &data = [VSCKeyPair convertVirgilByteArrayFromData:keyData];
         const VirgilByteArray &pwd = [VSCKeyPair convertVirgilByteArrayFromString:password];
         isMatches = VirgilKeyPair::checkPrivateKeyPassword(data, pwd);
     }
-    catch(...) {
+    catch (...) {
         isMatches = false;
     }
 
@@ -274,69 +277,68 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
     if (publicKeyData.length == 0 || privateKeyData.length == 0) {
         return NO;
     }
-    
+
     BOOL isMatches;
     try {
         const VirgilByteArray &pubKeyData = [VSCKeyPair convertVirgilByteArrayFromData:publicKeyData];
         const VirgilByteArray &privKeyData = [VSCKeyPair convertVirgilByteArrayFromData:privateKeyData];
         if (password.length == 0) {
             isMatches = VirgilKeyPair::isKeyPairMatch(pubKeyData, privKeyData);
-        }
-        else {
+        } else {
             const VirgilByteArray &pwd = [VSCKeyPair convertVirgilByteArrayFromString:password];
             isMatches = VirgilKeyPair::isKeyPairMatch(pubKeyData, privKeyData, pwd);
         }
     }
-    catch(...) {
+    catch (...) {
         isMatches = false;
     }
 
     return isMatches;
 }
 
-+ (NSData * __nullable)resetPassword:(NSString *)password toPassword:(NSString *)newPassword forPrivateKey:(NSData *)keyData error:(NSError **)error {
++ (NSData *__nullable)resetPassword:(NSString *)password toPassword:(NSString *)newPassword forPrivateKey:(NSData *)keyData error:(NSError **)error {
     if (password.length == 0 || newPassword.length == 0 || keyData.length == 0) {
         // Can't reset password.
         if (error) {
-            *error = [NSError errorWithDomain:kVSSKeyPairErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to reset password: Required parameter is missing.", @"Reset password error.") }];
+            *error = [NSError errorWithDomain:kVSSKeyPairErrorDomain code:-1000 userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to reset password: Required parameter is missing.", @"Reset password error.")}];
         }
         return nil;
     }
-    
+
     NSData *pkeyData = nil;
     try {
         const VirgilByteArray &vbaPwd = [VSCKeyPair convertVirgilByteArrayFromString:password];
         const VirgilByteArray &vbaNewPwd = [VSCKeyPair convertVirgilByteArrayFromString:newPassword];
         const VirgilByteArray &pKey = [VSCKeyPair convertVirgilByteArrayFromData:keyData];
-        
+
         VirgilByteArray pNewKey = VirgilKeyPair::resetPrivateKeyPassword(pKey, vbaPwd, vbaNewPwd);
         pkeyData = [NSData dataWithBytes:pNewKey.data() length:pNewKey.size()];
         if (error) {
             *error = nil;
         }
     }
-    catch(std::exception &ex) {
+    catch (std::exception &ex) {
         if (error) {
             NSString *description = [[NSString alloc] initWithCString:ex.what() encoding:NSUTF8StringEncoding];
             if (description.length == 0) {
                 description = @"Unknown exception during password reset.";
             }
-            *error = [NSError errorWithDomain:kVSSKeyPairErrorDomain code:-1001 userInfo:@{ NSLocalizedDescriptionKey: description }];
+            *error = [NSError errorWithDomain:kVSSKeyPairErrorDomain code:-1001 userInfo:@{NSLocalizedDescriptionKey: description}];
         }
         pkeyData = nil;
     }
-    catch(...) {
+    catch (...) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSSKeyPairErrorDomain code:-1002 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown exception during password reset." }];
+            *error = [NSError errorWithDomain:kVSSKeyPairErrorDomain code:-1002 userInfo:@{NSLocalizedDescriptionKey: @"Unknown exception during password reset."}];
         }
         pkeyData = nil;
     }
-    
+
     return pkeyData;
 }
 
 + (NSData *)publicKeyToPEM:(NSData *)publicKey {
-    if(!publicKey) {
+    if (!publicKey) {
         return [NSData data];
     }
 
@@ -355,7 +357,7 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
 }
 
 + (NSData *)publicKeyToDER:(NSData *)publicKey {
-    if(!publicKey) {
+    if (!publicKey) {
         return [NSData data];
     }
 
@@ -382,7 +384,7 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
 }
 
 + (NSData *)privateKeyToPEM:(NSData *)privateKey privateKeyPassword:(NSString *)password {
-    if(!privateKey) {
+    if (!privateKey) {
         return [NSData data];
     }
 
@@ -403,7 +405,7 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
 }
 
 + (NSData *)privateKeyToDER:(NSData *)privateKey privateKeyPassword:(NSString *)password {
-    if(!privateKey) {
+    if (!privateKey) {
         return [NSData data];
     }
 

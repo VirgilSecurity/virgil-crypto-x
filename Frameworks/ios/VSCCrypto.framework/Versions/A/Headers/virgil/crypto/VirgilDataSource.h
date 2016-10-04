@@ -37,7 +37,7 @@
 #ifndef VIRGIL_CRYPTO_VIRGIL_DATA_SOURCE_H
 #define VIRGIL_CRYPTO_VIRGIL_DATA_SOURCE_H
 
-#include <VSCCrypto/virgil/crypto/VirgilByteArray.h>
+#include <virgil/crypto/VirgilByteArray.h>
 
 namespace virgil { namespace crypto {
 
