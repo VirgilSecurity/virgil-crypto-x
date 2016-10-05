@@ -55,11 +55,14 @@
 		36D841281CCFC7490011BC02 /* VSCPBKDF.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36D841271CCFC7490011BC02 /* VSCPBKDF.mm */; };
 		36D841291CCFC7490011BC02 /* VSCPBKDF.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36D841271CCFC7490011BC02 /* VSCPBKDF.mm */; };
 		36E95C111C84EA2C00D8BAEB /* VC004_StreamCryptorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E95C101C84EA2C00D8BAEB /* VC004_StreamCryptorTests.m */; };
+		6D6ED0681788F4EF6ED59967 /* VSCHash.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6D6EDD9892245245103E8F97 /* VSCHash.mm */; };
 		6D6ED44C5753607AFDCB9AB9 /* VSCByteArrayUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6D6EDC055321E44879FDC6DA /* VSCByteArrayUtils.mm */; };
 		6D6ED4EA836D00CCF92958F4 /* VSCByteArrayUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6D6EDC055321E44879FDC6DA /* VSCByteArrayUtils.mm */; };
+		6D6ED783A74B226B4479BAFA /* VSCHash.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6D6EDD9892245245103E8F97 /* VSCHash.mm */; };
 		7A612DDF1DA2C8B4001D12D7 /* VSCCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A612DDE1DA2C8B4001D12D7 /* VSCCrypto.framework */; };
 		7A612DE01DA2C8B4001D12D7 /* VSCCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A612DDE1DA2C8B4001D12D7 /* VSCCrypto.framework */; };
 		7A612DE21DA3C835001D12D7 /* VC009_ByteArrayUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A612DE11DA3C835001D12D7 /* VC009_ByteArrayUtilsTests.m */; };
+		7A8462C91DA50C9300F14131 /* VSCHashTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A8462C81DA50C9300F14131 /* VSCHashTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,8 +145,11 @@
 		36E95C101C84EA2C00D8BAEB /* VC004_StreamCryptorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VC004_StreamCryptorTests.m; sourceTree = "<group>"; };
 		6D6ED4AFE6705512D6F8496A /* VSCByteArrayUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSCByteArrayUtils.h; sourceTree = "<group>"; };
 		6D6EDC055321E44879FDC6DA /* VSCByteArrayUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VSCByteArrayUtils.mm; sourceTree = "<group>"; };
+		6D6EDD96F34D12EFD8CCC334 /* VSCHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSCHash.h; sourceTree = "<group>"; };
+		6D6EDD9892245245103E8F97 /* VSCHash.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VSCHash.mm; sourceTree = "<group>"; };
 		7A612DDE1DA2C8B4001D12D7 /* VSCCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VSCCrypto.framework; path = ../Frameworks/ios/VSCCrypto.framework; sourceTree = "<group>"; };
 		7A612DE11DA3C835001D12D7 /* VC009_ByteArrayUtilsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VC009_ByteArrayUtilsTests.m; sourceTree = "<group>"; };
+		7A8462C81DA50C9300F14131 /* VSCHashTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSCHashTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +248,7 @@
 				367503A01D3CBE7100D0633B /* VC008_TinyCryptorTests.m */,
 				361402921BB2A6CB002E69CA /* Supporting Files */,
 				7A612DE11DA3C835001D12D7 /* VC009_ByteArrayUtilsTests.m */,
+				7A8462C81DA50C9300F14131 /* VSCHashTests.m */,
 			);
 			path = VirgilCyptoTests;
 			sourceTree = "<group>";
@@ -282,6 +289,8 @@
 				3675039D1D361B9200D0633B /* VSCTinyCryptor.mm */,
 				6D6ED4AFE6705512D6F8496A /* VSCByteArrayUtils.h */,
 				6D6EDC055321E44879FDC6DA /* VSCByteArrayUtils.mm */,
+				6D6EDD9892245245103E8F97 /* VSCHash.mm */,
+				6D6EDD96F34D12EFD8CCC334 /* VSCHash.h */,
 			);
 			name = Wrapper;
 			path = ../Wrapper;
@@ -529,6 +538,7 @@
 				3614027B1BB2A6CB002E69CA /* main.m in Sources */,
 				3620406D1C7C859E003A477D /* VSCBaseCryptor.mm in Sources */,
 				6D6ED4EA836D00CCF92958F4 /* VSCByteArrayUtils.mm in Sources */,
+				6D6ED783A74B226B4479BAFA /* VSCHash.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,6 +555,7 @@
 				367503A11D3CBE7100D0633B /* VC008_TinyCryptorTests.m in Sources */,
 				36D601E61CD14D090096C784 /* VC007_PBKDFTests.m in Sources */,
 				36E95C111C84EA2C00D8BAEB /* VC004_StreamCryptorTests.m in Sources */,
+				7A8462C91DA50C9300F14131 /* VSCHashTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,6 +577,7 @@
 				361402BC1BB2AC5B002E69CA /* AppDelegate.swift in Sources */,
 				3675039F1D361B9200D0633B /* VSCTinyCryptor.mm in Sources */,
 				6D6ED44C5753607AFDCB9AB9 /* VSCByteArrayUtils.mm in Sources */,
+				6D6ED0681788F4EF6ED59967 /* VSCHash.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
