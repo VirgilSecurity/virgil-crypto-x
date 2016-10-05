@@ -179,7 +179,7 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
 }
 
 + (NSData *__nullable)extractPublicKeyWithPrivateKey:(NSData *__nonnull)privateKey privateKeyPassword:(NSString *__nullable)password {
-    if (!privateKey || !password) {
+    if (!privateKey || privateKey.length == 0) {
         return nil;
     }
 
@@ -196,7 +196,6 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
 
     return result;
 }
-
 
 + (NSData *__nullable)encryptPrivateKey:(NSData *)privateKey privateKeyPassword:(NSString *)password {
     if (!privateKey || !password) {

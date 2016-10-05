@@ -39,7 +39,7 @@
     XCTAssertTrue(range.length != 0, @"Private key should be generated protected by the password provided to initializer.");
 }
 
-- (void)test003_encryptDecryptPrivateKey {
+- (void)testEncryptDecryptPrivateKeyWithPassword {
     VSCKeyPair *keyPair = [VSCKeyPair new];
     NSString *password = @"secret";
 
@@ -53,14 +53,26 @@
     XCTAssertEqualObjects(decryptedPrivateKey, keyPair.privateKey, @"");
 }
 
-- (void)test004_extractPublicKeys {
+- (void)testExtractPublicKeysWithPassword {
     NSString *password = @"secret";
     VSCKeyPair *keyPair = [[VSCKeyPair alloc] initWithKeyPairType:VSCKeyTypeRSA_512 password:password];
 
     NSData *pubKeyData = [VSCKeyPair extractPublicKeyWithPrivateKey:keyPair.privateKey privateKeyPassword:password];
     NSString *pubKey = [[NSString alloc] initWithData:pubKeyData encoding:NSUTF8StringEncoding];
     NSRange isRange = [pubKey rangeOfString:@"BEGIN PUBLIC KEY" options:NSCaseInsensitiveSearch];
-    
+
+    XCTAssertTrue(pubKeyData.length > 0, @"Public key data should not be empty");
+    XCTAssertTrue(isRange.location != NSNotFound, @"Public key string should contains 'BEGIN PUBLIC KEY' symbols");
+}
+
+- (void)testExtractPublicKeysWithoutPassword {
+    VSCKeyPair *keyPair = [[VSCKeyPair alloc] initWithKeyPairType:VSCKeyTypeRSA_512 password:nil];
+
+    NSData *pubKeyData = [VSCKeyPair extractPublicKeyWithPrivateKey:keyPair.privateKey privateKeyPassword:nil];
+    NSString *pubKey = [[NSString alloc] initWithData:pubKeyData encoding:NSUTF8StringEncoding];
+    NSRange isRange = [pubKey rangeOfString:@"BEGIN PUBLIC KEY" options:NSCaseInsensitiveSearch];
+
+    XCTAssertNotNil(pubKeyData);
     XCTAssertTrue(pubKeyData.length > 0, @"Public key data should not be empty");
     XCTAssertTrue(isRange.location != NSNotFound, @"Public key string should contains 'BEGIN PUBLIC KEY' symbols");
 }
