@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "VSCHash.h"
+#import "VSCByteArrayUtils.h"
 
 @interface VSCHashTests : XCTestCase
 
@@ -25,9 +26,9 @@
     XCTAssertNil([h hash:nil]);
     
     NSData *hashData = [h hash:[plainString dataUsingEncoding:NSUTF8StringEncoding]];
-    NSString *hashString = [[NSString alloc] initWithData:hashData encoding:NSUTF8StringEncoding];
+    NSString *hexString = [VSCByteArrayUtils hexStringFromData:hashData];
 
-    XCTAssertEqualObjects(expectedHashString, hashString);
+    XCTAssertEqualObjects(expectedHashString, hexString);
 }
 
 - (void)testCalculateSHA1 {
@@ -39,9 +40,9 @@
     XCTAssertNil([h hash:nil]);
     
     NSData *hashData = [h hash:[plainString dataUsingEncoding:NSUTF8StringEncoding]];
-    NSString *hashString = [[NSString alloc] initWithData:hashData encoding:NSUTF8StringEncoding];
+    NSString *hexString = [VSCByteArrayUtils hexStringFromData:hashData];
     
-    XCTAssertEqualObjects(expectedHashString, hashString);
+    XCTAssertEqualObjects(expectedHashString, hexString);
 }
 
 - (void)testCalculateSHA224 {
@@ -53,9 +54,9 @@
     XCTAssertNil([h hash:nil]);
     
     NSData *hashData = [h hash:[plainString dataUsingEncoding:NSUTF8StringEncoding]];
-    NSString *hashString = [[NSString alloc] initWithData:hashData encoding:NSUTF8StringEncoding];
+    NSString *hexString = [VSCByteArrayUtils hexStringFromData:hashData];
     
-    XCTAssertEqualObjects(expectedHashString, hashString);
+    XCTAssertEqualObjects(expectedHashString, hexString);
 }
 
 - (void)testCalculateSHA256 {
@@ -67,9 +68,9 @@
     XCTAssertNil([h hash:nil]);
     
     NSData *hashData = [h hash:[plainString dataUsingEncoding:NSUTF8StringEncoding]];
-    NSString *hashString = [[NSString alloc] initWithData:hashData encoding:NSUTF8StringEncoding];
+    NSString *hexString = [VSCByteArrayUtils hexStringFromData:hashData];
     
-    XCTAssertEqualObjects(expectedHashString, hashString);
+    XCTAssertEqualObjects(expectedHashString, hexString);
 }
 
 - (void)testCalculateSHA384 {
@@ -81,9 +82,9 @@
     XCTAssertNil([h hash:nil]);
     
     NSData *hashData = [h hash:[plainString dataUsingEncoding:NSUTF8StringEncoding]];
-    NSString *hashString = [[NSString alloc] initWithData:hashData encoding:NSUTF8StringEncoding];
+    NSString *hexString = [VSCByteArrayUtils hexStringFromData:hashData];
     
-    XCTAssertEqualObjects(expectedHashString, hashString);
+    XCTAssertEqualObjects(expectedHashString, hexString);
 }
 
 - (void)testCalculateSHA512 {
@@ -95,9 +96,9 @@
     XCTAssertNil([h hash:nil]);
     
     NSData *hashData = [h hash:[plainString dataUsingEncoding:NSUTF8StringEncoding]];
-    NSString *hashString = [[NSString alloc] initWithData:hashData encoding:NSUTF8StringEncoding];
+    NSString *hexString = [VSCByteArrayUtils hexStringFromData:hashData];
     
-    XCTAssertEqualObjects(expectedHashString, hashString);
+    XCTAssertEqualObjects(expectedHashString, hexString);
 }
 
 @end

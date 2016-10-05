@@ -6,7 +6,6 @@
 #import "VSCHash.h"
 #import <VSCCrypto/virgil/crypto/foundation/VirgilHash.h>
 #import <VSCCrypto/virgil/crypto/VirgilKeyPair.h>
-#include <CommonCrypto/CommonDigest.h>
 
 using virgil::crypto::foundation::VirgilHash;
 using virgil::crypto::VirgilByteArray;
@@ -17,8 +16,6 @@ using CAlgorithm = virgil::crypto::foundation::VirgilHash::Algorithm;
 
 @property(nonatomic, assign) VirgilHash *hash;
 @property(nonatomic, strong) NSDictionary *enumsDict;
-@property(nonatomic, strong) NSDictionary *digestLenghtDict;
-@property(nonatomic, assign) VSCAlgorithm currentAlgorithm;
 
 @end
 
@@ -32,7 +29,6 @@ using CAlgorithm = virgil::crypto::foundation::VirgilHash::Algorithm;
         return nil;
     }
 
-    self.currentAlgorithm = algorithm;
     [self initializeDictionaries];
 
     _hash = new VirgilHash([self convertVSCAlgorithmToCAlgorithm:algorithm]);
@@ -48,15 +44,6 @@ using CAlgorithm = virgil::crypto::foundation::VirgilHash::Algorithm;
             @(VSCSHA256): [self valueFromCType:CAlgorithm::SHA256],
             @(VSCSHA384): [self valueFromCType:CAlgorithm::SHA384],
             @(VSCSHA512): [self valueFromCType:CAlgorithm::SHA512],
-    };
-
-    self.digestLenghtDict = @{
-            @(VSCMD5): @CC_MD5_DIGEST_LENGTH,
-            @(VSCSHA1): @CC_SHA1_DIGEST_LENGTH,
-            @(VSCSHA224): @CC_SHA224_DIGEST_LENGTH,
-            @(VSCSHA256): @CC_SHA256_DIGEST_LENGTH,
-            @(VSCSHA384): @CC_SHA384_DIGEST_LENGTH,
-            @(VSCSHA512): @CC_SHA512_DIGEST_LENGTH,
     };
 }
 
@@ -82,7 +69,7 @@ using CAlgorithm = virgil::crypto::foundation::VirgilHash::Algorithm;
 }
 
 - (VirgilByteArray)convertVirgilByteArrayFromData:(NSData *)data {
-    if (!data || data.length == 0) {
+    if (data.length == 0) {
         return VirgilByteArray();
     }
 
@@ -93,20 +80,14 @@ using CAlgorithm = virgil::crypto::foundation::VirgilHash::Algorithm;
 #pragma mark - Public
 
 - (NSData *)hash:(NSData *)data {
-    if (!data || data.length == 0) {
+    if (data.length == 0) {
         return nil;
     }
 
-    const VirgilByteArray vData = [self convertVirgilByteArrayFromData:data];
-    const VirgilByteArray hashData = self.hash->hash(vData);
-    NSMutableString *output = [NSMutableString stringWithCapacity:hashData.size() * 2];
-    NSNumber *num = self.digestLenghtDict[@(self.currentAlgorithm)];
+    const VirgilByteArray &vData = [self convertVirgilByteArrayFromData:data];
+    const VirgilByteArray &hashData = self.hash->hash(vData);
 
-    for (int i = 0; i < num.longLongValue; i++) {
-        [output appendFormat:@"%02x", hashData[i]];
-    }
-
-    return [output dataUsingEncoding:NSUTF8StringEncoding];
+    return [NSData dataWithBytes:hashData.data() length:hashData.size()];
 }
 
 @end
