@@ -42,7 +42,7 @@ class VC005_ChunkCryptorSwiftTests: XCTestCase {
         let cryptor = VSCChunkCryptor()
         // Add a key recepient to enable key-based encryption
         do {
-            try cryptor.addKeyRecipient(recipientId, publicKey: keyPair.publicKey(), error: ())
+            try cryptor.addKeyRecipient(recipientId.data(using: .utf8)!, publicKey: keyPair.publicKey(), error: ())
         }
         catch let error as NSError {
             print("Error adding key recipient: \(error.localizedDescription)")

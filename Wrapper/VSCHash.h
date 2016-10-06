@@ -7,12 +7,12 @@
 
 
 typedef NS_ENUM(NSInteger, VSCAlgorithm) {
-    VSCMD5,    ///< Hash Algorithm: MD5
-    VSCSHA1,   ///< Hash Algorithm: SHA1
-    VSCSHA224, ///< Hash Algorithm: SHA224
-    VSCSHA256, ///< Hash Algorithm: SHA256
-    VSCSHA384, ///< Hash Algorithm: SHA384
-    VSCSHA512  ///< Hash Algorithm: SHA512
+    VSCAlgorithmMD5,    ///< Hash Algorithm: MD5
+    VSCAlgorithmSHA1,   ///< Hash Algorithm: SHA1
+    VSCAlgorithmSHA224, ///< Hash Algorithm: SHA224
+    VSCAlgorithmSHA256, ///< Hash Algorithm: SHA256
+    VSCAlgorithmSHA384, ///< Hash Algorithm: SHA384
+    VSCAlgorithmSHA512  ///< Hash Algorithm: SHA512
 };
 
 

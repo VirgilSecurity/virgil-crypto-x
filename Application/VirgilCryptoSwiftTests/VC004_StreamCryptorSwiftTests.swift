@@ -40,7 +40,7 @@ class VC004_StreamCryptorSwiftTests: XCTestCase {
         let cryptor = VSCStreamCryptor()
         // Add a key recepient to enable key-based encryption
         do {
-            try cryptor.addKeyRecipient(recipientId, publicKey: keyPair.publicKey(), error: ())
+            try cryptor.addKeyRecipient(recipientId.data(using: .utf8)!, publicKey: keyPair.publicKey(), error: ())
         }
         catch let error as NSError {
             print("Error adding key recipient: \(error.localizedDescription)")
@@ -66,7 +66,7 @@ class VC004_StreamCryptorSwiftTests: XCTestCase {
         let dis = InputStream(data: encryptedData)
         let dos = OutputStream(toMemory: ())
         do {
-            try decryptor.decrypt(from: dis, to: dos, recipientId: recipientId, privateKey: keyPair.privateKey(), keyPassword: nil)
+            try decryptor.decrypt(from: dis, to: dos, recipientId: recipientId.data(using: .utf8)!, privateKey: keyPair.privateKey(), keyPassword: nil)
         }
         catch let error as NSError {
             XCTFail("Error decrypting data: \(error.localizedDescription)")

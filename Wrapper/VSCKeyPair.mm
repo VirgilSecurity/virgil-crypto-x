@@ -19,16 +19,9 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
 @interface VSCKeyPair ()
 
 @property(nonatomic, assign) VirgilKeyPair *keyPair;
-@property(nonatomic, strong) NSDictionary *enumsDict;
-
-- (NSValue *)valueFromCType:(CType)type;
-
-- (CType)ctypeFromValue:(NSValue *)value;
 
 - (CType)convertVSCKeyTypeToCType:(VSCKeyType)keyType;
-
 + (VirgilByteArray)convertVirgilByteArrayFromData:(NSData *)data;
-
 + (VirgilByteArray)convertVirgilByteArrayFromString:(NSString *)string;
 
 @end
@@ -45,8 +38,6 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
     if (self == nil) {
         return nil;
     }
-
-    [self initializeEnumsDictionary];
 
     try {
         CType type = [self convertVSCKeyTypeToCType:keyPairType];
@@ -89,42 +80,75 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
 
 #pragma mark - Private
 
-- (void)initializeEnumsDictionary {
-    self.enumsDict = @{
-            @(VSCKeyTypeRSA_256): [self valueFromCType:CType::RSA_256],
-            @(VSCKeyTypeRSA_512): [self valueFromCType:CType::RSA_512],
-            @(VSCKeyTypeRSA_1024): [self valueFromCType:CType::RSA_1024],
-            @(VSCKeyTypeRSA_2048): [self valueFromCType:CType::RSA_2048],
-            @(VSCKeyTypeRSA_3072): [self valueFromCType:CType::RSA_3072],
-            @(VSCKeyTypeRSA_4096): [self valueFromCType:CType::RSA_4096],
-            @(VSCKeyTypeRSA_8192): [self valueFromCType:CType::RSA_8192],
-            @(VSCKeyTypeEC_SECP192R1): [self valueFromCType:CType::EC_SECP192R1],
-            @(VSCKeyTypeEC_SECP224R1): [self valueFromCType:CType::EC_SECP224R1],
-            @(VSCKeyTypeEC_SECP256R1): [self valueFromCType:CType::EC_SECP256R1],
-            @(VSCKeyTypeEC_SECP384R1): [self valueFromCType:CType::EC_SECP384R1],
-            @(VSCKeyTypeEC_SECP521R1): [self valueFromCType:CType::EC_SECP521R1],
-            @(VSCKeyTypeEC_BP256R1): [self valueFromCType:CType::EC_BP256R1],
-            @(VSCKeyTypeEC_BP384R1): [self valueFromCType:CType::EC_BP384R1],
-            @(VSCKeyTypeEC_BP512R1): [self valueFromCType:CType::EC_BP512R1],
-            @(VSCKeyTypeEC_SECP192K1): [self valueFromCType:CType::EC_SECP192K1],
-            @(VSCKeyTypeEC_SECP224K1): [self valueFromCType:CType::EC_SECP224K1],
-            @(VSCKeyTypeEC_SECP256K1): [self valueFromCType:CType::EC_SECP256K1],
-            @(VSCKeyTypeEC_CURVE25519): [self valueFromCType:CType::EC_CURVE25519],
-            @(VSCKeyTypeFAST_EC_X25519): [self valueFromCType:CType::FAST_EC_X25519],
-            @(VSCKeyTypeFAST_EC_ED25519): [self valueFromCType:CType::FAST_EC_ED25519],
-    };
-}
-
-- (NSValue *)valueFromCType:(CType)type {
-    return [NSValue value:(const void *) &type withObjCType:@encode(VirgilKeyPair::Type)];
-}
-
-- (CType)ctypeFromValue:(NSValue *)value {
-    return (CType) reinterpret_cast<int64_t >(value.pointerValue);
-}
-
 - (CType)convertVSCKeyTypeToCType:(VSCKeyType)keyType {
-    return [self ctypeFromValue:self.enumsDict[@(keyType)]];
+    CType result;
+    switch (keyType) {
+        case VSCKeyTypeRSA_256:
+            result = CType::RSA_256;
+            break;
+        case VSCKeyTypeRSA_512:
+            result = CType::RSA_512;
+            break;
+        case VSCKeyTypeRSA_1024:
+            result = CType::RSA_1024;
+            break;
+        case VSCKeyTypeRSA_2048:
+            result = CType::RSA_2048;
+            break;
+        case VSCKeyTypeRSA_3072:
+            result = CType::RSA_3072;
+            break;
+        case VSCKeyTypeRSA_4096:
+            result = CType::RSA_4096;
+            break;
+        case VSCKeyTypeRSA_8192:
+            result = CType::RSA_8192;
+            break;
+        case VSCKeyTypeEC_SECP192R1:
+            result = CType::EC_SECP192R1;
+            break;
+        case VSCKeyTypeEC_SECP224R1:
+            result = CType::EC_SECP224R1;
+            break;
+        case VSCKeyTypeEC_SECP256R1:
+            result = CType::EC_SECP256R1;
+            break;
+        case VSCKeyTypeEC_SECP384R1:
+            result = CType::EC_SECP384R1;
+            break;
+        case VSCKeyTypeEC_SECP521R1:
+            result = CType::EC_SECP521R1;
+            break;
+        case VSCKeyTypeEC_BP256R1:
+            result = CType::EC_BP256R1;
+            break;
+        case VSCKeyTypeEC_BP384R1:
+            result = CType::EC_BP384R1;
+            break;
+        case VSCKeyTypeEC_BP512R1:
+            result = CType::EC_BP512R1;
+            break;
+        case VSCKeyTypeEC_SECP192K1:
+            result = CType::EC_SECP192K1;
+            break;
+        case VSCKeyTypeEC_SECP224K1:
+            result = CType::EC_SECP224K1;
+            break;
+        case VSCKeyTypeEC_SECP256K1:
+            result = CType::EC_SECP256K1;
+            break;
+        case VSCKeyTypeEC_CURVE25519:
+            result = CType::EC_CURVE25519;
+            break;
+        case VSCKeyTypeFAST_EC_X25519:
+            result = CType::FAST_EC_X25519;
+            break;
+        case VSCKeyTypeFAST_EC_ED25519:
+            result = CType::FAST_EC_ED25519;
+            break;
+    }
+
+    return result;
 }
 
 + (VirgilByteArray)convertVirgilByteArrayFromData:(NSData *)data {

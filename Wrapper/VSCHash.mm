@@ -15,7 +15,6 @@ using CAlgorithm = virgil::crypto::foundation::VirgilHash::Algorithm;
 @interface VSCHash ()
 
 @property(nonatomic, assign) VirgilHash *hash;
-@property(nonatomic, strong) NSDictionary *enumsDict;
 
 @end
 
@@ -29,22 +28,9 @@ using CAlgorithm = virgil::crypto::foundation::VirgilHash::Algorithm;
         return nil;
     }
 
-    [self initializeDictionaries];
-
     _hash = new VirgilHash([self convertVSCAlgorithmToCAlgorithm:algorithm]);
 
     return self;
-}
-
-- (void)initializeDictionaries {
-    self.enumsDict = @{
-            @(VSCMD5): [self valueFromCType:CAlgorithm::MD5],
-            @(VSCSHA1): [self valueFromCType:CAlgorithm::SHA1],
-            @(VSCSHA224): [self valueFromCType:CAlgorithm::SHA224],
-            @(VSCSHA256): [self valueFromCType:CAlgorithm::SHA256],
-            @(VSCSHA384): [self valueFromCType:CAlgorithm::SHA384],
-            @(VSCSHA512): [self valueFromCType:CAlgorithm::SHA512],
-    };
 }
 
 - (void)dealloc {
@@ -56,16 +42,29 @@ using CAlgorithm = virgil::crypto::foundation::VirgilHash::Algorithm;
 
 #pragma mark - Private
 
-- (NSValue *)valueFromCType:(CAlgorithm)type {
-    return [NSValue value:(const void *) &type withObjCType:@encode(VirgilHash::Algorithm)];
-}
-
-- (CAlgorithm)cAlgorithmFromValue:(NSValue *)value {
-    return (CAlgorithm) reinterpret_cast<int64_t >(value.pointerValue);
-}
-
 - (CAlgorithm)convertVSCAlgorithmToCAlgorithm:(VSCAlgorithm)keyType {
-    return [self cAlgorithmFromValue:self.enumsDict[@(keyType)]];
+    CAlgorithm result;
+    switch (keyType) {
+        case VSCAlgorithmMD5:
+            result = CAlgorithm::MD5;
+            break;
+        case VSCAlgorithmSHA1:
+            result = CAlgorithm::SHA1;
+            break;
+        case VSCAlgorithmSHA224:
+            result = CAlgorithm::SHA224;
+            break;
+        case VSCAlgorithmSHA256:
+            result = CAlgorithm::SHA256;
+            break;
+        case VSCAlgorithmSHA384:
+            result = CAlgorithm::SHA384;
+            break;
+        case VSCAlgorithmSHA512:
+            result = CAlgorithm::SHA512;
+            break;
+    }
+    return result;
 }
 
 - (VirgilByteArray)convertVirgilByteArrayFromData:(NSData *)data {

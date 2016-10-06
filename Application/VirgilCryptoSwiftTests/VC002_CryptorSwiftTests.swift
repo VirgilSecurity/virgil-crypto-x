@@ -40,7 +40,7 @@ class VC002_CryptorSwiftTests: XCTestCase {
         let cryptor = VSCCryptor()
         // Add a key recepient to enable key-based encryption
         do {
-            try cryptor.addKeyRecipient(recipientId, publicKey: keyPair.publicKey(), error: ())
+            try cryptor.addKeyRecipient(recipientId.data(using: .utf8)!, publicKey: keyPair.publicKey(), error: ())
         }
         catch let error as NSError {
             print("Error adding key recipient: \(error.localizedDescription)")
@@ -63,7 +63,7 @@ class VC002_CryptorSwiftTests: XCTestCase {
         // Decrypt data using key-based decryption
         var plainData = Data()
         do {
-            plainData = try decryptor.decryptData(encryptedData, recipientId: recipientId, privateKey: keyPair.privateKey(), keyPassword: nil, error: ())
+            plainData = try decryptor.decryptData(encryptedData, recipientId: recipientId.data(using: .utf8)!, privateKey: keyPair.privateKey(), keyPassword: nil, error: ())
         }
         catch let error as NSError {
             print("Error decrypting data: \(error.localizedDescription)")
