@@ -22,7 +22,7 @@ using CAlgorithm = virgil::crypto::foundation::VirgilHash::Algorithm;
 
 @synthesize hash = _hash;
 
-- (instancetype)initWithAlgorithm:(VSCAlgorithm)algorithm {
+- (instancetype)initWithAlgorithm:(VSCHashAlgorithm)algorithm {
     self = [super init];
     if (!self) {
         return nil;
@@ -42,25 +42,25 @@ using CAlgorithm = virgil::crypto::foundation::VirgilHash::Algorithm;
 
 #pragma mark - Private
 
-- (CAlgorithm)convertVSCAlgorithmToCAlgorithm:(VSCAlgorithm)keyType {
+- (CAlgorithm)convertVSCAlgorithmToCAlgorithm:(VSCHashAlgorithm)keyType {
     CAlgorithm result;
     switch (keyType) {
-        case VSCAlgorithmMD5:
+        case VSCHashAlgorithmMD5:
             result = CAlgorithm::MD5;
             break;
-        case VSCAlgorithmSHA1:
+        case VSCHashAlgorithmSHA1:
             result = CAlgorithm::SHA1;
             break;
-        case VSCAlgorithmSHA224:
+        case VSCHashAlgorithmSHA224:
             result = CAlgorithm::SHA224;
             break;
-        case VSCAlgorithmSHA256:
+        case VSCHashAlgorithmSHA256:
             result = CAlgorithm::SHA256;
             break;
-        case VSCAlgorithmSHA384:
+        case VSCHashAlgorithmSHA384:
             result = CAlgorithm::SHA384;
             break;
-        case VSCAlgorithmSHA512:
+        case VSCHashAlgorithmSHA512:
             result = CAlgorithm::SHA512;
             break;
     }
