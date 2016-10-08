@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>VSSBaseCryptor Class Reference</title>
+	<title>VSCBaseCryptor Class Reference</title>
 
 	<link rel="stylesheet" href="../css/style.css">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
@@ -20,7 +20,7 @@
 			<p id="developer-home">
 				<a href="../index.html">Virgil Security, Inc.</a>
 			</p>
-			
+
 		</div>
 	</header>
 
@@ -42,85 +42,85 @@
 
 							<select id="jump-to">
 	<option value="top">Jump To&#133;</option>
-	
+
 	<option value="overview">Overview</option>
-	
 
-	
-	
+
+
+
 	<option value="tasks">Tasks</option>
-	
-	
 
-	
-	
+
+
+
+
 	<optgroup label="Properties">
-		
+
 		<option value="//api/name/llCryptor">llCryptor</option>
-		
+
 	</optgroup>
-	
 
-	
 
-	
+
+
+
 	<optgroup label="Instance Methods">
-		
+
 		<option value="//api/name/addKeyRecipient:publicKey:">- addKeyRecipient:publicKey:</option>
-		
+
 		<option value="//api/name/addKeyRecipient:publicKey:error:">- addKeyRecipient:publicKey:error:</option>
-		
+
 		<option value="//api/name/addPasswordRecipient:">- addPasswordRecipient:</option>
-		
+
 		<option value="//api/name/addPasswordRecipient:error:">- addPasswordRecipient:error:</option>
-		
+
 		<option value="//api/name/clearCustomParametersWithError:">- clearCustomParametersWithError:</option>
-		
+
 		<option value="//api/name/contentInfo">- contentInfo</option>
-		
+
 		<option value="//api/name/contentInfoSizeInData:error:">- contentInfoSizeInData:error:</option>
-		
+
 		<option value="//api/name/contentInfoWithError:">- contentInfoWithError:</option>
-		
+
 		<option value="//api/name/dataForKey:error:">- dataForKey:error:</option>
-		
+
 		<option value="//api/name/intForKey:error:">- intForKey:error:</option>
-		
+
 		<option value="//api/name/isEmptyCustomParametersWithError:">- isEmptyCustomParametersWithError:</option>
-		
+
 		<option value="//api/name/removeAllRecipients">- removeAllRecipients</option>
-		
+
 		<option value="//api/name/removeAllRecipientsWithError:">- removeAllRecipientsWithError:</option>
-		
+
 		<option value="//api/name/removeDataForKey:error:">- removeDataForKey:error:</option>
-		
+
 		<option value="//api/name/removeIntForKey:error:">- removeIntForKey:error:</option>
-		
+
 		<option value="//api/name/removeKeyRecipient:">- removeKeyRecipient:</option>
-		
+
 		<option value="//api/name/removeKeyRecipient:error:">- removeKeyRecipient:error:</option>
-		
+
 		<option value="//api/name/removePasswordRecipient:">- removePasswordRecipient:</option>
-		
+
 		<option value="//api/name/removePasswordRecipient:error:">- removePasswordRecipient:error:</option>
-		
+
 		<option value="//api/name/removeStringForKey:error:">- removeStringForKey:error:</option>
-		
+
 		<option value="//api/name/setContentInfo:">- setContentInfo:</option>
-		
+
 		<option value="//api/name/setContentInfo:error:">- setContentInfo:error:</option>
-		
+
 		<option value="//api/name/setData:forKey:error:">- setData:forKey:error:</option>
-		
+
 		<option value="//api/name/setInt:forKey:error:">- setInt:forKey:error:</option>
-		
+
 		<option value="//api/name/setString:forKey:error:">- setString:forKey:error:</option>
-		
+
 		<option value="//api/name/stringForKey:error:">- stringForKey:error:</option>
-		
+
 	</optgroup>
-	
-	
+
+
 </select>
 						</label>
 					</li>
@@ -133,37 +133,37 @@
 		<div id="overview_contents" class="container">
 			<div id="content">
 				<main role="main">
-					<h1 class="title">VSSBaseCryptor Class Reference</h1>
+					<h1 class="title">VSCBaseCryptor Class Reference</h1>
 
-					
+
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<th>Inherits from</th>
 	<td>NSObject</td>
 </tr><tr>
 	<th>Declared in</th>
-	<td>VSSBaseCryptor.h</td>
+	<td>VSCBaseCryptor.h</td>
 </tr>
 						</tbody></table></div>
-					
 
-                    
-					
+
+
+
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Base class for <a href="../Classes/VSSCryptor.html"><code>VSSCryptor</code></a>, <a href="../Classes/VSSStreamCryptor.html"><code>VSSStreamCryptor</code></a> and <a href="../Classes/VSSChunkCryptor.html"><code>VSSChunkCryptor</code></a>.</p>
+						<p>Base class for <a href="../Classes/VSCCryptor.html"><code>VSCCryptor</code></a>, <a href="../Classes/VSCStreamCryptor.html"><code>VSCStreamCryptor</code></a> and <a href="../Classes/VSCChunkCryptor.html"><code>VSCChunkCryptor</code></a>.</p>
 
 <p>Contains utility functionality for adding/removing the recipients and content info management.</p>
 					</div>
-					
-					
 
-					
-					
+
+
+
+
 					<div class="section section-tasks">
 						<a title="Tasks" name="tasks"></a>
-						
+
 
 						<a title="Properties" name="task_Properties"></a>
 						<h2 class="task-title">Properties</h2>
@@ -178,41 +178,41 @@
 		<div class="pointy-thing"></div>
 
 		<div class="method-info-container">
-			
-			
+
+
 			<div class="method-subsection brief-description">
 				<p>Internal cryptor object</p>
 			</div>
-			
-		    
+
+
 
 			<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) void *llCryptor</code></div>
 
-		    
-			
 
-			
 
-			
 
-			
 
-			
 
-			
 
-			
+
+
+
+
+
+
+
+
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">VSSBaseCryptor.h</code></p>
+				<p><code class="declared-in-ref">VSCBaseCryptor.h</code></p>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 </div>
 						</div>
-						
+
 
 						<a title="Setup" name="task_Setup"></a>
 						<h2 class="task-title">Setup</h2>
@@ -227,77 +227,77 @@
 		<div class="pointy-thing"></div>
 
 		<div class="method-info-container">
-			
-			
+
+
 			<div class="method-subsection brief-description">
 				<p>Adds given public key as a recipient for an encryption.</p>
 			</div>
-			
-		    
+
+
 
 			<div class="method-subsection method-declaration"><code>- (BOOL)addKeyRecipient:(NSString *__nonnull)<em>recipientId</em> publicKey:(NSData *__nonnull)<em>publicKey</em> error:(NSError *__nullable *__nullable)<em>error</em></code></div>
 
-		    
-			
+
+
 			<div class="method-subsection arguments-section parameters">
 				<h4 class="method-subtitle parameter-title">Parameters</h4>
 				<table class="argument-def parameter-def">
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>recipientId</code></th>
 						<td><p>Identifier for the public key used for encryption.</p></td>
 					</tr>
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>publicKey</code></th>
 						<td><p>Data object containing public key which will be used for encryption.</p></td>
 					</tr>
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>error</code></th>
 						<td><p><code>NSError</code> pointer to get an object in case of error, <code>nil</code> - otherwise.</p></td>
 					</tr>
-				
+
 				</table>
 			</div>
-			
 
-			
+
+
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
 				<p><code>YES</code> in case when operation completed successfully, <code>NO</code> - otherwise.</p>
 			</div>
-			
 
-			
 
-			
+
+
+
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>This method should be called before methods:</p>
 
 <ul>
-<li><a href="../Classes/VSSCryptor.html#//api/name/encryptData:embedContentInfo:error:"><code>[VSSCryptor encryptData:embedContentInfo:error:]</code></a></li>
-<li><a href="../Classes/VSSStreamCryptor.html#//api/name/encryptDataFromStream:toStream:embedContentInfo:error:"><code>[VSSStreamCryptor encryptDataFromStream:toStream:embedContentInfo:error:]</code></a></li>
-<li><a href="../Classes/VSSChunkCryptor.html#//api/name/startEncryptionWithPreferredChunkSize:error:"><code>[VSSChunkCryptor startEncryptionWithPreferredChunkSize:error:]</code></a></li>
+<li><a href="../Classes/VSCCryptor.html#//api/name/encryptData:embedContentInfo:error:"><code>[VSCCryptor encryptData:embedContentInfo:error:]</code></a></li>
+<li><a href="../Classes/VSCStreamCryptor.html#//api/name/encryptDataFromStream:toStream:embedContentInfo:error:"><code>[VSCStreamCryptor encryptDataFromStream:toStream:embedContentInfo:error:]</code></a></li>
+<li><a href="../Classes/VSCChunkCryptor.html#//api/name/startEncryptionWithPreferredChunkSize:error:"><code>[VSCChunkCryptor startEncryptionWithPreferredChunkSize:error:]</code></a></li>
 </ul>
 
 
 <p>in case of using key-based encryption.</p>
 			</div>
-			
 
-			
 
-			
 
-			
+
+
+
+
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">VSSBaseCryptor.h</code></p>
+				<p><code class="declared-in-ref">VSCBaseCryptor.h</code></p>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 </div><div class="section-method">
@@ -309,58 +309,58 @@
 		<div class="pointy-thing"></div>
 
 		<div class="method-info-container">
-			
-			
+
+
 			<div class="method-subsection brief-description">
 				<p>Removes a public key with given identifier from the recipients list for an encryption.</p>
 			</div>
-			
-		    
+
+
 
 			<div class="method-subsection method-declaration"><code>- (BOOL)removeKeyRecipient:(NSString *__nonnull)<em>recipientId</em> error:(NSError *__nullable *__nullable)<em>error</em></code></div>
 
-		    
-			
+
+
 			<div class="method-subsection arguments-section parameters">
 				<h4 class="method-subtitle parameter-title">Parameters</h4>
 				<table class="argument-def parameter-def">
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>recipientId</code></th>
 						<td><p>Identifier for the public key which should be removed.</p></td>
 					</tr>
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>error</code></th>
 						<td><p><code>NSError</code> pointer to get an object in case of error, <code>nil</code> - otherwise.</p></td>
 					</tr>
-				
+
 				</table>
 			</div>
-			
 
-			
+
+
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
 				<p><code>YES</code> in case when operation completed successfully, <code>NO</code> - otherwise.</p>
 			</div>
-			
 
-			
 
-			
 
-			
 
-			
 
-			
+
+
+
+
+
+
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">VSSBaseCryptor.h</code></p>
+				<p><code class="declared-in-ref">VSCBaseCryptor.h</code></p>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 </div><div class="section-method">
@@ -372,72 +372,72 @@
 		<div class="pointy-thing"></div>
 
 		<div class="method-info-container">
-			
-			
+
+
 			<div class="method-subsection brief-description">
 				<p>Adds given password as a recipient for an encryption.</p>
 			</div>
-			
-		    
+
+
 
 			<div class="method-subsection method-declaration"><code>- (BOOL)addPasswordRecipient:(NSString *__nonnull)<em>password</em> error:(NSError *__nullable *__nullable)<em>error</em></code></div>
 
-		    
-			
+
+
 			<div class="method-subsection arguments-section parameters">
 				<h4 class="method-subtitle parameter-title">Parameters</h4>
 				<table class="argument-def parameter-def">
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>password</code></th>
 						<td><p>Password which will be used for an encryption.</p></td>
 					</tr>
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>error</code></th>
 						<td><p><code>NSError</code> pointer to get an object in case of error, <code>nil</code> - otherwise.</p></td>
 					</tr>
-				
+
 				</table>
 			</div>
-			
 
-			
+
+
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
 				<p><code>YES</code> in case when operation completed successfully, <code>NO</code> - otherwise.</p>
 			</div>
-			
 
-			
 
-			
+
+
+
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>This method should be called before methods:</p>
 
 <ul>
-<li><a href="../Classes/VSSCryptor.html#//api/name/encryptData:embedContentInfo:error:"><code>[VSSCryptor encryptData:embedContentInfo:error:]</code></a></li>
-<li><a href="../Classes/VSSStreamCryptor.html#//api/name/encryptDataFromStream:toStream:embedContentInfo:error:"><code>[VSSStreamCryptor encryptDataFromStream:toStream:embedContentInfo:error:]</code></a></li>
-<li><a href="../Classes/VSSChunkCryptor.html#//api/name/startEncryptionWithPreferredChunkSize:error:"><code>[VSSChunkCryptor startEncryptionWithPreferredChunkSize:error:]</code></a></li>
+<li><a href="../Classes/VSCCryptor.html#//api/name/encryptData:embedContentInfo:error:"><code>[VSCCryptor encryptData:embedContentInfo:error:]</code></a></li>
+<li><a href="../Classes/VSCStreamCryptor.html#//api/name/encryptDataFromStream:toStream:embedContentInfo:error:"><code>[VSCStreamCryptor encryptDataFromStream:toStream:embedContentInfo:error:]</code></a></li>
+<li><a href="../Classes/VSCChunkCryptor.html#//api/name/startEncryptionWithPreferredChunkSize:error:"><code>[VSCChunkCryptor startEncryptionWithPreferredChunkSize:error:]</code></a></li>
 </ul>
 
 
 <p>in case of using password-based encryption.</p>
 			</div>
-			
 
-			
 
-			
 
-			
+
+
+
+
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">VSSBaseCryptor.h</code></p>
+				<p><code class="declared-in-ref">VSCBaseCryptor.h</code></p>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 </div><div class="section-method">
@@ -449,58 +449,58 @@
 		<div class="pointy-thing"></div>
 
 		<div class="method-info-container">
-			
-			
+
+
 			<div class="method-subsection brief-description">
 				<p>Removes given password from the recipients list for an encryption.</p>
 			</div>
-			
-		    
+
+
 
 			<div class="method-subsection method-declaration"><code>- (BOOL)removePasswordRecipient:(NSString *__nonnull)<em>password</em> error:(NSError *__nullable *__nullable)<em>error</em></code></div>
 
-		    
-			
+
+
 			<div class="method-subsection arguments-section parameters">
 				<h4 class="method-subtitle parameter-title">Parameters</h4>
 				<table class="argument-def parameter-def">
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>password</code></th>
 						<td><p>Password which should be removed.</p></td>
 					</tr>
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>error</code></th>
 						<td><p><code>NSError</code> pointer to get an object in case of error, <code>nil</code> - otherwise.</p></td>
 					</tr>
-				
+
 				</table>
 			</div>
-			
 
-			
+
+
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
 				<p><code>YES</code> in case when operation completed successfully, <code>NO</code> - otherwise.</p>
 			</div>
-			
 
-			
 
-			
 
-			
 
-			
 
-			
+
+
+
+
+
+
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">VSSBaseCryptor.h</code></p>
+				<p><code class="declared-in-ref">VSCBaseCryptor.h</code></p>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 </div><div class="section-method">
@@ -512,53 +512,53 @@
 		<div class="pointy-thing"></div>
 
 		<div class="method-info-container">
-			
-			
+
+
 			<div class="method-subsection brief-description">
 				<p>Removes all recepients which would be used for an encryption.</p>
 			</div>
-			
-		    
+
+
 
 			<div class="method-subsection method-declaration"><code>- (BOOL)removeAllRecipientsWithError:(NSError *__nullable *__nullable)<em>error</em></code></div>
 
-		    
-			
+
+
 			<div class="method-subsection arguments-section parameters">
 				<h4 class="method-subtitle parameter-title">Parameters</h4>
 				<table class="argument-def parameter-def">
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>error</code></th>
 						<td><p><code>NSError</code> pointer to get an object in case of error, <code>nil</code> - otherwise.</p></td>
 					</tr>
-				
+
 				</table>
 			</div>
-			
 
-			
+
+
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
 				<p><code>YES</code> in case when operation completed successfully, <code>NO</code> - otherwise.</p>
 			</div>
-			
 
-			
 
-			
 
-			
 
-			
 
-			
+
+
+
+
+
+
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">VSSBaseCryptor.h</code></p>
+				<p><code class="declared-in-ref">VSCBaseCryptor.h</code></p>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 </div><div class="section-method">
@@ -570,67 +570,67 @@
 		<div class="pointy-thing"></div>
 
 		<div class="method-info-container">
-			
-			
+
+
 			<div class="method-subsection brief-description">
 				<p>Allows to get the content info data.</p>
 			</div>
-			
-		    
+
+
 
 			<div class="method-subsection method-declaration"><code>- (NSData *__nullable)contentInfoWithError:(NSError *__nullable *__nullable)<em>error</em></code></div>
 
-		    
-			
+
+
 			<div class="method-subsection arguments-section parameters">
 				<h4 class="method-subtitle parameter-title">Parameters</h4>
 				<table class="argument-def parameter-def">
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>error</code></th>
 						<td><p><code>NSError</code> pointer to get an object in case of error, <code>nil</code> - otherwise.</p></td>
 					</tr>
-				
+
 				</table>
 			</div>
-			
 
-			
+
+
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
 				<p>Data object with content info for the encryption data or <code>nil</code> in case of error or if no content info present.</p>
 			</div>
-			
 
-			
 
-			
+
+
+
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>The content info contains information about the encryption recipients
 in case of parameter embedContentInfo of the methods</p>
 
 <ul>
-<li><a href="../Classes/VSSCryptor.html#//api/name/encryptData:embedContentInfo:error:"><code>[VSSCryptor encryptData:embedContentInfo:error:]</code></a></li>
-<li><a href="../Classes/VSSStreamCryptor.html#//api/name/encryptDataFromStream:toStream:embedContentInfo:error:"><code>[VSSStreamCryptor encryptDataFromStream:toStream:embedContentInfo:error:]</code></a></li>
+<li><a href="../Classes/VSCCryptor.html#//api/name/encryptData:embedContentInfo:error:"><code>[VSCCryptor encryptData:embedContentInfo:error:]</code></a></li>
+<li><a href="../Classes/VSCStreamCryptor.html#//api/name/encryptDataFromStream:toStream:embedContentInfo:error:"><code>[VSCStreamCryptor encryptDataFromStream:toStream:embedContentInfo:error:]</code></a></li>
 </ul>
 
 
 <p>was set to <code>NO</code>.</p>
 			</div>
-			
 
-			
 
-			
 
-			
+
+
+
+
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">VSSBaseCryptor.h</code></p>
+				<p><code class="declared-in-ref">VSCBaseCryptor.h</code></p>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 </div><div class="section-method">
@@ -642,73 +642,73 @@ in case of parameter embedContentInfo of the methods</p>
 		<div class="pointy-thing"></div>
 
 		<div class="method-info-container">
-			
-			
+
+
 			<div class="method-subsection brief-description">
 				<p>Allows to set the content info data with information about the encryption recipients.</p>
 			</div>
-			
-		    
+
+
 
 			<div class="method-subsection method-declaration"><code>- (BOOL)setContentInfo:(NSData *__nonnull)<em>contentInfo</em> error:(NSError *__nullable *__nullable)<em>error</em></code></div>
 
-		    
-			
+
+
 			<div class="method-subsection arguments-section parameters">
 				<h4 class="method-subtitle parameter-title">Parameters</h4>
 				<table class="argument-def parameter-def">
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>contentInfo</code></th>
 						<td><p>Data object with content info for the data decryption.</p></td>
 					</tr>
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>error</code></th>
 						<td><p><code>NSError</code> pointer to get an object in case of error, <code>nil</code> - otherwise.</p></td>
 					</tr>
-				
+
 				</table>
 			</div>
-			
 
-			
+
+
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
 				<p><code>YES</code> in case when operation completed successfully, <code>NO</code> - otherwise.</p>
 			</div>
-			
 
-			
 
-			
+
+
+
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>This method should be called before methods:</p>
 
 <ul>
-<li><a href="../Classes/VSSCryptor.html#//api/name/decryptData:recipientId:privateKey:keyPassword:error:"><code>[VSSCryptor decryptData:recipientId:privateKey:keyPassword:error:]</code></a></li>
-<li><a href="../Classes/VSSCryptor.html#//api/name/decryptData:password:error:"><code>[VSSCryptor decryptData:password:error:]</code></a></li>
-<li><a href="../Classes/VSSStreamCryptor.html#//api/name/decryptFromStream:toStream:recipientId:privateKey:keyPassword:error:"><code>[VSSStreamCryptor decryptFromStream:toStream:recipientId:privateKey:keyPassword:error:]</code></a></li>
-<li><a href="../Classes/VSSStreamCryptor.html#//api/name/decryptFromStream:toStream:password:error:"><code>[VSSStreamCryptor decryptFromStream:toStream:password:error:]</code></a></li>
-<li><a href="../Classes/VSSChunkCryptor.html#//api/name/startDecryptionWithRecipientId:privateKey:keyPassword:error:"><code>[VSSChunkCryptor startDecryptionWithRecipientId:privateKey:keyPassword:error:]</code></a></li>
-<li><a href="../Classes/VSSChunkCryptor.html#//api/name/startDecryptionWithPassword:error:"><code>[VSSChunkCryptor startDecryptionWithPassword:error:]</code></a></li>
+<li><a href="../Classes/VSCCryptor.html#//api/name/decryptData:recipientId:privateKey:keyPassword:error:"><code>[VSCCryptor decryptData:recipientId:privateKey:keyPassword:error:]</code></a></li>
+<li><a href="../Classes/VSCCryptor.html#//api/name/decryptData:password:error:"><code>[VSCCryptor decryptData:password:error:]</code></a></li>
+<li><a href="../Classes/VSCStreamCryptor.html#//api/name/decryptFromStream:toStream:recipientId:privateKey:keyPassword:error:"><code>[VSCStreamCryptor decryptFromStream:toStream:recipientId:privateKey:keyPassword:error:]</code></a></li>
+<li><a href="../Classes/VSCStreamCryptor.html#//api/name/decryptFromStream:toStream:password:error:"><code>[VSCStreamCryptor decryptFromStream:toStream:password:error:]</code></a></li>
+<li><a href="../Classes/VSCChunkCryptor.html#//api/name/startDecryptionWithRecipientId:privateKey:keyPassword:error:"><code>[VSCChunkCryptor startDecryptionWithRecipientId:privateKey:keyPassword:error:]</code></a></li>
+<li><a href="../Classes/VSCChunkCryptor.html#//api/name/startDecryptionWithPassword:error:"><code>[VSCChunkCryptor startDecryptionWithPassword:error:]</code></a></li>
 </ul>
 
 			</div>
-			
 
-			
 
-			
 
-			
+
+
+
+
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">VSSBaseCryptor.h</code></p>
+				<p><code class="declared-in-ref">VSCBaseCryptor.h</code></p>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 </div><div class="section-method">
@@ -720,58 +720,58 @@ in case of parameter embedContentInfo of the methods</p>
 		<div class="pointy-thing"></div>
 
 		<div class="method-info-container">
-			
-			
+
+
 			<div class="method-subsection brief-description">
 				<p>Calculates content info size which is a part of the given data.</p>
 			</div>
-			
-		    
+
+
 
 			<div class="method-subsection method-declaration"><code>- (size_t)contentInfoSizeInData:(NSData *__nonnull)<em>data</em> error:(NSError *__nullable *__nullable)<em>error</em></code></div>
 
-		    
-			
+
+
 			<div class="method-subsection arguments-section parameters">
 				<h4 class="method-subtitle parameter-title">Parameters</h4>
 				<table class="argument-def parameter-def">
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>data</code></th>
 						<td><p>Data object with content info.</p></td>
 					</tr>
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>error</code></th>
 						<td><p><code>NSError</code> pointer to get an object in case of error, <code>nil</code> - otherwise.</p></td>
 					</tr>
-				
+
 				</table>
 			</div>
-			
 
-			
+
+
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
 				<p>Size of the content info if it exists, 0 - otherwise.</p>
 			</div>
-			
 
-			
 
-			
 
-			
 
-			
 
-			
+
+
+
+
+
+
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">VSSBaseCryptor.h</code></p>
+				<p><code class="declared-in-ref">VSCBaseCryptor.h</code></p>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 </div><div class="section-method">
@@ -783,27 +783,27 @@ in case of parameter embedContentInfo of the methods</p>
 		<div class="pointy-thing"></div>
 
 		<div class="method-info-container">
-			
-			
+
+
 			<div class="method-subsection brief-description">
 				<p>Allows to set integer value for custom parameter name as a part of the content info in unencrypted form.</p>
 			</div>
-			
-		    
+
+
 
 			<div class="method-subsection method-declaration"><code>- (BOOL)setInt:(int)<em>value</em> forKey:(NSString *__nonnull)<em>key</em> error:(NSError *__nullable *__nullable)<em>error</em></code></div>
 
-		    
-			
+
+
 			<div class="method-subsection arguments-section parameters">
 				<h4 class="method-subtitle parameter-title">Parameters</h4>
 				<table class="argument-def parameter-def">
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>value</code></th>
 						<td><p>Value which have to be stored for parameter name given as a key.</p></td>
 					</tr>
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>key</code></th>
 						<td><p>String custom parameter name. The same parameter name can be used also for:</p>
@@ -816,38 +816,38 @@ in case of parameter embedContentInfo of the methods</p>
 
 <p>to save 3 different values at the same time.</p></td>
 					</tr>
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>error</code></th>
 						<td><p><code>NSError</code> pointer to get an object in case of error, <code>nil</code> - otherwise.</p></td>
 					</tr>
-				
+
 				</table>
 			</div>
-			
 
-			
+
+
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
 				<p><code>YES</code> in case when operation completed successfully, <code>NO</code> - otherwise.</p>
 			</div>
-			
 
-			
 
-			
 
-			
 
-			
 
-			
+
+
+
+
+
+
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">VSSBaseCryptor.h</code></p>
+				<p><code class="declared-in-ref">VSCBaseCryptor.h</code></p>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 </div><div class="section-method">
@@ -859,58 +859,58 @@ in case of parameter embedContentInfo of the methods</p>
 		<div class="pointy-thing"></div>
 
 		<div class="method-info-container">
-			
-			
+
+
 			<div class="method-subsection brief-description">
 				<p>Gets integer value for custom parameter name which has been set earlier.</p>
 			</div>
-			
-		    
+
+
 
 			<div class="method-subsection method-declaration"><code>- (int)intForKey:(NSString *__nonnull)<em>key</em> error:(NSError *__nullable *__nullable)<em>error</em></code></div>
 
-		    
-			
+
+
 			<div class="method-subsection arguments-section parameters">
 				<h4 class="method-subtitle parameter-title">Parameters</h4>
 				<table class="argument-def parameter-def">
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>key</code></th>
 						<td><p>String custom parameter name.</p></td>
 					</tr>
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>error</code></th>
 						<td><p><code>NSError</code> pointer to get an object in case of error, <code>nil</code> - otherwise.</p></td>
 					</tr>
-				
+
 				</table>
 			</div>
-			
 
-			
+
+
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
 				<p>Value for given parameter name. In case of error returns 0 and <code>NSError</code> in error parameter.</p>
 			</div>
-			
 
-			
 
-			
 
-			
 
-			
 
-			
+
+
+
+
+
+
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">VSSBaseCryptor.h</code></p>
+				<p><code class="declared-in-ref">VSCBaseCryptor.h</code></p>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 </div><div class="section-method">
@@ -922,58 +922,58 @@ in case of parameter embedContentInfo of the methods</p>
 		<div class="pointy-thing"></div>
 
 		<div class="method-info-container">
-			
-			
+
+
 			<div class="method-subsection brief-description">
 				<p>Removes int value for custom parameter which has been set earlier.</p>
 			</div>
-			
-		    
+
+
 
 			<div class="method-subsection method-declaration"><code>- (BOOL)removeIntForKey:(NSString *__nonnull)<em>key</em> error:(NSError *__nullable *__nullable)<em>error</em></code></div>
 
-		    
-			
+
+
 			<div class="method-subsection arguments-section parameters">
 				<h4 class="method-subtitle parameter-title">Parameters</h4>
 				<table class="argument-def parameter-def">
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>key</code></th>
 						<td><p>String custom parameter name. If there is no given int parameter present - just does nothing and returns <code>YES</code>.</p></td>
 					</tr>
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>error</code></th>
 						<td><p><code>NSError</code> pointer to get an object in case of error, <code>nil</code> - otherwise.</p></td>
 					</tr>
-				
+
 				</table>
 			</div>
-			
 
-			
+
+
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
 				<p><code>YES</code> in case when operation completed successfully, <code>NO</code> - otherwise.</p>
 			</div>
-			
 
-			
 
-			
 
-			
 
-			
 
-			
+
+
+
+
+
+
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">VSSBaseCryptor.h</code></p>
+				<p><code class="declared-in-ref">VSCBaseCryptor.h</code></p>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 </div><div class="section-method">
@@ -985,27 +985,27 @@ in case of parameter embedContentInfo of the methods</p>
 		<div class="pointy-thing"></div>
 
 		<div class="method-info-container">
-			
-			
+
+
 			<div class="method-subsection brief-description">
 				<p>Allows to set string value for custom parameter name as a part of the content info in unencrypted form.</p>
 			</div>
-			
-		    
+
+
 
 			<div class="method-subsection method-declaration"><code>- (BOOL)setString:(NSString *__nonnull)<em>value</em> forKey:(NSString *__nonnull)<em>key</em> error:(NSError *__nullable *__nullable)<em>error</em></code></div>
 
-		    
-			
+
+
 			<div class="method-subsection arguments-section parameters">
 				<h4 class="method-subtitle parameter-title">Parameters</h4>
 				<table class="argument-def parameter-def">
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>value</code></th>
 						<td><p>String value which have to be stored for parameter name given as a key.</p></td>
 					</tr>
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>key</code></th>
 						<td><p>String custom parameter name. The same parameter name can be used also for:</p>
@@ -1018,38 +1018,38 @@ in case of parameter embedContentInfo of the methods</p>
 
 <p>to save 3 different values at the same time.</p></td>
 					</tr>
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>error</code></th>
 						<td><p><code>NSError</code> pointer to get an object in case of error, <code>nil</code> - otherwise.</p></td>
 					</tr>
-				
+
 				</table>
 			</div>
-			
 
-			
+
+
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
 				<p><code>YES</code> in case when operation completed successfully, <code>NO</code> - otherwise.</p>
 			</div>
-			
 
-			
 
-			
 
-			
 
-			
 
-			
+
+
+
+
+
+
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">VSSBaseCryptor.h</code></p>
+				<p><code class="declared-in-ref">VSCBaseCryptor.h</code></p>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 </div><div class="section-method">
@@ -1061,58 +1061,58 @@ in case of parameter embedContentInfo of the methods</p>
 		<div class="pointy-thing"></div>
 
 		<div class="method-info-container">
-			
-			
+
+
 			<div class="method-subsection brief-description">
 				<p>Gets string value for custom parameter name which has been set earlier.</p>
 			</div>
-			
-		    
+
+
 
 			<div class="method-subsection method-declaration"><code>- (NSString *__nullable)stringForKey:(NSString *__nonnull)<em>key</em> error:(NSError *__nullable *__nullable)<em>error</em></code></div>
 
-		    
-			
+
+
 			<div class="method-subsection arguments-section parameters">
 				<h4 class="method-subtitle parameter-title">Parameters</h4>
 				<table class="argument-def parameter-def">
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>key</code></th>
 						<td><p>String custom parameter name.</p></td>
 					</tr>
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>error</code></th>
 						<td><p><code>NSError</code> pointer to get an object in case of error, <code>nil</code> - otherwise.</p></td>
 					</tr>
-				
+
 				</table>
 			</div>
-			
 
-			
+
+
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
 				<p>String value for given parameter name. In case of error returns <code>nil</code> and <code>NSError</code> in error parameter.</p>
 			</div>
-			
 
-			
 
-			
 
-			
 
-			
 
-			
+
+
+
+
+
+
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">VSSBaseCryptor.h</code></p>
+				<p><code class="declared-in-ref">VSCBaseCryptor.h</code></p>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 </div><div class="section-method">
@@ -1124,58 +1124,58 @@ in case of parameter embedContentInfo of the methods</p>
 		<div class="pointy-thing"></div>
 
 		<div class="method-info-container">
-			
-			
+
+
 			<div class="method-subsection brief-description">
 				<p>Removes string value for custom parameter which has been set earlier.</p>
 			</div>
-			
-		    
+
+
 
 			<div class="method-subsection method-declaration"><code>- (BOOL)removeStringForKey:(NSString *__nonnull)<em>key</em> error:(NSError *__nullable *__nullable)<em>error</em></code></div>
 
-		    
-			
+
+
 			<div class="method-subsection arguments-section parameters">
 				<h4 class="method-subtitle parameter-title">Parameters</h4>
 				<table class="argument-def parameter-def">
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>key</code></th>
 						<td><p>String custom parameter name. If there is no given string parameter present - just does nothing and returns <code>YES</code>.</p></td>
 					</tr>
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>error</code></th>
 						<td><p><code>NSError</code> pointer to get an object in case of error, <code>nil</code> - otherwise.</p></td>
 					</tr>
-				
+
 				</table>
 			</div>
-			
 
-			
+
+
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
 				<p><code>YES</code> in case when operation completed successfully, <code>NO</code> - otherwise.</p>
 			</div>
-			
 
-			
 
-			
 
-			
 
-			
 
-			
+
+
+
+
+
+
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">VSSBaseCryptor.h</code></p>
+				<p><code class="declared-in-ref">VSCBaseCryptor.h</code></p>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 </div><div class="section-method">
@@ -1187,27 +1187,27 @@ in case of parameter embedContentInfo of the methods</p>
 		<div class="pointy-thing"></div>
 
 		<div class="method-info-container">
-			
-			
+
+
 			<div class="method-subsection brief-description">
 				<p>Allows to set data value for custom parameter name as a part of the content info in unencrypted form.</p>
 			</div>
-			
-		    
+
+
 
 			<div class="method-subsection method-declaration"><code>- (BOOL)setData:(NSData *__nonnull)<em>value</em> forKey:(NSString *__nonnull)<em>key</em> error:(NSError *__nullable *__nullable)<em>error</em></code></div>
 
-		    
-			
+
+
 			<div class="method-subsection arguments-section parameters">
 				<h4 class="method-subtitle parameter-title">Parameters</h4>
 				<table class="argument-def parameter-def">
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>value</code></th>
 						<td><p>Data value which have to be stored for parameter name given as a key.</p></td>
 					</tr>
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>key</code></th>
 						<td><p>String custom parameter name. The same parameter name can be used also for:</p>
@@ -1220,38 +1220,38 @@ in case of parameter embedContentInfo of the methods</p>
 
 <p>to save 3 different values at the same time.</p></td>
 					</tr>
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>error</code></th>
 						<td><p><code>NSError</code> pointer to get an object in case of error, <code>nil</code> - otherwise.</p></td>
 					</tr>
-				
+
 				</table>
 			</div>
-			
 
-			
+
+
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
 				<p><code>YES</code> in case when operation completed successfully, <code>NO</code> - otherwise.</p>
 			</div>
-			
 
-			
 
-			
 
-			
 
-			
 
-			
+
+
+
+
+
+
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">VSSBaseCryptor.h</code></p>
+				<p><code class="declared-in-ref">VSCBaseCryptor.h</code></p>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 </div><div class="section-method">
@@ -1263,58 +1263,58 @@ in case of parameter embedContentInfo of the methods</p>
 		<div class="pointy-thing"></div>
 
 		<div class="method-info-container">
-			
-			
+
+
 			<div class="method-subsection brief-description">
 				<p>Gets data value for custom parameter name which has been set earlier.</p>
 			</div>
-			
-		    
+
+
 
 			<div class="method-subsection method-declaration"><code>- (NSData *__nullable)dataForKey:(NSString *__nonnull)<em>key</em> error:(NSError *__nullable *__nullable)<em>error</em></code></div>
 
-		    
-			
+
+
 			<div class="method-subsection arguments-section parameters">
 				<h4 class="method-subtitle parameter-title">Parameters</h4>
 				<table class="argument-def parameter-def">
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>key</code></th>
 						<td><p>String custom parameter name.</p></td>
 					</tr>
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>error</code></th>
 						<td><p><code>NSError</code> pointer to get an object in case of error, <code>nil</code> - otherwise.</p></td>
 					</tr>
-				
+
 				</table>
 			</div>
-			
 
-			
+
+
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
 				<p>Data value for given parameter name. In case of error returns <code>nil</code> and <code>NSError</code> in error parameter.</p>
 			</div>
-			
 
-			
 
-			
 
-			
 
-			
 
-			
+
+
+
+
+
+
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">VSSBaseCryptor.h</code></p>
+				<p><code class="declared-in-ref">VSCBaseCryptor.h</code></p>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 </div><div class="section-method">
@@ -1326,58 +1326,58 @@ in case of parameter embedContentInfo of the methods</p>
 		<div class="pointy-thing"></div>
 
 		<div class="method-info-container">
-			
-			
+
+
 			<div class="method-subsection brief-description">
 				<p>Removes data value for custom parameter which has been set earlier.</p>
 			</div>
-			
-		    
+
+
 
 			<div class="method-subsection method-declaration"><code>- (BOOL)removeDataForKey:(NSString *__nonnull)<em>key</em> error:(NSError *__nullable *__nullable)<em>error</em></code></div>
 
-		    
-			
+
+
 			<div class="method-subsection arguments-section parameters">
 				<h4 class="method-subtitle parameter-title">Parameters</h4>
 				<table class="argument-def parameter-def">
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>key</code></th>
 						<td><p>String custom parameter name. If there is no given data parameter present - just does nothing and returns <code>YES</code>.</p></td>
 					</tr>
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>error</code></th>
 						<td><p><code>NSError</code> pointer to get an object in case of error, <code>nil</code> - otherwise.</p></td>
 					</tr>
-				
+
 				</table>
 			</div>
-			
 
-			
+
+
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
 				<p><code>YES</code> in case when operation completed successfully, <code>NO</code> - otherwise.</p>
 			</div>
-			
 
-			
 
-			
 
-			
 
-			
 
-			
+
+
+
+
+
+
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">VSSBaseCryptor.h</code></p>
+				<p><code class="declared-in-ref">VSCBaseCryptor.h</code></p>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 </div><div class="section-method">
@@ -1389,53 +1389,53 @@ in case of parameter embedContentInfo of the methods</p>
 		<div class="pointy-thing"></div>
 
 		<div class="method-info-container">
-			
-			
+
+
 			<div class="method-subsection brief-description">
 				<p>Checks if there are any custom parameters set.</p>
 			</div>
-			
-		    
+
+
 
 			<div class="method-subsection method-declaration"><code>- (BOOL)isEmptyCustomParametersWithError:(NSError *__nullable *__nullable)<em>error</em></code></div>
 
-		    
-			
+
+
 			<div class="method-subsection arguments-section parameters">
 				<h4 class="method-subtitle parameter-title">Parameters</h4>
 				<table class="argument-def parameter-def">
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>error</code></th>
 						<td><p><code>NSError</code> pointer to get an object in case of error, <code>nil</code> - otherwise.</p></td>
 					</tr>
-				
+
 				</table>
 			</div>
-			
 
-			
+
+
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
 				<p><code>NO</code> in case there is no any parameter. <code>YES</code> - otherwise. In case of error - returns <code>YES</code> and <code>NSError</code> object in error parameter.</p>
 			</div>
-			
 
-			
 
-			
 
-			
 
-			
 
-			
+
+
+
+
+
+
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">VSSBaseCryptor.h</code></p>
+				<p><code class="declared-in-ref">VSCBaseCryptor.h</code></p>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 </div><div class="section-method">
@@ -1447,58 +1447,58 @@ in case of parameter embedContentInfo of the methods</p>
 		<div class="pointy-thing"></div>
 
 		<div class="method-info-container">
-			
-			
+
+
 			<div class="method-subsection brief-description">
 				<p>Removes all custom parameters.</p>
 			</div>
-			
-		    
+
+
 
 			<div class="method-subsection method-declaration"><code>- (BOOL)clearCustomParametersWithError:(NSError *__nullable *__nullable)<em>error</em></code></div>
 
-		    
-			
+
+
 			<div class="method-subsection arguments-section parameters">
 				<h4 class="method-subtitle parameter-title">Parameters</h4>
 				<table class="argument-def parameter-def">
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>error</code></th>
 						<td><p><code>NSError</code> pointer to get an object in case of error, <code>nil</code> - otherwise.</p></td>
 					</tr>
-				
+
 				</table>
 			</div>
-			
 
-			
+
+
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
 				<p><code>YES</code> in case when operation completed successfully, <code>NO</code> - otherwise. In case of error - returns <code>NO</code> and <code>NSError</code> object in error parameter.</p>
 			</div>
-			
 
-			
 
-			
 
-			
 
-			
 
-			
+
+
+
+
+
+
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">VSSBaseCryptor.h</code></p>
+				<p><code class="declared-in-ref">VSCBaseCryptor.h</code></p>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 </div>
 						</div>
-						
+
 
 						<a title="Deprecated functionality" name="task_Deprecated functionality"></a>
 						<h2 class="task-title">Deprecated functionality</h2>
@@ -1513,49 +1513,49 @@ in case of parameter embedContentInfo of the methods</p>
 		<div class="pointy-thing"></div>
 
 		<div class="method-info-container">
-			
-			
+
+
 			<div class="method-subsection brief-description">
 				<p>Adds given public key as a recipient for an encryption.</p>
 			</div>
-			
-		    
+
+
 
 			<div class="method-subsection method-declaration"><code>- (void)addKeyRecipient:(NSString *__nonnull)<em>recipientId</em> publicKey:(NSData *__nonnull)<em>publicKey</em></code></div>
 
-		    
-			
+
+
 			<div class="method-subsection arguments-section parameters">
 				<h4 class="method-subtitle parameter-title">Parameters</h4>
 				<table class="argument-def parameter-def">
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>recipientId</code></th>
 						<td><p>String containing identifier for the public key used for an encryption.</p></td>
 					</tr>
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>publicKey</code></th>
 						<td><p>Data object containing public key which will be used for an encryption.</p></td>
 					</tr>
-				
+
 				</table>
 			</div>
-			
 
-			
 
-			
 
-			
+
+
+
+
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>This method should be called before methods:</p>
 
 <ul>
-<li><a href="../Classes/VSSCryptor.html#//api/name/encryptData:embedContentInfo:error:"><code>[VSSCryptor encryptData:embedContentInfo:error:]</code></a></li>
-<li><a href="../Classes/VSSStreamCryptor.html#//api/name/encryptDataFromStream:toStream:embedContentInfo:error:"><code>[VSSStreamCryptor encryptDataFromStream:toStream:embedContentInfo:error:]</code></a></li>
-<li><a href="../Classes/VSSChunkCryptor.html#//api/name/startEncryptionWithPreferredChunkSize:error:"><code>[VSSChunkCryptor startEncryptionWithPreferredChunkSize:error:]</code></a></li>
+<li><a href="../Classes/VSCCryptor.html#//api/name/encryptData:embedContentInfo:error:"><code>[VSCCryptor encryptData:embedContentInfo:error:]</code></a></li>
+<li><a href="../Classes/VSCStreamCryptor.html#//api/name/encryptDataFromStream:toStream:embedContentInfo:error:"><code>[VSCStreamCryptor encryptDataFromStream:toStream:embedContentInfo:error:]</code></a></li>
+<li><a href="../Classes/VSCChunkCryptor.html#//api/name/startEncryptionWithPreferredChunkSize:error:"><code>[VSCChunkCryptor startEncryptionWithPreferredChunkSize:error:]</code></a></li>
 </ul>
 
 
@@ -1563,19 +1563,19 @@ in case of parameter embedContentInfo of the methods</p>
 
 <p><strong>Deprecated:</strong> Use <a href="#//api/name/addKeyRecipient:publicKey:error:"><code>addKeyRecipient:publicKey:error:</code></a> instead.</p>
 			</div>
-			
 
-			
 
-			
 
-			
+
+
+
+
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">VSSBaseCryptor.h</code></p>
+				<p><code class="declared-in-ref">VSCBaseCryptor.h</code></p>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 </div><div class="section-method">
@@ -1587,53 +1587,53 @@ in case of parameter embedContentInfo of the methods</p>
 		<div class="pointy-thing"></div>
 
 		<div class="method-info-container">
-			
-			
+
+
 			<div class="method-subsection brief-description">
 				<p>Removes a public key with given identifier from the recipients list for an encryption.</p>
 			</div>
-			
-		    
+
+
 
 			<div class="method-subsection method-declaration"><code>- (void)removeKeyRecipient:(NSString *__nonnull)<em>recipientId</em></code></div>
 
-		    
-			
+
+
 			<div class="method-subsection arguments-section parameters">
 				<h4 class="method-subtitle parameter-title">Parameters</h4>
 				<table class="argument-def parameter-def">
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>recipientId</code></th>
 						<td><p>Identifier for the public key which should be removed.</p></td>
 					</tr>
-				
+
 				</table>
 			</div>
-			
 
-			
 
-			
 
-			
+
+
+
+
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
 				<p><strong>Deprecated:</strong> Use <a href="#//api/name/removeKeyRecipient:error:"><code>removeKeyRecipient:error:</code></a> instead.</p>
 			</div>
-			
 
-			
 
-			
 
-			
+
+
+
+
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">VSSBaseCryptor.h</code></p>
+				<p><code class="declared-in-ref">VSCBaseCryptor.h</code></p>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 </div><div class="section-method">
@@ -1645,44 +1645,44 @@ in case of parameter embedContentInfo of the methods</p>
 		<div class="pointy-thing"></div>
 
 		<div class="method-info-container">
-			
-			
+
+
 			<div class="method-subsection brief-description">
 				<p>Adds given password as a recipient for an encryption.</p>
 			</div>
-			
-		    
+
+
 
 			<div class="method-subsection method-declaration"><code>- (void)addPasswordRecipient:(NSString *__nonnull)<em>password</em></code></div>
 
-		    
-			
+
+
 			<div class="method-subsection arguments-section parameters">
 				<h4 class="method-subtitle parameter-title">Parameters</h4>
 				<table class="argument-def parameter-def">
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>password</code></th>
 						<td><p>Password which will be used for an encryption.</p></td>
 					</tr>
-				
+
 				</table>
 			</div>
-			
 
-			
 
-			
 
-			
+
+
+
+
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>This method should be called before methods:</p>
 
 <ul>
-<li><a href="../Classes/VSSCryptor.html#//api/name/encryptData:embedContentInfo:error:"><code>[VSSCryptor encryptData:embedContentInfo:error:]</code></a></li>
-<li><a href="../Classes/VSSStreamCryptor.html#//api/name/encryptDataFromStream:toStream:embedContentInfo:error:"><code>[VSSStreamCryptor encryptDataFromStream:toStream:embedContentInfo:error:]</code></a></li>
-<li><a href="../Classes/VSSChunkCryptor.html#//api/name/startEncryptionWithPreferredChunkSize:error:"><code>[VSSChunkCryptor startEncryptionWithPreferredChunkSize:error:]</code></a></li>
+<li><a href="../Classes/VSCCryptor.html#//api/name/encryptData:embedContentInfo:error:"><code>[VSCCryptor encryptData:embedContentInfo:error:]</code></a></li>
+<li><a href="../Classes/VSCStreamCryptor.html#//api/name/encryptDataFromStream:toStream:embedContentInfo:error:"><code>[VSCStreamCryptor encryptDataFromStream:toStream:embedContentInfo:error:]</code></a></li>
+<li><a href="../Classes/VSCChunkCryptor.html#//api/name/startEncryptionWithPreferredChunkSize:error:"><code>[VSCChunkCryptor startEncryptionWithPreferredChunkSize:error:]</code></a></li>
 </ul>
 
 
@@ -1690,19 +1690,19 @@ in case of parameter embedContentInfo of the methods</p>
 
 <p><strong>Deprecated:</strong> Use <a href="#//api/name/addPasswordRecipient:error:"><code>addPasswordRecipient:error:</code></a> instead.</p>
 			</div>
-			
 
-			
 
-			
 
-			
+
+
+
+
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">VSSBaseCryptor.h</code></p>
+				<p><code class="declared-in-ref">VSCBaseCryptor.h</code></p>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 </div><div class="section-method">
@@ -1714,53 +1714,53 @@ in case of parameter embedContentInfo of the methods</p>
 		<div class="pointy-thing"></div>
 
 		<div class="method-info-container">
-			
-			
+
+
 			<div class="method-subsection brief-description">
 				<p>Removes given password from the recipients list for an encryption.</p>
 			</div>
-			
-		    
+
+
 
 			<div class="method-subsection method-declaration"><code>- (void)removePasswordRecipient:(NSString *__nonnull)<em>password</em></code></div>
 
-		    
-			
+
+
 			<div class="method-subsection arguments-section parameters">
 				<h4 class="method-subtitle parameter-title">Parameters</h4>
 				<table class="argument-def parameter-def">
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>password</code></th>
 						<td><p>Password which should be removed.</p></td>
 					</tr>
-				
+
 				</table>
 			</div>
-			
 
-			
 
-			
 
-			
+
+
+
+
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
 				<p><strong>Deprecated:</strong> Use <a href="#//api/name/removePasswordRecipient:error:"><code>removePasswordRecipient:error:</code></a> instead.</p>
 			</div>
-			
 
-			
 
-			
 
-			
+
+
+
+
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">VSSBaseCryptor.h</code></p>
+				<p><code class="declared-in-ref">VSCBaseCryptor.h</code></p>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 </div><div class="section-method">
@@ -1772,41 +1772,41 @@ in case of parameter embedContentInfo of the methods</p>
 		<div class="pointy-thing"></div>
 
 		<div class="method-info-container">
-			
-			
+
+
 			<div class="method-subsection brief-description">
 				<p>Removes all recepients which would be used for an encryption.</p>
 			</div>
-			
-		    
+
+
 
 			<div class="method-subsection method-declaration"><code>- (void)removeAllRecipients</code></div>
 
-		    
-			
 
-			
 
-			
 
-			
+
+
+
+
+
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
 				<p><strong>Deprecated:</strong> Use <a href="#//api/name/removeAllRecipientsWithError:"><code>removeAllRecipientsWithError:</code></a> instead.</p>
 			</div>
-			
 
-			
 
-			
 
-			
+
+
+
+
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">VSSBaseCryptor.h</code></p>
+				<p><code class="declared-in-ref">VSCBaseCryptor.h</code></p>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 </div><div class="section-method">
@@ -1818,37 +1818,37 @@ in case of parameter embedContentInfo of the methods</p>
 		<div class="pointy-thing"></div>
 
 		<div class="method-info-container">
-			
-			
+
+
 			<div class="method-subsection brief-description">
 				<p>Allows to get the content info data.</p>
 			</div>
-			
-		    
+
+
 
 			<div class="method-subsection method-declaration"><code>- (NSData *__nullable)contentInfo</code></div>
 
-		    
-			
 
-			
+
+
+
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
 				<p>Data object with content info for the encryption data or <code>nil</code> in case of error or if no content info present.</p>
 			</div>
-			
 
-			
 
-			
+
+
+
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>The content info contains information about the encryption recipients
 in case of parameter embedContentInfo of the methods</p>
 
 <ul>
-<li><a href="../Classes/VSSCryptor.html#//api/name/encryptData:embedContentInfo:error:"><code>[VSSCryptor encryptData:embedContentInfo:error:]</code></a></li>
-<li><a href="../Classes/VSSStreamCryptor.html#//api/name/encryptDataFromStream:toStream:embedContentInfo:error:"><code>[VSSStreamCryptor encryptDataFromStream:toStream:embedContentInfo:error:]</code></a></li>
+<li><a href="../Classes/VSCCryptor.html#//api/name/encryptData:embedContentInfo:error:"><code>[VSCCryptor encryptData:embedContentInfo:error:]</code></a></li>
+<li><a href="../Classes/VSCStreamCryptor.html#//api/name/encryptDataFromStream:toStream:embedContentInfo:error:"><code>[VSCStreamCryptor encryptDataFromStream:toStream:embedContentInfo:error:]</code></a></li>
 </ul>
 
 
@@ -1856,19 +1856,19 @@ in case of parameter embedContentInfo of the methods</p>
 
 <p><strong>Deprecated:</strong> Use <a href="#//api/name/contentInfoWithError:"><code>contentInfoWithError:</code></a> instead.</p>
 			</div>
-			
 
-			
 
-			
 
-			
+
+
+
+
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">VSSBaseCryptor.h</code></p>
+				<p><code class="declared-in-ref">VSCBaseCryptor.h</code></p>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 </div><div class="section-method">
@@ -1880,87 +1880,87 @@ in case of parameter embedContentInfo of the methods</p>
 		<div class="pointy-thing"></div>
 
 		<div class="method-info-container">
-			
-			
+
+
 			<div class="method-subsection brief-description">
 				<p>Allows to set the content info data with information about the encryption recipients.</p>
 			</div>
-			
-		    
+
+
 
 			<div class="method-subsection method-declaration"><code>- (void)setContentInfo:(NSData *__nonnull)<em>contentInfo</em></code></div>
 
-		    
-			
+
+
 			<div class="method-subsection arguments-section parameters">
 				<h4 class="method-subtitle parameter-title">Parameters</h4>
 				<table class="argument-def parameter-def">
-				
+
 					<tr>
 						<th scope="row" class="argument-name"><code>contentInfo</code></th>
 						<td><p>Data object with content info for the data decryption.</p></td>
 					</tr>
-				
+
 				</table>
 			</div>
-			
 
-			
 
-			
 
-			
+
+
+
+
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>This method should be called before methods:</p>
 
 <ul>
-<li><a href="../Classes/VSSCryptor.html#//api/name/decryptData:recipientId:privateKey:keyPassword:error:"><code>[VSSCryptor decryptData:recipientId:privateKey:keyPassword:error:]</code></a></li>
-<li><a href="../Classes/VSSCryptor.html#//api/name/decryptData:password:error:"><code>[VSSCryptor decryptData:password:error:]</code></a></li>
-<li><a href="../Classes/VSSStreamCryptor.html#//api/name/decryptFromStream:toStream:recipientId:privateKey:keyPassword:error:"><code>[VSSStreamCryptor decryptFromStream:toStream:recipientId:privateKey:keyPassword:error:]</code></a></li>
-<li><a href="../Classes/VSSStreamCryptor.html#//api/name/decryptFromStream:toStream:password:error:"><code>[VSSStreamCryptor decryptFromStream:toStream:password:error:]</code></a></li>
-<li><a href="../Classes/VSSChunkCryptor.html#//api/name/startDecryptionWithRecipientId:privateKey:keyPassword:error:"><code>[VSSChunkCryptor startDecryptionWithRecipientId:privateKey:keyPassword:error:]</code></a></li>
-<li><a href="../Classes/VSSChunkCryptor.html#//api/name/startDecryptionWithPassword:error:"><code>[VSSChunkCryptor startDecryptionWithPassword:error:]</code></a></li>
+<li><a href="../Classes/VSCCryptor.html#//api/name/decryptData:recipientId:privateKey:keyPassword:error:"><code>[VSCCryptor decryptData:recipientId:privateKey:keyPassword:error:]</code></a></li>
+<li><a href="../Classes/VSCCryptor.html#//api/name/decryptData:password:error:"><code>[VSCCryptor decryptData:password:error:]</code></a></li>
+<li><a href="../Classes/VSCStreamCryptor.html#//api/name/decryptFromStream:toStream:recipientId:privateKey:keyPassword:error:"><code>[VSCStreamCryptor decryptFromStream:toStream:recipientId:privateKey:keyPassword:error:]</code></a></li>
+<li><a href="../Classes/VSCStreamCryptor.html#//api/name/decryptFromStream:toStream:password:error:"><code>[VSCStreamCryptor decryptFromStream:toStream:password:error:]</code></a></li>
+<li><a href="../Classes/VSCChunkCryptor.html#//api/name/startDecryptionWithRecipientId:privateKey:keyPassword:error:"><code>[VSCChunkCryptor startDecryptionWithRecipientId:privateKey:keyPassword:error:]</code></a></li>
+<li><a href="../Classes/VSCChunkCryptor.html#//api/name/startDecryptionWithPassword:error:"><code>[VSCChunkCryptor startDecryptionWithPassword:error:]</code></a></li>
 </ul>
 
 
 <p><strong>Deprecated:</strong> Use <a href="#//api/name/setContentInfo:error:">setContentInfo:error:</a> instead.</p>
 			</div>
-			
 
-			
 
-			
 
-			
+
+
+
+
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">VSSBaseCryptor.h</code></p>
+				<p><code class="declared-in-ref">VSCBaseCryptor.h</code></p>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 </div>
 						</div>
-						
-					</div>
-					
-					
 
-                    
-                    
-          
+					</div>
+
+
+
+
+
+
 				</main>
 
 				<footer>
 					<div class="footer-copyright">
-						
+
 						<p class="copyright">Copyright &copy; 2016 Virgil Security, Inc. All rights reserved. Updated: 2016-05-30</p>
-						
-						
+
+
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
-						
+
 					</div>
 				</footer>
 			</div>
