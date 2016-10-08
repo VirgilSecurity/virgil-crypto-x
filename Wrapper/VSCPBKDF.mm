@@ -18,8 +18,8 @@ using virgil::crypto::VirgilByteArray;
 using virgil::crypto::foundation::VirgilPBKDF;
 using virgil::crypto::foundation::VirgilHash;
 
-const size_t kVSSDefaultRandomBytesSize = 64;
-NSString *const kVSSPBKDFErrorDomain = @"VSSPBKDFErrorDomain";
+const size_t kVSCDefaultRandomBytesSize = 64;
+NSString *const kVSCPBKDFErrorDomain = @"VSCPBKDFErrorDomain";
 
 @interface VSCPBKDF ()
 
@@ -69,9 +69,9 @@ NSString *const kVSSPBKDFErrorDomain = @"VSSPBKDFErrorDomain";
     return iterations;
 }
 
-- (VSSPBKDFAlgorithm)algorithm {
+- (VSCPBKDFAlgorithm)algorithm {
     if (self.pbkdf == NULL) {
-        return VSSPBKDFAlgorithmPBKDF2;
+        return VSCPBKDFAlgorithmPBKDF2;
     }
     
     VirgilPBKDF::Algorithm alg = VirgilPBKDF::Algorithm::PBKDF2;
@@ -80,17 +80,17 @@ NSString *const kVSSPBKDFErrorDomain = @"VSSPBKDFErrorDomain";
     } catch (...) {
         alg = VirgilPBKDF::Algorithm::PBKDF2;
     }
-    return (VSSPBKDFAlgorithm)alg;
+    return (VSCPBKDFAlgorithm)alg;
 }
 
-- (void)setAlgorithm:(VSSPBKDFAlgorithm)algorithm {
+- (void)setAlgorithm:(VSCPBKDFAlgorithm)algorithm {
     if (self.pbkdf == NULL) {
         return;
     }
     
     VirgilPBKDF::Algorithm alg = VirgilPBKDF::Algorithm::PBKDF2;
     switch(algorithm) {
-        case VSSPBKDFAlgorithmPBKDF2:
+        case VSCPBKDFAlgorithmPBKDF2:
             alg = VirgilPBKDF::Algorithm::PBKDF2;
             break;
         default:
@@ -103,9 +103,9 @@ NSString *const kVSSPBKDFErrorDomain = @"VSSPBKDFErrorDomain";
     catch(...) {}
 }
 
-- (VSSPBKDFHash)hash {
+- (VSCPBKDFHash)hash {
     if (self.pbkdf == NULL) {
-        return (VSSPBKDFHash)0;
+        return (VSCPBKDFHash)0;
     }
 
     VirgilHash::Algorithm hsh = (VirgilHash::Algorithm)0;
@@ -115,29 +115,29 @@ NSString *const kVSSPBKDFErrorDomain = @"VSSPBKDFErrorDomain";
     catch(...) {
         hsh = (VirgilHash::Algorithm)0;
     }
-    return (VSSPBKDFHash)hsh;
+    return (VSCPBKDFHash)hsh;
 }
 
-- (void)setHash:(VSSPBKDFHash)hash {
+- (void)setHash:(VSCPBKDFHash)hash {
     if (self.pbkdf == NULL) {
         return;
     }
 
     VirgilHash::Algorithm hsh = (VirgilHash::Algorithm)0;
     switch(hash) {
-        case VSSPBKDFHashSHA1:
+        case VSCPBKDFHashSHA1:
             hsh = VirgilHash::Algorithm::SHA1;
             break;
-        case VSSPBKDFHashSHA224:
+        case VSCPBKDFHashSHA224:
             hsh = VirgilHash::Algorithm::SHA224;
             break;
-        case VSSPBKDFHashSHA256:
+        case VSCPBKDFHashSHA256:
             hsh = VirgilHash::Algorithm::SHA256;
             break;
-        case VSSPBKDFHashSHA384:
+        case VSCPBKDFHashSHA384:
             hsh = VirgilHash::Algorithm::SHA384;
             break;
-        case VSSPBKDFHashSHA512:
+        case VSCPBKDFHashSHA512:
             hsh = VirgilHash::Algorithm::SHA512;
             break;
         default:
@@ -203,7 +203,7 @@ NSString *const kVSSPBKDFErrorDomain = @"VSSPBKDFErrorDomain";
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSSPBKDFErrorDomain code:-1002 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unable to enable security checks. PBKDF object is not initialized properly.", @"Unable to enable security checks. PBKDF object is not initialized properly.")}];
+                *error = [NSError errorWithDomain:kVSCPBKDFErrorDomain code:-1002 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unable to enable security checks. PBKDF object is not initialized properly.", @"Unable to enable security checks. PBKDF object is not initialized properly.")}];
             }
             success = NO;
         }
@@ -214,13 +214,13 @@ NSString *const kVSSPBKDFErrorDomain = @"VSSPBKDFErrorDomain";
             if (description.length == 0) {
                 description = NSLocalizedString(@"Unknown error: impossible to get PBKDF exception description.", @"Unknown error: impossible to get PBKDF exception description.");
             }
-            *error = [NSError errorWithDomain:kVSSPBKDFErrorDomain code:-1010 userInfo:@{ NSLocalizedDescriptionKey: description }];
+            *error = [NSError errorWithDomain:kVSCPBKDFErrorDomain code:-1010 userInfo:@{ NSLocalizedDescriptionKey: description }];
         }
         success = NO;
     }
     catch (...) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSSPBKDFErrorDomain code:-1011 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unknown PBKDF error.", @"Unknown PBKDF error.") }];
+            *error = [NSError errorWithDomain:kVSCPBKDFErrorDomain code:-1011 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unknown PBKDF error.", @"Unknown PBKDF error.") }];
         }
         success = NO;
     }
@@ -239,7 +239,7 @@ NSString *const kVSSPBKDFErrorDomain = @"VSSPBKDFErrorDomain";
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSSPBKDFErrorDomain code:-1003 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unable to disable security checks. PBKDF object is not initialized properly.", @"Unable to disable security checks. PBKDF object is not initialized properly.")  }];
+                *error = [NSError errorWithDomain:kVSCPBKDFErrorDomain code:-1003 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unable to disable security checks. PBKDF object is not initialized properly.", @"Unable to disable security checks. PBKDF object is not initialized properly.")  }];
             }
             success = NO;
         }
@@ -250,13 +250,13 @@ NSString *const kVSSPBKDFErrorDomain = @"VSSPBKDFErrorDomain";
             if (description.length == 0) {
                 description = NSLocalizedString(@"Unknown error: impossible to get PBKDF exception description.", @"Unknown error: impossible to get PBKDF exception description.");
             }
-            *error = [NSError errorWithDomain:kVSSPBKDFErrorDomain code:-1010 userInfo:@{ NSLocalizedDescriptionKey: description }];
+            *error = [NSError errorWithDomain:kVSCPBKDFErrorDomain code:-1010 userInfo:@{ NSLocalizedDescriptionKey: description }];
         }
         success = NO;
     }
     catch (...) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSSPBKDFErrorDomain code:-1011 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unknown PBKDF error.", @"Unknown PBKDF error.") }];
+            *error = [NSError errorWithDomain:kVSCPBKDFErrorDomain code:-1011 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unknown PBKDF error.", @"Unknown PBKDF error.") }];
         }
         success = NO;
     }
@@ -266,7 +266,7 @@ NSString *const kVSSPBKDFErrorDomain = @"VSSPBKDFErrorDomain";
 - (NSData *)keyFromPassword:(NSString *)password size:(size_t)size error:(NSError **)error {
     if (password.length == 0) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSSPBKDFErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to derive the key: password is missing.", @"Impossible to derive the key: password is missing.") }];
+            *error = [NSError errorWithDomain:kVSCPBKDFErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to derive the key: password is missing.", @"Impossible to derive the key: password is missing.") }];
         }
         return nil;
     }
@@ -285,7 +285,7 @@ NSString *const kVSSPBKDFErrorDomain = @"VSSPBKDFErrorDomain";
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSSPBKDFErrorDomain code:-1001 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unable to derive the key. PBKDF object is not initialized properly.", @"Unable to derive the key. PBKDF object is not initialized properly.")  }];
+                *error = [NSError errorWithDomain:kVSCPBKDFErrorDomain code:-1001 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unable to derive the key. PBKDF object is not initialized properly.", @"Unable to derive the key. PBKDF object is not initialized properly.")  }];
             }
             keyData = nil;
         }
@@ -296,13 +296,13 @@ NSString *const kVSSPBKDFErrorDomain = @"VSSPBKDFErrorDomain";
             if (description.length == 0) {
                 description = NSLocalizedString(@"Unknown error: impossible to get PBKDF exception description.", @"Unknown error: impossible to get PBKDF exception description.");
             }
-            *error = [NSError errorWithDomain:kVSSPBKDFErrorDomain code:-1010 userInfo:@{ NSLocalizedDescriptionKey: description }];
+            *error = [NSError errorWithDomain:kVSCPBKDFErrorDomain code:-1010 userInfo:@{ NSLocalizedDescriptionKey: description }];
         }
         keyData = nil;
     }
     catch (...) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSSPBKDFErrorDomain code:-1011 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unknown PBKDF error.", @"Unknown PBKDF error.") }];
+            *error = [NSError errorWithDomain:kVSCPBKDFErrorDomain code:-1011 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unknown PBKDF error.", @"Unknown PBKDF error.") }];
         }
         keyData = nil;
     }
@@ -312,7 +312,7 @@ NSString *const kVSSPBKDFErrorDomain = @"VSSPBKDFErrorDomain";
 
 + (NSData*)randomBytesOfSize:(size_t)size {
     if (size == 0) {
-        size = kVSSDefaultRandomBytesSize;
+        size = kVSCDefaultRandomBytesSize;
     }
     uint8_t randomDataBytes[size];
     if (SecRandomCopyBytes(kSecRandomDefault, sizeof(randomDataBytes), randomDataBytes) == 0) {

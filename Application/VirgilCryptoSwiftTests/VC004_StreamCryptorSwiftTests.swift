@@ -27,7 +27,7 @@ class VC004_StreamCryptorSwiftTests: XCTestCase {
 
     func test001_createCryptor() {
         let cryptor = VSCStreamCryptor()
-        XCTAssertNotNil(cryptor, "VSSStreamCryptor instance should be created.");
+        XCTAssertNotNil(cryptor, "VSCStreamCryptor instance should be created.");
     }
     
     func test002_keyBasedEncryptDecrypt() {

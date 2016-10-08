@@ -44,7 +44,7 @@
     // Generate a new key pair
     VSCKeyPair *keyPair = [[VSCKeyPair alloc] init];
     // Create a cryptor instance
-    VSCTinyCryptor *cryptor = [[VSCTinyCryptor alloc] initWithPackageSize:VSSShortSMSPackageSize];
+    VSCTinyCryptor *cryptor = [[VSCTinyCryptor alloc] initWithPackageSize:VSCShortSMSPackageSize];
     // encrypt data.
     NSError *error = nil;
     NSTimeInterval ti = [NSDate timeIntervalSinceReferenceDate];
@@ -77,7 +77,7 @@
     }
     // Decrypt:
     // Create a completely new instance of the VCCryptor object
-    VSCTinyCryptor *decryptor = [[VSCTinyCryptor alloc] initWithPackageSize:VSSShortSMSPackageSize];
+    VSCTinyCryptor *decryptor = [[VSCTinyCryptor alloc] initWithPackageSize:VSCShortSMSPackageSize];
     size_t len = (encryptedData.length > decryptor.packageSize) ? decryptor.packageSize : encryptedData.length;
     for (NSUInteger offset = 0; offset <= encryptedData.length - 1; offset += len) {
         
@@ -113,7 +113,7 @@
     // Generate a new key pair for Sender
     VSCKeyPair *keyPair_sen = [[VSCKeyPair alloc] init];
     // Create a cryptor instance
-    VSCTinyCryptor *cryptor = [[VSCTinyCryptor alloc] initWithPackageSize:VSSShortSMSPackageSize];
+    VSCTinyCryptor *cryptor = [[VSCTinyCryptor alloc] initWithPackageSize:VSCShortSMSPackageSize];
     // encrypt data.
     NSError *error = nil;
     NSTimeInterval ti = [NSDate timeIntervalSinceReferenceDate];
@@ -146,7 +146,7 @@
     }
     // Verify+Decrypt:
     // Create a completely new instance of the VCCryptor object
-    VSCTinyCryptor *decryptor = [[VSCTinyCryptor alloc] initWithPackageSize:VSSShortSMSPackageSize];
+    VSCTinyCryptor *decryptor = [[VSCTinyCryptor alloc] initWithPackageSize:VSCShortSMSPackageSize];
     size_t len = decryptor.packageSize;
     for (NSUInteger offset = 0; offset <= encryptedData.length - 1; offset += len) {
         // Recalculate len:

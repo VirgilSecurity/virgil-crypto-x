@@ -29,7 +29,7 @@ class VC005_ChunkCryptorSwiftTests: XCTestCase {
     
     func test001_createCryptor() {
         let cryptor = VSCChunkCryptor()
-        XCTAssertNotNil(cryptor, "VSSChunkCryptor instance should be created.");
+        XCTAssertNotNil(cryptor, "VSCChunkCryptor instance should be created.");
     }
     
     func test002_keyBasedEncryptDecrypt() {

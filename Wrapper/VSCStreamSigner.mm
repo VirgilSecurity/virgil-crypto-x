@@ -18,7 +18,7 @@
 #import <VSCCrypto/virgil/crypto/foundation/VirgilHash.h>
 #import <VSCCrypto/virgil/crypto/VirgilDataSource.h>
 
-NSString *const kVSSStreamSignerErrorDomain = @"VSSStreamSignerErrorDomain";
+NSString *const kVSCStreamSignerErrorDomain = @"VSCStreamSignerErrorDomain";
 
 using virgil::crypto::VirgilByteArray;
 using virgil::crypto::VirgilStreamSigner;
@@ -145,7 +145,7 @@ VirgilByteArray VirgilStreamSignerDataSource::read() {
 - (NSData *)signStreamData:(NSInputStream *)source privateKey:(NSData *)privateKey keyPassword:(NSString *)keyPassword error:(NSError **)error {
     if (source == nil || privateKey.length == 0) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSSStreamSignerErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to compose the signature: no data source or no private key given.", "Compose signature error.") }];
+            *error = [NSError errorWithDomain:kVSCStreamSignerErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to compose the signature: no data source or no private key given.", "Compose signature error.") }];
         }
         return nil;
     }
@@ -171,7 +171,7 @@ VirgilByteArray VirgilStreamSignerDataSource::read() {
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSSStreamSignerErrorDomain code:-1001 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to compose signature. Cryptor is not initialized properly." }];
+                *error = [NSError errorWithDomain:kVSCStreamSignerErrorDomain code:-1001 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to compose signature. Cryptor is not initialized properly." }];
             }
             signData = nil;
         }
@@ -182,13 +182,13 @@ VirgilByteArray VirgilStreamSignerDataSource::read() {
             if (description.length == 0) {
                 description = @"Unknown error: impossible to get signature exception description.";
             }
-            *error = [NSError errorWithDomain:kVSSStreamSignerErrorDomain code:-1002 userInfo:@{ NSLocalizedDescriptionKey: description }];
+            *error = [NSError errorWithDomain:kVSCStreamSignerErrorDomain code:-1002 userInfo:@{ NSLocalizedDescriptionKey: description }];
         }
         signData = nil;
     }
     catch(...) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSSStreamSignerErrorDomain code:-1003 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown error during composing of signature from stream." }];
+            *error = [NSError errorWithDomain:kVSCStreamSignerErrorDomain code:-1003 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown error during composing of signature from stream." }];
         }
         signData = nil;
     }
@@ -199,7 +199,7 @@ VirgilByteArray VirgilStreamSignerDataSource::read() {
 - (BOOL)verifySignature:(NSData *)signature fromStream:(NSInputStream *)source publicKey:(NSData *)publicKey error:(NSError **)error {
     if (source == nil || signature.length == 0 || publicKey.length == 0) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSSStreamSignerErrorDomain code:-1004 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to verify signature: source stream or/and verification data or/and public key is/are not given.", @"Verification signature error.") }];
+            *error = [NSError errorWithDomain:kVSCStreamSignerErrorDomain code:-1004 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to verify signature: source stream or/and verification data or/and public key is/are not given.", @"Verification signature error.") }];
         }
         return NO;
     }
@@ -219,7 +219,7 @@ VirgilByteArray VirgilStreamSignerDataSource::read() {
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSSStreamSignerErrorDomain code:-1005 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to compose signature. Cryptor is not initialized properly." }];
+                *error = [NSError errorWithDomain:kVSCStreamSignerErrorDomain code:-1005 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to compose signature. Cryptor is not initialized properly." }];
             }
             verified = NO;
         }
@@ -230,13 +230,13 @@ VirgilByteArray VirgilStreamSignerDataSource::read() {
             if (description.length == 0) {
                 description = @"Unknown error: impossible to get verification exception description.";
             }
-            *error = [NSError errorWithDomain:kVSSStreamSignerErrorDomain code:-1006 userInfo:@{ NSLocalizedDescriptionKey: description }];
+            *error = [NSError errorWithDomain:kVSCStreamSignerErrorDomain code:-1006 userInfo:@{ NSLocalizedDescriptionKey: description }];
         }
         verified = NO;
     }
     catch(...) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSSStreamSignerErrorDomain code:-1007 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown error during verification of signature." }];
+            *error = [NSError errorWithDomain:kVSCStreamSignerErrorDomain code:-1007 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown error during verification of signature." }];
         }
         verified = NO;
     }

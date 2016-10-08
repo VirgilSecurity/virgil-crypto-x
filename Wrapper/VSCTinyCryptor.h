@@ -9,18 +9,18 @@
 #import <Foundation/Foundation.h>
 
 /**
- * Error domain constant for the `VSSPBKDF` errors.
+ * Error domain constant for the `VSCPBKDF` errors.
  */
-extern NSString * __nonnull const kVSSTinyCryptorErrorDomain;
+extern NSString * __nonnull const kVSCTinyCryptorErrorDomain;
 
 /**
  * @brief Constants that represents maximum number of bytes in one package.
  * @note Text representation is 4/3 bigger, i.e 120 * 4/3 = 160 - for short sms.
  */
-typedef NS_ENUM(size_t, VSSPackageSize) {
-    VSSMinPackageSize = 113,          ///< Min
-    VSSShortSMSPackageSize = 120,     ///< Short SMS
-    VSSLongSMSPackageSize = 1200      ///< Long SMS
+typedef NS_ENUM(size_t, VSCPackageSize) {
+    VSCMinPackageSize = 113,          ///< Min
+    VSCShortSMSPackageSize = 120,     ///< Short SMS
+    VSCLongSMSPackageSize = 1200      ///< Long SMS
 };
 
 /**
@@ -65,7 +65,7 @@ typedef NS_ENUM(size_t, VSSPackageSize) {
  *
  * @return Instance of the `TinyCryptor`
  */
-- (instancetype __nonnull)initWithPackageSize:(VSSPackageSize)packageSize;
+- (instancetype __nonnull)initWithPackageSize:(VSCPackageSize)packageSize;
 
 /**
  * Prepare cryptor for the next encryption.
@@ -89,7 +89,7 @@ typedef NS_ENUM(size_t, VSSPackageSize) {
  * 
  * @return `YES` in case when encryption was successful, `NO` - otherwise.
  *
- * @see '[VSSTinyCryptor packageAtIndex:error:]'
+ * @see '[VSCTinyCryptor packageAtIndex:error:]'
  *
  */
 - (BOOL)encryptData:(NSData * __nonnull)data recipientPublicKey:(NSData * __nonnull)recipientKey error:(NSError * __nullable * __nullable)error;
@@ -135,8 +135,8 @@ typedef NS_ENUM(size_t, VSSPackageSize) {
  * Adds a package for the decryption.
  *
  * Packages added using this function become accumulated for later calls to 
- * - `[VSSTinyCryptor decryptWithRecipientPrivateKey:recipientKeyPassword:error:]` or
- * - `[VSSTinyCryptor verifyAndDecryptWithSenderPublicKey:recipientPrivateKey:recipientKeyPassword:error:]`
+ * - `[VSCTinyCryptor decryptWithRecipientPrivateKey:recipientKeyPassword:error:]` or
+ * - `[VSCTinyCryptor verifyAndDecryptWithSenderPublicKey:recipientPrivateKey:recipientKeyPassword:error:]`
  *
  * @param package Data object with package content to be accumulated.
  * @param error NSError pointer to get an object in case of error, `nil` - otherwise.

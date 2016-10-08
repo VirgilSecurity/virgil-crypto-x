@@ -10,9 +10,9 @@
 #import "VSCBaseCryptor.h"
 
 /**
- * Error domain constant for the VSSCryptor errors.
+ * Error domain constant for the VSCCryptor errors.
  */
-extern NSString * __nonnull const kVSSCryptorErrorDomain;
+extern NSString * __nonnull const kVSCCryptorErrorDomain;
 
 /**
  * Class for encryption/decryption functionality.

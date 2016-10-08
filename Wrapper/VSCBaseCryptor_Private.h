@@ -1,5 +1,5 @@
 //
-//  VSSBaseCryptor_Private.h
+//  VSCBaseCryptor_Private.h
 //  VirgilCypto
 //
 //  Created by Pavel Gorb on 2/23/16.

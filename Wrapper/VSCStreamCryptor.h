@@ -9,9 +9,9 @@
 #import "VSCBaseCryptor.h"
 
 /**
- * Error domain constant for the VSSStreamCryptor errors.
+ * Error domain constant for the VSCStreamCryptor errors.
  */
-extern NSString * __nonnull const kVSSStreamCryptorErrorDomain;
+extern NSString * __nonnull const kVSCStreamCryptorErrorDomain;
 
 /**
  * Class for performing encryption/decryption using `NSInputStream` as a source of the data and `NSOutputStream` as a receiver.

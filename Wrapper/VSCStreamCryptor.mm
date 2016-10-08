@@ -17,22 +17,22 @@ using virgil::crypto::VirgilStreamCipher;
 using virgil::crypto::VirgilDataSource;
 using virgil::crypto::VirgilDataSink;
 
-NSString *const kVSSStreamCryptorErrorDomain = @"VSSStreamCryptorErrorDomain";
+NSString *const kVSCStreamCryptorErrorDomain = @"VSCStreamCryptorErrorDomain";
 
-class VSSStreamCryptorDataSource : public ::virgil::crypto::VirgilDataSource {
+class VSCStreamCryptorDataSource : public ::virgil::crypto::VirgilDataSource {
 
     NSInputStream *istream;
 public:
-    VSSStreamCryptorDataSource(NSInputStream *is);
+    VSCStreamCryptorDataSource(NSInputStream *is);
 
-    ~VSSStreamCryptorDataSource();
+    ~VSCStreamCryptorDataSource();
 
     bool hasData();
 
     VirgilByteArray read();
 };
 
-VSSStreamCryptorDataSource::VSSStreamCryptorDataSource(NSInputStream *is) {
+VSCStreamCryptorDataSource::VSCStreamCryptorDataSource(NSInputStream *is) {
     /// Assign pointer.
     this->istream = is;
     if (this->istream.streamStatus == NSStreamStatusNotOpen) {
@@ -40,13 +40,13 @@ VSSStreamCryptorDataSource::VSSStreamCryptorDataSource(NSInputStream *is) {
     }
 }
 
-VSSStreamCryptorDataSource::~VSSStreamCryptorDataSource() {
+VSCStreamCryptorDataSource::~VSCStreamCryptorDataSource() {
     /// Drop pointer.
     [this->istream close];
     this->istream = NULL;
 }
 
-bool VSSStreamCryptorDataSource::hasData() {
+bool VSCStreamCryptorDataSource::hasData() {
     if (this->istream != NULL) {
         NSStreamStatus st = this->istream.streamStatus;
         if (st == NSStreamStatusNotOpen || st == NSStreamStatusError || st == NSStreamStatusClosed) {
@@ -61,7 +61,7 @@ bool VSSStreamCryptorDataSource::hasData() {
     return false;
 }
 
-VirgilByteArray VSSStreamCryptorDataSource::read() {
+VirgilByteArray VSCStreamCryptorDataSource::read() {
     std::vector<unsigned char> buffer;
     unsigned long desiredSize = 1024;
     long actualSize = 0;
@@ -79,19 +79,19 @@ VirgilByteArray VSSStreamCryptorDataSource::read() {
     return static_cast<VirgilByteArray>(buffer);
 }
 
-class VSSStreamCryptorDataSink : public virgil::crypto::VirgilDataSink {
+class VSCStreamCryptorDataSink : public virgil::crypto::VirgilDataSink {
 
     NSOutputStream *ostream;
 public:
-    VSSStreamCryptorDataSink(NSOutputStream *os);
+    VSCStreamCryptorDataSink(NSOutputStream *os);
 
-    ~VSSStreamCryptorDataSink();
+    ~VSCStreamCryptorDataSink();
     bool isGood();
 
     void write(const VirgilByteArray& data);
 };
 
-VSSStreamCryptorDataSink::VSSStreamCryptorDataSink(NSOutputStream *os) {
+VSCStreamCryptorDataSink::VSCStreamCryptorDataSink(NSOutputStream *os) {
     /// Assign pointer.
     this->ostream = os;
     if (this->ostream.streamStatus == NSStreamStatusNotOpen) {
@@ -99,13 +99,13 @@ VSSStreamCryptorDataSink::VSSStreamCryptorDataSink(NSOutputStream *os) {
     }
 }
 
-VSSStreamCryptorDataSink::~VSSStreamCryptorDataSink() {
+VSCStreamCryptorDataSink::~VSCStreamCryptorDataSink() {
     /// Drop pointer.
     [this->ostream close];
     this->ostream = NULL;
 }
 
-bool VSSStreamCryptorDataSink::isGood() {
+bool VSCStreamCryptorDataSink::isGood() {
     if (this->ostream != NULL) {
         NSStreamStatus st = this->ostream.streamStatus;
         if (st == NSStreamStatusNotOpen || st == NSStreamStatusError || st == NSStreamStatusClosed) {
@@ -120,7 +120,7 @@ bool VSSStreamCryptorDataSink::isGood() {
     return false;
 }
 
-void VSSStreamCryptorDataSink::write(const VirgilByteArray &data) {
+void VSCStreamCryptorDataSink::write(const VirgilByteArray &data) {
     if (this->ostream != NULL) {
         [this->ostream write:data.data() maxLength:data.size()];
     }
@@ -174,7 +174,7 @@ void VSSStreamCryptorDataSink::write(const VirgilByteArray &data) {
 - (BOOL)encryptDataFromStream:(NSInputStream *)source toStream:(NSOutputStream *)destination embedContentInfo:(BOOL)embedContentInfo error:(NSError **)error {
     if (source == nil || destination == nil) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSSStreamCryptorErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to encrypt stream: At least one of the required parameters is missing.", @"Encrypt stream data error.") }];
+            *error = [NSError errorWithDomain:kVSCStreamCryptorErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to encrypt stream: At least one of the required parameters is missing.", @"Encrypt stream data error.") }];
         }
         return NO;
     }
@@ -182,8 +182,8 @@ void VSSStreamCryptorDataSink::write(const VirgilByteArray &data) {
     BOOL success = NO;
     try {
         if ([self cryptor] != NULL) {
-            VSSStreamCryptorDataSource src = VSSStreamCryptorDataSource(source);
-            VSSStreamCryptorDataSink dest = VSSStreamCryptorDataSink(destination);
+            VSCStreamCryptorDataSource src = VSCStreamCryptorDataSource(source);
+            VSCStreamCryptorDataSink dest = VSCStreamCryptorDataSink(destination);
             bool embed = embedContentInfo;
             [self cryptor]->encrypt(src, dest, embed);
 
@@ -195,7 +195,7 @@ void VSSStreamCryptorDataSink::write(const VirgilByteArray &data) {
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSSStreamCryptorErrorDomain code:-1001 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to encrypt stream. Cryptor is not initialized properly." }];
+                *error = [NSError errorWithDomain:kVSCStreamCryptorErrorDomain code:-1001 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to encrypt stream. Cryptor is not initialized properly." }];
             }
             success = NO;
         }
@@ -206,13 +206,13 @@ void VSSStreamCryptorDataSink::write(const VirgilByteArray &data) {
             if (description.length == 0) {
                 description = @"Unknown exception during stream encryption.";
             }
-            *error = [NSError errorWithDomain:kVSSStreamCryptorErrorDomain code:-1002 userInfo:@{ NSLocalizedDescriptionKey: description }];
+            *error = [NSError errorWithDomain:kVSCStreamCryptorErrorDomain code:-1002 userInfo:@{ NSLocalizedDescriptionKey: description }];
         }
         success = NO;
     }
     catch(...) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSSStreamCryptorErrorDomain code:-1003 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown exception during stream encryption." }];
+            *error = [NSError errorWithDomain:kVSCStreamCryptorErrorDomain code:-1003 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown exception during stream encryption." }];
         }
         success = NO;
     }
@@ -222,7 +222,7 @@ void VSSStreamCryptorDataSink::write(const VirgilByteArray &data) {
 - (BOOL)decryptFromStream:(NSInputStream * __nonnull)source toStream:(NSOutputStream * __nonnull)destination recipientId:(NSData * __nonnull)recipientId privateKey:(NSData * __nonnull)privateKey keyPassword:(NSString * __nullable)keyPassword error:(NSError * __nullable * __nullable)error {
     if (source == nil || destination == nil || recipientId.length == 0 || privateKey.length == 0) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSSStreamCryptorErrorDomain code:-1004 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to decrypt stream: At least one of the required parameters is missing.", @"Decrypt stream data error.") }];
+            *error = [NSError errorWithDomain:kVSCStreamCryptorErrorDomain code:-1004 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to decrypt stream: At least one of the required parameters is missing.", @"Decrypt stream data error.") }];
         }
         return NO;
     }
@@ -230,8 +230,8 @@ void VSSStreamCryptorDataSink::write(const VirgilByteArray &data) {
     BOOL success = NO;
     try {
         if ([self cryptor] != NULL) {
-            VSSStreamCryptorDataSource src = VSSStreamCryptorDataSource(source);
-            VSSStreamCryptorDataSink dest = VSSStreamCryptorDataSink(destination);
+            VSCStreamCryptorDataSource src = VSCStreamCryptorDataSource(source);
+            VSCStreamCryptorDataSink dest = VSCStreamCryptorDataSink(destination);
             const VirgilByteArray &recId = [self convertVirgilByteArrayFromData:recipientId];
             const VirgilByteArray &pKey = [self convertVirgilByteArrayFromData:privateKey];
 
@@ -249,7 +249,7 @@ void VSSStreamCryptorDataSink::write(const VirgilByteArray &data) {
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSSStreamCryptorErrorDomain code:-1005 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to decrypt stream. Cryptor is not initialized properly." }];
+                *error = [NSError errorWithDomain:kVSCStreamCryptorErrorDomain code:-1005 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to decrypt stream. Cryptor is not initialized properly." }];
             }
             success = NO;
         }
@@ -260,13 +260,13 @@ void VSSStreamCryptorDataSink::write(const VirgilByteArray &data) {
             if (description.length == 0) {
                 description = @"Unknown exception during stream decryption.";
             }
-            *error = [NSError errorWithDomain:kVSSStreamCryptorErrorDomain code:-1006 userInfo:@{ NSLocalizedDescriptionKey: description }];
+            *error = [NSError errorWithDomain:kVSCStreamCryptorErrorDomain code:-1006 userInfo:@{ NSLocalizedDescriptionKey: description }];
         }
         success = NO;
     }
     catch(...) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSSStreamCryptorErrorDomain code:-1007 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown exception during stream decryption." }];
+            *error = [NSError errorWithDomain:kVSCStreamCryptorErrorDomain code:-1007 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown exception during stream decryption." }];
         }
         success = NO;
     }
@@ -276,7 +276,7 @@ void VSSStreamCryptorDataSink::write(const VirgilByteArray &data) {
 - (BOOL)decryptFromStream:(NSInputStream * __nonnull)source toStream:(NSOutputStream * __nonnull)destination password:(NSString * __nonnull)password error:(NSError * __nullable * __nullable)error {
     if (source == nil || destination == nil || password.length == 0) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSSStreamCryptorErrorDomain code:-1008 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to decrypt stream: At least one of the required parameters is missing.", @"Decrypt stream data error.") }];
+            *error = [NSError errorWithDomain:kVSCStreamCryptorErrorDomain code:-1008 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to decrypt stream: At least one of the required parameters is missing.", @"Decrypt stream data error.") }];
         }
         return NO;
     }
@@ -284,8 +284,8 @@ void VSSStreamCryptorDataSink::write(const VirgilByteArray &data) {
     BOOL success = NO;
     try {
         if ([self cryptor] != NULL) {
-            VSSStreamCryptorDataSource src = VSSStreamCryptorDataSource(source);
-            VSSStreamCryptorDataSink dest = VSSStreamCryptorDataSink(destination);
+            VSCStreamCryptorDataSource src = VSCStreamCryptorDataSource(source);
+            VSCStreamCryptorDataSink dest = VSCStreamCryptorDataSink(destination);
             const VirgilByteArray &pwd = [self convertVirgilByteArrayFromString:password];
 
             [self cryptor]->decryptWithPassword(src, dest,pwd);
@@ -297,7 +297,7 @@ void VSSStreamCryptorDataSink::write(const VirgilByteArray &data) {
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSSStreamCryptorErrorDomain code:-1009 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to decrypt stream. Cryptor is not initialized properly." }];
+                *error = [NSError errorWithDomain:kVSCStreamCryptorErrorDomain code:-1009 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to decrypt stream. Cryptor is not initialized properly." }];
             }
             success = NO;
         }
@@ -308,13 +308,13 @@ void VSSStreamCryptorDataSink::write(const VirgilByteArray &data) {
             if (description.length == 0) {
                 description = @"Unknown exception during stream decryption.";
             }
-            *error = [NSError errorWithDomain:kVSSStreamCryptorErrorDomain code:-1010 userInfo:@{ NSLocalizedDescriptionKey: description }];
+            *error = [NSError errorWithDomain:kVSCStreamCryptorErrorDomain code:-1010 userInfo:@{ NSLocalizedDescriptionKey: description }];
         }
         success = NO;
     }
     catch(...) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSSStreamCryptorErrorDomain code:-1011 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown exception during stream decryption." }];
+            *error = [NSError errorWithDomain:kVSCStreamCryptorErrorDomain code:-1011 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown exception during stream decryption." }];
         }
         success = NO;
     }

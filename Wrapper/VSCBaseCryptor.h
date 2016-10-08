@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 
 /** 
- * Error domain constant for the VSSBaseCryptor errors. 
+ * Error domain constant for the VSCBaseCryptor errors. 
  */
-extern NSString * __nonnull const kVSSBaseCryptorErrorDomain;
+extern NSString * __nonnull const kVSCBaseCryptorErrorDomain;
 
 /**
- * Base class for `VSSCryptor`, `VSSStreamCryptor` and `VSSChunkCryptor`. 
+ * Base class for `VSCCryptor`, `VSCStreamCryptor` and `VSCChunkCryptor`. 
  * 
  * Contains utility functionality for adding/removing the recipients and content info management.
  */
@@ -38,9 +38,9 @@ extern NSString * __nonnull const kVSSBaseCryptorErrorDomain;
  *
  * This method should be called before methods: 
  *
- * - `[VSSCryptor encryptData:embedContentInfo:error:]`
- * - `[VSSStreamCryptor encryptDataFromStream:toStream:embedContentInfo:error:]`
- * - `[VSSChunkCryptor startEncryptionWithPreferredChunkSize:error:]`
+ * - `[VSCCryptor encryptData:embedContentInfo:error:]`
+ * - `[VSCStreamCryptor encryptDataFromStream:toStream:embedContentInfo:error:]`
+ * - `[VSCChunkCryptor startEncryptionWithPreferredChunkSize:error:]`
  *
  * in case of using key-based encryption.
  *
@@ -79,9 +79,9 @@ extern NSString * __nonnull const kVSSBaseCryptorErrorDomain;
  *
  * This method should be called before methods:
  *
- * - `[VSSCryptor encryptData:embedContentInfo:error:]`
- * - `[VSSStreamCryptor encryptDataFromStream:toStream:embedContentInfo:error:]`
- * - `[VSSChunkCryptor startEncryptionWithPreferredChunkSize:error:]`
+ * - `[VSCCryptor encryptData:embedContentInfo:error:]`
+ * - `[VSCStreamCryptor encryptDataFromStream:toStream:embedContentInfo:error:]`
+ * - `[VSCChunkCryptor startEncryptionWithPreferredChunkSize:error:]`
  *
  * in case of using password-based encryption.
  *
@@ -117,8 +117,8 @@ extern NSString * __nonnull const kVSSBaseCryptorErrorDomain;
  * The content info contains information about the encryption recipients
  * in case of parameter embedContentInfo of the methods
  *
- * - `[VSSCryptor encryptData:embedContentInfo:error:]`
- * - `[VSSStreamCryptor encryptDataFromStream:toStream:embedContentInfo:error:]`
+ * - `[VSCCryptor encryptData:embedContentInfo:error:]`
+ * - `[VSCStreamCryptor encryptDataFromStream:toStream:embedContentInfo:error:]`
  *
  * was set to `NO`.
  *
@@ -133,12 +133,12 @@ extern NSString * __nonnull const kVSSBaseCryptorErrorDomain;
  *
  * This method should be called before methods:
  *
- * - `[VSSCryptor decryptData:recipientId:privateKey:keyPassword:error:]`
- * - `[VSSCryptor decryptData:password:error:]`
- * - `[VSSStreamCryptor decryptFromStream:toStream:recipientId:privateKey:keyPassword:error:]`
- * - `[VSSStreamCryptor decryptFromStream:toStream:password:error:]`
- * - `[VSSChunkCryptor startDecryptionWithRecipientId:privateKey:keyPassword:error:]`
- * - `[VSSChunkCryptor startDecryptionWithPassword:error:]`
+ * - `[VSCCryptor decryptData:recipientId:privateKey:keyPassword:error:]`
+ * - `[VSCCryptor decryptData:password:error:]`
+ * - `[VSCStreamCryptor decryptFromStream:toStream:recipientId:privateKey:keyPassword:error:]`
+ * - `[VSCStreamCryptor decryptFromStream:toStream:password:error:]`
+ * - `[VSCChunkCryptor startDecryptionWithRecipientId:privateKey:keyPassword:error:]`
+ * - `[VSCChunkCryptor startDecryptionWithPassword:error:]`
  *
  * @param contentInfo Data object with content info for the data decryption.
  * @param error `NSError` pointer to get an object in case of error, `nil` - otherwise.
@@ -291,9 +291,9 @@ extern NSString * __nonnull const kVSSBaseCryptorErrorDomain;
  *
  * This method should be called before methods:
  *
- * - `[VSSCryptor encryptData:embedContentInfo:error:]`
- * - `[VSSStreamCryptor encryptDataFromStream:toStream:embedContentInfo:error:]`
- * - `[VSSChunkCryptor startEncryptionWithPreferredChunkSize:error:]`
+ * - `[VSCCryptor encryptData:embedContentInfo:error:]`
+ * - `[VSCStreamCryptor encryptDataFromStream:toStream:embedContentInfo:error:]`
+ * - `[VSCChunkCryptor startEncryptionWithPreferredChunkSize:error:]`
  *
  * in case of using key-based encryption.
  *
@@ -318,9 +318,9 @@ extern NSString * __nonnull const kVSSBaseCryptorErrorDomain;
  *
  * This method should be called before methods:
  *
- * - `[VSSCryptor encryptData:embedContentInfo:error:]`
- * - `[VSSStreamCryptor encryptDataFromStream:toStream:embedContentInfo:error:]`
- * - `[VSSChunkCryptor startEncryptionWithPreferredChunkSize:error:]`
+ * - `[VSCCryptor encryptData:embedContentInfo:error:]`
+ * - `[VSCStreamCryptor encryptDataFromStream:toStream:embedContentInfo:error:]`
+ * - `[VSCChunkCryptor startEncryptionWithPreferredChunkSize:error:]`
  *
  * in case of using password-based encryption.
  *
@@ -352,8 +352,8 @@ extern NSString * __nonnull const kVSSBaseCryptorErrorDomain;
  * The content info contains information about the encryption recipients
  * in case of parameter embedContentInfo of the methods
  *
- * - `[VSSCryptor encryptData:embedContentInfo:error:]`
- * - `[VSSStreamCryptor encryptDataFromStream:toStream:embedContentInfo:error:]`
+ * - `[VSCCryptor encryptData:embedContentInfo:error:]`
+ * - `[VSCStreamCryptor encryptDataFromStream:toStream:embedContentInfo:error:]`
  *
  * was set to `NO`.
  *
@@ -368,12 +368,12 @@ extern NSString * __nonnull const kVSSBaseCryptorErrorDomain;
  *
  * This method should be called before methods:
  *
- * - `[VSSCryptor decryptData:recipientId:privateKey:keyPassword:error:]`
- * - `[VSSCryptor decryptData:password:error:]`
- * - `[VSSStreamCryptor decryptFromStream:toStream:recipientId:privateKey:keyPassword:error:]`
- * - `[VSSStreamCryptor decryptFromStream:toStream:password:error:]`
- * - `[VSSChunkCryptor startDecryptionWithRecipientId:privateKey:keyPassword:error:]`
- * - `[VSSChunkCryptor startDecryptionWithPassword:error:]`
+ * - `[VSCCryptor decryptData:recipientId:privateKey:keyPassword:error:]`
+ * - `[VSCCryptor decryptData:password:error:]`
+ * - `[VSCStreamCryptor decryptFromStream:toStream:recipientId:privateKey:keyPassword:error:]`
+ * - `[VSCStreamCryptor decryptFromStream:toStream:password:error:]`
+ * - `[VSCChunkCryptor startDecryptionWithRecipientId:privateKey:keyPassword:error:]`
+ * - `[VSCChunkCryptor startDecryptionWithPassword:error:]`
  *
  * **Deprecated:** Use setContentInfo:error: instead.
  *

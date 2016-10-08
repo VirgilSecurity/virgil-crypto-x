@@ -23,16 +23,16 @@
     
     XCTAssertTrue(pbkdf.iterations > 1024, @"VSCPBKDF iterations count should be set to value which is more than 1024.");
     XCTAssertNotNil(pbkdf.salt, @"VSCPBKDF salt should be automatically instantiated.");
-    XCTAssertEqual(pbkdf.salt.length, kVSSDefaultRandomBytesSize, @"VSCPBKDF salt size should be equal the default size.");
+    XCTAssertEqual(pbkdf.salt.length, kVSCDefaultRandomBytesSize, @"VSCPBKDF salt size should be equal the default size.");
     
-    XCTAssertEqual(pbkdf.algorithm, VSSPBKDFAlgorithmPBKDF2, @"VSSPBKSD algorithm should be properly set to PBKDF2.");
-    pbkdf.algorithm = VSSPBKDFAlgorithmPBKDF2;
-    XCTAssertEqual(pbkdf.algorithm, VSSPBKDFAlgorithmPBKDF2, @"VSSPBKSD algorithm should be properly set to PBKDF2 again.");
+    XCTAssertEqual(pbkdf.algorithm, VSCPBKDFAlgorithmPBKDF2, @"VSCPBKSD algorithm should be properly set to PBKDF2.");
+    pbkdf.algorithm = VSCPBKDFAlgorithmPBKDF2;
+    XCTAssertEqual(pbkdf.algorithm, VSCPBKDFAlgorithmPBKDF2, @"VSCPBKSD algorithm should be properly set to PBKDF2 again.");
     
-    XCTAssertNotEqual(pbkdf.hash, 0, @"VSSPBKSD hash should not be set to 0 by default.");
-    XCTAssertNotEqual(pbkdf.hash, VSSPBKDFHashSHA1, @"VSSPBKSD hash should not be set to SHA1 by default.");
-    pbkdf.hash = VSSPBKDFHashSHA512;
-    XCTAssertEqual(pbkdf.hash, VSSPBKDFHashSHA512, @"VSSPBKSD hash should be properly set to SHA512.");
+    XCTAssertNotEqual(pbkdf.hash, 0, @"VSCPBKSD hash should not be set to 0 by default.");
+    XCTAssertNotEqual(pbkdf.hash, VSCPBKDFHashSHA1, @"VSCPBKSD hash should not be set to SHA1 by default.");
+    pbkdf.hash = VSCPBKDFHashSHA512;
+    XCTAssertEqual(pbkdf.hash, VSCPBKDFHashSHA512, @"VSCPBKSD hash should be properly set to SHA512.");
 }
 
 - (void)test002_keyDerivation {
@@ -82,7 +82,7 @@
     VSCPBKDF *pbkdf = [[VSCPBKDF alloc] initWithSalt:nil iterations:0];
     NSError *error = nil;
     
-    pbkdf.algorithm = VSSPBKDFAlgorithmPBKDF2;
+    pbkdf.algorithm = VSCPBKDFAlgorithmPBKDF2;
     NSData *key_1 = [pbkdf keyFromPassword:@"secret" size:0 error:&error];
     XCTAssertNil(error, @"VSCPBKDF: key should be derived successfully.");
     XCTAssertNotNil(key_1, @"VSCPBKDF: key should be derived from the password.");

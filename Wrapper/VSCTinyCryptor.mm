@@ -11,7 +11,7 @@
 
 using namespace virgil::crypto;
 
-NSString * const kVSSTinyCryptorErrorDomain = @"TinyCryptorErrorDomain";
+NSString * const kVSCTinyCryptorErrorDomain = @"TinyCryptorErrorDomain";
 
 @interface VSCTinyCryptor ()
 
@@ -25,7 +25,7 @@ NSString * const kVSSTinyCryptorErrorDomain = @"TinyCryptorErrorDomain";
 @synthesize packageSize = _packageSize;
 @synthesize tinyCipher = _tinyCipher;
 
-- (instancetype)initWithPackageSize:(VSSPackageSize)packageSize {
+- (instancetype)initWithPackageSize:(VSCPackageSize)packageSize {
     self = [super init];
     if (self == nil) {
         return nil;
@@ -42,7 +42,7 @@ NSString * const kVSSTinyCryptorErrorDomain = @"TinyCryptorErrorDomain";
 }
 
 - (instancetype) init {
-    return [self initWithPackageSize:VSSShortSMSPackageSize];
+    return [self initWithPackageSize:VSCShortSMSPackageSize];
 }
 
 - (void) dealloc {
@@ -64,7 +64,7 @@ NSString * const kVSSTinyCryptorErrorDomain = @"TinyCryptorErrorDomain";
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSSTinyCryptorErrorDomain code:-1001 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unable to reset Tiny Cryptor. Tiny Cryptor object is not initialized properly.", @"Unable to reset Tiny Cryptor. Tiny Cryptor object is not initialized properly.")}];
+                *error = [NSError errorWithDomain:kVSCTinyCryptorErrorDomain code:-1001 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unable to reset Tiny Cryptor. Tiny Cryptor object is not initialized properly.", @"Unable to reset Tiny Cryptor. Tiny Cryptor object is not initialized properly.")}];
             }
         }
     }
@@ -74,13 +74,13 @@ NSString * const kVSSTinyCryptorErrorDomain = @"TinyCryptorErrorDomain";
             if (description.length == 0) {
                 description = NSLocalizedString(@"Unknown error: impossible to get Tiny Cryptor exception description.", @"Unknown error: impossible to get Tiny Cryptor exception description.");
             }
-            *error = [NSError errorWithDomain:kVSSTinyCryptorErrorDomain code:-1002 userInfo:@{ NSLocalizedDescriptionKey: description }];
+            *error = [NSError errorWithDomain:kVSCTinyCryptorErrorDomain code:-1002 userInfo:@{ NSLocalizedDescriptionKey: description }];
         }
         ok = NO;
     }
     catch (...) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSSTinyCryptorErrorDomain code:-1003 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unknown Tiny Cryptor error.", @"Unknown Tiny Cryptor error.") }];
+            *error = [NSError errorWithDomain:kVSCTinyCryptorErrorDomain code:-1003 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unknown Tiny Cryptor error.", @"Unknown Tiny Cryptor error.") }];
         }
         ok = NO;
     }
@@ -91,7 +91,7 @@ NSString * const kVSSTinyCryptorErrorDomain = @"TinyCryptorErrorDomain";
     if (data.length == 0 || recipientKey.length == 0) {
         // Can't encrypt.
         if (error) {
-            *error = [NSError errorWithDomain:kVSSTinyCryptorErrorDomain code:-1004 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to encrypt: Required parameter is missing.", @"Encrypt data error.") }];
+            *error = [NSError errorWithDomain:kVSCTinyCryptorErrorDomain code:-1004 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to encrypt: Required parameter is missing.", @"Encrypt data error.") }];
         }
         return NO;
     }
@@ -116,7 +116,7 @@ NSString * const kVSSTinyCryptorErrorDomain = @"TinyCryptorErrorDomain";
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSSTinyCryptorErrorDomain code:-1005 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to encrypt. Tiny Cryptor is not initialized properly." }];
+                *error = [NSError errorWithDomain:kVSCTinyCryptorErrorDomain code:-1005 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to encrypt. Tiny Cryptor is not initialized properly." }];
             }
             success = NO;
         }
@@ -127,13 +127,13 @@ NSString * const kVSSTinyCryptorErrorDomain = @"TinyCryptorErrorDomain";
             if (description.length == 0) {
                 description = @"Unknown exception during encryption.";
             }
-            *error = [NSError errorWithDomain:kVSSTinyCryptorErrorDomain code:-1006 userInfo:@{ NSLocalizedDescriptionKey: description }];
+            *error = [NSError errorWithDomain:kVSCTinyCryptorErrorDomain code:-1006 userInfo:@{ NSLocalizedDescriptionKey: description }];
         }
         success = NO;
     }
     catch(...) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSSTinyCryptorErrorDomain code:-1007 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown exception during encryption." }];
+            *error = [NSError errorWithDomain:kVSCTinyCryptorErrorDomain code:-1007 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown exception during encryption." }];
         }
         success = NO;
     }
@@ -145,7 +145,7 @@ NSString * const kVSSTinyCryptorErrorDomain = @"TinyCryptorErrorDomain";
     if (data.length == 0 || recipientKey.length == 0 || senderKey.length == 0) {
         // Can't encrypt.
         if (error) {
-            *error = [NSError errorWithDomain:kVSSTinyCryptorErrorDomain code:-1008 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to encrypt: Required parameter is missing.", @"Encrypt data error.") }];
+            *error = [NSError errorWithDomain:kVSCTinyCryptorErrorDomain code:-1008 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to encrypt: Required parameter is missing.", @"Encrypt data error.") }];
         }
         return NO;
     }
@@ -180,7 +180,7 @@ NSString * const kVSSTinyCryptorErrorDomain = @"TinyCryptorErrorDomain";
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSSTinyCryptorErrorDomain code:-1009 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to encrypt. Tiny Cryptor is not initialized properly." }];
+                *error = [NSError errorWithDomain:kVSCTinyCryptorErrorDomain code:-1009 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to encrypt. Tiny Cryptor is not initialized properly." }];
             }
             success = NO;
         }
@@ -191,13 +191,13 @@ NSString * const kVSSTinyCryptorErrorDomain = @"TinyCryptorErrorDomain";
             if (description.length == 0) {
                 description = @"Unknown exception during encryption.";
             }
-            *error = [NSError errorWithDomain:kVSSTinyCryptorErrorDomain code:-1010 userInfo:@{ NSLocalizedDescriptionKey: description }];
+            *error = [NSError errorWithDomain:kVSCTinyCryptorErrorDomain code:-1010 userInfo:@{ NSLocalizedDescriptionKey: description }];
         }
         success = NO;
     }
     catch(...) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSSTinyCryptorErrorDomain code:-1011 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown exception during encryption." }];
+            *error = [NSError errorWithDomain:kVSCTinyCryptorErrorDomain code:-1011 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown exception during encryption." }];
         }
         success = NO;
     }
@@ -233,7 +233,7 @@ NSString * const kVSSTinyCryptorErrorDomain = @"TinyCryptorErrorDomain";
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSSTinyCryptorErrorDomain code:-1012 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to get package. Tiny Cryptor is not initialized properly." }];
+                *error = [NSError errorWithDomain:kVSCTinyCryptorErrorDomain code:-1012 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to get package. Tiny Cryptor is not initialized properly." }];
             }
             package = nil;
         }
@@ -244,13 +244,13 @@ NSString * const kVSSTinyCryptorErrorDomain = @"TinyCryptorErrorDomain";
             if (description.length == 0) {
                 description = @"Unknown exception during encryption.";
             }
-            *error = [NSError errorWithDomain:kVSSTinyCryptorErrorDomain code:-1013 userInfo:@{ NSLocalizedDescriptionKey: description }];
+            *error = [NSError errorWithDomain:kVSCTinyCryptorErrorDomain code:-1013 userInfo:@{ NSLocalizedDescriptionKey: description }];
         }
         package = nil;
     }
     catch(...) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSSTinyCryptorErrorDomain code:-1014 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown exception during getting package." }];
+            *error = [NSError errorWithDomain:kVSCTinyCryptorErrorDomain code:-1014 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown exception during getting package." }];
         }
         package = nil;
     }
@@ -262,7 +262,7 @@ NSString * const kVSSTinyCryptorErrorDomain = @"TinyCryptorErrorDomain";
     if (package.length == 0) {
         // Can't add package.
         if (error) {
-            *error = [NSError errorWithDomain:kVSSTinyCryptorErrorDomain code:-1015 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to add package: Required parameter is missing.", @"Encrypt data error.") }];
+            *error = [NSError errorWithDomain:kVSCTinyCryptorErrorDomain code:-1015 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to add package: Required parameter is missing.", @"Encrypt data error.") }];
         }
         return NO;
     }
@@ -282,7 +282,7 @@ NSString * const kVSSTinyCryptorErrorDomain = @"TinyCryptorErrorDomain";
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSSTinyCryptorErrorDomain code:-1016 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unable to add package to Tiny Cryptor. Tiny Cryptor object is not initialized properly.", @"Unable to add package to Tiny Cryptor. Tiny Cryptor object is not initialized properly.")}];
+                *error = [NSError errorWithDomain:kVSCTinyCryptorErrorDomain code:-1016 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unable to add package to Tiny Cryptor. Tiny Cryptor object is not initialized properly.", @"Unable to add package to Tiny Cryptor. Tiny Cryptor object is not initialized properly.")}];
             }
         }
     }
@@ -292,13 +292,13 @@ NSString * const kVSSTinyCryptorErrorDomain = @"TinyCryptorErrorDomain";
             if (description.length == 0) {
                 description = NSLocalizedString(@"Unknown error: impossible to get Tiny Cryptor exception description.", @"Unknown error: impossible to get Tiny Cryptor exception description.");
             }
-            *error = [NSError errorWithDomain:kVSSTinyCryptorErrorDomain code:-1017 userInfo:@{ NSLocalizedDescriptionKey: description }];
+            *error = [NSError errorWithDomain:kVSCTinyCryptorErrorDomain code:-1017 userInfo:@{ NSLocalizedDescriptionKey: description }];
         }
         ok = NO;
     }
     catch (...) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSSTinyCryptorErrorDomain code:-1018 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unknown Tiny Cryptor error.", @"Unknown Tiny Cryptor error.") }];
+            *error = [NSError errorWithDomain:kVSCTinyCryptorErrorDomain code:-1018 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unknown Tiny Cryptor error.", @"Unknown Tiny Cryptor error.") }];
         }
         ok = NO;
     }
@@ -326,7 +326,7 @@ NSString * const kVSSTinyCryptorErrorDomain = @"TinyCryptorErrorDomain";
     if (recipientKey.length == 0) {
         // Can't decrypt.
         if (error) {
-            *error = [NSError errorWithDomain:kVSSTinyCryptorErrorDomain code:-1019 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to decrypt: Required parameter is missing.", @"Encrypt data error.") }];
+            *error = [NSError errorWithDomain:kVSCTinyCryptorErrorDomain code:-1019 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to decrypt: Required parameter is missing.", @"Encrypt data error.") }];
         }
         return nil;
     }
@@ -354,7 +354,7 @@ NSString * const kVSSTinyCryptorErrorDomain = @"TinyCryptorErrorDomain";
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSSTinyCryptorErrorDomain code:-1020 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to decrypt. Tiny Cryptor is not initialized properly." }];
+                *error = [NSError errorWithDomain:kVSCTinyCryptorErrorDomain code:-1020 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to decrypt. Tiny Cryptor is not initialized properly." }];
             }
             decrypted = nil;
         }
@@ -365,13 +365,13 @@ NSString * const kVSSTinyCryptorErrorDomain = @"TinyCryptorErrorDomain";
             if (description.length == 0) {
                 description = @"Unknown exception during decryption.";
             }
-            *error = [NSError errorWithDomain:kVSSTinyCryptorErrorDomain code:-1021 userInfo:@{ NSLocalizedDescriptionKey: description }];
+            *error = [NSError errorWithDomain:kVSCTinyCryptorErrorDomain code:-1021 userInfo:@{ NSLocalizedDescriptionKey: description }];
         }
         decrypted = nil;
     }
     catch(...) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSSTinyCryptorErrorDomain code:-1022 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown exception during decryption." }];
+            *error = [NSError errorWithDomain:kVSCTinyCryptorErrorDomain code:-1022 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown exception during decryption." }];
         }
         decrypted = nil;
     }
@@ -383,7 +383,7 @@ NSString * const kVSSTinyCryptorErrorDomain = @"TinyCryptorErrorDomain";
     if (senderKey.length == 0 || recipientKey.length == 0) {
         // Can't decrypt.
         if (error) {
-            *error = [NSError errorWithDomain:kVSSTinyCryptorErrorDomain code:-1023 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to decrypt: Required parameter is missing.", @"Encrypt data error.") }];
+            *error = [NSError errorWithDomain:kVSCTinyCryptorErrorDomain code:-1023 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to decrypt: Required parameter is missing.", @"Encrypt data error.") }];
         }
         return nil;
     }
@@ -415,7 +415,7 @@ NSString * const kVSSTinyCryptorErrorDomain = @"TinyCryptorErrorDomain";
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSSTinyCryptorErrorDomain code:-1024 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to decrypt. Tiny Cryptor is not initialized properly." }];
+                *error = [NSError errorWithDomain:kVSCTinyCryptorErrorDomain code:-1024 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to decrypt. Tiny Cryptor is not initialized properly." }];
             }
             decrypted = nil;
         }
@@ -426,13 +426,13 @@ NSString * const kVSSTinyCryptorErrorDomain = @"TinyCryptorErrorDomain";
             if (description.length == 0) {
                 description = @"Unknown exception during decryption.";
             }
-            *error = [NSError errorWithDomain:kVSSTinyCryptorErrorDomain code:-1025 userInfo:@{ NSLocalizedDescriptionKey: description }];
+            *error = [NSError errorWithDomain:kVSCTinyCryptorErrorDomain code:-1025 userInfo:@{ NSLocalizedDescriptionKey: description }];
         }
         decrypted = nil;
     }
     catch(...) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSSTinyCryptorErrorDomain code:-1026 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown exception during decryption." }];
+            *error = [NSError errorWithDomain:kVSCTinyCryptorErrorDomain code:-1026 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown exception during decryption." }];
         }
         decrypted = nil;
     }

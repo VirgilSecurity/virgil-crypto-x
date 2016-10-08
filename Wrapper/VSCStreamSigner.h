@@ -10,9 +10,9 @@
 #import "VSCFoundationCommons.h"
 
 /** 
- * Error domain constant for the `VSSStreamSigner` errors.
+ * Error domain constant for the `VSCStreamSigner` errors.
  */
-extern NSString * __nonnull const kVSSStreamSignerErrorDomain;
+extern NSString * __nonnull const kVSCStreamSignerErrorDomain;
 
 /** 
  * Wrapper for the functionality for composing/verifying signatures.
@@ -31,7 +31,7 @@ extern NSString * __nonnull const kVSSStreamSignerErrorDomain;
  * @param hash Name of the preferred hash function. In case of `nil` default hash function will be used (SHA384).
  * One of the following names should be used: `kHashNameMD5`, `kHashNameSHA256`, `kHashNameSHA384`, `kHashNameSHA512`.
  *
- * @return Instance of the `VSSSigner`.
+ * @return Instance of the `VSCSigner`.
  */
 - (instancetype __nonnull)initWithHash:(NSString * __nullable)hash NS_DESIGNATED_INITIALIZER;
 

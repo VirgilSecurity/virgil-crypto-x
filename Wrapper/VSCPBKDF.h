@@ -11,46 +11,46 @@
 /** 
  * Default size of the securely random data.
  */
-extern const size_t kVSSDefaultRandomBytesSize;
+extern const size_t kVSCDefaultRandomBytesSize;
 /** 
- * Error domain constant for the `VSSPBKDF` errors. 
+ * Error domain constant for the `VSCPBKDF` errors. 
  */
-extern NSString * __nonnull const kVSSPBKDFErrorDomain;
+extern NSString * __nonnull const kVSCPBKDFErrorDomain;
 
 /** 
  * Enum for the type of an algorithm for a key derivation function. 
  */
-typedef NS_ENUM(NSInteger, VSSPBKDFAlgorithm) {
+typedef NS_ENUM(NSInteger, VSCPBKDFAlgorithm) {
     /** 
      * PBKDF2 algorithm for a key derivation. 
      */
-    VSSPBKDFAlgorithmPBKDF2
+    VSCPBKDFAlgorithmPBKDF2
 };
 
 /** 
  * Enum for the type of a hash function. 
  */
-typedef NS_ENUM(NSInteger, VSSPBKDFHash) {
+typedef NS_ENUM(NSInteger, VSCPBKDFHash) {
     /** 
      * SHA1 hash function. 
      */
-    VSSPBKDFHashSHA1 = 1,
+    VSCPBKDFHashSHA1 = 1,
     /** 
      * SHA224 hash function. 
      */
-    VSSPBKDFHashSHA224,
+    VSCPBKDFHashSHA224,
     /** 
      * SHA256 hash function. 
      */
-    VSSPBKDFHashSHA256,
+    VSCPBKDFHashSHA256,
     /** 
      * SHA384 hash function. 
      */
-    VSSPBKDFHashSHA384,
+    VSCPBKDFHashSHA384,
     /** 
      * SHA512 hash function. 
      */
-    VSSPBKDFHashSHA512
+    VSCPBKDFHashSHA512
 };
 
 /** 
@@ -69,15 +69,15 @@ typedef NS_ENUM(NSInteger, VSSPBKDFHash) {
 
 /**
  * Algorithm used for the key derivation.
- * @see `VSSPBKDFAlgorithm`
+ * @see `VSCPBKDFAlgorithm`
  */
-@property (nonatomic, assign) VSSPBKDFAlgorithm algorithm;
+@property (nonatomic, assign) VSCPBKDFAlgorithm algorithm;
 
 /** 
  * Hash function used for the key derivation.
- * @see `VSSPBKDFHash`
+ * @see `VSCPBKDFHash`
  */
-@property (nonatomic, assign) VSSPBKDFHash hash;
+@property (nonatomic, assign) VSCPBKDFHash hash;
 
 ///-------------------------
 /// @name Lifecycle
@@ -85,12 +85,12 @@ typedef NS_ENUM(NSInteger, VSSPBKDFHash) {
 
 /** 
  * Designated constructor.
- * Creates PBKDF wrapper object. By default algoritm is set to `VSSPBKDFAlgorithmPBKDF2` and hash is set to `VSSPBKDFHashSHA384`.
+ * Creates PBKDF wrapper object. By default algoritm is set to `VSCPBKDFAlgorithmPBKDF2` and hash is set to `VSCPBKDFHashSHA384`.
  *
  * @param salt Data with salt for key derivation. In case when salt.length == 0 default salt will be generated atomatically.
  * @param iterations Count of iterations for key derivation function. In case of 0 - default iterations count will be used automatically.
  *
- * @return Instance of the `VSSPBKDF` wrapper.
+ * @return Instance of the `VSCPBKDF` wrapper.
  */
 - (instancetype __nonnull)initWithSalt:(NSData * __nullable)salt iterations:(unsigned int)iterations NS_DESIGNATED_INITIALIZER;
 
@@ -140,7 +140,7 @@ typedef NS_ENUM(NSInteger, VSSPBKDFHash) {
 /** 
  * Generates cryptographically secure random bytes with required length.
  *
- * @param size Required size in bytes of the generated array. When given size equals 0 then `kVSSDefaultRandomBytesSize` will be used instead.
+ * @param size Required size in bytes of the generated array. When given size equals 0 then `kVSCDefaultRandomBytesSize` will be used instead.
  *
  * @return Data with cryptographically secure random bytes.
  */

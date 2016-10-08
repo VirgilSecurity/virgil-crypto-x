@@ -26,7 +26,7 @@ class VC006_StreamSignerSwiftTests: XCTestCase {
 
     func test001_createSigner() {
         let signer = VSCStreamSigner()
-        XCTAssertNotNil(signer, "VSSStreamSigner instance should be created.");
+        XCTAssertNotNil(signer, "VSCStreamSigner instance should be created.");
     }
     
     func test002_composeAndVerifySignature() {

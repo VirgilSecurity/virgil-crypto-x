@@ -1,5 +1,5 @@
 //
-//  VSSFoundationCommons.h
+//  VSCFoundationCommons.h
 //  VirgilCypto
 //
 //  Created by Pavel Gorb on 3/2/16.

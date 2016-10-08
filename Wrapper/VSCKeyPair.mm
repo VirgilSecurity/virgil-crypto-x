@@ -14,7 +14,7 @@ using virgil::crypto::VirgilByteArray;
 using CType = virgil::crypto::VirgilKeyPair::Type;
 using namespace virgil::crypto;
 
-NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
+NSString *const kVSCKeyPairErrorDomain = @"VSCKeyPairErrorDomain";
 
 @interface VSCKeyPair ()
 
@@ -323,7 +323,7 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
     if (password.length == 0 || newPassword.length == 0 || keyData.length == 0) {
         // Can't reset password.
         if (error) {
-            *error = [NSError errorWithDomain:kVSSKeyPairErrorDomain code:-1000 userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to reset password: Required parameter is missing.", @"Reset password error.")}];
+            *error = [NSError errorWithDomain:kVSCKeyPairErrorDomain code:-1000 userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to reset password: Required parameter is missing.", @"Reset password error.")}];
         }
         return nil;
     }
@@ -346,13 +346,13 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
             if (description.length == 0) {
                 description = @"Unknown exception during password reset.";
             }
-            *error = [NSError errorWithDomain:kVSSKeyPairErrorDomain code:-1001 userInfo:@{NSLocalizedDescriptionKey: description}];
+            *error = [NSError errorWithDomain:kVSCKeyPairErrorDomain code:-1001 userInfo:@{NSLocalizedDescriptionKey: description}];
         }
         pkeyData = nil;
     }
     catch (...) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSSKeyPairErrorDomain code:-1002 userInfo:@{NSLocalizedDescriptionKey: @"Unknown exception during password reset."}];
+            *error = [NSError errorWithDomain:kVSCKeyPairErrorDomain code:-1002 userInfo:@{NSLocalizedDescriptionKey: @"Unknown exception during password reset."}];
         }
         pkeyData = nil;
     }

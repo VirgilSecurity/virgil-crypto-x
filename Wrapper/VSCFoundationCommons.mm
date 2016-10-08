@@ -1,5 +1,5 @@
 //
-//  VSSFoundationCommons.m
+//  VSCFoundationCommons.m
 //  VirgilCypto
 //
 //  Created by Pavel Gorb on 3/2/16.

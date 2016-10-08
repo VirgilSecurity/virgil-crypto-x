@@ -21,7 +21,7 @@ using virgil::crypto::VirgilByteArray;
 using virgil::crypto::VirgilSigner;
 using virgil::crypto::foundation::VirgilHash;
 
-NSString *const kVSSSignerErrorDomain = @"VSSSignerErrorDomain";
+NSString *const kVSCSignerErrorDomain = @"VSCSignerErrorDomain";
 
 @interface VSCSigner ()
 
@@ -83,7 +83,7 @@ NSString *const kVSSSignerErrorDomain = @"VSSSignerErrorDomain";
 - (NSData *)signData:(NSData *)data privateKey:(NSData *)privateKey keyPassword:(NSString *)keyPassword error:(NSError **)error {
     if (data.length == 0 || privateKey.length == 0) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSSSignerErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to compose the signature: no data or no private key given.", "Sign data error.") }];
+            *error = [NSError errorWithDomain:kVSCSignerErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to compose the signature: no data or no private key given.", "Sign data error.") }];
         }
         return nil;
     }
@@ -114,7 +114,7 @@ NSString *const kVSSSignerErrorDomain = @"VSSSignerErrorDomain";
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSSSignerErrorDomain code:-1013 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to compose signature. Cryptor is not initialized properly." }];
+                *error = [NSError errorWithDomain:kVSCSignerErrorDomain code:-1013 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to compose signature. Cryptor is not initialized properly." }];
             }
             signData = nil;
         }
@@ -125,13 +125,13 @@ NSString *const kVSSSignerErrorDomain = @"VSSSignerErrorDomain";
             if (description.length == 0) {
                 description = @"Unknown error: impossible to get sign exception description.";
             }
-            *error = [NSError errorWithDomain:kVSSSignerErrorDomain code:-1001 userInfo:@{ NSLocalizedDescriptionKey: description }];
+            *error = [NSError errorWithDomain:kVSCSignerErrorDomain code:-1001 userInfo:@{ NSLocalizedDescriptionKey: description }];
         }
         signData = nil;
     }
     catch(...) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSSSignerErrorDomain code:-1002 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown error during composing of signature." }];
+            *error = [NSError errorWithDomain:kVSCSignerErrorDomain code:-1002 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown error during composing of signature." }];
         }
         signData = nil;
     }
@@ -146,7 +146,7 @@ NSString *const kVSSSignerErrorDomain = @"VSSSignerErrorDomain";
 - (BOOL)verifySignature:(NSData *)signature data:(NSData *)data publicKey:(NSData *)publicKey error:(NSError **)error {
     if (data.length == 0 || signature.length == 0 || publicKey.length == 0) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSSSignerErrorDomain code:-1010 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to verify signature: signature data or/and verification data or/and public key is/are not given.", @"Verify data error.") }];
+            *error = [NSError errorWithDomain:kVSCSignerErrorDomain code:-1010 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to verify signature: signature data or/and verification data or/and public key is/are not given.", @"Verify data error.") }];
         }
         return NO;
     }
@@ -172,7 +172,7 @@ NSString *const kVSSSignerErrorDomain = @"VSSSignerErrorDomain";
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSSSignerErrorDomain code:-1014 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to verify signature. Cryptor is not initialized properly." }];
+                *error = [NSError errorWithDomain:kVSCSignerErrorDomain code:-1014 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to verify signature. Cryptor is not initialized properly." }];
             }
             verified = NO;
         }
@@ -183,13 +183,13 @@ NSString *const kVSSSignerErrorDomain = @"VSSSignerErrorDomain";
             if (description.length == 0) {
                 description = @"Unknown error: impossible to get verify exception description.";
             }
-            *error = [NSError errorWithDomain:kVSSSignerErrorDomain code:-1011 userInfo:@{ NSLocalizedDescriptionKey: description }];
+            *error = [NSError errorWithDomain:kVSCSignerErrorDomain code:-1011 userInfo:@{ NSLocalizedDescriptionKey: description }];
         }
         verified = NO;
     }
     catch(...) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSSSignerErrorDomain code:-1012 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown error during verification of signature." }];
+            *error = [NSError errorWithDomain:kVSCSignerErrorDomain code:-1012 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown error during verification of signature." }];
         }
         verified = NO;
     }

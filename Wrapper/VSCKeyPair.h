@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 
 /** 
- * Error domain constant for the `VSSKeyPair` errors.
+ * Error domain constant for the `VSCKeyPair` errors.
  */
-extern NSString * __nonnull const kVSSKeyPairErrorDomain;
+extern NSString * __nonnull const kVSCKeyPairErrorDomain;
 
 typedef NS_ENUM(NSInteger, VSCKeyType) {
     VSCKeyTypeRSA_256, ///< RSA 1024 bit (not recommended)
