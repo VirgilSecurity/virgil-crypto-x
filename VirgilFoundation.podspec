@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.license                     = { :type => "BSD", :file => "LICENSE" }
   s.author                      = { "Pavlo Gorb" => "virgil.orbitum@gmail.com" }
   s.platforms                   = { :osx => "10.11", :ios => "8.0", :watchos => "2.0", :tvos => "9.0" }
-  s.source                      = { :git => "https://github.com/VirgilSecurity/virgil-foundation-x.git", :tag => s.version }
+  s.source                      = { :git => "https://github.com/VirgilSecurity/virgil-foundation-x.git", :tag => "foundation-2.0.0" }
   s.module_name                 = "VirgilFoundation"
   s.source_files                = "Wrapper/*"
   s.public_header_files         = "Wrapper/*.h"
