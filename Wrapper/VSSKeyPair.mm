@@ -38,7 +38,7 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
     
     try {
         if (password.length == 0) {
-            _keyPair = new VirgilKeyPair(VirgilKeyPair::generate());
+            _keyPair = new VirgilKeyPair(VirgilKeyPair::generateRecommended());
         }
         else {
             std::string pwd = std::string([password UTF8String]);
@@ -53,11 +53,11 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
 }
 
 - (instancetype)init {
-    return [self initWithKeyPairType:Type::Type_Default password:nil];
+    return [self initWithKeyPairType:Type::FAST_EC_ED25519 password:nil];
 }
 
 - (instancetype)initWithPassword:(NSString *)password {
-    return [self initWithKeyPairType:Type::Type_Default password:password];
+    return [self initWithKeyPairType:Type::FAST_EC_ED25519 password:password];
 }
 
 - (void)dealloc {
@@ -68,75 +68,71 @@ NSString *const kVSSKeyPairErrorDomain = @"VSSKeyPairErrorDomain";
 }
 
 + (VSSKeyPair *)ecNist192WithPassword:(NSString *)password {
-    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_EC_SECP192R1 password:password];
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::EC_SECP192R1 password:password];
 }
 
 + (VSSKeyPair *)ecNist224WithPassword:(NSString *)password {
-    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_EC_SECP224R1 password:password];
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::EC_SECP224R1 password:password];
 }
 
 + (VSSKeyPair *)ecNist256WithPassword:(NSString *)password {
-    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_EC_SECP256R1 password:password];
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::EC_SECP256R1 password:password];
 }
 
 + (VSSKeyPair *)ecNist384WithPassword:(NSString *)password {
-    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_EC_SECP384R1 password:password];
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::EC_SECP384R1 password:password];
 }
 
 + (VSSKeyPair *)ecNist521WithPassword:(NSString *)password {
-    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_EC_SECP521R1 password:password];
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::EC_SECP521R1 password:password];
 }
 
 + (VSSKeyPair *)ecBrainpool256WithPassword:(NSString *)password {
-    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_EC_BP256R1 password:password];
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::EC_BP256R1 password:password];
 }
 
 + (VSSKeyPair *)ecBrainpool384WithPassword:(NSString *)password {
-    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_EC_BP384R1 password:password];
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::EC_BP384R1 password:password];
 }
 
 + (VSSKeyPair *)ecBrainpool512WithPassword:(NSString *)password {
-    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_EC_BP512R1 password:password];
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::EC_BP512R1 password:password];
 }
 
 + (VSSKeyPair *)ecKoblitz192WithPassword:(NSString *)password {
-    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_EC_SECP192K1 password:password];
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::EC_SECP192K1 password:password];
 }
 
 + (VSSKeyPair *)ecKoblitz224WithPassword:(NSString *)password {
-    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_EC_SECP224K1 password:password];
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::EC_SECP224K1 password:password];
 }
 
 + (VSSKeyPair *)ecKoblitz256WithPassword:(NSString *)password {
-    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_EC_SECP256K1 password:password];
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::EC_SECP256K1 password:password];
 }
 
 + (VSSKeyPair *)rsa256WithPassword:(NSString *)password {
-    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_RSA_256 password:password];
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::RSA_256 password:password];
 }
 
 + (VSSKeyPair *)rsa512WithPassword:(NSString *)password {
-    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_RSA_512 password:password];
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::RSA_512 password:password];
 }
 
 + (VSSKeyPair *)rsa1024WithPassword:(NSString *)password {
-    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_RSA_1024 password:password];
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::RSA_1024 password:password];
 }
 
 + (VSSKeyPair *)rsa2048WithPassword:(NSString *)password {
-    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_RSA_2048 password:password];
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::RSA_2048 password:password];
 }
 
 + (VSSKeyPair *)rsa4096WithPassword:(NSString *)password {
-    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_RSA_4096 password:password];
-}
-
-+ (VSSKeyPair *)m255WithPassword:(NSString *)password {
-    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_EC_M255 password:password];
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::RSA_4096 password:password];
 }
 
 + (VSSKeyPair *)curve25519WithPassword:(NSString *)password {
-    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::Type_EC_Curve25519 password:password];
+    return (VSSKeyPair *)[[self alloc] initWithKeyPairType:Type::EC_CURVE25519 password:password];
 }
 
 #pragma mark - Public class logic

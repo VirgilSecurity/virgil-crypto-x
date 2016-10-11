@@ -9,6 +9,8 @@
 #import "VSSFoundationCommons.h"
 
 NSString* const kHashNameMD5 = @"md5";
+NSString* const kHashNameSHA1 = @"sha1";
+NSString* const kHashNameSHA224 = @"sha224";
 NSString* const kHashNameSHA256 = @"sha256";
 NSString* const kHashNameSHA384 = @"sha384";
 NSString* const kHashNameSHA512 = @"sha512";

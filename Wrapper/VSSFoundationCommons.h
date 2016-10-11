@@ -12,7 +12,15 @@
  * Hash name for MD5. 
  */
 extern NSString * __nonnull const kHashNameMD5;
-/** 
+/**
+ * Hash name for SHA1
+ */
+extern NSString * __nonnull const kHashNameSHA1;
+/**
+ * Hash name for SHA224
+ */
+extern NSString * __nonnull const kHashNameSHA224;
+/**
  * Hash name for SHA256. 
  */
 extern NSString * __nonnull const kHashNameSHA256;

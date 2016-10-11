@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
 
-#import "VSSChunkCryptor.h"
 #import "VSSKeyPair.h"
 
 static const NSUInteger kPlainDataLength = 5120;

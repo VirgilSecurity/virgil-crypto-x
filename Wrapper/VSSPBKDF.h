@@ -35,10 +35,14 @@ typedef NS_ENUM(NSInteger, VSSPBKDFAlgorithm) {
  * Enum for the type of a hash function. 
  */
 typedef NS_ENUM(NSInteger, VSSPBKDFHash) {
+    /**
+     * MD5 hash function.
+     */
+    VSSPBKDFHashMD5 = 0,
     /** 
      * SHA1 hash function. 
      */
-    VSSPBKDFHashSHA1 = 1,
+    VSSPBKDFHashSHA1,
     /** 
      * SHA224 hash function. 
      */

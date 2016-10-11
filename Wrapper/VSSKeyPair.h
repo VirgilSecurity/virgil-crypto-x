@@ -180,15 +180,6 @@ extern NSString * __nonnull const kVSSKeyPairErrorDomain;
 + (VSSKeyPair * __nonnull)rsa4096WithPassword:(NSString * __nullable)password;
 
 /** 
- * Generates key pair using curve 25519 with given password. Similar to `curve25519WithPassword:`
- *
- * @param password Password for encrypting the private key of the key pair or `nil`.
- *
- * @return instance of the `VSSKeyPair`.
- */
-+ (VSSKeyPair * __nonnull)m255WithPassword:(NSString * __nullable)password;
-
-/** 
  * Generates key pair using curve 25519 with given password. Similar to `m255WithPassword:`
  *
  * @param password Password for encrypting the private key of the key pair or `nil`.
