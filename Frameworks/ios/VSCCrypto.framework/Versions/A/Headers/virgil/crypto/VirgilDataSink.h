@@ -55,8 +55,19 @@ public:
 
     /**
      * @brief Write data to the target object.
+     * @param data data to be written, SHOULD NOT be empty.
      */
     virtual void write(const VirgilByteArray& data) = 0;
+
+    /**
+     * @brief Write data to the sink in a safe way.
+     *
+     * Write only if data is not empty and sink is good, otherwise - do nothing
+     *
+     * @param sink sink to be written to.
+     * @param data data to be written.
+     */
+    static void safeWrite(VirgilDataSink& sink, const VirgilByteArray& data);
 
     virtual ~VirgilDataSink() noexcept = default;
 };
