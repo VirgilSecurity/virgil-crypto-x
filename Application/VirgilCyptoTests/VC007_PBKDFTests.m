@@ -26,8 +26,8 @@
     XCTAssertEqual(pbkdf.salt.length, kVSSDefaultRandomBytesSize, @"VSSPBKDF salt size should be equal the default size.");
     
     XCTAssertEqual(pbkdf.algorithm, VSSPBKDFAlgorithmPBKDF2, @"VSSPBKSD algorithm should be properly set to PBKDF2.");
-//    pbkdf.algorithm = VSSPBKDFAlgorithmNone;
-//    XCTAssertEqual(pbkdf.algorithm, VSSPBKDFAlgorithmNone, @"VSSPBKSD algorithm should be properly changed to None.");
+    pbkdf.algorithm = VSSPBKDFAlgorithmNone;
+    XCTAssertEqual(pbkdf.algorithm, VSSPBKDFAlgorithmNone, @"VSSPBKSD algorithm should be properly changed to None.");
     pbkdf.algorithm = VSSPBKDFAlgorithmPBKDF2;
     XCTAssertEqual(pbkdf.algorithm, VSSPBKDFAlgorithmPBKDF2, @"VSSPBKSD algorithm should be properly set to PBKDF2 again.");
     
@@ -82,8 +82,12 @@
 
 - (void)test004_algoritmSettings {
     VSSPBKDF *pbkdf = [[VSSPBKDF alloc] initWithSalt:nil iterations:0];
+    pbkdf.algorithm = VSSPBKDFAlgorithmNone;
     
     NSError *error = nil;
+    NSData *key = [pbkdf keyFromPassword:@"secret" size:0 error:&error];
+    XCTAssertNotNil(error, @"VSSPBKDF: key should not be derived due to absense of algorithm.");
+    XCTAssertNil(key, @"VSSPBKDF: key should not be derived this time.");
     
     pbkdf.algorithm = VSSPBKDFAlgorithmPBKDF2;
     NSData *key_1 = [pbkdf keyFromPassword:@"secret" size:0 error:&error];

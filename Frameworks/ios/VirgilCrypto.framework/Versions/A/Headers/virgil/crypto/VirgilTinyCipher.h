@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2015-2016 Virgil Security Inc.
+ * Copyright (C) 2015 Virgil Security Inc.
  *
  * Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
  *
@@ -37,7 +37,6 @@
 #ifndef VIRGIL_CRYPTO_TINY_CIPHER_H
 #define VIRGIL_CRYPTO_TINY_CIPHER_H
 
-#include <memory>
 #include <string>
 
 #include <virgil/crypto/VirgilByteArray.h>
@@ -149,6 +148,11 @@ public:
      * @note SHOULD be used before the next encryption.
      */
     void reset();
+
+    /**
+     * @brief Destroy pimpl class object.
+     */
+    virtual ~VirgilTinyCipher() throw();
     /// @}
     /**
      * @name Encryption
@@ -263,19 +267,13 @@ public:
             const VirgilByteArray& recipientPrivateKey,
             const VirgilByteArray& recipientPrivateKeyPassword = VirgilByteArray());
     /// @}
-public:
-    //! @cond Doxygen_Suppress
-    VirgilTinyCipher(VirgilTinyCipher&& rhs) noexcept;
+private:
+    VirgilTinyCipher(const VirgilTinyCipher& other);
 
-    VirgilTinyCipher& operator=(VirgilTinyCipher&& rhs) noexcept;
-
-    virtual ~VirgilTinyCipher() noexcept;
-    //! @endcond
+    VirgilTinyCipher& operator=(const VirgilTinyCipher& rhs);
 
 private:
-    class Impl;
-
-    std::unique_ptr<Impl> impl_;
+    VirgilTinyCipherImpl* impl_;
 };
 
 }}

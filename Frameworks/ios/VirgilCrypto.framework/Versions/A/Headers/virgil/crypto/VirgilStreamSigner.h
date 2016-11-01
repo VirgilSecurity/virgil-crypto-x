@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2015-2016 Virgil Security Inc.
+ * Copyright (C) 2015 Virgil Security Inc.
  *
  * Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
  *
@@ -55,7 +55,8 @@ public:
      * @note Specified hash function algorithm is used only during signing.
      */
     explicit VirgilStreamSigner(
-            foundation::VirgilHash::Algorithm hashAlgorithm = foundation::VirgilHash::Algorithm::SHA384);
+            const virgil::crypto::foundation::VirgilHash& hash =
+            virgil::crypto::foundation::VirgilHash::sha384());
 
     /**
      * @brief Sign data provided by the source with given private key.
@@ -72,7 +73,7 @@ public:
     bool verify(VirgilDataSource& source, const VirgilByteArray& sign, const VirgilByteArray& publicKey);
 
 private:
-    foundation::VirgilHash hash_;
+    virgil::crypto::foundation::VirgilHash hash_;
 };
 
 }}

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2015-2016 Virgil Security Inc.
+ * Copyright (C) 2015 Virgil Security Inc.
  *
  * Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
  *
@@ -39,7 +39,6 @@
 
 #include <map>
 #include <set>
-#include <memory>
 
 #include <virgil/crypto/VirgilByteArray.h>
 #include <virgil/crypto/VirgilCustomParams.h>
@@ -48,6 +47,10 @@
  * @name Forward declaration
  */
 /// @{
+namespace virgil { namespace crypto {
+class VirgilCipherBaseImpl;
+}}
+
 namespace virgil { namespace crypto { namespace foundation {
 class VirgilSymmetricCipher;
 }}}
@@ -61,9 +64,14 @@ namespace virgil { namespace crypto {
 class VirgilCipherBase {
 public:
     /**
-     * @brief Initialize submodules.
+     * @brief Initialize randomization module used by encryption.
      */
     VirgilCipherBase();
+
+    /**
+     * @brief Dispose used resources.
+     */
+    virtual ~VirgilCipherBase() throw();
 
 public:
     /**
@@ -72,16 +80,12 @@ public:
     ///@{
     /**
      * @brief Add recipient defined with id and public key.
-     * @param recipientId Recipient's unique identifier, MUST not be empty.
-     * @param publicKey Recipient's public key, MUST not be empty.
-     * @throw VirgilCryptoException with VirgilCryptoErrorCode::InvalidArgument, if invalid arguments are given.
      */
     void addKeyRecipient(const VirgilByteArray& recipientId, const VirgilByteArray& publicKey);
 
     /**
-     * @brief Remove recipient with given identifier.
-     * @param recipientId Recipient's unique identifier.
-     * @note If recipient with given identifier is absent - do nothing.
+     * @brief Remove recipient with given id.
+     * @note If recipient with given id is absent - do nothing.
      */
     void removeKeyRecipient(const VirgilByteArray& recipientId);
 
@@ -92,18 +96,13 @@ public:
      *     1. Local structures - useful when cipher is used for encryption.
      *     2. ContentInfo structure - useful when cipher is used for decryption.
      *
-     * @param recipientId Recipient's unique identifier.
+     * @param recipientId - recipient's unique identifier.
      * @return true if recipient with given identifier exists, false - otherwise.
      */
     bool keyRecipientExists(const VirgilByteArray& recipientId) const;
 
     /**
      * @brief Add recipient defined with password.
-     *
-     * Use it for password based encryption.
-     *
-     * @param pwd Recipient's password, MUST not be empty.
-     * @throw VirgilCryptoException with VirgilCryptoErrorCode::InvalidArgument, if empty argument are given.
      */
     void addPasswordRecipient(const VirgilByteArray& pwd);
 
@@ -112,17 +111,6 @@ public:
      * @note If recipient with given password is absent - do nothing.
      */
     void removePasswordRecipient(const VirgilByteArray& pwd);
-
-    /**
-     * @brief Check whether recipient with given password exists.
-     *
-     * Search order:
-     *     1. Local structures - useful when cipher is used for encryption.
-     *
-     * @param password Recipient's unique identifier.
-     * @return true if recipient with given password exists, false - otherwise.
-     */
-    bool passwordRecipientExists(const VirgilByteArray& password) const;
 
     /**
      * @brief Remove all recipients.
@@ -141,20 +129,13 @@ public:
      */
     /**
      * @brief Return content info.
-     *
-     * Return Virgil Security Cryptogram, that contains public algorithm parameters that was used for encryption.
-     *
      * @note Call this method after encryption process.
-     * @throw VirgilCryptoException with VirgilCryptoErrorCode::InvalidOperation,
-     *     if this function is used before any encryption operation.
      */
     VirgilByteArray getContentInfo() const;
 
     /**
      * @brief Create content info object from ASN.1 structure.
-     * @param contentInfo Virgil Security Cryptogram.
      * @note Call this method before decryption process.
-     * @throw VirgilCryptoException with VirgilCryptoErrorCode::InvalidFormat, if content info can not be parsed.
      */
     void setContentInfo(const VirgilByteArray& contentInfo);
 
@@ -163,6 +144,11 @@ public:
      * @return Size of the content info if it is exist as part of the data, 0 - otherwise.
      */
     static size_t defineContentInfoSize(const VirgilByteArray& data);
+    /**
+     * @brief Provide access to the object that handles custom parameters.
+     * @note Use this method to add custom parameters to the content info object.
+     * @note Use this method before encryption process.
+     */
     ///@}
     /**
      * @name Custom parameters Access / Management
@@ -172,11 +158,6 @@ public:
      * @note This information is stored as part of the content info in unencrypted format.
      */
     ///@{
-    /**
-     * @brief Provide access to the object that handles custom parameters.
-     * @note Use this method to add custom parameters to the content info object.
-     * @note Use this method before encryption process.
-     */
     VirgilCustomParams& customParams();
 
     /**
@@ -283,18 +264,13 @@ protected:
      */
     void clearCipherInfo();
 
-public:
-    //! @cond Doxygen_Suppress
-    VirgilCipherBase(VirgilCipherBase&& rhs) noexcept;
-
-    VirgilCipherBase& operator=(VirgilCipherBase&& rhs) noexcept;
-
-    virtual ~VirgilCipherBase() noexcept;
-    //! @endcond
 private:
-    class Impl;
+    VirgilCipherBase(const VirgilCipherBase& other);
 
-    std::unique_ptr<Impl> impl_;
+    VirgilCipherBase& operator=(const VirgilCipherBase& rhs);
+
+private:
+    VirgilCipherBaseImpl* impl_;
 };
 
 }}
