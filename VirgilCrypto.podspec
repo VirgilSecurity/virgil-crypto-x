@@ -5,13 +5,13 @@ Pod::Spec.new do |s|
   s.homepage                    = "https://github.com/VirgilSecurity/virgil-foundation-x"
   s.cocoapods_version           = ">= 0.36"
   s.license                     = { :type => "BSD", :file => "LICENSE" }
-  s.author                      = { "Yaroslav T" => "yaros8t@gmail.com" }
+  s.author                      = { "Oleksandr Deundiak" => "deundiak@gmail.com" }
   s.platforms                   = { :ios => "7.0" }
   s.source                      = { :git => "https://github.com/VirgilSecurity/virgil-foundation-x.git", :tag => s.version }
   s.module_name                 = "VirgilCrypto"
-  s.source_files                = "Wrapper/*"
-  s.public_header_files         = "Wrapper/*.h"
-  s.private_header_files        = "Wrapper/*Private.h"
+  s.source_files                = "Source/*"
+  s.public_header_files         = "Source/*.h"
+  s.private_header_files        = "Source/*Private.h"
   s.requires_arc                = true
   s.library                     = "stdc++"
   s.ios.vendored_frameworks     = "Frameworks/ios/*.framework"
