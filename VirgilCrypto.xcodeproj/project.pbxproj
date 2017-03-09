@@ -56,7 +56,7 @@
 		42F85F5E1DC7B35F00C3184C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F85F5D1DC7B35F00C3184C /* Security.framework */; };
 		42F85F601DC7B51700C3184C /* VSCBaseCryptor_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85EF01DC7657C00C3184C /* VSCBaseCryptor_Private.h */; };
 		42F85F621DC7B57F00C3184C /* VirgilCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85F611DC7B57F00C3184C /* VirgilCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		42F860E21DC7C8E000C3184C /* VSCCrypto.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 42F85EEB1DC7656300C3184C /* VSCCrypto.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		42F860E21DC7C8E000C3184C /* VSCCrypto.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 42F85EEB1DC7656300C3184C /* VSCCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -378,7 +378,7 @@
 			attributes = {
 				CLASSPREFIX = VSC;
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = VirgilSecurity;
 				TargetAttributes = {
 					42F85ECC1DC7469D00C3184C = {
@@ -602,6 +602,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -631,6 +632,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
