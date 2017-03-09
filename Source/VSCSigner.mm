@@ -6,13 +6,14 @@
 //  Copyright (c) 2015 VirgilSecurity, Inc. All rights reserved.
 //
 
+#import "VSCSigner.h"
+
 /// In the MacOSX SDK there is a macro definition which covers signer->verify method.
 /// So we need to disable it for this.
 #ifdef verify
-# undef verify
+#undef verify
 #endif
 
-#import "VSCSigner.h"
 #import <VSCCrypto/virgil/crypto/VirgilByteArray.h>
 #import <VSCCrypto/virgil/crypto/VirgilSigner.h>
 #import <VSCCrypto/virgil/crypto/foundation/VirgilHash.h>

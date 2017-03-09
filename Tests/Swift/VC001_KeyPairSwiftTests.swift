@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 VirgilSecurity. All rights reserved.
 //
 
-import UIKit
 import XCTest
 
 class VC001_KeyPairSwiftTests: XCTestCase {

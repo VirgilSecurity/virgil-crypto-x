@@ -38,6 +38,16 @@
                ReferencedContainer = "container:VirgilCrypto.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "423F00831E71A0FC00CC98A3"
+               BuildableName = "VirgilCryptoSwiftTests macOS.xctest"
+               BlueprintName = "VirgilCryptoSwiftTests macOS"
+               ReferencedContainer = "container:VirgilCrypto.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
