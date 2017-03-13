@@ -60,6 +60,8 @@
 		423F00CE1E71A6E600CC98A3 /* VSCCrypto.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 423F00C01E71A6C600CC98A3 /* VSCCrypto.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		423F00D01E71A72000CC98A3 /* VSCCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423F00C31E71A6C600CC98A3 /* VSCCrypto.framework */; };
 		423F00D11E71A72700CC98A3 /* VSCCrypto.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 423F00C31E71A6C600CC98A3 /* VSCCrypto.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		423F01131E76EB9E00CC98A3 /* VSCUmbrellaHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 423F01121E76EB8100CC98A3 /* VSCUmbrellaHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		423F01141E76EBBE00CC98A3 /* VSCUmbrellaHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 423F01121E76EB8100CC98A3 /* VSCUmbrellaHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42F85ED61DC7469E00C3184C /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F85ECD1DC7469D00C3184C /* VirgilCrypto.framework */; };
 		42F85F0C1DC7657C00C3184C /* VSCBaseCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85EEE1DC7657C00C3184C /* VSCBaseCryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42F85F0D1DC7657C00C3184C /* VSCBaseCryptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85EEF1DC7657C00C3184C /* VSCBaseCryptor.mm */; };
@@ -173,6 +175,7 @@
 		423F00C01E71A6C600CC98A3 /* VSCCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VSCCrypto.framework; sourceTree = "<group>"; };
 		423F00C21E71A6C600CC98A3 /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
 		423F00C31E71A6C600CC98A3 /* VSCCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VSCCrypto.framework; sourceTree = "<group>"; };
+		423F01121E76EB8100CC98A3 /* VSCUmbrellaHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCUmbrellaHeader.h; sourceTree = "<group>"; };
 		42F85ECD1DC7469D00C3184C /* VirgilCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42F85ED51DC7469E00C3184C /* VirgilCryptoTests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilCryptoTests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		42F85EEE1DC7657C00C3184C /* VSCBaseCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSCBaseCryptor.h; sourceTree = "<group>"; };
@@ -354,6 +357,7 @@
 				42F85F061DC7657C00C3184C /* VSCTinyCryptor.mm */,
 				42F85F071DC7657C00C3184C /* VSCVirgilVersion.h */,
 				42F85F081DC7657C00C3184C /* VSCVirgilVersion.mm */,
+				423F01121E76EB8100CC98A3 /* VSCUmbrellaHeader.h */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -428,6 +432,7 @@
 				423F00561E71A05D00CC98A3 /* VirgilCrypto.h in Headers */,
 				423F00571E71A05D00CC98A3 /* VSCBaseCryptor.h in Headers */,
 				423F00591E71A05D00CC98A3 /* VSCByteArrayUtils.h in Headers */,
+				423F01141E76EBBE00CC98A3 /* VSCUmbrellaHeader.h in Headers */,
 				423F005A1E71A05D00CC98A3 /* VSCChunkCryptor.h in Headers */,
 				423F005B1E71A05D00CC98A3 /* VSCCryptor.h in Headers */,
 				423F005C1E71A05D00CC98A3 /* VSCFoundationCommons.h in Headers */,
@@ -450,6 +455,7 @@
 				42F85F131DC7657C00C3184C /* VSCCryptor.h in Headers */,
 				42F85F1F1DC7657C00C3184C /* VSCStreamCryptor.h in Headers */,
 				42F85F0C1DC7657C00C3184C /* VSCBaseCryptor.h in Headers */,
+				423F01131E76EB9E00CC98A3 /* VSCUmbrellaHeader.h in Headers */,
 				42F85F191DC7657C00C3184C /* VSCKeyPair.h in Headers */,
 				42F85F1B1DC7657C00C3184C /* VSCPBKDF.h in Headers */,
 				42F85F1D1DC7657C00C3184C /* VSCSigner.h in Headers */,
