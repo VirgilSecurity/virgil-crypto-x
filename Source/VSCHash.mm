@@ -79,10 +79,6 @@ using CAlgorithm = virgil::crypto::foundation::VirgilHash::Algorithm;
 #pragma mark - Public
 
 - (NSData *)hash:(NSData *)data {
-    if (data.length == 0) {
-        return nil;
-    }
-
     const VirgilByteArray &vData = [self convertVirgilByteArrayFromData:data];
     const VirgilByteArray &hashData = self.hash->hash(vData);
 
