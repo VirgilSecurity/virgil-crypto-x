@@ -17,7 +17,7 @@ env:
 
 before_install:
   - set -o pipefail
-  - brew update
+  - brew update 
   - brew outdated carthage || brew upgrade carthage
   - xcodebuild -version
   - xcodebuild -showsdks
