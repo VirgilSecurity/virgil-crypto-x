@@ -32,7 +32,6 @@ script:
       xcodebuild -verbose -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release GCC_GENERATE_TEST_COVERAGE_FILES=YES test-without-building | xcpretty;
     fi
 
-after_success:
   - pod lib lint
 
 before_deploy:
