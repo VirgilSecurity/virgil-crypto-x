@@ -7,8 +7,8 @@
 //
 
 #import "VSCKeyPair.h"
-#import <VSCCrypto/virgil/crypto/VirgilByteArray.h>
-#import <VSCCrypto/virgil/crypto/VirgilKeyPair.h>
+#import <virgil/crypto/VirgilByteArray.h>
+#import <virgil/crypto/VirgilKeyPair.h>
 
 using virgil::crypto::VirgilByteArray;
 using CType = virgil::crypto::VirgilKeyPair::Type;

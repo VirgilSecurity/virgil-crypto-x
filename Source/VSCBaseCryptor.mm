@@ -8,7 +8,7 @@
 
 #import "VSCBaseCryptor.h"
 #import "VSCBaseCryptor_Private.h"
-#import <VSCCrypto/virgil/crypto/VirgilCipherBase.h>
+#import <virgil/crypto/VirgilCipherBase.h>
 
 using virgil::crypto::VirgilByteArray;
 using virgil::crypto::VirgilCipherBase;

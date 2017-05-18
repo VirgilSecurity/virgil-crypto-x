@@ -14,10 +14,10 @@
 #undef verify
 #endif
 
-#import <VSCCrypto/virgil/crypto/VirgilByteArray.h>
-#import <VSCCrypto/virgil/crypto/VirgilStreamSigner.h>
-#import <VSCCrypto/virgil/crypto/foundation/VirgilHash.h>
-#import <VSCCrypto/virgil/crypto/VirgilDataSource.h>
+#import <virgil/crypto/VirgilByteArray.h>
+#import <virgil/crypto/VirgilStreamSigner.h>
+#import <virgil/crypto/foundation/VirgilHash.h>
+#import <virgil/crypto/VirgilDataSource.h>
 
 NSString *const kVSCStreamSignerErrorDomain = @"VSCStreamSignerErrorDomain";
 
