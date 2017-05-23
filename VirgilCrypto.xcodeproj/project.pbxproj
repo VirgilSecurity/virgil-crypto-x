@@ -6,6 +6,21 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		42745A611ED43E4300C1DEEC /* VirgilCrypto */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 42745A621ED43E4300C1DEEC /* Build configuration list for PBXAggregateTarget "VirgilCrypto" */;
+			buildPhases = (
+			);
+			dependencies = (
+				42745A661ED43E4F00C1DEEC /* PBXTargetDependency */,
+				42745A681ED43E4F00C1DEEC /* PBXTargetDependency */,
+			);
+			name = VirgilCrypto;
+			productName = VirgilCrypto;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		423F00391E719EF200CC98A3 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423F00301E719EF200CC98A3 /* VirgilCrypto.framework */; };
 		423F00471E71A01A00CC98A3 /* VSCBaseCryptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85EEF1DC7657C00C3184C /* VSCBaseCryptor.mm */; };
@@ -116,6 +131,20 @@
 			remoteInfo = "VirgilCrypto macOS";
 		};
 		423F008A1E71A0FD00CC98A3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3614026D1BB2A6CB002E69CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 423F002F1E719EF200CC98A3;
+			remoteInfo = "VirgilCrypto macOS";
+		};
+		42745A651ED43E4F00C1DEEC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3614026D1BB2A6CB002E69CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42F85ECC1DC7469D00C3184C;
+			remoteInfo = "VirgilCrypto iOS";
+		};
+		42745A671ED43E4F00C1DEEC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3614026D1BB2A6CB002E69CA /* Project object */;
 			proxyType = 1;
@@ -559,6 +588,9 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = VSC;
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = VirgilSecurity;
@@ -573,6 +605,10 @@
 					};
 					423F00831E71A0FC00CC98A3 = {
 						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+					42745A611ED43E4300C1DEEC = {
+						CreatedOnToolsVersion = 8.3.2;
 						ProvisioningStyle = Automatic;
 					};
 					42F85ECC1DC7469D00C3184C = {
@@ -609,6 +645,7 @@
 				423F002F1E719EF200CC98A3 /* VirgilCrypto macOS */,
 				423F00371E719EF200CC98A3 /* VirgilCryptoTests macOS */,
 				423F00831E71A0FC00CC98A3 /* VirgilCryptoSwiftTests macOS */,
+				42745A611ED43E4300C1DEEC /* VirgilCrypto */,
 			);
 		};
 /* End PBXProject section */
@@ -773,6 +810,16 @@
 			isa = PBXTargetDependency;
 			target = 423F002F1E719EF200CC98A3 /* VirgilCrypto macOS */;
 			targetProxy = 423F008A1E71A0FD00CC98A3 /* PBXContainerItemProxy */;
+		};
+		42745A661ED43E4F00C1DEEC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 42F85ECC1DC7469D00C3184C /* VirgilCrypto iOS */;
+			targetProxy = 42745A651ED43E4F00C1DEEC /* PBXContainerItemProxy */;
+		};
+		42745A681ED43E4F00C1DEEC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 423F002F1E719EF200CC98A3 /* VirgilCrypto macOS */;
+			targetProxy = 42745A671ED43E4F00C1DEEC /* PBXContainerItemProxy */;
 		};
 		42F85ED81DC7469E00C3184C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -999,6 +1046,20 @@
 			};
 			name = Release;
 		};
+		42745A631ED43E4300C1DEEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		42745A641ED43E4300C1DEEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		42F85EDF1DC7469E00C3184C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1160,6 +1221,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		42745A621ED43E4300C1DEEC /* Build configuration list for PBXAggregateTarget "VirgilCrypto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42745A631ED43E4300C1DEEC /* Debug */,
+				42745A641ED43E4300C1DEEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		42F85EDE1DC7469E00C3184C /* Build configuration list for PBXNativeTarget "VirgilCrypto iOS" */ = {
 			isa = XCConfigurationList;
