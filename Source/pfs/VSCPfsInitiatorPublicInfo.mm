@@ -11,4 +11,15 @@
 
 @implementation VSCPfsInitiatorPublicInfo
 
+- (instancetype)initWithIdentifier:(NSString *)identifier identityPublicKey:(VSCPfsPublicKey *)identityPublicKey ephemeralPublicKey:(VSCPfsPublicKey *)ephemeralPublicKey {
+    self = [super init];
+    if (self) {
+        _identifier = [identifier copy];
+        _identityPublicKey = [identityPublicKey copy];
+        _ephemeralPublicKey = [ephemeralPublicKey copy];
+    }
+    
+    return self;
+}
+
 @end

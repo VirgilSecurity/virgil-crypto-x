@@ -8,18 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "VSCPfsPrivateKey.h"
+#import "VSCPfsPrivateKeyPrivate.h"
 #import "VSCByteArrayUtils_Private.h"
 
-#import <virgil/crypto/pfs/VirgilPFSPrivateKey.h>
-
-using virgil::crypto::pfs::VirgilPFSPrivateKey;
 using virgil::crypto::VirgilByteArray;
-
-@interface VSCPfsPrivateKey ()
-
-@property (nonatomic, assign, readonly) VirgilPFSPrivateKey * __nonnull cppPfsPrivateKey;
-
-@end
 
 @implementation VSCPfsPrivateKey
 

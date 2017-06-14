@@ -11,4 +11,16 @@
 
 @implementation VSCPfsResponderPrivateInfo
 
+- (instancetype)initWithIdentifier:(NSString *)identifier identityPrivateKey:(VSCPfsPrivateKey *)identityPrivateKey longTermPrivateKey:(VSCPfsPrivateKey *)longTermPrivateKey oneTimePrivateKey:(VSCPfsPrivateKey *)oneTimePrivateKey {
+    self = [super init];
+    if (self) {
+        _identifier = [identifier copy];
+        _identityPrivateKey = identityPrivateKey;
+        _longTermPrivateKey = longTermPrivateKey;
+        _oneTimePrivateKey = oneTimePrivateKey;
+    }
+    
+    return self;
+}
+
 @end
