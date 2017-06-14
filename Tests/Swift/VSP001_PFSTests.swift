@@ -11,7 +11,7 @@ import Foundation
 import XCTest
 
 class VSP001_PFSTests: XCTestCase {
-    func test001_encryptDecrypt() {
+    private func generateSessions() -> (VSCPfs, VSCPfsSession, VSCPfs, VSCPfsSession) {
         let initiatorIdentityKeyPair = VSCKeyPair()
         let initiatorEphemeralKeyPair = VSCKeyPair()
         let initiatorIdentityPrivateKey = VSCPfsPrivateKey(key: initiatorIdentityKeyPair.privateKey(), password: nil)!
@@ -35,20 +35,41 @@ class VSP001_PFSTests: XCTestCase {
         let responderPublicInfo = VSCPfsResponderPublicInfo(identifier: responderIdentifier, identityPublicKey: responderIdentityPublicKey, longTermPublicKey: responderLongTermPublicKey, oneTime: responderOneTimePublicKey)!
         
         let initiatorPfs = VSCPfs()
-        let _ = initiatorPfs.startInitiatorSession(with: initiatorPrivateInfo, respondrerPublicInfo: responderPublicInfo)
-        
-        let data = "Hello, Bob!".data(using: .utf8)!
-        
-        let encryptedData = initiatorPfs.encryptData(data)!
+        let initiatorSession = initiatorPfs.startInitiatorSession(with: initiatorPrivateInfo, respondrerPublicInfo: responderPublicInfo)!
         
         let initiatorPublicInfo = VSCPfsInitiatorPublicInfo(identifier: initiatorIdentifier, identityPublicKey: initiatorIdentityPublicKey, ephemeralPublicKey: initiatorEphemeralPublicKey)!
         let responderPrivateInfo = VSCPfsResponderPrivateInfo(identifier: responderIdentifier, identityPrivateKey: responderIdentityPrivateKey, longTermPrivateKey: responderLongTermPrivateKey, oneTime: responderOneTimePrivateKey)!
         
         let responderPfs = VSCPfs()
-        let _ = responderPfs.startResponderSession(with: responderPrivateInfo, respondrerPublicInfo: initiatorPublicInfo)
+        let responderSession = responderPfs.startResponderSession(with: responderPrivateInfo, respondrerPublicInfo: initiatorPublicInfo)!
+        
+        return (initiatorPfs, initiatorSession, responderPfs, responderSession)
+    }
+    
+    func test001_encryptDecrypt() {
+        let (initiatorPfs, _, responderPfs, _) = self.generateSessions()
+        
+        let data = "Hello, Bob!".data(using: .utf8)!
+        
+        let encryptedData = initiatorPfs.encryptData(data)!
         
         let decryptedData = responderPfs.decryptMessage(encryptedData)!
         
         XCTAssert(data == decryptedData)
+    }
+    
+    func test002_validateSessionData() {
+        let (_, initiatorSession, _, responderSession) = self.generateSessions()
+        XCTAssert(initiatorSession.additionalData.count != 0)
+        XCTAssert(initiatorSession.decryptionSecretKey.count != 0)
+        XCTAssert(initiatorSession.encryptionSecretKey.count != 0)
+        XCTAssert(initiatorSession.identifier.count != 0)
+        XCTAssert(!initiatorSession.isEmpty)
+        
+        XCTAssert(responderSession.additionalData.count != 0)
+        XCTAssert(responderSession.decryptionSecretKey.count != 0)
+        XCTAssert(responderSession.encryptionSecretKey.count != 0)
+        XCTAssert(responderSession.identifier.count != 0)
+        XCTAssert(!responderSession.isEmpty)
     }
 }
