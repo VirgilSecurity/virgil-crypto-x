@@ -8,19 +8,54 @@
 
 #import <Foundation/Foundation.h>
 #import "VSCPfsResponderPublicInfo.h"
+#import "VSCPfsResponderPublicInfoPrivate.h"
+#import "VSCPfsPublicKeyPrivate.h"
+
+using virgil::crypto::VirgilByteArray;
 
 @implementation VSCPfsResponderPublicInfo
 
-- (instancetype __nonnull)initWithIdentifier:(NSString * __nonnull)identifier identityPublicKey:(VSCPfsPublicKey * __nonnull)identityPublicKey longTermPublicKey:(VSCPfsPublicKey * __nonnull)longTermPublicKey oneTimePublicKey:(VSCPfsPublicKey * __nonnull)oneTimePublicKey {
+- (instancetype)initWithIdentifier:(NSString *)identifier identityPublicKey:(VSCPfsPublicKey *)identityPublicKey longTermPublicKey:(VSCPfsPublicKey *)longTermPublicKey oneTimePublicKey:(VSCPfsPublicKey *)oneTimePublicKey {
     self = [super init];
     if (self) {
-        _identifier = [identifier copy];
-        _identityPublicKey = identityPublicKey;
-        _longTermPublicKey = longTermPublicKey;
-        _oneTimePublicKey = oneTimePublicKey;
+        try {
+            _cppPfsResponderPublicInfo = new VirgilPFSResponderPublicInfo(std::string(identifier.UTF8String), *identityPublicKey.cppPfsPublicKey, *longTermPublicKey.cppPfsPublicKey, *oneTimePublicKey.cppPfsPublicKey);
+        }
+        catch(...) {
+            return nil;
+        }
     }
     
     return self;
+}
+
+- (NSString *) identifier {
+    return [NSString stringWithCString:self.cppPfsResponderPublicInfo->getIdentifier().c_str() encoding:[NSString defaultCStringEncoding]];
+}
+
+- (VSCPfsPublicKey *)identityPublicKey {
+    const VirgilByteArray &keyArr = self.cppPfsResponderPublicInfo->getIdentityPublicKey().getKey();
+    NSData *key = [NSData dataWithBytes:keyArr.data() length:keyArr.size()];
+    
+    return [[VSCPfsPublicKey alloc] initWithKey:key];
+}
+
+- (VSCPfsPublicKey *)longTermPublicKey {
+    const VirgilByteArray &keyArr = self.cppPfsResponderPublicInfo->getLongTermPublicKey().getKey();
+    NSData *key = [NSData dataWithBytes:keyArr.data() length:keyArr.size()];
+    
+    return [[VSCPfsPublicKey alloc] initWithKey:key];
+}
+
+- (VSCPfsPublicKey *)oneTimePublicKey {
+    const VirgilByteArray &keyArr = self.cppPfsResponderPublicInfo->getOneTimePublicKey().getKey();
+    NSData *key = [NSData dataWithBytes:keyArr.data() length:keyArr.size()];
+    
+    return [[VSCPfsPublicKey alloc] initWithKey:key];
+}
+
+- (void)dealloc {
+    delete self.cppPfsResponderPublicInfo;
 }
 
 @end

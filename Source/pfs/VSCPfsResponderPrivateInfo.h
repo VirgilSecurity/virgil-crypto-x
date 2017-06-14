@@ -11,7 +11,7 @@
 
 @interface VSCPfsResponderPrivateInfo : NSObject
 
-- (instancetype __nonnull)initWithIdentifier:(NSString * __nonnull)identifier identityPrivateKey:(VSCPfsPrivateKey * __nonnull)identityPrivateKey longTermPrivateKey:(VSCPfsPrivateKey * __nonnull)longTermPrivateKey oneTimePrivateKey:(VSCPfsPrivateKey * __nonnull)oneTimePrivateKey;
+- (instancetype __nullable)initWithIdentifier:(NSString * __nonnull)identifier identityPrivateKey:(VSCPfsPrivateKey * __nonnull)identityPrivateKey longTermPrivateKey:(VSCPfsPrivateKey * __nonnull)longTermPrivateKey oneTimePrivateKey:(VSCPfsPrivateKey * __nonnull)oneTimePrivateKey;
 
 @property (nonatomic, readonly) NSString * __nonnull identifier;
 @property (nonatomic, readonly) VSCPfsPrivateKey * __nonnull identityPrivateKey;

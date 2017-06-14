@@ -17,9 +17,9 @@
 
 @interface VSCPfs : NSObject
 
-- (VSCPfsSession * __nonnull)startInitiatorSessionWithInitiatorPrivateInfo:(VSCPfsInitiatorPrivateInfo * __nonnull)initiatorPrivateInfo respondrerPublicInfo:(VSCPfsResponderPublicInfo * __nonnull)respondrerPublicInfo;
+- (VSCPfsSession * __nullable)startInitiatorSessionWithInitiatorPrivateInfo:(VSCPfsInitiatorPrivateInfo * __nonnull)initiatorPrivateInfo respondrerPublicInfo:(VSCPfsResponderPublicInfo * __nonnull)respondrerPublicInfo;
 
-- (VSCPfsSession * __nonnull)startResponderSessionWithResponderPrivateInfo:(VSCPfsResponderPrivateInfo * __nonnull)responderPrivateInfo respondrerPublicInfo:(VSCPfsInitiatorPublicInfo * __nonnull)initiatorPublicInfo;
+- (VSCPfsSession * __nullable)startResponderSessionWithResponderPrivateInfo:(VSCPfsResponderPrivateInfo * __nonnull)responderPrivateInfo respondrerPublicInfo:(VSCPfsInitiatorPublicInfo * __nonnull)initiatorPublicInfo;
 
 - (VSCPfsEncryptedMessage * __nullable)encryptData:(NSData * __nonnull)data;
 

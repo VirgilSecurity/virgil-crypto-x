@@ -72,6 +72,14 @@
 		420D10771EF161EA002A9C22 /* VSCPfsEncryptedMessagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D10751EF161D1002A9C22 /* VSCPfsEncryptedMessagePrivate.h */; };
 		420D10791EF163C4002A9C22 /* VSCPfsSessionPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D10781EF163C2002A9C22 /* VSCPfsSessionPrivate.h */; };
 		420D107A1EF163C5002A9C22 /* VSCPfsSessionPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D10781EF163C2002A9C22 /* VSCPfsSessionPrivate.h */; };
+		420D107F1EF173CE002A9C22 /* VSCPfsInitiatorPrivateInfoPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D107B1EF16A1B002A9C22 /* VSCPfsInitiatorPrivateInfoPrivate.h */; };
+		420D10801EF173CE002A9C22 /* VSCPfsInitiatorPublicInfoPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D107C1EF16A2E002A9C22 /* VSCPfsInitiatorPublicInfoPrivate.h */; };
+		420D10811EF173CE002A9C22 /* VSCPfsResponderPrivateInfoPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D107D1EF16A37002A9C22 /* VSCPfsResponderPrivateInfoPrivate.h */; };
+		420D10821EF173CE002A9C22 /* VSCPfsResponderPublicInfoPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D107E1EF16A42002A9C22 /* VSCPfsResponderPublicInfoPrivate.h */; };
+		420D10831EF173CF002A9C22 /* VSCPfsInitiatorPrivateInfoPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D107B1EF16A1B002A9C22 /* VSCPfsInitiatorPrivateInfoPrivate.h */; };
+		420D10841EF173CF002A9C22 /* VSCPfsInitiatorPublicInfoPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D107C1EF16A2E002A9C22 /* VSCPfsInitiatorPublicInfoPrivate.h */; };
+		420D10851EF173CF002A9C22 /* VSCPfsResponderPrivateInfoPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D107D1EF16A37002A9C22 /* VSCPfsResponderPrivateInfoPrivate.h */; };
+		420D10861EF173CF002A9C22 /* VSCPfsResponderPublicInfoPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D107E1EF16A42002A9C22 /* VSCPfsResponderPublicInfoPrivate.h */; };
 		423F00391E719EF200CC98A3 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423F00301E719EF200CC98A3 /* VirgilCrypto.framework */; };
 		423F00471E71A01A00CC98A3 /* VSCBaseCryptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85EEF1DC7657C00C3184C /* VSCBaseCryptor.mm */; };
 		423F00481E71A01A00CC98A3 /* VSCByteArrayUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85EF21DC7657C00C3184C /* VSCByteArrayUtils.mm */; };
@@ -262,6 +270,10 @@
 		420D10721EF15EF3002A9C22 /* VSCPfsPrivateKeyPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCPfsPrivateKeyPrivate.h; sourceTree = "<group>"; };
 		420D10751EF161D1002A9C22 /* VSCPfsEncryptedMessagePrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCPfsEncryptedMessagePrivate.h; sourceTree = "<group>"; };
 		420D10781EF163C2002A9C22 /* VSCPfsSessionPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCPfsSessionPrivate.h; sourceTree = "<group>"; };
+		420D107B1EF16A1B002A9C22 /* VSCPfsInitiatorPrivateInfoPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCPfsInitiatorPrivateInfoPrivate.h; sourceTree = "<group>"; };
+		420D107C1EF16A2E002A9C22 /* VSCPfsInitiatorPublicInfoPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCPfsInitiatorPublicInfoPrivate.h; sourceTree = "<group>"; };
+		420D107D1EF16A37002A9C22 /* VSCPfsResponderPrivateInfoPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCPfsResponderPrivateInfoPrivate.h; sourceTree = "<group>"; };
+		420D107E1EF16A42002A9C22 /* VSCPfsResponderPublicInfoPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCPfsResponderPublicInfoPrivate.h; sourceTree = "<group>"; };
 		423F00301E719EF200CC98A3 /* VirgilCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		423F00381E719EF200CC98A3 /* VirgilCryptoTests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilCryptoTests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		423F00841E71A0FC00CC98A3 /* VirgilCryptoSwiftTests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilCryptoSwiftTests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -441,6 +453,10 @@
 				420D10721EF15EF3002A9C22 /* VSCPfsPrivateKeyPrivate.h */,
 				420D10751EF161D1002A9C22 /* VSCPfsEncryptedMessagePrivate.h */,
 				420D10781EF163C2002A9C22 /* VSCPfsSessionPrivate.h */,
+				420D107B1EF16A1B002A9C22 /* VSCPfsInitiatorPrivateInfoPrivate.h */,
+				420D107C1EF16A2E002A9C22 /* VSCPfsInitiatorPublicInfoPrivate.h */,
+				420D107D1EF16A37002A9C22 /* VSCPfsResponderPrivateInfoPrivate.h */,
+				420D107E1EF16A42002A9C22 /* VSCPfsResponderPublicInfoPrivate.h */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -553,7 +569,9 @@
 				423F00591E71A05D00CC98A3 /* VSCByteArrayUtils.h in Headers */,
 				420D104E1EF14A50002A9C22 /* VSCPfsInitiatorPrivateInfo.h in Headers */,
 				423F005A1E71A05D00CC98A3 /* VSCChunkCryptor.h in Headers */,
+				420D10861EF173CF002A9C22 /* VSCPfsResponderPublicInfoPrivate.h in Headers */,
 				420D10451EF14A12002A9C22 /* VSCPfsPrivateKey.h in Headers */,
+				420D10851EF173CF002A9C22 /* VSCPfsResponderPrivateInfoPrivate.h in Headers */,
 				420D10421EF14A05002A9C22 /* VSCPfsPublicKey.h in Headers */,
 				423F005B1E71A05D00CC98A3 /* VSCCryptor.h in Headers */,
 				423F005C1E71A05D00CC98A3 /* VSCFoundationCommons.h in Headers */,
@@ -563,6 +581,7 @@
 				420D103C1EF149A0002A9C22 /* VSCPfsEncryptedMessage.h in Headers */,
 				420D102F1EF140A6002A9C22 /* VSCPfsPublic.h in Headers */,
 				420D10301EF140A6002A9C22 /* VSCPfs.h in Headers */,
+				420D10831EF173CF002A9C22 /* VSCPfsInitiatorPrivateInfoPrivate.h in Headers */,
 				420D10741EF15F0D002A9C22 /* VSCPfsPrivateKeyPrivate.h in Headers */,
 				420D10711EF15E91002A9C22 /* VSCPfsPublicKeyPrivate.h in Headers */,
 				423F005F1E71A05D00CC98A3 /* VSCPBKDF.h in Headers */,
@@ -577,6 +596,7 @@
 				420D106D1EF159DC002A9C22 /* VSCByteArrayUtils_Private.h in Headers */,
 				420D104F1EF14A50002A9C22 /* VSCPfsInitiatorPublicInfo.h in Headers */,
 				423F00631E71A05D00CC98A3 /* VSCTinyCryptor.h in Headers */,
+				420D10841EF173CF002A9C22 /* VSCPfsInitiatorPublicInfoPrivate.h in Headers */,
 				423F00641E71A05D00CC98A3 /* VSCVirgilVersion.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -590,7 +610,9 @@
 				42F85F0C1DC7657C00C3184C /* VSCBaseCryptor.h in Headers */,
 				420D104A1EF14A4F002A9C22 /* VSCPfsInitiatorPrivateInfo.h in Headers */,
 				42F85F191DC7657C00C3184C /* VSCKeyPair.h in Headers */,
+				420D10821EF173CE002A9C22 /* VSCPfsResponderPublicInfoPrivate.h in Headers */,
 				420D10441EF14A11002A9C22 /* VSCPfsPrivateKey.h in Headers */,
+				420D10811EF173CE002A9C22 /* VSCPfsResponderPrivateInfoPrivate.h in Headers */,
 				420D10411EF14A05002A9C22 /* VSCPfsPublicKey.h in Headers */,
 				42F85F1B1DC7657C00C3184C /* VSCPBKDF.h in Headers */,
 				42F85F1D1DC7657C00C3184C /* VSCSigner.h in Headers */,
@@ -600,6 +622,7 @@
 				420D103B1EF1499F002A9C22 /* VSCPfsEncryptedMessage.h in Headers */,
 				420D102D1EF140A5002A9C22 /* VSCPfsPublic.h in Headers */,
 				420D102E1EF140A5002A9C22 /* VSCPfs.h in Headers */,
+				420D107F1EF173CE002A9C22 /* VSCPfsInitiatorPrivateInfoPrivate.h in Headers */,
 				420D10731EF15F0C002A9C22 /* VSCPfsPrivateKeyPrivate.h in Headers */,
 				420D10701EF15E90002A9C22 /* VSCPfsPublicKeyPrivate.h in Headers */,
 				42F85F621DC7B57F00C3184C /* VirgilCrypto.h in Headers */,
@@ -614,6 +637,7 @@
 				420D106B1EF159D5002A9C22 /* VSCByteArrayUtils_Private.h in Headers */,
 				420D104B1EF14A4F002A9C22 /* VSCPfsInitiatorPublicInfo.h in Headers */,
 				42F85F171DC7657C00C3184C /* VSCHash.h in Headers */,
+				420D10801EF173CE002A9C22 /* VSCPfsInitiatorPublicInfoPrivate.h in Headers */,
 				42F85F231DC7657C00C3184C /* VSCTinyCryptor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

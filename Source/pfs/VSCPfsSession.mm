@@ -17,6 +17,20 @@ using virgil::crypto::VirgilByteArray;
 
 @implementation VSCPfsSession
 
+- (instancetype)initWithSession:(const VirgilPFSSession &)session {
+    self = [super init];
+    if (self) {
+        try {
+            _cppPfsSession = new VirgilPFSSession(session);
+        }
+        catch(...) {
+            return nil;
+        }
+    }
+    
+    return self;
+}
+
 - (instancetype)initWithIdentifier:(NSData *)identifier encryptionSecretKey:(NSData *)encryptionSecretKey decryptionSecretKey:(NSData *)decryptionSecretKey additionalData:(NSData *)additionalData {
     self = [super init];
     if (self) {

@@ -17,6 +17,21 @@ using virgil::crypto::VirgilByteArray;
 
 @implementation VSCPfsEncryptedMessage
 
+- (instancetype)initWithEncryptedMessage:(const VirgilPFSEncryptedMessage &)encryptedMessage {
+    self = [super init];
+    if (self) {
+        try {
+            _cppPfsEncryptedMessage = new VirgilPFSEncryptedMessage(encryptedMessage);
+        }
+        catch(...) {
+            return nil;
+        }
+    }
+    
+    return self;
+}
+
+
 - (instancetype)initWithSessionIdentifier:(NSData *)sessionIdentifier salt:(NSData *)salt cipherText:(NSData *)cipherText {
     self = [super init];
     if (self) {

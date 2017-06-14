@@ -11,7 +11,7 @@
 
 @interface VSCPfsInitiatorPrivateInfo : NSObject
 
-- (instancetype __nonnull)initWithIdentifier:(NSString * __nonnull)identifier identityPrivateKey:(VSCPfsPrivateKey * __nonnull)identityPrivateKey ephemeralPrivateKey:(VSCPfsPrivateKey * __nonnull)ephemeralPrivateKey;
+- (instancetype __nullable)initWithIdentifier:(NSString * __nonnull)identifier identityPrivateKey:(VSCPfsPrivateKey * __nonnull)identityPrivateKey ephemeralPrivateKey:(VSCPfsPrivateKey * __nonnull)ephemeralPrivateKey;
 
 @property (nonatomic, readonly) NSString * __nonnull identifier;
 @property (nonatomic, readonly) VSCPfsPrivateKey * __nonnull identityPrivateKey;

@@ -14,6 +14,8 @@ using virgil::crypto::pfs::VirgilPFSEncryptedMessage;
 
 @interface VSCPfsEncryptedMessage ()
 
+- (instancetype __nullable)initWithEncryptedMessage:(const VirgilPFSEncryptedMessage &)encryptedMessage;
+
 @property (nonatomic, assign, readonly) VirgilPFSEncryptedMessage * __nonnull cppPfsEncryptedMessage;
 
 @end
