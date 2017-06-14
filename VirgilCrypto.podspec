@@ -9,9 +9,9 @@ Pod::Spec.new do |s|
   s.platforms                   = { :ios => "8.0", :osx => "10.10" }
   s.source                      = { :git => "https://github.com/VirgilSecurity/virgil-foundation-x.git", :tag => s.version }
   s.module_name                 = "VirgilCrypto"
-  s.source_files                = "Source/*"
-  s.public_header_files         = "Source/*.h"
-  s.private_header_files        = "Source/*Private.h"
+  s.source_files                = "Source/**/*.{h,m}"
+  s.public_header_files         = "Source/*.h",
+                                  "Source/pfs/*.h"
   s.requires_arc                = true
   s.library                     = 'stdc++'
   s.ios.vendored_frameworks     = "CryptoLib/iOS/VSCCrypto.framework"
