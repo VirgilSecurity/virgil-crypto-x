@@ -8,6 +8,7 @@
 
 #import "VSCCryptor.h"
 #import "VSCBaseCryptor_Private.h"
+#import "VSCByteArrayUtils_Private.h"
 #import <virgil/crypto/VirgilCipher.h>
 
 using virgil::crypto::VirgilByteArray;
@@ -18,9 +19,7 @@ NSString *const kVSCCryptorErrorDomain = @"VSCCryptorErrorDomain";
 @interface VSCCryptor ()
 
 - (VirgilCipher *)cryptor;
-- (VirgilByteArray)convertVirgilByteArrayFromData:(NSData *)data;
 
-- (VirgilByteArray)convertVirgilByteArrayFromString:(NSString *)string;
 @end
 
 @implementation VSCCryptor
@@ -56,16 +55,6 @@ NSString *const kVSCCryptorErrorDomain = @"VSCCryptorErrorDomain";
     return static_cast<VirgilCipher *>(self.llCryptor);
 }
 
-- (VirgilByteArray)convertVirgilByteArrayFromData:(NSData *)data {
-    const unsigned char *dataToEncrypt = static_cast<const unsigned char *>(data.bytes);
-    return VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(dataToEncrypt, [data length]);
-}
-
-- (VirgilByteArray)convertVirgilByteArrayFromString:(NSString *)string {
-    std::string pass = std::string(string.UTF8String);
-    return VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pass.data(), pass.size());
-}
-
 #pragma mark - Public class logic
 
 - (NSData *)encryptData:(NSData *)plainData embedContentInfo:(NSNumber *) embedContentInfo {
@@ -84,7 +73,7 @@ NSString *const kVSCCryptorErrorDomain = @"VSCCryptorErrorDomain";
     NSData *encData = nil;
     try {
         if ([self cryptor] != NULL) {
-            VirgilByteArray plainDataArray = [self convertVirgilByteArrayFromData:plainData];
+            VirgilByteArray plainDataArray = [VSCByteArrayUtils convertVirgilByteArrayFromData:plainData];
 
             // Encrypt data.
             VirgilByteArray encryptedData = [self cryptor]->encrypt(plainDataArray, (bool)embedContentInfo);
@@ -136,13 +125,13 @@ NSString *const kVSCCryptorErrorDomain = @"VSCCryptorErrorDomain";
     NSData *decData = nil;
     try {
         if ([self cryptor] != NULL) {
-            const VirgilByteArray &encryptedDataArray = [self convertVirgilByteArrayFromData:encryptedData];
-            const VirgilByteArray &recIdArray = [self convertVirgilByteArrayFromData:recipientId];
-            const VirgilByteArray &pKey = [self convertVirgilByteArrayFromData:privateKey];
+            const VirgilByteArray &encryptedDataArray = [VSCByteArrayUtils convertVirgilByteArrayFromData:encryptedData];
+            const VirgilByteArray &recIdArray = [VSCByteArrayUtils convertVirgilByteArrayFromData:recipientId];
+            const VirgilByteArray &pKey = [VSCByteArrayUtils convertVirgilByteArrayFromData:privateKey];
             
             VirgilByteArray decrypted;
             if (keyPassword.length > 0) {
-                const VirgilByteArray &pKeyPass = [self convertVirgilByteArrayFromString:keyPassword];
+                const VirgilByteArray &pKeyPass = [VSCByteArrayUtils convertVirgilByteArrayFromString:keyPassword];
                 decrypted = [self cryptor]->decryptWithKey(encryptedDataArray, recIdArray, pKey, pKeyPass);
             }
             else {
@@ -194,8 +183,8 @@ NSString *const kVSCCryptorErrorDomain = @"VSCCryptorErrorDomain";
     NSData *decData = nil;
     try {
         if ([self cryptor] != NULL) {
-            const VirgilByteArray &data = [self convertVirgilByteArrayFromData:encryptedData];
-            const VirgilByteArray &pwd =[self convertVirgilByteArrayFromString:password];
+            const VirgilByteArray &data = [VSCByteArrayUtils convertVirgilByteArrayFromData:encryptedData];
+            const VirgilByteArray &pwd =[VSCByteArrayUtils convertVirgilByteArrayFromString:password];
             
             VirgilByteArray plain = [self cryptor]->decryptWithPassword(data, pwd);
             decData = [NSData dataWithBytes:plain.data() length:plain.size()];

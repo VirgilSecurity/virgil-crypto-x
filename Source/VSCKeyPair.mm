@@ -7,6 +7,7 @@
 //
 
 #import "VSCKeyPair.h"
+#import "VSCByteArrayUtils_Private.h"
 #import <virgil/crypto/VirgilByteArray.h>
 #import <virgil/crypto/VirgilKeyPair.h>
 
@@ -21,8 +22,6 @@ NSString *const kVSCKeyPairErrorDomain = @"VSCKeyPairErrorDomain";
 @property(nonatomic, assign) VirgilKeyPair *keyPair;
 
 - (CType)convertVSCKeyTypeToCType:(VSCKeyType)keyType;
-+ (VirgilByteArray)convertVirgilByteArrayFromData:(NSData *)data;
-+ (VirgilByteArray)convertVirgilByteArrayFromString:(NSString *)string;
 
 @end
 
@@ -44,7 +43,7 @@ NSString *const kVSCKeyPairErrorDomain = @"VSCKeyPairErrorDomain";
         if (!password || password.length == 0) {
             _keyPair = new VirgilKeyPair(VirgilKeyPair::generate(type));
         } else {
-            const VirgilByteArray &pwd = [VSCKeyPair convertVirgilByteArrayFromString:password];
+            const VirgilByteArray &pwd = [VSCByteArrayUtils convertVirgilByteArrayFromString:password];
             _keyPair = new VirgilKeyPair(VirgilKeyPair::generate(type, pwd));
         }
     }
@@ -151,24 +150,6 @@ NSString *const kVSCKeyPairErrorDomain = @"VSCKeyPairErrorDomain";
     return result;
 }
 
-+ (VirgilByteArray)convertVirgilByteArrayFromData:(NSData *)data {
-    if (!data || data.length == 0) {
-        return VirgilByteArray();
-    }
-
-    const unsigned char *dataToEncrypt = static_cast<const unsigned char *>(data.bytes);
-    return VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(dataToEncrypt, [data length]);
-}
-
-+ (VirgilByteArray)convertVirgilByteArrayFromString:(NSString *)string {
-    if (!string || string.length == 0) {
-        return VirgilByteArray();
-    }
-
-    std::string pass = std::string(string.UTF8String);
-    return VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pass.data(), pass.size());
-}
-
 #pragma mark - Public
 
 - (NSData *)publicKey {
@@ -209,8 +190,8 @@ NSString *const kVSCKeyPairErrorDomain = @"VSCKeyPairErrorDomain";
 
     NSData *result = nil;
     try {
-        const VirgilByteArray &prvtKey = [VSCKeyPair convertVirgilByteArrayFromData:privateKey];
-        const VirgilByteArray &pass = [VSCKeyPair convertVirgilByteArrayFromString:password];
+        const VirgilByteArray &prvtKey = [VSCByteArrayUtils convertVirgilByteArrayFromData:privateKey];
+        const VirgilByteArray &pass = [VSCByteArrayUtils convertVirgilByteArrayFromString:password];
         VirgilByteArray array = VirgilKeyPair::extractPublicKey(prvtKey, pass);
         result = [NSData dataWithBytes:array.data() length:array.size()];
     }
@@ -228,8 +209,8 @@ NSString *const kVSCKeyPairErrorDomain = @"VSCKeyPairErrorDomain";
 
     NSData *encryptedPrivateKey = nil;
     try {
-        const VirgilByteArray &prvtKey = [VSCKeyPair convertVirgilByteArrayFromData:privateKey];
-        const VirgilByteArray &pass = [VSCKeyPair convertVirgilByteArrayFromString:password];
+        const VirgilByteArray &prvtKey = [VSCByteArrayUtils convertVirgilByteArrayFromData:privateKey];
+        const VirgilByteArray &pass = [VSCByteArrayUtils convertVirgilByteArrayFromString:password];
         VirgilByteArray array = VirgilKeyPair::encryptPrivateKey(prvtKey, pass);
         encryptedPrivateKey = [NSData dataWithBytes:array.data() length:array.size()];
     }
@@ -247,8 +228,8 @@ NSString *const kVSCKeyPairErrorDomain = @"VSCKeyPairErrorDomain";
 
     NSData *decryptedPrivateKey = nil;
     try {
-        const VirgilByteArray &prvtKey = [VSCKeyPair convertVirgilByteArrayFromData:privateKey];
-        const VirgilByteArray &pass = [VSCKeyPair convertVirgilByteArrayFromString:password];
+        const VirgilByteArray &prvtKey = [VSCByteArrayUtils convertVirgilByteArrayFromData:privateKey];
+        const VirgilByteArray &pass = [VSCByteArrayUtils convertVirgilByteArrayFromString:password];
         VirgilByteArray array = VirgilKeyPair::decryptPrivateKey(prvtKey, pass);
         decryptedPrivateKey = [NSData dataWithBytes:array.data() length:array.size()];
     }
@@ -266,7 +247,7 @@ NSString *const kVSCKeyPairErrorDomain = @"VSCKeyPairErrorDomain";
 
     BOOL isEncrypted;
     try {
-        const VirgilByteArray &data = [VSCKeyPair convertVirgilByteArrayFromData:keyData];
+        const VirgilByteArray &data = [VSCByteArrayUtils convertVirgilByteArrayFromData:keyData];
         isEncrypted = VirgilKeyPair::isPrivateKeyEncrypted(data);
     }
     catch (...) {
@@ -284,8 +265,8 @@ NSString *const kVSCKeyPairErrorDomain = @"VSCKeyPairErrorDomain";
 
     BOOL isMatches;
     try {
-        const VirgilByteArray &data = [VSCKeyPair convertVirgilByteArrayFromData:keyData];
-        const VirgilByteArray &pwd = [VSCKeyPair convertVirgilByteArrayFromString:password];
+        const VirgilByteArray &data = [VSCByteArrayUtils convertVirgilByteArrayFromData:keyData];
+        const VirgilByteArray &pwd = [VSCByteArrayUtils convertVirgilByteArrayFromString:password];
         isMatches = VirgilKeyPair::checkPrivateKeyPassword(data, pwd);
     }
     catch (...) {
@@ -303,12 +284,12 @@ NSString *const kVSCKeyPairErrorDomain = @"VSCKeyPairErrorDomain";
 
     BOOL isMatches;
     try {
-        const VirgilByteArray &pubKeyData = [VSCKeyPair convertVirgilByteArrayFromData:publicKeyData];
-        const VirgilByteArray &privKeyData = [VSCKeyPair convertVirgilByteArrayFromData:privateKeyData];
+        const VirgilByteArray &pubKeyData = [VSCByteArrayUtils convertVirgilByteArrayFromData:publicKeyData];
+        const VirgilByteArray &privKeyData = [VSCByteArrayUtils convertVirgilByteArrayFromData:privateKeyData];
         if (password.length == 0) {
             isMatches = VirgilKeyPair::isKeyPairMatch(pubKeyData, privKeyData);
         } else {
-            const VirgilByteArray &pwd = [VSCKeyPair convertVirgilByteArrayFromString:password];
+            const VirgilByteArray &pwd = [VSCByteArrayUtils convertVirgilByteArrayFromString:password];
             isMatches = VirgilKeyPair::isKeyPairMatch(pubKeyData, privKeyData, pwd);
         }
     }
@@ -330,9 +311,9 @@ NSString *const kVSCKeyPairErrorDomain = @"VSCKeyPairErrorDomain";
 
     NSData *pkeyData = nil;
     try {
-        const VirgilByteArray &vbaPwd = [VSCKeyPair convertVirgilByteArrayFromString:password];
-        const VirgilByteArray &vbaNewPwd = [VSCKeyPair convertVirgilByteArrayFromString:newPassword];
-        const VirgilByteArray &pKey = [VSCKeyPair convertVirgilByteArrayFromData:keyData];
+        const VirgilByteArray &vbaPwd = [VSCByteArrayUtils convertVirgilByteArrayFromString:password];
+        const VirgilByteArray &vbaNewPwd = [VSCByteArrayUtils convertVirgilByteArrayFromString:newPassword];
+        const VirgilByteArray &pKey = [VSCByteArrayUtils convertVirgilByteArrayFromData:keyData];
 
         VirgilByteArray pNewKey = VirgilKeyPair::resetPrivateKeyPassword(pKey, vbaPwd, vbaNewPwd);
         pkeyData = [NSData dataWithBytes:pNewKey.data() length:pNewKey.size()];
@@ -368,7 +349,7 @@ NSString *const kVSCKeyPairErrorDomain = @"VSCKeyPairErrorDomain";
     NSData *pemData = nil;
 
     try {
-        const VirgilByteArray &pubKey = [VSCKeyPair convertVirgilByteArrayFromData:publicKey];
+        const VirgilByteArray &pubKey = [VSCByteArrayUtils convertVirgilByteArrayFromData:publicKey];
         const VirgilByteArray &array = VirgilKeyPair::publicKeyToPEM(pubKey);
         pemData = [NSData dataWithBytes:array.data() length:array.size()];
     }
@@ -387,7 +368,7 @@ NSString *const kVSCKeyPairErrorDomain = @"VSCKeyPairErrorDomain";
     NSData *result = nil;
 
     try {
-        const VirgilByteArray &key = [VSCKeyPair convertVirgilByteArrayFromData:publicKey];
+        const VirgilByteArray &key = [VSCByteArrayUtils convertVirgilByteArrayFromData:publicKey];
         const VirgilByteArray &der = VirgilKeyPair::publicKeyToDER(key);
         result = [NSData dataWithBytes:der.data() length:der.size()];
     }
@@ -414,8 +395,8 @@ NSString *const kVSCKeyPairErrorDomain = @"VSCKeyPairErrorDomain";
     NSData *result = nil;
 
     try {
-        const VirgilByteArray &pass = [VSCKeyPair convertVirgilByteArrayFromString:password];
-        const VirgilByteArray &key = [VSCKeyPair convertVirgilByteArrayFromData:privateKey];
+        const VirgilByteArray &pass = [VSCByteArrayUtils convertVirgilByteArrayFromString:password];
+        const VirgilByteArray &key = [VSCByteArrayUtils convertVirgilByteArrayFromData:privateKey];
         const VirgilByteArray &pem = VirgilKeyPair::privateKeyToPEM(key, pass);
 
         result = [NSData dataWithBytes:pem.data() length:pem.size()];
@@ -435,8 +416,8 @@ NSString *const kVSCKeyPairErrorDomain = @"VSCKeyPairErrorDomain";
     NSData *result = nil;
 
     try {
-        const VirgilByteArray &pass = [VSCKeyPair convertVirgilByteArrayFromString:password];
-        const VirgilByteArray &key = [VSCKeyPair convertVirgilByteArrayFromData:privateKey];
+        const VirgilByteArray &pass = [VSCByteArrayUtils convertVirgilByteArrayFromString:password];
+        const VirgilByteArray &key = [VSCByteArrayUtils convertVirgilByteArrayFromData:privateKey];
         const VirgilByteArray &der = VirgilKeyPair::privateKeyToDER(key, pass);
 
         result = [NSData dataWithBytes:der.data() length:der.size()];

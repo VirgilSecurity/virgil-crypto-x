@@ -8,6 +8,7 @@
 
 #import "VSCStreamCryptor.h"
 #import "VSCBaseCryptor_Private.h"
+#import "VSCByteArrayUtils_Private.h"
 #import <virgil/crypto/VirgilStreamCipher.h>
 #import <virgil/crypto/VirgilDataSource.h>
 #import <virgil/crypto/VirgilDataSink.h>
@@ -161,16 +162,6 @@ void VSCStreamCryptorDataSink::write(const VirgilByteArray &data) {
     return static_cast<VirgilStreamCipher *>(self.llCryptor);
 }
 
-- (VirgilByteArray)convertVirgilByteArrayFromData:(NSData *)data {
-    const unsigned char *dataToEncrypt = static_cast<const unsigned char *>(data.bytes);
-    return VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(dataToEncrypt, [data length]);
-}
-
-- (VirgilByteArray)convertVirgilByteArrayFromString:(NSString *)string {
-    std::string pass = std::string(string.UTF8String);
-    return VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pass.data(), pass.size());
-}
-
 - (BOOL)encryptDataFromStream:(NSInputStream *)source toStream:(NSOutputStream *)destination embedContentInfo:(BOOL)embedContentInfo error:(NSError **)error {
     if (source == nil || destination == nil) {
         if (error) {
@@ -232,14 +223,14 @@ void VSCStreamCryptorDataSink::write(const VirgilByteArray &data) {
         if ([self cryptor] != NULL) {
             VSCStreamCryptorDataSource src = VSCStreamCryptorDataSource(source);
             VSCStreamCryptorDataSink dest = VSCStreamCryptorDataSink(destination);
-            const VirgilByteArray &recId = [self convertVirgilByteArrayFromData:recipientId];
-            const VirgilByteArray &pKey = [self convertVirgilByteArrayFromData:privateKey];
+            const VirgilByteArray &recId = [VSCByteArrayUtils convertVirgilByteArrayFromData:recipientId];
+            const VirgilByteArray &pKey = [VSCByteArrayUtils convertVirgilByteArrayFromData:privateKey];
 
             if (keyPassword.length == 0) {
                 [self cryptor]->decryptWithKey(src, dest, recId, pKey);
             }
             else {
-                const VirgilByteArray &keyPass = [self convertVirgilByteArrayFromString:keyPassword];
+                const VirgilByteArray &keyPass = [VSCByteArrayUtils convertVirgilByteArrayFromString:keyPassword];
                 [self cryptor]->decryptWithKey(src, dest, recId, pKey, keyPass);
             }
             if (error) {
@@ -286,7 +277,7 @@ void VSCStreamCryptorDataSink::write(const VirgilByteArray &data) {
         if ([self cryptor] != NULL) {
             VSCStreamCryptorDataSource src = VSCStreamCryptorDataSource(source);
             VSCStreamCryptorDataSink dest = VSCStreamCryptorDataSink(destination);
-            const VirgilByteArray &pwd = [self convertVirgilByteArrayFromString:password];
+            const VirgilByteArray &pwd = [VSCByteArrayUtils convertVirgilByteArrayFromString:password];
 
             [self cryptor]->decryptWithPassword(src, dest,pwd);
 

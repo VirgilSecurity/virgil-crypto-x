@@ -4,6 +4,7 @@
 //
 
 #import "VSCByteArrayUtils.h"
+#import "VSCByteArrayUtils_Private.h"
 #import <virgil/crypto/VirgilByteArrayUtils.h>
 #import <virgil/crypto/VirgilByteArray.h>
 
@@ -13,8 +14,21 @@ using virgil::crypto::VirgilByteArrayUtils;
 @implementation VSCByteArrayUtils
 
 + (VirgilByteArray)convertVirgilByteArrayFromData:(NSData *)data {
+    if (data.length == 0) {
+        return VirgilByteArray();
+    }
+    
     const unsigned char *dataToEncrypt = static_cast<const unsigned char *>(data.bytes);
     return VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(dataToEncrypt, [data length]);
+}
+
++ (VirgilByteArray)convertVirgilByteArrayFromString:(NSString *)string {
+    if (string.length == 0) {
+        return VirgilByteArray();
+    }
+    
+    std::string pass = std::string(string.UTF8String);
+    return VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pass.data(), pass.size());
 }
 
 + (NSString *)hexStringFromData:(NSData *)data {

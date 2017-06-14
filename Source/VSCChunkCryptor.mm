@@ -8,6 +8,7 @@
 
 #import "VSCChunkCryptor.h"
 #import "VSCBaseCryptor_Private.h"
+#import "VSCByteArrayUtils_Private.h"
 #import <virgil/crypto/VirgilChunkCipher.h>
 
 using virgil::crypto::VirgilByteArray;
@@ -156,11 +157,6 @@ void VSCChunkCryptorDataSink::write(const VirgilByteArray &data) {
     return static_cast<VirgilChunkCipher *>(self.llCryptor);
 }
 
-- (VirgilByteArray)convertVirgilByteArrayFromData:(NSData *)data {
-    const unsigned char *dataToEncrypt = static_cast<const unsigned char *>(data.bytes);
-    return VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(dataToEncrypt, [data length]);
-}
-
 - (void)encryptDataFromStream:(NSInputStream *__nonnull)source toStream:(NSOutputStream *__nonnull)destination error:(NSError * __nullable * __nullable)error {
     [self encryptDataFromStream:source toStream:destination preferredChunkSize:kVSCChunkCryptorPreferredChunkSize embedContentInfo:YES error:error];
 }
@@ -216,7 +212,7 @@ void VSCChunkCryptorDataSink::write(const VirgilByteArray &data) {
         if ([self cryptor] != NULL) {
             VSCChunkCryptorDataSource src = VSCChunkCryptorDataSource(source);
             VSCChunkCryptorDataSink dest = VSCChunkCryptorDataSink(destination);
-            const VirgilByteArray &recId = [self convertVirgilByteArrayFromData:recipientId];
+            const VirgilByteArray &recId = [VSCByteArrayUtils convertVirgilByteArrayFromData:recipientId];
             const unsigned char *pKey = static_cast<const unsigned char *>(privateKey.bytes);
             if (keyPassword.length == 0) {
                 [self cryptor]->decryptWithKey(src, dest, recId, VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKey, [privateKey length]));

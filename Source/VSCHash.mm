@@ -4,6 +4,7 @@
 //
 
 #import "VSCHash.h"
+#import "VSCByteArrayUtils_Private.h"
 #import <virgil/crypto/foundation/VirgilHash.h>
 #import <virgil/crypto/VirgilKeyPair.h>
 
@@ -67,19 +68,10 @@ using CAlgorithm = virgil::crypto::foundation::VirgilHash::Algorithm;
     return result;
 }
 
-- (VirgilByteArray)convertVirgilByteArrayFromData:(NSData *)data {
-    if (data.length == 0) {
-        return VirgilByteArray();
-    }
-
-    const unsigned char *dataToEncrypt = static_cast<const unsigned char *>(data.bytes);
-    return VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(dataToEncrypt, [data length]);
-}
-
 #pragma mark - Public
 
 - (NSData *)hash:(NSData *)data {
-    const VirgilByteArray &vData = [self convertVirgilByteArrayFromData:data];
+    const VirgilByteArray &vData = [VSCByteArrayUtils convertVirgilByteArrayFromData:data];
     const VirgilByteArray &hashData = self.hash->hash(vData);
 
     return [NSData dataWithBytes:hashData.data() length:hashData.size()];
