@@ -10,7 +10,7 @@
 
 @interface VSCPfsPublicKey : NSObject
 
-- (instancetype __nonnull)initWithKey:(NSData * __nonnull)key;
+- (instancetype __nullable)initWithKey:(NSData * __nonnull)key;
 
 @property (nonatomic, readonly) BOOL isEmpty;
 @property (nonatomic, readonly) NSData * __nonnull key;
