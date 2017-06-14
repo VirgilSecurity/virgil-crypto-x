@@ -4,7 +4,7 @@
 //
 
 #import "VSCByteArrayUtils.h"
-#import "VSCByteArrayUtils_Private.h"
+#import "VSCByteArrayUtilsPrivate.h"
 #import <virgil/crypto/VirgilByteArrayUtils.h>
 #import <virgil/crypto/VirgilByteArray.h>
 

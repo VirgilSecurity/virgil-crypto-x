@@ -4,7 +4,7 @@
 //
 
 #import "VSCHash.h"
-#import "VSCByteArrayUtils_Private.h"
+#import "VSCByteArrayUtilsPrivate.h"
 #import <virgil/crypto/foundation/VirgilHash.h>
 #import <virgil/crypto/VirgilKeyPair.h>
 

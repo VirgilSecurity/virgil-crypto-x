@@ -7,7 +7,7 @@
 //
 
 #import "VSCKeyPair.h"
-#import "VSCByteArrayUtils_Private.h"
+#import "VSCByteArrayUtilsPrivate.h"
 #import <virgil/crypto/VirgilByteArray.h>
 #import <virgil/crypto/VirgilKeyPair.h>
 

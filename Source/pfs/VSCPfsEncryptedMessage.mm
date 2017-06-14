@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "VSCPfsEncryptedMessage.h"
 #import "VSCPfsEncryptedMessagePrivate.h"
-#import "VSCByteArrayUtils_Private.h"
+#import "VSCByteArrayUtilsPrivate.h"
 
 #import <virgil/crypto/VirgilByteArray.h>
 

@@ -1,5 +1,5 @@
 //
-//  VSCByteArrayUtils_Private.h
+//  VSCByteArrayUtilsPrivate.h
 //  VirgilCrypto
 //
 //  Created by Oleksandr Deundiak on 6/14/17.

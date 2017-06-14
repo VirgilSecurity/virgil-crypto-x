@@ -14,7 +14,7 @@
 #import "VSCPfsInitiatorPublicInfoPrivate.h"
 #import "VSCPfsResponderPublicInfoPrivate.h"
 #import "VSCpfsResponderPrivateInfoPrivate.h"
-#import "VSCByteArrayUtils_Private.h"
+#import "VSCByteArrayUtilsPrivate.h"
 
 #import <virgil/crypto/pfs/VirgilPFS.h>
 
