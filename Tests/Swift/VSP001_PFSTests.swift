@@ -18,9 +18,7 @@ class VSP001_PFSTests: XCTestCase {
         let initiatorIdentityPublicKey = VSCPfsPublicKey(key: initiatorIdentityKeyPair.publicKey())!
         let initiatorEphemeralPrivateKey = VSCPfsPrivateKey(key: initiatorEphemeralKeyPair.privateKey(), password: nil)!
         let initiatorEphemeralPublicKey = VSCPfsPublicKey(key: initiatorEphemeralKeyPair.publicKey())!
-        let initiatorIdentifier = "Alice"
         
-        let responderIdentifier = "Bob"
         let responderIdentityKeyPair = VSCKeyPair()
         let responderLongTermKeyPair = VSCKeyPair()
         let responderOneTimeKeyPair = VSCKeyPair()
@@ -31,14 +29,14 @@ class VSP001_PFSTests: XCTestCase {
         let responderOneTimePublicKey = VSCPfsPublicKey(key: responderOneTimeKeyPair.publicKey())!
         let responderOneTimePrivateKey = VSCPfsPrivateKey(key: responderOneTimeKeyPair.privateKey(), password: nil)!
         
-        let initiatorPrivateInfo = VSCPfsInitiatorPrivateInfo(identifier: initiatorIdentifier, identityPrivateKey: initiatorIdentityPrivateKey, ephemeralPrivateKey: initiatorEphemeralPrivateKey)!
-        let responderPublicInfo = VSCPfsResponderPublicInfo(identifier: responderIdentifier, identityPublicKey: responderIdentityPublicKey, longTermPublicKey: responderLongTermPublicKey, oneTime: responderOneTimePublicKey)!
+        let initiatorPrivateInfo = VSCPfsInitiatorPrivateInfo(identityPrivateKey: initiatorIdentityPrivateKey, ephemeralPrivateKey: initiatorEphemeralPrivateKey)!
+        let responderPublicInfo = VSCPfsResponderPublicInfo(identityPublicKey: responderIdentityPublicKey, longTermPublicKey: responderLongTermPublicKey, oneTime: responderOneTimePublicKey)!
         
         let initiatorPfs = VSCPfs()
         let initiatorSession = initiatorPfs.startInitiatorSession(with: initiatorPrivateInfo, respondrerPublicInfo: responderPublicInfo)!
         
-        let initiatorPublicInfo = VSCPfsInitiatorPublicInfo(identifier: initiatorIdentifier, identityPublicKey: initiatorIdentityPublicKey, ephemeralPublicKey: initiatorEphemeralPublicKey)!
-        let responderPrivateInfo = VSCPfsResponderPrivateInfo(identifier: responderIdentifier, identityPrivateKey: responderIdentityPrivateKey, longTermPrivateKey: responderLongTermPrivateKey, oneTime: responderOneTimePrivateKey)!
+        let initiatorPublicInfo = VSCPfsInitiatorPublicInfo(identityPublicKey: initiatorIdentityPublicKey, ephemeralPublicKey: initiatorEphemeralPublicKey)!
+        let responderPrivateInfo = VSCPfsResponderPrivateInfo(identityPrivateKey: responderIdentityPrivateKey, longTermPrivateKey: responderLongTermPrivateKey, oneTime: responderOneTimePrivateKey)!
         
         let responderPfs = VSCPfs()
         let responderSession = responderPfs.startResponderSession(with: responderPrivateInfo, respondrerPublicInfo: initiatorPublicInfo)!
@@ -60,13 +58,13 @@ class VSP001_PFSTests: XCTestCase {
     
     func test002_validateSessionData() {
         let (_, initiatorSession, _, responderSession) = self.generateSessions()
-        XCTAssert(initiatorSession.additionalData.count != 0)
+//        XCTAssert(initiatorSession.additionalData.count != 0)
         XCTAssert(initiatorSession.decryptionSecretKey.count != 0)
         XCTAssert(initiatorSession.encryptionSecretKey.count != 0)
         XCTAssert(initiatorSession.identifier.count != 0)
         XCTAssert(!initiatorSession.isEmpty)
         
-        XCTAssert(responderSession.additionalData.count != 0)
+//        XCTAssert(responderSession.additionalData.count != 0)
         XCTAssert(responderSession.decryptionSecretKey.count != 0)
         XCTAssert(responderSession.encryptionSecretKey.count != 0)
         XCTAssert(responderSession.identifier.count != 0)

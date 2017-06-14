@@ -15,11 +15,11 @@ using virgil::crypto::VirgilByteArray;
 
 @implementation VSCPfsResponderPublicInfo
 
-- (instancetype)initWithIdentifier:(NSString *)identifier identityPublicKey:(VSCPfsPublicKey *)identityPublicKey longTermPublicKey:(VSCPfsPublicKey *)longTermPublicKey oneTimePublicKey:(VSCPfsPublicKey *)oneTimePublicKey {
+- (instancetype)initWithIdentityPublicKey:(VSCPfsPublicKey *)identityPublicKey longTermPublicKey:(VSCPfsPublicKey *)longTermPublicKey oneTimePublicKey:(VSCPfsPublicKey *)oneTimePublicKey {
     self = [super init];
     if (self) {
         try {
-            _cppPfsResponderPublicInfo = new VirgilPFSResponderPublicInfo(std::string(identifier.UTF8String), *identityPublicKey.cppPfsPublicKey, *longTermPublicKey.cppPfsPublicKey, *oneTimePublicKey.cppPfsPublicKey);
+            _cppPfsResponderPublicInfo = new VirgilPFSResponderPublicInfo(*identityPublicKey.cppPfsPublicKey, *longTermPublicKey.cppPfsPublicKey, *oneTimePublicKey.cppPfsPublicKey);
         }
         catch(...) {
             return nil;
@@ -27,10 +27,6 @@ using virgil::crypto::VirgilByteArray;
     }
     
     return self;
-}
-
-- (NSString *) identifier {
-    return [NSString stringWithCString:self.cppPfsResponderPublicInfo->getIdentifier().c_str() encoding:[NSString defaultCStringEncoding]];
 }
 
 - (VSCPfsPublicKey *)identityPublicKey {
