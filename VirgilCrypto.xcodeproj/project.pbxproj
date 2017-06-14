@@ -22,6 +22,44 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		420D102D1EF140A5002A9C22 /* VSCPfsPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D102C1EF14090002A9C22 /* VSCPfsPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		420D102E1EF140A5002A9C22 /* VSCPfs.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D102B1EF14074002A9C22 /* VSCPfs.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		420D102F1EF140A6002A9C22 /* VSCPfsPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D102C1EF14090002A9C22 /* VSCPfsPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		420D10301EF140A6002A9C22 /* VSCPfs.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D102B1EF14074002A9C22 /* VSCPfs.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		420D10321EF14176002A9C22 /* VSCPfs.mm in Sources */ = {isa = PBXBuildFile; fileRef = 420D10311EF14176002A9C22 /* VSCPfs.mm */; };
+		420D10331EF14189002A9C22 /* VSCPfs.mm in Sources */ = {isa = PBXBuildFile; fileRef = 420D10311EF14176002A9C22 /* VSCPfs.mm */; };
+		420D10361EF148D0002A9C22 /* VSCPfsSession.mm in Sources */ = {isa = PBXBuildFile; fileRef = 420D10351EF148D0002A9C22 /* VSCPfsSession.mm */; };
+		420D10371EF148E4002A9C22 /* VSCPfsSession.mm in Sources */ = {isa = PBXBuildFile; fileRef = 420D10351EF148D0002A9C22 /* VSCPfsSession.mm */; };
+		420D10381EF148E6002A9C22 /* VSCPfsSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D10341EF147B3002A9C22 /* VSCPfsSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		420D10391EF148E7002A9C22 /* VSCPfsSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D10341EF147B3002A9C22 /* VSCPfsSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		420D103B1EF1499F002A9C22 /* VSCPfsEncryptedMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D103A1EF14925002A9C22 /* VSCPfsEncryptedMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		420D103C1EF149A0002A9C22 /* VSCPfsEncryptedMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D103A1EF14925002A9C22 /* VSCPfsEncryptedMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		420D103E1EF149CB002A9C22 /* VSCPfsEncryptedMessage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 420D103D1EF149CB002A9C22 /* VSCPfsEncryptedMessage.mm */; };
+		420D103F1EF149D7002A9C22 /* VSCPfsEncryptedMessage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 420D103D1EF149CB002A9C22 /* VSCPfsEncryptedMessage.mm */; };
+		420D10411EF14A05002A9C22 /* VSCPfsPublicKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D10401EF14A05002A9C22 /* VSCPfsPublicKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		420D10421EF14A05002A9C22 /* VSCPfsPublicKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D10401EF14A05002A9C22 /* VSCPfsPublicKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		420D10441EF14A11002A9C22 /* VSCPfsPrivateKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D10431EF14A0E002A9C22 /* VSCPfsPrivateKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		420D10451EF14A12002A9C22 /* VSCPfsPrivateKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D10431EF14A0E002A9C22 /* VSCPfsPrivateKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		420D104A1EF14A4F002A9C22 /* VSCPfsInitiatorPrivateInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D10461EF14A23002A9C22 /* VSCPfsInitiatorPrivateInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		420D104B1EF14A4F002A9C22 /* VSCPfsInitiatorPublicInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D10471EF14A32002A9C22 /* VSCPfsInitiatorPublicInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		420D104C1EF14A4F002A9C22 /* VSCPfsResponderPrivateInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D10481EF14A41002A9C22 /* VSCPfsResponderPrivateInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		420D104D1EF14A4F002A9C22 /* VSCPfsResponderPublicInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D10491EF14A4C002A9C22 /* VSCPfsResponderPublicInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		420D104E1EF14A50002A9C22 /* VSCPfsInitiatorPrivateInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D10461EF14A23002A9C22 /* VSCPfsInitiatorPrivateInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		420D104F1EF14A50002A9C22 /* VSCPfsInitiatorPublicInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D10471EF14A32002A9C22 /* VSCPfsInitiatorPublicInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		420D10501EF14A50002A9C22 /* VSCPfsResponderPrivateInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D10481EF14A41002A9C22 /* VSCPfsResponderPrivateInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		420D10511EF14A50002A9C22 /* VSCPfsResponderPublicInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D10491EF14A4C002A9C22 /* VSCPfsResponderPublicInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		420D10531EF14B1E002A9C22 /* VSCPfsPublicKey.mm in Sources */ = {isa = PBXBuildFile; fileRef = 420D10521EF14B1E002A9C22 /* VSCPfsPublicKey.mm */; };
+		420D10551EF14B25002A9C22 /* VSCPfsPrivateKey.mm in Sources */ = {isa = PBXBuildFile; fileRef = 420D10541EF14B25002A9C22 /* VSCPfsPrivateKey.mm */; };
+		420D10571EF14B2C002A9C22 /* VSCPfsInitiatorPrivateInfo.mm in Sources */ = {isa = PBXBuildFile; fileRef = 420D10561EF14B2C002A9C22 /* VSCPfsInitiatorPrivateInfo.mm */; };
+		420D10591EF14B32002A9C22 /* VSCPfsInitiatorPublicInfo.mm in Sources */ = {isa = PBXBuildFile; fileRef = 420D10581EF14B32002A9C22 /* VSCPfsInitiatorPublicInfo.mm */; };
+		420D105B1EF14B39002A9C22 /* VSCPfsResponderPrivateInfo.mm in Sources */ = {isa = PBXBuildFile; fileRef = 420D105A1EF14B39002A9C22 /* VSCPfsResponderPrivateInfo.mm */; };
+		420D105D1EF14B3F002A9C22 /* VSCPfsResponderPublicInfo.mm in Sources */ = {isa = PBXBuildFile; fileRef = 420D105C1EF14B3F002A9C22 /* VSCPfsResponderPublicInfo.mm */; };
+		420D105E1EF14B82002A9C22 /* VSCPfsPublicKey.mm in Sources */ = {isa = PBXBuildFile; fileRef = 420D10521EF14B1E002A9C22 /* VSCPfsPublicKey.mm */; };
+		420D105F1EF14B82002A9C22 /* VSCPfsPrivateKey.mm in Sources */ = {isa = PBXBuildFile; fileRef = 420D10541EF14B25002A9C22 /* VSCPfsPrivateKey.mm */; };
+		420D10601EF14B82002A9C22 /* VSCPfsInitiatorPrivateInfo.mm in Sources */ = {isa = PBXBuildFile; fileRef = 420D10561EF14B2C002A9C22 /* VSCPfsInitiatorPrivateInfo.mm */; };
+		420D10611EF14B82002A9C22 /* VSCPfsInitiatorPublicInfo.mm in Sources */ = {isa = PBXBuildFile; fileRef = 420D10581EF14B32002A9C22 /* VSCPfsInitiatorPublicInfo.mm */; };
+		420D10621EF14B82002A9C22 /* VSCPfsResponderPrivateInfo.mm in Sources */ = {isa = PBXBuildFile; fileRef = 420D105A1EF14B39002A9C22 /* VSCPfsResponderPrivateInfo.mm */; };
+		420D10631EF14B82002A9C22 /* VSCPfsResponderPublicInfo.mm in Sources */ = {isa = PBXBuildFile; fileRef = 420D105C1EF14B3F002A9C22 /* VSCPfsResponderPublicInfo.mm */; };
 		423F00391E719EF200CC98A3 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423F00301E719EF200CC98A3 /* VirgilCrypto.framework */; };
 		423F00471E71A01A00CC98A3 /* VSCBaseCryptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85EEF1DC7657C00C3184C /* VSCBaseCryptor.mm */; };
 		423F00481E71A01A00CC98A3 /* VSCByteArrayUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85EF21DC7657C00C3184C /* VSCByteArrayUtils.mm */; };
@@ -189,6 +227,25 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		420D102B1EF14074002A9C22 /* VSCPfs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCPfs.h; sourceTree = "<group>"; };
+		420D102C1EF14090002A9C22 /* VSCPfsPublic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCPfsPublic.h; sourceTree = "<group>"; };
+		420D10311EF14176002A9C22 /* VSCPfs.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VSCPfs.mm; sourceTree = "<group>"; };
+		420D10341EF147B3002A9C22 /* VSCPfsSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCPfsSession.h; sourceTree = "<group>"; };
+		420D10351EF148D0002A9C22 /* VSCPfsSession.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VSCPfsSession.mm; sourceTree = "<group>"; };
+		420D103A1EF14925002A9C22 /* VSCPfsEncryptedMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCPfsEncryptedMessage.h; sourceTree = "<group>"; };
+		420D103D1EF149CB002A9C22 /* VSCPfsEncryptedMessage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VSCPfsEncryptedMessage.mm; sourceTree = "<group>"; };
+		420D10401EF14A05002A9C22 /* VSCPfsPublicKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSCPfsPublicKey.h; sourceTree = "<group>"; };
+		420D10431EF14A0E002A9C22 /* VSCPfsPrivateKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCPfsPrivateKey.h; sourceTree = "<group>"; };
+		420D10461EF14A23002A9C22 /* VSCPfsInitiatorPrivateInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCPfsInitiatorPrivateInfo.h; sourceTree = "<group>"; };
+		420D10471EF14A32002A9C22 /* VSCPfsInitiatorPublicInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCPfsInitiatorPublicInfo.h; sourceTree = "<group>"; };
+		420D10481EF14A41002A9C22 /* VSCPfsResponderPrivateInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCPfsResponderPrivateInfo.h; sourceTree = "<group>"; };
+		420D10491EF14A4C002A9C22 /* VSCPfsResponderPublicInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCPfsResponderPublicInfo.h; sourceTree = "<group>"; };
+		420D10521EF14B1E002A9C22 /* VSCPfsPublicKey.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VSCPfsPublicKey.mm; sourceTree = "<group>"; };
+		420D10541EF14B25002A9C22 /* VSCPfsPrivateKey.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VSCPfsPrivateKey.mm; sourceTree = "<group>"; };
+		420D10561EF14B2C002A9C22 /* VSCPfsInitiatorPrivateInfo.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VSCPfsInitiatorPrivateInfo.mm; sourceTree = "<group>"; };
+		420D10581EF14B32002A9C22 /* VSCPfsInitiatorPublicInfo.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VSCPfsInitiatorPublicInfo.mm; sourceTree = "<group>"; };
+		420D105A1EF14B39002A9C22 /* VSCPfsResponderPrivateInfo.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VSCPfsResponderPrivateInfo.mm; sourceTree = "<group>"; };
+		420D105C1EF14B3F002A9C22 /* VSCPfsResponderPublicInfo.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VSCPfsResponderPublicInfo.mm; sourceTree = "<group>"; };
 		423F00301E719EF200CC98A3 /* VirgilCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		423F00381E719EF200CC98A3 /* VirgilCryptoTests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilCryptoTests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		423F00841E71A0FC00CC98A3 /* VirgilCryptoSwiftTests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilCryptoSwiftTests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -326,9 +383,36 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		420D102A1EF1405C002A9C22 /* pfs */ = {
+			isa = PBXGroup;
+			children = (
+				420D102C1EF14090002A9C22 /* VSCPfsPublic.h */,
+				420D102B1EF14074002A9C22 /* VSCPfs.h */,
+				420D10311EF14176002A9C22 /* VSCPfs.mm */,
+				420D10341EF147B3002A9C22 /* VSCPfsSession.h */,
+				420D10351EF148D0002A9C22 /* VSCPfsSession.mm */,
+				420D103A1EF14925002A9C22 /* VSCPfsEncryptedMessage.h */,
+				420D103D1EF149CB002A9C22 /* VSCPfsEncryptedMessage.mm */,
+				420D10401EF14A05002A9C22 /* VSCPfsPublicKey.h */,
+				420D10521EF14B1E002A9C22 /* VSCPfsPublicKey.mm */,
+				420D10431EF14A0E002A9C22 /* VSCPfsPrivateKey.h */,
+				420D10541EF14B25002A9C22 /* VSCPfsPrivateKey.mm */,
+				420D10461EF14A23002A9C22 /* VSCPfsInitiatorPrivateInfo.h */,
+				420D10561EF14B2C002A9C22 /* VSCPfsInitiatorPrivateInfo.mm */,
+				420D10471EF14A32002A9C22 /* VSCPfsInitiatorPublicInfo.h */,
+				420D10581EF14B32002A9C22 /* VSCPfsInitiatorPublicInfo.mm */,
+				420D10481EF14A41002A9C22 /* VSCPfsResponderPrivateInfo.h */,
+				420D105A1EF14B39002A9C22 /* VSCPfsResponderPrivateInfo.mm */,
+				420D10491EF14A4C002A9C22 /* VSCPfsResponderPublicInfo.h */,
+				420D105C1EF14B3F002A9C22 /* VSCPfsResponderPublicInfo.mm */,
+			);
+			path = pfs;
+			sourceTree = "<group>";
+		};
 		42F85EED1DC7657C00C3184C /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				420D102A1EF1405C002A9C22 /* pfs */,
 				42F85F611DC7B57F00C3184C /* VirgilCrypto.h */,
 				42F85EEE1DC7657C00C3184C /* VSCBaseCryptor.h */,
 				42F85EEF1DC7657C00C3184C /* VSCBaseCryptor.mm */,
@@ -431,15 +515,25 @@
 				423F00561E71A05D00CC98A3 /* VirgilCrypto.h in Headers */,
 				423F00571E71A05D00CC98A3 /* VSCBaseCryptor.h in Headers */,
 				423F00591E71A05D00CC98A3 /* VSCByteArrayUtils.h in Headers */,
+				420D104E1EF14A50002A9C22 /* VSCPfsInitiatorPrivateInfo.h in Headers */,
 				423F005A1E71A05D00CC98A3 /* VSCChunkCryptor.h in Headers */,
+				420D10451EF14A12002A9C22 /* VSCPfsPrivateKey.h in Headers */,
+				420D10421EF14A05002A9C22 /* VSCPfsPublicKey.h in Headers */,
 				423F005B1E71A05D00CC98A3 /* VSCCryptor.h in Headers */,
 				423F005C1E71A05D00CC98A3 /* VSCFoundationCommons.h in Headers */,
 				423F005D1E71A05D00CC98A3 /* VSCHash.h in Headers */,
 				423F005E1E71A05D00CC98A3 /* VSCKeyPair.h in Headers */,
+				420D10391EF148E7002A9C22 /* VSCPfsSession.h in Headers */,
+				420D103C1EF149A0002A9C22 /* VSCPfsEncryptedMessage.h in Headers */,
+				420D102F1EF140A6002A9C22 /* VSCPfsPublic.h in Headers */,
+				420D10301EF140A6002A9C22 /* VSCPfs.h in Headers */,
 				423F005F1E71A05D00CC98A3 /* VSCPBKDF.h in Headers */,
+				420D10511EF14A50002A9C22 /* VSCPfsResponderPublicInfo.h in Headers */,
+				420D10501EF14A50002A9C22 /* VSCPfsResponderPrivateInfo.h in Headers */,
 				423F00601E71A05D00CC98A3 /* VSCSigner.h in Headers */,
 				423F00611E71A05D00CC98A3 /* VSCStreamCryptor.h in Headers */,
 				423F00621E71A05D00CC98A3 /* VSCStreamSigner.h in Headers */,
+				420D104F1EF14A50002A9C22 /* VSCPfsInitiatorPublicInfo.h in Headers */,
 				423F00631E71A05D00CC98A3 /* VSCTinyCryptor.h in Headers */,
 				423F00641E71A05D00CC98A3 /* VSCVirgilVersion.h in Headers */,
 				423F00581E71A05D00CC98A3 /* VSCBaseCryptor_Private.h in Headers */,
@@ -453,15 +547,25 @@
 				42F85F131DC7657C00C3184C /* VSCCryptor.h in Headers */,
 				42F85F1F1DC7657C00C3184C /* VSCStreamCryptor.h in Headers */,
 				42F85F0C1DC7657C00C3184C /* VSCBaseCryptor.h in Headers */,
+				420D104A1EF14A4F002A9C22 /* VSCPfsInitiatorPrivateInfo.h in Headers */,
 				42F85F191DC7657C00C3184C /* VSCKeyPair.h in Headers */,
+				420D10441EF14A11002A9C22 /* VSCPfsPrivateKey.h in Headers */,
+				420D10411EF14A05002A9C22 /* VSCPfsPublicKey.h in Headers */,
 				42F85F1B1DC7657C00C3184C /* VSCPBKDF.h in Headers */,
 				42F85F1D1DC7657C00C3184C /* VSCSigner.h in Headers */,
 				42F85F251DC7657C00C3184C /* VSCVirgilVersion.h in Headers */,
 				42F85F211DC7657C00C3184C /* VSCStreamSigner.h in Headers */,
+				420D10381EF148E6002A9C22 /* VSCPfsSession.h in Headers */,
+				420D103B1EF1499F002A9C22 /* VSCPfsEncryptedMessage.h in Headers */,
+				420D102D1EF140A5002A9C22 /* VSCPfsPublic.h in Headers */,
+				420D102E1EF140A5002A9C22 /* VSCPfs.h in Headers */,
 				42F85F621DC7B57F00C3184C /* VirgilCrypto.h in Headers */,
+				420D104D1EF14A4F002A9C22 /* VSCPfsResponderPublicInfo.h in Headers */,
+				420D104C1EF14A4F002A9C22 /* VSCPfsResponderPrivateInfo.h in Headers */,
 				42F85F0F1DC7657C00C3184C /* VSCByteArrayUtils.h in Headers */,
 				42F85F111DC7657C00C3184C /* VSCChunkCryptor.h in Headers */,
 				42F85F151DC7657C00C3184C /* VSCFoundationCommons.h in Headers */,
+				420D104B1EF14A4F002A9C22 /* VSCPfsInitiatorPublicInfo.h in Headers */,
 				42F85F171DC7657C00C3184C /* VSCHash.h in Headers */,
 				42F85F231DC7657C00C3184C /* VSCTinyCryptor.h in Headers */,
 				42F85F601DC7B51700C3184C /* VSCBaseCryptor_Private.h in Headers */,
@@ -700,15 +804,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				420D10631EF14B82002A9C22 /* VSCPfsResponderPublicInfo.mm in Sources */,
+				420D10331EF14189002A9C22 /* VSCPfs.mm in Sources */,
 				423F00471E71A01A00CC98A3 /* VSCBaseCryptor.mm in Sources */,
 				423F00481E71A01A00CC98A3 /* VSCByteArrayUtils.mm in Sources */,
 				423F00491E71A01A00CC98A3 /* VSCChunkCryptor.mm in Sources */,
 				423F004A1E71A01A00CC98A3 /* VSCCryptor.mm in Sources */,
+				420D105E1EF14B82002A9C22 /* VSCPfsPublicKey.mm in Sources */,
 				423F004B1E71A01A00CC98A3 /* VSCFoundationCommons.mm in Sources */,
 				423F004C1E71A01A00CC98A3 /* VSCHash.mm in Sources */,
 				423F004D1E71A01A00CC98A3 /* VSCKeyPair.mm in Sources */,
+				420D10371EF148E4002A9C22 /* VSCPfsSession.mm in Sources */,
+				420D10621EF14B82002A9C22 /* VSCPfsResponderPrivateInfo.mm in Sources */,
+				420D105F1EF14B82002A9C22 /* VSCPfsPrivateKey.mm in Sources */,
+				420D10611EF14B82002A9C22 /* VSCPfsInitiatorPublicInfo.mm in Sources */,
+				420D103F1EF149D7002A9C22 /* VSCPfsEncryptedMessage.mm in Sources */,
 				423F004E1E71A01A00CC98A3 /* VSCPBKDF.mm in Sources */,
 				423F004F1E71A01A00CC98A3 /* VSCSigner.mm in Sources */,
+				420D10601EF14B82002A9C22 /* VSCPfsInitiatorPrivateInfo.mm in Sources */,
 				423F00501E71A01A00CC98A3 /* VSCStreamCryptor.mm in Sources */,
 				423F00511E71A01A00CC98A3 /* VSCStreamSigner.mm in Sources */,
 				423F00521E71A01A00CC98A3 /* VSCTinyCryptor.mm in Sources */,
@@ -754,16 +867,25 @@
 				42F85F201DC7657C00C3184C /* VSCStreamCryptor.mm in Sources */,
 				42F85F141DC7657C00C3184C /* VSCCryptor.mm in Sources */,
 				42F85F221DC7657C00C3184C /* VSCStreamSigner.mm in Sources */,
+				420D105D1EF14B3F002A9C22 /* VSCPfsResponderPublicInfo.mm in Sources */,
 				42F85F161DC7657C00C3184C /* VSCFoundationCommons.mm in Sources */,
 				42F85F241DC7657C00C3184C /* VSCTinyCryptor.mm in Sources */,
+				420D105B1EF14B39002A9C22 /* VSCPfsResponderPrivateInfo.mm in Sources */,
+				420D10591EF14B32002A9C22 /* VSCPfsInitiatorPublicInfo.mm in Sources */,
 				42F85F181DC7657C00C3184C /* VSCHash.mm in Sources */,
 				42F85F101DC7657C00C3184C /* VSCByteArrayUtils.mm in Sources */,
 				42F85F121DC7657C00C3184C /* VSCChunkCryptor.mm in Sources */,
+				420D10321EF14176002A9C22 /* VSCPfs.mm in Sources */,
 				42F85F1E1DC7657C00C3184C /* VSCSigner.mm in Sources */,
 				42F85F0D1DC7657C00C3184C /* VSCBaseCryptor.mm in Sources */,
+				420D10551EF14B25002A9C22 /* VSCPfsPrivateKey.mm in Sources */,
+				420D103E1EF149CB002A9C22 /* VSCPfsEncryptedMessage.mm in Sources */,
 				42F85F1C1DC7657C00C3184C /* VSCPBKDF.mm in Sources */,
 				42F85F261DC7657C00C3184C /* VSCVirgilVersion.mm in Sources */,
+				420D10571EF14B2C002A9C22 /* VSCPfsInitiatorPrivateInfo.mm in Sources */,
+				420D10531EF14B1E002A9C22 /* VSCPfsPublicKey.mm in Sources */,
 				42F85F1A1DC7657C00C3184C /* VSCKeyPair.mm in Sources */,
+				420D10361EF148D0002A9C22 /* VSCPfsSession.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1229,6 +1351,7 @@
 				42745A641ED43E4300C1DEEC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		42F85EDE1DC7469E00C3184C /* Build configuration list for PBXNativeTarget "VirgilCrypto iOS" */ = {
 			isa = XCConfigurationList;

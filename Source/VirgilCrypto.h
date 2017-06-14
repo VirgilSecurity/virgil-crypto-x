@@ -6,6 +6,8 @@
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
+#import "VSCPfsPublic.h"
+
 #import "VSCBaseCryptor.h"
 #import "VSCByteArrayUtils.h"
 #import "VSCChunkCryptor.h"
