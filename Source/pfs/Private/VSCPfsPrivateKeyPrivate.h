@@ -6,6 +6,8 @@
 //  Copyright © 2017 VirgilSecurity. All rights reserved.
 //
 
+#import "VSCPfsPrivateKey.h"
+
 #import <virgil/crypto/pfs/VirgilPFSPrivateKey.h>
 
 using virgil::crypto::pfs::VirgilPFSPrivateKey;

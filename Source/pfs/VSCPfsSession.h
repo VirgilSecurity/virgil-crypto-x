@@ -10,10 +10,9 @@
 
 @interface VSCPfsSession : NSObject
 
-- (instancetype __nonnull)initWithIdentifier:(NSData * __nonnull)identifier encryptionSecretKey:(NSData * __nonnull)encryptionSecretKey decryptionSecretKey:(NSData * __nonnull)decryptionSecretKey additionalData:(NSData * __nonnull)additionalData;
+- (instancetype __nullable)initWithIdentifier:(NSData * __nonnull)identifier encryptionSecretKey:(NSData * __nonnull)encryptionSecretKey decryptionSecretKey:(NSData * __nonnull)decryptionSecretKey additionalData:(NSData * __nonnull)additionalData;
 
 @property (nonatomic) BOOL isEmpty;
-
 @property (nonatomic, readonly) NSData * __nonnull identifier;
 @property (nonatomic, readonly) NSData * __nonnull encryptionSecretKey;
 @property (nonatomic, readonly) NSData * __nonnull decryptionSecretKey;

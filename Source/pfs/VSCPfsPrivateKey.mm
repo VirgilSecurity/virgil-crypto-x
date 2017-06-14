@@ -11,6 +11,8 @@
 #import "VSCPfsPrivateKeyPrivate.h"
 #import "VSCByteArrayUtils_Private.h"
 
+#import <virgil/crypto/VirgilByteArray.h>
+
 using virgil::crypto::VirgilByteArray;
 
 @implementation VSCPfsPrivateKey

@@ -10,7 +10,7 @@
 
 @interface VSCPfsEncryptedMessage : NSObject
 
-- (instancetype __nonnull)initWithSessionIdentifier:(NSData * __nonnull)sessionIdentifier salt:(NSData * __nonnull)salt cipherText:(NSData * __nonnull)cipherText;
+- (instancetype __nullable)initWithSessionIdentifier:(NSData * __nonnull)sessionIdentifier salt:(NSData * __nonnull)salt cipherText:(NSData * __nonnull)cipherText;
 
 @property (nonatomic, readonly) NSData * __nonnull sessionIdentifier;
 @property (nonatomic, readonly) NSData * __nonnull salt;
