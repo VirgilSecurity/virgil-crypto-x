@@ -80,6 +80,8 @@
 		420D10841EF173CF002A9C22 /* VSCPfsInitiatorPublicInfoPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D107C1EF16A2E002A9C22 /* VSCPfsInitiatorPublicInfoPrivate.h */; };
 		420D10851EF173CF002A9C22 /* VSCPfsResponderPrivateInfoPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D107D1EF16A37002A9C22 /* VSCPfsResponderPrivateInfoPrivate.h */; };
 		420D10861EF173CF002A9C22 /* VSCPfsResponderPublicInfoPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D107E1EF16A42002A9C22 /* VSCPfsResponderPublicInfoPrivate.h */; };
+		420D108A1EF17C1A002A9C22 /* VSP001_PFSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420D10871EF17C04002A9C22 /* VSP001_PFSTests.swift */; };
+		420D108B1EF17C1C002A9C22 /* VSP001_PFSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420D10871EF17C04002A9C22 /* VSP001_PFSTests.swift */; };
 		423F00391E719EF200CC98A3 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423F00301E719EF200CC98A3 /* VirgilCrypto.framework */; };
 		423F00471E71A01A00CC98A3 /* VSCBaseCryptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85EEF1DC7657C00C3184C /* VSCBaseCryptor.mm */; };
 		423F00481E71A01A00CC98A3 /* VSCByteArrayUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85EF21DC7657C00C3184C /* VSCByteArrayUtils.mm */; };
@@ -274,6 +276,7 @@
 		420D107C1EF16A2E002A9C22 /* VSCPfsInitiatorPublicInfoPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCPfsInitiatorPublicInfoPrivate.h; sourceTree = "<group>"; };
 		420D107D1EF16A37002A9C22 /* VSCPfsResponderPrivateInfoPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCPfsResponderPrivateInfoPrivate.h; sourceTree = "<group>"; };
 		420D107E1EF16A42002A9C22 /* VSCPfsResponderPublicInfoPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCPfsResponderPublicInfoPrivate.h; sourceTree = "<group>"; };
+		420D10871EF17C04002A9C22 /* VSP001_PFSTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSP001_PFSTests.swift; sourceTree = "<group>"; };
 		423F00301E719EF200CC98A3 /* VirgilCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		423F00381E719EF200CC98A3 /* VirgilCryptoTests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilCryptoTests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		423F00841E71A0FC00CC98A3 /* VirgilCryptoSwiftTests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilCryptoSwiftTests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -541,6 +544,7 @@
 				42F85F531DC765EB00C3184C /* VC005_ChunkCryptorSwiftTests.swift */,
 				42F85F541DC765EB00C3184C /* VC006_StreamSignerSwiftTests.swift */,
 				42F85F551DC765EB00C3184C /* VC007_PBKDFTests.swift */,
+				420D10871EF17C04002A9C22 /* VSP001_PFSTests.swift */,
 				42F85F5F1DC7B46100C3184C /* BridgingHeader.h */,
 			);
 			path = Swift;
@@ -787,7 +791,7 @@
 					};
 					42F85ECC1DC7469D00C3184C = {
 						CreatedOnToolsVersion = 8.1;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					42F85ED41DC7469E00C3184C = {
@@ -921,6 +925,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				423F008F1E71A10B00CC98A3 /* VC001_KeyPairSwiftTests.swift in Sources */,
+				420D108B1EF17C1C002A9C22 /* VSP001_PFSTests.swift in Sources */,
 				423F00901E71A10B00CC98A3 /* VC002_CryptorSwiftTests.swift in Sources */,
 				423F00911E71A10B00CC98A3 /* VC003_SignerSwiftTests.swift in Sources */,
 				423F00921E71A10B00CC98A3 /* VC004_StreamCryptorSwiftTests.swift in Sources */,
@@ -981,6 +986,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42F85F561DC765EB00C3184C /* VC001_KeyPairSwiftTests.swift in Sources */,
+				420D108A1EF17C1A002A9C22 /* VSP001_PFSTests.swift in Sources */,
 				42F85F591DC765EB00C3184C /* VC004_StreamCryptorSwiftTests.swift in Sources */,
 				42F85F5C1DC765EB00C3184C /* VC007_PBKDFTests.swift in Sources */,
 				42F85F581DC765EB00C3184C /* VC003_SignerSwiftTests.swift in Sources */,
