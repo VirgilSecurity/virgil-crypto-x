@@ -12,6 +12,8 @@
 
 - (instancetype __nullable)initWithKey:(NSData * __nonnull)key;
 
+- (instancetype __nonnull)init NS_UNAVAILABLE;
+
 @property (nonatomic, readonly) BOOL isEmpty;
 @property (nonatomic, readonly) NSData * __nonnull key;
 

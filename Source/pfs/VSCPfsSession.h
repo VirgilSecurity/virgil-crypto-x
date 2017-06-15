@@ -12,6 +12,8 @@
 
 - (instancetype __nullable)initWithIdentifier:(NSData * __nonnull)identifier encryptionSecretKey:(NSData * __nonnull)encryptionSecretKey decryptionSecretKey:(NSData * __nonnull)decryptionSecretKey additionalData:(NSData * __nonnull)additionalData;
 
+- (instancetype __nonnull)init NS_UNAVAILABLE;
+
 @property (nonatomic) BOOL isEmpty;
 @property (nonatomic, readonly) NSData * __nonnull identifier;
 @property (nonatomic, readonly) NSData * __nonnull encryptionSecretKey;

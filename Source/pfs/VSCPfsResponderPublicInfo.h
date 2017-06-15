@@ -13,6 +13,8 @@
 
 - (instancetype __nullable)initWithIdentityPublicKey:(VSCPfsPublicKey * __nonnull)identityPublicKey longTermPublicKey:(VSCPfsPublicKey * __nonnull)longTermPublicKey oneTimePublicKey:(VSCPfsPublicKey * __nullable)oneTimePublicKey;
 
+- (instancetype __nonnull)init NS_UNAVAILABLE;
+
 @property (nonatomic, readonly) VSCPfsPublicKey * __nonnull identityPublicKey;
 @property (nonatomic, readonly) VSCPfsPublicKey * __nonnull longTermPublicKey;
 @property (nonatomic, readonly) VSCPfsPublicKey * __nullable oneTimePublicKey;

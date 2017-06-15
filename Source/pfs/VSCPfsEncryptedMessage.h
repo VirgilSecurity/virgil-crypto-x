@@ -12,6 +12,8 @@
 
 - (instancetype __nullable)initWithSessionIdentifier:(NSData * __nonnull)sessionIdentifier salt:(NSData * __nonnull)salt cipherText:(NSData * __nonnull)cipherText;
 
+- (instancetype __nonnull)init NS_UNAVAILABLE;
+
 @property (nonatomic, readonly) NSData * __nonnull sessionIdentifier;
 @property (nonatomic, readonly) NSData * __nonnull salt;
 @property (nonatomic, readonly) NSData * __nonnull cipherText;

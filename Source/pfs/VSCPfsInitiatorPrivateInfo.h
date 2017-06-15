@@ -13,6 +13,8 @@
 
 - (instancetype __nullable)initWithIdentityPrivateKey:(VSCPfsPrivateKey * __nonnull)identityPrivateKey ephemeralPrivateKey:(VSCPfsPrivateKey * __nonnull)ephemeralPrivateKey;
 
+- (instancetype __nonnull)init NS_UNAVAILABLE;
+
 @property (nonatomic, readonly) VSCPfsPrivateKey * __nonnull identityPrivateKey;
 @property (nonatomic, readonly) VSCPfsPrivateKey * __nonnull ephemeralPrivateKey;
 

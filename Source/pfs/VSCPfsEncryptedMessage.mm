@@ -31,7 +31,6 @@ using virgil::crypto::VirgilByteArray;
     return self;
 }
 
-
 - (instancetype)initWithSessionIdentifier:(NSData *)sessionIdentifier salt:(NSData *)salt cipherText:(NSData *)cipherText {
     self = [super init];
     if (self) {
