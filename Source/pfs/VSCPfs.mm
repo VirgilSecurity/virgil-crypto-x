@@ -44,9 +44,10 @@ using virgil::crypto::VirgilByteArray;
     return self;
 }
 
-- (VSCPfsSession *)startInitiatorSessionWithInitiatorPrivateInfo:(VSCPfsInitiatorPrivateInfo *)initiatorPrivateInfo respondrerPublicInfo:(VSCPfsResponderPublicInfo *)respondrerPublicInfo {
+- (VSCPfsSession *)startInitiatorSessionWithInitiatorPrivateInfo:(VSCPfsInitiatorPrivateInfo *)initiatorPrivateInfo respondrerPublicInfo:(VSCPfsResponderPublicInfo *)respondrerPublicInfo additionalData:(NSData *)additionalData {
     try {
-        const VirgilPFSSession &session = self.cppPfs->startInitiatorSession(*initiatorPrivateInfo.cppPfsInitiatorPrivateInfo, *respondrerPublicInfo.cppPfsResponderPublicInfo);
+        const VirgilByteArray &additionalDataArr = [VSCByteArrayUtils convertVirgilByteArrayFromData:additionalData];
+        const VirgilPFSSession &session = self.cppPfs->startInitiatorSession(*initiatorPrivateInfo.cppPfsInitiatorPrivateInfo, *respondrerPublicInfo.cppPfsResponderPublicInfo, additionalDataArr);
         return [[VSCPfsSession alloc] initWithSession:session];
     }
     catch(...) {
@@ -54,9 +55,10 @@ using virgil::crypto::VirgilByteArray;
     }
 }
 
-- (VSCPfsSession *)startResponderSessionWithResponderPrivateInfo:(VSCPfsResponderPrivateInfo *)responderPrivateInfo respondrerPublicInfo:(VSCPfsInitiatorPublicInfo *)initiatorPublicInfo {
+- (VSCPfsSession *)startResponderSessionWithResponderPrivateInfo:(VSCPfsResponderPrivateInfo *)responderPrivateInfo respondrerPublicInfo:(VSCPfsInitiatorPublicInfo *)initiatorPublicInfo additionalData:(NSData *)additionalData {
     try {
-        const VirgilPFSSession &session = self.cppPfs->startResponderSession(*responderPrivateInfo.cppPfsResponderPrivateInfo, *initiatorPublicInfo.cppPfsInitiatorPublicInfo);
+        const VirgilByteArray &additionalDataArr = [VSCByteArrayUtils convertVirgilByteArrayFromData:additionalData];
+        const VirgilPFSSession &session = self.cppPfs->startResponderSession(*responderPrivateInfo.cppPfsResponderPrivateInfo, *initiatorPublicInfo.cppPfsInitiatorPublicInfo, additionalDataArr);
         return [[VSCPfsSession alloc] initWithSession:session];
     }
     catch(...) {
@@ -83,6 +85,26 @@ using virgil::crypto::VirgilByteArray;
     catch(...) {
         return nil;
     }
+}
+
+- (VSCPfsSession *)session {
+    const VirgilPFSSession &session = self.cppPfs->getSession();
+    if (!session.isEmpty()) {
+        return [[VSCPfsSession alloc] initWithSession:session];
+    }
+    else {
+        return nil;
+    }
+}
+
+- (void)setSession:(VSCPfsSession *)session {
+    if (session != nil) {
+        self.cppPfs->setSession(*session.cppPfsSession);
+    }
+    else {
+        self.cppPfs->setSession(VirgilPFSSession());
+    }
+    
 }
 
 - (void)dealloc {

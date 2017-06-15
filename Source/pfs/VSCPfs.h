@@ -17,12 +17,14 @@
 
 @interface VSCPfs : NSObject
 
-- (VSCPfsSession * __nullable)startInitiatorSessionWithInitiatorPrivateInfo:(VSCPfsInitiatorPrivateInfo * __nonnull)initiatorPrivateInfo respondrerPublicInfo:(VSCPfsResponderPublicInfo * __nonnull)respondrerPublicInfo;
+- (VSCPfsSession * __nullable)startInitiatorSessionWithInitiatorPrivateInfo:(VSCPfsInitiatorPrivateInfo * __nonnull)initiatorPrivateInfo respondrerPublicInfo:(VSCPfsResponderPublicInfo * __nonnull)respondrerPublicInfo additionalData:(NSData * __nullable)additionalData;
 
-- (VSCPfsSession * __nullable)startResponderSessionWithResponderPrivateInfo:(VSCPfsResponderPrivateInfo * __nonnull)responderPrivateInfo respondrerPublicInfo:(VSCPfsInitiatorPublicInfo * __nonnull)initiatorPublicInfo;
+- (VSCPfsSession * __nullable)startResponderSessionWithResponderPrivateInfo:(VSCPfsResponderPrivateInfo * __nonnull)responderPrivateInfo respondrerPublicInfo:(VSCPfsInitiatorPublicInfo * __nonnull)initiatorPublicInfo additionalData:(NSData * __nullable)additionalData;
 
 - (VSCPfsEncryptedMessage * __nullable)encryptData:(NSData * __nonnull)data;
 
 - (NSData * __nullable)decryptMessage:(VSCPfsEncryptedMessage * __nonnull)message;
+
+@property (nonatomic) VSCPfsSession * __nullable session;
 
 @end

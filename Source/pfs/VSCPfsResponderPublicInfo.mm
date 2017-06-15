@@ -19,7 +19,12 @@ using virgil::crypto::VirgilByteArray;
     self = [super init];
     if (self) {
         try {
-            _cppPfsResponderPublicInfo = new VirgilPFSResponderPublicInfo(*identityPublicKey.cppPfsPublicKey, *longTermPublicKey.cppPfsPublicKey, *oneTimePublicKey.cppPfsPublicKey);
+            if (oneTimePublicKey != nil) {
+                _cppPfsResponderPublicInfo = new VirgilPFSResponderPublicInfo(*identityPublicKey.cppPfsPublicKey, *longTermPublicKey.cppPfsPublicKey, *oneTimePublicKey.cppPfsPublicKey);
+            }
+            else {
+                _cppPfsResponderPublicInfo = new VirgilPFSResponderPublicInfo(*identityPublicKey.cppPfsPublicKey, *longTermPublicKey.cppPfsPublicKey);
+            }
         }
         catch(...) {
             return nil;
