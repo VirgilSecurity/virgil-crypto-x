@@ -19,7 +19,7 @@
 
 - (VSCPfsSession * __nullable)startInitiatorSessionWithInitiatorPrivateInfo:(VSCPfsInitiatorPrivateInfo * __nonnull)initiatorPrivateInfo respondrerPublicInfo:(VSCPfsResponderPublicInfo * __nonnull)respondrerPublicInfo additionalData:(NSData * __nullable)additionalData;
 
-- (VSCPfsSession * __nullable)startResponderSessionWithResponderPrivateInfo:(VSCPfsResponderPrivateInfo * __nonnull)responderPrivateInfo respondrerPublicInfo:(VSCPfsInitiatorPublicInfo * __nonnull)initiatorPublicInfo additionalData:(NSData * __nullable)additionalData;
+- (VSCPfsSession * __nullable)startResponderSessionWithResponderPrivateInfo:(VSCPfsResponderPrivateInfo * __nonnull)responderPrivateInfo initiatorPublicInfo:(VSCPfsInitiatorPublicInfo * __nonnull)initiatorPublicInfo additionalData:(NSData * __nullable)additionalData;
 
 - (VSCPfsEncryptedMessage * __nullable)encryptData:(NSData * __nonnull)data;
 
