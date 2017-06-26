@@ -42,7 +42,7 @@ class VSP001_PFSTests: XCTestCase {
         let responderPrivateInfo = VSCPfsResponderPrivateInfo(identityPrivateKey: responderIdentityPrivateKey, longTermPrivateKey: responderLongTermPrivateKey, oneTime: responderOneTimePrivateKey)!
         
         let responderPfs = VSCPfs()
-        let responderSession = responderPfs.startResponderSession(with: responderPrivateInfo, respondrerPublicInfo: initiatorPublicInfo, additionalData: responderAdditionalData)!
+        let responderSession = responderPfs.startResponderSession(with: responderPrivateInfo, initiatorPublicInfo: initiatorPublicInfo, additionalData: responderAdditionalData)!
         
         return (initiatorPfs, initiatorSession, responderPfs, responderSession)
     }
