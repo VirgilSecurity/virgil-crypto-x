@@ -55,7 +55,7 @@ using virgil::crypto::VirgilByteArray;
     }
 }
 
-- (VSCPfsSession *)startResponderSessionWithResponderPrivateInfo:(VSCPfsResponderPrivateInfo *)responderPrivateInfo respondrerPublicInfo:(VSCPfsInitiatorPublicInfo *)initiatorPublicInfo additionalData:(NSData *)additionalData {
+- (VSCPfsSession *)startResponderSessionWithResponderPrivateInfo:(VSCPfsResponderPrivateInfo *)responderPrivateInfo initiatorPublicInfo:(VSCPfsInitiatorPublicInfo *)initiatorPublicInfo additionalData:(NSData *)additionalData {
     try {
         const VirgilByteArray &additionalDataArr = [VSCByteArrayUtils convertVirgilByteArrayFromData:additionalData];
         const VirgilPFSSession &session = self.cppPfs->startResponderSession(*responderPrivateInfo.cppPfsResponderPrivateInfo, *initiatorPublicInfo.cppPfsInitiatorPublicInfo, additionalDataArr);
