@@ -18,7 +18,7 @@ class VSP001_PFSTests: XCTestCase {
         let initiatorIdentityPublicKey = VSCPfsPublicKey(key: initiatorIdentityKeyPair.publicKey())!
         let initiatorEphemeralPrivateKey = VSCPfsPrivateKey(key: initiatorEphemeralKeyPair.privateKey(), password: nil)!
         let initiatorEphemeralPublicKey = VSCPfsPublicKey(key: initiatorEphemeralKeyPair.publicKey())!
-        let initiatorAdditionalData = additionalDataPresent ? "Alice".data(using: .utf8) : nil
+        let initiatorAdditionalData = additionalDataPresent ? "Alice+Bob".data(using: .utf8) : nil
         
         let responderIdentityKeyPair = VSCKeyPair()
         let responderLongTermKeyPair = VSCKeyPair()
@@ -27,7 +27,7 @@ class VSP001_PFSTests: XCTestCase {
         let responderIdentityPrivateKey = VSCPfsPrivateKey(key: responderIdentityKeyPair.privateKey(), password: nil)!
         let responderLongTermPublicKey = VSCPfsPublicKey(key: responderLongTermKeyPair.publicKey())!
         let responderLongTermPrivateKey = VSCPfsPrivateKey(key: responderLongTermKeyPair.privateKey(), password: nil)!
-        let responderAdditionalData = additionalDataPresent ? "Bob".data(using: .utf8) : nil
+        let responderAdditionalData = additionalDataPresent ? "Alice+Bob".data(using: .utf8) : nil
         
         let responderOneTimePublicKey = oneTimePresent ? VSCPfsPublicKey(key: responderOneTimeKeyPair.publicKey())! : nil
         let responderOneTimePrivateKey = oneTimePresent ? VSCPfsPrivateKey(key: responderOneTimeKeyPair.privateKey(), password: nil)! : nil
@@ -73,17 +73,22 @@ class VSP001_PFSTests: XCTestCase {
     
     func test003_validateSessionData_addionalDataAbsent() {
         let (_, initiatorSession, _, responderSession) = self.generateSessions(additionalDataPresent: false, oneTimePresent: true)
-        XCTAssert(initiatorSession.additionalData.count == 0)
+        
+        XCTAssert(initiatorSession.identifier == responderSession.identifier);
+        
+        XCTAssert(initiatorSession.additionalData.count != 0)
         XCTAssert(initiatorSession.decryptionSecretKey.count != 0)
         XCTAssert(initiatorSession.encryptionSecretKey.count != 0)
         XCTAssert(initiatorSession.identifier.count != 0)
         XCTAssert(!initiatorSession.isEmpty)
         
-        XCTAssert(responderSession.additionalData.count == 0)
+        XCTAssert(responderSession.additionalData.count != 0)
         XCTAssert(responderSession.decryptionSecretKey.count != 0)
         XCTAssert(responderSession.encryptionSecretKey.count != 0)
         XCTAssert(responderSession.identifier.count != 0)
         XCTAssert(!responderSession.isEmpty)
+        
+        XCTAssert(initiatorSession.identifier == responderSession.identifier);
     }
     
     func test004_validateSessionData_addionalDataPresent() {
@@ -99,5 +104,7 @@ class VSP001_PFSTests: XCTestCase {
         XCTAssert(responderSession.encryptionSecretKey.count != 0)
         XCTAssert(responderSession.identifier.count != 0)
         XCTAssert(!responderSession.isEmpty)
+        
+        XCTAssert(initiatorSession.identifier == responderSession.identifier);
     }
 }
