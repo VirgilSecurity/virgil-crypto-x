@@ -21,6 +21,12 @@ class VC001_KeyPairSwiftTests: XCTestCase {
         }
     }
     
+    func test002_createMultipleKeyPairs() {
+        let number = 10
+        let keypairs = VSCKeyPair.generateMultipleKeys(UInt(number), keyPairType: VSCKeyType.FAST_EC_ED25519)
+        XCTAssert(keypairs.count == number)
+    }
+    
     func test002_createKeyPairWithPassword() {
 //        let password = "secret"
 //        let keyPair = VSCKeyPair(password: password)

@@ -11,9 +11,15 @@
 #import <virgil/crypto/VirgilByteArray.h>
 #import <virgil/crypto/VirgilKeyPair.h>
 
+#ifdef verify
+#undef verify
+#endif
+#import <virgil/crypto/foundation/VirgilAsymmetricCipher.h>
+
 using virgil::crypto::VirgilByteArray;
 using CType = virgil::crypto::VirgilKeyPair::Type;
 using namespace virgil::crypto;
+using namespace virgil::crypto::foundation;
 
 NSString *const kVSCKeyPairErrorDomain = @"VSCKeyPairErrorDomain";
 
@@ -21,7 +27,7 @@ NSString *const kVSCKeyPairErrorDomain = @"VSCKeyPairErrorDomain";
 
 @property(nonatomic, assign) VirgilKeyPair *keyPair;
 
-- (CType)convertVSCKeyTypeToCType:(VSCKeyType)keyType;
++ (CType)convertVSCKeyTypeToCType:(VSCKeyType)keyType;
 
 @end
 
@@ -32,6 +38,37 @@ NSString *const kVSCKeyPairErrorDomain = @"VSCKeyPairErrorDomain";
 
 #pragma mark - Lifecycle
 
++ (NSArray<VSCKeyPair *> *)generateMultipleKeys:(NSUInteger)numberOfKeys keyPairType:(VSCKeyType)keyPairType {
+    NSMutableArray<VSCKeyPair *> *result = [[NSMutableArray alloc] initWithCapacity:numberOfKeys];
+    
+    CType type = [VSCKeyPair convertVSCKeyTypeToCType:keyPairType];
+    
+    try {
+        VirgilAsymmetricCipher cipher;
+        cipher.genKeyPair(type);
+        
+        for (NSUInteger i = 0; i < numberOfKeys; i++) {
+            VSCKeyPair *keyPair = [[VSCKeyPair alloc] initWithKeyPair:VirgilKeyPair(cipher.exportPublicKeyToPEM(), cipher.exportPrivateKeyToPEM())];
+            [result addObject:keyPair];
+        }
+    }
+    catch (...) {
+    }
+    
+    return result;
+}
+
+- (instancetype)initWithKeyPair:(const VirgilKeyPair &)keyPair {
+    self = [super init];
+    if (self == nil) {
+        return nil;
+    }
+    
+    _keyPair = new VirgilKeyPair(keyPair);
+    
+    return self;
+}
+
 - (instancetype)initWithKeyPairType:(VSCKeyType)keyPairType password:(NSString *)password {
     self = [super init];
     if (self == nil) {
@@ -39,7 +76,7 @@ NSString *const kVSCKeyPairErrorDomain = @"VSCKeyPairErrorDomain";
     }
 
     try {
-        CType type = [self convertVSCKeyTypeToCType:keyPairType];
+        CType type = [VSCKeyPair convertVSCKeyTypeToCType:keyPairType];
         if (!password || password.length == 0) {
             _keyPair = new VirgilKeyPair(VirgilKeyPair::generate(type));
         } else {
@@ -79,7 +116,7 @@ NSString *const kVSCKeyPairErrorDomain = @"VSCKeyPairErrorDomain";
 
 #pragma mark - Private
 
-- (CType)convertVSCKeyTypeToCType:(VSCKeyType)keyType {
++ (CType)convertVSCKeyTypeToCType:(VSCKeyType)keyType {
     CType result;
     switch (keyType) {
         case VSCKeyTypeRSA_256:

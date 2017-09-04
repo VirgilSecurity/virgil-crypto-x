@@ -53,6 +53,8 @@ typedef NS_ENUM(NSInteger, VSCKeyType) {
 
 - (instancetype __nonnull)initWithKeyPairType:(VSCKeyType)keyPairType password:(NSString * __nullable)password;
 
++ (NSArray<VSCKeyPair *> * __nonnull)generateMultipleKeys:(NSUInteger)numberOfKeys keyPairType:(VSCKeyType)keyPairType;
+
 
 ///---------------------------
 /// @name Obtaining the key data
