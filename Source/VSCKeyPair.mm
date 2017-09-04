@@ -45,9 +45,9 @@ NSString *const kVSCKeyPairErrorDomain = @"VSCKeyPairErrorDomain";
     
     try {
         VirgilAsymmetricCipher cipher;
-        cipher.genKeyPair(type);
         
         for (NSUInteger i = 0; i < numberOfKeys; i++) {
+            cipher.genKeyPair(type);
             VSCKeyPair *keyPair = [[VSCKeyPair alloc] initWithKeyPair:VirgilKeyPair(cipher.exportPublicKeyToPEM(), cipher.exportPrivateKeyToPEM())];
             [result addObject:keyPair];
         }
