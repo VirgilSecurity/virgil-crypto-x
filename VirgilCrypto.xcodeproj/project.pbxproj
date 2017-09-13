@@ -228,7 +228,6 @@
 		42CDC3031F696F0200D69111 /* VSCCrypto in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CDC3021F696F0200D69111 /* VSCCrypto */; };
 		42CDC3041F696F6F00D69111 /* VirgilCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85F611DC7B57F00C3184C /* VirgilCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42CDC3051F696F7000D69111 /* VirgilCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85F611DC7B57F00C3184C /* VirgilCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		42CDC30D1F6970C700D69111 /* VirgilCrypto_tvOS_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CDC30C1F6970C700D69111 /* VirgilCrypto_tvOS_Tests.swift */; };
 		42CDC30F1F6970C700D69111 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CDC2751F696D5100D69111 /* VirgilCrypto.framework */; };
 		42CDC3171F69711B00D69111 /* VSC001_KeyPairTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CDC3151F69711400D69111 /* VSC001_KeyPairTests.swift */; };
 		42CDC3181F69711C00D69111 /* VSC001_KeyPairTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CDC3151F69711400D69111 /* VSC001_KeyPairTests.swift */; };
@@ -409,8 +408,6 @@
 		42CDC3001F696EF900D69111 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS3.2.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		42CDC3021F696F0200D69111 /* VSCCrypto */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = VSCCrypto; path = CryptoLib/watchOS/VSCCrypto.framework/Versions/A/VSCCrypto; sourceTree = "<group>"; };
 		42CDC30A1F6970C700D69111 /* VirgilCrypto tvOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilCrypto tvOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		42CDC30C1F6970C700D69111 /* VirgilCrypto_tvOS_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirgilCrypto_tvOS_Tests.swift; sourceTree = "<group>"; };
-		42CDC30E1F6970C700D69111 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42CDC3151F69711400D69111 /* VSC001_KeyPairTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSC001_KeyPairTests.swift; sourceTree = "<group>"; };
 		42CDC31A1F697E0F00D69111 /* VSC002_CryptorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSC002_CryptorTests.swift; sourceTree = "<group>"; };
 		42CDC31F1F697ED400D69111 /* VSC003_SignerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSC003_SignerTests.swift; sourceTree = "<group>"; };
@@ -526,7 +523,6 @@
 				42F85F091DC7657C00C3184C /* VirgilCrypto */,
 				42F85EED1DC7657C00C3184C /* Source */,
 				42F85F381DC765D000C3184C /* Tests */,
-				42CDC30B1F6970C700D69111 /* VirgilCrypto tvOS Tests */,
 				361402761BB2A6CB002E69CA /* Products */,
 				7ABB78811D98434C00A83A14 /* Frameworks */,
 			);
@@ -595,15 +591,6 @@
 				420D107E1EF16A42002A9C22 /* VSCPfsResponderPublicInfoPrivate.h */,
 			);
 			path = Private;
-			sourceTree = "<group>";
-		};
-		42CDC30B1F6970C700D69111 /* VirgilCrypto tvOS Tests */ = {
-			isa = PBXGroup;
-			children = (
-				42CDC30C1F6970C700D69111 /* VirgilCrypto_tvOS_Tests.swift */,
-				42CDC30E1F6970C700D69111 /* Info.plist */,
-			);
-			path = "VirgilCrypto tvOS Tests";
 			sourceTree = "<group>";
 		};
 		42F85EED1DC7657C00C3184C /* Source */ = {
@@ -1222,7 +1209,6 @@
 				42CDC3191F69711D00D69111 /* VSC001_KeyPairTests.swift in Sources */,
 				42CDC31E1F697E7200D69111 /* VSC002_CryptorTests.swift in Sources */,
 				42CDC3491F69853E00D69111 /* VSC009_ByteArrayUtils.swift in Sources */,
-				42CDC30D1F6970C700D69111 /* VirgilCrypto_tvOS_Tests.swift in Sources */,
 				42CDC32D1F697F8C00D69111 /* VSC005_ChunkCryptorTests.swift in Sources */,
 				42CDC3281F697F2C00D69111 /* VSC004_StreamCryptorTests.swift in Sources */,
 				42CDC34E1F6985D600D69111 /* VSC010_HashTests.swift in Sources */,
@@ -1648,7 +1634,6 @@
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				INFOPLIST_FILE = "VirgilCrypto tvOS Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.VirgilCrypto-tvOS-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1666,7 +1651,6 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				INFOPLIST_FILE = "VirgilCrypto tvOS Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.VirgilCrypto-tvOS-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
