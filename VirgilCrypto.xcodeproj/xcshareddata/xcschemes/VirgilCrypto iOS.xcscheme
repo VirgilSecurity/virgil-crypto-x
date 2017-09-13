@@ -33,18 +33,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "42F85F2C1DC765AC00C3184C"
-               BuildableName = "VirgilCryptoSwiftTests iOS.xctest"
-               BlueprintName = "VirgilCryptoSwiftTests iOS"
-               ReferencedContainer = "container:VirgilCrypto.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "42F85ED41DC7469E00C3184C"
-               BuildableName = "VirgilCryptoTests iOS.xctest"
-               BlueprintName = "VirgilCryptoTests iOS"
+               BuildableName = "VirgilCrypto iOS Tests.xctest"
+               BlueprintName = "VirgilCrypto iOS Tests"
                ReferencedContainer = "container:VirgilCrypto.xcodeproj">
             </BuildableReference>
          </TestableReference>

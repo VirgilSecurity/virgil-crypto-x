@@ -32,19 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "423F00371E719EF200CC98A3"
-               BuildableName = "VirgilCryptoTests macOS.xctest"
-               BlueprintName = "VirgilCryptoTests macOS"
-               ReferencedContainer = "container:VirgilCrypto.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "423F00831E71A0FC00CC98A3"
-               BuildableName = "VirgilCryptoSwiftTests macOS.xctest"
-               BlueprintName = "VirgilCryptoSwiftTests macOS"
+               BuildableName = "VirgilCrypto macOS Tests.xctest"
+               BlueprintName = "VirgilCrypto macOS Tests"
                ReferencedContainer = "container:VirgilCrypto.xcodeproj">
             </BuildableReference>
          </TestableReference>
