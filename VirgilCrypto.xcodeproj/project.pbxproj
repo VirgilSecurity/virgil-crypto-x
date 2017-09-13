@@ -262,6 +262,10 @@
 		42CDC34C1F6985D500D69111 /* VSC010_HashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CDC34A1F6985B900D69111 /* VSC010_HashTests.swift */; };
 		42CDC34D1F6985D600D69111 /* VSC010_HashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CDC34A1F6985B900D69111 /* VSC010_HashTests.swift */; };
 		42CDC34E1F6985D600D69111 /* VSC010_HashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CDC34A1F6985B900D69111 /* VSC010_HashTests.swift */; };
+		42CDC3501F698EFD00D69111 /* VirgilCryptoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CDC34F1F698EFD00D69111 /* VirgilCryptoAPI.framework */; };
+		42CDC3521F698F1100D69111 /* VirgilCryptoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CDC3511F698F1100D69111 /* VirgilCryptoAPI.framework */; };
+		42CDC3541F698F2300D69111 /* VirgilCryptoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CDC3531F698F2300D69111 /* VirgilCryptoAPI.framework */; };
+		42CDC3561F698F3200D69111 /* VirgilCryptoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CDC3551F698F3200D69111 /* VirgilCryptoAPI.framework */; };
 		42E4FAD01ECDBF7600D76F6D /* VSCCrypto in Frameworks */ = {isa = PBXBuildFile; fileRef = 42E4FACF1ECDBF7600D76F6D /* VSCCrypto */; };
 		42E4FAD21ECDBF8500D76F6D /* VSCCrypto in Frameworks */ = {isa = PBXBuildFile; fileRef = 42E4FAD11ECDBF8500D76F6D /* VSCCrypto */; };
 		42F85F0C1DC7657C00C3184C /* VSCBaseCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85EEE1DC7657C00C3184C /* VSCBaseCryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -419,6 +423,10 @@
 		42CDC33E1F69808900D69111 /* VSC008_TinyCryptorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSC008_TinyCryptorTests.swift; sourceTree = "<group>"; };
 		42CDC3431F69850C00D69111 /* VSC009_ByteArrayUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSC009_ByteArrayUtils.swift; sourceTree = "<group>"; };
 		42CDC34A1F6985B900D69111 /* VSC010_HashTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSC010_HashTests.swift; sourceTree = "<group>"; };
+		42CDC34F1F698EFD00D69111 /* VirgilCryptoAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoAPI.framework; path = Carthage/Build/iOS/VirgilCryptoAPI.framework; sourceTree = "<group>"; };
+		42CDC3511F698F1100D69111 /* VirgilCryptoAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoAPI.framework; path = Carthage/Build/Mac/VirgilCryptoAPI.framework; sourceTree = "<group>"; };
+		42CDC3531F698F2300D69111 /* VirgilCryptoAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoAPI.framework; path = Carthage/Build/tvOS/VirgilCryptoAPI.framework; sourceTree = "<group>"; };
+		42CDC3551F698F3200D69111 /* VirgilCryptoAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoAPI.framework; path = Carthage/Build/watchOS/VirgilCryptoAPI.framework; sourceTree = "<group>"; };
 		42E4FACF1ECDBF7600D76F6D /* VSCCrypto */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = VSCCrypto; path = CryptoLib/macOS/VSCCrypto.framework/VSCCrypto; sourceTree = "<group>"; };
 		42E4FAD11ECDBF8500D76F6D /* VSCCrypto */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = VSCCrypto; path = CryptoLib/iOS/VSCCrypto.framework/VSCCrypto; sourceTree = "<group>"; };
 		42F85ECD1DC7469D00C3184C /* VirgilCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -458,6 +466,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42CDC3521F698F1100D69111 /* VirgilCryptoAPI.framework in Frameworks */,
 				42E4FAD01ECDBF7600D76F6D /* VSCCrypto in Frameworks */,
 				423F00BB1E71A68400CC98A3 /* Security.framework in Frameworks */,
 			);
@@ -475,6 +484,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42CDC3541F698F2300D69111 /* VirgilCryptoAPI.framework in Frameworks */,
 				42CDC2FF1F696EF300D69111 /* VSCCrypto in Frameworks */,
 				42CDC2FD1F696E6100D69111 /* Security.framework in Frameworks */,
 			);
@@ -484,6 +494,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42CDC3561F698F3200D69111 /* VirgilCryptoAPI.framework in Frameworks */,
 				42CDC3031F696F0200D69111 /* VSCCrypto in Frameworks */,
 				42CDC3011F696EF900D69111 /* Security.framework in Frameworks */,
 			);
@@ -501,6 +512,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42CDC3501F698EFD00D69111 /* VirgilCryptoAPI.framework in Frameworks */,
 				42E4FAD21ECDBF8500D76F6D /* VSCCrypto in Frameworks */,
 				423F00B91E71A67E00CC98A3 /* Security.framework in Frameworks */,
 			);
@@ -658,6 +670,10 @@
 		7ABB78811D98434C00A83A14 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				42CDC3551F698F3200D69111 /* VirgilCryptoAPI.framework */,
+				42CDC3531F698F2300D69111 /* VirgilCryptoAPI.framework */,
+				42CDC3511F698F1100D69111 /* VirgilCryptoAPI.framework */,
+				42CDC34F1F698EFD00D69111 /* VirgilCryptoAPI.framework */,
 				42CDC3021F696F0200D69111 /* VSCCrypto */,
 				42CDC3001F696EF900D69111 /* Security.framework */,
 				42CDC2FE1F696EF300D69111 /* VSCCrypto */,
@@ -1404,6 +1420,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				HEADER_SEARCH_PATHS = CryptoLib/macOS/VSCCrypto.framework/Headers;
 				INFOPLIST_FILE = VirgilCrypto/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1432,6 +1452,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				HEADER_SEARCH_PATHS = CryptoLib/macOS/VSCCrypto.framework/Headers;
 				INFOPLIST_FILE = VirgilCrypto/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1512,6 +1536,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
 				HEADER_SEARCH_PATHS = CryptoLib/tvOS/VSCCrypto.framework/Headers;
 				INFOPLIST_FILE = VirgilCrypto/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1543,6 +1571,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
 				HEADER_SEARCH_PATHS = CryptoLib/tvOS/VSCCrypto.framework/Headers;
 				INFOPLIST_FILE = VirgilCrypto/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1576,6 +1608,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/watchOS",
+				);
 				HEADER_SEARCH_PATHS = CryptoLib/watchOS/VSCCrypto.framework/Headers;
 				INFOPLIST_FILE = VirgilCrypto/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1608,6 +1644,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/watchOS",
+				);
 				HEADER_SEARCH_PATHS = CryptoLib/watchOS/VSCCrypto.framework/Headers;
 				INFOPLIST_FILE = VirgilCrypto/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1672,6 +1712,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				HEADER_SEARCH_PATHS = CryptoLib/iOS/VSCCrypto.framework/Headers;
 				INFOPLIST_FILE = VirgilCrypto/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1703,6 +1747,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				HEADER_SEARCH_PATHS = CryptoLib/iOS/VSCCrypto.framework/Headers;
 				INFOPLIST_FILE = VirgilCrypto/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1800,6 +1848,7 @@
 				42CDC27B1F696D5100D69111 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		42CDC2871F696DB900D69111 /* Build configuration list for PBXNativeTarget "VirgilCrypto watchOS" */ = {
 			isa = XCConfigurationList;
@@ -1808,6 +1857,7 @@
 				42CDC2891F696DB900D69111 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		42CDC3121F6970C700D69111 /* Build configuration list for PBXNativeTarget "VirgilCrypto tvOS Tests" */ = {
 			isa = XCConfigurationList;
@@ -1816,6 +1866,7 @@
 				42CDC3141F6970C700D69111 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		42F85EDE1DC7469E00C3184C /* Build configuration list for PBXNativeTarget "VirgilCrypto iOS" */ = {
 			isa = XCConfigurationList;
