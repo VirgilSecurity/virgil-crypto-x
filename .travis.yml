@@ -29,6 +29,8 @@ before_install:
   - xcodebuild -showsdks
 
 script:
+  - carthage update --platform "$CARTHAGE_PLATFORM_NAME"
+  
   - |
     if [ $TWO_STEP_BUILD_ENABLED == "YES" ]; then
       # Build Framework
