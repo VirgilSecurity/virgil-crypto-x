@@ -113,6 +113,18 @@
 		423F00B91E71A67E00CC98A3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423F00B81E71A67E00CC98A3 /* Security.framework */; };
 		423F00BB1E71A68400CC98A3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423F00BA1E71A68400CC98A3 /* Security.framework */; };
 		4284C3771F6BE7E900B75491 /* VirgilCryptoAPI.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 42CDC3511F698F1100D69111 /* VirgilCryptoAPI.framework */; };
+		4284C4731F7011C800B75491 /* VirgilCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4721F7011C800B75491 /* VirgilCrypto.swift */; };
+		4284C4751F7011D600B75491 /* VirgilPrivateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4741F7011D600B75491 /* VirgilPrivateKey.swift */; };
+		4284C4771F7011DE00B75491 /* VirgilPublicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4761F7011DE00B75491 /* VirgilPublicKey.swift */; };
+		4284C4791F7012CB00B75491 /* VirgilPublicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4761F7011DE00B75491 /* VirgilPublicKey.swift */; };
+		4284C47A1F7012CC00B75491 /* VirgilPublicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4761F7011DE00B75491 /* VirgilPublicKey.swift */; };
+		4284C47B1F7012CD00B75491 /* VirgilPublicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4761F7011DE00B75491 /* VirgilPublicKey.swift */; };
+		4284C47C1F7012FF00B75491 /* VirgilCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4721F7011C800B75491 /* VirgilCrypto.swift */; };
+		4284C47D1F70130000B75491 /* VirgilCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4721F7011C800B75491 /* VirgilCrypto.swift */; };
+		4284C47E1F70130000B75491 /* VirgilCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4721F7011C800B75491 /* VirgilCrypto.swift */; };
+		4284C47F1F70130300B75491 /* VirgilPrivateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4741F7011D600B75491 /* VirgilPrivateKey.swift */; };
+		4284C4801F70130400B75491 /* VirgilPrivateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4741F7011D600B75491 /* VirgilPrivateKey.swift */; };
+		4284C4811F70130400B75491 /* VirgilPrivateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4741F7011D600B75491 /* VirgilPrivateKey.swift */; };
 		42CDC28E1F696E1300D69111 /* VSCBaseCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85EEE1DC7657C00C3184C /* VSCBaseCryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42CDC28F1F696E1300D69111 /* VSCBaseCryptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85EEF1DC7657C00C3184C /* VSCBaseCryptor.mm */; };
 		42CDC2901F696E1300D69111 /* VSCByteArrayUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85EF11DC7657C00C3184C /* VSCByteArrayUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -416,6 +428,9 @@
 		423F00841E71A0FC00CC98A3 /* VirgilCrypto macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilCrypto macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		423F00B81E71A67E00CC98A3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		423F00BA1E71A68400CC98A3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		4284C4721F7011C800B75491 /* VirgilCrypto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirgilCrypto.swift; sourceTree = "<group>"; };
+		4284C4741F7011D600B75491 /* VirgilPrivateKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirgilPrivateKey.swift; sourceTree = "<group>"; };
+		4284C4761F7011DE00B75491 /* VirgilPublicKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirgilPublicKey.swift; sourceTree = "<group>"; };
 		42CDC2751F696D5100D69111 /* VirgilCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42CDC2821F696DB900D69111 /* VirgilCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42CDC2FC1F696E6100D69111 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS10.2.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
@@ -616,9 +631,20 @@
 			path = Private;
 			sourceTree = "<group>";
 		};
+		4284C4711F7011C800B75491 /* CryptoProtocolImpl */ = {
+			isa = PBXGroup;
+			children = (
+				4284C4721F7011C800B75491 /* VirgilCrypto.swift */,
+				4284C4741F7011D600B75491 /* VirgilPrivateKey.swift */,
+				4284C4761F7011DE00B75491 /* VirgilPublicKey.swift */,
+			);
+			path = CryptoProtocolImpl;
+			sourceTree = "<group>";
+		};
 		42F85EED1DC7657C00C3184C /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				4284C4711F7011C800B75491 /* CryptoProtocolImpl */,
 				420D10671EF159D5002A9C22 /* Private */,
 				420D102A1EF1405C002A9C22 /* pfs */,
 				42F85F611DC7B57F00C3184C /* VirgilCrypto.h */,
@@ -1171,10 +1197,13 @@
 				423F004C1E71A01A00CC98A3 /* VSCHash.mm in Sources */,
 				423F004D1E71A01A00CC98A3 /* VSCKeyPair.mm in Sources */,
 				420D10371EF148E4002A9C22 /* VSCPfsSession.mm in Sources */,
+				4284C47C1F7012FF00B75491 /* VirgilCrypto.swift in Sources */,
+				4284C47F1F70130300B75491 /* VirgilPrivateKey.swift in Sources */,
 				420D10621EF14B82002A9C22 /* VSCPfsResponderPrivateInfo.mm in Sources */,
 				420D105F1EF14B82002A9C22 /* VSCPfsPrivateKey.mm in Sources */,
 				420D10611EF14B82002A9C22 /* VSCPfsInitiatorPublicInfo.mm in Sources */,
 				420D103F1EF149D7002A9C22 /* VSCPfsEncryptedMessage.mm in Sources */,
+				4284C4791F7012CB00B75491 /* VirgilPublicKey.swift in Sources */,
 				423F004E1E71A01A00CC98A3 /* VSCPBKDF.mm in Sources */,
 				423F004F1E71A01A00CC98A3 /* VSCSigner.mm in Sources */,
 				420D10601EF14B82002A9C22 /* VSCPfsInitiatorPrivateInfo.mm in Sources */,
@@ -1218,10 +1247,13 @@
 				42CDC2991F696E1300D69111 /* VSCHash.mm in Sources */,
 				42CDC2911F696E1300D69111 /* VSCByteArrayUtils.mm in Sources */,
 				42CDC2CA1F696E3300D69111 /* VSCPfsSession.mm in Sources */,
+				4284C47D1F70130000B75491 /* VirgilCrypto.swift in Sources */,
+				4284C4801F70130400B75491 /* VirgilPrivateKey.swift in Sources */,
 				42CDC2D61F696E3300D69111 /* VSCPfsResponderPrivateInfo.mm in Sources */,
 				42CDC2D01F696E3300D69111 /* VSCPfsPrivateKey.mm in Sources */,
 				42CDC2D41F696E3300D69111 /* VSCPfsInitiatorPublicInfo.mm in Sources */,
 				42CDC2CC1F696E3300D69111 /* VSCPfsEncryptedMessage.mm in Sources */,
+				4284C47A1F7012CC00B75491 /* VirgilPublicKey.swift in Sources */,
 				42CDC2931F696E1300D69111 /* VSCChunkCryptor.mm in Sources */,
 				42CDC29F1F696E1300D69111 /* VSCSigner.mm in Sources */,
 				42CDC2D21F696E3300D69111 /* VSCPfsInitiatorPrivateInfo.mm in Sources */,
@@ -1247,10 +1279,13 @@
 				42CDC2B31F696E1400D69111 /* VSCHash.mm in Sources */,
 				42CDC2AB1F696E1400D69111 /* VSCByteArrayUtils.mm in Sources */,
 				42CDC2DD1F696E3400D69111 /* VSCPfsSession.mm in Sources */,
+				4284C47E1F70130000B75491 /* VirgilCrypto.swift in Sources */,
+				4284C4811F70130400B75491 /* VirgilPrivateKey.swift in Sources */,
 				42CDC2E91F696E3400D69111 /* VSCPfsResponderPrivateInfo.mm in Sources */,
 				42CDC2E31F696E3400D69111 /* VSCPfsPrivateKey.mm in Sources */,
 				42CDC2E71F696E3400D69111 /* VSCPfsInitiatorPublicInfo.mm in Sources */,
 				42CDC2DF1F696E3400D69111 /* VSCPfsEncryptedMessage.mm in Sources */,
+				4284C47B1F7012CD00B75491 /* VirgilPublicKey.swift in Sources */,
 				42CDC2AD1F696E1400D69111 /* VSCChunkCryptor.mm in Sources */,
 				42CDC2B91F696E1400D69111 /* VSCSigner.mm in Sources */,
 				42CDC2E51F696E3400D69111 /* VSCPfsInitiatorPrivateInfo.mm in Sources */,
@@ -1293,11 +1328,14 @@
 				420D10591EF14B32002A9C22 /* VSCPfsInitiatorPublicInfo.mm in Sources */,
 				42F85F181DC7657C00C3184C /* VSCHash.mm in Sources */,
 				42F85F101DC7657C00C3184C /* VSCByteArrayUtils.mm in Sources */,
+				4284C4751F7011D600B75491 /* VirgilPrivateKey.swift in Sources */,
 				42F85F121DC7657C00C3184C /* VSCChunkCryptor.mm in Sources */,
+				4284C4731F7011C800B75491 /* VirgilCrypto.swift in Sources */,
 				420D10321EF14176002A9C22 /* VSCPfs.mm in Sources */,
 				42F85F1E1DC7657C00C3184C /* VSCSigner.mm in Sources */,
 				42F85F0D1DC7657C00C3184C /* VSCBaseCryptor.mm in Sources */,
 				420D10551EF14B25002A9C22 /* VSCPfsPrivateKey.mm in Sources */,
+				4284C4771F7011DE00B75491 /* VirgilPublicKey.swift in Sources */,
 				420D103E1EF149CB002A9C22 /* VSCPfsEncryptedMessage.mm in Sources */,
 				42F85F1C1DC7657C00C3184C /* VSCPBKDF.mm in Sources */,
 				42F85F261DC7657C00C3184C /* VSCVirgilVersion.mm in Sources */,
@@ -1482,6 +1520,7 @@
 				PRODUCT_NAME = VirgilCrypto;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1514,6 +1553,7 @@
 				PRODUCT_NAME = VirgilCrypto;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1522,6 +1562,7 @@
 		423F008D1E71A0FD00CC98A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -1541,6 +1582,7 @@
 		423F008E1E71A0FD00CC98A3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -1597,6 +1639,7 @@
 				PRODUCT_NAME = VirgilCrypto;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1632,6 +1675,7 @@
 				PRODUCT_NAME = VirgilCrypto;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1669,6 +1713,7 @@
 				PRODUCT_NAME = VirgilCrypto;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1705,6 +1750,7 @@
 				PRODUCT_NAME = VirgilCrypto;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1715,6 +1761,7 @@
 		42CDC3131F6970C700D69111 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1733,6 +1780,7 @@
 		42CDC3141F6970C700D69111 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1817,6 +1865,7 @@
 		42F85F361DC765AC00C3184C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -1835,6 +1884,7 @@
 		42F85F371DC765AC00C3184C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;

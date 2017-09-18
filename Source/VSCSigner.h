@@ -65,34 +65,4 @@ extern NSString * __nonnull const kVSCSignerErrorDomain;
  */
 - (BOOL)verifySignature:(NSData * __nonnull)signature data:(NSData * __nonnull)data publicKey:(NSData * __nonnull)publicKey error:(NSError * __nullable * __nullable)error;
 
-///---------------------------
-/// @name Deprecated functionality
-///---------------------------
-
-/** 
- * Composes a signature data for given data using a private key.
- *
- * **Deprecated:** Use `signData:privateKey:keyPassword:error:` instead.
- *
- * @param data Data object which needs to be signed.
- * @param privateKey Data object containing user's private key.
- * @param keyPassword Password which was used to create key pair object or `nil`.
- *
- * @return Signature data object.
- */
-- (NSData * __nullable)signData:(NSData * __nonnull)data privateKey:(NSData * __nonnull)privateKey keyPassword:(NSString * __nullable)keyPassword __attribute__((deprecated("Use -signData:privateKey:keyPassword:error: instead.")));
-
-/** 
- * Performs verification of a signature for given data using a public key.
- *
- * **Deprecated:** Use `verifySignature:data:publicKey:error:` instead.
- *
- * @param signature Data object containing a signature data.
- * @param data Data object which was used to compose the signature on.
- * @param publicKey Data object containing a public key data of the user whose signature needs to be verified.
- *
- * @return `YES` if signature is verified and can be trusted, `NO` - otherwise.
- */
-- (BOOL)verifySignature:(NSData * __nonnull)signature data:(NSData * __nonnull)data publicKey:(NSData * __nonnull)publicKey __attribute__((deprecated("Use -verifySignature:data:publicKey:error instead.")));
-
 @end

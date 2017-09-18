@@ -77,10 +77,6 @@ NSString *const kVSCSignerErrorDomain = @"VSCSignerErrorDomain";
 
 #pragma mark - Public class logic
 
-- (NSData *)signData:(NSData *)data privateKey:(NSData *)privateKey keyPassword:(NSString *)keyPassword {
-    return [self signData:data privateKey:privateKey keyPassword:keyPassword error:nil];
-}
-
 - (NSData *)signData:(NSData *)data privateKey:(NSData *)privateKey keyPassword:(NSString *)keyPassword error:(NSError **)error {
     if (data.length == 0 || privateKey.length == 0) {
         if (error) {
@@ -138,10 +134,6 @@ NSString *const kVSCSignerErrorDomain = @"VSCSignerErrorDomain";
     }
     
     return signData;
-}
-
-- (BOOL)verifySignature:(NSData *)signature data:(NSData *)data publicKey:(NSData *)publicKey {
-    return [self verifySignature:signature data:data publicKey:publicKey error:nil];
 }
 
 - (BOOL)verifySignature:(NSData *)signature data:(NSData *)data publicKey:(NSData *)publicKey error:(NSError **)error {
