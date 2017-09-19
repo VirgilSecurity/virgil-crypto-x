@@ -157,16 +157,16 @@ void VSCChunkCryptorDataSink::write(const VirgilByteArray &data) {
     return static_cast<VirgilChunkCipher *>(self.llCryptor);
 }
 
-- (void)encryptDataFromStream:(NSInputStream *__nonnull)source toStream:(NSOutputStream *__nonnull)destination error:(NSError * __nullable * __nullable)error {
-    [self encryptDataFromStream:source toStream:destination preferredChunkSize:kVSCChunkCryptorPreferredChunkSize embedContentInfo:YES error:error];
+- (BOOL)encryptDataFromStream:(NSInputStream *__nonnull)source toStream:(NSOutputStream *__nonnull)destination error:(NSError * __nullable * __nullable)error {
+    return [self encryptDataFromStream:source toStream:destination preferredChunkSize:kVSCChunkCryptorPreferredChunkSize embedContentInfo:YES error:error];
 }
 
-- (void)encryptDataFromStream:(NSInputStream *)source toStream:(NSOutputStream *)destination preferredChunkSize:(size_t)chunkSize embedContentInfo:(BOOL)embedContentInfo error:(NSError **)error {
+- (BOOL)encryptDataFromStream:(NSInputStream *)source toStream:(NSOutputStream *)destination preferredChunkSize:(size_t)chunkSize embedContentInfo:(BOOL)embedContentInfo error:(NSError **)error {
     if (source == nil || destination == nil) {
         if (error) {
             *error = [NSError errorWithDomain:kVSCChunkCryptorErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to encrypt stream: At least one of the required parameters is missing.", @"Encrypt stream data error.") }];
         }
-        return;
+        return NO;
     }
 
     try {
@@ -175,9 +175,7 @@ void VSCChunkCryptorDataSink::write(const VirgilByteArray &data) {
             VSCChunkCryptorDataSink dest = VSCChunkCryptorDataSink(destination);
             [self cryptor]->encrypt(src, dest, embedContentInfo, chunkSize);
 
-            if (error) {
-                *error = nil;
-            }
+            return YES;
         }
         else {
             if (error) {
@@ -199,13 +197,17 @@ void VSCChunkCryptorDataSink::write(const VirgilByteArray &data) {
             *error = [NSError errorWithDomain:kVSCChunkCryptorErrorDomain code:-1003 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown exception during stream encryption." }];
         }
     }
+    
+    return NO;
 }
 
-- (void)decryptFromStream:(NSInputStream * __nonnull)source toStream:(NSOutputStream * __nonnull)destination recipientId:(NSData * __nonnull)recipientId privateKey:(NSData * __nonnull)privateKey keyPassword:(NSString * __nullable)keyPassword error:(NSError * __nullable * __nullable)error {
+- (BOOL)decryptFromStream:(NSInputStream * __nonnull)source toStream:(NSOutputStream * __nonnull)destination recipientId:(NSData * __nonnull)recipientId privateKey:(NSData * __nonnull)privateKey keyPassword:(NSString * __nullable)keyPassword error:(NSError * __nullable * __nullable)error {
     if (source == nil || destination == nil || recipientId.length == 0 || privateKey.length == 0) {
         if (error) {
             *error = [NSError errorWithDomain:kVSCChunkCryptorErrorDomain code:-1004 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to decrypt stream: At least one of the required parameters is missing.", @"Decrypt stream data error.") }];
         }
+        
+        return NO;
     }
 
     try {
@@ -221,9 +223,8 @@ void VSCChunkCryptorDataSink::write(const VirgilByteArray &data) {
                 std::string keyPass = std::string(keyPassword.UTF8String);
                 [self cryptor]->decryptWithKey(src, dest, recId, VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pKey, [privateKey length]), VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(keyPass.data(), keyPass.size()));
             }
-            if (error) {
-                *error = nil;
-            }
+            
+            return YES;
         }
         else {
             if (error) {
@@ -245,36 +246,36 @@ void VSCChunkCryptorDataSink::write(const VirgilByteArray &data) {
             *error = [NSError errorWithDomain:kVSCChunkCryptorErrorDomain code:-1007 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown exception during stream decryption." }];
         }
     }
+    
+    return NO;
 }
 
-- (void)decryptFromStream:(NSInputStream *__nonnull)source toStream:(NSOutputStream *__nonnull)destination error:(NSError **)error {
-    [self decryptFromStream:source toStream:destination password:@"" error:error];
+- (BOOL)decryptFromStream:(NSInputStream *__nonnull)source toStream:(NSOutputStream *__nonnull)destination error:(NSError **)error {
+    return [self decryptFromStream:source toStream:destination password:@"" error:error];
 }
 
-- (void)decryptFromStream:(NSInputStream * __nonnull)source toStream:(NSOutputStream * __nonnull)destination password:(NSString * __nonnull)password error:(NSError * __nullable * __nullable)error {
+- (BOOL)decryptFromStream:(NSInputStream * __nonnull)source toStream:(NSOutputStream * __nonnull)destination password:(NSString * __nonnull)password error:(NSError * __nullable * __nullable)error {
     if (source == nil || destination == nil || password.length == 0) {
         if (error) {
             *error = [NSError errorWithDomain:kVSCChunkCryptorErrorDomain code:-1008 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to decrypt stream: At least one of the required parameters is missing.", @"Decrypt stream data error.") }];
         }
+        
+        return NO;
     }
 
-    BOOL success = NO;
     try {
         if ([self cryptor] != NULL) {
             VSCChunkCryptorDataSource src = VSCChunkCryptorDataSource(source);
             VSCChunkCryptorDataSink dest = VSCChunkCryptorDataSink(destination);
             std::string pwd = std::string(password.UTF8String);
             [self cryptor]->decryptWithPassword(src, dest, VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(pwd.data(), pwd.size()));
-            if (error) {
-                *error = nil;
-            }
-            success = YES;
+            
+            return YES;
         }
         else {
             if (error) {
                 *error = [NSError errorWithDomain:kVSCChunkCryptorErrorDomain code:-1009 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to decrypt stream. Cryptor is not initialized properly." }];
             }
-            success = NO;
         }
     }
     catch(std::exception &ex) {
@@ -285,14 +286,14 @@ void VSCChunkCryptorDataSink::write(const VirgilByteArray &data) {
             }
             *error = [NSError errorWithDomain:kVSCChunkCryptorErrorDomain code:-1010 userInfo:@{ NSLocalizedDescriptionKey: description }];
         }
-        success = NO;
     }
     catch(...) {
         if (error) {
             *error = [NSError errorWithDomain:kVSCChunkCryptorErrorDomain code:-1011 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown exception during stream decryption." }];
         }
-        success = NO;
     }
+    
+    return NO;
 }
 
 @end

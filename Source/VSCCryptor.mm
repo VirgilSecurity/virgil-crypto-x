@@ -57,10 +57,6 @@ NSString *const kVSCCryptorErrorDomain = @"VSCCryptorErrorDomain";
 
 #pragma mark - Public class logic
 
-- (NSData *)encryptData:(NSData *)plainData embedContentInfo:(NSNumber *) embedContentInfo {
-    return [self encryptData:plainData embedContentInfo:embedContentInfo.boolValue error:nil];
-}
-
 - (NSData *)encryptData:(NSData *)plainData embedContentInfo:(BOOL)embedContentInfo error:(NSError **)error {
     if (plainData.length == 0) {
         // Can't encrypt.
@@ -107,10 +103,6 @@ NSString *const kVSCCryptorErrorDomain = @"VSCCryptorErrorDomain";
     }
     
     return encData;
-}
-
-- (NSData *)decryptData:(NSData *)encryptedData recipientId:(NSData *)recipientId privateKey:(NSData *)privateKey keyPassword:(NSString *)keyPassword {
-    return [self decryptData:encryptedData recipientId:recipientId privateKey:privateKey keyPassword:keyPassword error:nil];
 }
 
 - (NSData *)decryptData:(NSData *)encryptedData recipientId:(NSData *)recipientId privateKey:(NSData *)privateKey keyPassword:(NSString *)keyPassword error:(NSError **)error {
@@ -166,10 +158,6 @@ NSString *const kVSCCryptorErrorDomain = @"VSCCryptorErrorDomain";
         decData = nil;
     }
     return decData;
-}
-
-- (NSData *)decryptData:(NSData *)encryptedData password:(NSString *)password {
-    return [self decryptData:encryptedData password:password error:nil];
 }
 
 - (NSData *)decryptData:(NSData *)encryptedData password:(NSString *)password error:(NSError **)error {

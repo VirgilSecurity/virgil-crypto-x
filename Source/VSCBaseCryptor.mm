@@ -58,10 +58,6 @@ NSString *const kVSCBaseCryptorErrorDomain = @"VSCBaseCryptorErrorDomain";
     return static_cast<VirgilCipherBase *>(self.llCryptor);
 }
 
-- (void)addKeyRecipient:(NSData *)recipientId publicKey:(NSData *)publicKey {
-    [self addKeyRecipient:recipientId publicKey:publicKey error:nil];
-}
-
 - (BOOL)addKeyRecipient:(NSData * __nonnull)recipientId publicKey:(NSData * __nonnull)publicKey error:(NSError * __nullable * __nullable)error {
     if (recipientId.length == 0 || publicKey.length == 0) {
         // Can't add recipient.
@@ -108,10 +104,6 @@ NSString *const kVSCBaseCryptorErrorDomain = @"VSCBaseCryptorErrorDomain";
     }
     
     return success;
-}
-
-- (void)removeKeyRecipient:(NSData *)recipientId {
-    [self removeKeyRecipient:recipientId error:nil];
 }
 
 - (BOOL)removeKeyRecipient:(NSData *)recipientId error:(NSError **)error {
@@ -169,10 +161,6 @@ NSString *const kVSCBaseCryptorErrorDomain = @"VSCBaseCryptorErrorDomain";
     return [self cryptor]->keyRecipientExists(virgilRecipientId);
 }
 
-- (void)addPasswordRecipient:(NSString *)password {
-    [self addPasswordRecipient:password error:nil];
-}
-
 - (BOOL)addPasswordRecipient:(NSString *)password error:(NSError **)error {
     if (password.length == 0) {
         if (error) {
@@ -216,10 +204,6 @@ NSString *const kVSCBaseCryptorErrorDomain = @"VSCBaseCryptorErrorDomain";
     }
     
     return success;
-}
-
-- (void)removePasswordRecipient:(NSString *)password {
-    [self removePasswordRecipient:password error:nil];
 }
 
 - (BOOL)removePasswordRecipient:(NSString *)password error:(NSError **)error {
@@ -266,10 +250,6 @@ NSString *const kVSCBaseCryptorErrorDomain = @"VSCBaseCryptorErrorDomain";
     return success;
 }
 
-- (void)removeAllRecipients {
-    [self removeAllRecipientsWithError:nil];
-}
-
 - (BOOL)removeAllRecipientsWithError:(NSError **)error {
     if ([self cryptor] == NULL) {
         if (error) {
@@ -303,10 +283,6 @@ NSString *const kVSCBaseCryptorErrorDomain = @"VSCBaseCryptorErrorDomain";
         success = NO;
     }
     return success;
-}
-
-- (NSData *)contentInfo {
-    return [self contentInfoWithError:nil];
 }
 
 - (NSData *)contentInfoWithError:(NSError **)error {
@@ -343,10 +319,6 @@ NSString *const kVSCBaseCryptorErrorDomain = @"VSCBaseCryptorErrorDomain";
         contentInfo = nil;
     }
     return contentInfo;
-}
-
-- (void)setContentInfo:(NSData *) contentInfo {
-    [self setContentInfo:contentInfo error:nil];
 }
 
 - (BOOL)setContentInfo:(NSData *)contentInfo error:(NSError **)error {
