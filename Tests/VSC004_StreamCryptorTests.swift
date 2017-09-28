@@ -36,7 +36,7 @@ class VSC004_StreamCryptorTests: XCTestCase {
         let cryptor = VSCStreamCryptor()
         // Add a key recepient to enable key-based encryption
         do {
-            try cryptor.addKeyRecipient(recipientId.data(using: .utf8)!, publicKey: keyPair.publicKey(), error: ())
+            try cryptor.addKeyRecipient(recipientId.data(using: .utf8)!, publicKey: keyPair.publicKey())
         }
         catch let error as NSError {
             print("Error adding key recipient: \(error.localizedDescription)")
@@ -79,7 +79,7 @@ class VSC004_StreamCryptorTests: XCTestCase {
         let cryptor = VSCStreamCryptor()
         // Add a password recepient to enable password-based encryption
         do {
-            try cryptor.addPasswordRecipient(password, error: ())
+            try cryptor.addPasswordRecipient(password)
         }
         catch let error as NSError {
             print("Error adding password recipient: \(error.localizedDescription)")
@@ -99,7 +99,7 @@ class VSC004_StreamCryptorTests: XCTestCase {
         
         var contentInfo = Data()
         do {
-            contentInfo = try cryptor.contentInfoWithError()
+            contentInfo = try cryptor.contentInfo()
         }
         catch let error as NSError {
             XCTFail("Error getting content info from cryptor: \(error.localizedDescription)")
@@ -109,7 +109,7 @@ class VSC004_StreamCryptorTests: XCTestCase {
         // Create a completely new instance of the VCCryptor object
         let decryptor = VSCStreamCryptor()
         do {
-            try decryptor.setContentInfo(contentInfo, error: ())
+            try decryptor.setContentInfo(contentInfo)
         }
         catch let error as NSError {
             XCTFail("Error setting content info to decryptor: \(error.localizedDescription)")

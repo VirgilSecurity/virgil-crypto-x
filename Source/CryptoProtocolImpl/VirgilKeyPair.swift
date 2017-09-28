@@ -9,10 +9,10 @@
 import Foundation
 
 @objc(VSCVirgilKeyPair) public class VirgilKeyPair: NSObject {
-    public let privateKey: VirgilPrivateKey
-    public let publicKey: VirgilPublicKey
+    @objc public let privateKey: VirgilPrivateKey
+    @objc public let publicKey: VirgilPublicKey
     
-    public init(privateKey: VirgilPrivateKey, publicKey: VirgilPublicKey) {
+    @objc public init(privateKey: VirgilPrivateKey, publicKey: VirgilPublicKey) {
         self.privateKey = privateKey
         self.publicKey = publicKey
         

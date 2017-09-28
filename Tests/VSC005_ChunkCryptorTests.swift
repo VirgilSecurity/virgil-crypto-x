@@ -37,7 +37,7 @@ class VSC005_ChunkCryptorTests: XCTestCase {
         let cryptor = VSCChunkCryptor()
         // Add a key recepient to enable key-based encryption
         do {
-            try cryptor.addKeyRecipient(recipientId.data(using: .utf8)!, publicKey: keyPair.publicKey(), error: ())
+            try cryptor.addKeyRecipient(recipientId.data(using: .utf8)!, publicKey: keyPair.publicKey())
         }
         catch {
             print("Error adding key recipient: \(error.localizedDescription)")
@@ -47,12 +47,7 @@ class VSC005_ChunkCryptorTests: XCTestCase {
         let istream = InputStream(data: self.toEncrypt)
         let ostream = OutputStream.toMemory()
         
-        var error: NSError?
-        cryptor.encryptData(from: istream, to: ostream, preferredChunkSize: kDesiredDataChunkLength, embedContentInfo: true, error: &error)
-        
-        if error != nil {
-            XCTFail()
-        }
+        try! cryptor.encryptData(from: istream, to: ostream, preferredChunkSize: kDesiredDataChunkLength, embedContentInfo: true)
         
         let encryptedData = ostream.property(forKey: .dataWrittenToMemoryStreamKey) as! Data
         XCTAssert(encryptedData.count > 0)
@@ -62,10 +57,7 @@ class VSC005_ChunkCryptorTests: XCTestCase {
         let idecstream = InputStream(data: encryptedData)
         let odecstream = OutputStream.toMemory()
         
-        decryptor.decrypt(from: idecstream, to: odecstream, recipientId: recipientId.data(using: .utf8)!, privateKey: keyPair.privateKey(), keyPassword: nil, error: &error)
-        if error != nil {
-            XCTFail()
-        }
+        try! decryptor.decrypt(from: idecstream, to: odecstream, recipientId: recipientId.data(using: .utf8)!, privateKey: keyPair.privateKey(), keyPassword: nil)
         
         let plainData = odecstream.property(forKey: .dataWrittenToMemoryStreamKey) as! Data
         
@@ -78,7 +70,7 @@ class VSC005_ChunkCryptorTests: XCTestCase {
         let cryptor = VSCChunkCryptor()
         // Add a key recepient to enable key-based encryption
         do {
-            try cryptor.addPasswordRecipient(passwd, error: ())
+            try cryptor.addPasswordRecipient(passwd)
         }
         catch {
             print("Error adding key recipient: \(error.localizedDescription)")
@@ -88,12 +80,7 @@ class VSC005_ChunkCryptorTests: XCTestCase {
         let istream = InputStream(data: self.toEncrypt)
         let ostream = OutputStream.toMemory()
         
-        var error: NSError?
-        cryptor.encryptData(from: istream, to: ostream, preferredChunkSize: kDesiredDataChunkLength, embedContentInfo: true, error: &error)
-        
-        if error != nil {
-            XCTFail()
-        }
+        try! cryptor.encryptData(from: istream, to: ostream, preferredChunkSize: kDesiredDataChunkLength, embedContentInfo: true)
         
         let encryptedData = ostream.property(forKey: .dataWrittenToMemoryStreamKey) as! Data
         XCTAssert(encryptedData.count > 0)
@@ -103,10 +90,7 @@ class VSC005_ChunkCryptorTests: XCTestCase {
         let idecstream = InputStream(data: encryptedData)
         let odecstream = OutputStream.toMemory()
         
-        decryptor.decrypt(from: idecstream, to: odecstream, password: passwd, error: &error)
-        if error != nil {
-            XCTFail()
-        }
+        try! decryptor.decrypt(from: idecstream, to: odecstream, password: passwd)
         
         let plainData = odecstream.property(forKey: .dataWrittenToMemoryStreamKey) as! Data
         

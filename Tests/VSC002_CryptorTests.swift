@@ -35,7 +35,7 @@ class VSC002_CryptorTests: XCTestCase {
         let cryptor = VSCCryptor()
         // Add a key recepient to enable key-based encryption
         do {
-            try cryptor.addKeyRecipient(recipientId.data(using: .utf8)!, publicKey: keyPair.publicKey(), error: ())
+            try cryptor.addKeyRecipient(recipientId.data(using: .utf8)!, publicKey: keyPair.publicKey())
         }
         catch let error as NSError {
             print("Error adding key recipient: \(error.localizedDescription)")
@@ -44,7 +44,7 @@ class VSC002_CryptorTests: XCTestCase {
         // Encrypt the data
         var encryptedData = Data()
         do {
-            encryptedData = try cryptor.encryptData(self.toEncrypt, embedContentInfo: true, error: ())
+            encryptedData = try cryptor.encryptData(self.toEncrypt, embedContentInfo: true)
         }
         catch let error as NSError {
             print("Error encrypting data: \(error.localizedDescription)")
@@ -58,7 +58,7 @@ class VSC002_CryptorTests: XCTestCase {
         // Decrypt data using key-based decryption
         var plainData = Data()
         do {
-            plainData = try decryptor.decryptData(encryptedData, recipientId: recipientId.data(using: .utf8)!, privateKey: keyPair.privateKey(), keyPassword: nil, error: ())
+            plainData = try decryptor.decryptData(encryptedData, recipientId: recipientId.data(using: .utf8)!, privateKey: keyPair.privateKey(), keyPassword: nil)
         }
         catch let error as NSError {
             print("Error decrypting data: \(error.localizedDescription)")
@@ -74,7 +74,7 @@ class VSC002_CryptorTests: XCTestCase {
         let cryptor = VSCCryptor()
         // Add a password recepient to enable password-based encryption
         do {
-            try cryptor.addPasswordRecipient(password, error: ())
+            try cryptor.addPasswordRecipient(password)
         }
         catch let error as NSError {
             print("Error adding password recipient: \(error.localizedDescription)")
@@ -83,7 +83,7 @@ class VSC002_CryptorTests: XCTestCase {
         // Encrypt the data
         var encryptedData = Data()
         do {
-            encryptedData = try cryptor.encryptData(self.toEncrypt, embedContentInfo: false, error: ())
+            encryptedData = try cryptor.encryptData(self.toEncrypt, embedContentInfo: false)
         }
         catch let error as NSError {
             print("Error encrypting data: \(error.localizedDescription)")
@@ -93,7 +93,7 @@ class VSC002_CryptorTests: XCTestCase {
         
         var contentInfo = Data()
         do {
-            contentInfo = try cryptor.contentInfoWithError()
+            contentInfo = try cryptor.contentInfo()
         }
         catch let error as NSError {
             print("Error getting content info from cryptor: \(error.localizedDescription)")
@@ -104,7 +104,7 @@ class VSC002_CryptorTests: XCTestCase {
         // Create a completely new instance of the VCCryptor object
         let decryptor = VSCCryptor()
         do {
-            try decryptor.setContentInfo(contentInfo, error: ())
+            try decryptor.setContentInfo(contentInfo)
         }
         catch let error as NSError {
             print("Error setting content info to decryptor: \(error.localizedDescription)")
@@ -113,7 +113,7 @@ class VSC002_CryptorTests: XCTestCase {
         // Decrypt data using password-based decryption
         var plainData = Data()
         do {
-            plainData = try decryptor.decryptData(encryptedData, password: password, error: ())
+            plainData = try decryptor.decryptData(encryptedData, password: password)
         }
         catch let error as NSError {
             print("Error decrypting data: \(error.localizedDescription)")

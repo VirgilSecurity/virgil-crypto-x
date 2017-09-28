@@ -18,17 +18,17 @@ public extension VirgilCrypto {
         return VirgilKeyPair(privateKey: privateKey, publicKey: publicKey)
     }
     
-    public func generateMultipleKeyPairs(numberOfKeyPairs: UInt) -> [VirgilKeyPair] {
+    @objc public func generateMultipleKeyPairs(numberOfKeyPairs: UInt) -> [VirgilKeyPair] {
         return VSCKeyPair
             .generateMultipleKeys(numberOfKeyPairs, keyPairType: self.defaultKeyType)
             .map({ self.wrapKeyPair(keyPair: $0) })
     }
     
-    public func generateKeyPair() -> VirgilKeyPair {
+    @objc public func generateKeyPair() -> VirgilKeyPair {
         return self.generateKeyPair(ofType: self.defaultKeyType)
     }
     
-    public func generateKeyPair(ofType type: VSCKeyType) -> VirgilKeyPair {
+    @objc public func generateKeyPair(ofType type: VSCKeyType) -> VirgilKeyPair {
         let keyPair = VSCKeyPair(keyPairType: type, password: nil)
         
         return self.wrapKeyPair(keyPair: keyPair)
