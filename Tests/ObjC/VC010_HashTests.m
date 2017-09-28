@@ -101,4 +101,24 @@
     XCTAssertEqualObjects(expectedHashString, hexString);
 }
 
+- (void)test006_calculateSHA256_Chunks {
+    VSCHash *h = [[VSCHash alloc] initWithAlgorithm:VSCHashAlgorithmSHA256];
+    NSString *plainString = @"abc";
+    NSString *expectedHashString = @"ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad";
+    
+    XCTAssert([[[h hash:[[NSData alloc] init]] base64EncodedStringWithOptions:0] isEqualToString:@"47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="]);
+    XCTAssert([[[h hash:nil] base64EncodedStringWithOptions:0] isEqualToString:@"47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="]);
+    
+    NSData *data = [plainString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    [h start];
+    [h updateWithData:[data subdataWithRange:NSMakeRange(0, 1)]];
+    [h updateWithData:[data subdataWithRange:NSMakeRange(1, 1)]];
+    [h updateWithData:[data subdataWithRange:NSMakeRange(2, 1)]];
+    NSData *hashData = [h finish];
+    NSString *hexString = [VSCByteArrayUtils hexStringFromData:hashData];
+    
+    XCTAssertEqualObjects(expectedHashString, hexString);
+}
+
 @end

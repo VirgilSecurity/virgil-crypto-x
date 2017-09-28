@@ -5,7 +5,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 typedef NS_ENUM(NSInteger, VSCHashAlgorithm) {
     VSCHashAlgorithmMD5,    ///< Hash Algorithm: MD5
     VSCHashAlgorithmSHA1,   ///< Hash Algorithm: SHA1
@@ -15,11 +14,44 @@ typedef NS_ENUM(NSInteger, VSCHashAlgorithm) {
     VSCHashAlgorithmSHA512  ///< Hash Algorithm: SHA512
 };
 
-
+/**
+ Class for hashing.
+ */
 @interface VSCHash : NSObject
 
-- (instancetype)initWithAlgorithm:(VSCHashAlgorithm)algorithm;
+/**
+ Initializer.
 
-- (NSData *)hash:(NSData *)data;
+ @param algorithm hash algorithm to use
+ @return initalized instance
+ */
+- (instancetype __nonnull)initWithAlgorithm:(VSCHashAlgorithm)algorithm;
+
+/**
+ Hashes data.
+
+ @param data data to hash
+ @return computed hash
+ */
+- (NSData * __nonnull)hash:(NSData * __nullable)data;
+
+/**
+ Start hashing
+ */
+- (void)start;
+
+/**
+ Updates hash with new data.
+
+ @param data new data
+ */
+- (void)updateWithData:(NSData * __nullable)data;
+
+/**
+ Finished hashing process.
+
+ @return computed hash.
+ */
+- (NSData * __nonnull)finish;
 
 @end

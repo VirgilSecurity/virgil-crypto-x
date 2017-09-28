@@ -77,4 +77,19 @@ using CAlgorithm = virgil::crypto::foundation::VirgilHash::Algorithm;
     return [NSData dataWithBytes:hashData.data() length:hashData.size()];
 }
 
+- (void)start {
+    self.hash->start();
+}
+
+- (void)updateWithData:(NSData *)data {
+    const VirgilByteArray &vData = [VSCByteArrayUtils convertVirgilByteArrayFromData:data];
+    self.hash->update(vData);
+}
+
+- (NSData *)finish {
+    const VirgilByteArray &hashData = self.hash->finish();
+    
+    return [NSData dataWithBytes:hashData.data() length:hashData.size()];
+}
+
 @end
