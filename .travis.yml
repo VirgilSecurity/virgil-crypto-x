@@ -1,6 +1,6 @@
 language: objective-c
 
-osx_image: xcode8.3
+osx_image: xcode9
 
 env:
   global:
@@ -8,12 +8,12 @@ env:
     - PROJECT=VirgilCrypto.xcodeproj
     - IOS_FRAMEWORK_SCHEME="VirgilCrypto iOS"
     - MACOS_FRAMEWORK_SCHEME="VirgilCrypto macOS"
-    - IOS_SDK=iphonesimulator10.3
-    - MACOS_SDK=macosx10.12
+    - IOS_SDK=iphonesimulator11.0
+    - MACOS_SDK=macosx10.13
     - FRAMEWORK_NAME=VirgilCrypto
   matrix:
-    - DESTINATION="OS=10.3.1,name=iPhone SE"     SCHEME="$IOS_FRAMEWORK_SCHEME"    SDK="$IOS_SDK"    CARTHAGE_PLATFORM_NAME="iOS"  RUN_TESTS="YES"
-    - DESTINATION="arch=x86_64"                SCHEME="$MACOS_FRAMEWORK_SCHEME"  SDK="$MACOS_SDK"  CARTHAGE_PLATFORM_NAME="Mac"  RUN_TESTS="YES"
+    - DESTINATION="OS=11.0,name=iPhone SE"  SCHEME="$IOS_FRAMEWORK_SCHEME"    SDK="$IOS_SDK"    CARTHAGE_PLATFORM_NAME="iOS"  RUN_TESTS="YES"
+    - DESTINATION="arch=x86_64"             SCHEME="$MACOS_FRAMEWORK_SCHEME"  SDK="$MACOS_SDK"  CARTHAGE_PLATFORM_NAME="Mac"  RUN_TESTS="YES"
 
 before_install:
   - set -o pipefail
@@ -22,14 +22,12 @@ before_install:
   - xcodebuild -version
   - xcodebuild -showsdks
 
-language: objective-c
-
 script:
   # Build Framework
-  - xcodebuild -verbose -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release ONLY_ACTIVE_ARCH=NO ENABLE_TESTABILITY=YES GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES clean build-for-testing | xcpretty;
+  - xcodebuild -verbose -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release clean build-for-testing | xcpretty;
   # Build Framework in Release and Run Tests if specified
   - if [ $RUN_TESTS == "YES" ]; then
-      xcodebuild -verbose -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release GCC_GENERATE_TEST_COVERAGE_FILES=YES test-without-building | xcpretty;
+      xcodebuild -verbose -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release test-without-building | xcpretty;
     fi
 
   - pod lib lint
