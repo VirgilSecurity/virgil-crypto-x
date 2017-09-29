@@ -34,36 +34,19 @@ class VSC002_CryptorTests: XCTestCase {
         // Create a cryptor instance
         let cryptor = VSCCryptor()
         // Add a key recepient to enable key-based encryption
-        do {
-            try cryptor.addKeyRecipient(recipientId.data(using: .utf8)!, publicKey: keyPair.publicKey())
-        }
-        catch let error as NSError {
-            print("Error adding key recipient: \(error.localizedDescription)")
-            XCTFail()
-        }
+        try! cryptor.addKeyRecipient(recipientId.data(using: .utf8)!, publicKey: keyPair.publicKey())
+        
         // Encrypt the data
-        var encryptedData = Data()
-        do {
-            encryptedData = try cryptor.encryptData(self.toEncrypt, embedContentInfo: true)
-        }
-        catch let error as NSError {
-            print("Error encrypting data: \(error.localizedDescription)")
-            XCTFail()
-        }
+        var encryptedData = try! cryptor.encryptData(self.toEncrypt, embedContentInfo: true)
+        
         XCTAssertTrue(encryptedData.count > 0, "The data encrypted with key-based encryption should have an actual content.");
         
         // Decrypt:
         // Create a completely new instance of the VCCryptor object
         let decryptor = VSCCryptor()
         // Decrypt data using key-based decryption
-        var plainData = Data()
-        do {
-            plainData = try decryptor.decryptData(encryptedData, recipientId: recipientId.data(using: .utf8)!, privateKey: keyPair.privateKey(), keyPassword: nil)
-        }
-        catch let error as NSError {
-            print("Error decrypting data: \(error.localizedDescription)")
-            XCTFail()
-        }
+        let plainData = try! decryptor.decryptData(encryptedData, recipientId: recipientId.data(using: .utf8)!, privateKey: keyPair.privateKey(), keyPassword: nil)
+        
         XCTAssertEqual(plainData, self.toEncrypt, "Initial data and decrypted data should be equal.")
     }
     
@@ -73,52 +56,24 @@ class VSC002_CryptorTests: XCTestCase {
         // Create a cryptor instance
         let cryptor = VSCCryptor()
         // Add a password recepient to enable password-based encryption
-        do {
-            try cryptor.addPasswordRecipient(password)
-        }
-        catch let error as NSError {
-            print("Error adding password recipient: \(error.localizedDescription)")
-            XCTFail()
-        }
+        try! cryptor.addPasswordRecipient(password)
+        
         // Encrypt the data
-        var encryptedData = Data()
-        do {
-            encryptedData = try cryptor.encryptData(self.toEncrypt, embedContentInfo: false)
-        }
-        catch let error as NSError {
-            print("Error encrypting data: \(error.localizedDescription)")
-            XCTFail()
-        }
+        var encryptedData = try! cryptor.encryptData(self.toEncrypt, embedContentInfo: false)
+        
         XCTAssertTrue(encryptedData.count > 0, "The data encrypted with password-based encryption should have an actual content.");
         
-        var contentInfo = Data()
-        do {
-            contentInfo = try cryptor.contentInfo()
-        }
-        catch let error as NSError {
-            print("Error getting content info from cryptor: \(error.localizedDescription)")
-            XCTFail()
-        }
+        var contentInfo = try! cryptor.contentInfo()
+        
         XCTAssertTrue(contentInfo.count > 0, "Content Info should contain necessary information.");
         // Decrypt:
         // Create a completely new instance of the VCCryptor object
         let decryptor = VSCCryptor()
-        do {
-            try decryptor.setContentInfo(contentInfo)
-        }
-        catch let error as NSError {
-            print("Error setting content info to decryptor: \(error.localizedDescription)")
-            XCTFail()
-        }
+        try! decryptor.setContentInfo(contentInfo)
+        
         // Decrypt data using password-based decryption
-        var plainData = Data()
-        do {
-            plainData = try decryptor.decryptData(encryptedData, password: password)
-        }
-        catch let error as NSError {
-            print("Error decrypting data: \(error.localizedDescription)")
-            XCTFail()
-        }
+        let plainData = try! decryptor.decryptData(encryptedData, password: password)
+        
         XCTAssertEqual(plainData, self.toEncrypt, "Initial data and decrypted data should be equal.")
     }
     

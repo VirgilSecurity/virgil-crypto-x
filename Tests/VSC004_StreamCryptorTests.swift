@@ -35,22 +35,11 @@ class VSC004_StreamCryptorTests: XCTestCase {
         // Create a cryptor instance
         let cryptor = VSCStreamCryptor()
         // Add a key recepient to enable key-based encryption
-        do {
-            try cryptor.addKeyRecipient(recipientId.data(using: .utf8)!, publicKey: keyPair.publicKey())
-        }
-        catch let error as NSError {
-            print("Error adding key recipient: \(error.localizedDescription)")
-            XCTFail()
-        }
+        try! cryptor.addKeyRecipient(recipientId.data(using: .utf8)!, publicKey: keyPair.publicKey())
         
         let eis = InputStream(data: self.toEncrypt)
         let eos = OutputStream(toMemory: ())
-        do {
-            try cryptor.encryptData(from: eis, to: eos, embedContentInfo: true)
-        }
-        catch let error as NSError {
-            XCTFail("Error encrypting input stream: \(error.localizedDescription)")
-        }
+        try! cryptor.encryptData(from: eis, to: eos, embedContentInfo: true)
         
         let encryptedData = eos.property(forKey: Stream.PropertyKey.dataWrittenToMemoryStreamKey) as! Data
         XCTAssertTrue(encryptedData.count > 0, "The data encrypted with key-based encryption should have an actual content.")
@@ -61,12 +50,8 @@ class VSC004_StreamCryptorTests: XCTestCase {
         
         let dis = InputStream(data: encryptedData)
         let dos = OutputStream(toMemory: ())
-        do {
-            try decryptor.decrypt(from: dis, to: dos, recipientId: recipientId.data(using: .utf8)!, privateKey: keyPair.privateKey(), keyPassword: nil)
-        }
-        catch let error as NSError {
-            XCTFail("Error decrypting data: \(error.localizedDescription)")
-        }
+        try! decryptor.decrypt(from: dis, to: dos, recipientId: recipientId.data(using: .utf8)!, privateKey: keyPair.privateKey(), keyPassword: nil)
+        
         let plainData = dos.property(forKey: Stream.PropertyKey.dataWrittenToMemoryStreamKey) as! Data
         XCTAssertTrue(plainData.count > 0, "Decrypted data should contain actual data.")
         XCTAssertEqual(plainData, self.toEncrypt, "Initial data and decrypted data should be equal.")
@@ -78,51 +63,26 @@ class VSC004_StreamCryptorTests: XCTestCase {
         // Create a cryptor instance
         let cryptor = VSCStreamCryptor()
         // Add a password recepient to enable password-based encryption
-        do {
-            try cryptor.addPasswordRecipient(password)
-        }
-        catch let error as NSError {
-            print("Error adding password recipient: \(error.localizedDescription)")
-            XCTFail()
-        }
+        try! cryptor.addPasswordRecipient(password)
         
         let eis = InputStream(data: self.toEncrypt)
         let eos = OutputStream(toMemory: ())
-        do {
-            try cryptor.encryptData(from: eis, to: eos, embedContentInfo: false)
-        }
-        catch let error as NSError {
-            XCTFail("Error encrypting data: \(error.localizedDescription)")
-        }
+        try! cryptor.encryptData(from: eis, to: eos, embedContentInfo: false)
+        
         let encryptedData = eos.property(forKey: Stream.PropertyKey.dataWrittenToMemoryStreamKey) as! Data
         XCTAssertTrue(encryptedData.count > 0, "The data encrypted with password-based encryption should have an actual content.");
         
-        var contentInfo = Data()
-        do {
-            contentInfo = try cryptor.contentInfo()
-        }
-        catch let error as NSError {
-            XCTFail("Error getting content info from cryptor: \(error.localizedDescription)")
-        }
+        var contentInfo = try! cryptor.contentInfo()
+        
         XCTAssertTrue(contentInfo.count > 0, "Content Info should contain necessary information.");
         // Decrypt:
         // Create a completely new instance of the VCCryptor object
         let decryptor = VSCStreamCryptor()
-        do {
-            try decryptor.setContentInfo(contentInfo)
-        }
-        catch let error as NSError {
-            XCTFail("Error setting content info to decryptor: \(error.localizedDescription)")
-        }
-        
+        try! decryptor.setContentInfo(contentInfo)
+
         let dis = InputStream(data: encryptedData)
         let dos = OutputStream(toMemory: ())
-        do {
-            try decryptor.decrypt(from: dis, to: dos, password: password)
-        }
-        catch let error as NSError {
-            XCTFail("Error decrypting data: \(error.localizedDescription)")
-        }
+        try! decryptor.decrypt(from: dis, to: dos, password: password)
         
         let plainData = dos.property(forKey: Stream.PropertyKey.dataWrittenToMemoryStreamKey) as! Data
         XCTAssertTrue(plainData.count > 0, "The data decrypted with password-based decryption should have an actual content.");

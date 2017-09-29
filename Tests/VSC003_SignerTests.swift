@@ -33,20 +33,9 @@ class VSC003_SignerTests: XCTestCase {
         // Create the signer
         let signer = VSCSigner()
         // Compose the signature
-        var signature = Data()
-        do {
-            signature = try signer.sign(self.toSign, privateKey: keyPair.privateKey(), keyPassword: nil)
-        }
-        catch let error as NSError {
-            XCTFail("Error composing the signature: \(error.localizedDescription)")
-        }
+        let signature = try! signer.sign(self.toSign, privateKey: keyPair.privateKey(), keyPassword: nil)
         
         let verifier = VSCSigner()
-        do {
-            try verifier.verifySignature(signature, data: self.toSign, publicKey: keyPair.publicKey())
-        }
-        catch let error as NSError {
-            XCTFail("Error verification the signature: \(error.localizedDescription)")
-        }
+        try! verifier.verifySignature(signature, data: self.toSign, publicKey: keyPair.publicKey())
     }
 }

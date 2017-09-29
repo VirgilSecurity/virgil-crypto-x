@@ -34,21 +34,11 @@ class VSC006_StreamSignerTests: XCTestCase {
         let signer = VSCStreamSigner()
         // Compose the signature
         var signature = Data()
-        do {
-            let sis = InputStream(data: self.toSign)
-            signature = try signer.signStreamData(sis, privateKey: keyPair.privateKey(), keyPassword: nil)
-        }
-        catch let error as NSError {
-            XCTFail("Error composing the signature: \(error.localizedDescription)")
-        }
+        let sis = InputStream(data: self.toSign)
+        signature = try! signer.signStreamData(sis, privateKey: keyPair.privateKey(), keyPassword: nil)
         
         let verifier = VSCStreamSigner()
-        do {
-            let vis = InputStream(data: self.toSign)
-            try verifier.verifySignature(signature, from: vis, publicKey: keyPair.publicKey())
-        }
-        catch let error as NSError {
-            XCTFail("Error verification the signature: \(error.localizedDescription)")
-        }
+        let vis = InputStream(data: self.toSign)
+        try! verifier.verifySignature(signature, from: vis, publicKey: keyPair.publicKey())
     }
 }
