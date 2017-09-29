@@ -25,7 +25,7 @@ typedef NS_ENUM(NSInteger, VSCHashAlgorithm) {
  @param algorithm hash algorithm to use
  @return initalized instance
  */
-- (instancetype __nonnull)initWithAlgorithm:(VSCHashAlgorithm)algorithm;
+- (instancetype)initWithAlgorithm:(VSCHashAlgorithm)algorithm;
 
 /**
  Hashes data.
@@ -33,7 +33,7 @@ typedef NS_ENUM(NSInteger, VSCHashAlgorithm) {
  @param data data to hash
  @return computed hash
  */
-- (NSData * __nonnull)hash:(NSData * __nullable)data;
+- (NSData *)hash:(NSData *)data;
 
 /**
  Start hashing
