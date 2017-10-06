@@ -351,6 +351,13 @@
 			remoteGlobalIDString = 423F002F1E719EF200CC98A3;
 			remoteInfo = "VirgilCrypto macOS";
 		};
+		42921E891F87A150006218D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3614026D1BB2A6CB002E69CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42A01F7B1F7D51FE00FF8804;
+			remoteInfo = "VirgilCrypto tvOS";
+		};
 		42A01FC81F7D555F00FF8804 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3614026D1BB2A6CB002E69CA /* Project object */;
@@ -981,6 +988,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				42921E8A1F87A150006218D5 /* PBXTargetDependency */,
 			);
 			name = "VirgilCrypto tvOS Tests";
 			productName = "VirgilCrypto tvOS Tests";
@@ -1380,6 +1388,11 @@
 			isa = PBXTargetDependency;
 			target = 423F002F1E719EF200CC98A3 /* VirgilCrypto macOS */;
 			targetProxy = 42745A671ED43E4F00C1DEEC /* PBXContainerItemProxy */;
+		};
+		42921E8A1F87A150006218D5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 42A01F7B1F7D51FE00FF8804 /* VirgilCrypto tvOS */;
+			targetProxy = 42921E891F87A150006218D5 /* PBXContainerItemProxy */;
 		};
 		42A01FC91F7D555F00FF8804 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
