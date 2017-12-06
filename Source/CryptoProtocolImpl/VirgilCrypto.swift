@@ -28,7 +28,7 @@ import VirgilCryptoAPI
         let cryptor = VSCCryptor()
         
         try recipients.forEach(){
-            try cryptor.addKeyRecipient($0.key, publicKey: $0.key)
+            try cryptor.addKeyRecipient($0.identifier, publicKey: $0.key)
         }
         
         let encryptedData = try cryptor.encryptData(data, embedContentInfo: true)
@@ -40,7 +40,7 @@ import VirgilCryptoAPI
         let cryptor = VSCChunkCryptor()
         
         try recipients.forEach(){
-            try cryptor.addKeyRecipient($0.key, publicKey: $0.key)
+            try cryptor.addKeyRecipient($0.identifier, publicKey: $0.key)
         }
         
         try cryptor.encryptData(from: stream, to: outputStream)
