@@ -26,7 +26,7 @@ public extension VirgilCrypto {
             throw NSError()
         }
         
-        let keyIdentifier = self.computeSHA256(for: publicKeyData)
+        let keyIdentifier = self.computeHash(for: publicKeyData, using: .SHA256)
         
         guard let exportedPrivateKeyData = VSCKeyPair.privateKey(toDER: privateKeyData) else {
             throw NSError()
