@@ -24,8 +24,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		16884B0D1FD802530018BFA2 /* VSS003_CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16884B0B1FD802520018BFA2 /* VSS003_CryptoTests.swift */; };
-		16884B0E1FD802530018BFA2 /* VSS003_CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16884B0B1FD802520018BFA2 /* VSS003_CryptoTests.swift */; };
+		16884B0D1FD802530018BFA2 /* VSS001_CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16884B0B1FD802520018BFA2 /* VSS001_CryptoTests.swift */; };
+		16884B0E1FD802530018BFA2 /* VSS001_CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16884B0B1FD802520018BFA2 /* VSS001_CryptoTests.swift */; };
 		16F9B6451FFEDABD0005EE7D /* VirgilCardCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F9B6441FFEDABD0005EE7D /* VirgilCardCrypto.swift */; };
 		16F9B6461FFEDABD0005EE7D /* VirgilCardCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F9B6441FFEDABD0005EE7D /* VirgilCardCrypto.swift */; };
 		16F9B6471FFEDABD0005EE7D /* VirgilCardCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F9B6441FFEDABD0005EE7D /* VirgilCardCrypto.swift */; };
@@ -34,7 +34,7 @@
 		16F9B64B1FFF9C0E0005EE7D /* VirgilAccessTokenSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F9B6491FFF9C0E0005EE7D /* VirgilAccessTokenSigner.swift */; };
 		16F9B64C1FFF9C0E0005EE7D /* VirgilAccessTokenSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F9B6491FFF9C0E0005EE7D /* VirgilAccessTokenSigner.swift */; };
 		16F9B64D1FFF9C0E0005EE7D /* VirgilAccessTokenSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F9B6491FFF9C0E0005EE7D /* VirgilAccessTokenSigner.swift */; };
-		16F9B64E1FFFB2010005EE7D /* VSS003_CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16884B0B1FD802520018BFA2 /* VSS003_CryptoTests.swift */; };
+		16F9B64E1FFFB2010005EE7D /* VSS001_CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16884B0B1FD802520018BFA2 /* VSS001_CryptoTests.swift */; };
 		16F9B6531FFFB8C70005EE7D /* testData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 16F9B6521FFFB8C70005EE7D /* testData.txt */; };
 		16F9B6541FFFB8C70005EE7D /* testData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 16F9B6521FFFB8C70005EE7D /* testData.txt */; };
 		16F9B6551FFFB8C70005EE7D /* testData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 16F9B6521FFFB8C70005EE7D /* testData.txt */; };
@@ -405,7 +405,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		16884B0B1FD802520018BFA2 /* VSS003_CryptoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS003_CryptoTests.swift; sourceTree = "<group>"; };
+		16884B0B1FD802520018BFA2 /* VSS001_CryptoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS001_CryptoTests.swift; sourceTree = "<group>"; };
 		16F9B6441FFEDABD0005EE7D /* VirgilCardCrypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirgilCardCrypto.swift; sourceTree = "<group>"; };
 		16F9B6491FFF9C0E0005EE7D /* VirgilAccessTokenSigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirgilAccessTokenSigner.swift; sourceTree = "<group>"; };
 		16F9B6521FFFB8C70005EE7D /* testData.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testData.txt; sourceTree = "<group>"; };
@@ -741,7 +741,7 @@
 			isa = PBXGroup;
 			children = (
 				16F9B6511FFFB8820005EE7D /* Data */,
-				16884B0B1FD802520018BFA2 /* VSS003_CryptoTests.swift */,
+				16884B0B1FD802520018BFA2 /* VSS001_CryptoTests.swift */,
 				16F9B6501FFFB2340005EE7D /* Abstractions */,
 			);
 			path = Tests;
@@ -1261,7 +1261,7 @@
 				42CDC3481F69853E00D69111 /* VSC009_ByteArrayUtils.swift in Sources */,
 				42CDC31D1F697E7100D69111 /* VSC002_CryptorTests.swift in Sources */,
 				42CDC3271F697F2B00D69111 /* VSC004_StreamCryptorTests.swift in Sources */,
-				16884B0D1FD802530018BFA2 /* VSS003_CryptoTests.swift in Sources */,
+				16884B0D1FD802530018BFA2 /* VSS001_CryptoTests.swift in Sources */,
 				42CDC3411F6980A400D69111 /* VSC008_TinyCryptorTests.swift in Sources */,
 				42CDC32C1F697F8B00D69111 /* VSC005_ChunkCryptorTests.swift in Sources */,
 				42CDC33C1F69807300D69111 /* VSP001_PFSTests.swift in Sources */,
@@ -1354,7 +1354,7 @@
 				42CDC3191F69711D00D69111 /* VSC001_KeyPairTests.swift in Sources */,
 				42CDC31E1F697E7200D69111 /* VSC002_CryptorTests.swift in Sources */,
 				42CDC3491F69853E00D69111 /* VSC009_ByteArrayUtils.swift in Sources */,
-				16884B0E1FD802530018BFA2 /* VSS003_CryptoTests.swift in Sources */,
+				16884B0E1FD802530018BFA2 /* VSS001_CryptoTests.swift in Sources */,
 				42CDC32D1F697F8C00D69111 /* VSC005_ChunkCryptorTests.swift in Sources */,
 				42CDC3281F697F2C00D69111 /* VSC004_StreamCryptorTests.swift in Sources */,
 				42CDC34E1F6985D600D69111 /* VSC010_HashTests.swift in Sources */,
@@ -1405,7 +1405,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16F9B64E1FFFB2010005EE7D /* VSS003_CryptoTests.swift in Sources */,
+				16F9B64E1FFFB2010005EE7D /* VSS001_CryptoTests.swift in Sources */,
 				42CDC3171F69711B00D69111 /* VSC001_KeyPairTests.swift in Sources */,
 				42CDC3211F697EED00D69111 /* VSC003_SignerTests.swift in Sources */,
 				42CDC3471F69853C00D69111 /* VSC009_ByteArrayUtils.swift in Sources */,

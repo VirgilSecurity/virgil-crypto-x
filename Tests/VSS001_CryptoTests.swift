@@ -236,7 +236,7 @@ class VSS003_CryptoTests: XCTestCase {
         
         let signature = try! self.crypto.generateSignature(of: data, usingVirgil: keyPair.privateKey)
         
-        try! self.crypto.verifySignature(data, of: signature, withVirgil: keyPair.publicKey)
+        try! self.crypto.verifySignature(signature, of: data, withVirgil: keyPair.publicKey)
     }
     
     func testSD002_SignRandomData_IncorrectKeys_ShouldNotValidate() {
@@ -249,7 +249,7 @@ class VSS003_CryptoTests: XCTestCase {
         
         var errorWasThrown = false
         do {
-            try self.crypto.verifySignature(data, of: signature, withVirgil: wrongKeyPair.publicKey)
+            try self.crypto.verifySignature(signature, of: data, withVirgil: wrongKeyPair.publicKey)
         }
         catch {
             errorWasThrown = true
