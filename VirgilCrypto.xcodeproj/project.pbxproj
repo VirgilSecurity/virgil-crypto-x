@@ -34,6 +34,10 @@
 		16F9B64B1FFF9C0E0005EE7D /* VirgilAccessTokenSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F9B6491FFF9C0E0005EE7D /* VirgilAccessTokenSigner.swift */; };
 		16F9B64C1FFF9C0E0005EE7D /* VirgilAccessTokenSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F9B6491FFF9C0E0005EE7D /* VirgilAccessTokenSigner.swift */; };
 		16F9B64D1FFF9C0E0005EE7D /* VirgilAccessTokenSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F9B6491FFF9C0E0005EE7D /* VirgilAccessTokenSigner.swift */; };
+		16F9B64E1FFFB2010005EE7D /* VSS003_CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16884B0B1FD802520018BFA2 /* VSS003_CryptoTests.swift */; };
+		16F9B6531FFFB8C70005EE7D /* testData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 16F9B6521FFFB8C70005EE7D /* testData.txt */; };
+		16F9B6541FFFB8C70005EE7D /* testData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 16F9B6521FFFB8C70005EE7D /* testData.txt */; };
+		16F9B6551FFFB8C70005EE7D /* testData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 16F9B6521FFFB8C70005EE7D /* testData.txt */; };
 		420D102D1EF140A5002A9C22 /* VSCPfsPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D102C1EF14090002A9C22 /* VSCPfsPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		420D102E1EF140A5002A9C22 /* VSCPfs.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D102B1EF14074002A9C22 /* VSCPfs.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		420D102F1EF140A6002A9C22 /* VSCPfsPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D102C1EF14090002A9C22 /* VSCPfsPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -404,6 +408,7 @@
 		16884B0B1FD802520018BFA2 /* VSS003_CryptoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS003_CryptoTests.swift; sourceTree = "<group>"; };
 		16F9B6441FFEDABD0005EE7D /* VirgilCardCrypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirgilCardCrypto.swift; sourceTree = "<group>"; };
 		16F9B6491FFF9C0E0005EE7D /* VirgilAccessTokenSigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirgilAccessTokenSigner.swift; sourceTree = "<group>"; };
+		16F9B6521FFFB8C70005EE7D /* testData.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testData.txt; sourceTree = "<group>"; };
 		420D102B1EF14074002A9C22 /* VSCPfs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCPfs.h; sourceTree = "<group>"; };
 		420D102C1EF14090002A9C22 /* VSCPfsPublic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCPfsPublic.h; sourceTree = "<group>"; };
 		420D10311EF14176002A9C22 /* VSCPfs.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VSCPfs.mm; sourceTree = "<group>"; };
@@ -570,6 +575,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16F9B6501FFFB2340005EE7D /* Abstractions */ = {
+			isa = PBXGroup;
+			children = (
+				42CDC3151F69711400D69111 /* VSC001_KeyPairTests.swift */,
+				42CDC31A1F697E0F00D69111 /* VSC002_CryptorTests.swift */,
+				42CDC31F1F697ED400D69111 /* VSC003_SignerTests.swift */,
+				42CDC3241F697F0800D69111 /* VSC004_StreamCryptorTests.swift */,
+				42CDC3291F697F7000D69111 /* VSC005_ChunkCryptorTests.swift */,
+				42CDC32E1F697FDA00D69111 /* VSC006_StreamSignerTests.swift */,
+				42CDC3331F69802100D69111 /* VSC007_PBKDFTests.swift */,
+				42CDC33E1F69808900D69111 /* VSC008_TinyCryptorTests.swift */,
+				42CDC3431F69850C00D69111 /* VSC009_ByteArrayUtils.swift */,
+				42CDC34A1F6985B900D69111 /* VSC010_HashTests.swift */,
+				42CDC3391F69806B00D69111 /* VSP001_PFSTests.swift */,
+			);
+			path = Abstractions;
+			sourceTree = "<group>";
+		};
+		16F9B6511FFFB8820005EE7D /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				16F9B6521FFFB8C70005EE7D /* testData.txt */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		3614026C1BB2A6CB002E69CA = {
 			isa = PBXGroup;
 			children = (
@@ -709,18 +740,9 @@
 		42F85F381DC765D000C3184C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				16F9B6511FFFB8820005EE7D /* Data */,
 				16884B0B1FD802520018BFA2 /* VSS003_CryptoTests.swift */,
-				42CDC3151F69711400D69111 /* VSC001_KeyPairTests.swift */,
-				42CDC31A1F697E0F00D69111 /* VSC002_CryptorTests.swift */,
-				42CDC31F1F697ED400D69111 /* VSC003_SignerTests.swift */,
-				42CDC3241F697F0800D69111 /* VSC004_StreamCryptorTests.swift */,
-				42CDC3291F697F7000D69111 /* VSC005_ChunkCryptorTests.swift */,
-				42CDC32E1F697FDA00D69111 /* VSC006_StreamSignerTests.swift */,
-				42CDC3331F69802100D69111 /* VSC007_PBKDFTests.swift */,
-				42CDC33E1F69808900D69111 /* VSC008_TinyCryptorTests.swift */,
-				42CDC3431F69850C00D69111 /* VSC009_ByteArrayUtils.swift */,
-				42CDC34A1F6985B900D69111 /* VSC010_HashTests.swift */,
-				42CDC3391F69806B00D69111 /* VSP001_PFSTests.swift */,
+				16F9B6501FFFB2340005EE7D /* Abstractions */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -1132,6 +1154,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16F9B6541FFFB8C70005EE7D /* testData.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1146,6 +1169,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16F9B6551FFFB8C70005EE7D /* testData.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1153,6 +1177,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16F9B6531FFFB8C70005EE7D /* testData.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1380,6 +1405,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16F9B64E1FFFB2010005EE7D /* VSS003_CryptoTests.swift in Sources */,
 				42CDC3171F69711B00D69111 /* VSC001_KeyPairTests.swift in Sources */,
 				42CDC3211F697EED00D69111 /* VSC003_SignerTests.swift in Sources */,
 				42CDC3471F69853C00D69111 /* VSC009_ByteArrayUtils.swift in Sources */,

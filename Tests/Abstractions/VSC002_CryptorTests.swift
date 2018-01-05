@@ -76,5 +76,4 @@ class VSC002_CryptorTests: XCTestCase {
         
         XCTAssertEqual(plainData, self.toEncrypt, "Initial data and decrypted data should be equal.")
     }
-    
 }

@@ -56,7 +56,9 @@ public extension VirgilCrypto {
             throw NSError()
         }
         
-        return VirgilPublicKey(identifier: publicKeyData, key: privateKey.key)
+        let id = self.computeHash(for: publicKeyData, using: .SHA256)
+        
+        return VirgilPublicKey(identifier: id, key: privateKey.key)
     }
     
     @objc public func exportVirgilPublicKey(_ publicKey: VirgilPublicKey) throws -> Data {
