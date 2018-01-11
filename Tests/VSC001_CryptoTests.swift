@@ -11,7 +11,7 @@ import VirgilCryptoAPI
 import VirgilCrypto
 import XCTest
 
-class VSS003_CryptoTests: XCTestCase {
+class VSC001_CryptoTests: XCTestCase {
     private var crypto: VirgilCrypto!
     // MARK: Setup
     
