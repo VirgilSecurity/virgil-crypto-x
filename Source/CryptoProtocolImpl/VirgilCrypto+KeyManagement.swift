@@ -32,37 +32,37 @@ public extension VirgilCrypto {
             throw NSError()
         }
         
-        return VirgilPrivateKey(identifier: keyIdentifier, key: exportedPrivateKeyData)
+        return VirgilPrivateKey(identifier: keyIdentifier, rawKey: exportedPrivateKeyData)
     }
     
     @objc public func exportPrivateKey(_ privateKey: VirgilPrivateKey, password: String?) throws -> Data {
         let privateKeyData: Data
         if let password = password {
-            guard let encryptedPrivateKeyData = VSCKeyPair.encryptPrivateKey(privateKey.key, privateKeyPassword: password) else {
+            guard let encryptedPrivateKeyData = VSCKeyPair.encryptPrivateKey(privateKey.rawKey, privateKeyPassword: password) else {
                 throw NSError()
             }
             
             privateKeyData = encryptedPrivateKeyData
         }
         else {
-            privateKeyData = privateKey.key
+            privateKeyData = privateKey.rawKey
         }
         
         return privateKeyData
     }
     
     @objc public func extractPublicKey(from privateKey: VirgilPrivateKey) throws -> VirgilPublicKey {
-        guard let publicKeyData = VSCKeyPair.extractPublicKey(withPrivateKey: privateKey.key, privateKeyPassword: nil) else {
+        guard let publicKeyData = VSCKeyPair.extractPublicKey(withPrivateKey: privateKey.rawKey, privateKeyPassword: nil) else {
             throw NSError()
         }
         
         let id = self.computeHash(for: publicKeyData, using: .SHA256)
         
-        return VirgilPublicKey(identifier: id, key: privateKey.key)
+        return VirgilPublicKey(identifier: id, rawKey: privateKey.rawKey)
     }
     
     @objc public func exportVirgilPublicKey(_ publicKey: VirgilPublicKey) throws -> Data {
-        return publicKey.key
+        return publicKey.rawKey
     }
     
     @objc public func importVirgilPublicKey(from data: Data) throws -> VirgilPublicKey {
@@ -74,6 +74,6 @@ public extension VirgilCrypto {
         
         let identifier = hash.hash(publicKeyDER)
         
-        return VirgilPublicKey(identifier: identifier, key: publicKeyDER)
+        return VirgilPublicKey(identifier: identifier, rawKey: publicKeyDER)
     }
 }

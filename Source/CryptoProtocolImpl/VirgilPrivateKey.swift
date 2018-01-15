@@ -11,11 +11,11 @@ import VirgilCryptoAPI
 
 @objc(VSCVirgilPrivateKey) public class VirgilPrivateKey: NSObject {
     @objc let identifier: Data
-    @objc let key: Data
+    @objc let rawKey: Data
     
-    @objc init(identifier: Data, key: Data) {
+    @objc init(identifier: Data, rawKey: Data) {
         self.identifier = identifier
-        self.key = key
+        self.rawKey = rawKey
         
         super.init()
     }

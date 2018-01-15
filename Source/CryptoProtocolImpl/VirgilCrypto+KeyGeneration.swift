@@ -12,8 +12,8 @@ public extension VirgilCrypto {
     private func wrapKeyPair(keyPair: VSCKeyPair) -> VirgilKeyPair {
         let keyPairId = self.computeHash(for: keyPair.publicKey(), using: .SHA256)
         
-        let privateKey = VirgilPrivateKey(identifier: keyPairId, key: keyPair.privateKey())
-        let publicKey = VirgilPublicKey(identifier: keyPairId, key: keyPair.publicKey())
+        let privateKey = VirgilPrivateKey(identifier: keyPairId, rawKey: keyPair.privateKey())
+        let publicKey = VirgilPublicKey(identifier: keyPairId, rawKey: keyPair.publicKey())
         
         return VirgilKeyPair(privateKey: privateKey, publicKey: publicKey)
     }

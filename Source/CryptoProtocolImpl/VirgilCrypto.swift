@@ -26,9 +26,9 @@ import VirgilCryptoAPI
 
     @objc public func encrypt(data: Data, for recipients: [VirgilPublicKey]) throws -> Data {
         let cryptor = VSCCryptor()
-        
+    
         try recipients.forEach(){
-            try cryptor.addKeyRecipient($0.identifier, publicKey: $0.key)
+            try cryptor.addKeyRecipient($0.identifier, publicKey: $0.rawKey)
         }
         
         let encryptedData = try cryptor.encryptData(data, embedContentInfo: true)
@@ -40,7 +40,7 @@ import VirgilCryptoAPI
         let cryptor = VSCChunkCryptor()
         
         try recipients.forEach(){
-            try cryptor.addKeyRecipient($0.identifier, publicKey: $0.key)
+            try cryptor.addKeyRecipient($0.identifier, publicKey: $0.rawKey)
         }
         
         try cryptor.encryptData(from: stream, to: outputStream)
@@ -49,31 +49,31 @@ import VirgilCryptoAPI
     @objc public func verifySignature(_ signature: Data, of data: Data, withVirgil publicKey: VirgilPublicKey) throws {
         let signer = VSCSigner()
         
-        try signer.verifySignature(signature, data: data, publicKey: publicKey.key)
+        try signer.verifySignature(signature, data: data, publicKey: publicKey.rawKey)
     }
     
     @objc public func verifyStreamSignature(_ signature: Data, of stream: InputStream, with publicKey: VirgilPublicKey) throws {
         let signer = VSCStreamSigner()
         
-        try signer.verifySignature(signature, from: stream, publicKey: publicKey.key)
+        try signer.verifySignature(signature, from: stream, publicKey: publicKey.rawKey)
     }
     
     @objc public func decrypt(data: Data, with privateKey: VirgilPrivateKey) throws -> Data {
         let cryptor = VSCCryptor()
         
-        return try cryptor.decryptData(data, recipientId: privateKey.identifier, privateKey: privateKey.key, keyPassword: nil)
+        return try cryptor.decryptData(data, recipientId: privateKey.identifier, privateKey: privateKey.rawKey, keyPassword: nil)
     }
     
     @objc public func decrypt(stream: InputStream, to outputStream: OutputStream, with privateKey: VirgilPrivateKey) throws {
         let cryptor = VSCChunkCryptor()
         
-        try cryptor.decrypt(from: stream, to: outputStream, recipientId: privateKey.identifier, privateKey: privateKey.key, keyPassword: nil)
+        try cryptor.decrypt(from: stream, to: outputStream, recipientId: privateKey.identifier, privateKey: privateKey.rawKey, keyPassword: nil)
     }
     
     @objc public func signThenEncrypt(_ data: Data, with privateKey: VirgilPrivateKey, for recipients: [VirgilPublicKey]) throws -> Data {
         let signer = VSCSigner()
         
-        let signature = try signer.sign(data, privateKey: privateKey.key, keyPassword: nil)
+        let signature = try signer.sign(data, privateKey: privateKey.rawKey, keyPassword: nil)
         
         let cryptor = VSCCryptor()
         
@@ -86,7 +86,7 @@ import VirgilCryptoAPI
         try cryptor.setData(signerId, forKey: VirgilCrypto.CustomParamKeySignerId)
         
         try recipients.forEach(){
-            try cryptor.addKeyRecipient($0.identifier, publicKey: $0.key)
+            try cryptor.addKeyRecipient($0.identifier, publicKey: $0.rawKey)
         }
         
         return try cryptor.encryptData(data, embedContentInfo: true)
@@ -95,11 +95,11 @@ import VirgilCryptoAPI
     @objc public func decryptThenVerify(_ data: Data, with privateKey: VirgilPrivateKey, using signerPublicKey: VirgilPublicKey) throws -> Data {
         let cryptor = VSCCryptor()
         
-        let decryptedData = try cryptor.decryptData(data, recipientId: privateKey.identifier, privateKey: privateKey.key, keyPassword: nil)
+        let decryptedData = try cryptor.decryptData(data, recipientId: privateKey.identifier, privateKey: privateKey.rawKey, keyPassword: nil)
         let signature = try cryptor.data(forKey: VirgilCrypto.CustomParamKeySignature)
         
         let signer = VSCSigner()
-        try signer.verifySignature(signature, data: decryptedData, publicKey: signerPublicKey.key)
+        try signer.verifySignature(signature, data: decryptedData, publicKey: signerPublicKey.rawKey)
         
         return decryptedData
     }
@@ -107,7 +107,7 @@ import VirgilCryptoAPI
     @objc public func decryptThenVerify(_ data: Data, with privateKey: VirgilPrivateKey, usingOneOf signersPublicKeys: [VirgilPublicKey]) throws -> Data {
         let cryptor = VSCCryptor()
         
-        let decryptedData = try cryptor.decryptData(data, recipientId: privateKey.identifier, privateKey: privateKey.key, keyPassword: nil)
+        let decryptedData = try cryptor.decryptData(data, recipientId: privateKey.identifier, privateKey: privateKey.rawKey, keyPassword: nil)
         
         let signature = try cryptor.data(forKey: VirgilCrypto.CustomParamKeySignature)
         let signerId = try cryptor.data(forKey: VirgilCrypto.CustomParamKeySignerId)
@@ -117,7 +117,7 @@ import VirgilCryptoAPI
         }
         
         let signer = VSCSigner()
-        try signer.verifySignature(signature, data: decryptedData, publicKey: signerPublicKey.key)
+        try signer.verifySignature(signature, data: decryptedData, publicKey: signerPublicKey.rawKey)
         
         return decryptedData
     }
@@ -125,13 +125,13 @@ import VirgilCryptoAPI
     @objc public func generateSignature(of data: Data, usingVirgil privateKey: VirgilPrivateKey) throws -> Data {
         let signer = VSCSigner()
         
-        return try signer.sign(data, privateKey: privateKey.key, keyPassword: nil)
+        return try signer.sign(data, privateKey: privateKey.rawKey, keyPassword: nil)
     }
     
     @objc public func generateStreamSignature(of stream: InputStream, using privateKey: VirgilPrivateKey) throws -> Data {
         let signer = VSCStreamSigner()
         
-        let signature = try signer.signStreamData(stream, privateKey: privateKey.key, keyPassword: nil)
+        let signature = try signer.signStreamData(stream, privateKey: privateKey.rawKey, keyPassword: nil)
         
         return signature
     }
