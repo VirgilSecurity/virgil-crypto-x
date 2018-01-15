@@ -20,7 +20,14 @@ import VirgilCryptoAPI
     }
 }
 
+// MARK: - Implementation of PrivateKeyExporter protocol
 extension VirgilPrivateKeyExporter: PrivateKeyExporter {
+    /// Exports data of specified Private key.
+    ///
+    /// - Parameters:
+    ///   - privateKey: the private key to be exported
+    /// - Returns: exported private key data
+    /// - Throws: correspoding error
     public func exportPrivateKey(privateKey: PrivateKey) throws -> Data {
         guard let privateKey = privateKey as? VirgilPrivateKey else {
             throw NSError()
@@ -29,6 +36,12 @@ extension VirgilPrivateKeyExporter: PrivateKeyExporter {
         return try self.virgilCrypto.exportPrivateKey(privateKey, password: self.password)
     }
     
+    /// Imports Private Key from data
+    ///
+    /// - Parameters:
+    ///   - data: the data to be imported
+    /// - Returns: imported Private Key instance
+    /// - Throws: error if verification failed
     public func importPrivateKey(data: Data) throws -> PrivateKey {
         return try self.virgilCrypto.importPrivateKey(fromData: data)
     }
