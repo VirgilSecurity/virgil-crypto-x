@@ -15,6 +15,7 @@ import VirgilCryptoAPI
 
 // MARK: - Implementation of CardCrypto protocol
 extension VirgilCardCrypto : CardCrypto {
+    
     /// Generates the digital signature of data using specified private key.
     ///
     /// - Parameters:
@@ -23,7 +24,7 @@ extension VirgilCardCrypto : CardCrypto {
     /// - Returns: signature data
     public func generateSignature(of data: Data, using privateKey: PrivateKey) throws -> Data {
         guard let privateKey = privateKey as? VirgilPrivateKey else {
-            throw NSError()
+            throw VirgilCryptoError.passedKeyIsNotVirgil
         }
         
         return try self.virgilCrypto.generateSignature(of: data, usingVirgil: privateKey)
@@ -38,17 +39,17 @@ extension VirgilCardCrypto : CardCrypto {
     /// - Throws: error if verification failed
     public func verifySignature(_ signature: Data, of data: Data, with publicKey: PublicKey) throws {
         guard let publicKey = publicKey as? VirgilPublicKey else {
-            throw NSError()
+            throw VirgilCryptoError.passedKeyIsNotVirgil
         }
         
-        try self.virgilCrypto.verifySignature(signature, of: data, withVirgil: publicKey)
+        try self.virgilCrypto.verifySignature(signature, of: data, with: publicKey)
     }
     
     /// Computes SHA-256.
     ///
     /// - Parameter data: the data to be hashed
     /// - Returns: the resulting hash value
-    public func computeSHA256(for data: Data) -> Data {
+    public func generateSHA256(for data: Data) throws -> Data {
          return self.virgilCrypto.computeHash(for: data, using: .SHA256)
     }
     
@@ -68,7 +69,7 @@ extension VirgilCardCrypto : CardCrypto {
     /// - Throws: corresponding error
     public func exportPublicKey(_ publicKey: PublicKey) throws -> Data {
         guard let publicKey = publicKey as? VirgilPublicKey else {
-            throw NSError()
+            throw VirgilCryptoError.passedKeyIsNotVirgil
         }
         
         return try self.virgilCrypto.exportVirgilPublicKey(publicKey)

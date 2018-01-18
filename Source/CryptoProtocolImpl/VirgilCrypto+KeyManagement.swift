@@ -13,7 +13,7 @@ public extension VirgilCrypto {
         let privateKeyData: Data
         if let password = password {
             guard let decryptedPrivateKeyData = VSCKeyPair.decryptPrivateKey(data, privateKeyPassword: password) else {
-                throw NSError()
+                throw VirgilCryptoError.decryptPrivateKeyFailed
             }
             
             privateKeyData = decryptedPrivateKeyData
@@ -23,13 +23,13 @@ public extension VirgilCrypto {
         }
         
         guard let publicKeyData = VSCKeyPair.extractPublicKey(withPrivateKey: privateKeyData, privateKeyPassword: nil) else {
-            throw NSError()
+            throw VirgilCryptoError.extractPublicKeyFailed
         }
         
         let keyIdentifier = self.computeHash(for: publicKeyData, using: .SHA256)
         
         guard let exportedPrivateKeyData = VSCKeyPair.privateKey(toDER: privateKeyData) else {
-            throw NSError()
+            throw VirgilCryptoError.privateKeyToDERFailed
         }
         
         return VirgilPrivateKey(identifier: keyIdentifier, rawKey: exportedPrivateKeyData)
@@ -39,7 +39,7 @@ public extension VirgilCrypto {
         let privateKeyData: Data
         if let password = password {
             guard let encryptedPrivateKeyData = VSCKeyPair.encryptPrivateKey(privateKey.rawKey, privateKeyPassword: password) else {
-                throw NSError()
+                throw VirgilCryptoError.encryptPrivateKeyFailed
             }
             
             privateKeyData = encryptedPrivateKeyData
@@ -53,7 +53,7 @@ public extension VirgilCrypto {
     
     @objc public func extractPublicKey(from privateKey: VirgilPrivateKey) throws -> VirgilPublicKey {
         guard let publicKeyData = VSCKeyPair.extractPublicKey(withPrivateKey: privateKey.rawKey, privateKeyPassword: nil) else {
-            throw NSError()
+            throw VirgilCryptoError.extractPublicKeyFailed
         }
         
         let id = self.computeHash(for: publicKeyData, using: .SHA256)
@@ -67,7 +67,7 @@ public extension VirgilCrypto {
     
     @objc public func importVirgilPublicKey(from data: Data) throws -> VirgilPublicKey {
         guard let publicKeyDER = VSCKeyPair.publicKey(toDER: data) else {
-            throw NSError()
+            throw VirgilCryptoError.publicKeyToDERFailed
         }
         
         let hash = VSCHash(algorithm: .SHA256)

@@ -24,7 +24,7 @@ extension VirgilAccessTokenSigner: AccessTokenSigner {
     /// - Throws: correspoding error
     public func generateTokenSignature(of token: Data, using privateKey: PrivateKey) throws -> Data {
         guard let privateKey = privateKey as? VirgilPrivateKey else {
-            throw NSError()
+            throw VirgilCryptoError.passedKeyIsNotVirgil
         }
         
         return try self.virgilCrypto.generateSignature(of: token, usingVirgil: privateKey)
@@ -39,10 +39,10 @@ extension VirgilAccessTokenSigner: AccessTokenSigner {
     /// - Throws: error if verification failed
     public func verifyTokenSignature(_ signature: Data, of token: Data, with publicKey: PublicKey) throws {
         guard let publicKey = publicKey as? VirgilPublicKey else {
-            throw NSError()
+            throw VirgilCryptoError.passedKeyIsNotVirgil
         }
         
-        try self.virgilCrypto.verifySignature(signature, of: token, withVirgil: publicKey)
+        try self.virgilCrypto.verifySignature(signature, of: token, with: publicKey)
     }
     
     ///Represets algorithm used for signing

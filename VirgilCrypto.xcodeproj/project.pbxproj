@@ -26,6 +26,10 @@
 /* Begin PBXBuildFile section */
 		16884B0D1FD802530018BFA2 /* VSC001_CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16884B0B1FD802520018BFA2 /* VSC001_CryptoTests.swift */; };
 		16884B0E1FD802530018BFA2 /* VSC001_CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16884B0B1FD802520018BFA2 /* VSC001_CryptoTests.swift */; };
+		169711BC200FB8C500A02B1F /* VirgilCryptoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169711BB200FB8C500A02B1F /* VirgilCryptoError.swift */; };
+		169711BD200FB8C500A02B1F /* VirgilCryptoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169711BB200FB8C500A02B1F /* VirgilCryptoError.swift */; };
+		169711BE200FB8C500A02B1F /* VirgilCryptoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169711BB200FB8C500A02B1F /* VirgilCryptoError.swift */; };
+		169711BF200FB8C500A02B1F /* VirgilCryptoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169711BB200FB8C500A02B1F /* VirgilCryptoError.swift */; };
 		16B3FD9E200D04DA008F0357 /* VirgilPrivateKeyExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD9D200D04DA008F0357 /* VirgilPrivateKeyExporter.swift */; };
 		16B3FD9F200D04DA008F0357 /* VirgilPrivateKeyExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD9D200D04DA008F0357 /* VirgilPrivateKeyExporter.swift */; };
 		16B3FDA0200D04DA008F0357 /* VirgilPrivateKeyExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD9D200D04DA008F0357 /* VirgilPrivateKeyExporter.swift */; };
@@ -410,6 +414,7 @@
 
 /* Begin PBXFileReference section */
 		16884B0B1FD802520018BFA2 /* VSC001_CryptoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSC001_CryptoTests.swift; sourceTree = "<group>"; };
+		169711BB200FB8C500A02B1F /* VirgilCryptoError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirgilCryptoError.swift; sourceTree = "<group>"; };
 		16B3FD9D200D04DA008F0357 /* VirgilPrivateKeyExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirgilPrivateKeyExporter.swift; sourceTree = "<group>"; };
 		16F9B6441FFEDABD0005EE7D /* VirgilCardCrypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirgilCardCrypto.swift; sourceTree = "<group>"; };
 		16F9B6491FFF9C0E0005EE7D /* VirgilAccessTokenSigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirgilAccessTokenSigner.swift; sourceTree = "<group>"; };
@@ -694,6 +699,7 @@
 				4284C4741F7011D600B75491 /* VirgilPrivateKey.swift */,
 				4284C4761F7011DE00B75491 /* VirgilPublicKey.swift */,
 				4284C4951F713A5800B75491 /* VirgilKeyPair.swift */,
+				169711BB200FB8C500A02B1F /* VirgilCryptoError.swift */,
 			);
 			path = CryptoProtocolImpl;
 			sourceTree = "<group>";
@@ -1235,6 +1241,7 @@
 				423F00491E71A01A00CC98A3 /* VSCChunkCryptor.mm in Sources */,
 				16B3FD9F200D04DA008F0357 /* VirgilPrivateKeyExporter.swift in Sources */,
 				423F004A1E71A01A00CC98A3 /* VSCCryptor.mm in Sources */,
+				169711BD200FB8C500A02B1F /* VirgilCryptoError.swift in Sources */,
 				420D105E1EF14B82002A9C22 /* VSCPfsPublicKey.mm in Sources */,
 				423F004B1E71A01A00CC98A3 /* VSCFoundationCommons.mm in Sources */,
 				423F004C1E71A01A00CC98A3 /* VSCHash.mm in Sources */,
@@ -1292,6 +1299,7 @@
 				42A01F8C1F7D525500FF8804 /* VirgilPrivateKey.swift in Sources */,
 				16B3FDA0200D04DA008F0357 /* VirgilPrivateKeyExporter.swift in Sources */,
 				42A01FB11F7D545300FF8804 /* VSCBaseCryptor.mm in Sources */,
+				169711BE200FB8C500A02B1F /* VirgilCryptoError.swift in Sources */,
 				42A01FAC1F7D545300FF8804 /* VSCPfsPrivateKey.mm in Sources */,
 				42A01FBB1F7D545300FF8804 /* VSCStreamSigner.mm in Sources */,
 				42A01FB01F7D545300FF8804 /* VSCPfsResponderPublicInfo.mm in Sources */,
@@ -1330,6 +1338,7 @@
 				42CDC2BD1F696E1400D69111 /* VSCStreamSigner.mm in Sources */,
 				16B3FDA1200D04DA008F0357 /* VirgilPrivateKeyExporter.swift in Sources */,
 				42CDC2B11F696E1400D69111 /* VSCFoundationCommons.mm in Sources */,
+				169711BF200FB8C500A02B1F /* VirgilCryptoError.swift in Sources */,
 				42CDC2E11F696E3400D69111 /* VSCPfsPublicKey.mm in Sources */,
 				42CDC2BF1F696E1400D69111 /* VSCTinyCryptor.mm in Sources */,
 				42CDC2B31F696E1400D69111 /* VSCHash.mm in Sources */,
@@ -1387,6 +1396,7 @@
 				42F85F161DC7657C00C3184C /* VSCFoundationCommons.mm in Sources */,
 				16B3FD9E200D04DA008F0357 /* VirgilPrivateKeyExporter.swift in Sources */,
 				42F85F241DC7657C00C3184C /* VSCTinyCryptor.mm in Sources */,
+				169711BC200FB8C500A02B1F /* VirgilCryptoError.swift in Sources */,
 				420D105B1EF14B39002A9C22 /* VSCPfsResponderPrivateInfo.mm in Sources */,
 				420D10591EF14B32002A9C22 /* VSCPfsInitiatorPublicInfo.mm in Sources */,
 				42F85F181DC7657C00C3184C /* VSCHash.mm in Sources */,

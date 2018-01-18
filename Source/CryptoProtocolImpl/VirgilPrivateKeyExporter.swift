@@ -30,7 +30,7 @@ extension VirgilPrivateKeyExporter: PrivateKeyExporter {
     /// - Throws: correspoding error
     public func exportPrivateKey(privateKey: PrivateKey) throws -> Data {
         guard let privateKey = privateKey as? VirgilPrivateKey else {
-            throw NSError()
+            throw VirgilCryptoError.passedKeyIsNotVirgil
         }
         
         return try self.virgilCrypto.exportPrivateKey(privateKey, password: self.password)
@@ -42,7 +42,7 @@ extension VirgilPrivateKeyExporter: PrivateKeyExporter {
     ///   - data: the data to be imported
     /// - Returns: imported Private Key instance
     /// - Throws: error if verification failed
-    public func importPrivateKey(data: Data) throws -> PrivateKey {
+    public func importPrivateKey(from data: Data) throws -> PrivateKey {
         return try self.virgilCrypto.importPrivateKey(fromData: data)
     }
 }

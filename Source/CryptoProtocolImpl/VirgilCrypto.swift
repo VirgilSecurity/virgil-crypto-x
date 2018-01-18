@@ -46,7 +46,7 @@ import VirgilCryptoAPI
         try cryptor.encryptData(from: stream, to: outputStream)
     }
     
-    @objc public func verifySignature(_ signature: Data, of data: Data, withVirgil publicKey: VirgilPublicKey) throws {
+    @objc public func verifySignature(_ signature: Data, of data: Data, with publicKey: VirgilPublicKey) throws {
         let signer = VSCSigner()
         
         try signer.verifySignature(signature, data: data, publicKey: publicKey.rawKey)
@@ -113,7 +113,7 @@ import VirgilCryptoAPI
         let signerId = try cryptor.data(forKey: VirgilCrypto.CustomParamKeySignerId)
         
         guard let signerPublicKey = signersPublicKeys.first(where: { $0.identifier == signerId }) else {
-            throw NSError()
+            throw VirgilCryptoError.signerNotFound
         }
         
         let signer = VSCSigner()
