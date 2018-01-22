@@ -9,7 +9,7 @@
 import Foundation
 import VirgilCryptoAPI
 
-@objc(VSAVirgilAccessTokenSigner) public class VirgilAccessTokenSigner: NSObject {
+@objc(VSCVirgilAccessTokenSigner) public class VirgilAccessTokenSigner: NSObject {
     let virgilCrypto = VirgilCrypto(defaultKeyType: .FAST_EC_ED25519)
 }
 
