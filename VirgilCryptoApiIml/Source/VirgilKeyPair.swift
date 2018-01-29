@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc(VSCVirgilKeyPair) public class VirgilKeyPair: NSObject {
+@objc(VSMVirgilKeyPair) public class VirgilKeyPair: NSObject {
     @objc public let privateKey: VirgilPrivateKey
     @objc public let publicKey: VirgilPublicKey
     

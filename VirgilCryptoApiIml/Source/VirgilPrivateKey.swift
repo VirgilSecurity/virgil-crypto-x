@@ -9,7 +9,7 @@
 import Foundation
 import VirgilCryptoAPI
 
-@objc(VSCVirgilPrivateKey) public class VirgilPrivateKey: NSObject {
+@objc(VSMVirgilPrivateKey) public class VirgilPrivateKey: NSObject {
     @objc let identifier: Data
     @objc let rawKey: Data
     

@@ -9,7 +9,7 @@
 import Foundation
 import VirgilCryptoAPI
 
-@objc(VSCVirgilCardCrypto) public class VirgilCardCrypto: NSObject {
+@objc(VSMVirgilCardCrypto) public class VirgilCardCrypto: NSObject {
     let virgilCrypto = VirgilCrypto()
 }
 

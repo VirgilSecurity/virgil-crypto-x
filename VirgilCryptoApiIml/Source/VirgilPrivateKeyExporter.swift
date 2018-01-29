@@ -10,7 +10,7 @@ import Foundation
 
 import VirgilCryptoAPI
 
-@objc(VSCVirgilPrivateKeyExporter) public class VirgilPrivateKeyExporter: NSObject {
+@objc(VSMVirgilPrivateKeyExporter) public class VirgilPrivateKeyExporter: NSObject {
     private let virgilCrypto: VirgilCrypto
     private let password: String?
     

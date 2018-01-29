@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import VirgilCrypto
 import VirgilCryptoAPI
 
-@objc(VSCVirgilCrypto) public class VirgilCrypto: NSObject {
+@objc(VSMVirgilCrypto) public class VirgilCrypto: NSObject {
     @objc public static let CustomParamKeySignature = "VIRGIL-DATA-SIGNATURE"
     @objc public static let CustomParamKeySignerId = "VIRGIL-DATA-SIGNER-ID"
     

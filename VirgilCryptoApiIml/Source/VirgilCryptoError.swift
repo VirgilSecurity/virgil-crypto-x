@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc(VSCVirgilCryptoError) public enum VirgilCryptoError: Int, Error {
+@objc(VSMVirgilCryptoError) public enum VirgilCryptoError: Int, Error {
     case passedKeyIsNotVirgil
     case signerNotFound
     case extractPublicKeyFailed

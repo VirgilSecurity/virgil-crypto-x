@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import VirgilCrypto
 
 public extension VirgilCrypto {
     @objc public func importPrivateKey(fromData data: Data, password: String? = nil) throws -> VirgilPrivateKey {

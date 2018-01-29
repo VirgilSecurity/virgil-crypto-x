@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import VirgilCrypto
 
 public extension VirgilCrypto {
     private func wrapKeyPair(keyPair: VSCKeyPair) throws -> VirgilKeyPair {
