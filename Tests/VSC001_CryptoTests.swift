@@ -28,7 +28,7 @@ class VSC001_CryptoTests: XCTestCase {
     }
     
     func testGK001() {
-        let keypairs = self.crypto.generateMultipleKeyPairs(numberOfKeyPairs: 100)
+        let keypairs = try! self.crypto.generateMultipleKeyPairs(numberOfKeyPairs: 100)
         XCTAssert(keypairs.count == 100)
     }
     
@@ -37,7 +37,7 @@ class VSC001_CryptoTests: XCTestCase {
     func testED001_EncryptRandomData_SingleCorrectKey_ShouldDecrypt() {
         let data = UUID().uuidString.data(using: .utf8)!
         
-        let keyPair = self.crypto.generateKeyPair()
+        let keyPair = try! self.crypto.generateKeyPair()
         
         let encryptedData = try! self.crypto.encrypt(data: data, for: [keyPair.publicKey])
         
@@ -49,8 +49,8 @@ class VSC001_CryptoTests: XCTestCase {
     func testED002_EncryptRandomData_SingleIncorrectKey_ShouldNotDecrypt() {
         let data = UUID().uuidString.data(using: .utf8)!
         
-        let keyPair = self.crypto.generateKeyPair()
-        let wrongKeyPair = self.crypto.generateKeyPair()
+        let keyPair = try! self.crypto.generateKeyPair()
+        let wrongKeyPair = try! self.crypto.generateKeyPair()
         
         let encryptedData = try! self.crypto.encrypt(data: data, for: [keyPair.publicKey])
         
@@ -62,8 +62,8 @@ class VSC001_CryptoTests: XCTestCase {
     func testED003_EncryptRandomData_TwoCorrectKeys_ShouldDecrypt() {
         let data = UUID().uuidString.data(using: .utf8)!
         
-        let keyPair1 = self.crypto.generateKeyPair()
-        let keyPair2 = self.crypto.generateKeyPair()
+        let keyPair1 = try! self.crypto.generateKeyPair()
+        let keyPair2 = try! self.crypto.generateKeyPair()
         
         let encryptedData = try! self.crypto.encrypt(data: data, for: [keyPair1.publicKey, keyPair2.publicKey])
         
@@ -77,7 +77,7 @@ class VSC001_CryptoTests: XCTestCase {
     func testES001_EncryptRandomDataStream_SingleCorrectKey_ShouldDecrypt() {
         let data = UUID().uuidString.data(using: .utf8)!
         
-        let keyPair = self.crypto.generateKeyPair()
+        let keyPair = try! self.crypto.generateKeyPair()
         
         let inputStreamForEncryption = InputStream(data: data)
         let outputStreamForEncryption = OutputStream.toMemory()
@@ -109,8 +109,8 @@ class VSC001_CryptoTests: XCTestCase {
     func testES002_EncryptRandomDataStream_SingleIncorrectKey_ShouldNotDecrypt() {
         let data = UUID().uuidString.data(using: .utf8)!
         
-        let keyPair = self.crypto.generateKeyPair()
-        let wrongKeyPair = self.crypto.generateKeyPair()
+        let keyPair = try! self.crypto.generateKeyPair()
+        let wrongKeyPair = try! self.crypto.generateKeyPair()
         
         let inputStreamForEncryption = InputStream(data: data)
         let outputStreamForEncryption = OutputStream.toMemory()
@@ -150,8 +150,8 @@ class VSC001_CryptoTests: XCTestCase {
     func testES003_EncryptRandomDataStream_TwoCorrectKeys_ShouldDecrypt() {
         let data = UUID().uuidString.data(using: .utf8)!
         
-        let keyPair1 = self.crypto.generateKeyPair()
-        let keyPair2 = self.crypto.generateKeyPair()
+        let keyPair1 = try! self.crypto.generateKeyPair()
+        let keyPair2 = try! self.crypto.generateKeyPair()
         
         let inputStreamForEncryption = InputStream(data: data)
         let outputStreamForEncryption = OutputStream.toMemory()
@@ -198,7 +198,7 @@ class VSC001_CryptoTests: XCTestCase {
         let testFileURL = Bundle(for: type(of: self)).url(forResource: "testData", withExtension: "txt")!
         let inputStreamForEncryption = InputStream(url: testFileURL)!
         
-        let keyPair = self.crypto.generateKeyPair()
+        let keyPair = try! self.crypto.generateKeyPair()
         
         let outputStreamForEncryption = OutputStream.toMemory()
         
@@ -232,7 +232,7 @@ class VSC001_CryptoTests: XCTestCase {
     func testSD001_SignRandomData_CorrectKeys_ShouldValidate() {
         let data = UUID().uuidString.data(using: .utf8)!
 
-        let keyPair = self.crypto.generateKeyPair()
+        let keyPair = try! self.crypto.generateKeyPair()
         
         let signature = try! self.crypto.generateSignature(of: data, usingVirgil: keyPair.privateKey)
         
@@ -242,8 +242,8 @@ class VSC001_CryptoTests: XCTestCase {
     func testSD002_SignRandomData_IncorrectKeys_ShouldNotValidate() {
         let data = UUID().uuidString.data(using: .utf8)!
         
-        let keyPair = self.crypto.generateKeyPair()
-        let wrongKeyPair = self.crypto.generateKeyPair()
+        let keyPair = try! self.crypto.generateKeyPair()
+        let wrongKeyPair = try! self.crypto.generateKeyPair()
         
         let signature = try! self.crypto.generateSignature(of: data, usingVirgil: keyPair.privateKey)
         
@@ -260,8 +260,8 @@ class VSC001_CryptoTests: XCTestCase {
     func testESD001_SignThenEncryptRandomData_CorrectKeys_ShouldDecryptValidate() {
         let data = UUID().uuidString.data(using: .utf8)!
         
-        let senderKeyPair = self.crypto.generateKeyPair()
-        let receiverKeyPair = self.crypto.generateKeyPair()
+        let senderKeyPair = try! self.crypto.generateKeyPair()
+        let receiverKeyPair = try! self.crypto.generateKeyPair()
         
         let signedThenEncryptedData = try! self.crypto.signThenEncrypt(data, with: senderKeyPair.privateKey, for: [receiverKeyPair.publicKey])
         
@@ -273,9 +273,9 @@ class VSC001_CryptoTests: XCTestCase {
     func testESD002_SignThenEncryptRandomData_TwoKeys_ShouldDecryptValidate() {
         let data = UUID().uuidString.data(using: .utf8)!
         
-        let senderKeyPair = self.crypto.generateKeyPair()
-        let oneMoreKeyPair = self.crypto.generateKeyPair()
-        let receiverKeyPair = self.crypto.generateKeyPair()
+        let senderKeyPair = try! self.crypto.generateKeyPair()
+        let oneMoreKeyPair = try! self.crypto.generateKeyPair()
+        let receiverKeyPair = try! self.crypto.generateKeyPair()
         
         let signedThenEncryptedData = try! self.crypto.signThenEncrypt(data, with: senderKeyPair.privateKey, for: [receiverKeyPair.publicKey])
         
@@ -287,9 +287,9 @@ class VSC001_CryptoTests: XCTestCase {
     func testESD003_SignThenEncryptRandomData_NoSenderKeys_ShouldNotValidate() {
         let data = UUID().uuidString.data(using: .utf8)!
         
-        let senderKeyPair = self.crypto.generateKeyPair()
-        let oneMoreKeyPair = self.crypto.generateKeyPair()
-        let receiverKeyPair = self.crypto.generateKeyPair()
+        let senderKeyPair = try! self.crypto.generateKeyPair()
+        let oneMoreKeyPair = try! self.crypto.generateKeyPair()
+        let receiverKeyPair = try! self.crypto.generateKeyPair()
         
         let signedThenEncryptedData = try! self.crypto.signThenEncrypt(data, with: senderKeyPair.privateKey, for: [receiverKeyPair.publicKey])
         

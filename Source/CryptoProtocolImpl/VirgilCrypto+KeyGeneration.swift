@@ -9,28 +9,37 @@
 import Foundation
 
 public extension VirgilCrypto {
-    private func wrapKeyPair(keyPair: VSCKeyPair) -> VirgilKeyPair {
-        let keyPairId = self.computeHash(for: keyPair.publicKey(), using: .SHA256)
+    private func wrapKeyPair(keyPair: VSCKeyPair) throws -> VirgilKeyPair {
+         guard let publicKeyDER = VSCKeyPair.publicKey(toDER: keyPair.publicKey()) else {
+            throw VirgilCryptoError.publicKeyToDERFailed
+         }
         
-        let privateKey = VirgilPrivateKey(identifier: keyPairId, rawKey: keyPair.privateKey())
-        let publicKey = VirgilPublicKey(identifier: keyPairId, rawKey: keyPair.publicKey())
+        guard let privateKeyDER = VSCKeyPair.privateKey(toDER: keyPair.privateKey()) else {
+            throw VirgilCryptoError.privateKeyToDERFailed
+        }
+        
+         let hash = VSCHash(algorithm: .SHA256)
+         let keyPairId = hash.hash(publicKeyDER)
+        
+        let privateKey = VirgilPrivateKey(identifier: keyPairId, rawKey: privateKeyDER)
+        let publicKey = VirgilPublicKey(identifier: keyPairId, rawKey: publicKeyDER)
         
         return VirgilKeyPair(privateKey: privateKey, publicKey: publicKey)
     }
     
-    @objc public func generateMultipleKeyPairs(numberOfKeyPairs: UInt) -> [VirgilKeyPair] {
-        return VSCKeyPair
+    @objc public func generateMultipleKeyPairs(numberOfKeyPairs: UInt) throws -> [VirgilKeyPair] {
+        return try VSCKeyPair
             .generateMultipleKeys(numberOfKeyPairs, keyPairType: self.defaultKeyType)
-            .map({ self.wrapKeyPair(keyPair: $0) })
+            .map({ try self.wrapKeyPair(keyPair: $0) })
     }
     
-    @objc public func generateKeyPair() -> VirgilKeyPair {
-        return self.generateKeyPair(ofType: self.defaultKeyType)
+    @objc public func generateKeyPair() throws -> VirgilKeyPair {
+        return try self.generateKeyPair(ofType: self.defaultKeyType)
     }
     
-    @objc public func generateKeyPair(ofType type: VSCKeyType) -> VirgilKeyPair {
+    @objc public func generateKeyPair(ofType type: VSCKeyType) throws -> VirgilKeyPair {
         let keyPair = VSCKeyPair(keyPairType: type, password: nil)
         
-        return self.wrapKeyPair(keyPair: keyPair)
+        return try self.wrapKeyPair(keyPair: keyPair)
     }
 }
