@@ -125,7 +125,6 @@
 		423F00891E71A0FD00CC98A3 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423F00301E719EF200CC98A3 /* VirgilCrypto.framework */; };
 		423F00B91E71A67E00CC98A3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423F00B81E71A67E00CC98A3 /* Security.framework */; };
 		423F00BB1E71A68400CC98A3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423F00BA1E71A68400CC98A3 /* Security.framework */; };
-		4284C3771F6BE7E900B75491 /* VirgilCryptoAPI.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 42CDC3511F698F1100D69111 /* VirgilCryptoAPI.framework */; };
 		42A01F851F7D521200FF8804 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A01F841F7D521200FF8804 /* Security.framework */; };
 		42A01F871F7D524500FF8804 /* VSCCrypto in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CDC2FE1F696EF300D69111 /* VSCCrypto */; };
 		42A01F901F7D543A00FF8804 /* VSCPfsPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D102C1EF14090002A9C22 /* VSCPfsPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -575,19 +574,6 @@
 			remoteInfo = "VirgilCrypto iOS";
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		4284C3721F6BE7AE00B75491 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 16;
-			files = (
-				4284C3771F6BE7E900B75491 /* VirgilCryptoAPI.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		420D102B1EF14074002A9C22 /* VSCPfs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCPfs.h; sourceTree = "<group>"; };
@@ -1286,7 +1272,6 @@
 				423F00801E71A0FC00CC98A3 /* Sources */,
 				423F00811E71A0FC00CC98A3 /* Frameworks */,
 				423F00821E71A0FC00CC98A3 /* Resources */,
-				4284C3721F6BE7AE00B75491 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1474,7 +1459,6 @@
 				42CDC3061F6970C700D69111 /* Sources */,
 				42CDC3071F6970C700D69111 /* Frameworks */,
 				42CDC3081F6970C700D69111 /* Resources */,
-				4284C3791F6BE82100B75491 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1510,7 +1494,6 @@
 				42F85F291DC765AC00C3184C /* Sources */,
 				42F85F2A1DC765AC00C3184C /* Frameworks */,
 				42F85F2B1DC765AC00C3184C /* Resources */,
-				4284C3701F6BE77100B75491 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1797,37 +1780,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		4284C3701F6BE77100B75491 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/VirgilCryptoAPI.framework",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
-		4284C3791F6BE82100B75491 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/tvOS/VirgilCryptoAPI.framework",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		423F002B1E719EF200CC98A3 /* Sources */ = {
