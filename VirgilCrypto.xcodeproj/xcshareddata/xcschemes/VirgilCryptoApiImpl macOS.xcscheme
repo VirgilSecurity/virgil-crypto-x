@@ -29,7 +29,26 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "42CDC21F1F68209300D69111"
+               BuildableName = "VirgilCryptoAPI macOS Tests.xctest"
+               BlueprintName = "VirgilCryptoAPI macOS Tests"
+               ReferencedContainer = "container:Carthage/Checkouts/virgil-cryptoapi-x/VirgilCryptoAPI.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "42B12ABE201FD6F70082F9BC"
+            BuildableName = "VirgilCryptoApiImpl.framework"
+            BlueprintName = "VirgilCryptoApiImpl macOS"
+            ReferencedContainer = "container:VirgilCrypto.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>

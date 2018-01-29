@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "42B12ADA201FD74C0082F9BC"
-               BuildableName = "VirgilCryptoApiImpl_tvOS.framework"
+               BuildableName = "VirgilCryptoApiImpl.framework"
                BlueprintName = "VirgilCryptoApiImpl tvOS"
                ReferencedContainer = "container:VirgilCrypto.xcodeproj">
             </BuildableReference>
@@ -29,7 +29,26 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "42B12B78201FDCE00082F9BC"
+               BuildableName = "VirgilCryptoApiImpl tvOS Tests.xctest"
+               BlueprintName = "VirgilCryptoApiImpl tvOS Tests"
+               ReferencedContainer = "container:VirgilCrypto.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "42B12ADA201FD74C0082F9BC"
+            BuildableName = "VirgilCryptoApiImpl.framework"
+            BlueprintName = "VirgilCryptoApiImpl tvOS"
+            ReferencedContainer = "container:VirgilCrypto.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -48,7 +67,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "42B12ADA201FD74C0082F9BC"
-            BuildableName = "VirgilCryptoApiImpl_tvOS.framework"
+            BuildableName = "VirgilCryptoApiImpl.framework"
             BlueprintName = "VirgilCryptoApiImpl tvOS"
             ReferencedContainer = "container:VirgilCrypto.xcodeproj">
          </BuildableReference>
@@ -66,7 +85,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "42B12ADA201FD74C0082F9BC"
-            BuildableName = "VirgilCryptoApiImpl_tvOS.framework"
+            BuildableName = "VirgilCryptoApiImpl.framework"
             BlueprintName = "VirgilCryptoApiImpl tvOS"
             ReferencedContainer = "container:VirgilCrypto.xcodeproj">
          </BuildableReference>

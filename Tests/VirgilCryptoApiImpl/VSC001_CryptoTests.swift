@@ -9,6 +9,7 @@
 import Foundation
 import VirgilCryptoAPI
 import VirgilCrypto
+import VirgilCryptoApiImpl
 import XCTest
 
 class VSC001_CryptoTests: XCTestCase {
