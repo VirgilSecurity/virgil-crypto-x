@@ -182,7 +182,6 @@
 		42A01FC51F7D545700FF8804 /* VSCPfsResponderPublicInfoPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D107E1EF16A42002A9C22 /* VSCPfsResponderPublicInfoPrivate.h */; };
 		42A01FC61F7D545D00FF8804 /* VSCBaseCryptorPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D10681EF159D5002A9C22 /* VSCBaseCryptorPrivate.h */; };
 		42A01FC71F7D545D00FF8804 /* VSCByteArrayUtilsPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D10691EF159D5002A9C22 /* VSCByteArrayUtilsPrivate.h */; };
-		42B129EF201FD2790082F9BC /* VirgilCryptoApiIml.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B129ED201FD2790082F9BC /* VirgilCryptoApiIml.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42B129F4201FD2EA0082F9BC /* VirgilCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B129F3201FD2E80082F9BC /* VirgilCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42B129F5201FD2EB0082F9BC /* VirgilCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B129F3201FD2E80082F9BC /* VirgilCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42B129F7201FD2EC0082F9BC /* VirgilCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B129F3201FD2E80082F9BC /* VirgilCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -199,9 +198,6 @@
 		42B12A21201FD3430082F9BC /* VirgilCrypto+KeyManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B12A17201FD3430082F9BC /* VirgilCrypto+KeyManagement.swift */; };
 		42B12A3F201FD4430082F9BC /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F85ECD1DC7469D00C3184C /* VirgilCrypto.framework */; };
 		42B12A40201FD4450082F9BC /* VirgilCryptoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42B12A30201FD4320082F9BC /* VirgilCryptoAPI.framework */; };
-		42B12AE7201FD7E40082F9BC /* VirgilCryptoApiIml.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B129ED201FD2790082F9BC /* VirgilCryptoApiIml.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		42B12AE8201FD7E40082F9BC /* VirgilCryptoApiIml.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B129ED201FD2790082F9BC /* VirgilCryptoApiIml.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		42B12AE9201FD7E40082F9BC /* VirgilCryptoApiIml.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B129ED201FD2790082F9BC /* VirgilCryptoApiIml.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42B12AEA201FD7EF0082F9BC /* VirgilCrypto+KeyGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B12A0E201FD3430082F9BC /* VirgilCrypto+KeyGeneration.swift */; };
 		42B12AEB201FD7EF0082F9BC /* VirgilPrivateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B12A0F201FD3430082F9BC /* VirgilPrivateKey.swift */; };
 		42B12AEC201FD7EF0082F9BC /* VirgilKeyPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B12A10201FD3430082F9BC /* VirgilKeyPair.swift */; };
@@ -615,7 +611,6 @@
 		42A01F7C1F7D51FE00FF8804 /* VirgilCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42A01F841F7D521200FF8804 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS11.0.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		42B129EB201FD2790082F9BC /* VirgilCryptoApiImpl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilCryptoApiImpl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		42B129ED201FD2790082F9BC /* VirgilCryptoApiIml.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VirgilCryptoApiIml.h; sourceTree = "<group>"; };
 		42B129EE201FD2790082F9BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42B129F3201FD2E80082F9BC /* VirgilCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirgilCrypto.h; sourceTree = "<group>"; };
 		42B12A0E201FD3430082F9BC /* VirgilCrypto+KeyGeneration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VirgilCrypto+KeyGeneration.swift"; sourceTree = "<group>"; };
@@ -906,7 +901,6 @@
 			isa = PBXGroup;
 			children = (
 				42B12A0D201FD3430082F9BC /* Source */,
-				42B129ED201FD2790082F9BC /* VirgilCryptoApiIml.h */,
 				42B129EE201FD2790082F9BC /* Info.plist */,
 			);
 			path = VirgilCryptoApiImpl;
@@ -1141,7 +1135,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42B129EF201FD2790082F9BC /* VirgilCryptoApiIml.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1149,7 +1142,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42B12AE7201FD7E40082F9BC /* VirgilCryptoApiIml.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1157,7 +1149,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42B12AE8201FD7E40082F9BC /* VirgilCryptoApiIml.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1165,7 +1156,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42B12AE9201FD7E40082F9BC /* VirgilCryptoApiIml.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

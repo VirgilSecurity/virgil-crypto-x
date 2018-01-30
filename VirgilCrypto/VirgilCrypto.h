@@ -7,7 +7,6 @@
 //
 
 #import "VSCPfsPublic.h"
-
 #import "VSCBaseCryptor.h"
 #import "VSCByteArrayUtils.h"
 #import "VSCChunkCryptor.h"

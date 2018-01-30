@@ -9,14 +9,21 @@ Pod::Spec.new do |s|
   s.platforms                   = { :ios => "8.0", :osx => "10.10", :tvos => "9.0", :watchos => "2.0" }
   s.source                      = { :git => "https://github.com/VirgilSecurity/virgil-foundation-x.git", :tag => s.version }
   s.module_name                 = "VirgilCrypto"
-  s.source_files                = "Source/**/*.{h,m}"
-  s.public_header_files         = "Source/*.h",
-                                  "Source/pfs/*.h"
   s.requires_arc                = true
-  s.library                     = 'stdc++'
-  s.ios.vendored_frameworks     = "CryptoLib/iOS/VSCCrypto.framework"
-  s.osx.vendored_frameworks     = "CryptoLib/macOS/VSCCrypto.framework"
-  s.tvos.vendored_frameworks    = "CryptoLib/tvOS/VSCCrypto.framework"
-  s.watchos.vendored_frameworks = "CryptoLib/watchOS/VSCCrypto.framework"
-  s.xcconfig                    = { "HEADER_SEARCH_PATHS" => "$(FRAMEWORK_SEARCH_PATHS)/VSCCrypto.framework/Headers" }
+
+  s.subspec 'wrapper' do |ss|
+    ss.source_files                = "VirgilCrypto/**/*.{h,mm}"
+    ss.public_header_files         = "VirgilCrypto/Source/*.h", "VirgilCrypto/Source/pfs/*.h"
+    ss.library                     = 'stdc++'
+    ss.ios.vendored_frameworks     = "CryptoLib/iOS/VSCCrypto.framework"
+    ss.osx.vendored_frameworks     = "CryptoLib/macOS/VSCCrypto.framework"
+    ss.tvos.vendored_frameworks    = "CryptoLib/tvOS/VSCCrypto.framework"
+    ss.watchos.vendored_frameworks = "CryptoLib/watchOS/VSCCrypto.framework"
+    ss.xcconfig                    = { "HEADER_SEARCH_PATHS" => "$(FRAMEWORK_SEARCH_PATHS)/VSCCrypto.framework/Headers" }
+  end
+
+  s.subspec 'api-impl' do |ss|
+    ss.source_files                = "VirgilCryptoApiImpl/**/*.swift"
+    ss.dependency 'VirgilCrypto/wrapper'
+  end
 end
