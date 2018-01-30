@@ -39,22 +39,22 @@ script:
   - |
     if [ $TWO_STEP_BUILD_ENABLED == "YES" ]; then
       # Build Framework
-      xcodebuild -verbose -project "$PROJECT" -scheme "$CRYPTO_SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release clean build-for-testing;
+      xcodebuild -verbose -project "$PROJECT" -scheme "$CRYPTO_SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release clean build-for-testing | xcpretty;
       # Build Framework in Release and Run Tests if specified
       if [ $RUN_TESTS == "YES" ]; then
-        xcodebuild -verbose -project "$PROJECT" -scheme "$CRYPTO_SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release test-without-building;
+        xcodebuild -verbose -project "$PROJECT" -scheme "$CRYPTO_SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release test-without-building | xcpretty;
       fi
 
       # Build Framework
-      xcodebuild -verbose -project "$PROJECT" -scheme "$CRYPTO_IMPL_SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release clean build-for-testing;
+      xcodebuild -verbose -project "$PROJECT" -scheme "$CRYPTO_IMPL_SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release clean build-for-testing | xcpretty;
       # Build Framework in Release and Run Tests if specified
       if [ $RUN_TESTS == "YES" ]; then
-        xcodebuild -verbose -project "$PROJECT" -scheme "$CRYPTO_IMPL_SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release test-without-building;
+        xcodebuild -verbose -project "$PROJECT" -scheme "$CRYPTO_IMPL_SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release test-without-building | xcpretty;
       fi
     else
       # Build Framework
-      xcodebuild -verbose -project "$PROJECT" -scheme "$CRYPTO_SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release clean build;
-      xcodebuild -verbose -project "$PROJECT" -scheme "$CRYPTO_IMPL_SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release clean build;
+      xcodebuild -verbose -project "$PROJECT" -scheme "$CRYPTO_SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release clean build | xcpretty;  
+      xcodebuild -verbose -project "$PROJECT" -scheme "$CRYPTO_IMPL_SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release clean build | xcpretty;  
     fi
 
   # Build with carthage
