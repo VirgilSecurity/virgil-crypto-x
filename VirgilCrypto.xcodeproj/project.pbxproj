@@ -1338,8 +1338,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				42B12B09201FD8CD0082F9BC /* PBXTargetDependency */,
 				42B12B0B201FD8CD0082F9BC /* PBXTargetDependency */,
+				42B12B09201FD8CD0082F9BC /* PBXTargetDependency */,
 			);
 			name = "VirgilCryptoApiImpl macOS";
 			productName = "VirgilCryptoApiImpl macOS";
