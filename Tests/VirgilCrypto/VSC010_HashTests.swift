@@ -10,7 +10,7 @@ import Foundation
 import XCTest
 import VirgilCrypto
 
-class VSC010_HashTests {
+class VSC010_HashTests: XCTestCase {
     func test001_calculateMD5() {
         let h = VSCHash(algorithm: .MD5)
         let plainString = "secret"
@@ -54,9 +54,9 @@ class VSC010_HashTests {
     }
     
     func test004_calculateSHA256() {
-        let h = VSCHash(algorithm: .SHA224)
+        let h = VSCHash(algorithm: .SHA256)
         let plainString = "secret"
-        let expectedHashString = "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+        let expectedHashString = "2bb80d537b1da3e38bd30361aa855686bde0eacd7162fef6a25fe97bf527a25b"
         
         let hashData = h.hash(plainString.data(using: .utf8))
         let hexString = VSCByteArrayUtils.hexString(from: hashData)
@@ -81,8 +81,8 @@ class VSC010_HashTests {
         XCTAssert(h.hash(nil).base64EncodedString() == "OLBgp1GsljhM2TJ+sbHjaiH9txEUvgdDTAzHv2P24donTt6/529l+9Ua0vFImLlb")
     }
     
-    func test006_calculateSHA384() {
-        let h = VSCHash(algorithm: .SHA384)
+    func test006_calculateSHA512() {
+        let h = VSCHash(algorithm: .SHA512)
         let plainString = "secret"
         let expectedHashString = "bd2b1aaf7ef4f09be9f52ce2d8d599674d81aa9d6a4421696dc4d93dd0619d682ce56b4d64a9ef097761ced99e0f67265b5f76085e5b0ee7ca4696b2ad6fe2b2"
         
