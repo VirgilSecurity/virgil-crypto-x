@@ -11,7 +11,7 @@ import VirgilCryptoApiImpl
 import XCTest
 
 class VSM002_CryptoCompatibilityTests: XCTestCase {
-    private let crypto = VirgilCrypto()
+    private let crypto = VirgilCrypto(useSHA256Fingerprints: true)
     private var testsDict: Dictionary<String, Any>!
     
     override func setUp() {

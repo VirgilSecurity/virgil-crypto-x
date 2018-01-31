@@ -10,6 +10,15 @@ import Foundation
 import VirgilCrypto
 
 public extension VirgilCrypto {
+    @objc public func computeKeyIdentifier(publicKeyData: Data) -> Data {
+        if self.useSHA256Fingerprints {
+            return self.computeHash(for: publicKeyData, using: .SHA256)
+        }
+        else {
+            return self.computeHash(for: publicKeyData, using: .SHA512).subdata(in: 0..<8)
+        }
+    }
+    
     @objc public func importPrivateKey(from data: Data, password: String? = nil) throws -> VirgilPrivateKey {
         let privateKeyData: Data
         if let password = password {
@@ -31,9 +40,9 @@ public extension VirgilCrypto {
             throw VirgilCryptoError.extractPublicKeyFailed
         }
         
-        let keyIdentifier = self.computeHash(for: publicKeyData, using: .SHA256)
+        let identifier = self.computeKeyIdentifier(publicKeyData: publicKeyData)
         
-        return VirgilPrivateKey(identifier: keyIdentifier, rawKey: privateKeyDER)
+        return VirgilPrivateKey(identifier: identifier, rawKey: privateKeyDER)
     }
     
     @objc public func exportPrivateKey(_ privateKey: VirgilPrivateKey, password: String?) throws -> Data {
@@ -57,9 +66,9 @@ public extension VirgilCrypto {
             throw VirgilCryptoError.extractPublicKeyFailed
         }
         
-        let id = self.computeHash(for: publicKeyData, using: .SHA256)
+        let identifier = self.computeKeyIdentifier(publicKeyData: publicKeyData)
         
-        return VirgilPublicKey(identifier: id, rawKey: publicKeyData)
+        return VirgilPublicKey(identifier: identifier, rawKey: publicKeyData)
     }
     
     @objc public func exportPublicKey(_ publicKey: VirgilPublicKey) -> Data {
@@ -71,9 +80,7 @@ public extension VirgilCrypto {
             throw VirgilCryptoError.publicKeyToDERFailed
         }
         
-        let hash = VSCHash(algorithm: .SHA256)
-        
-        let identifier = hash.hash(publicKeyData)
+        let identifier = self.computeKeyIdentifier(publicKeyData: publicKeyData)
         
         return VirgilPublicKey(identifier: identifier, rawKey: publicKeyData)
     }

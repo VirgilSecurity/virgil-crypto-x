@@ -15,14 +15,12 @@ import VirgilCryptoAPI
     @objc public static let CustomParamKeySignerId = "VIRGIL-DATA-SIGNER-ID"
     
     @objc let defaultKeyType: VSCKeyType
-    @objc public init(defaultKeyType: VSCKeyType) {
+    @objc let useSHA256Fingerprints: Bool
+    @objc public init(defaultKeyType: VSCKeyType = .FAST_EC_ED25519, useSHA256Fingerprints: Bool = false) {
         self.defaultKeyType = defaultKeyType
+        self.useSHA256Fingerprints = useSHA256Fingerprints
         
         super.init()
-    }
-    
-    public override convenience init() {
-        self.init(defaultKeyType: .FAST_EC_ED25519)
     }
 
     @objc public func encrypt(_ data: Data, for recipients: [VirgilPublicKey]) throws -> Data {

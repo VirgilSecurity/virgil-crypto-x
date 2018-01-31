@@ -19,11 +19,10 @@ public extension VirgilCrypto {
             throw VirgilCryptoError.privateKeyToDERFailed
         }
         
-         let hash = VSCHash(algorithm: .SHA256)
-         let keyPairId = hash.hash(publicKeyDER)
+         let identifier = self.computeKeyIdentifier(publicKeyData: publicKeyDER)
         
-        let privateKey = VirgilPrivateKey(identifier: keyPairId, rawKey: privateKeyDER)
-        let publicKey = VirgilPublicKey(identifier: keyPairId, rawKey: publicKeyDER)
+        let privateKey = VirgilPrivateKey(identifier: identifier, rawKey: privateKeyDER)
+        let publicKey = VirgilPublicKey(identifier: identifier, rawKey: publicKeyDER)
         
         return VirgilKeyPair(privateKey: privateKey, publicKey: publicKey)
     }

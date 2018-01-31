@@ -10,10 +10,10 @@ import Foundation
 import VirgilCryptoAPI
 
 @objc(VSMVirgilPrivateKey) public class VirgilPrivateKey: NSObject {
-    @objc let identifier: Data
-    @objc let rawKey: Data
+    @objc public let identifier: Data
+    let rawKey: Data
     
-    @objc init(identifier: Data, rawKey: Data) {
+    init(identifier: Data, rawKey: Data) {
         self.identifier = identifier
         self.rawKey = rawKey
         

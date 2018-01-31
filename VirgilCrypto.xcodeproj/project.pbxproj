@@ -932,8 +932,8 @@
 			isa = PBXGroup;
 			children = (
 				42B12A0F201FD3430082F9BC /* VirgilPrivateKey.swift */,
-				42B12A10201FD3430082F9BC /* VirgilKeyPair.swift */,
 				42B12A16201FD3430082F9BC /* VirgilPublicKey.swift */,
+				42B12A10201FD3430082F9BC /* VirgilKeyPair.swift */,
 				42B12A15201FD3430082F9BC /* VirgilCrypto.swift */,
 				42B12A17201FD3430082F9BC /* VirgilCrypto+KeyManagement.swift */,
 				42B12A0E201FD3430082F9BC /* VirgilCrypto+KeyGeneration.swift */,
