@@ -9,13 +9,23 @@
 import Foundation
 import VirgilCryptoAPI
 
+/// Adapter for CardCrypto implementation using VirgilCrypto
 @objc(VSMVirgilCardCrypto) public class VirgilCardCrypto: NSObject {
-    let virgilCrypto = VirgilCrypto()
+    /// VirgilCrypto instance
+    @objc public let virgilCrypto: VirgilCrypto
+    
+    /// Initializer
+    ///
+    /// - Parameter virgilCrypto: VirgilCrypto instance
+    @objc public init(virgilCrypto: VirgilCrypto = VirgilCrypto()) {
+        self.virgilCrypto = virgilCrypto
+        
+        super.init()
+    }
 }
 
 // MARK: - Implementation of CardCrypto protocol
-extension VirgilCardCrypto : CardCrypto {
-    
+extension VirgilCardCrypto: CardCrypto {
     /// Generates the digital signature of data using specified private key.
     ///
     /// - Parameters:

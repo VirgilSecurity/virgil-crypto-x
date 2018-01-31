@@ -9,8 +9,19 @@
 import Foundation
 import VirgilCryptoAPI
 
+/// Adapter for AccessTokenSigner implementation using VirgilCrypto
 @objc(VSMVirgilAccessTokenSigner) public class VirgilAccessTokenSigner: NSObject {
-    let virgilCrypto = VirgilCrypto(defaultKeyType: .FAST_EC_ED25519)
+    /// VirgilCrypto instance
+    @objc public let virgilCrypto: VirgilCrypto
+    
+    /// Initializer
+    ///
+    /// - Parameter virgilCrypto: VirgilCrypto instance
+    @objc public init(virgilCrypto: VirgilCrypto = VirgilCrypto()) {
+        self.virgilCrypto = virgilCrypto
+        
+        super.init()
+    }
 }
 
 // MARK: - Implementation of AccessTokenSigner protocol

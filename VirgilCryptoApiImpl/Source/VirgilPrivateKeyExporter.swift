@@ -10,13 +10,23 @@ import Foundation
 
 import VirgilCryptoAPI
 
+/// Adapter for PrivateKeyExported implementation using VirgilCrypto
 @objc(VSMVirgilPrivateKeyExporter) public class VirgilPrivateKeyExporter: NSObject {
-    private let virgilCrypto: VirgilCrypto
-    private let password: String?
+    /// VirgilCrypto instance
+    @objc public let virgilCrypto: VirgilCrypto
+    /// Password used to encrypt private key. Do NOT use nil, unless your storage/transport channel is secured
+    @objc public let password: String?
     
-    @objc public init(virgilCrypto: VirgilCrypto = VirgilCrypto(defaultKeyType: .FAST_EC_ED25519), password: String? = nil) {
+    /// Initializer
+    ///
+    /// - Parameters:
+    ///   - virgilCrypto: VirgilCrypto instance
+    ///   - password: Password used to encrypt private key. Do NOT use nil, unless your storage/transport channel is secured
+    @objc public init(virgilCrypto: VirgilCrypto = VirgilCrypto(), password: String? = nil) {
         self.virgilCrypto = virgilCrypto
         self.password = password
+        
+        super.init()
     }
 }
 
