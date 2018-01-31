@@ -1512,7 +1512,7 @@
 					New,
 				);
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = VirgilSecurity;
 				TargetAttributes = {
 					423F002F1E719EF200CC98A3 = {
@@ -2537,7 +2537,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.VirgilCryptoApiImpl-macOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilCryptoApiImpl;
 				PRODUCT_NAME = VirgilCryptoApiImpl;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -2571,7 +2571,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.VirgilCryptoApiImpl-macOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilCryptoApiImpl;
 				PRODUCT_NAME = VirgilCryptoApiImpl;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -2603,7 +2603,7 @@
 				INFOPLIST_FILE = VirgilCryptoApiImpl/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.VirgilCryptoApiImpl-watchOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilCryptoApiImpl;
 				PRODUCT_NAME = VirgilCryptoApiImpl;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -2638,7 +2638,7 @@
 				INFOPLIST_FILE = VirgilCryptoApiImpl/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.VirgilCryptoApiImpl-watchOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilCryptoApiImpl;
 				PRODUCT_NAME = VirgilCryptoApiImpl;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -2671,7 +2671,7 @@
 				INFOPLIST_FILE = VirgilCryptoApiImpl/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.VirgilCryptoApiImpl-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilCryptoApiImpl;
 				PRODUCT_NAME = VirgilCryptoApiImpl;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -2705,7 +2705,7 @@
 				INFOPLIST_FILE = VirgilCryptoApiImpl/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.VirgilCryptoApiImpl-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilCryptoApiImpl;
 				PRODUCT_NAME = VirgilCryptoApiImpl;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -2856,7 +2856,7 @@
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
