@@ -33,10 +33,10 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "42CDC21F1F68209300D69111"
-               BuildableName = "VirgilCryptoAPI macOS Tests.xctest"
-               BlueprintName = "VirgilCryptoAPI macOS Tests"
-               ReferencedContainer = "container:Carthage/Checkouts/virgil-cryptoapi-x/VirgilCryptoAPI.xcodeproj">
+               BlueprintIdentifier = "42B12B69201FDCC60082F9BC"
+               BuildableName = "VirgilCryptoApiImpl macOS Tests.xctest"
+               BlueprintName = "VirgilCryptoApiImpl macOS Tests"
+               ReferencedContainer = "container:VirgilCrypto.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

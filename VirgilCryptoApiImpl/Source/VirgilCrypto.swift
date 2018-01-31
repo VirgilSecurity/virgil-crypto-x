@@ -25,7 +25,7 @@ import VirgilCryptoAPI
         self.init(defaultKeyType: .FAST_EC_ED25519)
     }
 
-    @objc public func encrypt(data: Data, for recipients: [VirgilPublicKey]) throws -> Data {
+    @objc public func encrypt(_ data: Data, for recipients: [VirgilPublicKey]) throws -> Data {
         let cryptor = VSCCryptor()
     
         try recipients.forEach(){
@@ -37,7 +37,7 @@ import VirgilCryptoAPI
         return encryptedData
     }
     
-    @objc public func encrypt(stream: InputStream, to outputStream: OutputStream, for recipients: [VirgilPublicKey]) throws {
+    @objc public func encrypt(_ stream: InputStream, to outputStream: OutputStream, for recipients: [VirgilPublicKey]) throws {
         let cryptor = VSCChunkCryptor()
         
         try recipients.forEach(){
@@ -59,13 +59,13 @@ import VirgilCryptoAPI
         try signer.verifySignature(signature, from: stream, publicKey: publicKey.rawKey)
     }
     
-    @objc public func decrypt(data: Data, with privateKey: VirgilPrivateKey) throws -> Data {
+    @objc public func decrypt(_ data: Data, with privateKey: VirgilPrivateKey) throws -> Data {
         let cryptor = VSCCryptor()
         
         return try cryptor.decryptData(data, recipientId: privateKey.identifier, privateKey: privateKey.rawKey, keyPassword: nil)
     }
     
-    @objc public func decrypt(stream: InputStream, to outputStream: OutputStream, with privateKey: VirgilPrivateKey) throws {
+    @objc public func decrypt(_ stream: InputStream, to outputStream: OutputStream, with privateKey: VirgilPrivateKey) throws {
         let cryptor = VSCChunkCryptor()
         
         try cryptor.decrypt(from: stream, to: outputStream, recipientId: privateKey.identifier, privateKey: privateKey.rawKey, keyPassword: nil)
@@ -123,7 +123,7 @@ import VirgilCryptoAPI
         return decryptedData
     }
     
-    @objc public func generateSignature(of data: Data, usingVirgil privateKey: VirgilPrivateKey) throws -> Data {
+    @objc public func generateSignature(of data: Data, using privateKey: VirgilPrivateKey) throws -> Data {
         let signer = VSCSigner()
         
         return try signer.sign(data, privateKey: privateKey.rawKey, keyPassword: nil)

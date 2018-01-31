@@ -43,6 +43,6 @@ extension VirgilPrivateKeyExporter: PrivateKeyExporter {
     /// - Returns: imported Private Key instance
     /// - Throws: error if verification failed
     public func importPrivateKey(from data: Data) throws -> PrivateKey {
-        return try self.virgilCrypto.importPrivateKey(fromData: data)
+        return try self.virgilCrypto.importPrivateKey(from: data)
     }
 }

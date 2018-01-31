@@ -27,7 +27,7 @@ extension VirgilCardCrypto : CardCrypto {
             throw VirgilCryptoError.passedKeyIsNotVirgil
         }
         
-        return try self.virgilCrypto.generateSignature(of: data, usingVirgil: privateKey)
+        return try self.virgilCrypto.generateSignature(of: data, using: privateKey)
     }
     
     /// Verifies the passed-in signature.
@@ -59,7 +59,7 @@ extension VirgilCardCrypto : CardCrypto {
     /// - Returns: imported public key
     /// - Throws: corresponding error
     public func importPublicKey(from data: Data) throws -> PublicKey {
-        return self.virgilCrypto.importVirgilPublicKey(from: data)
+        return try self.virgilCrypto.importPublicKey(from: data)
     }
     
     /// Exports public key to its raw data representation.
@@ -72,6 +72,6 @@ extension VirgilCardCrypto : CardCrypto {
             throw VirgilCryptoError.passedKeyIsNotVirgil
         }
         
-        return self.virgilCrypto.exportVirgilPublicKey(publicKey)
+        return self.virgilCrypto.exportPublicKey(publicKey)
     }
 }

@@ -27,7 +27,7 @@ extension VirgilAccessTokenSigner: AccessTokenSigner {
             throw VirgilCryptoError.passedKeyIsNotVirgil
         }
         
-        return try self.virgilCrypto.generateSignature(of: token, usingVirgil: privateKey)
+        return try self.virgilCrypto.generateSignature(of: token, using: privateKey)
     }
     
     /// Verifies the passed-in token's signature.

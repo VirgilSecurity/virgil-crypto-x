@@ -1,32 +1,17 @@
 //
 //  VSS003_CryptoTests.swift
-//  VirgilSDK
+//  VirgilCryptoApiImpl
 //
 //  Created by Oleksandr Deundiak on 10/17/16.
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
 import Foundation
-import VirgilCryptoAPI
-import VirgilCrypto
 import VirgilCryptoApiImpl
 import XCTest
 
 class VSC001_CryptoTests: XCTestCase {
-    private var crypto: VirgilCrypto!
-    // MARK: Setup
-    
-    override func setUp() {
-        super.setUp()
-        
-        self.crypto = VirgilCrypto(defaultKeyType: .EC_BP512R1)
-    }
-    
-    override func tearDown() {
-        self.crypto = nil
-        
-        super.tearDown()
-    }
+    private let crypto = VirgilCrypto()
     
     func testGK001() {
         let keypairs = try! self.crypto.generateMultipleKeyPairs(numberOfKeyPairs: 100)
@@ -40,9 +25,9 @@ class VSC001_CryptoTests: XCTestCase {
         
         let keyPair = try! self.crypto.generateKeyPair()
         
-        let encryptedData = try! self.crypto.encrypt(data: data, for: [keyPair.publicKey])
+        let encryptedData = try! self.crypto.encrypt(data, for: [keyPair.publicKey])
         
-        let decryptedData = try! self.crypto.decrypt(data: encryptedData, with: keyPair.privateKey)
+        let decryptedData = try! self.crypto.decrypt(encryptedData, with: keyPair.privateKey)
         
         XCTAssert(data == decryptedData)
     }
@@ -53,9 +38,9 @@ class VSC001_CryptoTests: XCTestCase {
         let keyPair = try! self.crypto.generateKeyPair()
         let wrongKeyPair = try! self.crypto.generateKeyPair()
         
-        let encryptedData = try! self.crypto.encrypt(data: data, for: [keyPair.publicKey])
+        let encryptedData = try! self.crypto.encrypt(data, for: [keyPair.publicKey])
         
-        let decryptedData = try? self.crypto.decrypt(data: encryptedData, with: wrongKeyPair.privateKey)
+        let decryptedData = try? self.crypto.decrypt(encryptedData, with: wrongKeyPair.privateKey)
         
         XCTAssert(decryptedData == nil)
     }
@@ -66,10 +51,10 @@ class VSC001_CryptoTests: XCTestCase {
         let keyPair1 = try! self.crypto.generateKeyPair()
         let keyPair2 = try! self.crypto.generateKeyPair()
         
-        let encryptedData = try! self.crypto.encrypt(data: data, for: [keyPair1.publicKey, keyPair2.publicKey])
+        let encryptedData = try! self.crypto.encrypt(data, for: [keyPair1.publicKey, keyPair2.publicKey])
         
-        let decryptedData1 = try! self.crypto.decrypt(data: encryptedData, with: keyPair1.privateKey)
-        let decryptedData2 = try! self.crypto.decrypt(data: encryptedData, with: keyPair2.privateKey)
+        let decryptedData1 = try! self.crypto.decrypt(encryptedData, with: keyPair1.privateKey)
+        let decryptedData2 = try! self.crypto.decrypt(encryptedData, with: keyPair2.privateKey)
         
         XCTAssert(data == decryptedData1)
         XCTAssert(data == decryptedData2)
@@ -83,7 +68,7 @@ class VSC001_CryptoTests: XCTestCase {
         let inputStreamForEncryption = InputStream(data: data)
         let outputStreamForEncryption = OutputStream.toMemory()
         
-        try! self.crypto.encrypt(stream: inputStreamForEncryption, to: outputStreamForEncryption, for: [keyPair.publicKey])
+        try! self.crypto.encrypt(inputStreamForEncryption, to: outputStreamForEncryption, for: [keyPair.publicKey])
         
         let encryptedDataProperty = outputStreamForEncryption.property(forKey: Stream.PropertyKey.dataWrittenToMemoryStreamKey)
         
@@ -95,7 +80,7 @@ class VSC001_CryptoTests: XCTestCase {
         let inputStreamForDecryption = InputStream(data: encryptedData)
         let outputStreamForDecryption = OutputStream.toMemory()
         
-        try! self.crypto.decrypt(stream: inputStreamForDecryption, to: outputStreamForDecryption, with: keyPair.privateKey)
+        try! self.crypto.decrypt(inputStreamForDecryption, to: outputStreamForDecryption, with: keyPair.privateKey)
         
         let decryptedDataProperty = outputStreamForDecryption.property(forKey: Stream.PropertyKey.dataWrittenToMemoryStreamKey)
         
@@ -116,7 +101,7 @@ class VSC001_CryptoTests: XCTestCase {
         let inputStreamForEncryption = InputStream(data: data)
         let outputStreamForEncryption = OutputStream.toMemory()
         
-        try! self.crypto.encrypt(stream: inputStreamForEncryption, to: outputStreamForEncryption, for: [keyPair.publicKey])
+        try! self.crypto.encrypt(inputStreamForEncryption, to: outputStreamForEncryption, for: [keyPair.publicKey])
         
         let encryptedDataProperty = outputStreamForEncryption.property(forKey: Stream.PropertyKey.dataWrittenToMemoryStreamKey)
         
@@ -130,7 +115,7 @@ class VSC001_CryptoTests: XCTestCase {
         
         var errorWasThrown = false
         do {
-            try self.crypto.decrypt(stream: inputStreamForDecryption, to: outputStreamForDecryption, with: wrongKeyPair.privateKey)
+            try self.crypto.decrypt(inputStreamForDecryption, to: outputStreamForDecryption, with: wrongKeyPair.privateKey)
         }
         catch {
             errorWasThrown = true
@@ -157,7 +142,7 @@ class VSC001_CryptoTests: XCTestCase {
         let inputStreamForEncryption = InputStream(data: data)
         let outputStreamForEncryption = OutputStream.toMemory()
         
-        try! self.crypto.encrypt(stream: inputStreamForEncryption, to: outputStreamForEncryption, for: [keyPair1.publicKey, keyPair2.publicKey])
+        try! self.crypto.encrypt(inputStreamForEncryption, to: outputStreamForEncryption, for: [keyPair1.publicKey, keyPair2.publicKey])
         
         let encryptedDataProperty = outputStreamForEncryption.property(forKey: Stream.PropertyKey.dataWrittenToMemoryStreamKey)
         
@@ -169,7 +154,7 @@ class VSC001_CryptoTests: XCTestCase {
         let inputStreamForDecryption1 = InputStream(data: encryptedData)
         let outputStreamForDecryption1 = OutputStream.toMemory()
         
-        try! self.crypto.decrypt(stream: inputStreamForDecryption1, to: outputStreamForDecryption1, with: keyPair1.privateKey)
+        try! self.crypto.decrypt(inputStreamForDecryption1, to: outputStreamForDecryption1, with: keyPair1.privateKey)
         
         let decryptedDataProperty1 = outputStreamForDecryption1.property(forKey: Stream.PropertyKey.dataWrittenToMemoryStreamKey)
         
@@ -183,7 +168,7 @@ class VSC001_CryptoTests: XCTestCase {
         let inputStreamForDecryption2 = InputStream(data: encryptedData)
         let outputStreamForDecryption2 = OutputStream.toMemory()
         
-        try! self.crypto.decrypt(stream: inputStreamForDecryption2, to: outputStreamForDecryption2, with: keyPair2.privateKey)
+        try! self.crypto.decrypt(inputStreamForDecryption2, to: outputStreamForDecryption2, with: keyPair2.privateKey)
         
         let decryptedDataProperty2 = outputStreamForDecryption2.property(forKey: Stream.PropertyKey.dataWrittenToMemoryStreamKey)
         
@@ -203,7 +188,7 @@ class VSC001_CryptoTests: XCTestCase {
         
         let outputStreamForEncryption = OutputStream.toMemory()
         
-        try! self.crypto.encrypt(stream: inputStreamForEncryption, to: outputStreamForEncryption, for: [keyPair.publicKey])
+        try! self.crypto.encrypt(inputStreamForEncryption, to: outputStreamForEncryption, for: [keyPair.publicKey])
         
         let encryptedDataProperty = outputStreamForEncryption.property(forKey: Stream.PropertyKey.dataWrittenToMemoryStreamKey)
         
@@ -215,7 +200,7 @@ class VSC001_CryptoTests: XCTestCase {
         let inputStreamForDecryption = InputStream(data: encryptedData)
         let outputStreamForDecryption = OutputStream.toMemory()
         
-        try! self.crypto.decrypt(stream: inputStreamForDecryption, to: outputStreamForDecryption, with: keyPair.privateKey)
+        try! self.crypto.decrypt(inputStreamForDecryption, to: outputStreamForDecryption, with: keyPair.privateKey)
         
         let decryptedDataProperty = outputStreamForDecryption.property(forKey: Stream.PropertyKey.dataWrittenToMemoryStreamKey)
         
@@ -235,7 +220,7 @@ class VSC001_CryptoTests: XCTestCase {
 
         let keyPair = try! self.crypto.generateKeyPair()
         
-        let signature = try! self.crypto.generateSignature(of: data, usingVirgil: keyPair.privateKey)
+        let signature = try! self.crypto.generateSignature(of: data, using: keyPair.privateKey)
         
         try! self.crypto.verifySignature(signature, of: data, with: keyPair.publicKey)
     }
@@ -246,7 +231,7 @@ class VSC001_CryptoTests: XCTestCase {
         let keyPair = try! self.crypto.generateKeyPair()
         let wrongKeyPair = try! self.crypto.generateKeyPair()
         
-        let signature = try! self.crypto.generateSignature(of: data, usingVirgil: keyPair.privateKey)
+        let signature = try! self.crypto.generateSignature(of: data, using: keyPair.privateKey)
         
         var errorWasThrown = false
         do {
