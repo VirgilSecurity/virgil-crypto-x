@@ -72,7 +72,7 @@ import VirgilCryptoAPI
     }
     
     @objc public func signThenEncrypt(_ data: Data, with privateKey: VirgilPrivateKey, for recipients: [VirgilPublicKey]) throws -> Data {
-        let signer = VSCSigner()
+        let signer = VSCSigner(hash: "sha512")
         
         let signature = try signer.sign(data, privateKey: privateKey.rawKey, keyPassword: nil)
         
@@ -124,13 +124,13 @@ import VirgilCryptoAPI
     }
     
     @objc public func generateSignature(of data: Data, using privateKey: VirgilPrivateKey) throws -> Data {
-        let signer = VSCSigner()
+        let signer = VSCSigner(hash: "sha512")
         
         return try signer.sign(data, privateKey: privateKey.rawKey, keyPassword: nil)
     }
     
     @objc public func generateStreamSignature(of stream: InputStream, using privateKey: VirgilPrivateKey) throws -> Data {
-        let signer = VSCStreamSigner()
+        let signer = VSCStreamSigner(hash: "sha512")
         
         let signature = try signer.signStreamData(stream, privateKey: privateKey.rawKey, keyPassword: nil)
         

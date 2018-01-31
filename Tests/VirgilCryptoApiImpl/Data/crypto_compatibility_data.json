@@ -37,7 +37,7 @@
   "generate_signature": {
     "private_key": "MC4CAQAwBQYDK2VwBCIEIBueB+DRjfF52AK7qTkUUhOEOJwNpzxkt3d00riD7QuI",
     "original_data": "U3VzcGVuZGlzc2UgZWxpdCBwdXJ1cywgbGFvcmVldCB1dCBuaWJoIG5lYy4=",
-    "signature": "MFEwDQYJYIZIAWUDBAICBQAEQIRo5ZMpOqH2CG2O1HdffGUXYndBpgqsfI5pm5kafIt+kMjWnH6WlbOKwdISatDZb0Q2+6zKnJr5KZslzUnU9Q4="
+    "signature": "MFEwDQYJYIZIAWUDBAIDBQAEQAOH1pMHOHWbycG+kfstYX7i+wBAFyWSuYtGFnQBRJwNlRGHPsNcBCRaW1TY1oVNTO5F6E8UKHWkmKjPvP/lCQs="
   },
   "sign_then_encrypt_multiple_signers": {
     "private_key": "MC4CAQAwBQYDK2VwBCIEIPMs870eu4vxndAD7bPABbEYe7nCEVCnogw3iq3XsxTb",

@@ -131,6 +131,9 @@
 		4282E3B3202206D900FD7C7A /* crypto_compatibility_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 4282E3B2202206D500FD7C7A /* crypto_compatibility_data.json */; };
 		4282E3B4202206DA00FD7C7A /* crypto_compatibility_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 4282E3B2202206D500FD7C7A /* crypto_compatibility_data.json */; };
 		4282E3B5202206DB00FD7C7A /* crypto_compatibility_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 4282E3B2202206D500FD7C7A /* crypto_compatibility_data.json */; };
+		4282E3B820220D7400FD7C7A /* VSM003_CryptoFormatsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4282E3B620220D6800FD7C7A /* VSM003_CryptoFormatsTests.swift */; };
+		4282E3B920220D7400FD7C7A /* VSM003_CryptoFormatsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4282E3B620220D6800FD7C7A /* VSM003_CryptoFormatsTests.swift */; };
+		4282E3BA20220D7500FD7C7A /* VSM003_CryptoFormatsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4282E3B620220D6800FD7C7A /* VSM003_CryptoFormatsTests.swift */; };
 		42A01F851F7D521200FF8804 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A01F841F7D521200FF8804 /* Security.framework */; };
 		42A01F871F7D524500FF8804 /* VSCCrypto in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CDC2FE1F696EF300D69111 /* VSCCrypto */; };
 		42A01F901F7D543A00FF8804 /* VSCPfsPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D102C1EF14090002A9C22 /* VSCPfsPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -628,6 +631,7 @@
 		423F00BA1E71A68400CC98A3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		4282E3AD2021FBF800FD7C7A /* VSM002_CryptoCompatibilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSM002_CryptoCompatibilityTests.swift; sourceTree = "<group>"; };
 		4282E3B2202206D500FD7C7A /* crypto_compatibility_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = crypto_compatibility_data.json; sourceTree = "<group>"; };
+		4282E3B620220D6800FD7C7A /* VSM003_CryptoFormatsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSM003_CryptoFormatsTests.swift; sourceTree = "<group>"; };
 		42A01F7C1F7D51FE00FF8804 /* VirgilCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42A01F841F7D521200FF8804 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS11.0.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		42B129EB201FD2790082F9BC /* VirgilCryptoApiImpl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilCryptoApiImpl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -979,6 +983,7 @@
 				42B12B87201FDDFE0082F9BC /* Data */,
 				42B12B38201FDC800082F9BC /* VSM001_CryptoTests.swift */,
 				4282E3AD2021FBF800FD7C7A /* VSM002_CryptoCompatibilityTests.swift */,
+				4282E3B620220D6800FD7C7A /* VSM003_CryptoFormatsTests.swift */,
 			);
 			path = VirgilCryptoApiImpl;
 			sourceTree = "<group>";
@@ -1938,6 +1943,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42B12B86201FDCFC0082F9BC /* VSM001_CryptoTests.swift in Sources */,
+				4282E3B820220D7400FD7C7A /* VSM003_CryptoFormatsTests.swift in Sources */,
 				4282E3AF2021FC2F00FD7C7A /* VSM002_CryptoCompatibilityTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1947,6 +1953,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42B12B85201FDCFC0082F9BC /* VSM001_CryptoTests.swift in Sources */,
+				4282E3B920220D7400FD7C7A /* VSM003_CryptoFormatsTests.swift in Sources */,
 				4282E3B02021FC3000FD7C7A /* VSM002_CryptoCompatibilityTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1956,6 +1963,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42B12B84201FDCFB0082F9BC /* VSM001_CryptoTests.swift in Sources */,
+				4282E3BA20220D7500FD7C7A /* VSM003_CryptoFormatsTests.swift in Sources */,
 				4282E3B12021FC3100FD7C7A /* VSM002_CryptoCompatibilityTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
