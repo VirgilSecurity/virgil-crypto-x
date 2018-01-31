@@ -59,7 +59,7 @@ extension VirgilCardCrypto : CardCrypto {
     /// - Returns: imported public key
     /// - Throws: corresponding error
     public func importPublicKey(from data: Data) throws -> PublicKey {
-        return try self.virgilCrypto.importVirgilPublicKey(from: data)
+        return self.virgilCrypto.importVirgilPublicKey(from: data)
     }
     
     /// Exports public key to its raw data representation.
@@ -72,6 +72,6 @@ extension VirgilCardCrypto : CardCrypto {
             throw VirgilCryptoError.passedKeyIsNotVirgil
         }
         
-        return try self.virgilCrypto.exportVirgilPublicKey(publicKey)
+        return self.virgilCrypto.exportVirgilPublicKey(publicKey)
     }
 }
