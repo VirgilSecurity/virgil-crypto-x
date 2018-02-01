@@ -142,7 +142,10 @@ class VSM002_CryptoCompatibilityTests: XCTestCase {
         let signature = try! self.crypto.generateSignature(of: originalData, using: privateKey)
         let signatureStr = signature.base64EncodedString()
         
-        let originalSignatureStr = dict["signature"]
+        let originalSignatureStr = dict["signature"]!
+        let originalSignature = Data(base64Encoded: originalSignatureStr)!
+        
+        XCTAssert(self.crypto.verifySignature(originalSignature, of: originalData, with: try! self.crypto.extractPublicKey(from: privateKey)) == true)
         
         XCTAssert(originalSignatureStr == signatureStr)
     }
