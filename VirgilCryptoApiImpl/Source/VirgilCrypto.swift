@@ -45,16 +45,30 @@ import VirgilCryptoAPI
         try cryptor.encryptData(from: stream, to: outputStream)
     }
     
-    @objc public func verifySignature(_ signature: Data, of data: Data, with publicKey: VirgilPublicKey) throws {
+    @objc public func verifySignature(_ signature: Data, of data: Data, with publicKey: VirgilPublicKey) -> Bool {
         let signer = VSCSigner()
         
-        try signer.verifySignature(signature, data: data, publicKey: publicKey.rawKey)
+        do {
+            try signer.verifySignature(signature, data: data, publicKey: publicKey.rawKey)
+        }
+        catch {
+            return false
+        }
+        
+        return true
     }
     
-    @objc public func verifyStreamSignature(_ signature: Data, of stream: InputStream, with publicKey: VirgilPublicKey) throws {
+    @objc public func verifyStreamSignature(_ signature: Data, of stream: InputStream, with publicKey: VirgilPublicKey) -> Bool {
         let signer = VSCStreamSigner()
         
-        try signer.verifySignature(signature, from: stream, publicKey: publicKey.rawKey)
+        do {
+            try signer.verifySignature(signature, from: stream, publicKey: publicKey.rawKey)
+        }
+        catch {
+            return false
+        }
+        
+        return true
     }
     
     @objc public func decrypt(_ data: Data, with privateKey: VirgilPrivateKey) throws -> Data {

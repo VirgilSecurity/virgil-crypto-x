@@ -47,13 +47,13 @@ extension VirgilAccessTokenSigner: AccessTokenSigner {
     ///   - signature: the signature bytes to be verified
     ///   - token: the token to be verified
     ///   - publicKey: the public key of the identity whose signature is going to be verified
-    /// - Throws: error if verification failed
-    public func verifyTokenSignature(_ signature: Data, of token: Data, with publicKey: PublicKey) throws {
+    /// - Returns: true if verified, false otherwise
+    public func verifyTokenSignature(_ signature: Data, of token: Data, with publicKey: PublicKey) -> Bool {
         guard let publicKey = publicKey as? VirgilPublicKey else {
-            throw VirgilCryptoError.passedKeyIsNotVirgil
+            return false
         }
         
-        try self.virgilCrypto.verifySignature(signature, of: token, with: publicKey)
+        return self.virgilCrypto.verifySignature(signature, of: token, with: publicKey)
     }
     
     ///Represets algorithm used for signing

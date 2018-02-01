@@ -46,13 +46,13 @@ extension VirgilCardCrypto: CardCrypto {
     ///   - signature: the signature bytes to be verified
     ///   - data: the data to be verified
     ///   - publicKey: the public key of the identity whose signature is going to be verified
-    /// - Throws: error if verification failed
-    public func verifySignature(_ signature: Data, of data: Data, with publicKey: PublicKey) throws {
+    /// - Returns: true if verified, false otherwise
+    public func verifySignature(_ signature: Data, of data: Data, with publicKey: PublicKey) -> Bool {
         guard let publicKey = publicKey as? VirgilPublicKey else {
-            throw VirgilCryptoError.passedKeyIsNotVirgil
+            return false
         }
         
-        try self.virgilCrypto.verifySignature(signature, of: data, with: publicKey)
+        return self.virgilCrypto.verifySignature(signature, of: data, with: publicKey)
     }
     
     /// Computes SHA-256.
