@@ -22,7 +22,7 @@ public extension VirgilCrypto {
     @objc public func importPrivateKey(from data: Data, password: String? = nil) throws -> VirgilPrivateKey {
         let privateKeyData: Data
         if let password = password {
-            guard let decryptedPrivateKeyData = VSCKeyPair.decryptPrivateKey(data, privateKeyPassword: password) else {
+            guard let decryptedPrivateKeyData = KeyPair.decryptPrivateKey(data, privateKeyPassword: password) else {
                 throw VirgilCryptoError.decryptPrivateKeyFailed
             }
             
@@ -32,11 +32,11 @@ public extension VirgilCrypto {
             privateKeyData = data
         }
         
-        guard let privateKeyDER = VSCKeyPair.privateKey(toDER: privateKeyData) else {
+        guard let privateKeyDER = KeyPair.privateKey(toDER: privateKeyData) else {
             throw VirgilCryptoError.privateKeyToDERFailed
         }
         
-        guard let publicKeyData = VSCKeyPair.extractPublicKey(withPrivateKey: privateKeyDER, privateKeyPassword: nil) else {
+        guard let publicKeyData = KeyPair.extractPublicKey(fromPrivateKey: privateKeyDER, privateKeyPassword: nil) else {
             throw VirgilCryptoError.extractPublicKeyFailed
         }
         
@@ -48,7 +48,7 @@ public extension VirgilCrypto {
     @objc public func exportPrivateKey(_ privateKey: VirgilPrivateKey, password: String?) throws -> Data {
         let privateKeyData: Data
         if let password = password {
-            guard let encryptedPrivateKeyData = VSCKeyPair.encryptPrivateKey(privateKey.rawKey, privateKeyPassword: password) else {
+            guard let encryptedPrivateKeyData = KeyPair.encryptPrivateKey(privateKey.rawKey, privateKeyPassword: password) else {
                 throw VirgilCryptoError.encryptPrivateKeyFailed
             }
             
@@ -62,7 +62,7 @@ public extension VirgilCrypto {
     }
     
     @objc public func extractPublicKey(from privateKey: VirgilPrivateKey) throws -> VirgilPublicKey {
-        guard let publicKeyData = VSCKeyPair.extractPublicKey(withPrivateKey: privateKey.rawKey, privateKeyPassword: nil) else {
+        guard let publicKeyData = KeyPair.extractPublicKey(fromPrivateKey: privateKey.rawKey, privateKeyPassword: nil) else {
             throw VirgilCryptoError.extractPublicKeyFailed
         }
         
@@ -76,7 +76,7 @@ public extension VirgilCrypto {
     }
     
     @objc public func importPublicKey(from data: Data) throws -> VirgilPublicKey {
-        guard let publicKeyData = VSCKeyPair.publicKey(toDER: data) else {
+        guard let publicKeyData = KeyPair.publicKey(toDER: data) else {
             throw VirgilCryptoError.publicKeyToDERFailed
         }
         

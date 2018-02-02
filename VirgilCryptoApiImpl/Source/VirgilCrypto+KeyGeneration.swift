@@ -10,12 +10,12 @@ import Foundation
 import VirgilCrypto
 
 public extension VirgilCrypto {
-    private func wrapKeyPair(keyPair: VSCKeyPair) throws -> VirgilKeyPair {
-         guard let publicKeyDER = VSCKeyPair.publicKey(toDER: keyPair.publicKey()) else {
+    private func wrapKeyPair(keyPair: KeyPair) throws -> VirgilKeyPair {
+         guard let publicKeyDER = KeyPair.publicKey(toDER: keyPair.publicKey()) else {
             throw VirgilCryptoError.publicKeyToDERFailed
          }
         
-        guard let privateKeyDER = VSCKeyPair.privateKey(toDER: keyPair.privateKey()) else {
+        guard let privateKeyDER = KeyPair.privateKey(toDER: keyPair.privateKey()) else {
             throw VirgilCryptoError.privateKeyToDERFailed
         }
         
@@ -28,7 +28,7 @@ public extension VirgilCrypto {
     }
     
     @objc public func generateMultipleKeyPairs(numberOfKeyPairs: UInt) throws -> [VirgilKeyPair] {
-        return try VSCKeyPair
+        return try KeyPair
             .generateMultipleKeys(numberOfKeyPairs, keyPairType: self.defaultKeyType)
             .map({ try self.wrapKeyPair(keyPair: $0) })
     }
@@ -38,7 +38,7 @@ public extension VirgilCrypto {
     }
     
     @objc public func generateKeyPair(ofType type: VSCKeyType) throws -> VirgilKeyPair {
-        let keyPair = VSCKeyPair(keyPairType: type, password: nil)
+        let keyPair = KeyPair(keyPairType: type, password: nil)
         
         return try self.wrapKeyPair(keyPair: keyPair)
     }
