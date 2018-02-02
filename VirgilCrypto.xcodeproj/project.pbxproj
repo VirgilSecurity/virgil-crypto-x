@@ -107,7 +107,7 @@
 		423F004F1E71A01A00CC98A3 /* VSCSigner.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85F001DC7657C00C3184C /* VSCSigner.mm */; };
 		423F00501E71A01A00CC98A3 /* VSCStreamCryptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85F021DC7657C00C3184C /* VSCStreamCryptor.mm */; };
 		423F00511E71A01A00CC98A3 /* VSCStreamSigner.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85F041DC7657C00C3184C /* VSCStreamSigner.mm */; };
-		423F00521E71A01A00CC98A3 /* VSCTinyCryptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85F061DC7657C00C3184C /* VSCTinyCryptor.mm */; };
+		423F00521E71A01A00CC98A3 /* VSCTinyCipher.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85F061DC7657C00C3184C /* VSCTinyCipher.mm */; };
 		423F00531E71A01A00CC98A3 /* VSCVirgilVersion.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85F081DC7657C00C3184C /* VSCVirgilVersion.mm */; };
 		423F00571E71A05D00CC98A3 /* VSCBaseCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85EEE1DC7657C00C3184C /* VSCBaseCryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		423F00591E71A05D00CC98A3 /* VSCByteArrayUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85EF11DC7657C00C3184C /* VSCByteArrayUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -120,7 +120,7 @@
 		423F00601E71A05D00CC98A3 /* VSCSigner.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85EFF1DC7657C00C3184C /* VSCSigner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		423F00611E71A05D00CC98A3 /* VSCStreamCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85F011DC7657C00C3184C /* VSCStreamCryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		423F00621E71A05D00CC98A3 /* VSCStreamSigner.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85F031DC7657C00C3184C /* VSCStreamSigner.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		423F00631E71A05D00CC98A3 /* VSCTinyCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85F051DC7657C00C3184C /* VSCTinyCryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		423F00631E71A05D00CC98A3 /* VSCTinyCipher.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85F051DC7657C00C3184C /* VSCTinyCipher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		423F00641E71A05D00CC98A3 /* VSCVirgilVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85F071DC7657C00C3184C /* VSCVirgilVersion.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		423F00891E71A0FD00CC98A3 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423F00301E719EF200CC98A3 /* VirgilCrypto.framework */; };
 		423F00B91E71A67E00CC98A3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423F00B81E71A67E00CC98A3 /* Security.framework */; };
@@ -160,7 +160,7 @@
 		42A01FA31F7D543A00FF8804 /* VSCSigner.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85EFF1DC7657C00C3184C /* VSCSigner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42A01FA41F7D543A00FF8804 /* VSCStreamCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85F011DC7657C00C3184C /* VSCStreamCryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42A01FA51F7D543A00FF8804 /* VSCStreamSigner.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85F031DC7657C00C3184C /* VSCStreamSigner.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		42A01FA61F7D543A00FF8804 /* VSCTinyCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85F051DC7657C00C3184C /* VSCTinyCryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42A01FA61F7D543A00FF8804 /* VSCTinyCipher.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85F051DC7657C00C3184C /* VSCTinyCipher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42A01FA71F7D543A00FF8804 /* VSCVirgilVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85F071DC7657C00C3184C /* VSCVirgilVersion.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42A01FA81F7D545300FF8804 /* VSCPfs.mm in Sources */ = {isa = PBXBuildFile; fileRef = 420D10311EF14176002A9C22 /* VSCPfs.mm */; };
 		42A01FA91F7D545300FF8804 /* VSCPfsSession.mm in Sources */ = {isa = PBXBuildFile; fileRef = 420D10351EF148D0002A9C22 /* VSCPfsSession.mm */; };
@@ -182,7 +182,7 @@
 		42A01FB91F7D545300FF8804 /* VSCSigner.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85F001DC7657C00C3184C /* VSCSigner.mm */; };
 		42A01FBA1F7D545300FF8804 /* VSCStreamCryptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85F021DC7657C00C3184C /* VSCStreamCryptor.mm */; };
 		42A01FBB1F7D545300FF8804 /* VSCStreamSigner.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85F041DC7657C00C3184C /* VSCStreamSigner.mm */; };
-		42A01FBC1F7D545300FF8804 /* VSCTinyCryptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85F061DC7657C00C3184C /* VSCTinyCryptor.mm */; };
+		42A01FBC1F7D545300FF8804 /* VSCTinyCipher.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85F061DC7657C00C3184C /* VSCTinyCipher.mm */; };
 		42A01FBD1F7D545300FF8804 /* VSCVirgilVersion.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85F081DC7657C00C3184C /* VSCVirgilVersion.mm */; };
 		42A01FBE1F7D545700FF8804 /* VSCPfsPublicKeyPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D106F1EF15E15002A9C22 /* VSCPfsPublicKeyPrivate.h */; };
 		42A01FBF1F7D545700FF8804 /* VSCPfsPrivateKeyPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D10721EF15EF3002A9C22 /* VSCPfsPrivateKeyPrivate.h */; };
@@ -312,8 +312,8 @@
 		42CDC2BB1F696E1400D69111 /* VSCStreamCryptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85F021DC7657C00C3184C /* VSCStreamCryptor.mm */; };
 		42CDC2BC1F696E1400D69111 /* VSCStreamSigner.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85F031DC7657C00C3184C /* VSCStreamSigner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42CDC2BD1F696E1400D69111 /* VSCStreamSigner.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85F041DC7657C00C3184C /* VSCStreamSigner.mm */; };
-		42CDC2BE1F696E1400D69111 /* VSCTinyCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85F051DC7657C00C3184C /* VSCTinyCryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		42CDC2BF1F696E1400D69111 /* VSCTinyCryptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85F061DC7657C00C3184C /* VSCTinyCryptor.mm */; };
+		42CDC2BE1F696E1400D69111 /* VSCTinyCipher.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85F051DC7657C00C3184C /* VSCTinyCipher.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42CDC2BF1F696E1400D69111 /* VSCTinyCipher.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85F061DC7657C00C3184C /* VSCTinyCipher.mm */; };
 		42CDC2C01F696E1400D69111 /* VSCVirgilVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85F071DC7657C00C3184C /* VSCVirgilVersion.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42CDC2C11F696E1400D69111 /* VSCVirgilVersion.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85F081DC7657C00C3184C /* VSCVirgilVersion.mm */; };
 		42CDC2C41F696E2E00D69111 /* VSCBaseCryptorPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D10681EF159D5002A9C22 /* VSCBaseCryptorPrivate.h */; };
@@ -371,8 +371,8 @@
 		42F85F201DC7657C00C3184C /* VSCStreamCryptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85F021DC7657C00C3184C /* VSCStreamCryptor.mm */; };
 		42F85F211DC7657C00C3184C /* VSCStreamSigner.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85F031DC7657C00C3184C /* VSCStreamSigner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42F85F221DC7657C00C3184C /* VSCStreamSigner.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85F041DC7657C00C3184C /* VSCStreamSigner.mm */; };
-		42F85F231DC7657C00C3184C /* VSCTinyCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85F051DC7657C00C3184C /* VSCTinyCryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		42F85F241DC7657C00C3184C /* VSCTinyCryptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85F061DC7657C00C3184C /* VSCTinyCryptor.mm */; };
+		42F85F231DC7657C00C3184C /* VSCTinyCipher.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85F051DC7657C00C3184C /* VSCTinyCipher.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42F85F241DC7657C00C3184C /* VSCTinyCipher.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85F061DC7657C00C3184C /* VSCTinyCipher.mm */; };
 		42F85F251DC7657C00C3184C /* VSCVirgilVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85F071DC7657C00C3184C /* VSCVirgilVersion.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42F85F261DC7657C00C3184C /* VSCVirgilVersion.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85F081DC7657C00C3184C /* VSCVirgilVersion.mm */; };
 		42F85F321DC765AC00C3184C /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F85ECD1DC7469D00C3184C /* VirgilCrypto.framework */; };
@@ -706,8 +706,8 @@
 		42F85F021DC7657C00C3184C /* VSCStreamCryptor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VSCStreamCryptor.mm; sourceTree = "<group>"; };
 		42F85F031DC7657C00C3184C /* VSCStreamSigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSCStreamSigner.h; sourceTree = "<group>"; };
 		42F85F041DC7657C00C3184C /* VSCStreamSigner.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VSCStreamSigner.mm; sourceTree = "<group>"; };
-		42F85F051DC7657C00C3184C /* VSCTinyCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSCTinyCryptor.h; sourceTree = "<group>"; };
-		42F85F061DC7657C00C3184C /* VSCTinyCryptor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VSCTinyCryptor.mm; sourceTree = "<group>"; };
+		42F85F051DC7657C00C3184C /* VSCTinyCipher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSCTinyCipher.h; sourceTree = "<group>"; };
+		42F85F061DC7657C00C3184C /* VSCTinyCipher.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VSCTinyCipher.mm; sourceTree = "<group>"; };
 		42F85F071DC7657C00C3184C /* VSCVirgilVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSCVirgilVersion.h; sourceTree = "<group>"; };
 		42F85F081DC7657C00C3184C /* VSCVirgilVersion.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VSCVirgilVersion.mm; sourceTree = "<group>"; };
 		42F85F0A1DC7657C00C3184C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1029,8 +1029,8 @@
 				42F85F021DC7657C00C3184C /* VSCStreamCryptor.mm */,
 				42F85F031DC7657C00C3184C /* VSCStreamSigner.h */,
 				42F85F041DC7657C00C3184C /* VSCStreamSigner.mm */,
-				42F85F051DC7657C00C3184C /* VSCTinyCryptor.h */,
-				42F85F061DC7657C00C3184C /* VSCTinyCryptor.mm */,
+				42F85F051DC7657C00C3184C /* VSCTinyCipher.h */,
+				42F85F061DC7657C00C3184C /* VSCTinyCipher.mm */,
 				42F85F071DC7657C00C3184C /* VSCVirgilVersion.h */,
 				42F85F081DC7657C00C3184C /* VSCVirgilVersion.mm */,
 			);
@@ -1114,7 +1114,7 @@
 				423F00621E71A05D00CC98A3 /* VSCStreamSigner.h in Headers */,
 				420D106D1EF159DC002A9C22 /* VSCByteArrayUtilsPrivate.h in Headers */,
 				420D104F1EF14A50002A9C22 /* VSCPfsInitiatorPublicInfo.h in Headers */,
-				423F00631E71A05D00CC98A3 /* VSCTinyCryptor.h in Headers */,
+				423F00631E71A05D00CC98A3 /* VSCTinyCipher.h in Headers */,
 				420D10841EF173CF002A9C22 /* VSCPfsInitiatorPublicInfoPrivate.h in Headers */,
 				423F00641E71A05D00CC98A3 /* VSCVirgilVersion.h in Headers */,
 			);
@@ -1137,7 +1137,7 @@
 				42A01F981F7D543A00FF8804 /* VSCPfsResponderPrivateInfo.h in Headers */,
 				42A01F971F7D543A00FF8804 /* VSCPfsInitiatorPublicInfo.h in Headers */,
 				42A01FC41F7D545700FF8804 /* VSCPfsResponderPrivateInfoPrivate.h in Headers */,
-				42A01FA61F7D543A00FF8804 /* VSCTinyCryptor.h in Headers */,
+				42A01FA61F7D543A00FF8804 /* VSCTinyCipher.h in Headers */,
 				42B129F7201FD2EC0082F9BC /* VirgilCrypto.h in Headers */,
 				42A01FC01F7D545700FF8804 /* VSCPfsEncryptedMessagePrivate.h in Headers */,
 				42A01F921F7D543A00FF8804 /* VSCPfsSession.h in Headers */,
@@ -1223,7 +1223,7 @@
 				42CDC2B01F696E1400D69111 /* VSCFoundationCommons.h in Headers */,
 				42CDC2AA1F696E1400D69111 /* VSCByteArrayUtils.h in Headers */,
 				42CDC2E61F696E3400D69111 /* VSCPfsInitiatorPublicInfo.h in Headers */,
-				42CDC2BE1F696E1400D69111 /* VSCTinyCryptor.h in Headers */,
+				42CDC2BE1F696E1400D69111 /* VSCTinyCipher.h in Headers */,
 				42CDC2FB1F696E4500D69111 /* VSCPfsResponderPublicInfoPrivate.h in Headers */,
 				42CDC2B81F696E1400D69111 /* VSCSigner.h in Headers */,
 				42CDC2B21F696E1400D69111 /* VSCHash.h in Headers */,
@@ -1267,7 +1267,7 @@
 				420D104B1EF14A4F002A9C22 /* VSCPfsInitiatorPublicInfo.h in Headers */,
 				42F85F171DC7657C00C3184C /* VSCHash.h in Headers */,
 				420D10801EF173CE002A9C22 /* VSCPfsInitiatorPublicInfoPrivate.h in Headers */,
-				42F85F231DC7657C00C3184C /* VSCTinyCryptor.h in Headers */,
+				42F85F231DC7657C00C3184C /* VSCTinyCipher.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1823,7 +1823,7 @@
 				420D10601EF14B82002A9C22 /* VSCPfsInitiatorPrivateInfo.mm in Sources */,
 				423F00501E71A01A00CC98A3 /* VSCStreamCryptor.mm in Sources */,
 				423F00511E71A01A00CC98A3 /* VSCStreamSigner.mm in Sources */,
-				423F00521E71A01A00CC98A3 /* VSCTinyCryptor.mm in Sources */,
+				423F00521E71A01A00CC98A3 /* VSCTinyCipher.mm in Sources */,
 				423F00531E71A01A00CC98A3 /* VSCVirgilVersion.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1859,7 +1859,7 @@
 				42A01FAC1F7D545300FF8804 /* VSCPfsPrivateKey.mm in Sources */,
 				42A01FBB1F7D545300FF8804 /* VSCStreamSigner.mm in Sources */,
 				42A01FB01F7D545300FF8804 /* VSCPfsResponderPublicInfo.mm in Sources */,
-				42A01FBC1F7D545300FF8804 /* VSCTinyCryptor.mm in Sources */,
+				42A01FBC1F7D545300FF8804 /* VSCTinyCipher.mm in Sources */,
 				42A01FA91F7D545300FF8804 /* VSCPfsSession.mm in Sources */,
 				42A01FB21F7D545300FF8804 /* VSCByteArrayUtils.mm in Sources */,
 				42A01FB81F7D545300FF8804 /* VSCPBKDF.mm in Sources */,
@@ -1985,7 +1985,7 @@
 				42CDC2BD1F696E1400D69111 /* VSCStreamSigner.mm in Sources */,
 				42CDC2B11F696E1400D69111 /* VSCFoundationCommons.mm in Sources */,
 				42CDC2E11F696E3400D69111 /* VSCPfsPublicKey.mm in Sources */,
-				42CDC2BF1F696E1400D69111 /* VSCTinyCryptor.mm in Sources */,
+				42CDC2BF1F696E1400D69111 /* VSCTinyCipher.mm in Sources */,
 				42CDC2B31F696E1400D69111 /* VSCHash.mm in Sources */,
 				42CDC2AB1F696E1400D69111 /* VSCByteArrayUtils.mm in Sources */,
 				42CDC2DD1F696E3400D69111 /* VSCPfsSession.mm in Sources */,
@@ -2031,7 +2031,7 @@
 				42F85F221DC7657C00C3184C /* VSCStreamSigner.mm in Sources */,
 				420D105D1EF14B3F002A9C22 /* VSCPfsResponderPublicInfo.mm in Sources */,
 				42F85F161DC7657C00C3184C /* VSCFoundationCommons.mm in Sources */,
-				42F85F241DC7657C00C3184C /* VSCTinyCryptor.mm in Sources */,
+				42F85F241DC7657C00C3184C /* VSCTinyCipher.mm in Sources */,
 				420D105B1EF14B39002A9C22 /* VSCPfsResponderPrivateInfo.mm in Sources */,
 				420D10591EF14B32002A9C22 /* VSCPfsInitiatorPublicInfo.mm in Sources */,
 				42F85F181DC7657C00C3184C /* VSCHash.mm in Sources */,

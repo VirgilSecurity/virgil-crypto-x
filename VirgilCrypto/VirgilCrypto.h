@@ -18,5 +18,5 @@
 #import "VSCSigner.h"
 #import "VSCStreamCryptor.h"
 #import "VSCStreamSigner.h"
-#import "VSCTinyCryptor.h"
+#import "VSCTinyCipher.h"
 #import "VSCVirgilVersion.h"

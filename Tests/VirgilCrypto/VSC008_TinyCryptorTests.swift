@@ -1,5 +1,5 @@
 //
-//  VSC008_TinyCryptorTests.swift
+//  VSC008_TinyCipherTests.swift
 //  VirgilCrypto
 //
 //  Created by Oleksandr Deundiak on 9/13/17.
@@ -10,7 +10,7 @@ import Foundation
 import XCTest
 import VirgilCrypto
 
-class VSC008_TinyCryptorTests: XCTestCase {
+class VSC008_TinyCipherTests: XCTestCase {
     private var toEncrypt: Data!
     
     override func setUp() {
@@ -20,7 +20,7 @@ class VSC008_TinyCryptorTests: XCTestCase {
     func test001_encryptDecrypt() {
         let keyPair = VSCKeyPair()
         
-        let cryptor = VSCTinyCryptor(packageSize: .shortSMSPackageSize)
+        let cryptor = TinyCipher(packageSize: .shortSMSPackageSize)
         
         try! cryptor.encryptData(self.toEncrypt, recipientPublicKey: keyPair.publicKey())
         
@@ -35,7 +35,7 @@ class VSC008_TinyCryptorTests: XCTestCase {
         
         try! cryptor.reset()
         
-        let decryptor = VSCTinyCryptor(packageSize: .shortSMSPackageSize)
+        let decryptor = TinyCipher(packageSize: .shortSMSPackageSize)
         
         let len = min(encryptedData.count, decryptor.packageSize)
         
@@ -56,7 +56,7 @@ class VSC008_TinyCryptorTests: XCTestCase {
         let keyPairRec = VSCKeyPair()
         let keyPairSen = VSCKeyPair()
         
-        let cryptor = VSCTinyCryptor(packageSize: .shortSMSPackageSize)
+        let cryptor = TinyCipher(packageSize: .shortSMSPackageSize)
         
         try! cryptor.encryptAndSign(self.toEncrypt, recipientPublicKey: keyPairRec.publicKey(), senderPrivateKey: keyPairSen.privateKey(), senderKeyPassword: nil)
         
@@ -71,7 +71,7 @@ class VSC008_TinyCryptorTests: XCTestCase {
         
         try! cryptor.reset()
         
-        let decryptor = VSCTinyCryptor(packageSize: .shortSMSPackageSize)
+        let decryptor = TinyCipher(packageSize: .shortSMSPackageSize)
         
         let len = min(encryptedData.count, decryptor.packageSize)
         
