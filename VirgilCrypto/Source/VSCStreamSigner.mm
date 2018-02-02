@@ -112,16 +112,16 @@ VirgilByteArray VirgilStreamSignerDataSource::read() {
         return nil;
     }
     try {
-        if ([hash isEqualToString:kHashNameMD5]) {
+        if ([hash isEqualToString:kVSCHashNameMD5]) {
             _signer = new VirgilStreamSigner(VirgilHash::Algorithm::MD5);
         }
-        else if ([hash isEqualToString:kHashNameSHA256]) {
+        else if ([hash isEqualToString:kVSCHashNameSHA256]) {
             _signer = new VirgilStreamSigner(VirgilHash::Algorithm::SHA256);
         }
-        else if ([hash isEqualToString:kHashNameSHA384]) {
+        else if ([hash isEqualToString:kVSCHashNameSHA384]) {
             _signer = new VirgilStreamSigner(VirgilHash::Algorithm::SHA384);
         }
-        else if ([hash isEqualToString:kHashNameSHA512]) {
+        else if ([hash isEqualToString:kVSCHashNameSHA512]) {
             _signer = new VirgilStreamSigner(VirgilHash::Algorithm::SHA512);
         }
         else {
@@ -172,7 +172,7 @@ VirgilByteArray VirgilStreamSignerDataSource::read() {
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSCStreamSignerErrorDomain code:-1001 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to compose signature. Cryptor is not initialized properly." }];
+                *error = [NSError errorWithDomain:kVSCStreamSignerErrorDomain code:-1001 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to compose signature. Cipher is not initialized properly." }];
             }
             signData = nil;
         }
@@ -220,7 +220,7 @@ VirgilByteArray VirgilStreamSignerDataSource::read() {
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSCStreamSignerErrorDomain code:-1005 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to compose signature. Cryptor is not initialized properly." }];
+                *error = [NSError errorWithDomain:kVSCStreamSignerErrorDomain code:-1005 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to compose signature. Cipher is not initialized properly." }];
             }
             verified = NO;
         }

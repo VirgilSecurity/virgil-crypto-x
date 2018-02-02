@@ -8,9 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-/** 
- * Error domain constant for the `VSCKeyPair` errors.
- */
+/// Error domain constant for the `VSCKeyPair` errors.
+NS_SWIFT_NAME(kKeyPairErrorDomain)
 extern NSString * __nonnull const kVSCKeyPairErrorDomain;
 
 typedef NS_ENUM(NSInteger, VSCKeyType) {
@@ -37,99 +36,165 @@ typedef NS_ENUM(NSInteger, VSCKeyType) {
     VSCKeyTypeFAST_EC_ED25519, ///< Ed25519
 };
 
-/** 
- * Class for generating asymmetric key pairs using a number of alghorithms. 
+/**
+ Class for generating asymmetric key pairs using a number of alghorithms.
  */
+NS_SWIFT_NAME(KeyPair)
 @interface VSCKeyPair : NSObject
+/**
+ Generates a new key pair using curve 25519 without a password.
 
-///---------------------------
-/// @name Lifecycle
-///---------------------------
-
-/** <Need to Update>
- * Generates a new key pair using curve 25519 without a password. 
+ @return initialized isntance
  */
 - (instancetype __nonnull)init;
 
+/**
+ Generates a new key pair.
+
+ @param keyPairType key pair type
+ @param password password used to encrypt private key
+ @return initialized isntance
+ */
 - (instancetype __nonnull)initWithKeyPairType:(VSCKeyType)keyPairType password:(NSString * __nullable)password;
 
+/**
+ Optimized version for generating multiple keys.
+
+ @param numberOfKeys number of keys to generate
+ @param keyPairType key pair type
+ @return array of keys
+ */
 + (NSArray<VSCKeyPair *> * __nonnull)generateMultipleKeys:(NSUInteger)numberOfKeys keyPairType:(VSCKeyType)keyPairType;
 
+/**
+ Public key getter.
 
-///---------------------------
-/// @name Obtaining the key data
-///---------------------------
-
-/** 
- * Getter for the public key's data.
- *
- * @return Data object containing the generated public key data.
+ @return `NSData` with public key
  */
 - (NSData * __nonnull)publicKey;
 
-/** 
- * Getter for the private key's data.
- *
- * @return Data object containing the generated private key data. 
- * In case of not `nil` password used in `initWithPassword:` initializer,
- * private key data will be encrypted using given password.
- */ 
+/**
+ Getter for private key.
+ 
+ Private key can be encrypted with password.
+
+ @return `NSData` with private key
+ */
 - (NSData * __nonnull)privateKey;
 
-///---------------------------
-/// @name Utility
-///---------------------------
+/**
+ Extracts public key from private key
 
-+ (NSData * __nullable)extractPublicKeyWithPrivateKey:(NSData * __nonnull)privateKey privateKeyPassword:(NSString * __nullable)password ;
+ @param privateKey private key
+ @param password private key password
+ @return `NSData` with extracted public key
+ */
++ (NSData * __nullable)extractPublicKeyFromPrivateKey:(NSData * __nonnull)privateKey privateKeyPassword:(NSString * __nullable)password;
 
+/**
+ Encrypts private key with password
+
+ @param privateKey private key to encrypt
+ @param password password
+ @return `NSData` with encrypted private key
+ */
 + (NSData * __nullable)encryptPrivateKey:(NSData * __nonnull)privateKey privateKeyPassword:(NSString * __nonnull)password;
+
+/**
+ Decrypts private key using password
+
+ @param privateKey encrypted private key
+ @param password password
+ @return `NSData` with decrypted private key
+ */
 + (NSData * __nullable)decryptPrivateKey:(NSData * __nonnull)privateKey privateKeyPassword:(NSString * __nonnull)password;
 
-/** Checks if given private key is actually encrypted.
- *
- * @param keyData Data representing the private key which needs to be checked.
- *
- * @return `YES` if the private key is encrypted, `NO` - otherwise.
+/**
+ Check if given private key is encrypted
+
+ @param keyData Private key
+ @return `YES` if encrypted, `NO` otherwise
  */
 + (BOOL)isEncryptedPrivateKey:(NSData * __nonnull)keyData;
 
-/** Checks if given private key and given password match each other.
- *
- * @param keyData Data representing the private key.
- * @param password String with private key password candidate.
- *
- * @return `YES` if the private key and the password match, `NO` - otherwise.
+/**
+ Checks if given private key and given password match each other.
+
+ @param keyData Data representing the private key.
+ @param password password
+ @return `YES` if the private key and the password match, `NO` otherwise.
  */
 + (BOOL)isPrivateKey:(NSData * __nonnull)keyData matchesPassword:(NSString * __nonnull)password;
 
-/** Checks if a public key matches private key, so that they are actual key pair.
- *
- * @param publicKeyData Data representing a public key.
- * @param privateKeyData Data representing a private key.
- * @param password Private key password or nil.
- *
- * @return `YES` in case when given public key matches given private key, `NO` - otherwise.
+/**
+ Checks if a public key matches private key, so that they are actual key pair.
+
+ @param publicKeyData Data representing a public key.
+ @param privateKeyData Data representing a private key.
+ @param password Private key password.
+ @return `YES` in case when given public key matches given private key, `NO` otherwise
  */
 + (BOOL)isPublicKey:(NSData * __nonnull)publicKeyData matchesPrivateKey:(NSData * __nonnull)privateKeyData withPassword:(NSString * __nullable)password;
 
-/** Changes password for the given private key by re-encrypting given private key with a new password.
- *
- * @param password Current password for the private key.
- * @param newPassword Password which should be used for the private key protection further.
- * @param keyData Data object containing the private key.
- * @param error Pointer to `NSError` object in case of error, `nil` - otherwise.
- *
- * @return Data object containing the private key that is encrypted with the new password or `nil` if error has happened.
+/**
+ Changes password for the given private key by re-encrypting given private key with a new password.
+
+ @param password Current password for the private key.
+ @param newPassword Password which should be used for the private key protection further.
+ @param keyData Data object containing the private key.
+ @param error `NSError` pointer to get an object in case of error, `nil` - otherwise.
+ @return Data object containing the private key that is encrypted with the new password
  */
 + (NSData * __nullable)resetPassword:(NSString * __nonnull)password toPassword:(NSString * __nonnull)newPassword forPrivateKey:(NSData * __nonnull)keyData error:(NSError * __nullable * __nullable)error;
 
+/**
+ Converts public key to PEM format
+
+ @param publicKey public key
+ @return `NSData` with public key in PEM format
+ */
 + (NSData * __nullable)publicKeyToPEM:(NSData * __nonnull)publicKey;
+
+/**
+ Converts public key to DER format
+
+ @param publicKey public key
+ @return `NSData` with public key in DER format
+ */
 + (NSData * __nullable)publicKeyToDER:(NSData * __nonnull)publicKey;
 
+/**
+ Converts private key to PEM format
+
+ @param privateKey private key
+ @return `NSData` with private key in PEM format
+ */
 + (NSData * __nullable)privateKeyToPEM:(NSData *__nonnull)privateKey;
+
+/**
+ Converts private key to DER format
+
+ @param privateKey private key
+ @return `NSData` with private key in DER format
+ */
 + (NSData * __nullable)privateKeyToDER:(NSData *__nonnull)privateKey;
 
+/**
+ Converts private key to PEM format
+
+ @param privateKey private key
+ @param password private key password
+ @return `NSData` with private key in PEM format
+ */
 + (NSData * __nullable)privateKeyToPEM:(NSData *__nonnull)privateKey privateKeyPassword:(NSString * __nullable)password;
+
+/**
+ Converts private key to DER format
+
+ @param privateKey private key
+ @param password private key password
+ @return `NSData` with private key in DER format
+ */
 + (NSData * __nullable)privateKeyToDER:(NSData *__nonnull)privateKey privateKeyPassword:(NSString * __nullable)password;
 
 @end

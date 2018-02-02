@@ -27,15 +27,15 @@ class VSC003_SignerTests: XCTestCase {
     
     func test001_composeAndVerifySignature() {
         // Generate a new key pair
-        let keyPair = VSCKeyPair()
+        let keyPair = KeyPair()
         
         // Compose signature:
         // Create the signer
-        let signer = VSCSigner()
+        let signer = Signer()
         // Compose the signature
         let signature = try! signer.sign(self.toSign, privateKey: keyPair.privateKey(), keyPassword: nil)
         
-        let verifier = VSCSigner()
+        let verifier = Signer()
         try! verifier.verifySignature(signature, data: self.toSign, publicKey: keyPair.publicKey())
     }
 }

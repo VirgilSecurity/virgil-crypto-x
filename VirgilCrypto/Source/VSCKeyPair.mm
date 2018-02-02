@@ -220,7 +220,7 @@ NSString *const kVSCKeyPairErrorDomain = @"VSCKeyPairErrorDomain";
     return privateKey;
 }
 
-+ (NSData *__nullable)extractPublicKeyWithPrivateKey:(NSData *__nonnull)privateKey privateKeyPassword:(NSString *__nullable)password {
++ (NSData *__nullable)extractPublicKeyFromPrivateKey:(NSData *__nonnull)privateKey privateKeyPassword:(NSString *__nullable)password {
     if (!privateKey || privateKey.length == 0) {
         return nil;
     }

@@ -12,17 +12,17 @@ import XCTest
 
 class VSP001_PFSTests: XCTestCase {
     private func generateSessions(additionalDataPresent: Bool, oneTimePresent: Bool) -> (VSCPfs, VSCPfsSession, VSCPfs, VSCPfsSession) {
-        let initiatorIdentityKeyPair = VSCKeyPair()
-        let initiatorEphemeralKeyPair = VSCKeyPair()
+        let initiatorIdentityKeyPair = KeyPair()
+        let initiatorEphemeralKeyPair = KeyPair()
         let initiatorIdentityPrivateKey = VSCPfsPrivateKey(key: initiatorIdentityKeyPair.privateKey(), password: nil)!
         let initiatorIdentityPublicKey = VSCPfsPublicKey(key: initiatorIdentityKeyPair.publicKey())!
         let initiatorEphemeralPrivateKey = VSCPfsPrivateKey(key: initiatorEphemeralKeyPair.privateKey(), password: nil)!
         let initiatorEphemeralPublicKey = VSCPfsPublicKey(key: initiatorEphemeralKeyPair.publicKey())!
         let initiatorAdditionalData = additionalDataPresent ? "Alice+Bob".data(using: .utf8) : nil
         
-        let responderIdentityKeyPair = VSCKeyPair()
-        let responderLongTermKeyPair = VSCKeyPair()
-        let responderOneTimeKeyPair = VSCKeyPair()
+        let responderIdentityKeyPair = KeyPair()
+        let responderLongTermKeyPair = KeyPair()
+        let responderOneTimeKeyPair = KeyPair()
         let responderIdentityPublicKey = VSCPfsPublicKey(key: responderIdentityKeyPair.publicKey())!
         let responderIdentityPrivateKey = VSCPfsPrivateKey(key: responderIdentityKeyPair.privateKey(), password: nil)!
         let responderLongTermPublicKey = VSCPfsPublicKey(key: responderLongTermKeyPair.publicKey())!

@@ -18,73 +18,73 @@ class VSC008_TinyCipherTests: XCTestCase {
     }
     
     func test001_encryptDecrypt() {
-        let keyPair = VSCKeyPair()
+        let keyPair = KeyPair()
         
-        let cryptor = TinyCipher(packageSize: .shortSMSPackageSize)
+        let cipher = TinyCipher(packageSize: .shortSMSPackageSize)
         
-        try! cryptor.encryptData(self.toEncrypt, recipientPublicKey: keyPair.publicKey())
+        try! cipher.encryptData(self.toEncrypt, recipientPublicKey: keyPair.publicKey())
         
-        let packageCount = cryptor.packageCount()
+        let packageCount = cipher.packageCount()
         XCTAssert(packageCount != 0)
         
         var encryptedData = Data()
         for i in 0..<packageCount {
-            let package = try! cryptor.package(at: i)
+            let package = try! cipher.package(at: i)
             encryptedData.append(package)
         }
         
-        try! cryptor.reset()
+        try! cipher.reset()
         
-        let decryptor = TinyCipher(packageSize: .shortSMSPackageSize)
+        let decipher = TinyCipher(packageSize: .shortSMSPackageSize)
         
-        let len = min(encryptedData.count, decryptor.packageSize)
+        let len = min(encryptedData.count, decipher.packageSize)
         
         for i in stride(from: 0, to: encryptedData.count-1, by: len) {
             let package = encryptedData.subdata(in: Range(uncheckedBounds: (i, min(i + len, encryptedData.count))))
-            try! decryptor.addPackage(package)
+            try! decipher.addPackage(package)
         }
         
-        XCTAssert(decryptor.packagesAccumulated())
+        XCTAssert(decipher.packagesAccumulated())
         
-        let decryptedData = try! decryptor.decrypt(withRecipientPrivateKey: keyPair.privateKey(), recipientKeyPassword: nil)
+        let decryptedData = try! decipher.decrypt(withRecipientPrivateKey: keyPair.privateKey(), recipientKeyPassword: nil)
         XCTAssert(decryptedData == self.toEncrypt)
         
-        try! decryptor.reset()
+        try! decipher.reset()
     }
     
     func test002_encryptSignVerifyDecrypt() {
-        let keyPairRec = VSCKeyPair()
-        let keyPairSen = VSCKeyPair()
+        let keyPairRec = KeyPair()
+        let keyPairSen = KeyPair()
         
-        let cryptor = TinyCipher(packageSize: .shortSMSPackageSize)
+        let cipher = TinyCipher(packageSize: .shortSMSPackageSize)
         
-        try! cryptor.encryptAndSign(self.toEncrypt, recipientPublicKey: keyPairRec.publicKey(), senderPrivateKey: keyPairSen.privateKey(), senderKeyPassword: nil)
+        try! cipher.encryptAndSign(self.toEncrypt, recipientPublicKey: keyPairRec.publicKey(), senderPrivateKey: keyPairSen.privateKey(), senderKeyPassword: nil)
         
-        let packageCount = cryptor.packageCount()
+        let packageCount = cipher.packageCount()
         XCTAssert(packageCount != 0)
         
         var encryptedData = Data()
         for i in 0..<packageCount {
-            let package = try! cryptor.package(at: i)
+            let package = try! cipher.package(at: i)
             encryptedData.append(package)
         }
         
-        try! cryptor.reset()
+        try! cipher.reset()
         
-        let decryptor = TinyCipher(packageSize: .shortSMSPackageSize)
+        let decipher = TinyCipher(packageSize: .shortSMSPackageSize)
         
-        let len = min(encryptedData.count, decryptor.packageSize)
+        let len = min(encryptedData.count, decipher.packageSize)
         
         for i in stride(from: 0, to: encryptedData.count-1, by: len) {
             let package = encryptedData.subdata(in: Range(uncheckedBounds: (i, min(i + len, encryptedData.count))))
-            try! decryptor.addPackage(package)
+            try! decipher.addPackage(package)
         }
         
-        XCTAssert(decryptor.packagesAccumulated())
+        XCTAssert(decipher.packagesAccumulated())
         
-        let decryptedData = try! decryptor.verifyAndDecrypt(withSenderPublicKey: keyPairSen.publicKey(), recipientPrivateKey: keyPairRec.privateKey(), recipientKeyPassword: nil)
+        let decryptedData = try! decipher.verifyAndDecrypt(withSenderPublicKey: keyPairSen.publicKey(), recipientPrivateKey: keyPairRec.privateKey(), recipientKeyPassword: nil)
         XCTAssert(decryptedData == self.toEncrypt)
         
-        try! decryptor.reset()
+        try! decipher.reset()
     }
 }

@@ -64,7 +64,7 @@ NSString * const kVSCTinyCipherErrorDomain = @"TinyCipherErrorDomain";
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSCTinyCipherErrorDomain code:-1001 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unable to reset Tiny Cryptor. Tiny Cryptor object is not initialized properly.", @"Unable to reset Tiny Cryptor. Tiny Cryptor object is not initialized properly.")}];
+                *error = [NSError errorWithDomain:kVSCTinyCipherErrorDomain code:-1001 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unable to reset Tiny Cipher. Tiny Cipher object is not initialized properly.", @"Unable to reset Tiny Cipher. Tiny Cipher object is not initialized properly.")}];
             }
         }
     }
@@ -72,7 +72,7 @@ NSString * const kVSCTinyCipherErrorDomain = @"TinyCipherErrorDomain";
         if (error) {
             NSString *description = [[NSString alloc] initWithCString:ex.what() encoding:NSUTF8StringEncoding];
             if (description.length == 0) {
-                description = NSLocalizedString(@"Unknown error: impossible to get Tiny Cryptor exception description.", @"Unknown error: impossible to get Tiny Cryptor exception description.");
+                description = NSLocalizedString(@"Unknown error: impossible to get Tiny Cipher exception description.", @"Unknown error: impossible to get Tiny Cipher exception description.");
             }
             *error = [NSError errorWithDomain:kVSCTinyCipherErrorDomain code:-1002 userInfo:@{ NSLocalizedDescriptionKey: description }];
         }
@@ -80,7 +80,7 @@ NSString * const kVSCTinyCipherErrorDomain = @"TinyCipherErrorDomain";
     }
     catch (...) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSCTinyCipherErrorDomain code:-1003 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unknown Tiny Cryptor error.", @"Unknown Tiny Cryptor error.") }];
+            *error = [NSError errorWithDomain:kVSCTinyCipherErrorDomain code:-1003 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unknown Tiny Cipher error.", @"Unknown Tiny Cipher error.") }];
         }
         ok = NO;
     }
@@ -116,7 +116,7 @@ NSString * const kVSCTinyCipherErrorDomain = @"TinyCipherErrorDomain";
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSCTinyCipherErrorDomain code:-1005 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to encrypt. Tiny Cryptor is not initialized properly." }];
+                *error = [NSError errorWithDomain:kVSCTinyCipherErrorDomain code:-1005 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to encrypt. Tiny Cipher is not initialized properly." }];
             }
             success = NO;
         }
@@ -180,7 +180,7 @@ NSString * const kVSCTinyCipherErrorDomain = @"TinyCipherErrorDomain";
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSCTinyCipherErrorDomain code:-1009 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to encrypt. Tiny Cryptor is not initialized properly." }];
+                *error = [NSError errorWithDomain:kVSCTinyCipherErrorDomain code:-1009 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to encrypt. Tiny Cipher is not initialized properly." }];
             }
             success = NO;
         }
@@ -233,7 +233,7 @@ NSString * const kVSCTinyCipherErrorDomain = @"TinyCipherErrorDomain";
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSCTinyCipherErrorDomain code:-1012 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to get package. Tiny Cryptor is not initialized properly." }];
+                *error = [NSError errorWithDomain:kVSCTinyCipherErrorDomain code:-1012 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to get package. Tiny Cipher is not initialized properly." }];
             }
             package = nil;
         }
@@ -282,7 +282,7 @@ NSString * const kVSCTinyCipherErrorDomain = @"TinyCipherErrorDomain";
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSCTinyCipherErrorDomain code:-1016 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unable to add package to Tiny Cryptor. Tiny Cryptor object is not initialized properly.", @"Unable to add package to Tiny Cryptor. Tiny Cryptor object is not initialized properly.")}];
+                *error = [NSError errorWithDomain:kVSCTinyCipherErrorDomain code:-1016 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unable to add package to Tiny Cipher. Tiny Cipher object is not initialized properly.", @"Unable to add package to Tiny Cipher. Tiny Cipher object is not initialized properly.")}];
             }
         }
     }
@@ -290,7 +290,7 @@ NSString * const kVSCTinyCipherErrorDomain = @"TinyCipherErrorDomain";
         if (error) {
             NSString *description = [[NSString alloc] initWithCString:ex.what() encoding:NSUTF8StringEncoding];
             if (description.length == 0) {
-                description = NSLocalizedString(@"Unknown error: impossible to get Tiny Cryptor exception description.", @"Unknown error: impossible to get Tiny Cryptor exception description.");
+                description = NSLocalizedString(@"Unknown error: impossible to get Tiny Cipher exception description.", @"Unknown error: impossible to get Tiny Cipher exception description.");
             }
             *error = [NSError errorWithDomain:kVSCTinyCipherErrorDomain code:-1017 userInfo:@{ NSLocalizedDescriptionKey: description }];
         }
@@ -298,7 +298,7 @@ NSString * const kVSCTinyCipherErrorDomain = @"TinyCipherErrorDomain";
     }
     catch (...) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSCTinyCipherErrorDomain code:-1018 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unknown Tiny Cryptor error.", @"Unknown Tiny Cryptor error.") }];
+            *error = [NSError errorWithDomain:kVSCTinyCipherErrorDomain code:-1018 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unknown Tiny Cipher error.", @"Unknown Tiny Cipher error.") }];
         }
         ok = NO;
     }
@@ -354,7 +354,7 @@ NSString * const kVSCTinyCipherErrorDomain = @"TinyCipherErrorDomain";
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSCTinyCipherErrorDomain code:-1020 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to decrypt. Tiny Cryptor is not initialized properly." }];
+                *error = [NSError errorWithDomain:kVSCTinyCipherErrorDomain code:-1020 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to decrypt. Tiny Cipher is not initialized properly." }];
             }
             decrypted = nil;
         }
@@ -415,7 +415,7 @@ NSString * const kVSCTinyCipherErrorDomain = @"TinyCipherErrorDomain";
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSCTinyCipherErrorDomain code:-1024 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to decrypt. Tiny Cryptor is not initialized properly." }];
+                *error = [NSError errorWithDomain:kVSCTinyCipherErrorDomain code:-1024 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to decrypt. Tiny Cipher is not initialized properly." }];
             }
             decrypted = nil;
         }

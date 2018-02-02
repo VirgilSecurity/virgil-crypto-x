@@ -1,58 +1,58 @@
 //
-//  VSCCryptor.mm
+//  VSCCipher.mm
 //  VirgilFoundation
 //
 //  Created by Pavel Gorb on 2/3/15.
 //  Copyright (c) 2015 VirgilSecurity, Inc. All rights reserved.
 //
 
-#import "VSCCryptor.h"
-#import "VSCBaseCryptorPrivate.h"
+#import "VSCCipher.h"
+#import "VSCBaseCipherPrivate.h"
 #import "VSCByteArrayUtilsPrivate.h"
 #import <virgil/crypto/VirgilCipher.h>
 
 using virgil::crypto::VirgilByteArray;
 using virgil::crypto::VirgilCipher;
 
-NSString *const kVSCCryptorErrorDomain = @"VSCCryptorErrorDomain";
+NSString *const kVSCCipherErrorDomain = @"VSCCipherErrorDomain";
 
-@interface VSCCryptor ()
+@interface VSCCipher ()
 
-- (VirgilCipher *)cryptor;
+- (VirgilCipher *)cipher;
 
 @end
 
-@implementation VSCCryptor
+@implementation VSCCipher
 
 #pragma mark - Lifecycle
 
-- (void)initializeCryptor {
-    if (self.llCryptor != NULL) {
-        // llCryptor has been initialized already.
+- (void)initializeCipher {
+    if (self.llCipher != NULL) {
+        // llCipher has been initialized already.
         return;
     }
     
     try {
-        self.llCryptor = new VirgilCipher();
+        self.llCipher = new VirgilCipher();
     }
     catch(...) {
-        self.llCryptor = NULL;
+        self.llCipher = NULL;
     }
 }
 
 - (void)dealloc {
-    if (self.llCryptor != NULL) {
-        delete (VirgilCipher *)self.llCryptor;
-        self.llCryptor = NULL;
+    if (self.llCipher != NULL) {
+        delete (VirgilCipher *)self.llCipher;
+        self.llCipher = NULL;
     }
 }
 
-- (VirgilCipher *)cryptor {
-    if (self.llCryptor == NULL) {
+- (VirgilCipher *)cipher {
+    if (self.llCipher == NULL) {
         return NULL;
     }
     
-    return static_cast<VirgilCipher *>(self.llCryptor);
+    return static_cast<VirgilCipher *>(self.llCipher);
 }
 
 #pragma mark - Public class logic
@@ -61,18 +61,18 @@ NSString *const kVSCCryptorErrorDomain = @"VSCCryptorErrorDomain";
     if (plainData.length == 0) {
         // Can't encrypt.
         if (error) {
-            *error = [NSError errorWithDomain:kVSCCryptorErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to encrypt: Required parameter is missing.", @"Encrypt data error.") }];
+            *error = [NSError errorWithDomain:kVSCCipherErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to encrypt: Required parameter is missing.", @"Encrypt data error.") }];
         }
         return nil;
     }
     
     NSData *encData = nil;
     try {
-        if ([self cryptor] != NULL) {
+        if ([self cipher] != NULL) {
             VirgilByteArray plainDataArray = [VSCByteArrayUtils convertVirgilByteArrayFromData:plainData];
 
             // Encrypt data.
-            VirgilByteArray encryptedData = [self cryptor]->encrypt(plainDataArray, (bool)embedContentInfo);
+            VirgilByteArray encryptedData = [self cipher]->encrypt(plainDataArray, (bool)embedContentInfo);
             encData = [NSData dataWithBytes:encryptedData.data() length:encryptedData.size()];
             if (error) {
                 *error = nil;
@@ -80,7 +80,7 @@ NSString *const kVSCCryptorErrorDomain = @"VSCCryptorErrorDomain";
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSCCryptorErrorDomain code:-1001 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to encrypt. Cryptor is not initialized properly." }];
+                *error = [NSError errorWithDomain:kVSCCipherErrorDomain code:-1001 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to encrypt. Cipher is not initialized properly." }];
             }
             encData = nil;
         }
@@ -91,13 +91,13 @@ NSString *const kVSCCryptorErrorDomain = @"VSCCryptorErrorDomain";
             if (description.length == 0) {
                 description = @"Unknown exception during encryption.";
             }
-            *error = [NSError errorWithDomain:kVSCCryptorErrorDomain code:-1002 userInfo:@{ NSLocalizedDescriptionKey: description }];
+            *error = [NSError errorWithDomain:kVSCCipherErrorDomain code:-1002 userInfo:@{ NSLocalizedDescriptionKey: description }];
         }
         encData = nil;
     }
     catch(...) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSCCryptorErrorDomain code:-1003 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown exception during encryption." }];
+            *error = [NSError errorWithDomain:kVSCCipherErrorDomain code:-1003 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown exception during encryption." }];
         }
         encData = nil;
     }
@@ -109,14 +109,14 @@ NSString *const kVSCCryptorErrorDomain = @"VSCCryptorErrorDomain";
     if (encryptedData.length == 0 || recipientId.length == 0 || privateKey.length == 0) {
         // Can't decrypt
         if (error) {
-            *error = [NSError errorWithDomain:kVSCCryptorErrorDomain code:-1004 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to decrypt with key: At least one of the required parameters is missing.", @"Decrypt data error.") }];
+            *error = [NSError errorWithDomain:kVSCCipherErrorDomain code:-1004 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to decrypt with key: At least one of the required parameters is missing.", @"Decrypt data error.") }];
         }
         return nil;
     }
     
     NSData *decData = nil;
     try {
-        if ([self cryptor] != NULL) {
+        if ([self cipher] != NULL) {
             const VirgilByteArray &encryptedDataArray = [VSCByteArrayUtils convertVirgilByteArrayFromData:encryptedData];
             const VirgilByteArray &recIdArray = [VSCByteArrayUtils convertVirgilByteArrayFromData:recipientId];
             const VirgilByteArray &pKey = [VSCByteArrayUtils convertVirgilByteArrayFromData:privateKey];
@@ -124,10 +124,10 @@ NSString *const kVSCCryptorErrorDomain = @"VSCCryptorErrorDomain";
             VirgilByteArray decrypted;
             if (keyPassword.length > 0) {
                 const VirgilByteArray &pKeyPass = [VSCByteArrayUtils convertVirgilByteArrayFromString:keyPassword];
-                decrypted = [self cryptor]->decryptWithKey(encryptedDataArray, recIdArray, pKey, pKeyPass);
+                decrypted = [self cipher]->decryptWithKey(encryptedDataArray, recIdArray, pKey, pKeyPass);
             }
             else {
-                decrypted = [self cryptor]->decryptWithKey(encryptedDataArray, recIdArray, pKey);
+                decrypted = [self cipher]->decryptWithKey(encryptedDataArray, recIdArray, pKey);
             }
             decData = [NSData dataWithBytes:decrypted.data() length:decrypted.size()];
             if (error) {
@@ -136,7 +136,7 @@ NSString *const kVSCCryptorErrorDomain = @"VSCCryptorErrorDomain";
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSCCryptorErrorDomain code:-1005 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to decrypt with key. Cryptor is not initialized properly." }];
+                *error = [NSError errorWithDomain:kVSCCipherErrorDomain code:-1005 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to decrypt with key. Cipher is not initialized properly." }];
             }
             decData = nil;
         }
@@ -147,13 +147,13 @@ NSString *const kVSCCryptorErrorDomain = @"VSCCryptorErrorDomain";
             if (description.length == 0) {
                 description = @"Unknown exception during decryption with key.";
             }
-            *error = [NSError errorWithDomain:kVSCCryptorErrorDomain code:-1006 userInfo:@{ NSLocalizedDescriptionKey: description }];
+            *error = [NSError errorWithDomain:kVSCCipherErrorDomain code:-1006 userInfo:@{ NSLocalizedDescriptionKey: description }];
         }
         decData = nil;
     }
     catch(...) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSCCryptorErrorDomain code:-1007 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown exception during decryption with key." }];
+            *error = [NSError errorWithDomain:kVSCCipherErrorDomain code:-1007 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown exception during decryption with key." }];
         }
         decData = nil;
     }
@@ -163,18 +163,18 @@ NSString *const kVSCCryptorErrorDomain = @"VSCCryptorErrorDomain";
 - (NSData *)decryptData:(NSData *)encryptedData password:(NSString *)password error:(NSError **)error {
     if (encryptedData.length == 0 || password.length == 0) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSCCryptorErrorDomain code:-1008 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to decrypt with password: At least one of the required parameters is missing.", @"Decrypt data error.") }];
+            *error = [NSError errorWithDomain:kVSCCipherErrorDomain code:-1008 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to decrypt with password: At least one of the required parameters is missing.", @"Decrypt data error.") }];
         }
         return nil;
     }
     
     NSData *decData = nil;
     try {
-        if ([self cryptor] != NULL) {
+        if ([self cipher] != NULL) {
             const VirgilByteArray &data = [VSCByteArrayUtils convertVirgilByteArrayFromData:encryptedData];
             const VirgilByteArray &pwd =[VSCByteArrayUtils convertVirgilByteArrayFromString:password];
             
-            VirgilByteArray plain = [self cryptor]->decryptWithPassword(data, pwd);
+            VirgilByteArray plain = [self cipher]->decryptWithPassword(data, pwd);
             decData = [NSData dataWithBytes:plain.data() length:plain.size()];
             if (error) {
                 *error = nil;
@@ -182,7 +182,7 @@ NSString *const kVSCCryptorErrorDomain = @"VSCCryptorErrorDomain";
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSCCryptorErrorDomain code:-1009 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to decrypt with password. Cryptor is not initialized properly." }];
+                *error = [NSError errorWithDomain:kVSCCipherErrorDomain code:-1009 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to decrypt with password. Cipher is not initialized properly." }];
             }
             decData = nil;
         }
@@ -193,13 +193,13 @@ NSString *const kVSCCryptorErrorDomain = @"VSCCryptorErrorDomain";
             if (description.length == 0) {
                 description = @"Unknown exception during decryption with password.";
             }
-            *error = [NSError errorWithDomain:kVSCCryptorErrorDomain code:-1010 userInfo:@{ NSLocalizedDescriptionKey: description }];
+            *error = [NSError errorWithDomain:kVSCCipherErrorDomain code:-1010 userInfo:@{ NSLocalizedDescriptionKey: description }];
         }
         decData = nil;
     }
     catch(...) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSCCryptorErrorDomain code:-1011 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown exception during decryption with password." }];
+            *error = [NSError errorWithDomain:kVSCCipherErrorDomain code:-1011 userInfo:@{ NSLocalizedDescriptionKey: @"Unknown exception during decryption with password." }];
         }
         decData = nil;
     }

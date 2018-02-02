@@ -8,9 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-/**
- Error domain constant for the `VSCTinyCipher` errors.
- */
+/// Error domain constant for the `VSCTinyCipher` errors.
 extern NSString * __nonnull const kVSCTinyCipherErrorDomain;
 
 /**
@@ -62,7 +60,7 @@ NS_SWIFT_NAME(TinyCipher)
 - (instancetype __nonnull)initWithPackageSize:(VSCPackageSize)packageSize;
 
 /**
- Prepare cryptor for the next encryption. Should be used before the next encryption.
+ Prepare cipher for the next encryption. Should be used before the next encryption.
 
  @param error `NSError` pointer to get an object in case of error, `nil` - otherwise.
  @return `YES` if successful, `NO` - otherwise.

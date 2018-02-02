@@ -17,6 +17,7 @@ typedef NS_ENUM(NSInteger, VSCHashAlgorithm) {
 /**
  Class for hashing.
  */
+NS_SWIFT_NAME(Hash)
 @interface VSCHash : NSObject
 
 /**

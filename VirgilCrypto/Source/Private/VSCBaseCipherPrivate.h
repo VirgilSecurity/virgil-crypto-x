@@ -1,14 +1,14 @@
 //
-//  VSCBaseCryptorPrivate.h
+//  VSCBaseCipherPrivate.h
 //  VirgilCypto
 //
 //  Created by Pavel Gorb on 2/23/16.
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSCBaseCryptor.h"
+#import "VSCBaseCipher.h"
 
-@interface VSCBaseCryptor ()
+@interface VSCBaseCipher ()
 
 /** 
  * This property is supposed to be used by subclasses.
@@ -17,14 +17,14 @@
  * 
  * Any changes to this property will lead to unpredicted results.
  */
-@property (nonatomic, assign, readwrite) void * __nullable llCryptor;
+@property (nonatomic, assign, readwrite) void * __nullable llCipher;
 
 /** 
- * This method supposed to be overwritten in subclasses to create proper cryptor object.
+ * This method supposed to be overwritten in subclasses to create proper Cipher object.
  * It is called from constructor automatically. 
  *
  * It is not supposed to be called manually. 
  */
-- (void)initializeCryptor;
+- (void)initializeCipher;
 
 @end

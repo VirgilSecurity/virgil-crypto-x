@@ -27,7 +27,7 @@ class VSC006_StreamSignerTests: XCTestCase {
     
     func test001_composeAndVerifySignature() {
         // Generate a new key pair
-        let keyPair = VSCKeyPair()
+        let keyPair = KeyPair()
         
         // Compose signature:
         // Create the signer

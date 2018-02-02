@@ -1,5 +1,5 @@
 //
-//  VSC005_ChunkCryptorTests.swift
+//  VSC005_ChunkCipherTests.swift
 //  VirgilCrypto
 //
 //  Created by Oleksandr Deundiak on 9/13/17.
@@ -13,7 +13,7 @@ import VirgilCrypto
 let kPlainDataLength: Int = 5120
 let kDesiredDataChunkLength: Int = 1024
 
-class VSC005_ChunkCryptorTests: XCTestCase {
+class VSC005_ChunkCipherTests: XCTestCase {
     var toEncrypt: Data! = nil
     
     override func setUp() {
@@ -30,14 +30,14 @@ class VSC005_ChunkCryptorTests: XCTestCase {
     
     func test001_keyBasedEncryptDecrypt() {
         // Generate a new key pair
-        let keyPair = VSCKeyPair()
+        let keyPair = KeyPair()
         // Generate a public key id
         let recipientId = UUID().uuidString
-        // Create a cryptor instance
-        let cryptor = VSCChunkCryptor()
+        // Create a cipher instance
+        let cipher = ChunkCipher()
         // Add a key recepient to enable key-based encryption
         do {
-            try cryptor.addKeyRecipient(recipientId.data(using: .utf8)!, publicKey: keyPair.publicKey())
+            try cipher.addKeyRecipient(recipientId.data(using: .utf8)!, publicKey: keyPair.publicKey())
         }
         catch {
             print("Error adding key recipient: \(error.localizedDescription)")
@@ -47,17 +47,17 @@ class VSC005_ChunkCryptorTests: XCTestCase {
         let istream = InputStream(data: self.toEncrypt)
         let ostream = OutputStream.toMemory()
         
-        try! cryptor.encryptData(from: istream, to: ostream, preferredChunkSize: kDesiredDataChunkLength, embedContentInfo: true)
+        try! cipher.encryptData(from: istream, to: ostream, preferredChunkSize: kDesiredDataChunkLength, embedContentInfo: true)
         
         let encryptedData = ostream.property(forKey: .dataWrittenToMemoryStreamKey) as! Data
         XCTAssert(encryptedData.count > 0)
         
-        let decryptor = VSCChunkCryptor()
+        let decipher = ChunkCipher()
         
         let idecstream = InputStream(data: encryptedData)
         let odecstream = OutputStream.toMemory()
         
-        try! decryptor.decrypt(from: idecstream, to: odecstream, recipientId: recipientId.data(using: .utf8)!, privateKey: keyPair.privateKey(), keyPassword: nil)
+        try! decipher.decrypt(from: idecstream, to: odecstream, recipientId: recipientId.data(using: .utf8)!, privateKey: keyPair.privateKey(), keyPassword: nil)
         
         let plainData = odecstream.property(forKey: .dataWrittenToMemoryStreamKey) as! Data
         
@@ -66,11 +66,11 @@ class VSC005_ChunkCryptorTests: XCTestCase {
     
     func test002_passwordBasedEncryptDecrypt() {
         let passwd = "secret"
-        // Create a cryptor instance
-        let cryptor = VSCChunkCryptor()
+        // Create a cipher instance
+        let cipher = ChunkCipher()
         // Add a key recepient to enable key-based encryption
         do {
-            try cryptor.addPasswordRecipient(passwd)
+            try cipher.addPasswordRecipient(passwd)
         }
         catch {
             print("Error adding key recipient: \(error.localizedDescription)")
@@ -80,17 +80,17 @@ class VSC005_ChunkCryptorTests: XCTestCase {
         let istream = InputStream(data: self.toEncrypt)
         let ostream = OutputStream.toMemory()
         
-        try! cryptor.encryptData(from: istream, to: ostream, preferredChunkSize: kDesiredDataChunkLength, embedContentInfo: true)
+        try! cipher.encryptData(from: istream, to: ostream, preferredChunkSize: kDesiredDataChunkLength, embedContentInfo: true)
         
         let encryptedData = ostream.property(forKey: .dataWrittenToMemoryStreamKey) as! Data
         XCTAssert(encryptedData.count > 0)
         
-        let decryptor = VSCChunkCryptor()
+        let decipher = ChunkCipher()
         
         let idecstream = InputStream(data: encryptedData)
         let odecstream = OutputStream.toMemory()
         
-        try! decryptor.decrypt(from: idecstream, to: odecstream, password: passwd)
+        try! decipher.decrypt(from: idecstream, to: odecstream, password: passwd)
         
         let plainData = odecstream.property(forKey: .dataWrittenToMemoryStreamKey) as! Data
         

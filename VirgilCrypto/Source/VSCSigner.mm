@@ -46,16 +46,16 @@ NSString *const kVSCSignerErrorDomain = @"VSCSignerErrorDomain";
         return nil;
     }
     try {
-        if ([hash isEqualToString:kHashNameMD5]) {
+        if ([hash isEqualToString:kVSCHashNameMD5]) {
             _signer = new VirgilSigner(VirgilHash::Algorithm::MD5);
         }
-        else if ([hash isEqualToString:kHashNameSHA256]) {
+        else if ([hash isEqualToString:kVSCHashNameSHA256]) {
             _signer = new VirgilSigner(VirgilHash::Algorithm::SHA256);
         }
-        else if ([hash isEqualToString:kHashNameSHA384]) {
+        else if ([hash isEqualToString:kVSCHashNameSHA384]) {
             _signer = new VirgilSigner(VirgilHash::Algorithm::SHA384);
         }
-        else if ([hash isEqualToString:kHashNameSHA512]) {
+        else if ([hash isEqualToString:kVSCHashNameSHA512]) {
             _signer = new VirgilSigner(VirgilHash::Algorithm::SHA512);
         }
         else {
@@ -111,7 +111,7 @@ NSString *const kVSCSignerErrorDomain = @"VSCSignerErrorDomain";
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSCSignerErrorDomain code:-1013 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to compose signature. Cryptor is not initialized properly." }];
+                *error = [NSError errorWithDomain:kVSCSignerErrorDomain code:-1013 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to compose signature. Cipher is not initialized properly." }];
             }
             signData = nil;
         }
@@ -165,7 +165,7 @@ NSString *const kVSCSignerErrorDomain = @"VSCSignerErrorDomain";
         }
         else {
             if (error) {
-                *error = [NSError errorWithDomain:kVSCSignerErrorDomain code:-1014 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to verify signature. Cryptor is not initialized properly." }];
+                *error = [NSError errorWithDomain:kVSCSignerErrorDomain code:-1014 userInfo:@{ NSLocalizedDescriptionKey: @"Unable to verify signature. Cipher is not initialized properly." }];
             }
             verified = NO;
         }

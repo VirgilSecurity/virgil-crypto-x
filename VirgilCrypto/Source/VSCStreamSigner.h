@@ -10,6 +10,7 @@
 #import "VSCFoundationCommons.h"
 
 /// Error domain constant for the `VSCStreamSigner` errors.
+NS_SWIFT_NAME(kStreamSignerErrorDomain)
 extern NSString * __nonnull const kVSCStreamSignerErrorDomain;
 
 /**
@@ -22,7 +23,7 @@ NS_SWIFT_NAME(StreamSigner)
 /**
  Designated initializer
 
- @param hash Name of the preferred hash function. In case of `nil` default hash function will be used (SHA384). One of the following names should be used: `kHashNameMD5`, `kHashNameSHA256`, `kHashNameSHA384`, `kHashNameSHA512`.
+ @param hash Name of the preferred hash function. In case of `nil` default hash function will be used (SHA384). One of the following names should be used: `kVSCHashNameMD5`, `kVSCHashNameSHA256`, `kVSCHashNameSHA384`, `kVSCHashNameSHA512`.
  @return initialized instance.
  */
 - (instancetype __nonnull)initWithHash:(NSString * __nullable)hash NS_DESIGNATED_INITIALIZER;
