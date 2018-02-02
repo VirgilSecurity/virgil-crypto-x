@@ -31,13 +31,13 @@ class VSC006_StreamSignerTests: XCTestCase {
         
         // Compose signature:
         // Create the signer
-        let signer = VSCStreamSigner()
+        let signer = StreamSigner()
         // Compose the signature
         var signature = Data()
         let sis = InputStream(data: self.toSign)
         signature = try! signer.signStreamData(sis, privateKey: keyPair.privateKey(), keyPassword: nil)
         
-        let verifier = VSCStreamSigner()
+        let verifier = StreamSigner()
         let vis = InputStream(data: self.toSign)
         try! verifier.verifySignature(signature, from: vis, publicKey: keyPair.publicKey())
     }
