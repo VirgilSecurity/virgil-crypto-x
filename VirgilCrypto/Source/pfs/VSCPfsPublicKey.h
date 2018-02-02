@@ -8,13 +8,29 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ Class that represents public key, that is related to PFS operations.
+ */
+NS_SWIFT_NAME(PfsPublicKey)
 @interface VSCPfsPublicKey : NSObject
+/**
+ Designated initializer
 
-- (instancetype __nullable)initWithKey:(NSData * __nonnull)key;
+ @param key public key data
+ @return initialized instance
+ */
+- (instancetype __nullable)initWithKey:(NSData * __nonnull)key NS_DESIGNATED_INITIALIZER;
 
+/**
+ Inherited unavailable initializer.
+ 
+ @return initialized instance
+ */
 - (instancetype __nonnull)init NS_UNAVAILABLE;
 
-@property (nonatomic, readonly) BOOL isEmpty;
+/**
+ Public key data
+ */
 @property (nonatomic, readonly) NSData * __nonnull key;
 
 @end

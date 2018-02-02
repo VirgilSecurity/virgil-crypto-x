@@ -9,14 +9,35 @@
 #import <Foundation/Foundation.h>
 #import "VSCPfsPublicKey.h"
 
+/**
+ Class that represents Initiator Public Info: identity and ephemeral public keys.
+ */
+NS_SWIFT_NAME(PfsInitiatorPublicInfo)
 @interface VSCPfsInitiatorPublicInfo : NSObject
+/**
+ Designated initializer.
 
-- (instancetype __nullable)initWithIdentityPublicKey:(VSCPfsPublicKey * __nonnull)identityPublicKey ephemeralPublicKey:(VSCPfsPublicKey * __nonnull)ephemeralPublicKey;
+ @param identityPublicKey identity card public key
+ @param ephemeralPublicKey ephemeral public key
+ @return initialized instance
+ */
+- (instancetype __nullable)initWithIdentityPublicKey:(VSCPfsPublicKey * __nonnull)identityPublicKey ephemeralPublicKey:(VSCPfsPublicKey * __nonnull)ephemeralPublicKey NS_DESIGNATED_INITIALIZER;
 
+/**
+ Inherited unavailable initializer.
+ 
+ @return initialized instance
+ */
 - (instancetype __nonnull)init NS_UNAVAILABLE;
 
-@property (nonatomic, readonly) NSString * __nonnull identifier;
+/**
+ Identity card public key
+ */
 @property (nonatomic, readonly) VSCPfsPublicKey * __nonnull identityPublicKey;
+
+/**
+ Ephemeral public key
+ */
 @property (nonatomic, readonly) VSCPfsPublicKey * __nonnull ephemeralPublicKey;
 
 @end

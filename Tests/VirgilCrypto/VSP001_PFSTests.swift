@@ -11,37 +11,37 @@ import VirgilCrypto
 import XCTest
 
 class VSP001_PFSTests: XCTestCase {
-    private func generateSessions(additionalDataPresent: Bool, oneTimePresent: Bool) -> (VSCPfs, VSCPfsSession, VSCPfs, VSCPfsSession) {
+    private func generateSessions(additionalDataPresent: Bool, oneTimePresent: Bool) -> (Pfs, PfsSession, Pfs, PfsSession) {
         let initiatorIdentityKeyPair = KeyPair()
         let initiatorEphemeralKeyPair = KeyPair()
-        let initiatorIdentityPrivateKey = VSCPfsPrivateKey(key: initiatorIdentityKeyPair.privateKey(), password: nil)!
-        let initiatorIdentityPublicKey = VSCPfsPublicKey(key: initiatorIdentityKeyPair.publicKey())!
-        let initiatorEphemeralPrivateKey = VSCPfsPrivateKey(key: initiatorEphemeralKeyPair.privateKey(), password: nil)!
-        let initiatorEphemeralPublicKey = VSCPfsPublicKey(key: initiatorEphemeralKeyPair.publicKey())!
+        let initiatorIdentityPrivateKey = PfsPrivateKey(key: initiatorIdentityKeyPair.privateKey(), password: nil)!
+        let initiatorIdentityPublicKey = PfsPublicKey(key: initiatorIdentityKeyPair.publicKey())!
+        let initiatorEphemeralPrivateKey = PfsPrivateKey(key: initiatorEphemeralKeyPair.privateKey(), password: nil)!
+        let initiatorEphemeralPublicKey = PfsPublicKey(key: initiatorEphemeralKeyPair.publicKey())!
         let initiatorAdditionalData = additionalDataPresent ? "Alice+Bob".data(using: .utf8) : nil
         
         let responderIdentityKeyPair = KeyPair()
         let responderLongTermKeyPair = KeyPair()
         let responderOneTimeKeyPair = KeyPair()
-        let responderIdentityPublicKey = VSCPfsPublicKey(key: responderIdentityKeyPair.publicKey())!
-        let responderIdentityPrivateKey = VSCPfsPrivateKey(key: responderIdentityKeyPair.privateKey(), password: nil)!
-        let responderLongTermPublicKey = VSCPfsPublicKey(key: responderLongTermKeyPair.publicKey())!
-        let responderLongTermPrivateKey = VSCPfsPrivateKey(key: responderLongTermKeyPair.privateKey(), password: nil)!
+        let responderIdentityPublicKey = PfsPublicKey(key: responderIdentityKeyPair.publicKey())!
+        let responderIdentityPrivateKey = PfsPrivateKey(key: responderIdentityKeyPair.privateKey(), password: nil)!
+        let responderLongTermPublicKey = PfsPublicKey(key: responderLongTermKeyPair.publicKey())!
+        let responderLongTermPrivateKey = PfsPrivateKey(key: responderLongTermKeyPair.privateKey(), password: nil)!
         let responderAdditionalData = additionalDataPresent ? "Alice+Bob".data(using: .utf8) : nil
         
-        let responderOneTimePublicKey = oneTimePresent ? VSCPfsPublicKey(key: responderOneTimeKeyPair.publicKey())! : nil
-        let responderOneTimePrivateKey = oneTimePresent ? VSCPfsPrivateKey(key: responderOneTimeKeyPair.privateKey(), password: nil)! : nil
+        let responderOneTimePublicKey = oneTimePresent ? PfsPublicKey(key: responderOneTimeKeyPair.publicKey())! : nil
+        let responderOneTimePrivateKey = oneTimePresent ? PfsPrivateKey(key: responderOneTimeKeyPair.privateKey(), password: nil)! : nil
         
-        let initiatorPrivateInfo = VSCPfsInitiatorPrivateInfo(identityPrivateKey: initiatorIdentityPrivateKey, ephemeralPrivateKey: initiatorEphemeralPrivateKey)!
-        let responderPublicInfo = VSCPfsResponderPublicInfo(identityPublicKey: responderIdentityPublicKey, longTermPublicKey: responderLongTermPublicKey, oneTime: responderOneTimePublicKey)!
+        let initiatorPrivateInfo = PfsInitiatorPrivateInfo(identityPrivateKey: initiatorIdentityPrivateKey, ephemeralPrivateKey: initiatorEphemeralPrivateKey)!
+        let responderPublicInfo = PfsResponderPublicInfo(identityPublicKey: responderIdentityPublicKey, longTermPublicKey: responderLongTermPublicKey, oneTime: responderOneTimePublicKey)!
         
-        let initiatorPfs = VSCPfs()
+        let initiatorPfs = Pfs()
         let initiatorSession = initiatorPfs.startInitiatorSession(with: initiatorPrivateInfo, respondrerPublicInfo: responderPublicInfo, additionalData: initiatorAdditionalData)!
         
-        let initiatorPublicInfo = VSCPfsInitiatorPublicInfo(identityPublicKey: initiatorIdentityPublicKey, ephemeralPublicKey: initiatorEphemeralPublicKey)!
-        let responderPrivateInfo = VSCPfsResponderPrivateInfo(identityPrivateKey: responderIdentityPrivateKey, longTermPrivateKey: responderLongTermPrivateKey, oneTime: responderOneTimePrivateKey)!
+        let initiatorPublicInfo = PfsInitiatorPublicInfo(identityPublicKey: initiatorIdentityPublicKey, ephemeralPublicKey: initiatorEphemeralPublicKey)!
+        let responderPrivateInfo = PfsResponderPrivateInfo(identityPrivateKey: responderIdentityPrivateKey, longTermPrivateKey: responderLongTermPrivateKey, oneTime: responderOneTimePrivateKey)!
         
-        let responderPfs = VSCPfs()
+        let responderPfs = Pfs()
         let responderSession = responderPfs.startResponderSession(with: responderPrivateInfo, initiatorPublicInfo: initiatorPublicInfo, additionalData: responderAdditionalData)!
         
         return (initiatorPfs, initiatorSession, responderPfs, responderSession)
@@ -80,13 +80,11 @@ class VSP001_PFSTests: XCTestCase {
         XCTAssert(initiatorSession.decryptionSecretKey.count != 0)
         XCTAssert(initiatorSession.encryptionSecretKey.count != 0)
         XCTAssert(initiatorSession.identifier.count != 0)
-        XCTAssert(!initiatorSession.isEmpty)
         
         XCTAssert(responderSession.additionalData.count != 0)
         XCTAssert(responderSession.decryptionSecretKey.count != 0)
         XCTAssert(responderSession.encryptionSecretKey.count != 0)
         XCTAssert(responderSession.identifier.count != 0)
-        XCTAssert(!responderSession.isEmpty)
         
         XCTAssert(initiatorSession.identifier == responderSession.identifier);
     }
@@ -97,13 +95,11 @@ class VSP001_PFSTests: XCTestCase {
         XCTAssert(initiatorSession.decryptionSecretKey.count != 0)
         XCTAssert(initiatorSession.encryptionSecretKey.count != 0)
         XCTAssert(initiatorSession.identifier.count != 0)
-        XCTAssert(!initiatorSession.isEmpty)
         
         XCTAssert(responderSession.additionalData.count != 0)
         XCTAssert(responderSession.decryptionSecretKey.count != 0)
         XCTAssert(responderSession.encryptionSecretKey.count != 0)
         XCTAssert(responderSession.identifier.count != 0)
-        XCTAssert(!responderSession.isEmpty)
         
         XCTAssert(initiatorSession.identifier == responderSession.identifier);
     }

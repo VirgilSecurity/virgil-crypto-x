@@ -33,10 +33,6 @@ using virgil::crypto::VirgilByteArray;
     return self;
 }
 
-- (BOOL)isEmpty {
-    return self.cppPfsPrivateKey->isEmpty();
-}
-
 - (NSData *)key {
     const VirgilByteArray &keyArr = self.cppPfsPrivateKey->getKey();
     return [NSData dataWithBytes:keyArr.data() length:keyArr.size()];

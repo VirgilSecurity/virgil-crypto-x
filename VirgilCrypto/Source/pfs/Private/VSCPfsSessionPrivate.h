@@ -14,7 +14,7 @@ using virgil::crypto::pfs::VirgilPFSSession;
 
 @interface VSCPfsSession ()
 
-- (instancetype __nullable)initWithSession:(const VirgilPFSSession &)session;
+- (instancetype __nullable)initWithSession:(const VirgilPFSSession &)session NS_DESIGNATED_INITIALIZER;
 
 @property (nonatomic, assign, readonly) VirgilPFSSession * __nonnull cppPfsSession;
 

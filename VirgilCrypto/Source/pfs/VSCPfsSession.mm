@@ -50,10 +50,6 @@ using virgil::crypto::VirgilByteArray;
     return self;
 }
 
-- (BOOL)isEmpty {
-    return self.cppPfsSession->isEmpty();
-}
-
 - (NSData *)identifier {
     const VirgilByteArray &identifierArr = self.cppPfsSession->getIdentifier();
     return [NSData dataWithBytes:identifierArr.data() length:identifierArr.size()];
