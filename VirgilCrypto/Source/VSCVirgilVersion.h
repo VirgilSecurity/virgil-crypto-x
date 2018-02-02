@@ -8,45 +8,63 @@
 
 #import <Foundation/Foundation.h>
 
-/** 
- * Gets version of the low-level Virgil cryptographic library.
- * This version is different from the version of the VirgilFoundation pod itself.
- * 
- * In general major and minor versions for the low-level library and VirgilFoundation 
- * should be the same, but it is not always the case.
- *
- * This is utility class which might come in handy when some bugs are observed and it is
- * crucial to know exact versions of every single component used in the application.
+/**
+ Provides information about Virgil library version.
  */
+NS_SWIFT_NAME(VirgilVersion)
 @interface VSCVirgilVersion : NSObject
 
-///-------------------------
-/// @name Version
-///-------------------------
+/**
+ Forbidden initializer.
 
-/** 
- * Returns string version of the low-level virgil cryptographic library. E.g. `1.0.0` 
+ @return initialized instance
  */
-- (NSString * __nonnull)versionString;
+- (instancetype __nonnull)init __unavailable;
 
-/** 
- * Returns numeric representation of the low-level virgil cryptographic library: (major << 16) | (minor << 8) | patch. 
- */
-- (size_t)version;
+/**
+ Returns version number in the format MMNNPP (Major, Minor, Patch). (majorVersion() << 16) | (minorVersion() << 8) | patchVersion()
 
-/** 
- * Returns numeric representation of the major version of low-level virgil cryptographic library. 
+ @return version number in the format MMNNPP (Major, Minor, Patch).
  */
-- (size_t)majorVersion;
++ (size_t)asNumber;
 
-/** 
- * Returns numeric representation of the minor version of low-level virgil cryptographic library. 
- */
-- (size_t)minorVersion;
+/**
+ Returns version number as string.
 
-/** 
- * Returns numeric representation of the patch version low-level virgil cryptographic library. 
+ @return version number as string.
  */
-- (size_t)patchVersion;
++ (NSString * __nonnull)asString;
+
+/**
+ Returns major version number.
+
+ @return major version number.
+ */
++ (NSUInteger)majorVersion;
+
+/**
+ Returns minor version number.
+
+ @return minor version number.
+ */
++ (NSUInteger)minorVersion;
+
+/**
+ Returns minor version number.
+
+ @return minor version number.
+ */
++ (NSUInteger)patchVersion;
+
+/**
+ Return version full name.
+ 
+ If current release contains some additional tag, like rc1,
+ then version full name will be different from the string returned by method asString(),
+ i.e. 1.3.4-rc1, or 1.3.4-coolfeature, etc.
+
+ @return version full name
+ */
++ (NSString * __nonnull)fullName;
 
 @end

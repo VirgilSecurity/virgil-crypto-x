@@ -11,50 +11,24 @@
 
 using virgil::crypto::VirgilVersion;
 
-@interface VSCVirgilVersion ()
-
-@property(nonatomic, assign) VirgilVersion *frameworkVersion;
-
-@end
-
 @implementation VSCVirgilVersion
 
-@synthesize frameworkVersion = _frameworkVersion;
-
-#pragma mark - Lifecycle
-
-- (instancetype)init {
-    self = [super init];
-    if (self == nil) {
-        return nil;
-    }
-    
++ (NSUInteger)asNumber {
+    NSUInteger version = 0;
     try {
-        _frameworkVersion = new VirgilVersion();
+        version = VirgilVersion::asNumber();
     }
     catch(...) {
-        _frameworkVersion = NULL;
+        version = 0;
     }
-
-    return self;
+    
+    return version;
 }
 
-- (void)dealloc {
-    if (_frameworkVersion != NULL) {
-        delete _frameworkVersion;
-        _frameworkVersion = NULL;
-    }
-}
-
-#pragma mark - Class logic
-
-- (NSString *)versionString {
-    if (self.frameworkVersion == NULL) {
-        return @"";
-    }
++ (NSString *)asString {
     NSString *version = nil;
     try {
-        std::string ver = self.frameworkVersion->asString();
+        std::string ver = VirgilVersion::asString();
         version = [[NSString alloc] initWithCString:ver.c_str() encoding:NSUTF8StringEncoding];
     }
     catch(...) {
@@ -64,13 +38,10 @@ using virgil::crypto::VirgilVersion;
     return version;
 }
 
-- (size_t)version {
-    if (self.frameworkVersion == NULL) {
-        return 0;
-    }
-    size_t version = 0;
++ (NSUInteger)majorVersion {
+    NSUInteger version = 0;
     try {
-        version = self.frameworkVersion->asNumber();
+        version = VirgilVersion::majorVersion();
     }
     catch(...) {
         version = 0;
@@ -79,14 +50,10 @@ using virgil::crypto::VirgilVersion;
     return version;
 }
 
-- (size_t)majorVersion {
-    if (self.frameworkVersion == NULL) {
-        return 0;
-    }
-    
-    size_t version = 0;
++ (NSUInteger)minorVersion {
+    NSUInteger version = 0;
     try {
-        version = self.frameworkVersion->majorVersion();
+        version = VirgilVersion::minorVersion();
     }
     catch(...) {
         version = 0;
@@ -95,14 +62,10 @@ using virgil::crypto::VirgilVersion;
     return version;
 }
 
-- (size_t)minorVersion {
-    if (self.frameworkVersion == NULL) {
-        return 0;
-    }
-    
-    size_t version = 0;
++ (NSUInteger)patchVersion {
+    NSUInteger version = 0;
     try {
-        version = self.frameworkVersion->minorVersion();
+        version = VirgilVersion::patchVersion();
     }
     catch(...) {
         version = 0;
@@ -111,20 +74,17 @@ using virgil::crypto::VirgilVersion;
     return version;
 }
 
-- (size_t)patchVersion {
-    if (self.frameworkVersion == NULL) {
-        return 0;
-    }
-    
-    size_t version = 0;
++ (NSString *)fullName {
+    NSString *fullName = nil;
     try {
-        version = self.frameworkVersion->patchVersion();
+        std::string ver = VirgilVersion::fullName();
+        fullName = [[NSString alloc] initWithCString:ver.c_str() encoding:NSUTF8StringEncoding];
     }
     catch(...) {
-        version = 0;
+        fullName = @"";
     }
     
-    return version;
+    return fullName;
 }
 
 @end
