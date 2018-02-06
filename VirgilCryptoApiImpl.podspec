@@ -9,5 +9,5 @@ Pod::Spec.new do |s|
   s.platforms                   = { :ios => "8.0", :osx => "10.10", :tvos => "9.0", :watchos => "2.0" }
   s.source_files                = "VirgilCryptoApiImpl/**/*.swift"
   s.dependency 'VirgilCryptoAPI', '= 1.0.0'
-  s.dependency 'VirgilCrypto', '~> 3.0.0'
+  s.dependency 'VirgilCrypto', '= 3.0.0-beta4'
 end
