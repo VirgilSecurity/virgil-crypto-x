@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "42D61B8C202A5963007E0758"
-               BuildableName = "VSCCrypto_tvOS.framework"
+               BuildableName = "VSCCrypto.framework"
                BlueprintName = "VSCCrypto tvOS"
                ReferencedContainer = "container:VirgilCrypto.xcodeproj">
             </BuildableReference>
@@ -48,7 +48,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "42D61B8C202A5963007E0758"
-            BuildableName = "VSCCrypto_tvOS.framework"
+            BuildableName = "VSCCrypto.framework"
             BlueprintName = "VSCCrypto tvOS"
             ReferencedContainer = "container:VirgilCrypto.xcodeproj">
          </BuildableReference>
@@ -66,7 +66,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "42D61B8C202A5963007E0758"
-            BuildableName = "VSCCrypto_tvOS.framework"
+            BuildableName = "VSCCrypto.framework"
             BlueprintName = "VSCCrypto tvOS"
             ReferencedContainer = "container:VirgilCrypto.xcodeproj">
          </BuildableReference>
