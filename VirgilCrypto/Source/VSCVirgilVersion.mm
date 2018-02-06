@@ -7,7 +7,7 @@
 //
 
 #import "VSCVirgilVersion.h"
-#import <virgil/crypto/VirgilVersion.h>
+#import <VSCCrypto/VirgilCrypto.h>
 
 using virgil::crypto::VirgilVersion;
 

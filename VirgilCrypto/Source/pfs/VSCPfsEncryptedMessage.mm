@@ -10,8 +10,7 @@
 #import "VSCPfsEncryptedMessage.h"
 #import "VSCPfsEncryptedMessagePrivate.h"
 #import "VSCByteArrayUtilsPrivate.h"
-
-#import <virgil/crypto/VirgilByteArray.h>
+#import <VSCCrypto/VirgilCrypto.h>
 
 using virgil::crypto::VirgilByteArray;
 

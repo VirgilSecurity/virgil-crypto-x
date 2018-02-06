@@ -26,7 +26,7 @@ NS_SWIFT_NAME(VirgilVersion)
 
  @return version number in the format MMNNPP (Major, Minor, Patch).
  */
-+ (size_t)asNumber;
++ (NSUInteger)asNumber;
 
 /**
  Returns version number as string.

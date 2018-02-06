@@ -9,10 +9,7 @@
 #import "VSCPBKDF.h"
 #import <Security/Security.h>
 #import <CommonCrypto/CommonCrypto.h>
-
-#import <virgil/crypto/VirgilByteArray.h>
-#import <virgil/crypto/foundation/VirgilPBKDF.h>
-#import <virgil/crypto/foundation/VirgilHash.h>
+#import <VSCCrypto/VirgilCrypto.h>
 
 using virgil::crypto::VirgilByteArray;
 using virgil::crypto::foundation::VirgilPBKDF;

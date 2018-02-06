@@ -14,9 +14,7 @@
 #undef verify
 #endif
 
-#import <virgil/crypto/VirgilByteArray.h>
-#import <virgil/crypto/VirgilSigner.h>
-#import <virgil/crypto/foundation/VirgilHash.h>
+#import <VSCCrypto/VirgilCrypto.h>
 
 using virgil::crypto::VirgilByteArray;
 using virgil::crypto::VirgilSigner;

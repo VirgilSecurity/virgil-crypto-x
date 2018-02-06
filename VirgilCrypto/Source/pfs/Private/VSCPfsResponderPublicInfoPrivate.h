@@ -7,8 +7,7 @@
 //
 
 #import "VSCPfsResponderPublicInfo.h"
-
-#import <virgil/crypto/pfs/VirgilPFSResponderPublicInfo.h>
+#import <VSCCrypto/VirgilCrypto.h>
 
 using virgil::crypto::pfs::VirgilPFSResponderPublicInfo;
 

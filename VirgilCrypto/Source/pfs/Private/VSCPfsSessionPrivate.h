@@ -7,8 +7,7 @@
 //
 
 #import "VSCPfsSession.h"
-
-#import <virgil/crypto/pfs/VirgilPFSSession.h>
+#import <VSCCrypto/VirgilCrypto.h>
 
 using virgil::crypto::pfs::VirgilPFSSession;
 
