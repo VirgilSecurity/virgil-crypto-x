@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.homepage                    = "https://github.com/VirgilSecurity/virgil-foundation-x"
   s.authors                     = { "Virgil Security" => "https://virgilsecurity.com/" }
   s.source                      = { :git => "https://github.com/VirgilSecurity/virgil-foundation-x.git", :tag => s.version }
-  s.platforms                   = { :tvos => "9.0", :ios => "8.0", :osx => "10.10", :watchos => "2.0" }
+  s.platforms                   = { :tvos => "9.0", :ios => "8.0", :osx => "10.10" } #, :watchos => "2.0" }
   s.source_files                = "VirgilCrypto/**/*.{h,mm}"
   s.public_header_files         = "VirgilCrypto/Source/*.h", "VirgilCrypto/Source/pfs/*.h"
   s.library                     = 'stdc++'
