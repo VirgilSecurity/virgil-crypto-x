@@ -35,6 +35,20 @@
 			name = VirgilCryptoApiImpl;
 			productName = VirgilCryptoApiImpl;
 		};
+		42D61BA4202A5A1E007E0758 /* VSCCrypto */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 42D61BA5202A5A1E007E0758 /* Build configuration list for PBXAggregateTarget "VSCCrypto" */;
+			buildPhases = (
+			);
+			dependencies = (
+				42D61BA9202A5A28007E0758 /* PBXTargetDependency */,
+				42D61BAB202A5A28007E0758 /* PBXTargetDependency */,
+				42D61BAD202A5A28007E0758 /* PBXTargetDependency */,
+				42D61BAF202A5A28007E0758 /* PBXTargetDependency */,
+			);
+			name = VSCCrypto;
+			productName = VSCCrypto;
+		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
@@ -96,17 +110,9 @@
 		420D10841EF173CF002A9C22 /* VSCPfsInitiatorPublicInfoPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D107C1EF16A2E002A9C22 /* VSCPfsInitiatorPublicInfoPrivate.h */; };
 		420D10851EF173CF002A9C22 /* VSCPfsResponderPrivateInfoPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D107D1EF16A37002A9C22 /* VSCPfsResponderPrivateInfoPrivate.h */; };
 		420D10861EF173CF002A9C22 /* VSCPfsResponderPublicInfoPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D107E1EF16A42002A9C22 /* VSCPfsResponderPublicInfoPrivate.h */; };
-		42370E402029BD05009FCB89 /* VSCCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42370E3F2029BD04009FCB89 /* VSCCrypto.framework */; };
 		42370E422029BD0D009FCB89 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42370E412029BD0D009FCB89 /* Security.framework */; };
 		42370E442029BD17009FCB89 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42370E432029BD17009FCB89 /* Security.framework */; };
-		42370E462029BD1E009FCB89 /* VSCCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42370E452029BD1E009FCB89 /* VSCCrypto.framework */; };
 		42370E482029BD27009FCB89 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42370E472029BD27009FCB89 /* Security.framework */; };
-		42370E4A2029BD2F009FCB89 /* VSCCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42370E492029BD2F009FCB89 /* VSCCrypto.framework */; };
-		42370E4C2029BD9F009FCB89 /* VSCCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42370E4B2029BD9F009FCB89 /* VSCCrypto.framework */; };
-		42370E7D2029CC46009FCB89 /* VSCCrypto.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 42370E4B2029BD9F009FCB89 /* VSCCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		42370E842029CC65009FCB89 /* VSCCrypto.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 42370E3F2029BD04009FCB89 /* VSCCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		42370E882029CC7C009FCB89 /* VSCCrypto.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 42370E452029BD1E009FCB89 /* VSCCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		42370E8C2029CD16009FCB89 /* VSCCrypto.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 42370E4B2029BD9F009FCB89 /* VSCCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		423F00471E71A01A00CC98A3 /* VSCBaseCipher.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85EEF1DC7657C00C3184C /* VSCBaseCipher.mm */; };
 		423F00481E71A01A00CC98A3 /* VSCByteArrayUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85EF21DC7657C00C3184C /* VSCByteArrayUtils.mm */; };
 		423F00491E71A01A00CC98A3 /* VSCChunkCipher.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85EF41DC7657C00C3184C /* VSCChunkCipher.mm */; };
@@ -147,8 +153,6 @@
 		4282E3BC20248DB400FD7C7A /* VSC000_VirgilVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4282E3BB20248DB400FD7C7A /* VSC000_VirgilVersion.swift */; };
 		4282E3BD20248DB400FD7C7A /* VSC000_VirgilVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4282E3BB20248DB400FD7C7A /* VSC000_VirgilVersion.swift */; };
 		4282E3BE20248DB400FD7C7A /* VSC000_VirgilVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4282E3BB20248DB400FD7C7A /* VSC000_VirgilVersion.swift */; };
-		429EE0D82029CD8D00D20C6A /* VSCCrypto.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 42370E3F2029BD04009FCB89 /* VSCCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		429EE0E02029CD9F00D20C6A /* VSCCrypto.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 42370E452029BD1E009FCB89 /* VSCCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42A01F901F7D543A00FF8804 /* VSCPfsPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D102C1EF14090002A9C22 /* VSCPfsPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42A01F911F7D543A00FF8804 /* VSCPfs.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D102B1EF14074002A9C22 /* VSCPfs.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42A01F921F7D543A00FF8804 /* VSCPfsSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D10341EF147B3002A9C22 /* VSCPfsSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -289,8 +293,6 @@
 		42B12B63201FDCAD0082F9BC /* VSC009_ByteArrayUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B12B2F201FDC800082F9BC /* VSC009_ByteArrayUtils.swift */; };
 		42B12B64201FDCAD0082F9BC /* VSC010_HashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B12B33201FDC800082F9BC /* VSC010_HashTests.swift */; };
 		42B12B65201FDCAD0082F9BC /* VSP001_PFSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B12B2C201FDC800082F9BC /* VSP001_PFSTests.swift */; };
-		42B12B6F201FDCC60082F9BC /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423F00301E719EF200CC98A3 /* VirgilCrypto.framework */; };
-		42B12B7E201FDCE00082F9BC /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A01F7C1F7D51FE00FF8804 /* VirgilCrypto.framework */; };
 		42B12B84201FDCFB0082F9BC /* VSM001_CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B12B38201FDC800082F9BC /* VSM001_CryptoTests.swift */; };
 		42B12B85201FDCFC0082F9BC /* VSM001_CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B12B38201FDC800082F9BC /* VSM001_CryptoTests.swift */; };
 		42B12B86201FDCFC0082F9BC /* VSM001_CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B12B38201FDC800082F9BC /* VSM001_CryptoTests.swift */; };
@@ -298,8 +300,6 @@
 		42B12B8B201FDE030082F9BC /* testData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42B12B88201FDDFE0082F9BC /* testData.txt */; };
 		42B12B8C201FDE050082F9BC /* testData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42B12B88201FDDFE0082F9BC /* testData.txt */; };
 		42B12B8D201FE8780082F9BC /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A01F7C1F7D51FE00FF8804 /* VirgilCrypto.framework */; };
-		42B12B95201FEC720082F9BC /* VirgilCryptoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42B12A3A201FD4320082F9BC /* VirgilCryptoAPI.framework */; };
-		42B12B96201FEC760082F9BC /* VirgilCryptoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42B12A34201FD4320082F9BC /* VirgilCryptoAPI.framework */; };
 		42CDC2A81F696E1400D69111 /* VSCBaseCipher.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85EEE1DC7657C00C3184C /* VSCBaseCipher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42CDC2A91F696E1400D69111 /* VSCBaseCipher.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85EEF1DC7657C00C3184C /* VSCBaseCipher.mm */; };
 		42CDC2AA1F696E1400D69111 /* VSCByteArrayUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85EF11DC7657C00C3184C /* VSCByteArrayUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -355,6 +355,15 @@
 		42CDC2F91F696E4500D69111 /* VSCPfsInitiatorPublicInfoPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D107C1EF16A2E002A9C22 /* VSCPfsInitiatorPublicInfoPrivate.h */; };
 		42CDC2FA1F696E4500D69111 /* VSCPfsResponderPrivateInfoPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D107D1EF16A37002A9C22 /* VSCPfsResponderPrivateInfoPrivate.h */; };
 		42CDC2FB1F696E4500D69111 /* VSCPfsResponderPublicInfoPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D107E1EF16A42002A9C22 /* VSCPfsResponderPublicInfoPrivate.h */; };
+		42D61B67202A5843007E0758 /* VSCCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D61B65202A5843007E0758 /* VSCCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42D61B87202A593B007E0758 /* VSCCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D61B65202A5843007E0758 /* VSCCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42D61BB2202A5A74007E0758 /* VSCCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42D61B63202A5843007E0758 /* VSCCrypto.framework */; };
+		42D61BB5202A5A7F007E0758 /* VSCCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42D61B7E202A58B8007E0758 /* VSCCrypto.framework */; };
+		42D61BB8202A5A8A007E0758 /* VSCCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42D61B8D202A5963007E0758 /* VSCCrypto.framework */; };
+		42D61BB9202A5A90007E0758 /* VSCCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42D61B9B202A59C4007E0758 /* VSCCrypto.framework */; };
+		42D61BBC202A5BB0007E0758 /* VirgilCryptoApiImpl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42B129EB201FD2790082F9BC /* VirgilCryptoApiImpl.framework */; };
+		42D61BBD202A5BCB007E0758 /* VirgilCryptoApiImpl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42B12ABF201FD6F70082F9BC /* VirgilCryptoApiImpl.framework */; };
+		42D61BBE202A5BD6007E0758 /* VirgilCryptoApiImpl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42B12ADB201FD74C0082F9BC /* VirgilCryptoApiImpl.framework */; };
 		42F85F0C1DC7657C00C3184C /* VSCBaseCipher.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85EEE1DC7657C00C3184C /* VSCBaseCipher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42F85F0D1DC7657C00C3184C /* VSCBaseCipher.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85EEF1DC7657C00C3184C /* VSCBaseCipher.mm */; };
 		42F85F0F1DC7657C00C3184C /* VSCByteArrayUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85EF11DC7657C00C3184C /* VSCByteArrayUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -581,6 +590,62 @@
 			remoteGlobalIDString = 42CDC2811F696DB900D69111;
 			remoteInfo = "VirgilCrypto watchOS";
 		};
+		42D61BA8202A5A28007E0758 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3614026D1BB2A6CB002E69CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42D61B62202A5843007E0758;
+			remoteInfo = "VSCCrypto iOS";
+		};
+		42D61BAA202A5A28007E0758 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3614026D1BB2A6CB002E69CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42D61B7D202A58B8007E0758;
+			remoteInfo = "VSCCrypto macOS";
+		};
+		42D61BAC202A5A28007E0758 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3614026D1BB2A6CB002E69CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42D61B8C202A5963007E0758;
+			remoteInfo = "VSCCrypto tvOS";
+		};
+		42D61BAE202A5A28007E0758 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3614026D1BB2A6CB002E69CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42D61B9A202A59C4007E0758;
+			remoteInfo = "VSCCrypto watchOS";
+		};
+		42D61BB0202A5A6B007E0758 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3614026D1BB2A6CB002E69CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42D61B62202A5843007E0758;
+			remoteInfo = "VSCCrypto iOS";
+		};
+		42D61BB3202A5A7A007E0758 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3614026D1BB2A6CB002E69CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42D61B7D202A58B8007E0758;
+			remoteInfo = "VSCCrypto macOS";
+		};
+		42D61BB6202A5A85007E0758 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3614026D1BB2A6CB002E69CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42D61B8C202A5963007E0758;
+			remoteInfo = "VSCCrypto tvOS";
+		};
+		42D61BBA202A5A94007E0758 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3614026D1BB2A6CB002E69CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42D61B9A202A59C4007E0758;
+			remoteInfo = "VSCCrypto watchOS";
+		};
 		42F85F331DC765AC00C3184C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3614026D1BB2A6CB002E69CA /* Project object */;
@@ -589,69 +654,6 @@
 			remoteInfo = "VirgilCrypto iOS";
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		42370E802029CC57009FCB89 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				42370E842029CC65009FCB89 /* VSCCrypto.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		42370E852029CC73009FCB89 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				42370E882029CC7C009FCB89 /* VSCCrypto.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		42370E8A2029CD0D009FCB89 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				42370E8C2029CD16009FCB89 /* VSCCrypto.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		42370E8F2029CD20009FCB89 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				429EE0D82029CD8D00D20C6A /* VSCCrypto.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		429EE0DD2029CD9500D20C6A /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				429EE0E02029CD9F00D20C6A /* VSCCrypto.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		42D3E4A820286B8A006B4BC4 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				42370E7D2029CC46009FCB89 /* VSCCrypto.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		420D102B1EF14074002A9C22 /* VSCPfs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCPfs.h; sourceTree = "<group>"; };
@@ -733,6 +735,12 @@
 		42B12B88201FDDFE0082F9BC /* testData.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testData.txt; sourceTree = "<group>"; };
 		42CDC2821F696DB900D69111 /* VirgilCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42CDC30A1F6970C700D69111 /* VirgilCrypto tvOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilCrypto tvOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		42D61B63202A5843007E0758 /* VSCCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VSCCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		42D61B65202A5843007E0758 /* VSCCrypto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCCrypto.h; sourceTree = "<group>"; };
+		42D61B66202A5843007E0758 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42D61B7E202A58B8007E0758 /* VSCCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VSCCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		42D61B8D202A5963007E0758 /* VSCCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VSCCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		42D61B9B202A59C4007E0758 /* VSCCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VSCCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42F85ECD1DC7469D00C3184C /* VirgilCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42F85EEE1DC7657C00C3184C /* VSCBaseCipher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSCBaseCipher.h; sourceTree = "<group>"; };
 		42F85EEF1DC7657C00C3184C /* VSCBaseCipher.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VSCBaseCipher.mm; sourceTree = "<group>"; };
@@ -769,8 +777,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42D61BB5202A5A7F007E0758 /* VSCCrypto.framework in Frameworks */,
 				42370E422029BD0D009FCB89 /* Security.framework in Frameworks */,
-				42370E402029BD05009FCB89 /* VSCCrypto.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -786,7 +794,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42370E462029BD1E009FCB89 /* VSCCrypto.framework in Frameworks */,
+				42D61BB8202A5A8A007E0758 /* VSCCrypto.framework in Frameworks */,
 				42370E442029BD17009FCB89 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -831,6 +839,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42D61BBC202A5BB0007E0758 /* VirgilCryptoApiImpl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -838,8 +847,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42B12B96201FEC760082F9BC /* VirgilCryptoAPI.framework in Frameworks */,
-				42B12B6F201FDCC60082F9BC /* VirgilCrypto.framework in Frameworks */,
+				42D61BBD202A5BCB007E0758 /* VirgilCryptoApiImpl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -847,8 +855,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42B12B95201FEC720082F9BC /* VirgilCryptoAPI.framework in Frameworks */,
-				42B12B7E201FDCE00082F9BC /* VirgilCrypto.framework in Frameworks */,
+				42D61BBE202A5BD6007E0758 /* VirgilCryptoApiImpl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -856,7 +863,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42370E4A2029BD2F009FCB89 /* VSCCrypto.framework in Frameworks */,
+				42D61BB9202A5A90007E0758 /* VSCCrypto.framework in Frameworks */,
 				42370E482029BD27009FCB89 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -869,11 +876,39 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		42D61B5F202A5843007E0758 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42D61B7A202A58B8007E0758 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42D61B89202A5963007E0758 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42D61B97202A59C4007E0758 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		42F85EC91DC7469D00C3184C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42370E4C2029BD9F009FCB89 /* VSCCrypto.framework in Frameworks */,
+				42D61BB2202A5A74007E0758 /* VSCCrypto.framework in Frameworks */,
 				423F00B91E71A67E00CC98A3 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -896,6 +931,7 @@
 				42F85F091DC7657C00C3184C /* VirgilCrypto */,
 				42B129EC201FD2790082F9BC /* VirgilCryptoApiImpl */,
 				42F85F381DC765D000C3184C /* Tests */,
+				42D61B64202A5843007E0758 /* VSCCrypto */,
 				361402761BB2A6CB002E69CA /* Products */,
 				7ABB78811D98434C00A83A14 /* Frameworks */,
 			);
@@ -918,6 +954,10 @@
 				42B12B1E201FDC2E0082F9BC /* VirgilCryptoApiImpl iOS Tests.xctest */,
 				42B12B6A201FDCC60082F9BC /* VirgilCryptoApiImpl macOS Tests.xctest */,
 				42B12B79201FDCE00082F9BC /* VirgilCryptoApiImpl tvOS Tests.xctest */,
+				42D61B63202A5843007E0758 /* VSCCrypto.framework */,
+				42D61B7E202A58B8007E0758 /* VSCCrypto.framework */,
+				42D61B8D202A5963007E0758 /* VSCCrypto.framework */,
+				42D61B9B202A59C4007E0758 /* VSCCrypto.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1050,6 +1090,15 @@
 				42B12B88201FDDFE0082F9BC /* testData.txt */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		42D61B64202A5843007E0758 /* VSCCrypto */ = {
+			isa = PBXGroup;
+			children = (
+				42D61B65202A5843007E0758 /* VSCCrypto.h */,
+				42D61B66202A5843007E0758 /* Info.plist */,
+			);
+			path = VSCCrypto;
 			sourceTree = "<group>";
 		};
 		42F85EED1DC7657C00C3184C /* Source */ = {
@@ -1275,6 +1324,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		42D61B60202A5843007E0758 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42D61B67202A5843007E0758 /* VSCCrypto.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42D61B7B202A58B8007E0758 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42D61B87202A593B007E0758 /* VSCCrypto.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42D61B8A202A5963007E0758 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42D61B98202A59C4007E0758 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		42F85ECA1DC7469D00C3184C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -1330,6 +1409,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				42D61BB4202A5A7A007E0758 /* PBXTargetDependency */,
 			);
 			name = "VirgilCrypto macOS";
 			productName = "VirgilCrypto macOS";
@@ -1343,7 +1423,6 @@
 				423F00801E71A0FC00CC98A3 /* Sources */,
 				423F00811E71A0FC00CC98A3 /* Frameworks */,
 				423F00821E71A0FC00CC98A3 /* Resources */,
-				42370E802029CC57009FCB89 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1366,6 +1445,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				42D61BB7202A5A85007E0758 /* PBXTargetDependency */,
 			);
 			name = "VirgilCrypto tvOS";
 			productName = "VirgilCrypto tvOS";
@@ -1459,7 +1539,6 @@
 				42B12B1A201FDC2E0082F9BC /* Sources */,
 				42B12B1B201FDC2E0082F9BC /* Frameworks */,
 				42B12B1C201FDC2E0082F9BC /* Resources */,
-				42370E8A2029CD0D009FCB89 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1478,7 +1557,6 @@
 				42B12B66201FDCC60082F9BC /* Sources */,
 				42B12B67201FDCC60082F9BC /* Frameworks */,
 				42B12B68201FDCC60082F9BC /* Resources */,
-				42370E8F2029CD20009FCB89 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1497,7 +1575,6 @@
 				42B12B75201FDCE00082F9BC /* Sources */,
 				42B12B76201FDCE00082F9BC /* Frameworks */,
 				42B12B77201FDCE00082F9BC /* Resources */,
-				429EE0DD2029CD9500D20C6A /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1521,6 +1598,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				42D61BBB202A5A94007E0758 /* PBXTargetDependency */,
 			);
 			name = "VirgilCrypto watchOS";
 			productName = "VirgilCrypto watchOS";
@@ -1534,7 +1612,6 @@
 				42CDC3061F6970C700D69111 /* Sources */,
 				42CDC3071F6970C700D69111 /* Frameworks */,
 				42CDC3081F6970C700D69111 /* Resources */,
-				42370E852029CC73009FCB89 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1545,6 +1622,82 @@
 			productName = "VirgilCrypto tvOS Tests";
 			productReference = 42CDC30A1F6970C700D69111 /* VirgilCrypto tvOS Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		42D61B62202A5843007E0758 /* VSCCrypto iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42D61B68202A5843007E0758 /* Build configuration list for PBXNativeTarget "VSCCrypto iOS" */;
+			buildPhases = (
+				42D61B5E202A5843007E0758 /* Sources */,
+				42D61B5F202A5843007E0758 /* Frameworks */,
+				42D61B60202A5843007E0758 /* Headers */,
+				42D61B61202A5843007E0758 /* Resources */,
+				42D61B6B202A5857007E0758 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "VSCCrypto iOS";
+			productName = VSCCrypto;
+			productReference = 42D61B63202A5843007E0758 /* VSCCrypto.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		42D61B7D202A58B8007E0758 /* VSCCrypto macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42D61B83202A58B8007E0758 /* Build configuration list for PBXNativeTarget "VSCCrypto macOS" */;
+			buildPhases = (
+				42D61B79202A58B8007E0758 /* Sources */,
+				42D61B7A202A58B8007E0758 /* Frameworks */,
+				42D61B7B202A58B8007E0758 /* Headers */,
+				42D61B7C202A58B8007E0758 /* Resources */,
+				42D61B86202A58C6007E0758 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "VSCCrypto macOS";
+			productName = VSCCrypto;
+			productReference = 42D61B7E202A58B8007E0758 /* VSCCrypto.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		42D61B8C202A5963007E0758 /* VSCCrypto tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42D61B92202A5963007E0758 /* Build configuration list for PBXNativeTarget "VSCCrypto tvOS" */;
+			buildPhases = (
+				42D61B88202A5963007E0758 /* Sources */,
+				42D61B89202A5963007E0758 /* Frameworks */,
+				42D61B8A202A5963007E0758 /* Headers */,
+				42D61B8B202A5963007E0758 /* Resources */,
+				42D61B95202A5975007E0758 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "VSCCrypto tvOS";
+			productName = VSCCrypto;
+			productReference = 42D61B8D202A5963007E0758 /* VSCCrypto.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		42D61B9A202A59C4007E0758 /* VSCCrypto watchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42D61BA0202A59C4007E0758 /* Build configuration list for PBXNativeTarget "VSCCrypto watchOS" */;
+			buildPhases = (
+				42D61B96202A59C4007E0758 /* Sources */,
+				42D61B97202A59C4007E0758 /* Frameworks */,
+				42D61B98202A59C4007E0758 /* Headers */,
+				42D61B99202A59C4007E0758 /* Resources */,
+				42D61BA3202A59E5007E0758 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "VSCCrypto watchOS";
+			productName = VSCCrypto;
+			productReference = 42D61B9B202A59C4007E0758 /* VSCCrypto.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 		42F85ECC1DC7469D00C3184C /* VirgilCrypto iOS */ = {
 			isa = PBXNativeTarget;
@@ -1557,6 +1710,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				42D61BB1202A5A6B007E0758 /* PBXTargetDependency */,
 			);
 			name = "VirgilCrypto iOS";
 			productName = VirgilCrypto;
@@ -1570,7 +1724,6 @@
 				42F85F291DC765AC00C3184C /* Sources */,
 				42F85F2A1DC765AC00C3184C /* Frameworks */,
 				42F85F2B1DC765AC00C3184C /* Resources */,
-				42D3E4A820286B8A006B4BC4 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1658,6 +1811,28 @@
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
+					42D61B62202A5843007E0758 = {
+						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = A59V7K656Y;
+					};
+					42D61B7D202A58B8007E0758 = {
+						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = A59V7K656Y;
+						ProvisioningStyle = Automatic;
+					};
+					42D61B8C202A5963007E0758 = {
+						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = A59V7K656Y;
+					};
+					42D61B9A202A59C4007E0758 = {
+						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = A59V7K656Y;
+					};
+					42D61BA4202A5A1E007E0758 = {
+						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = A59V7K656Y;
+						ProvisioningStyle = Automatic;
+					};
 					42F85ECC1DC7469D00C3184C = {
 						CreatedOnToolsVersion = 8.1;
 						LastSwiftMigration = 0920;
@@ -1705,6 +1880,11 @@
 				42B12B78201FDCE00082F9BC /* VirgilCryptoApiImpl tvOS Tests */,
 				42B12ACD201FD73F0082F9BC /* VirgilCryptoApiImpl watchOS */,
 				42B12AAD201FD6830082F9BC /* VirgilCryptoApiImpl */,
+				42D61B62202A5843007E0758 /* VSCCrypto iOS */,
+				42D61B7D202A58B8007E0758 /* VSCCrypto macOS */,
+				42D61B8C202A5963007E0758 /* VSCCrypto tvOS */,
+				42D61B9A202A59C4007E0758 /* VSCCrypto watchOS */,
+				42D61BA4202A5A1E007E0758 /* VSCCrypto */,
 			);
 		};
 /* End PBXProject section */
@@ -1838,6 +2018,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		42D61B61202A5843007E0758 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42D61B7C202A58B8007E0758 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42D61B8B202A5963007E0758 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42D61B99202A59C4007E0758 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		42F85F2B1DC765AC00C3184C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1846,6 +2054,61 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		42D61B6B202A5857007E0758 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = Scripts/move_framework.sh;
+		};
+		42D61B86202A58C6007E0758 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = Scripts/move_framework.sh;
+		};
+		42D61B95202A5975007E0758 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = Scripts/move_framework.sh;
+		};
+		42D61BA3202A59E5007E0758 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = Scripts/move_framework.sh;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		423F002B1E719EF200CC98A3 /* Sources */ = {
@@ -2071,6 +2334,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		42D61B5E202A5843007E0758 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42D61B79202A58B8007E0758 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42D61B88202A5963007E0758 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42D61B96202A59C4007E0758 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		42F85EC81DC7469D00C3184C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2227,6 +2518,46 @@
 			target = 42CDC2811F696DB900D69111 /* VirgilCrypto watchOS */;
 			targetProxy = 42CDC28C1F696DC300D69111 /* PBXContainerItemProxy */;
 		};
+		42D61BA9202A5A28007E0758 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 42D61B62202A5843007E0758 /* VSCCrypto iOS */;
+			targetProxy = 42D61BA8202A5A28007E0758 /* PBXContainerItemProxy */;
+		};
+		42D61BAB202A5A28007E0758 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 42D61B7D202A58B8007E0758 /* VSCCrypto macOS */;
+			targetProxy = 42D61BAA202A5A28007E0758 /* PBXContainerItemProxy */;
+		};
+		42D61BAD202A5A28007E0758 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 42D61B8C202A5963007E0758 /* VSCCrypto tvOS */;
+			targetProxy = 42D61BAC202A5A28007E0758 /* PBXContainerItemProxy */;
+		};
+		42D61BAF202A5A28007E0758 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 42D61B9A202A59C4007E0758 /* VSCCrypto watchOS */;
+			targetProxy = 42D61BAE202A5A28007E0758 /* PBXContainerItemProxy */;
+		};
+		42D61BB1202A5A6B007E0758 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 42D61B62202A5843007E0758 /* VSCCrypto iOS */;
+			targetProxy = 42D61BB0202A5A6B007E0758 /* PBXContainerItemProxy */;
+		};
+		42D61BB4202A5A7A007E0758 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 42D61B7D202A58B8007E0758 /* VSCCrypto macOS */;
+			targetProxy = 42D61BB3202A5A7A007E0758 /* PBXContainerItemProxy */;
+		};
+		42D61BB7202A5A85007E0758 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 42D61B8C202A5963007E0758 /* VSCCrypto tvOS */;
+			targetProxy = 42D61BB6202A5A85007E0758 /* PBXContainerItemProxy */;
+		};
+		42D61BBB202A5A94007E0758 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 42D61B9A202A59C4007E0758 /* VSCCrypto watchOS */;
+			targetProxy = 42D61BBA202A5A94007E0758 /* PBXContainerItemProxy */;
+		};
 		42F85F341DC765AC00C3184C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 42F85ECC1DC7469D00C3184C /* VirgilCrypto iOS */;
@@ -2347,18 +2678,9 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/CryptoLib/macOS",
-				);
 				INFOPLIST_FILE = VirgilCrypto/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					CryptoLib/macOS/VSCCrypto.framework,
-					"$(PROJECT_DIR)/CryptoLib/macOS/VSCCrypto.framework",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilCrypto;
 				PRODUCT_NAME = VirgilCrypto;
 				SDKROOT = macosx;
@@ -2381,18 +2703,9 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/CryptoLib/macOS",
-				);
 				INFOPLIST_FILE = VirgilCrypto/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					CryptoLib/macOS/VSCCrypto.framework,
-					"$(PROJECT_DIR)/CryptoLib/macOS/VSCCrypto.framework",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilCrypto;
 				PRODUCT_NAME = VirgilCrypto;
 				SDKROOT = macosx;
@@ -2471,10 +2784,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/CryptoLib/tvOS",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = VirgilCrypto/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -2511,10 +2820,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/CryptoLib/tvOS",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = VirgilCrypto/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -2971,10 +3276,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/CryptoLib/watchOS",
-				);
 				INFOPLIST_FILE = VirgilCrypto/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -3004,10 +3305,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/CryptoLib/watchOS",
-				);
 				INFOPLIST_FILE = VirgilCrypto/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -3066,6 +3363,264 @@
 			};
 			name = Release;
 		};
+		42D61B69202A5843007E0758 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = A59V7K656Y;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = VSCCrypto/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VSCCrypto;
+				PRODUCT_NAME = VSCCrypto;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		42D61B6A202A5843007E0758 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A59V7K656Y;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = VSCCrypto/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VSCCrypto;
+				PRODUCT_NAME = VSCCrypto;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		42D61B84202A58B8007E0758 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = A59V7K656Y;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = VSCCrypto/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VSCCrypto;
+				PRODUCT_NAME = VSCCrypto;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		42D61B85202A58B8007E0758 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = A59V7K656Y;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = VSCCrypto/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VSCCrypto;
+				PRODUCT_NAME = VSCCrypto;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		42D61B93202A5963007E0758 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = A59V7K656Y;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = VSCCrypto/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VSCCrypto;
+				PRODUCT_NAME = VSCCrypto;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 11.2;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		42D61B94202A5963007E0758 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A59V7K656Y;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = VSCCrypto/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VSCCrypto;
+				PRODUCT_NAME = VSCCrypto;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 11.2;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		42D61BA1202A59C4007E0758 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = A59V7K656Y;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = VSCCrypto/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VSCCrypto;
+				PRODUCT_NAME = VSCCrypto;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+			};
+			name = Debug;
+		};
+		42D61BA2202A59C4007E0758 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A59V7K656Y;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = VSCCrypto/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VSCCrypto;
+				PRODUCT_NAME = VSCCrypto;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+			};
+			name = Release;
+		};
+		42D61BA6202A5A1E007E0758 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A59V7K656Y;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		42D61BA7202A5A1E007E0758 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A59V7K656Y;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		42F85EDF1DC7469E00C3184C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3080,17 +3635,9 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/CryptoLib/iOS",
-				);
 				INFOPLIST_FILE = VirgilCrypto/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/CryptoLib/iOS/VSCCrypto.framework",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilCrypto;
 				PRODUCT_NAME = VirgilCrypto;
 				SKIP_INSTALL = YES;
@@ -3115,17 +3662,9 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/CryptoLib/iOS",
-				);
 				INFOPLIST_FILE = VirgilCrypto/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/CryptoLib/iOS/VSCCrypto.framework",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilCrypto;
 				PRODUCT_NAME = VirgilCrypto;
 				SKIP_INSTALL = YES;
@@ -3310,6 +3849,51 @@
 			buildConfigurations = (
 				42CDC3131F6970C700D69111 /* Debug */,
 				42CDC3141F6970C700D69111 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		42D61B68202A5843007E0758 /* Build configuration list for PBXNativeTarget "VSCCrypto iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42D61B69202A5843007E0758 /* Debug */,
+				42D61B6A202A5843007E0758 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		42D61B83202A58B8007E0758 /* Build configuration list for PBXNativeTarget "VSCCrypto macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42D61B84202A58B8007E0758 /* Debug */,
+				42D61B85202A58B8007E0758 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		42D61B92202A5963007E0758 /* Build configuration list for PBXNativeTarget "VSCCrypto tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42D61B93202A5963007E0758 /* Debug */,
+				42D61B94202A5963007E0758 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		42D61BA0202A59C4007E0758 /* Build configuration list for PBXNativeTarget "VSCCrypto watchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42D61BA1202A59C4007E0758 /* Debug */,
+				42D61BA2202A59C4007E0758 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		42D61BA5202A5A1E007E0758 /* Build configuration list for PBXAggregateTarget "VSCCrypto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42D61BA6202A5A1E007E0758 /* Debug */,
+				42D61BA7202A5A1E007E0758 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
