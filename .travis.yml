@@ -18,7 +18,6 @@ env:
     - TVOS_SDK=appletvsimulator11.2
     - WATCHOS_SDK=watchsimulator4.2
     - CRYPTO_FRAMEWORK_NAME=VirgilCrypto
-    - CRYPTO_IMPL_FRAMEWORK_NAME=VirgilCryptoApiImpl
     - CRYPTO_WRAPPER_FRAMEWORK_NAME=VSCCrypto
   matrix:
     - DESTINATION="OS=11.2,name=iPhone SE"          CRYPTO_SCHEME="$IOS_FRAMEWORK_SCHEME"      CRYPTO_IMPL_SCHEME="$IOS_IMPL_FRAMEWORK_SCHEME"      SDK="$IOS_SDK"      TWO_STEP_BUILD_ENABLED="YES"  CARTHAGE_PLATFORM_NAME="iOS"      RUN_TESTS="YES"  PUBLISH_CARTHAGE="NO"   POD_LIB_LINT="YES"
@@ -71,9 +70,8 @@ script:
     fi
 
 before_deploy:
-  - carthage archive $CRYPTO_WRAPPER_FRAMEWORK_NAME
-  - carthage archive $CRYPTO_FRAMEWORK_NAME
-  - carthage archive $CRYPTO_IMPL_FRAMEWORK_NAME
+  - carthage archive
+  - mv $CRYPTO_WRAPPER_FRAMEWORK_NAME.framework.zip $CRYPTO_FRAMEWORK_NAME.framework.zip 
 
 deploy:
   - provider: releases
@@ -81,8 +79,6 @@ deploy:
       secure: aG7D23eff40uF4U5IQhz/vlvvq8WeLDIcoLI32yr5q+IXqHlKSc4JuG8xM52PoU8Zmvvz6ay6CY28yFp2ecjjK0cnejg/cs30qzOrwYxO7D2/N9/bFIXgwZD20a33J/rz2PosIA+6XeBM6yHWYYOKF0MFK53JmzFIqe+lf4ABVN6rRp6XwVz9ATvalnKWTpwHh9oo5iayG1oeKBMx+zL8cCzXTlq6f2Ib8Sf8n/G5sKMTVhFD+idAPfhRHgk7m4HkyzZiT432b8M65r72c4qphWXFKeMM4RBFevQoM8XYwee+vjMLfIYfYFS3ory2JuAClEQjiG7MJVMqvTTAvJy/9cQ+NIhoP0NfLlVtMpLgog9rFXamkeoQ717/8MuB05aUiitIyV0skaybIXRYiuX5kAoKdMlsprOTMcupuDfE/VX24kc1+gVQafCJ+sS6tTl/b+zr7qniLnFFT8mmlXJMOgX/5Gchs/bwqlLDVF7M7TTxoBrPyCr0r8ovLyJkYCt45+vZgqXzkGg9U9IHQ6jiOz26IS1oJn4GuqiFY6r7TNBV16vL7nzi3iET6UXHUwv8jTlgeiyxj0WhaFH463EtUSthvWCDdb9hli78Gv7Nr82LYR7hNby6oVOlYW0ttUEJIlRfCHYrQlb3DN32n9tczy3vZBjl1EFUe8PJhvjLhs=
     file:
       - "$CRYPTO_WRAPPER_FRAMEWORK_NAME.framework.zip"
-      - "$CRYPTO_FRAMEWORK_NAME.framework.zip"
-      - "$CRYPTO_IMPL_FRAMEWORK_NAME.framework.zip"
     skip_cleanup: true
     on:
       repo: VirgilSecurity/virgil-foundation-x
