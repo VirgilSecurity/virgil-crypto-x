@@ -80,6 +80,7 @@ deploy:
     api_key:
       secure: aG7D23eff40uF4U5IQhz/vlvvq8WeLDIcoLI32yr5q+IXqHlKSc4JuG8xM52PoU8Zmvvz6ay6CY28yFp2ecjjK0cnejg/cs30qzOrwYxO7D2/N9/bFIXgwZD20a33J/rz2PosIA+6XeBM6yHWYYOKF0MFK53JmzFIqe+lf4ABVN6rRp6XwVz9ATvalnKWTpwHh9oo5iayG1oeKBMx+zL8cCzXTlq6f2Ib8Sf8n/G5sKMTVhFD+idAPfhRHgk7m4HkyzZiT432b8M65r72c4qphWXFKeMM4RBFevQoM8XYwee+vjMLfIYfYFS3ory2JuAClEQjiG7MJVMqvTTAvJy/9cQ+NIhoP0NfLlVtMpLgog9rFXamkeoQ717/8MuB05aUiitIyV0skaybIXRYiuX5kAoKdMlsprOTMcupuDfE/VX24kc1+gVQafCJ+sS6tTl/b+zr7qniLnFFT8mmlXJMOgX/5Gchs/bwqlLDVF7M7TTxoBrPyCr0r8ovLyJkYCt45+vZgqXzkGg9U9IHQ6jiOz26IS1oJn4GuqiFY6r7TNBV16vL7nzi3iET6UXHUwv8jTlgeiyxj0WhaFH463EtUSthvWCDdb9hli78Gv7Nr82LYR7hNby6oVOlYW0ttUEJIlRfCHYrQlb3DN32n9tczy3vZBjl1EFUe8PJhvjLhs=
     file:
+      - "$CRYPTO_WRAPPER_FRAMEWORK_NAME.framework.zip"
       - "$CRYPTO_FRAMEWORK_NAME.framework.zip"
       - "$CRYPTO_IMPL_FRAMEWORK_NAME.framework.zip"
     skip_cleanup: true
