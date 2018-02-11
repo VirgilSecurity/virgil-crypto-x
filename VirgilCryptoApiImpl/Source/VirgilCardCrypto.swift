@@ -55,12 +55,12 @@ extension VirgilCardCrypto: CardCrypto {
         return self.virgilCrypto.verifySignature(signature, of: data, with: publicKey)
     }
     
-    /// Computes SHA-256.
+    /// Computes SHA-512.
     ///
     /// - Parameter data: the data to be hashed
     /// - Returns: the resulting hash value
-    public func generateSHA256(for data: Data) throws -> Data {
-         return self.virgilCrypto.computeHash(for: data, using: .SHA256)
+    public func generateSHA512(for data: Data) throws -> Data {
+         return self.virgilCrypto.computeHash(for: data, using: .SHA512)
     }
     
     /// Imports public key from its raw data representation.
