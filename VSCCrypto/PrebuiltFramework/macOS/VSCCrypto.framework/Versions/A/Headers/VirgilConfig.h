@@ -34,60 +34,11 @@
  * Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
  */
 
-#ifndef VIRGIL_CRYPTO_VIRGIL_CMS_CONTENT_INFO_H
-#define VIRGIL_CRYPTO_VIRGIL_CMS_CONTENT_INFO_H
-
-#include <map>
-#include <string>
-
-#include "VirgilCMSContent.h"
-
-#include "../asn1/VirgilAsn1Compatible.h"
-
-#include "../../VirgilCustomParams.h"
-#include "../../VirgilByteArray.h"
-
-namespace virgil { namespace crypto { namespace foundation { namespace cms {
+/**
+ * Contains conditional macroses, that was used during library build.
+ */
 
 /**
- * @brief Data object that represent ASN.1 structure: VirgilCMSContentInfo.
+ * On/Off status of the feature : C++ streams.
  */
-class VirgilCMSContentInfo : public asn1::VirgilAsn1Compatible {
-public:
-    /**
-     * @property cmsContent
-     * @brief CMS content.
-     */
-    VirgilCMSContent cmsContent;
-    /**
-     * @property customParams
-     * @brief User defiend custom parameters.
-     */
-    virgil::crypto::VirgilCustomParams customParams;
-public:
-    /**
-     * @brief Read content info size as part of the data.
-     * @return Size of the content info if it is exist as part of the data, 0 - otherwise.
-     */
-    static size_t defineSize(const virgil::crypto::VirgilByteArray& data);
-    /**
-     * @name VirgilAsn1Compatible implementation
-     * @code
-     * Marshalling format:
-     *     VirgilCMSContentInfo ::= SEQUENCE {
-     *         version ::= INTEGER { v0(0) },
-     *         cmsContent ContentInfo, -- Imports from RFC 5652
-     *         customParams [0] IMPLICIT VirgilCustomParams OPTIONAL
-     *     }
-     * @endcode
-     */
-    ///@{
-    size_t asn1Write(asn1::VirgilAsn1Writer& asn1Writer, size_t childWrittenBytes = 0) const override;
-
-    void asn1Read(asn1::VirgilAsn1Reader& asn1Reader) override;
-    ///@}
-};
-
-}}}}
-
-#endif /* VIRGIL_CRYPTO_VIRGIL_CMS_CONTENT_INFO_H */
+#define VIRGIL_CRYPTO_FEATURE_STREAM_IMPL 1
