@@ -10,7 +10,7 @@ import Foundation
 
 import VirgilCryptoAPI
 
-/// Adapter for PrivateKeyExported implementation using VirgilCrypto
+/// Adapter for PrivateKeyExporter protocol using VirgilCrypto
 @objc(VSMVirgilPrivateKeyExporter) open class VirgilPrivateKeyExporter: NSObject {
     /// VirgilCrypto instance
     @objc public let virgilCrypto: VirgilCrypto
@@ -33,12 +33,13 @@ import VirgilCryptoAPI
 
 // MARK: - Implementation of PrivateKeyExporter protocol
 extension VirgilPrivateKeyExporter: PrivateKeyExporter {
-    /// Exports data of specified Private key.
+    /// Exports private key to DER format
     ///
     /// - Parameters:
-    ///   - privateKey: the private key to be exported
-    /// - Returns: exported private key data
-    /// - Throws: correspoding error
+    ///   - privateKey: Private key to be exported
+    /// - Returns: Exported private key in DER format
+    /// - Throws: Rethrows from VirgilCrypto.
+    ///           VirgilCryptoError.passedKeyIsNotVirgil if passed key is of wrong type
     @objc open func exportPrivateKey(privateKey: PrivateKey) throws -> Data {
         guard let privateKey = privateKey as? VirgilPrivateKey else {
             throw VirgilCryptoError.passedKeyIsNotVirgil
@@ -52,12 +53,11 @@ extension VirgilPrivateKeyExporter: PrivateKeyExporter {
         }
     }
 
-    /// Imports Private Key from data
+    /// Imports Private Key from DER or PEM format
     ///
-    /// - Parameters:
-    ///   - data: the data to be imported
-    /// - Returns: imported Private Key instance
-    /// - Throws: error if verification failed
+    /// - Parameter data: Private key in DER or PEM format
+    /// - Returns: Imported private key
+    /// - Throws: Rethrows from VirgilCrypto
     @objc open func importPrivateKey(from data: Data) throws -> PrivateKey {
         return try self.virgilCrypto.importPrivateKey(from: data)
     }
