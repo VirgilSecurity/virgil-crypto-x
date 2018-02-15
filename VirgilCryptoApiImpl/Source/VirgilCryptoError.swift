@@ -9,11 +9,11 @@
 import Foundation
 
 @objc(VSMVirgilCryptoError) public enum VirgilCryptoError: Int, Error {
-    case passedKeyIsNotVirgil
-    case signerNotFound
-    case extractPublicKeyFailed
-    case encryptPrivateKeyFailed
-    case decryptPrivateKeyFailed
-    case privateKeyToDERFailed
-    case publicKeyToDERFailed
+    case passedKeyIsNotVirgil = 1
+    case signerNotFound = 2
+    case extractPublicKeyFailed = 3
+    case encryptPrivateKeyFailed = 4
+    case decryptPrivateKeyFailed = 5
+    case privateKeyToDERFailed = 6
+    case publicKeyToDERFailed = 7
 }

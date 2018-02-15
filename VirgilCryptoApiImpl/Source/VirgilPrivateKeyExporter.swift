@@ -11,21 +11,22 @@ import Foundation
 import VirgilCryptoAPI
 
 /// Adapter for PrivateKeyExported implementation using VirgilCrypto
-@objc(VSMVirgilPrivateKeyExporter) public class VirgilPrivateKeyExporter: NSObject {
+@objc(VSMVirgilPrivateKeyExporter) open class VirgilPrivateKeyExporter: NSObject {
     /// VirgilCrypto instance
     @objc public let virgilCrypto: VirgilCrypto
     /// Password used to encrypt private key. Do NOT use nil, unless your storage/transport channel is secured
     @objc public let password: String?
-    
+
     /// Initializer
     ///
     /// - Parameters:
     ///   - virgilCrypto: VirgilCrypto instance
-    ///   - password: Password used to encrypt private key. Do NOT use nil, unless your storage/transport channel is secured
+    ///   - password: Password used to encrypt private key.
+    ///               NOTE: Do NOT use nil, unless your storage/transport channel is secured
     @objc public init(virgilCrypto: VirgilCrypto = VirgilCrypto(), password: String? = nil) {
         self.virgilCrypto = virgilCrypto
         self.password = password
-        
+
         super.init()
     }
 }
@@ -38,11 +39,11 @@ extension VirgilPrivateKeyExporter: PrivateKeyExporter {
     ///   - privateKey: the private key to be exported
     /// - Returns: exported private key data
     /// - Throws: correspoding error
-    public func exportPrivateKey(privateKey: PrivateKey) throws -> Data {
+    @objc open func exportPrivateKey(privateKey: PrivateKey) throws -> Data {
         guard let privateKey = privateKey as? VirgilPrivateKey else {
             throw VirgilCryptoError.passedKeyIsNotVirgil
         }
-        
+
         if let password = self.password {
             return try self.virgilCrypto.exportPrivateKey(privateKey, password: password)
         }
@@ -50,14 +51,14 @@ extension VirgilPrivateKeyExporter: PrivateKeyExporter {
             return self.virgilCrypto.exportPrivateKey(privateKey)
         }
     }
-    
+
     /// Imports Private Key from data
     ///
     /// - Parameters:
     ///   - data: the data to be imported
     /// - Returns: imported Private Key instance
     /// - Throws: error if verification failed
-    public func importPrivateKey(from data: Data) throws -> PrivateKey {
+    @objc open func importPrivateKey(from data: Data) throws -> PrivateKey {
         return try self.virgilCrypto.importPrivateKey(from: data)
     }
 }

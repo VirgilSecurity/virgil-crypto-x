@@ -13,13 +13,13 @@ import VirgilCryptoAPI
 @objc(VSMVirgilAccessTokenSigner) public class VirgilAccessTokenSigner: NSObject {
     /// VirgilCrypto instance
     @objc public let virgilCrypto: VirgilCrypto
-    
+
     /// Initializer
     ///
     /// - Parameter virgilCrypto: VirgilCrypto instance
     @objc public init(virgilCrypto: VirgilCrypto = VirgilCrypto()) {
         self.virgilCrypto = virgilCrypto
-        
+
         super.init()
     }
 }
@@ -37,10 +37,10 @@ extension VirgilAccessTokenSigner: AccessTokenSigner {
         guard let privateKey = privateKey as? VirgilPrivateKey else {
             throw VirgilCryptoError.passedKeyIsNotVirgil
         }
-        
+
         return try self.virgilCrypto.generateSignature(of: token, using: privateKey)
     }
-    
+
     /// Verifies the passed-in token's signature.
     ///
     /// - Parameters:
@@ -52,15 +52,14 @@ extension VirgilAccessTokenSigner: AccessTokenSigner {
         guard let publicKey = publicKey as? VirgilPublicKey else {
             return false
         }
-        
+
         return self.virgilCrypto.verifySignature(signature, of: token, with: publicKey)
     }
-    
+
     ///Represets algorithm used for signing
     ///
     /// - Returns: algorithm title as String
     public func getAlgorithm() -> String {
         return "VEDS512"
-    }    
+    }
 }
-

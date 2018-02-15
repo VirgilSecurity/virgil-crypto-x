@@ -13,13 +13,13 @@ import VirgilCryptoAPI
 @objc(VSMVirgilCardCrypto) public class VirgilCardCrypto: NSObject {
     /// VirgilCrypto instance
     @objc public let virgilCrypto: VirgilCrypto
-    
+
     /// Initializer
     ///
     /// - Parameter virgilCrypto: VirgilCrypto instance
     @objc public init(virgilCrypto: VirgilCrypto = VirgilCrypto()) {
         self.virgilCrypto = virgilCrypto
-        
+
         super.init()
     }
 }
@@ -36,10 +36,10 @@ extension VirgilCardCrypto: CardCrypto {
         guard let privateKey = privateKey as? VirgilPrivateKey else {
             throw VirgilCryptoError.passedKeyIsNotVirgil
         }
-        
+
         return try self.virgilCrypto.generateSignature(of: data, using: privateKey)
     }
-    
+
     /// Verifies the passed-in signature.
     ///
     /// - Parameters:
@@ -51,10 +51,10 @@ extension VirgilCardCrypto: CardCrypto {
         guard let publicKey = publicKey as? VirgilPublicKey else {
             return false
         }
-        
+
         return self.virgilCrypto.verifySignature(signature, of: data, with: publicKey)
     }
-    
+
     /// Computes SHA-512.
     ///
     /// - Parameter data: the data to be hashed
@@ -62,7 +62,7 @@ extension VirgilCardCrypto: CardCrypto {
     public func generateSHA512(for data: Data) throws -> Data {
          return self.virgilCrypto.computeHash(for: data, using: .SHA512)
     }
-    
+
     /// Imports public key from its raw data representation.
     ///
     /// - Parameter data: raw public key representation
@@ -71,7 +71,7 @@ extension VirgilCardCrypto: CardCrypto {
     public func importPublicKey(from data: Data) throws -> PublicKey {
         return try self.virgilCrypto.importPublicKey(from: data)
     }
-    
+
     /// Exports public key to its raw data representation.
     ///
     /// - Parameter publicKey: public key to be exported
@@ -81,7 +81,7 @@ extension VirgilCardCrypto: CardCrypto {
         guard let publicKey = publicKey as? VirgilPublicKey else {
             throw VirgilCryptoError.passedKeyIsNotVirgil
         }
-        
+
         return self.virgilCrypto.exportPublicKey(publicKey)
     }
 }

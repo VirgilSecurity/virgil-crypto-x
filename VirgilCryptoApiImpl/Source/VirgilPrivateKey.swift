@@ -9,14 +9,14 @@
 import Foundation
 import VirgilCryptoAPI
 
-@objc(VSMVirgilPrivateKey) public class VirgilPrivateKey: NSObject {
+@objc(VSMVirgilPrivateKey) public final class VirgilPrivateKey: NSObject {
     @objc public let identifier: Data
-    let rawKey: Data
-    
-    init(identifier: Data, rawKey: Data) {
+    internal let rawKey: Data
+
+    internal init(identifier: Data, rawKey: Data) {
         self.identifier = identifier
         self.rawKey = rawKey
-        
+
         super.init()
     }
 }
