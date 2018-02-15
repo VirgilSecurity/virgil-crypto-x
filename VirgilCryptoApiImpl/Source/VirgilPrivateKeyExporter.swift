@@ -43,7 +43,12 @@ extension VirgilPrivateKeyExporter: PrivateKeyExporter {
             throw VirgilCryptoError.passedKeyIsNotVirgil
         }
         
-        return try self.virgilCrypto.exportPrivateKey(privateKey, password: self.password)
+        if let password = self.password {
+            return try self.virgilCrypto.exportPrivateKey(privateKey, password: password)
+        }
+        else {
+            return self.virgilCrypto.exportPrivateKey(privateKey)
+        }
     }
     
     /// Imports Private Key from data

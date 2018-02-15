@@ -45,20 +45,16 @@ public extension VirgilCrypto {
         return VirgilPrivateKey(identifier: identifier, rawKey: privateKeyDER)
     }
     
-    @objc public func exportPrivateKey(_ privateKey: VirgilPrivateKey, password: String?) throws -> Data {
-        let privateKeyData: Data
-        if let password = password {
-            guard let encryptedPrivateKeyData = KeyPair.encryptPrivateKey(privateKey.rawKey, privateKeyPassword: password) else {
-                throw VirgilCryptoError.encryptPrivateKeyFailed
-            }
-            
-            privateKeyData = encryptedPrivateKeyData
-        }
-        else {
-            privateKeyData = privateKey.rawKey
+    @objc public func exportPrivateKey(_ privateKey: VirgilPrivateKey) -> Data {
+        return privateKey.rawKey
+    }
+    
+    @objc public func exportPrivateKey(_ privateKey: VirgilPrivateKey, password: String) throws -> Data {
+        guard let encryptedPrivateKeyData = KeyPair.encryptPrivateKey(privateKey.rawKey, privateKeyPassword: password) else {
+            throw VirgilCryptoError.encryptPrivateKeyFailed
         }
         
-        return privateKeyData
+        return encryptedPrivateKeyData
     }
     
     @objc public func extractPublicKey(from privateKey: VirgilPrivateKey) throws -> VirgilPublicKey {
