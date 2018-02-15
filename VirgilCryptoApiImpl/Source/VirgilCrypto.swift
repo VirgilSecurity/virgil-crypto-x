@@ -11,7 +11,7 @@ import VirgilCrypto
 import VirgilCryptoAPI
 
 /// Class for high level interactions with crypto library
-@objc(VSMVirgilCrypto) public class VirgilCrypto: NSObject {
+@objc(VSMVirgilCrypto) open class VirgilCrypto: NSObject {
     /// Key used to embed Data Signature into ASN.1 structure
     /// Used in signThenEncrypt & decryptThenVerify
     @objc public static let CustomParamKeySignature = "VIRGIL-DATA-SIGNATURE"
@@ -58,7 +58,7 @@ import VirgilCryptoAPI
     ///   - recipients: Recipients
     /// - Returns: Encrypted data
     /// - Throws: Rethrows from Cipher class
-    @objc public func encrypt(_ data: Data, for recipients: [VirgilPublicKey]) throws -> Data {
+    @objc open func encrypt(_ data: Data, for recipients: [VirgilPublicKey]) throws -> Data {
         let cipher = Cipher()
 
         try recipients.forEach {
@@ -84,8 +84,8 @@ import VirgilCryptoAPI
     ///   - outputStream: Stream with encrypted data
     ///   - recipients: Recipients
     /// - Throws: Rethrows from ChunkCipher
-    @objc public func encrypt(_ stream: InputStream, to outputStream: OutputStream,
-                              for recipients: [VirgilPublicKey]) throws {
+    @objc open func encrypt(_ stream: InputStream, to outputStream: OutputStream,
+                            for recipients: [VirgilPublicKey]) throws {
         let cipher = ChunkCipher()
 
         try recipients.forEach {
@@ -104,7 +104,7 @@ import VirgilCryptoAPI
     ///   - data: Data that was signed
     ///   - publicKey: Signer public key
     /// - Returns: True if signature is verified, else - otherwise
-    @objc public func verifySignature(_ signature: Data, of data: Data, with publicKey: VirgilPublicKey) -> Bool {
+    @objc open func verifySignature(_ signature: Data, of data: Data, with publicKey: VirgilPublicKey) -> Bool {
         let signer = Signer()
 
         do {
@@ -126,8 +126,8 @@ import VirgilCryptoAPI
     ///   - stream: Data stream that was signed
     ///   - publicKey: Signed public key
     /// - Returns: True if signature is verified, else - otherwise
-    @objc public func verifyStreamSignature(_ signature: Data, of stream: InputStream,
-                                            with publicKey: VirgilPublicKey) -> Bool {
+    @objc open func verifyStreamSignature(_ signature: Data, of stream: InputStream,
+                                          with publicKey: VirgilPublicKey) -> Bool {
         let signer = StreamSigner()
 
         do {
@@ -152,7 +152,7 @@ import VirgilCryptoAPI
     ///   - privateKey: Recipient's private key
     /// - Returns: Decrypted data
     /// - Throws: Rethrows from Cipher
-    @objc public func decrypt(_ data: Data, with privateKey: VirgilPrivateKey) throws -> Data {
+    @objc open func decrypt(_ data: Data, with privateKey: VirgilPrivateKey) throws -> Data {
         let cipher = Cipher()
 
         return try cipher.decryptData(data, recipientId: privateKey.identifier,
@@ -172,8 +172,8 @@ import VirgilCryptoAPI
     ///   - privateKey: Recipient's private key
     /// - Returns: Decrypted data
     /// - Throws: Rethrows from ChunkCipher
-    @objc public func decrypt(_ stream: InputStream, to outputStream: OutputStream,
-                              with privateKey: VirgilPrivateKey) throws {
+    @objc open func decrypt(_ stream: InputStream, to outputStream: OutputStream,
+                            with privateKey: VirgilPrivateKey) throws {
         let cipher = ChunkCipher()
 
         try cipher.decrypt(from: stream, to: outputStream, recipientId: privateKey.identifier,
@@ -196,8 +196,8 @@ import VirgilCryptoAPI
     ///   - recipients: Recipients' public keys
     /// - Returns: SignedThenEncrypted data
     /// - Throws: Rethrows from Signer and Cipher
-    @objc public func signThenEncrypt(_ data: Data, with privateKey: VirgilPrivateKey,
-                                      for recipients: [VirgilPublicKey]) throws -> Data {
+    @objc open func signThenEncrypt(_ data: Data, with privateKey: VirgilPrivateKey,
+                                    for recipients: [VirgilPublicKey]) throws -> Data {
         let signer = Signer(hash: kHashNameSHA512)
 
         let signature = try signer.sign(data, privateKey: privateKey.rawKey, keyPassword: nil)
@@ -233,8 +233,8 @@ import VirgilCryptoAPI
     ///   - signerPublicKey: Signer public key
     /// - Returns: DecryptedThenVerified data
     /// - Throws: Rethrows from Cipher and Signer
-    @objc public func decryptThenVerify(_ data: Data, with privateKey: VirgilPrivateKey,
-                                        using signerPublicKey: VirgilPublicKey) throws -> Data {
+    @objc open func decryptThenVerify(_ data: Data, with privateKey: VirgilPrivateKey,
+                                      using signerPublicKey: VirgilPublicKey) throws -> Data {
         let cipher = Cipher()
 
         let decryptedData = try cipher.decryptData(data, recipientId: privateKey.identifier,
@@ -264,8 +264,8 @@ import VirgilCryptoAPI
     /// - Returns: DecryptedThenVerified data
     /// - Throws: Rethrows from Cipher and Signer.
     ///           Throws VirgilCryptoError.signerNotFound if signer with such id is not found
-    @objc public func decryptThenVerify(_ data: Data, with privateKey: VirgilPrivateKey,
-                                        usingOneOf signersPublicKeys: [VirgilPublicKey]) throws -> Data {
+    @objc open func decryptThenVerify(_ data: Data, with privateKey: VirgilPrivateKey,
+                                      usingOneOf signersPublicKeys: [VirgilPublicKey]) throws -> Data {
         let cipher = Cipher()
 
         let decryptedData = try cipher.decryptData(data, recipientId: privateKey.identifier,
@@ -296,7 +296,7 @@ import VirgilCryptoAPI
     ///   - privateKey: Private key used to generate signature
     /// - Returns: Digital signature
     /// - Throws: Rethrows from Signer
-    @objc public func generateSignature(of data: Data, using privateKey: VirgilPrivateKey) throws -> Data {
+    @objc open func generateSignature(of data: Data, using privateKey: VirgilPrivateKey) throws -> Data {
         let signer = Signer(hash: kHashNameSHA512)
 
         return try signer.sign(data, privateKey: privateKey.rawKey, keyPassword: nil)
@@ -314,8 +314,8 @@ import VirgilCryptoAPI
     ///   - privateKey: Private key used to generate signature
     /// - Returns: Digital signature
     /// - Throws: Rethrows from StreamSigner
-    @objc public func generateStreamSignature(of stream: InputStream,
-                                              using privateKey: VirgilPrivateKey) throws -> Data {
+    @objc open func generateStreamSignature(of stream: InputStream,
+                                            using privateKey: VirgilPrivateKey) throws -> Data {
         let signer = StreamSigner(hash: kHashNameSHA512)
 
         let signature = try signer.signStreamData(stream, privateKey: privateKey.rawKey, keyPassword: nil)
@@ -329,7 +329,7 @@ import VirgilCryptoAPI
     ///   - data: Data to be hashed
     ///   - algorithm: Hash algorithm to use
     /// - Returns: Hash value
-    @objc public func computeHash(for data: Data, using algorithm: VSCHashAlgorithm) -> Data {
+    @objc open func computeHash(for data: Data, using algorithm: VSCHashAlgorithm) -> Data {
         let hash = Hash(algorithm: algorithm)
 
         return hash.hash(data)
