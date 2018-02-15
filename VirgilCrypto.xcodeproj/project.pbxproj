@@ -685,13 +685,9 @@
 		420D107C1EF16A2E002A9C22 /* VSCPfsInitiatorPublicInfoPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCPfsInitiatorPublicInfoPrivate.h; sourceTree = "<group>"; };
 		420D107D1EF16A37002A9C22 /* VSCPfsResponderPrivateInfoPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCPfsResponderPrivateInfoPrivate.h; sourceTree = "<group>"; };
 		420D107E1EF16A42002A9C22 /* VSCPfsResponderPublicInfoPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCPfsResponderPublicInfoPrivate.h; sourceTree = "<group>"; };
-		42370E3F2029BD04009FCB89 /* VSCCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VSCCrypto.framework; path = CryptoLib/macOS/VSCCrypto.framework; sourceTree = "<group>"; };
 		42370E412029BD0D009FCB89 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		42370E432029BD17009FCB89 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS11.2.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
-		42370E452029BD1E009FCB89 /* VSCCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VSCCrypto.framework; path = CryptoLib/tvOS/VSCCrypto.framework; sourceTree = "<group>"; };
 		42370E472029BD27009FCB89 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS4.2.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
-		42370E492029BD2F009FCB89 /* VSCCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VSCCrypto.framework; path = CryptoLib/watchOS/VSCCrypto.framework; sourceTree = "<group>"; };
-		42370E4B2029BD9F009FCB89 /* VSCCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VSCCrypto.framework; path = CryptoLib/iOS/VSCCrypto.framework; sourceTree = "<group>"; };
 		423F00301E719EF200CC98A3 /* VirgilCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		423F00841E71A0FC00CC98A3 /* VirgilCrypto macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilCrypto macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		423F00B81E71A67E00CC98A3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -1158,13 +1154,9 @@
 		7ABB78811D98434C00A83A14 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				42370E492029BD2F009FCB89 /* VSCCrypto.framework */,
-				42370E4B2029BD9F009FCB89 /* VSCCrypto.framework */,
 				42370E472029BD27009FCB89 /* Security.framework */,
-				42370E452029BD1E009FCB89 /* VSCCrypto.framework */,
 				42370E412029BD0D009FCB89 /* Security.framework */,
 				42370E432029BD17009FCB89 /* Security.framework */,
-				42370E3F2029BD04009FCB89 /* VSCCrypto.framework */,
 				423F00B81E71A67E00CC98A3 /* Security.framework */,
 			);
 			name = Frameworks;
