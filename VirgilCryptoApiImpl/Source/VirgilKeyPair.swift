@@ -8,10 +8,18 @@
 
 import Foundation
 
-@objc(VSMVirgilKeyPair) public class VirgilKeyPair: NSObject {
+/// Aggregates Private and Public key.
+@objc(VSMVirgilKeyPair) public final class VirgilKeyPair: NSObject {
+    /// Private key
     @objc public let privateKey: VirgilPrivateKey
+    /// Public key
     @objc public let publicKey: VirgilPublicKey
 
+    /// Initializer
+    ///
+    /// - Parameters:
+    ///   - privateKey: Private key
+    ///   - publicKey: Public key
     @objc public init(privateKey: VirgilPrivateKey, publicKey: VirgilPublicKey) {
         self.privateKey = privateKey
         self.publicKey = publicKey

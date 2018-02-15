@@ -10,13 +10,33 @@ import Foundation
 import VirgilCrypto
 import VirgilCryptoAPI
 
+/// Class for high level interactions with crypto library
 @objc(VSMVirgilCrypto) public class VirgilCrypto: NSObject {
+    /// Key used to embed Data Signature into ASN.1 structure
+    /// Used in signThenEncrypt & decryptThenVerify
     @objc public static let CustomParamKeySignature = "VIRGIL-DATA-SIGNATURE"
+    /// Key used to embed signer identity into ASN.1 structure
+    /// Used in signThenEncrypt & decryptThenVerify
     @objc public static let CustomParamKeySignerId = "VIRGIL-DATA-SIGNER-ID"
 
+    /// Default key type used to generate keys.
     @objc public let defaultKeyType: VSCKeyType
+    /// Use old algorithm to generate key fingerprints
+    /// Current algorithm: first 8 bytes of SHA512 of public key in DER format
+    /// Old algorithm: SHA256 of public key in DER format
+    /// NOTE: Use SHA256 fingerprint only if you need to work with encrypted data,
+    ///       that was encrypted using those fingerprint. (e.g. version 2 of this library)
     @objc public let useSHA256Fingerprints: Bool
 
+    /// Initializer
+    ///
+    /// - Parameters:
+    ///   - defaultKeyType: Key type used to generate keys by default
+    ///   - useSHA256Fingerprints: Use old algorithm to generate key fingerprints
+    ///                            Current algorithm: first 8 bytes of SHA512 of public key in DER format
+    ///                            Old algorithml SHA256 of public key in DER format
+    ///                            NOTE: Use SHA256 fingerprint only if you need to work with encrypted data,
+    ///                                  that was encrypted using those fingerprint. (e.g. version 2 of this library)
     @objc public init(defaultKeyType: VSCKeyType = .FAST_EC_ED25519, useSHA256Fingerprints: Bool = false) {
         self.defaultKeyType = defaultKeyType
         self.useSHA256Fingerprints = useSHA256Fingerprints
@@ -24,6 +44,20 @@ import VirgilCryptoAPI
         super.init()
     }
 
+    /// Encrypts data for passed PublicKeys
+    ///
+    /// 1. Generates random AES-256 KEY1
+    /// 2. Encrypts data with KEY1 using AES-256-GCM
+    /// 3. Generates ephemeral key pair for each recipient
+    /// 4. Uses Diffie-Hellman to obtain shared secret with each recipient's public key & each ephemeral private key
+    /// 5. Computes KDF to obtain AES-256 key from shared secret for each recipient
+    /// 6. Encrypts KEY1 with this key using AES-256-CBC for each recipient
+    ///
+    /// - Parameters:
+    ///   - data: Data to be encrypted
+    ///   - recipients: Recipients
+    /// - Returns: Encrypted data
+    /// - Throws: Rethrows from Cipher class
     @objc public func encrypt(_ data: Data, for recipients: [VirgilPublicKey]) throws -> Data {
         let cipher = Cipher()
 
@@ -36,6 +70,20 @@ import VirgilCryptoAPI
         return encryptedData
     }
 
+    /// Encrypts data stream for passed PublicKeys
+    ///
+    /// 1. Generates random AES-256 KEY1
+    /// 2. Encrypts data with KEY1 using AES-256-GCM
+    /// 3. Generates ephemeral key pair for each recipient
+    /// 4. Uses Diffie-Hellman to obtain shared secret with each recipient's public key & each ephemeral private key
+    /// 5. Computes KDF to obtain AES-256 key from shared secret for each recipient
+    /// 6. Encrypts KEY1 with this key using AES-256-CBC for each recipient
+    ///
+    /// - Parameters:
+    ///   - stream: data Stream to be encrypted
+    ///   - outputStream: Stream with encrypted data
+    ///   - recipients: Recipients
+    /// - Throws: Rethrows from ChunkCipher
     @objc public func encrypt(_ stream: InputStream, to outputStream: OutputStream,
                               for recipients: [VirgilPublicKey]) throws {
         let cipher = ChunkCipher()
@@ -47,6 +95,15 @@ import VirgilCryptoAPI
         try cipher.encryptData(from: stream, to: outputStream)
     }
 
+    /// Verifies digital signature of data
+    ///
+    /// Note: Verification algorithm depends on PublicKey type. Default: EdDSA
+    ///
+    /// - Parameters:
+    ///   - signature: Digital signature
+    ///   - data: Data that was signed
+    ///   - publicKey: Signer public key
+    /// - Returns: True if signature is verified, else - otherwise
     @objc public func verifySignature(_ signature: Data, of data: Data, with publicKey: VirgilPublicKey) -> Bool {
         let signer = Signer()
 
@@ -60,6 +117,15 @@ import VirgilCryptoAPI
         return true
     }
 
+    /// Verifies digital signature of data stream
+    ///
+    /// Note: Verification algorithm depends on PublicKey type. Default: EdDSA
+    ///
+    /// - Parameters:
+    ///   - signature: Digital signature
+    ///   - stream: Data stream that was signed
+    ///   - publicKey: Signed public key
+    /// - Returns: True if signature is verified, else - otherwise
     @objc public func verifyStreamSignature(_ signature: Data, of stream: InputStream,
                                             with publicKey: VirgilPublicKey) -> Bool {
         let signer = StreamSigner()
@@ -74,6 +140,18 @@ import VirgilCryptoAPI
         return true
     }
 
+    /// Decrypts data using passed PrivateKey
+    ///
+    /// 1. Uses Diffie-Hellman to obtain shared secret with sender ephemeral public key & recipient's private key
+    /// 2. Computes KDF to obtain AES-256 KEY2 from shared secret
+    /// 3. Decrypts KEY1 using AES-256-CBC
+    /// 4. Decrypts data using KEY1 and AES-256-GCM
+    ///
+    /// - Parameters:
+    ///   - data: Encrypted data
+    ///   - privateKey: Recipient's private key
+    /// - Returns: Decrypted data
+    /// - Throws: Rethrows from Cipher
     @objc public func decrypt(_ data: Data, with privateKey: VirgilPrivateKey) throws -> Data {
         let cipher = Cipher()
 
@@ -81,6 +159,19 @@ import VirgilCryptoAPI
                                       privateKey: privateKey.rawKey, keyPassword: nil)
     }
 
+    /// Decrypts data stream using passed PrivateKey
+    ///
+    /// 1. Uses Diffie-Hellman to obtain shared secret with sender ephemeral public key & recipient's private key
+    /// 2. Computes KDF to obtain AES-256 KEY2 from shared secret
+    /// 3. Decrypts KEY1 using AES-256-CBC
+    /// 4. Decrypts data using KEY1 and AES-256-GCM
+    ///
+    /// - Parameters:
+    ///   - data: Stream with encrypted data
+    ///   - outputStream: Stream with decrypted data
+    ///   - privateKey: Recipient's private key
+    /// - Returns: Decrypted data
+    /// - Throws: Rethrows from ChunkCipher
     @objc public func decrypt(_ stream: InputStream, to outputStream: OutputStream,
                               with privateKey: VirgilPrivateKey) throws {
         let cipher = ChunkCipher()
@@ -89,6 +180,22 @@ import VirgilCryptoAPI
                            privateKey: privateKey.rawKey, keyPassword: nil)
     }
 
+    /// Signs (with private key) Then Encrypts data for passed PublicKeys
+    ///
+    /// 1. Generates signature depending on KeyType
+    /// 2. Generates random AES-256 KEY1
+    /// 3. Encrypts both data and signature with KEY1 using AES-256-GCM
+    /// 4. Generates ephemeral key pair for each recipient
+    /// 5. Uses Diffie-Hellman to obtain shared secret with each recipient's public key & each ephemeral private key
+    /// 6. Computes KDF to obtain AES-256 key from shared secret for each recipient
+    /// 7. Encrypts KEY1 with this key using AES-256-CBC for each recipient
+    ///
+    /// - Parameters:
+    ///   - data: Data to be signedThenEncrypted
+    ///   - privateKey: Sender private key
+    ///   - recipients: Recipients' public keys
+    /// - Returns: SignedThenEncrypted data
+    /// - Throws: Rethrows from Signer and Cipher
     @objc public func signThenEncrypt(_ data: Data, with privateKey: VirgilPrivateKey,
                                       for recipients: [VirgilPublicKey]) throws -> Data {
         let signer = Signer(hash: kHashNameSHA512)
@@ -112,6 +219,20 @@ import VirgilCryptoAPI
         return try cipher.encryptData(data, embedContentInfo: true)
     }
 
+    /// Decrypts (with private key) Then Verifies data using signer PublicKey
+    ///
+    /// 1. Uses Diffie-Hellman to obtain shared secret with sender ephemeral public key & recipient's private key
+    /// 2. Computes KDF to obtain AES-256 KEY2 from shared secret
+    /// 3. Decrypts KEY1 using AES-256-CBC
+    /// 4. Decrypts both data and signature using KEY1 and AES-256-GCM
+    /// 5. Verifies signature
+    ///
+    /// - Parameters:
+    ///   - data: SignedThenEncrypted data
+    ///   - privateKey: Receiver's private key
+    ///   - signerPublicKey: Signer public key
+    /// - Returns: DecryptedThenVerified data
+    /// - Throws: Rethrows from Cipher and Signer
     @objc public func decryptThenVerify(_ data: Data, with privateKey: VirgilPrivateKey,
                                         using signerPublicKey: VirgilPublicKey) throws -> Data {
         let cipher = Cipher()
@@ -126,6 +247,23 @@ import VirgilCryptoAPI
         return decryptedData
     }
 
+    /// Decrypts (with private key) Then Verifies data using any of signers' PublicKeys
+    ///
+    /// 1. Uses Diffie-Hellman to obtain shared secret with sender ephemeral public key & recipient's private key
+    /// 2. Computes KDF to obtain AES-256 KEY2 from shared secret
+    /// 3. Decrypts KEY1 using AES-256-CBC
+    /// 4. Decrypts both data and signature using KEY1 and AES-256-GCM
+    /// 5. Finds corresponding PublicKey according to signer id inside data
+    /// 6. Verifies signature
+    ///
+    /// - Parameters:
+    ///   - data: Signed Then Ecnrypted data
+    ///   - privateKey: Receiver's private key
+    ///   - signersPublicKeys: Array of possible signers public keys.
+    ///                        WARNING: Data should have signature of ANY public key from array.
+    /// - Returns: DecryptedThenVerified data
+    /// - Throws: Rethrows from Cipher and Signer.
+    ///           Throws VirgilCryptoError.signerNotFound if signer with such id is not found
     @objc public func decryptThenVerify(_ data: Data, with privateKey: VirgilPrivateKey,
                                         usingOneOf signersPublicKeys: [VirgilPublicKey]) throws -> Data {
         let cipher = Cipher()
@@ -146,12 +284,36 @@ import VirgilCryptoAPI
         return decryptedData
     }
 
+    /// Generates digital signature of data using private key
+    ///
+    /// NOTE: Returned value contains only digital signature, not data itself.
+    ///
+    /// NOTE: Data inside this function is guaranteed to be hashed with SHA512 at least one time.
+    ///       It's secure to pass raw data here.
+    ///
+    /// - Parameters:
+    ///   - data: Data to sign
+    ///   - privateKey: Private key used to generate signature
+    /// - Returns: Digital signature
+    /// - Throws: Rethrows from Signer
     @objc public func generateSignature(of data: Data, using privateKey: VirgilPrivateKey) throws -> Data {
         let signer = Signer(hash: kHashNameSHA512)
 
         return try signer.sign(data, privateKey: privateKey.rawKey, keyPassword: nil)
     }
 
+    /// Generates digital signature of data stream using private key
+    ///
+    /// NOTE: Returned value contains only digital signature, not data itself.
+    ///
+    /// NOTE: Data inside this function is guaranteed to be hashed with SHA512 at least one time.
+    ///       It's secure to pass raw data here.
+    ///
+    /// - Parameters:
+    ///   - stream: Data stream to sign
+    ///   - privateKey: Private key used to generate signature
+    /// - Returns: Digital signature
+    /// - Throws: Rethrows from StreamSigner
     @objc public func generateStreamSignature(of stream: InputStream,
                                               using privateKey: VirgilPrivateKey) throws -> Data {
         let signer = StreamSigner(hash: kHashNameSHA512)
@@ -161,6 +323,12 @@ import VirgilCryptoAPI
         return signature
     }
 
+    /// Computes hash
+    ///
+    /// - Parameters:
+    ///   - data: Data to be hashed
+    ///   - algorithm: Hash algorithm to use
+    /// - Returns: Hash value
     @objc public func computeHash(for data: Data, using algorithm: VSCHashAlgorithm) -> Data {
         let hash = Hash(algorithm: algorithm)
 

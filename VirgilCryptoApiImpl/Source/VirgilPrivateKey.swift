@@ -9,7 +9,10 @@
 import Foundation
 import VirgilCryptoAPI
 
+/// Represents PrivateKey for operations with VirgilCrypto class
 @objc(VSMVirgilPrivateKey) public final class VirgilPrivateKey: NSObject {
+    /// Private key identifier.
+    /// Equals to first 8 bytes of SHA-512 of public key in DER foramt
     @objc public let identifier: Data
     internal let rawKey: Data
 
@@ -21,4 +24,5 @@ import VirgilCryptoAPI
     }
 }
 
+// MARK: - Adding implementation of PrivateKey marker protocol
 extension VirgilPrivateKey: PrivateKey { }
