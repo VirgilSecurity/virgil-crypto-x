@@ -34,7 +34,6 @@ let keyPair = try! crypto.generateKeyPair()
 #### Generate and verify a signature
 
 Generate signature and sign data with a private key:
-#{ export "create_signature" }
 ```swift
 import VirgilCryptoApiImpl
 
