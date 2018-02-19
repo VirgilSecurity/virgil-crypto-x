@@ -10,6 +10,7 @@
 - [Library purposes](#library-purposes)
 - [Usage examples](#usage-examples)
 - [Installation](#installation)
+- [Docs](#docs)
 - [License](#license)
 - [Support](#support)
 
