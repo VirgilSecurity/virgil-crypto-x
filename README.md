@@ -6,13 +6,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/VirgilCrypto.svg?style=flat)](http://cocoadocs.org/docsets/VirgilCrypto)
 [![GitHub license](https://img.shields.io/badge/license-BSD%203--Clause-blue.svg)](https://github.com/VirgilSecurity/virgil/blob/master/LICENSE)
 
-- [Introduction](#introduction)
-- [Library purposes](#library-purposes)
-- [Usage examples](#usage-examples)
-- [Installation](#installation)
-- [Docs](#docs)
-- [License](#license)
-- [Support](#support)
+### [Introduction](#introduction) | [Library purposes](#library-purposes) | [Usage examples](#usage-examples) | [Installation](#installation) | [Docs](#docs) | [License](#license) | [Contacts](#support)
 
 ## Introduction
 VirgilCrypto is a stack of security libraries (ECIES with Crypto Agility wrapped in Virgil Cryptogram) and an open-source high-level [cryptographic library](https://github.com/VirgilSecurity/virgil-crypto) that allows you to perform all necessary operations for secure storing and transferring data in your digital solutions. Crypto Library is written in C++, is suitable for mobile and server platforms.
