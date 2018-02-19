@@ -8,7 +8,7 @@
 
 - [Introduction](#introduction)
 - [Library purposes](#library-purposes)
-- [Encryption examples](#examples)
+- [Usage examples](#usage-examples)
 - [Installation](#installation)
 - [License](#license)
 - [Support](#support)
