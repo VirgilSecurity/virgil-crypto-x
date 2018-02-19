@@ -8,13 +8,13 @@
 
 - [Introduction](#introduction)
 - [Library purposes](#library-purposes)
+- [Encryption examples](#examples)
 - [Installation](#installation)
 - [License](#license)
 - [Support](#support)
 
 ## Introduction
-VirgilCrypto is a stack of security libraries (ECIES with Crypto Agility wrapped in Virgil Cryptogram) and all the necessary
-infrastructure to enable seamless, end-to-end encryption for any application, platform or device.
+VirgilCrypto is a stack of security libraries (ECIES with Crypto Agility wrapped in Virgil Cryptogram) and an open-source high-level [cryptographic library](https://github.com/VirgilSecurity/virgil-crypto) that allows you to perform all necessary operations for secure storing and transferring data in your digital solutions. Crypto Library is written in C++, is suitable for mobile and server platforms.
 
 Virgil Security, Inc., guides software developers into the forthcoming security world in which everything will be encrypted (and passwords will be eliminated). In this world, the days of developers having to raise millions of dollars to build a secure chat, secure email, secure file-sharing, or a secure anything have come to an end. Now developers can instead focus on building features that give them a competitive market advantage while end-users can enjoy the privacy and security they increasingly demand.
 
@@ -23,6 +23,74 @@ Virgil Security, Inc., guides software developers into the forthcoming security 
 * Encryption/Decryption of data and streams
 * Generation/Verification of digital signatures
 * PFS (Perfect Forward Secrecy)
+
+## Usage examples
+
+#### Generate a key pair
+
+Generate a Private Key with the default algorithm (EC_X25519):
+```swift
+import VirgilCryptoApiImpl
+
+let crypto = VirgilCrypto()
+let keyPair = try! crypto.generateKeyPair()
+```
+
+#### Generate and verify a signature
+
+Generate signature and sign data with a private key:
+#{ export "create_signature" }
+```swift
+import VirgilCryptoApiImpl
+
+let crypto = VirgilCrypto()
+
+// prepare a message
+let messageToSign = "Hello, Bob!"
+let dataToSign = messageToSign.data(using: .utf8)!
+
+// generate a signature
+let signature = try! crypto.generateSignature(of: dataToSign, using: senderPrivateKey)
+```
+
+Verify a signature with a public key:
+```swift
+import VirgilCryptoApiImpl
+
+let crypto = VirgilCrypto()
+
+// verify a signature
+let verified = crypto.verifySignature(signature, of: dataToSign, with: senderPublicKey)
+```
+#### Encrypt and decrypt a data
+
+Encrypt Data on a Public Key:
+
+```swift
+import VirgilCryptoApiImpl
+
+let crypto = VirgilCrypto()
+
+// prepare a message
+let messageToEncrypt = "Hello, Bob!"
+let dataToEncrypt = messageToEncrypt.data(using: .utf8)!
+
+// encrypt the message
+let encryptedData = try! crypto.encrypt(dataToEncrypt, for: [receiverPublicKey])
+```
+Decrypt the encrypted data with a Private Key:
+```swift
+import VirgilCryptoApiImpl
+
+let crypto = VirgilCrypto()
+
+// prepare data to be decrypted
+let decryptedData = try! crypto.decrypt(encryptedData, with: receiverPrivateKey)
+
+// decrypt the encrypted data using a private key
+let decryptedMessage = String(data: decryptedData, encoding: .utf8)!
+```
+Need more examples? Visit our [developer documentation](https://developer.virgilsecurity.com/docs/how-to#cryptography).
 
 ## Installation
 
@@ -138,9 +206,17 @@ Next, on your application targets’ “General” settings tab, in the “Embed
  - VirgilCrypto
  - VSCCrypto
 
+## Docs
+- [Crypto Core Library](https://github.com/VirgilSecurity/virgil-crypto)
+- [More usage examples](https://developer.virgilsecurity.com/docs/how-to#cryptography)
+
 ## License
 
 This library is released under the [3-clause BSD License](LICENSE).
 
 ## Support
-Our developer support team is here to help you. You can find us on [Twitter](https://twitter.com/virgilsecurity) or send us email support@virgilsecurity.com. Join our slack channel [Slack](https://join.slack.com/t/virgilsecurity/shared_invite/enQtMjg4MDE4ODM3ODA4LTc2OWQwOTQ3YjNhNTQ0ZjJiZDc2NjkzYjYxNTI0YzhmNTY2ZDliMGJjYWQ5YmZiOGU5ZWEzNmJiMWZhYWVmYTM)
+Our developer support team is here to help you.
+
+You can find us on [Twitter](https://twitter.com/VirgilSecurity) or send us email support@virgilsecurity.com.
+
+Also, get extra help from our support team on [Slack](https://join.slack.com/t/VirgilSecurity/shared_invite/enQtMjg4MDE4ODM3ODA4LTc2OWQwOTQ3YjNhNTQ0ZjJiZDc2NjkzYjYxNTI0YzhmNTY2ZDliMGJjYWQ5YmZiOGU5ZWEzNmJiMWZhYWVmYTM).
