@@ -9,7 +9,7 @@
 ### [Introduction](#introduction) | [Library purposes](#library-purposes) | [Usage examples](#usage-examples) | [Installation](#installation) | [Docs](#docs) | [License](#license) | [Contacts](#support)
 
 ## Introduction
-VirgilCrypto is a stack of security libraries (ECIES with Crypto Agility wrapped in Virgil Cryptogram) and an open-source high-level [cryptographic library](https://github.com/VirgilSecurity/virgil-crypto) that allows you to perform all necessary operations for secure storing and transferring data in your digital solutions. Crypto Library is written in C++, is suitable for mobile and server platforms.
+VirgilCrypto is a stack of security libraries (ECIES with Crypto Agility wrapped in Virgil Cryptogram) and an open-source high-level [cryptographic library](https://github.com/VirgilSecurity/virgil-crypto) that allows you to perform all necessary operations for securely storing and transferring data in your digital solutions. Crypto Library is written in C++ and is suitable for mobile and server platforms.
 
 Virgil Security, Inc., guides software developers into the forthcoming security world in which everything will be encrypted (and passwords will be eliminated). In this world, the days of developers having to raise millions of dollars to build a secure chat, secure email, secure file-sharing, or a secure anything have come to an end. Now developers can instead focus on building features that give them a competitive market advantage while end-users can enjoy the privacy and security they increasingly demand.
 
@@ -56,7 +56,7 @@ let crypto = VirgilCrypto()
 // verify a signature
 let verified = crypto.verifySignature(signature, of: dataToSign, with: senderPublicKey)
 ```
-#### Encrypt and decrypt a data
+#### Encrypt and decrypt data
 
 Encrypt Data on a Public Key:
 
@@ -149,13 +149,13 @@ This will build each dependency or download a pre-compiled framework from github
 
 ##### Building for iOS/tvOS/watchOS
 
-On your application targets’ “General” settings tab, in the “Linked Frameworks and Libraries” section, add following frameworks from the *Carthage/Build* folder inside your project's folder:
+On your application target's “General” settings tab, in the “Linked Frameworks and Libraries” section, add following frameworks from the *Carthage/Build* folder inside your project's folder:
  - VirgilCryptoAPI
  - VirgilCryptoApiImpl
  - VirgilCrypto
  - VSCCrypto
 
-On your application targets’ “Build Phases” settings tab, click the “+” icon and choose “New Run Script Phase”. Create a Run Script in which you specify your shell (ex: */bin/sh*), add the following contents to the script area below the shell:
+On your application target's “Build Phases” settings tab, click the “+” icon and choose “New Run Script Phase”. Create a Run Script in which you specify your shell (ex: */bin/sh*), add the following contents to the script area below the shell:
 
 ```bash
 /usr/local/bin/carthage copy-frameworks
@@ -172,7 +172,7 @@ $(SRCROOT)/Carthage/Build/iOS/VSCCrypto.framework
 
 ##### Building for macOS
 
-On your application targets’ “General” settings tab, in the “Embedded Binaries” section, drag and drop following frameworks from the Carthage/Build folder on disk:
+On your application target's “General” settings tab, in the “Embedded Binaries” section, drag and drop following frameworks from the Carthage/Build folder on disk:
  - VirgilCryptoAPI
  - VirgilCryptoApiImpl
  - VirgilCrypto
@@ -181,11 +181,11 @@ On your application targets’ “General” settings tab, in the “Embedded Bi
 Additionally, you'll need to copy debug symbols for debugging and crash reporting on macOS.
 
 On your application target’s “Build Phases” settings tab, click the “+” icon and choose “New Copy Files Phase”.
-Click the “Destination” drop-down menu and select “Products Directory”. For each framework, drag and drop corresponding dSYM file.
+Click the “Destination” drop-down menu and select “Products Directory”. For each framework, drag and drop the corresponding dSYM file.
 
 #### Integrating as subproject
 
-It is possible to use carthage just for fetching right sources for further integration into your project.
+It is possible to use carthage just for fetching the right sources for further integration into your project.
 Run following command:
 
 ```bash
@@ -194,7 +194,7 @@ $ carthage update --no-build
 
 This will fetch dependencies into a *Carthage/Checkouts* folder inside your project's folder. Then, drag and drop VirgilCrypto.xcodeproj and VirgilCryptoAPI.xcodeproj from corresponding folders inside Carthage/Checkouts folder to your Xcode Project Navigator sidebar.
 
-Next, on your application targets’ “General” settings tab, in the “Embedded Binaries” section add following frameworks from subprojects:
+Next, on your application target's “General” settings tab, in the “Embedded Binaries” section add following frameworks from subprojects:
  - VirgilCryptoAPI
  - VirgilCryptoApiImpl
  - VirgilCrypto
