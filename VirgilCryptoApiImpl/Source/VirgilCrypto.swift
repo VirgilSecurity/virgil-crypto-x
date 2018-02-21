@@ -165,12 +165,11 @@ import VirgilCryptoAPI
     /// 2. Computes KDF to obtain AES-256 KEY2 from shared secret
     /// 3. Decrypts KEY1 using AES-256-CBC
     /// 4. Decrypts data using KEY1 and AES-256-GCM
-    ///
+    //
     /// - Parameters:
-    ///   - data: Stream with encrypted data
+    ///   - stream: Stream with encrypted data
     ///   - outputStream: Stream with decrypted data
     ///   - privateKey: Recipient's private key
-    /// - Returns: Decrypted data
     /// - Throws: Rethrows from ChunkCipher
     @objc open func decrypt(_ stream: InputStream, to outputStream: OutputStream,
                             with privateKey: VirgilPrivateKey) throws {
