@@ -142,7 +142,7 @@ github "VirgilSecurity/virgil-foundation-x" ~> 3.0.0
 To link prebuilt frameworks to your app, run following command:
 
 ```bash
-$ carthage update
+$ carthage update --no-use-binaries
 ```
 
 This will build each dependency or download a pre-compiled framework from github Releases.
