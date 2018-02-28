@@ -8,7 +8,7 @@
 
 #import "VSCPfsInitiatorPrivateInfo.h"
 
-#import <virgil/crypto/pfs/VirgilPFSInitiatorPrivateInfo.h>
+#import <VSCCrypto/VirgilCrypto.h>
 
 using virgil::crypto::pfs::VirgilPFSInitiatorPrivateInfo;
 

@@ -5,8 +5,8 @@
 
 #import "VSCByteArrayUtils.h"
 #import "VSCByteArrayUtilsPrivate.h"
-#import <virgil/crypto/VirgilByteArrayUtils.h>
-#import <virgil/crypto/VirgilByteArray.h>
+
+#import <VSCCrypto/VirgilCrypto.h>
 
 using virgil::crypto::VirgilByteArray;
 using virgil::crypto::VirgilByteArrayUtils;

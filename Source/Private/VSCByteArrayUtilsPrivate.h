@@ -8,7 +8,7 @@
 
 #import "VSCByteArrayUtils.h"
 
-#import <virgil/crypto/VirgilByteArray.h>
+#import <VSCCrypto/VirgilCrypto.h>
 
 @interface VSCByteArrayUtils()
 

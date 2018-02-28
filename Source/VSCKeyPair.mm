@@ -8,13 +8,12 @@
 
 #import "VSCKeyPair.h"
 #import "VSCByteArrayUtilsPrivate.h"
-#import <virgil/crypto/VirgilByteArray.h>
-#import <virgil/crypto/VirgilKeyPair.h>
 
 #ifdef verify
 #undef verify
 #endif
-#import <virgil/crypto/foundation/VirgilAsymmetricCipher.h>
+
+#import <VSCCrypto/VirgilCrypto.h>
 
 using virgil::crypto::VirgilByteArray;
 using CType = virgil::crypto::VirgilKeyPair::Type;

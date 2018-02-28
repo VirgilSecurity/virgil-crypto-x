@@ -5,8 +5,8 @@
 
 #import "VSCHash.h"
 #import "VSCByteArrayUtilsPrivate.h"
-#import <virgil/crypto/foundation/VirgilHash.h>
-#import <virgil/crypto/VirgilKeyPair.h>
+
+#import <VSCCrypto/VirgilCrypto.h>
 
 using virgil::crypto::foundation::VirgilHash;
 using virgil::crypto::VirgilByteArray;

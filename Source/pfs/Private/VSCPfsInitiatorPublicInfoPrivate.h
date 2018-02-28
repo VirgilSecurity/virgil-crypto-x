@@ -8,7 +8,7 @@
 
 #import "VSCPfsInitiatorPublicInfo.h"
 
-#import <virgil/crypto/pfs/VirgilPFSInitiatorPublicInfo.h>
+#import <VSCCrypto/VirgilCrypto.h>
 
 using virgil::crypto::pfs::VirgilPFSInitiatorPublicInfo;
 

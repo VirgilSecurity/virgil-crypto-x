@@ -16,7 +16,7 @@
 #import "VSCpfsResponderPrivateInfoPrivate.h"
 #import "VSCByteArrayUtilsPrivate.h"
 
-#import <virgil/crypto/pfs/VirgilPFS.h>
+#import <VSCCrypto/VirgilCrypto.h>
 
 using virgil::crypto::pfs::VirgilPFS;
 using virgil::crypto::pfs::VirgilPFSSession;

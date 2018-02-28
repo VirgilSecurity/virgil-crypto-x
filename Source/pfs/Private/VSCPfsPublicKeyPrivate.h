@@ -8,7 +8,7 @@
 
 #import "VSCPfsPublicKey.h"
 
-#import <virgil/crypto/pfs/VirgilPFSPublicKey.h>
+#import <VSCCrypto/VirgilCrypto.h>
 
 using virgil::crypto::pfs::VirgilPFSPublicKey;
 

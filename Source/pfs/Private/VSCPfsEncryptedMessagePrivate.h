@@ -8,7 +8,7 @@
 
 #import "VSCPfsEncryptedMessage.h"
 
-#import <virgil/crypto/pfs/VirgilPFSEncryptedMessage.h>
+#import <VSCCrypto/VirgilCrypto.h>
 
 using virgil::crypto::pfs::VirgilPFSEncryptedMessage;
 

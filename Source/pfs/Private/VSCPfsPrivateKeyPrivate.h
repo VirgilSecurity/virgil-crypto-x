@@ -8,7 +8,7 @@
 
 #import "VSCPfsPrivateKey.h"
 
-#import <virgil/crypto/pfs/VirgilPFSPrivateKey.h>
+#import <VSCCrypto/VirgilCrypto.h>
 
 using virgil::crypto::pfs::VirgilPFSPrivateKey;
 
