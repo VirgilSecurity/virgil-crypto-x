@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                        = "VirgilCrypto"
-  s.version                     = "2.4.0"
+  s.version                     = "2.5.0"
   s.summary                     = "Contains basic classes for creating key pairs, encrypting/decrypting data, signing data and verifying signs."
   s.homepage                    = "https://github.com/VirgilSecurity/virgil-foundation-x"
   s.cocoapods_version           = ">= 0.36"
@@ -14,7 +14,6 @@ Pod::Spec.new do |s|
                                   "Source/pfs/*.h"
   s.requires_arc                = true
   s.library                     = 'stdc++'
-  s.ios.vendored_frameworks     = "CryptoLib/iOS/VSCCrypto.framework"
-  s.osx.vendored_frameworks     = "CryptoLib/macOS/VSCCrypto.framework"
-  s.xcconfig                    = { "HEADER_SEARCH_PATHS" => "$(FRAMEWORK_SEARCH_PATHS)/VSCCrypto.framework/Headers" }
+  s.ios.vendored_frameworks     = "VSCCrypto/PrebuiltFramework/iOS/VSCCrypto.framework"
+  s.osx.vendored_frameworks     = "VSCCrypto/PrebuiltFramework/macOS/VSCCrypto.framework"
 end
