@@ -34,7 +34,8 @@ before_install:
   - xcodebuild -showsdks
 
 script:
-  - carthage update --no-build
+  - carthage version
+  - carthage bootstrap --no-build
 
   - |
     if [ $SWIFT_LINT == "YES" ]; then
