@@ -141,6 +141,20 @@
 		423F00641E71A05D00CC98A3 /* VSCVirgilVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85F071DC7657C00C3184C /* VSCVirgilVersion.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		423F00891E71A0FD00CC98A3 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423F00301E719EF200CC98A3 /* VirgilCrypto.framework */; };
 		423F00B91E71A67E00CC98A3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423F00B81E71A67E00CC98A3 /* Security.framework */; };
+		42792F1820AA1C4E00C95A29 /* VirgilPythia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42792F1320AA1C4E00C95A29 /* VirgilPythia.swift */; };
+		42792F1920AA1C4E00C95A29 /* VirgilPythia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42792F1320AA1C4E00C95A29 /* VirgilPythia.swift */; };
+		42792F1A20AA1C4E00C95A29 /* VirgilPythia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42792F1320AA1C4E00C95A29 /* VirgilPythia.swift */; };
+		42792F1B20AA1C4E00C95A29 /* VirgilPythia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42792F1320AA1C4E00C95A29 /* VirgilPythia.swift */; };
+		42792F2120AA278A00C95A29 /* VSY001_PythiaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42792F1C20AA278700C95A29 /* VSY001_PythiaTests.swift */; };
+		42792F2220AA278C00C95A29 /* VSY001_PythiaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42792F1C20AA278700C95A29 /* VSY001_PythiaTests.swift */; };
+		42792F2320AA278C00C95A29 /* VSY001_PythiaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42792F1C20AA278700C95A29 /* VSY001_PythiaTests.swift */; };
+		42792F2620AA27F300C95A29 /* pythia-crypto.json in Resources */ = {isa = PBXBuildFile; fileRef = 42792F2520AA27F300C95A29 /* pythia-crypto.json */; };
+		42792F2720AA27F300C95A29 /* pythia-crypto.json in Resources */ = {isa = PBXBuildFile; fileRef = 42792F2520AA27F300C95A29 /* pythia-crypto.json */; };
+		42792F2820AA27F300C95A29 /* pythia-crypto.json in Resources */ = {isa = PBXBuildFile; fileRef = 42792F2520AA27F300C95A29 /* pythia-crypto.json */; };
+		42792F2A20AA31E000C95A29 /* BlindResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42792F2920AA31E000C95A29 /* BlindResult.swift */; };
+		42792F2B20AA31E000C95A29 /* BlindResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42792F2920AA31E000C95A29 /* BlindResult.swift */; };
+		42792F2C20AA31E000C95A29 /* BlindResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42792F2920AA31E000C95A29 /* BlindResult.swift */; };
+		42792F2D20AA31E000C95A29 /* BlindResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42792F2920AA31E000C95A29 /* BlindResult.swift */; };
 		4282E3AF2021FC2F00FD7C7A /* VSM002_CryptoCompatibilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4282E3AD2021FBF800FD7C7A /* VSM002_CryptoCompatibilityTests.swift */; };
 		4282E3B02021FC3000FD7C7A /* VSM002_CryptoCompatibilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4282E3AD2021FBF800FD7C7A /* VSM002_CryptoCompatibilityTests.swift */; };
 		4282E3B12021FC3100FD7C7A /* VSM002_CryptoCompatibilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4282E3AD2021FBF800FD7C7A /* VSM002_CryptoCompatibilityTests.swift */; };
@@ -691,6 +705,10 @@
 		423F00301E719EF200CC98A3 /* VirgilCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		423F00841E71A0FC00CC98A3 /* VirgilCrypto macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilCrypto macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		423F00B81E71A67E00CC98A3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		42792F1320AA1C4E00C95A29 /* VirgilPythia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirgilPythia.swift; sourceTree = "<group>"; };
+		42792F1C20AA278700C95A29 /* VSY001_PythiaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSY001_PythiaTests.swift; sourceTree = "<group>"; };
+		42792F2520AA27F300C95A29 /* pythia-crypto.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "pythia-crypto.json"; sourceTree = "<group>"; };
+		42792F2920AA31E000C95A29 /* BlindResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlindResult.swift; sourceTree = "<group>"; };
 		4282E3AD2021FBF800FD7C7A /* VSM002_CryptoCompatibilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSM002_CryptoCompatibilityTests.swift; sourceTree = "<group>"; };
 		4282E3B2202206D500FD7C7A /* crypto_compatibility_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = crypto_compatibility_data.json; sourceTree = "<group>"; };
 		4282E3B620220D6800FD7C7A /* VSM003_CryptoFormatsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSM003_CryptoFormatsTests.swift; sourceTree = "<group>"; };
@@ -1009,6 +1027,23 @@
 			path = Private;
 			sourceTree = "<group>";
 		};
+		42792F1220AA1C4E00C95A29 /* Pythia */ = {
+			isa = PBXGroup;
+			children = (
+				42792F1320AA1C4E00C95A29 /* VirgilPythia.swift */,
+				42792F2920AA31E000C95A29 /* BlindResult.swift */,
+			);
+			path = Pythia;
+			sourceTree = "<group>";
+		};
+		42792F2420AA27F300C95A29 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				42792F2520AA27F300C95A29 /* pythia-crypto.json */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		42B129EC201FD2790082F9BC /* VirgilCryptoApiImpl */ = {
 			isa = PBXGroup;
 			children = (
@@ -1052,6 +1087,7 @@
 		42B12B29201FDC800082F9BC /* VirgilCrypto */ = {
 			isa = PBXGroup;
 			children = (
+				42792F2420AA27F300C95A29 /* Data */,
 				4282E3BB20248DB400FD7C7A /* VSC000_VirgilVersion.swift */,
 				42B12B32201FDC800082F9BC /* VSC001_KeyPairTests.swift */,
 				42B12B31201FDC800082F9BC /* VSC002_CryptorTests.swift */,
@@ -1064,6 +1100,7 @@
 				42B12B2F201FDC800082F9BC /* VSC009_ByteArrayUtils.swift */,
 				42B12B33201FDC800082F9BC /* VSC010_HashTests.swift */,
 				42B12B2C201FDC800082F9BC /* VSP001_PFSTests.swift */,
+				42792F1C20AA278700C95A29 /* VSY001_PythiaTests.swift */,
 			);
 			path = VirgilCrypto;
 			sourceTree = "<group>";
@@ -1100,6 +1137,7 @@
 		42F85EED1DC7657C00C3184C /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				42792F1220AA1C4E00C95A29 /* Pythia */,
 				420D10671EF159D5002A9C22 /* Private */,
 				420D102A1EF1405C002A9C22 /* pfs */,
 				42F85EF71DC7657C00C3184C /* VSCFoundationCommons.h */,
@@ -1938,6 +1976,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42792F2720AA27F300C95A29 /* pythia-crypto.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2007,6 +2046,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42792F2820AA27F300C95A29 /* pythia-crypto.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2042,6 +2082,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42792F2620AA27F300C95A29 /* pythia-crypto.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2126,6 +2167,8 @@
 				423F004F1E71A01A00CC98A3 /* VSCSigner.mm in Sources */,
 				420D10601EF14B82002A9C22 /* VSCPfsInitiatorPrivateInfo.mm in Sources */,
 				423F00501E71A01A00CC98A3 /* VSCStreamCipher.mm in Sources */,
+				42792F1920AA1C4E00C95A29 /* VirgilPythia.swift in Sources */,
+				42792F2B20AA31E000C95A29 /* BlindResult.swift in Sources */,
 				423F00511E71A01A00CC98A3 /* VSCStreamSigner.mm in Sources */,
 				423F00521E71A01A00CC98A3 /* VSCTinyCipher.mm in Sources */,
 				423F00531E71A01A00CC98A3 /* VSCVirgilVersion.mm in Sources */,
@@ -2137,6 +2180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42B12B59201FDCAD0082F9BC /* VSC010_HashTests.swift in Sources */,
+				42792F2220AA278C00C95A29 /* VSY001_PythiaTests.swift in Sources */,
 				42B12B50201FDCAD0082F9BC /* VSC001_KeyPairTests.swift in Sources */,
 				42B12B52201FDCAD0082F9BC /* VSC003_SignerTests.swift in Sources */,
 				4282E3BD20248DB400FD7C7A /* VSC000_VirgilVersion.swift in Sources */,
@@ -2174,6 +2218,8 @@
 				42A01FB61F7D545300FF8804 /* VSCHash.mm in Sources */,
 				42A01FA81F7D545300FF8804 /* VSCPfs.mm in Sources */,
 				42A01FB71F7D545300FF8804 /* VSCKeyPair.mm in Sources */,
+				42792F1A20AA1C4E00C95A29 /* VirgilPythia.swift in Sources */,
+				42792F2C20AA31E000C95A29 /* BlindResult.swift in Sources */,
 				42A01FB91F7D545300FF8804 /* VSCSigner.mm in Sources */,
 				42A01FAE1F7D545300FF8804 /* VSCPfsInitiatorPublicInfo.mm in Sources */,
 				42A01FBD1F7D545300FF8804 /* VSCVirgilVersion.mm in Sources */,
@@ -2301,6 +2347,8 @@
 				42CDC2B91F696E1400D69111 /* VSCSigner.mm in Sources */,
 				42CDC2E51F696E3400D69111 /* VSCPfsInitiatorPrivateInfo.mm in Sources */,
 				42CDC2A91F696E1400D69111 /* VSCBaseCipher.mm in Sources */,
+				42792F1B20AA1C4E00C95A29 /* VirgilPythia.swift in Sources */,
+				42792F2D20AA31E000C95A29 /* BlindResult.swift in Sources */,
 				42CDC2B71F696E1400D69111 /* VSCPBKDF.mm in Sources */,
 				42CDC2C11F696E1400D69111 /* VSCVirgilVersion.mm in Sources */,
 				42CDC2B51F696E1400D69111 /* VSCKeyPair.mm in Sources */,
@@ -2312,6 +2360,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42B12B64201FDCAD0082F9BC /* VSC010_HashTests.swift in Sources */,
+				42792F2320AA278C00C95A29 /* VSY001_PythiaTests.swift in Sources */,
 				42B12B5B201FDCAD0082F9BC /* VSC001_KeyPairTests.swift in Sources */,
 				42B12B5D201FDCAD0082F9BC /* VSC003_SignerTests.swift in Sources */,
 				4282E3BE20248DB400FD7C7A /* VSC000_VirgilVersion.swift in Sources */,
@@ -2377,6 +2426,8 @@
 				42F85F1C1DC7657C00C3184C /* VSCPBKDF.mm in Sources */,
 				42F85F261DC7657C00C3184C /* VSCVirgilVersion.mm in Sources */,
 				420D10571EF14B2C002A9C22 /* VSCPfsInitiatorPrivateInfo.mm in Sources */,
+				42792F1820AA1C4E00C95A29 /* VirgilPythia.swift in Sources */,
+				42792F2A20AA31E000C95A29 /* BlindResult.swift in Sources */,
 				420D10531EF14B1E002A9C22 /* VSCPfsPublicKey.mm in Sources */,
 				42F85F1A1DC7657C00C3184C /* VSCKeyPair.mm in Sources */,
 				420D10361EF148D0002A9C22 /* VSCPfsSession.mm in Sources */,
@@ -2388,6 +2439,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42B12B4E201FDCAC0082F9BC /* VSC010_HashTests.swift in Sources */,
+				42792F2120AA278A00C95A29 /* VSY001_PythiaTests.swift in Sources */,
 				42B12B45201FDCAC0082F9BC /* VSC001_KeyPairTests.swift in Sources */,
 				42B12B47201FDCAC0082F9BC /* VSC003_SignerTests.swift in Sources */,
 				4282E3BC20248DB400FD7C7A /* VSC000_VirgilVersion.swift in Sources */,
@@ -2715,6 +2767,7 @@
 		423F008D1E71A0FD00CC98A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -2735,6 +2788,7 @@
 		423F008E1E71A0FD00CC98A3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -3319,6 +3373,7 @@
 		42CDC3131F6970C700D69111 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_ENABLE_MODULES = YES;
@@ -3342,6 +3397,7 @@
 		42CDC3141F6970C700D69111 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_ENABLE_MODULES = YES;
@@ -3626,7 +3682,7 @@
 				PRODUCT_NAME = VirgilCrypto;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -3652,7 +3708,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilCrypto;
 				PRODUCT_NAME = VirgilCrypto;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -3661,6 +3717,7 @@
 		42F85F361DC765AC00C3184C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -3683,6 +3740,7 @@
 		42F85F371DC765AC00C3184C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
