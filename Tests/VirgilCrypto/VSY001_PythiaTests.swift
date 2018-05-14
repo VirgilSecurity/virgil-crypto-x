@@ -92,17 +92,17 @@ class VSY001_PythiaTests: XCTestCase {
         var lastBlindingSecret: Data? = nil
         
         for _ in 0..<iterations {
-            let (blindedPassword, blindingSecret) = try! self.pythia.blind(password: self.kPassword)
+            let blindedResult = try! self.pythia.blind(password: self.kPassword)
             
-            XCTAssert(blindedPassword != lastBlindedPassword)
-            XCTAssert(blindingSecret != lastBlindingSecret)
+            XCTAssert(blindedResult.blindedPassword != lastBlindedPassword)
+            XCTAssert(blindedResult.blindingSecret != lastBlindingSecret)
             
-            lastBlindedPassword = blindedPassword
-            lastBlindingSecret  = blindingSecret
+            lastBlindedPassword = blindedResult.blindedPassword
+            lastBlindingSecret  = blindedResult.blindingSecret
             
-            let (transformedPassword, _) = try! self.pythia.transform(blindedPassword: blindedPassword, tweak: self.kTweak, transformationPrivateKey: transformationPrivateKey)
+            let (transformedPassword, _) = try! self.pythia.transform(blindedPassword: blindedResult.blindedPassword, tweak: self.kTweak, transformationPrivateKey: transformationPrivateKey)
             
-            let deblinded = try! self.pythia.deblind(transformedPassword: transformedPassword, blindingSecret: blindingSecret)
+            let deblinded = try! self.pythia.deblind(transformedPassword: transformedPassword, blindingSecret: blindedResult.blindingSecret)
             
             XCTAssert(self.kDeblindedPassword == deblinded)
         }
@@ -111,13 +111,13 @@ class VSY001_PythiaTests: XCTestCase {
     func test_YTC_4() {
         let (transformationPrivateKey, transformationPublicKey) = try! self.pythia.computeTransformationKey(transformationKeyId: self.kTransformationKeyID, pythiaSecret: self.kPythiaSecret, pythiaScopeSecret: self.kPythiaScopeSecret)
         
-        let (blindedPassword, _) = try! self.pythia.blind(password: self.kPassword)
+        let blindedResult = try! self.pythia.blind(password: self.kPassword)
         
-        let (transformedPassword, transformedTweak) = try! self.pythia.transform(blindedPassword: blindedPassword, tweak: self.kTweak, transformationPrivateKey: transformationPrivateKey)
+        let (transformedPassword, transformedTweak) = try! self.pythia.transform(blindedPassword: blindedResult.blindedPassword, tweak: self.kTweak, transformationPrivateKey: transformationPrivateKey)
         
-        let (proofValueC, proofValueU) = try! self.pythia.prove(transformedPassword: transformedPassword, blindedPassword: blindedPassword, transformedTweak: transformedTweak, transformationPrivateKey: transformationPrivateKey, transformationPublicKey: transformationPublicKey)
+        let (proofValueC, proofValueU) = try! self.pythia.prove(transformedPassword: transformedPassword, blindedPassword: blindedResult.blindedPassword, transformedTweak: transformedTweak, transformationPrivateKey: transformationPrivateKey, transformationPublicKey: transformationPublicKey)
         
-        let verified = try! self.pythia.verify(transformedPassword: transformedPassword, blindedPassword: blindedPassword, tweak: self.kTweak, transformationPublicKey: transformationPublicKey, proofValueC: proofValueC, proofValueU: proofValueU)
+        let verified = try! self.pythia.verify(transformedPassword: transformedPassword, blindedPassword: blindedResult.blindedPassword, tweak: self.kTweak, transformationPublicKey: transformationPublicKey, proofValueC: proofValueC, proofValueU: proofValueU)
         
         XCTAssert(verified)
     }
