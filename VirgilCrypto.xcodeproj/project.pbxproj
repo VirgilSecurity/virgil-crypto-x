@@ -155,6 +155,8 @@
 		42792F2B20AA31E000C95A29 /* BlindResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42792F2920AA31E000C95A29 /* BlindResult.swift */; };
 		42792F2C20AA31E000C95A29 /* BlindResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42792F2920AA31E000C95A29 /* BlindResult.swift */; };
 		42792F2D20AA31E000C95A29 /* BlindResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42792F2920AA31E000C95A29 /* BlindResult.swift */; };
+		42792F3320AA3ADC00C95A29 /* VSCCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D61B65202A5843007E0758 /* VSCCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42792F3420AA3ADC00C95A29 /* VSCCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D61B65202A5843007E0758 /* VSCCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4282E3AF2021FC2F00FD7C7A /* VSM002_CryptoCompatibilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4282E3AD2021FBF800FD7C7A /* VSM002_CryptoCompatibilityTests.swift */; };
 		4282E3B02021FC3000FD7C7A /* VSM002_CryptoCompatibilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4282E3AD2021FBF800FD7C7A /* VSM002_CryptoCompatibilityTests.swift */; };
 		4282E3B12021FC3100FD7C7A /* VSM002_CryptoCompatibilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4282E3AD2021FBF800FD7C7A /* VSM002_CryptoCompatibilityTests.swift */; };
@@ -1374,6 +1376,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42792F3320AA3ADC00C95A29 /* VSCCrypto.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1381,6 +1384,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42792F3420AA3ADC00C95A29 /* VSCCrypto.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
