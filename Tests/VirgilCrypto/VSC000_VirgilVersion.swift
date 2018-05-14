@@ -43,8 +43,8 @@ class VSC000_VirgilVersion: XCTestCase {
         XCTAssert(VirgilVersion.asNumber() == 2 << 16 | 4 << 8 | 3)
         XCTAssert(VirgilVersion.asString() == "2.4.3")
         XCTAssert(VirgilVersion.majorVersion() == 2)
-        XCTAssert(VirgilVersion.minorVersion() == 3)
-        XCTAssert(VirgilVersion.patchVersion() == 0)
-        XCTAssert(VirgilVersion.fullName() == "2.3.4")
+        XCTAssert(VirgilVersion.minorVersion() == 4)
+        XCTAssert(VirgilVersion.patchVersion() == 3)
+        XCTAssert(VirgilVersion.fullName() == "2.4.3")
     }
 }
