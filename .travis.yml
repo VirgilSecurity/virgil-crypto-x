@@ -46,17 +46,17 @@ script:
   - |
     if [ $TWO_STEP_BUILD_ENABLED == "YES" ]; then
       # Build Framework
-      xcodebuild -verbose -project "$PROJECT" -scheme "$CRYPTO_SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release clean build-for-testing | xcpretty;
+      xcodebuild -verbose -project "$PROJECT" -scheme "$CRYPTO_SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug clean build-for-testing | xcpretty;
       # Build Framework in Release and Run Tests if specified
       if [ $RUN_TESTS == "YES" ]; then
-        xcodebuild -verbose -project "$PROJECT" -scheme "$CRYPTO_SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release test-without-building | xcpretty;
+        xcodebuild -verbose -project "$PROJECT" -scheme "$CRYPTO_SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug test-without-building | xcpretty;
       fi
 
       # Build Framework
-      xcodebuild -verbose -project "$PROJECT" -scheme "$CRYPTO_IMPL_SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release clean build-for-testing | xcpretty;
+      xcodebuild -verbose -project "$PROJECT" -scheme "$CRYPTO_IMPL_SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug clean build-for-testing | xcpretty;
       # Build Framework in Release and Run Tests if specified
       if [ $RUN_TESTS == "YES" ]; then
-        xcodebuild -verbose -project "$PROJECT" -scheme "$CRYPTO_IMPL_SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release test-without-building | xcpretty;
+        xcodebuild -verbose -project "$PROJECT" -scheme "$CRYPTO_IMPL_SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug test-without-building | xcpretty;
       fi
     else
       # Build Framework
