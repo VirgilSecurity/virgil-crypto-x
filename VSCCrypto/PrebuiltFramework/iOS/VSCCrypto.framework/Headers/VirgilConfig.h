@@ -34,11 +34,53 @@
  * Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
  */
 
+
+#ifndef VIRGIL_CRYPTO_CONFIG
+#define VIRGIL_CRYPTO_CONFIG
+
 /**
  * Contains conditional macroses, that was used during library build.
  */
 
 /**
- * On/Off status of the feature : C++ streams.
+ * On/Off status of the feature: C++ streams.
  */
 #define VIRGIL_CRYPTO_FEATURE_STREAM_IMPL 1
+
+/**
+ * On/Off status of the feature: Pythia.
+ */
+#define VIRGIL_CRYPTO_FEATURE_PYTHIA 1
+
+/**
+ * On/Off status of the Pythia multhi-threading.
+ */
+#define VIRGIL_CRYPTO_FEATURE_PYTHIA_MT 1
+
+
+namespace virgil {
+namespace crypto {
+
+class VirgilConfig {
+public:
+    /**
+     * @brief Runtime equiavalent of VIRGIL_CRYPTO_FEATURE_STREAM_IMPL
+     */
+    static bool hasFeatureStreamImpl();
+
+    /**
+     * @brief Runtime equiavalent of VIRGIL_CRYPTO_FEATURE_PYTHIA
+     */
+    static bool hasFeaturePythiaImpl();
+
+    /**
+     * @brief Runtime equiavalent of VIRGIL_CRYPTO_FEATURE_PYTHIA_MT
+     */
+    static bool hasFeaturePythiaMultiThread();
+
+};
+
+} // crypto
+} // virgil
+
+#endif /* VIRGIL_CRYPTO_CONFIG */
