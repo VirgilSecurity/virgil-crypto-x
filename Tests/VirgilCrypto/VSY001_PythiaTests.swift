@@ -117,7 +117,7 @@ class VSY001_PythiaTests: XCTestCase {
         
         let (proofValueC, proofValueU) = try! self.pythia.prove(transformedPassword: transformedPassword, blindedPassword: blindedResult.blindedPassword, transformedTweak: transformedTweak, transformationPrivateKey: transformationPrivateKey, transformationPublicKey: transformationPublicKey)
         
-        let verified = try! self.pythia.verify(transformedPassword: transformedPassword, blindedPassword: blindedResult.blindedPassword, tweak: self.kTweak, transformationPublicKey: transformationPublicKey, proofValueC: proofValueC, proofValueU: proofValueU)
+        let verified = self.pythia.verify(transformedPassword: transformedPassword, blindedPassword: blindedResult.blindedPassword, tweak: self.kTweak, transformationPublicKey: transformationPublicKey, proofValueC: proofValueC, proofValueU: proofValueU)
         
         XCTAssert(verified)
     }
