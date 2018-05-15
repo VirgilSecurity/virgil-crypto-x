@@ -269,6 +269,7 @@ import VirgilCryptoAPI
         let signature = try cipher.data(forKey: VirgilCrypto.CustomParamKeySignature)
 
         let signer = Signer()
+
         try signer.verifySignature(signature, data: decryptedData, publicKey: signerPublicKey.rawKey)
 
         return decryptedData
@@ -306,6 +307,7 @@ import VirgilCryptoAPI
         }
 
         let signer = Signer()
+
         try signer.verifySignature(signature, data: decryptedData, publicKey: signerPublicKey.rawKey)
 
         return decryptedData

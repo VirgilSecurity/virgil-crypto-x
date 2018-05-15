@@ -2,6 +2,8 @@ disabled_rules:
   - redundant_optional_initialization
   - statement_position
   - void_return
+  - function_parameter_count
+  - let_var_whitespace
 
 opt_in_rules:
   - array_init
