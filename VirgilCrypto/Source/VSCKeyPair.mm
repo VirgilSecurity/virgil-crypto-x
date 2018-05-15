@@ -117,6 +117,27 @@ NSString *const kVSCKeyPairErrorDomain = @"VSCKeyPairErrorDomain";
     return self;
 }
 
+- (instancetype)initWithKeyPairType:(VSCKeyType)keyPairType keyMaterial:(NSData *)keyMaterial password:(NSString *)password {
+    self = [super init];
+    if (self == nil) {
+        return nil;
+    }
+    
+    try {
+        CType type = [VSCKeyPair convertVSCKeyTypeToCType:keyPairType];
+        const VirgilByteArray &keyMaterialArray = [VSCByteArrayUtils convertVirgilByteArrayFromData:keyMaterial];
+        const VirgilByteArray &pwd = [VSCByteArrayUtils convertVirgilByteArrayFromString:password];
+        
+        _keyPair = new VirgilKeyPair(VirgilKeyPair::generateFromKeyMaterial(type, keyMaterialArray, pwd));
+    }
+    catch (...) {
+        _keyPair = NULL;
+        return nil;
+    }
+    
+    return self;
+}
+
 - (instancetype)init {
     self = [super init];
     if (self == nil) {

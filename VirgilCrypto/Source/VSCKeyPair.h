@@ -86,6 +86,16 @@ NS_SWIFT_NAME(KeyPair)
 - (instancetype __nonnull)initWithKeyPairType:(VSCKeyType)keyPairType password:(NSString * __nullable)password;
 
 /**
+ Generates new key pair using given random material (seed).
+ 
+ @param keyPairType key pair type
+ @param keyMaterial random key material
+ @param password password used to encrypt private key
+ @return initialized isntance
+ */
+- (instancetype __nullable)initWithKeyPairType:(VSCKeyType)keyPairType keyMaterial:(NSData * __nonnull)keyMaterial password:(NSString * __nullable)password;
+
+/**
  Optimized version for generating multiple keys.
 
  @param numberOfKeys number of keys to generate
