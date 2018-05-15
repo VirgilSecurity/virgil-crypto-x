@@ -34,18 +34,27 @@
 // Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
 //
 
-#import "VSCPfsPublic.h"
-#import "VSCBaseCipher.h"
-#import "VSCByteArrayUtils.h"
-#import "VSCChunkCipher.h"
-#import "VSCCipher.h"
-#import "VSCFoundationCommons.h"
-#import "VSCHash.h"
-#import "VSCKeyPair.h"
-#import "VSCPBKDF.h"
-#import "VSCSigner.h"
-#import "VSCStreamCipher.h"
-#import "VSCStreamSigner.h"
-#import "VSCTinyCipher.h"
-#import "VSCVirgilVersion.h"
-#import "VSCVirgilRandom.h"
+import Foundation
+
+import XCTest
+import VirgilCrypto
+
+class VSC011_VirgilRandomTests: XCTestCase {
+    func test001_GenerateData() {
+        let random = VirgilRandom(personalInfo: "some info")
+        
+        let length = 10
+        let iterations = 10
+        
+        var randomDataArray = [Data]()
+        
+        for _ in 0..<iterations {
+            let data = random.randomize(withBytesNum: length)
+            XCTAssert(data.count == length)
+            
+            XCTAssert(!randomDataArray.contains(data))
+            
+            randomDataArray.append(data)
+        }
+    }
+}

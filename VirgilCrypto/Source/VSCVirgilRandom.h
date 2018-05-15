@@ -34,18 +34,49 @@
 // Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
 //
 
-#import "VSCPfsPublic.h"
-#import "VSCBaseCipher.h"
-#import "VSCByteArrayUtils.h"
-#import "VSCChunkCipher.h"
-#import "VSCCipher.h"
-#import "VSCFoundationCommons.h"
-#import "VSCHash.h"
-#import "VSCKeyPair.h"
-#import "VSCPBKDF.h"
-#import "VSCSigner.h"
-#import "VSCStreamCipher.h"
-#import "VSCStreamSigner.h"
-#import "VSCTinyCipher.h"
-#import "VSCVirgilVersion.h"
-#import "VSCVirgilRandom.h"
+
+NS_SWIFT_NAME(VirgilRandom)
+@interface VSCVirgilRandom : NSObject
+
+/**
+ Inherited unavailable initializer.
+ 
+ @return initialized instance
+ */
+- (instancetype __nonnull)init NS_UNAVAILABLE;
+
+/**
+ * @brief Initialize randomization module with personalization data.
+ *
+ * @param personalInfo (@see section 8.7.1 of NIST Special Publication 800-90A).
+ */
+- (instancetype __nonnull)initWithPersonalInfo:(NSString * __nonnull)personalInfo;
+
+/**
+ * @brief Produce random byte sequence.
+ *
+ * @param bytesNum number of bytes to be generated.
+ * @return Random byte sequence.
+ */
+- (NSData * __nonnull)randomizeWithBytesNum:(size_t)bytesNum;
+
+/**
+ * Returns a pseudo-random number.
+ *
+ * @return Random Number
+ */
+- (size_t)randomize;
+
+/**
+ * Returns a pseudo-random number between min and max, inclusive.
+ *
+ * The difference between min and max can be at most
+ * <code>std::numeric_limits<size_t>::max() - 1</code>.
+ *
+ * @param min - minimum value.
+ * @param max - maximum value. Must be greater than min.
+ * @return Number between min and max, inclusive.
+ */
+- (size_t)randomizeBetweenMin:(size_t)min andMax:(size_t)max;
+
+@end

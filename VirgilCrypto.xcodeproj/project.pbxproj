@@ -156,6 +156,17 @@
 		42792F2C20AA31E000C95A29 /* BlindResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42792F2920AA31E000C95A29 /* BlindResult.swift */; };
 		42792F2D20AA31E000C95A29 /* BlindResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42792F2920AA31E000C95A29 /* BlindResult.swift */; };
 		42792F4420AB09BD00C95A29 /* VSCCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42D61B7E202A58B8007E0758 /* VSCCrypto.framework */; };
+		42792F6920AB263800C95A29 /* VSCVirgilRandom.h in Headers */ = {isa = PBXBuildFile; fileRef = 42792F6820AB263800C95A29 /* VSCVirgilRandom.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42792F6A20AB263800C95A29 /* VSCVirgilRandom.h in Headers */ = {isa = PBXBuildFile; fileRef = 42792F6820AB263800C95A29 /* VSCVirgilRandom.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42792F6B20AB263800C95A29 /* VSCVirgilRandom.h in Headers */ = {isa = PBXBuildFile; fileRef = 42792F6820AB263800C95A29 /* VSCVirgilRandom.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42792F6C20AB263800C95A29 /* VSCVirgilRandom.h in Headers */ = {isa = PBXBuildFile; fileRef = 42792F6820AB263800C95A29 /* VSCVirgilRandom.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42792F7220AB265500C95A29 /* VSCVirgilRandom.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42792F7120AB265500C95A29 /* VSCVirgilRandom.mm */; };
+		42792F7320AB265500C95A29 /* VSCVirgilRandom.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42792F7120AB265500C95A29 /* VSCVirgilRandom.mm */; };
+		42792F7420AB265500C95A29 /* VSCVirgilRandom.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42792F7120AB265500C95A29 /* VSCVirgilRandom.mm */; };
+		42792F7520AB265500C95A29 /* VSCVirgilRandom.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42792F7120AB265500C95A29 /* VSCVirgilRandom.mm */; };
+		42792F7720AB2A8500C95A29 /* VSC011_VirgilRandomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42792F7620AB2A8500C95A29 /* VSC011_VirgilRandomTests.swift */; };
+		42792F7820AB2A8500C95A29 /* VSC011_VirgilRandomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42792F7620AB2A8500C95A29 /* VSC011_VirgilRandomTests.swift */; };
+		42792F7920AB2A8500C95A29 /* VSC011_VirgilRandomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42792F7620AB2A8500C95A29 /* VSC011_VirgilRandomTests.swift */; };
 		4282E3AF2021FC2F00FD7C7A /* VSM002_CryptoCompatibilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4282E3AD2021FBF800FD7C7A /* VSM002_CryptoCompatibilityTests.swift */; };
 		4282E3B02021FC3000FD7C7A /* VSM002_CryptoCompatibilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4282E3AD2021FBF800FD7C7A /* VSM002_CryptoCompatibilityTests.swift */; };
 		4282E3B12021FC3100FD7C7A /* VSM002_CryptoCompatibilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4282E3AD2021FBF800FD7C7A /* VSM002_CryptoCompatibilityTests.swift */; };
@@ -707,6 +718,9 @@
 		42792F1C20AA278700C95A29 /* VSY001_PythiaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSY001_PythiaTests.swift; sourceTree = "<group>"; };
 		42792F2520AA27F300C95A29 /* pythia-crypto.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "pythia-crypto.json"; sourceTree = "<group>"; };
 		42792F2920AA31E000C95A29 /* BlindResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlindResult.swift; sourceTree = "<group>"; };
+		42792F6820AB263800C95A29 /* VSCVirgilRandom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCVirgilRandom.h; sourceTree = "<group>"; };
+		42792F7120AB265500C95A29 /* VSCVirgilRandom.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = VSCVirgilRandom.mm; sourceTree = "<group>"; };
+		42792F7620AB2A8500C95A29 /* VSC011_VirgilRandomTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSC011_VirgilRandomTests.swift; sourceTree = "<group>"; };
 		4282E3AD2021FBF800FD7C7A /* VSM002_CryptoCompatibilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSM002_CryptoCompatibilityTests.swift; sourceTree = "<group>"; };
 		4282E3B2202206D500FD7C7A /* crypto_compatibility_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = crypto_compatibility_data.json; sourceTree = "<group>"; };
 		4282E3B620220D6800FD7C7A /* VSM003_CryptoFormatsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSM003_CryptoFormatsTests.swift; sourceTree = "<group>"; };
@@ -1099,6 +1113,7 @@
 				42B12B33201FDC800082F9BC /* VSC010_HashTests.swift */,
 				42B12B2C201FDC800082F9BC /* VSP001_PFSTests.swift */,
 				42792F1C20AA278700C95A29 /* VSY001_PythiaTests.swift */,
+				42792F7620AB2A8500C95A29 /* VSC011_VirgilRandomTests.swift */,
 			);
 			path = VirgilCrypto;
 			sourceTree = "<group>";
@@ -1164,6 +1179,8 @@
 				42F85F061DC7657C00C3184C /* VSCTinyCipher.mm */,
 				42F85F071DC7657C00C3184C /* VSCVirgilVersion.h */,
 				42F85F081DC7657C00C3184C /* VSCVirgilVersion.mm */,
+				42792F6820AB263800C95A29 /* VSCVirgilRandom.h */,
+				42792F7120AB265500C95A29 /* VSCVirgilRandom.mm */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -1209,6 +1226,7 @@
 				423F00591E71A05D00CC98A3 /* VSCByteArrayUtils.h in Headers */,
 				420D104E1EF14A50002A9C22 /* VSCPfsInitiatorPrivateInfo.h in Headers */,
 				423F005A1E71A05D00CC98A3 /* VSCChunkCipher.h in Headers */,
+				42792F6A20AB263800C95A29 /* VSCVirgilRandom.h in Headers */,
 				420D10861EF173CF002A9C22 /* VSCPfsResponderPublicInfoPrivate.h in Headers */,
 				420D10451EF14A12002A9C22 /* VSCPfsPrivateKey.h in Headers */,
 				420D10851EF173CF002A9C22 /* VSCPfsResponderPrivateInfoPrivate.h in Headers */,
@@ -1250,6 +1268,7 @@
 				42A01F951F7D543A00FF8804 /* VSCPfsPrivateKey.h in Headers */,
 				42A01FC21F7D545700FF8804 /* VSCPfsInitiatorPrivateInfoPrivate.h in Headers */,
 				42A01F911F7D543A00FF8804 /* VSCPfs.h in Headers */,
+				42792F6B20AB263800C95A29 /* VSCVirgilRandom.h in Headers */,
 				42A01FC31F7D545700FF8804 /* VSCPfsInitiatorPublicInfoPrivate.h in Headers */,
 				42A01F931F7D543A00FF8804 /* VSCPfsEncryptedMessage.h in Headers */,
 				42A01FA21F7D543A00FF8804 /* VSCPBKDF.h in Headers */,
@@ -1319,6 +1338,7 @@
 				42CDC2AE1F696E1400D69111 /* VSCCipher.h in Headers */,
 				42CDC2F41F696E4500D69111 /* VSCPfsPublicKeyPrivate.h in Headers */,
 				42CDC2BC1F696E1400D69111 /* VSCStreamSigner.h in Headers */,
+				42792F6C20AB263800C95A29 /* VSCVirgilRandom.h in Headers */,
 				42CDC2E41F696E3400D69111 /* VSCPfsInitiatorPrivateInfo.h in Headers */,
 				42CDC2AC1F696E1400D69111 /* VSCChunkCipher.h in Headers */,
 				42CDC2E21F696E3400D69111 /* VSCPfsPrivateKey.h in Headers */,
@@ -1388,6 +1408,7 @@
 				42F85F1F1DC7657C00C3184C /* VSCStreamCipher.h in Headers */,
 				42F85F0C1DC7657C00C3184C /* VSCBaseCipher.h in Headers */,
 				420D104A1EF14A4F002A9C22 /* VSCPfsInitiatorPrivateInfo.h in Headers */,
+				42792F6920AB263800C95A29 /* VSCVirgilRandom.h in Headers */,
 				42F85F191DC7657C00C3184C /* VSCKeyPair.h in Headers */,
 				420D10821EF173CE002A9C22 /* VSCPfsResponderPublicInfoPrivate.h in Headers */,
 				420D10441EF14A11002A9C22 /* VSCPfsPrivateKey.h in Headers */,
@@ -2148,6 +2169,7 @@
 				420D10331EF14189002A9C22 /* VSCPfs.mm in Sources */,
 				423F00471E71A01A00CC98A3 /* VSCBaseCipher.mm in Sources */,
 				423F00481E71A01A00CC98A3 /* VSCByteArrayUtils.mm in Sources */,
+				42792F7320AB265500C95A29 /* VSCVirgilRandom.mm in Sources */,
 				423F00491E71A01A00CC98A3 /* VSCChunkCipher.mm in Sources */,
 				423F004A1E71A01A00CC98A3 /* VSCCipher.mm in Sources */,
 				420D105E1EF14B82002A9C22 /* VSCPfsPublicKey.mm in Sources */,
@@ -2176,6 +2198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42B12B59201FDCAD0082F9BC /* VSC010_HashTests.swift in Sources */,
+				42792F7820AB2A8500C95A29 /* VSC011_VirgilRandomTests.swift in Sources */,
 				42792F2220AA278C00C95A29 /* VSY001_PythiaTests.swift in Sources */,
 				42B12B50201FDCAD0082F9BC /* VSC001_KeyPairTests.swift in Sources */,
 				42B12B52201FDCAD0082F9BC /* VSC003_SignerTests.swift in Sources */,
@@ -2199,6 +2222,7 @@
 				42A01FB51F7D545300FF8804 /* VSCFoundationCommons.mm in Sources */,
 				42A01FAB1F7D545300FF8804 /* VSCPfsPublicKey.mm in Sources */,
 				42A01FB41F7D545300FF8804 /* VSCCipher.mm in Sources */,
+				42792F7420AB265500C95A29 /* VSCVirgilRandom.mm in Sources */,
 				42A01FB11F7D545300FF8804 /* VSCBaseCipher.mm in Sources */,
 				42A01FAC1F7D545300FF8804 /* VSCPfsPrivateKey.mm in Sources */,
 				42A01FBB1F7D545300FF8804 /* VSCStreamSigner.mm in Sources */,
@@ -2328,6 +2352,7 @@
 				42CDC2DB1F696E3400D69111 /* VSCPfs.mm in Sources */,
 				42CDC2BB1F696E1400D69111 /* VSCStreamCipher.mm in Sources */,
 				42CDC2AF1F696E1400D69111 /* VSCCipher.mm in Sources */,
+				42792F7520AB265500C95A29 /* VSCVirgilRandom.mm in Sources */,
 				42CDC2BD1F696E1400D69111 /* VSCStreamSigner.mm in Sources */,
 				42CDC2B11F696E1400D69111 /* VSCFoundationCommons.mm in Sources */,
 				42CDC2E11F696E3400D69111 /* VSCPfsPublicKey.mm in Sources */,
@@ -2356,6 +2381,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42B12B64201FDCAD0082F9BC /* VSC010_HashTests.swift in Sources */,
+				42792F7920AB2A8500C95A29 /* VSC011_VirgilRandomTests.swift in Sources */,
 				42792F2320AA278C00C95A29 /* VSY001_PythiaTests.swift in Sources */,
 				42B12B5B201FDCAD0082F9BC /* VSC001_KeyPairTests.swift in Sources */,
 				42B12B5D201FDCAD0082F9BC /* VSC003_SignerTests.swift in Sources */,
@@ -2407,6 +2433,7 @@
 				42F85F141DC7657C00C3184C /* VSCCipher.mm in Sources */,
 				42F85F221DC7657C00C3184C /* VSCStreamSigner.mm in Sources */,
 				420D105D1EF14B3F002A9C22 /* VSCPfsResponderPublicInfo.mm in Sources */,
+				42792F7220AB265500C95A29 /* VSCVirgilRandom.mm in Sources */,
 				42F85F161DC7657C00C3184C /* VSCFoundationCommons.mm in Sources */,
 				42F85F241DC7657C00C3184C /* VSCTinyCipher.mm in Sources */,
 				420D105B1EF14B39002A9C22 /* VSCPfsResponderPrivateInfo.mm in Sources */,
@@ -2435,6 +2462,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42B12B4E201FDCAC0082F9BC /* VSC010_HashTests.swift in Sources */,
+				42792F7720AB2A8500C95A29 /* VSC011_VirgilRandomTests.swift in Sources */,
 				42792F2120AA278A00C95A29 /* VSY001_PythiaTests.swift in Sources */,
 				42B12B45201FDCAC0082F9BC /* VSC001_KeyPairTests.swift in Sources */,
 				42B12B47201FDCAC0082F9BC /* VSC003_SignerTests.swift in Sources */,

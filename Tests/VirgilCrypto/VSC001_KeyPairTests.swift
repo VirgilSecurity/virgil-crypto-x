@@ -126,4 +126,38 @@ class VSC001_KeyPairTests: XCTestCase {
         let keypairs = KeyPair.generateMultipleKeys(UInt(number), keyPairType: VSCKeyType.FAST_EC_ED25519)
         XCTAssert(keypairs.count == number)
     }
+    
+    func test010_createKeyPairFromKeyMaterial() {
+        let random = VirgilRandom(personalInfo: "some info")
+        
+        let keyMaterial = random.randomize(withBytesNum: 32)
+        
+        let iterations = 10
+        
+        var lastKeyPair: KeyPair?
+        for _ in 0..<iterations {
+            guard let keyPair = KeyPair(keyPairType: .FAST_EC_ED25519, keyMaterial: keyMaterial, password: nil) else {
+                XCTFail()
+                return
+            }
+            
+            if let lastKeyPair = lastKeyPair {
+                XCTAssert(lastKeyPair.privateKey() == keyPair.privateKey())
+                XCTAssert(lastKeyPair.publicKey() == keyPair.publicKey())
+            }
+            else {
+                lastKeyPair = keyPair
+            }
+        }
+    }
+    
+    func test011_createKeyPairFromKeyMaterial_SmallMaterial() {
+        let random = VirgilRandom(personalInfo: "some info")
+        
+        let keyMaterial = random.randomize(withBytesNum: 20)
+        
+        let keyPair = KeyPair(keyPairType: .FAST_EC_ED25519, keyMaterial: keyMaterial, password: nil)
+        
+        XCTAssert(keyPair == nil)
+    }
 }

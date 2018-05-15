@@ -34,18 +34,64 @@
 // Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
 //
 
-#import "VSCPfsPublic.h"
-#import "VSCBaseCipher.h"
-#import "VSCByteArrayUtils.h"
-#import "VSCChunkCipher.h"
-#import "VSCCipher.h"
-#import "VSCFoundationCommons.h"
-#import "VSCHash.h"
-#import "VSCKeyPair.h"
-#import "VSCPBKDF.h"
-#import "VSCSigner.h"
-#import "VSCStreamCipher.h"
-#import "VSCStreamSigner.h"
-#import "VSCTinyCipher.h"
-#import "VSCVirgilVersion.h"
+#import <Foundation/Foundation.h>
 #import "VSCVirgilRandom.h"
+#import <VSCCrypto/VirgilCrypto.h>
+
+using virgil::crypto::foundation::VirgilRandom;
+using virgil::crypto::VirgilByteArray;
+
+@interface VSCVirgilRandom ()
+
+@property(nonatomic, assign) VirgilRandom *random;
+
+@end
+
+@implementation VSCVirgilRandom
+
+@synthesize random = _random;
+
+- (instancetype __nonnull)initWithPersonalInfo:(NSString * __nonnull)personalInfo {
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+    
+    try {
+        std::string personalInfoString = std::string(personalInfo.UTF8String);
+        _random = new VirgilRandom(personalInfoString);
+    }
+    catch(...) {
+        return nil;
+    }
+    
+    return self;
+}
+
+- (NSData *)randomizeWithBytesNum:(size_t)bytesNum {
+    try {
+        const VirgilByteArray &data = self.random->randomize(bytesNum);
+        
+        return [NSData dataWithBytes:data.data() length:data.size()];
+    }
+    catch(...) {
+        return nil;
+    }
+}
+
+- (size_t)randomize {
+    return self.random->randomize();
+}
+
+- (size_t)randomizeBetweenMin:(size_t)min andMax:(size_t)max {
+    return self.random->randomize(min, max);
+}
+
+- (void)dealloc {
+    if (_random != NULL) {
+        delete _random;
+        _random = NULL;
+    }
+}
+
+@end
