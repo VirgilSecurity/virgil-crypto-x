@@ -50,7 +50,7 @@
 /**
  * On/Off status of the feature: Pythia.
  */
-#define VIRGIL_CRYPTO_FEATURE_PYTHIA 0
+#define VIRGIL_CRYPTO_FEATURE_PYTHIA 1
 
 /**
  * On/Off status of the Pythia multhi-threading.
