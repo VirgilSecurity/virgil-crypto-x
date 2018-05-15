@@ -74,20 +74,31 @@ extension VirgilCrypto {
         return try self.wrapKeyPair(keyPair: keyPair)
     }
 
-    private func wrapKeyPair(keyPair: KeyPair) throws -> VirgilKeyPair {
-        guard let publicKeyDER = KeyPair.publicKey(toDER: keyPair.publicKey()) else {
+    /// Wraps binary key pair to VirgilKeyPair instance
+    ///
+    /// - Parameters:
+    ///   - privateKey: Binary private key
+    ///   - publicKey: Binary public key
+    /// - Returns: VirgilKeyPair instance
+    /// - Throws: VirgilCryptoError.publicKeyToDERFailed, VirgilCryptoError.privateKeyToDERFailed
+    @objc open func wrapKeyPair(privateKey: Data, publicKey: Data) throws -> VirgilKeyPair {
+        guard let publicKeyDER = KeyPair.publicKey(toDER: publicKey) else {
             throw VirgilCryptoError.publicKeyToDERFailed
         }
-
-        guard let privateKeyDER = KeyPair.privateKey(toDER: keyPair.privateKey()) else {
+        
+        guard let privateKeyDER = KeyPair.privateKey(toDER: privateKey) else {
             throw VirgilCryptoError.privateKeyToDERFailed
         }
-
+        
         let identifier = self.computeKeyIdentifier(publicKeyData: publicKeyDER)
-
+        
         let privateKey = VirgilPrivateKey(identifier: identifier, rawKey: privateKeyDER)
         let publicKey = VirgilPublicKey(identifier: identifier, rawKey: publicKeyDER)
-
+        
         return VirgilKeyPair(privateKey: privateKey, publicKey: publicKey)
+    }
+    
+    private func wrapKeyPair(keyPair: KeyPair) throws -> VirgilKeyPair {
+        return try self.wrapKeyPair(privateKey: keyPair.privateKey(), publicKey: keyPair.publicKey())
     }
 }
