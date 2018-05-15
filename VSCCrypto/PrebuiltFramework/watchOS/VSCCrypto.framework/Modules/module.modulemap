@@ -1,6 +1,7 @@
 framework module VSCCrypto {
-  umbrella header "VSCCrypto-umbrella.h"
+  header "pythia/pythia_buf.h"
+  header "pythia/pythia_buf_sizes.h"
+  header "pythia/virgil_pythia_c.h"
 
   export *
-  module * { export * }
 }
