@@ -32,6 +32,7 @@ before_install:
   - brew outdated carthage || brew upgrade carthage
   - xcodebuild -version
   - xcodebuild -showsdks
+  - instruments -s devices
 
 script:
   - carthage version
