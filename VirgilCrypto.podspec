@@ -6,11 +6,11 @@ Pod::Spec.new do |s|
   s.homepage                    = "https://github.com/VirgilSecurity/virgil-foundation-x"
   s.authors                     = { "Virgil Security" => "https://virgilsecurity.com/" }
   s.source                      = { :git => "https://github.com/VirgilSecurity/virgil-foundation-x.git", :tag => s.version }
-  s.ios.deployment_target       = "8.0"
+  s.ios.deployment_target       = "9.0"
   s.osx.deployment_target       = "10.10"
   s.tvos.deployment_target      = "9.0"
   s.watchos.deployment_target   = "2.0"
-  s.source_files                = "VirgilCrypto/**/*.{h,mm}"
+  s.source_files                = "VirgilCrypto/**/*.{h,mm,swift}"
   s.public_header_files         = "VirgilCrypto/Source/*.h", "VirgilCrypto/Source/pfs/*.h"
   s.library                     = 'stdc++'
   s.ios.vendored_frameworks     = "VSCCrypto/PrebuiltFramework/iOS/VSCCrypto.framework"
