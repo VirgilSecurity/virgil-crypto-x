@@ -39,10 +39,14 @@ import VSCCrypto
 
 // swiftlint:disable force_unwrapping
 
+/// Declares error types and codes
+///
+/// - underlyingCryptoError: Crypto library returned error
 @objc(VSCVirgilPythiaError) public enum VirgilPythiaError: Int, Error {
     case underlyingCryptoError = 0
 }
 
+/// Class with Pythia-related crypto operations
 @objc(VSCVirgilPythia) public class VirgilPythia: NSObject {
     private static func bindBufForRead(buf: UnsafeMutablePointer<pythia_buf_t>, data: Data) {
         let pointer = (data as NSData).bytes.bindMemory(to: UInt8.self, capacity: data.count)
@@ -66,6 +70,14 @@ import VSCCrypto
         data.removeLast(data.count - buf.pointee.len)
     }
 
+    /// Blinds password.
+    ///
+    /// Turns password into a pseudo-random string.
+    /// This step is necessary to prevent 3rd-parties from knowledge of end user's password.
+    ///
+    /// - Parameter password: end user's password.
+    /// - Returns: BlindResult with blinded password and blinding secret
+    /// - Throws: VirgilPythiaError.underlyingCryptoError
     @objc public func blind(password: Data) throws -> BlindResult {
         let passwordBuf = pythia_buf_new()!
         let blindedPasswordBuf = pythia_buf_new()!
@@ -92,6 +104,13 @@ import VSCCrypto
         return BlindResult(blindedPassword: blindedPassword, blindingSecret: blindingSecret)
     }
 
+    /// Deblinds transformed password value using previously returned blinding_secret from blind operation.
+    ///
+    /// - Parameters:
+    ///   - transformedPassword: GT transformed password from transform operation
+    ///   - blindingSecret: BN value that was generated during blind operation
+    /// - Returns: GT deblinded transformed password
+    /// - Throws: VirgilPythiaError.underlyingCryptoError
     @objc public func deblind(transformedPassword: Data, blindingSecret: Data) throws -> Data {
         let transformedPasswordBuf = pythia_buf_new()!
         let blindingSecretBuf = pythia_buf_new()!
@@ -237,9 +256,9 @@ import VSCCrypto
         return (proofValueC, proofValueU)
     }
 
-    @objc public func verify(transformedPassword: Data, blindedPassword: Data, tweak: Data,
-                             transformationPublicKey: Data,
-                             proofValueC: Data, proofValueU: Data) -> Bool {
+    internal func verify(transformedPassword: Data, blindedPassword: Data, tweak: Data,
+                         transformationPublicKey: Data,
+                         proofValueC: Data, proofValueU: Data) -> Bool {
         let transformedPasswordBuf = pythia_buf_new()!
         let blindedPasswordBuf = pythia_buf_new()!
         let tweakBuf = pythia_buf_new()!

@@ -36,8 +36,11 @@
 
 import Foundation
 
+/// Result of Pythia blind operation
 @objc(VSCBlindResult) public final class BlindResult: NSObject {
+    /// G1 password obfuscated into a pseudo-random string.
     @objc public let blindedPassword: Data
+    /// BN random value used to blind user's password.
     @objc public let blindingSecret: Data
 
     internal init(blindedPassword: Data, blindingSecret: Data) {

@@ -85,19 +85,19 @@ extension VirgilCrypto {
         guard let publicKeyDER = KeyPair.publicKey(toDER: publicKey) else {
             throw VirgilCryptoError.publicKeyToDERFailed
         }
-        
+
         guard let privateKeyDER = KeyPair.privateKey(toDER: privateKey) else {
             throw VirgilCryptoError.privateKeyToDERFailed
         }
-        
+
         let identifier = self.computeKeyIdentifier(publicKeyData: publicKeyDER)
-        
+
         let privateKey = VirgilPrivateKey(identifier: identifier, rawKey: privateKeyDER)
         let publicKey = VirgilPublicKey(identifier: identifier, rawKey: publicKeyDER)
-        
+
         return VirgilKeyPair(privateKey: privateKey, publicKey: publicKey)
     }
-    
+
     private func wrapKeyPair(keyPair: KeyPair) throws -> VirgilKeyPair {
         return try self.wrapKeyPair(privateKey: keyPair.privateKey(), publicKey: keyPair.publicKey())
     }
