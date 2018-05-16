@@ -150,15 +150,14 @@ class VSC001_KeyPairTests: XCTestCase {
             }
         }
     }
-    
-    // FIXME: Uncomment after fixing C++ lib
-//    func test011_createKeyPairFromKeyMaterial_SmallMaterial() {
-//        let random = VirgilRandom(personalInfo: "some info")
-//
-//        let keyMaterial = random.randomize(withBytesNum: 20)
-//
-//        let keyPair = KeyPair(keyPairType: .FAST_EC_ED25519, keyMaterial: keyMaterial, password: nil)
-//
-//        XCTAssert(keyPair == nil)
-//    }
+
+    func test011_createKeyPairFromKeyMaterial_SmallMaterial() {
+        let random = VirgilRandom(personalInfo: "some info")
+
+        let keyMaterial = random.randomize(withBytesNum: 20)
+
+        let keyPair = KeyPair(keyPairType: .FAST_EC_ED25519, keyMaterial: keyMaterial, password: nil)
+
+        XCTAssert(keyPair == nil)
+    }
 }
