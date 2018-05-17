@@ -125,7 +125,7 @@ import VSCCrypto
         VirgilPythia.bindBufForRead(buf: blindingSecretBuf, data: blindingSecret)
 
         var deblindedPassword = VirgilPythia.bindBufForWrite(buf: deblindedPasswordBuf, size: PYTHIA_GT_BUF_SIZE)
-        
+
         if (virgil_pythia_deblind(transformedPasswordBuf, blindingSecretBuf, deblindedPasswordBuf) != 0) {
             throw VirgilPythiaError.underlyingCryptoError
         }
