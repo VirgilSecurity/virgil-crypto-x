@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                        = "VirgilCrypto"
-  s.version                     = "3.1.0"
+  s.version                     = "3.1.1"
   s.license                     = { :type => "BSD", :file => "LICENSE" }
   s.summary                     = "Contains basic classes for creating key pairs, encrypting/decrypting data, signing data and verifying signatures."
   s.homepage                    = "https://github.com/VirgilSecurity/virgil-foundation-x"
