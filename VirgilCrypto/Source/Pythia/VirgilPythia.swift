@@ -49,19 +49,18 @@ import VSCCrypto
 /// Class with Pythia-related crypto operations
 @objc(VSCVirgilPythia) public class VirgilPythia: NSObject {
     private static func bindBufForRead(buf: UnsafeMutablePointer<pythia_buf_t>, data: Data) {
-        let pointer = (data as NSData).bytes.bindMemory(to: UInt8.self, capacity: data.count)
-        let mutablePointer = UnsafeMutablePointer(mutating: pointer)
-
-        pythia_buf_setup(buf, mutablePointer, 0, data.count)
+        data.withUnsafeBytes { (pointer: UnsafePointer<UInt8>) -> Void in
+            let mutablePointer = UnsafeMutablePointer(mutating: pointer)
+            pythia_buf_setup(buf, mutablePointer, 0, data.count)
+        }
     }
 
     private static func bindBufForWrite(buf: UnsafeMutablePointer<pythia_buf_t>, size: Int) -> Data {
         var data = Data(count: size)
 
-        let pointer = (data as NSData).bytes.bindMemory(to: UInt8.self, capacity: data.count)
-        let mutablePointer = UnsafeMutablePointer(mutating: pointer)
-
-        pythia_buf_setup(buf, mutablePointer, data.count, 0)
+        data.withUnsafeMutableBytes { (mutablePointer: UnsafeMutablePointer<UInt8>) -> Void in
+            pythia_buf_setup(buf, mutablePointer, size, 0)
+        }
 
         return data
     }
@@ -126,7 +125,7 @@ import VSCCrypto
         VirgilPythia.bindBufForRead(buf: blindingSecretBuf, data: blindingSecret)
 
         var deblindedPassword = VirgilPythia.bindBufForWrite(buf: deblindedPasswordBuf, size: PYTHIA_GT_BUF_SIZE)
-
+        
         if (virgil_pythia_deblind(transformedPasswordBuf, blindingSecretBuf, deblindedPasswordBuf) != 0) {
             throw VirgilPythiaError.underlyingCryptoError
         }
