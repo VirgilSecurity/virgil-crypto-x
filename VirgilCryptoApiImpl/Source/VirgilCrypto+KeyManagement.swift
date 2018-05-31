@@ -128,9 +128,7 @@ extension VirgilCrypto {
             throw VirgilCryptoError.extractPublicKeyFailed
         }
 
-        let identifier = self.computeKeyIdentifier(publicKeyData: publicKeyData)
-
-        return VirgilPublicKey(identifier: identifier, rawKey: publicKeyData)
+        return VirgilPublicKey(identifier: privateKey.identifier, rawKey: publicKeyData)
     }
 
     /// Exports public key in DER format

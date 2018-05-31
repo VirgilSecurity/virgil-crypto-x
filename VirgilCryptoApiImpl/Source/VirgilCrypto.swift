@@ -233,9 +233,7 @@ import VirgilCryptoAPI
 
         try cipher.setData(signature, forKey: VirgilCrypto.CustomParamKeySignature)
 
-        let publicKey = try self.extractPublicKey(from: privateKey)
-
-        let signerId = publicKey.identifier
+        let signerId = privateKey.identifier
 
         try cipher.setData(signerId, forKey: VirgilCrypto.CustomParamKeySignerId)
 
