@@ -104,9 +104,9 @@ NSString *const kVSCSignerErrorDomain = @"VSCSignerErrorDomain";
 #pragma mark - Public class logic
 
 - (NSData *)signData:(NSData *)data privateKey:(NSData *)privateKey keyPassword:(NSString *)keyPassword error:(NSError **)error {
-    if (data.length == 0 || privateKey.length == 0) {
+    if (privateKey.length == 0) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSCSignerErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to compose the signature: no data or no private key given.", "Sign data error.") }];
+            *error = [NSError errorWithDomain:kVSCSignerErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to compose the signature: no private key given.", "Sign data error.") }];
         }
         return nil;
     }
@@ -163,9 +163,9 @@ NSString *const kVSCSignerErrorDomain = @"VSCSignerErrorDomain";
 }
 
 - (BOOL)verifySignature:(NSData *)signature data:(NSData *)data publicKey:(NSData *)publicKey error:(NSError **)error {
-    if (data.length == 0 || signature.length == 0 || publicKey.length == 0) {
+    if (signature.length == 0 || publicKey.length == 0) {
         if (error) {
-            *error = [NSError errorWithDomain:kVSCSignerErrorDomain code:-1010 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to verify signature: signature data or/and verification data or/and public key is/are not given.", @"Verify data error.") }];
+            *error = [NSError errorWithDomain:kVSCSignerErrorDomain code:-1010 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to verify signature: signature data or/and public key is/are not given.", @"Verify data error.") }];
         }
         return NO;
     }
