@@ -2117,7 +2117,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = Scripts/move_framework.sh;
+			shellScript = "bash Scripts/move_framework.sh\n";
 		};
 		42D61B86202A58C6007E0758 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2130,7 +2130,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = Scripts/move_framework.sh;
+			shellScript = "bash Scripts/move_framework.sh\n";
 		};
 		42D61B95202A5975007E0758 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2143,7 +2143,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = Scripts/move_framework.sh;
+			shellScript = "bash Scripts/move_framework.sh\n";
 		};
 		42D61BA3202A59E5007E0758 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2156,7 +2156,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = Scripts/move_framework.sh;
+			shellScript = "bash Scripts/move_framework.sh\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
