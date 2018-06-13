@@ -4,6 +4,13 @@ diff(){
        END{for(k in a)if(a[k])print k}' <(echo -n "${!1}") <(echo -n "${!2}")
 }
 
+containsElement () {
+  local e match="$1"
+  shift
+  for e; do [[ "$e" == "$match" ]] && return 0; done
+  return 1
+}
+
 rm -rf "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework"
 
 case "${SWIFT_PLATFORM_TARGET_PREFIX}" in
@@ -28,13 +35,16 @@ LIPO_CLEAN_OUTPUT=${LIPO_OUTPUT#$PREFIX}
 echo "LIPO_CLEAN_OUTPUT: ${LIPO_CLEAN_OUTPUT}"
 INCLUDED_ARCHS=( $LIPO_CLEAN_OUTPUT )
 echo "INCLUDED_ARCHS: ${INCLUDED_ARCHS[@]}"
-echo "VALID_ARCHS: ${ARCHS[@]}"
+echo "VALID_ARCHS: ${VALID_ARCHS[@]}"
 
 ARCHS_TO_EXCLUDE=$(diff INCLUDED_ARCHS[@] VALID_ARCHS[@])
-echo "ARCHS_TO_EXCLUDE: ${ARCHS_TO_EXCLUDE[@]}}"
+echo "ARCHS_TO_EXCLUDE: ${ARCHS_TO_EXCLUDE[@]}"
 
 for EXCLUDE_ARCH in ${ARCHS_TO_EXCLUDE[@]}
 do
-  echo "Excluding ${EXCLUDE_ARCH}"
-  lipo -remove $EXCLUDE_ARCH -output "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}" "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}"
+  if [ containsElement $EXCLUDE_ARCH ${INCLUDED_ARCHS[@]}]
+    then
+      echo "Excluding ${EXCLUDE_ARCH}"
+      lipo -remove $EXCLUDE_ARCH -output "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}" "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}"
+  fi
 done
