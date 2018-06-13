@@ -42,8 +42,7 @@ echo "ARCHS_TO_EXCLUDE: ${ARCHS_TO_EXCLUDE[@]}"
 
 for EXCLUDE_ARCH in ${ARCHS_TO_EXCLUDE[@]}
 do
-  if [ containsElement $EXCLUDE_ARCH ${INCLUDED_ARCHS[@]}]
-    then
+  if containsElement $EXCLUDE_ARCH ${INCLUDED_ARCHS[@]}; then
       echo "Excluding ${EXCLUDE_ARCH}"
       lipo -remove $EXCLUDE_ARCH -output "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}" "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}"
   fi
