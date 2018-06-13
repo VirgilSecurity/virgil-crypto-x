@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                        = "VirgilCryptoApiImpl"
-  s.version                     = "3.1.2"
+  s.version                     = "3.1.3"
   s.license                     = { :type => "BSD", :file => "LICENSE" }
   s.summary                     = "Contains implementation of VirgilCryptoAPI using VirgilCrypto library."
   s.homepage                    = "https://github.com/VirgilSecurity/virgil-foundation-x"
@@ -12,5 +12,5 @@ Pod::Spec.new do |s|
   s.watchos.deployment_target   = "2.0"
   s.source_files                = "VirgilCryptoApiImpl/**/*.swift"
   s.dependency 'VirgilCryptoAPI', '= 1.0.2'
-  s.dependency 'VirgilCrypto', '= 3.1.2'
+  s.dependency 'VirgilCrypto', '= 3.1.3'
 end
