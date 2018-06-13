@@ -1011,7 +1011,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = Scripts/move_framework.sh;
+			shellScript = "bash Scripts/move_framework.sh\n";
 		};
 		4255A7FF2046E52A00632EE0 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1024,7 +1024,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = Scripts/move_framework.sh;
+			shellScript = "bash Scripts/move_framework.sh\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
