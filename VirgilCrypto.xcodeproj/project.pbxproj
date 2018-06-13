@@ -129,8 +129,6 @@
 		423F00941E71A10B00CC98A3 /* VC006_StreamSignerSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F85F541DC765EB00C3184C /* VC006_StreamSignerSwiftTests.swift */; };
 		423F00951E71A10B00CC98A3 /* VC007_PBKDFTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F85F551DC765EB00C3184C /* VC007_PBKDFTests.swift */; };
 		423F00B91E71A67E00CC98A3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423F00B81E71A67E00CC98A3 /* Security.framework */; };
-		4255A7EC2046E4B300632EE0 /* VSCCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 4255A7E52046E4B200632EE0 /* VSCCrypto.h */; };
-		4255A7EF2046E4B300632EE0 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4255A7EB2046E4B200632EE0 /* Info.plist */; };
 		4255A7F02046E4C500632EE0 /* VSCCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 4255A7E52046E4B200632EE0 /* VSCCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4255A7FE2046E52200632EE0 /* VSCCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 4255A7E52046E4B200632EE0 /* VSCCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4255A8052046E6B200632EE0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4255A8042046E6B200632EE0 /* Security.framework */; };
@@ -683,7 +681,6 @@
 				42F85F251DC7657C00C3184C /* VSCVirgilVersion.h in Headers */,
 				42F85F211DC7657C00C3184C /* VSCStreamSigner.h in Headers */,
 				420D10381EF148E6002A9C22 /* VSCPfsSession.h in Headers */,
-				4255A7EC2046E4B300632EE0 /* VSCCrypto.h in Headers */,
 				420D103B1EF1499F002A9C22 /* VSCPfsEncryptedMessage.h in Headers */,
 				420D102D1EF140A5002A9C22 /* VSCPfsPublic.h in Headers */,
 				420D102E1EF140A5002A9C22 /* VSCPfs.h in Headers */,
@@ -979,7 +976,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4255A7EF2046E4B300632EE0 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
