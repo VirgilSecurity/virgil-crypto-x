@@ -15,16 +15,16 @@ rm -rf "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework"
 
 case "${SWIFT_PLATFORM_TARGET_PREFIX}" in
     "ios")
-        cp -R "VSCCrypto/PrebuiltFramework/iOS/${PRODUCT_NAME}.framework" "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework"
+        cp -R -p "VSCCrypto/PrebuiltFramework/iOS/${PRODUCT_NAME}.framework" "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework"
     ;;
     "macosx")
-        cp -R "VSCCrypto/PrebuiltFramework/macOS/${PRODUCT_NAME}.framework" "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework"
+        cp -R -p "VSCCrypto/PrebuiltFramework/macOS/${PRODUCT_NAME}.framework" "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework"
     ;;
     "tvos")
-        cp -R "VSCCrypto/PrebuiltFramework/tvOS/${PRODUCT_NAME}.framework" "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework"
+        cp -R -p "VSCCrypto/PrebuiltFramework/tvOS/${PRODUCT_NAME}.framework" "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework"
     ;;
     "watchos")
-        cp -R "VSCCrypto/PrebuiltFramework/watchOS/${PRODUCT_NAME}.framework" "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework"
+        cp -R -p "VSCCrypto/PrebuiltFramework/watchOS/${PRODUCT_NAME}.framework" "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework"
     ;;
 esac
 
