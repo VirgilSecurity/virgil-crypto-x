@@ -37,12 +37,8 @@
 #ifndef VIRGIL_BYTE_ARRAY_H
 #define VIRGIL_BYTE_ARRAY_H
 
-#include <cstring>
 #include <string>
-#include <sstream>
-#include <iomanip>
 #include <vector>
-#include <algorithm>
 #include <tuple>
 
 namespace virgil { namespace crypto {
@@ -71,33 +67,19 @@ namespace virgil { namespace crypto {
 /**
  * @brief Represents given string as byte array.
  */
-inline VirgilByteArray str2bytes(const std::string& str) {
-    return VIRGIL_BYTE_ARRAY_FROM_PTR_AND_LEN(str.data(), str.size());
-}
+VirgilByteArray str2bytes(const std::string& str);
 
 /**
  * @brief Represent given byte array as string.
  */
-inline std::string bytes2str(const VirgilByteArray& array) {
-    return std::string(reinterpret_cast<const char*>(array.data()), array.size());
-}
+std::string bytes2str(const VirgilByteArray& array);
 
 /**
  * @brief Translate given HEX string to the byte array.
  * @param hexStr - HEX string.
  * @return Byte array.
  */
-inline VirgilByteArray hex2bytes(const std::string hexStr) {
-    VirgilByteArray result;
-    std::istringstream istr(hexStr);
-    char hexChars[3] = {0x00};
-    while (istr.read(hexChars, 2)) {
-        int byte = 0;
-        std::istringstream(hexChars) >> std::hex >> byte;
-        result.push_back((unsigned char) byte);
-    }
-    return result;
-}
+VirgilByteArray hex2bytes(const std::string hexStr);
 
 /**
  * @brief Translate given byte array to the HEX string.
@@ -106,17 +88,8 @@ inline VirgilByteArray hex2bytes(const std::string hexStr) {
  *                    and all bytes will be separated with whitespaces.
  * @return HEX string.
  */
-inline std::string bytes2hex(const VirgilByteArray& array, bool formatted = false) {
-    std::ostringstream hexStream;
-    hexStream << std::setfill('0');
-    for (size_t i = 0; i < array.size(); ++i) {
-        hexStream << std::hex << std::setw(2) << (int) array[i];
-        if (formatted) {
-            hexStream << (((i + 1) % 16 == 0) ? "\n" : " ");
-        }
-    }
-    return hexStream.str();
-}
+std::string bytes2hex(const VirgilByteArray& array, bool formatted = false) ;
+
 /**
  * @name ByteArray security clear utilities
  */
@@ -124,20 +97,12 @@ inline std::string bytes2hex(const VirgilByteArray& array, bool formatted = fals
 /**
  * @brief Make all bytes zero.
  */
-inline void bytes_zeroize(VirgilByteArray& array) {
-    size_t n = array.size();
-    volatile unsigned char* p = const_cast<unsigned char*>(array.data());
-    while (n--) { *p++ = 0; }
-}
+void bytes_zeroize(VirgilByteArray& array) ;
 
 /**
  * @brief Make all chars zero.
  */
-inline void string_zeroize(std::string& str) {
-    size_t n = str.size();
-    volatile char* p = const_cast<char*>(str.c_str());
-    while (n--) { *p++ = '\0'; }
-}
+void string_zeroize(std::string& str);
 ///@}
 
 /**
@@ -146,10 +111,7 @@ inline void string_zeroize(std::string& str) {
  * @param src - bytes append from.
  * @return Reference to destination (dst).
  */
-inline VirgilByteArray& bytes_append(VirgilByteArray& dst, const VirgilByteArray& src) {
-    dst.insert(dst.end(), src.cbegin(), src.cend());
-    return dst;
-}
+VirgilByteArray& bytes_append(VirgilByteArray& dst, const VirgilByteArray& src);
 
 /**
  * @brief Split given bytes to two sequences.
@@ -157,21 +119,14 @@ inline VirgilByteArray& bytes_append(VirgilByteArray& dst, const VirgilByteArray
  * @param pos - splitting position.
  * @return Two sequences: src[0, pos), src[pos, src.size()).
  */
-inline std::tuple<VirgilByteArray, VirgilByteArray> bytes_split(const VirgilByteArray& src, size_t pos) {
-    return std::make_tuple(
-            VirgilByteArray(src.cbegin(), src.cbegin() + pos),
-            VirgilByteArray(src.cbegin() + pos, src.cend()));
-}
+std::tuple<VirgilByteArray, VirgilByteArray> bytes_split(const VirgilByteArray& src, size_t pos);
 
 /**
  * @brief Split given bytes to two sequences of the same size.
  * @param src - bytes to be splitted.
  * @return Two sequences: src[0, src.size()/2), src[src.size()/2, src.size()).
  */
-inline std::tuple<VirgilByteArray, VirgilByteArray> bytes_split_half(const VirgilByteArray& src) {
-    const auto halfPos = src.size() >> 1;
-    return bytes_split(src, halfPos);
-}
+std::tuple<VirgilByteArray, VirgilByteArray> bytes_split_half(const VirgilByteArray& src);
 
 /**
  * @brief Split given bytes to the chuns of the given size.
@@ -179,14 +134,7 @@ inline std::tuple<VirgilByteArray, VirgilByteArray> bytes_split_half(const Virgi
  * @param chunkSize - size of the chunk.
  * @return Chunks, each of the chunkSize.
  */
-inline std::vector<VirgilByteArray> bytes_split_chunks(const VirgilByteArray& src, size_t chunkSize) {
-    std::vector<VirgilByteArray> chunks;
-    for (auto begin = src.cbegin(); begin < src.cend(); begin += chunkSize) {
-        auto end = std::min(begin + chunkSize, src.end());
-        chunks.emplace_back(VirgilByteArray(begin, end));
-    }
-    return chunks;
-}
+std::vector<VirgilByteArray> bytes_split_chunks(const VirgilByteArray& src, size_t chunkSize);
 
 }}
 #endif /* VIRGIL_BYTE_ARRAY_H */

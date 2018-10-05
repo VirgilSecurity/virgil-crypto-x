@@ -40,11 +40,11 @@ import XCTest
 
 class VSC000_VirgilVersion: XCTestCase {
     func test001() {
-        XCTAssert(VirgilVersion.asNumber() == 2 << 16 | 4 << 8 | 4)
-        XCTAssert(VirgilVersion.asString() == "2.4.4")
+        XCTAssert(VirgilVersion.asNumber() == 2 << 16 | 6 << 8 | 1)
+        XCTAssert(VirgilVersion.asString() == "2.6.1")
         XCTAssert(VirgilVersion.majorVersion() == 2)
-        XCTAssert(VirgilVersion.minorVersion() == 4)
-        XCTAssert(VirgilVersion.patchVersion() == 4)
-        XCTAssert(VirgilVersion.fullName() == "2.4.4")
+        XCTAssert(VirgilVersion.minorVersion() == 6)
+        XCTAssert(VirgilVersion.patchVersion() == 1)
+        XCTAssert(VirgilVersion.fullName() == "2.6.1")
     }
 }
