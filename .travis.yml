@@ -67,11 +67,12 @@ script:
 
   # Build with carthage
   - if [ $PUBLISH_CARTHAGE == "YES" ]; then
-      carthage build --no-skip-current;
+      carthage build --no-skip-current --no-use-binaries;
     fi
   
   # Check pod lib
   - if [ $POD_LIB_LINT == "YES" ]; then
+      gem install cocoapods --pre;
       pod repo update;
       pod lib lint VirgilCrypto.podspec;
       pod lib lint VirgilCryptoApiImpl.podspec;
