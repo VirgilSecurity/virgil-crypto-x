@@ -1,1 +1,1 @@
-github "VirgilSecurity/virgil-cryptoapi-x" "1.0.3"
+github "VirgilSecurity/virgil-cryptoapi-x" ~> 1.0
