@@ -90,6 +90,6 @@ deploy:
       - "$CRYPTO_FRAMEWORK_NAME.framework.zip"
     skip_cleanup: true
     on:
-      repo: VirgilSecurity/virgil-foundation-x
+      repo: VirgilSecurity/crypto-x
       tags: true
       condition: $PUBLISH_CARTHAGE = "YES"
