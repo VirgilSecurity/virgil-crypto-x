@@ -15,23 +15,23 @@ rm -rf "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework"
 
 case "${SWIFT_PLATFORM_TARGET_PREFIX}" in
     "ios")
-        cp -R "VSCCrypto/PrebuiltFramework/iOS/${PRODUCT_NAME}.framework" "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework"
+        cp -R -p "VSCCrypto/PrebuiltFramework/iOS/${PRODUCT_NAME}.framework" "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework"
+        LIPO_CLEAN_OUTPUT="x86_64 i386 armv7 armv7s arm64"
     ;;
     "macosx")
-        cp -R "VSCCrypto/PrebuiltFramework/macOS/${PRODUCT_NAME}.framework" "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework"
+        cp -R -p "VSCCrypto/PrebuiltFramework/macOS/${PRODUCT_NAME}.framework" "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework"
+        LIPO_CLEAN_OUTPUT="x86_64"
     ;;
     "tvos")
-        cp -R "VSCCrypto/PrebuiltFramework/tvOS/${PRODUCT_NAME}.framework" "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework"
+        cp -R -p "VSCCrypto/PrebuiltFramework/tvOS/${PRODUCT_NAME}.framework" "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework"
+        LIPO_CLEAN_OUTPUT="x86_64 arm64"
     ;;
     "watchos")
-        cp -R "VSCCrypto/PrebuiltFramework/watchOS/${PRODUCT_NAME}.framework" "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework"
+        cp -R -p "VSCCrypto/PrebuiltFramework/watchOS/${PRODUCT_NAME}.framework" "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework"
+        LIPO_CLEAN_OUTPUT="i386 x86_64 armv7k arm64_32"
     ;;
 esac
 
-LIPO_OUTPUT="$(lipo -info "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}")"
-echo "LIPO_OUTPUT: ${LIPO_OUTPUT}"
-PREFIX="Architectures in the fat file: ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/${PRODUCT_NAME} are: "
-LIPO_CLEAN_OUTPUT=${LIPO_OUTPUT#$PREFIX}
 echo "LIPO_CLEAN_OUTPUT: ${LIPO_CLEAN_OUTPUT}"
 INCLUDED_ARCHS=( $LIPO_CLEAN_OUTPUT )
 echo "INCLUDED_ARCHS: ${INCLUDED_ARCHS[@]}"

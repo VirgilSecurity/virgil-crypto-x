@@ -101,7 +101,7 @@ extension VirgilCrypto {
         return privateKey.rawKey
     }
 
-    /// Expots encrypted using password private key
+    /// Exports encrypted using password private key
     ///
     /// - Parameters:
     ///   - privateKey: PrivateKey to export
@@ -139,7 +139,7 @@ extension VirgilCrypto {
         return publicKey.rawKey
     }
 
-    /// Import public key from DER or PEM format
+    /// Imports public key from DER or PEM format
     ///
     /// - Parameter data: Public key in DER or PEM format
     /// - Returns: Imported Public Key
