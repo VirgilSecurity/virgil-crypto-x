@@ -1,6 +1,6 @@
 # Virgil Security Objective-C/Swift Crypto Library
 
-[![Build Status](https://api.travis-ci.org/VirgilSecurity/virgil-foundation-x.svg?branch=master)](https://travis-ci.org/VirgilSecurity/virgil-foundation-x)
+[![Build Status](https://api.travis-ci.org/VirgilSecurity/crypto-x.svg?branch=master)](https://travis-ci.org/VirgilSecurity/crypto-x)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/VirgilCrypto.svg)](https://img.shields.io/cocoapods/v/VirgilCrypto.svg)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/cocoapods/p/VirgilCrypto.svg?style=flat)](http://cocoadocs.org/docsets/VirgilCrypto)
@@ -134,7 +134,7 @@ $ brew install carthage
 To integrate VirgilSDK into your Xcode project using Carthage, create an empty file with name *Cartfile* in your project's root folder and add following lines to your *Cartfile*
 
 ```
-github "VirgilSecurity/virgil-foundation-x" ~> 3.1.5
+github "VirgilSecurity/crypto-x" ~> 3.1.5
 ```
 
 #### Linking against prebuilt binaries

@@ -3,9 +3,9 @@ Pod::Spec.new do |s|
   s.version                     = "3.1.5"
   s.license                     = { :type => "BSD", :file => "LICENSE" }
   s.summary                     = "Contains basic classes for creating key pairs, encrypting/decrypting data, signing data and verifying signatures."
-  s.homepage                    = "https://github.com/VirgilSecurity/virgil-foundation-x"
+  s.homepage                    = "https://github.com/VirgilSecurity/crypto-x"
   s.authors                     = { "Virgil Security" => "https://virgilsecurity.com/" }
-  s.source                      = { :git => "https://github.com/VirgilSecurity/virgil-foundation-x.git", :tag => s.version }
+  s.source                      = { :git => "https://github.com/VirgilSecurity/crypto-x.git", :tag => s.version }
   s.ios.deployment_target       = "9.0"
   s.osx.deployment_target       = "10.10"
   s.tvos.deployment_target      = "9.0"
