@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2015-2018 Virgil Security Inc.
+// Copyright (C) 2015-2019 Virgil Security Inc.
 //
 // All rights reserved.
 //
@@ -93,7 +93,7 @@ import VSCCrypto
         var blindedPassword = VirgilPythia.bindBufForWrite(buf: blindedPasswordBuf, size: PYTHIA_G1_BUF_SIZE)
         var blindingSecret = VirgilPythia.bindBufForWrite(buf: blindingSecretBuf, size: PYTHIA_BN_BUF_SIZE)
 
-        if (virgil_pythia_blind(passwordBuf, blindedPasswordBuf, blindingSecretBuf) != 0) {
+        if virgil_pythia_blind(passwordBuf, blindedPasswordBuf, blindingSecretBuf) != 0 {
             throw VirgilPythiaError.underlyingCryptoError
         }
 
@@ -126,7 +126,7 @@ import VSCCrypto
 
         var deblindedPassword = VirgilPythia.bindBufForWrite(buf: deblindedPasswordBuf, size: PYTHIA_GT_BUF_SIZE)
 
-        if (virgil_pythia_deblind(transformedPasswordBuf, blindingSecretBuf, deblindedPasswordBuf) != 0) {
+        if virgil_pythia_deblind(transformedPasswordBuf, blindingSecretBuf, deblindedPasswordBuf) != 0 {
             throw VirgilPythiaError.underlyingCryptoError
         }
 
@@ -161,11 +161,11 @@ import VSCCrypto
         var transformationPublicKey = VirgilPythia.bindBufForWrite(buf: transformationPublicKeyBuf,
                                                                    size: PYTHIA_G1_BUF_SIZE)
 
-        if (virgil_pythia_compute_transformation_key_pair(transformationKeyIdBuf,
-                                                          pythiaSecretBuf,
-                                                          pythiaScopeSecretBuf,
-                                                          transformationPrivateKeyBuf,
-                                                          transformationPublicKeyBuf) != 0) {
+        if virgil_pythia_compute_transformation_key_pair(transformationKeyIdBuf,
+                                                         pythiaSecretBuf,
+                                                         pythiaScopeSecretBuf,
+                                                         transformationPrivateKeyBuf,
+                                                         transformationPublicKeyBuf) != 0 {
             throw VirgilPythiaError.underlyingCryptoError
         }
 
@@ -199,10 +199,11 @@ import VSCCrypto
         var transformedTweak = VirgilPythia.bindBufForWrite(buf: transformedTweakBuf,
                                                             size: PYTHIA_G2_BUF_SIZE)
 
-        if (virgil_pythia_transform(blindedPasswordBuf, tweakBuf,
-                                    transformationPrivateKeyBuf,
-                                    transformedPasswordBuf,
-                                    transformedTweakBuf) != 0) {
+        if virgil_pythia_transform(blindedPasswordBuf,
+                                   tweakBuf,
+                                   transformationPrivateKeyBuf,
+                                   transformedPasswordBuf,
+                                   transformedTweakBuf) != 0 {
             throw VirgilPythiaError.underlyingCryptoError
         }
 
@@ -242,10 +243,13 @@ import VSCCrypto
         var proofValueC = VirgilPythia.bindBufForWrite(buf: proofValueCBuf, size: PYTHIA_BN_BUF_SIZE)
         var proofValueU = VirgilPythia.bindBufForWrite(buf: proofValueUBuf, size: PYTHIA_BN_BUF_SIZE)
 
-        if (virgil_pythia_prove(transformedPasswordBuf, blindedPasswordBuf,
-                                transformedTweakBuf, transformationPrivateKeyBuf,
-                                transformationPublicKeyBuf,
-                                proofValueCBuf, proofValueUBuf) != 0) {
+        if virgil_pythia_prove(transformedPasswordBuf,
+                               blindedPasswordBuf,
+                               transformedTweakBuf,
+                               transformationPrivateKeyBuf,
+                               transformationPublicKeyBuf,
+                               proofValueCBuf,
+                               proofValueUBuf) != 0 {
             throw VirgilPythiaError.underlyingCryptoError
         }
 
@@ -283,10 +287,13 @@ import VSCCrypto
 
         var verified = Int32()
 
-        if (virgil_pythia_verify(transformedPasswordBuf, blindedPasswordBuf,
-                                 tweakBuf, transformationPublicKeyBuf,
-                                 proofValueCBuf, proofValueUBuf,
-                                 &verified) != 0) {
+        if virgil_pythia_verify(transformedPasswordBuf,
+                                blindedPasswordBuf,
+                                tweakBuf,
+                                transformationPublicKeyBuf,
+                                proofValueCBuf,
+                                proofValueUBuf,
+                                &verified) != 0 {
             return false
         }
 
