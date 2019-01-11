@@ -324,8 +324,8 @@
 		42B12B8D201FE8780082F9BC /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A01F7C1F7D51FE00FF8804 /* VirgilCrypto.framework */; };
 		42CBE2E321E8F1B5000F99E6 /* VirgilCryptoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CBE2D621E8F1A6000F99E6 /* VirgilCryptoAPI.framework */; };
 		42CBE2E421E8F1BD000F99E6 /* VirgilCryptoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CBE2DA21E8F1A6000F99E6 /* VirgilCryptoAPI.framework */; };
-		42CBE2E521E8F1C2000F99E6 /* VirgilCryptoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CBE2DE21E8F1A6000F99E6 /* VirgilCryptoAPI.framework */; };
-		42CBE2E621E8F1C5000F99E6 /* VirgilCryptoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CBE2E221E8F1A6000F99E6 /* VirgilCryptoAPI.framework */; };
+		42CBE2F021E8F740000F99E6 /* VirgilCryptoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CBE2DE21E8F1A6000F99E6 /* VirgilCryptoAPI.framework */; };
+		42CBE2F121E8F747000F99E6 /* VirgilCryptoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CBE2E221E8F1A6000F99E6 /* VirgilCryptoAPI.framework */; };
 		42CDC2A81F696E1400D69111 /* VSCBaseCipher.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85EEE1DC7657C00C3184C /* VSCBaseCipher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42CDC2A91F696E1400D69111 /* VSCBaseCipher.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42F85EEF1DC7657C00C3184C /* VSCBaseCipher.mm */; };
 		42CDC2AA1F696E1400D69111 /* VSCByteArrayUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F85EF11DC7657C00C3184C /* VSCByteArrayUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -819,7 +819,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42CBE2E621E8F1C5000F99E6 /* VirgilCryptoAPI.framework in Frameworks */,
+				42CBE2F121E8F747000F99E6 /* VirgilCryptoAPI.framework in Frameworks */,
 				42B12B18201FD9100082F9BC /* VirgilCrypto.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -828,7 +828,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42CBE2E521E8F1C2000F99E6 /* VirgilCryptoAPI.framework in Frameworks */,
+				42CBE2F021E8F740000F99E6 /* VirgilCryptoAPI.framework in Frameworks */,
 				42B12B16201FD9070082F9BC /* VirgilCrypto.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
