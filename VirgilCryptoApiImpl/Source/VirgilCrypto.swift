@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2015-2018 Virgil Security Inc.
+// Copyright (C) 2015-2019 Virgil Security Inc.
 //
 // All rights reserved.
 //
@@ -183,8 +183,10 @@ import VirgilCryptoAPI
     @objc open func decrypt(_ data: Data, with privateKey: VirgilPrivateKey) throws -> Data {
         let cipher = Cipher()
 
-        return try cipher.decryptData(data, recipientId: privateKey.identifier,
-                                      privateKey: privateKey.rawKey, keyPassword: nil)
+        return try cipher.decryptData(data,
+                                      recipientId: privateKey.identifier,
+                                      privateKey: privateKey.rawKey,
+                                      keyPassword: nil)
     }
 
     /// Decrypts data stream using passed PrivateKey
@@ -203,8 +205,11 @@ import VirgilCryptoAPI
                             with privateKey: VirgilPrivateKey) throws {
         let cipher = ChunkCipher()
 
-        try cipher.decrypt(from: stream, to: outputStream, recipientId: privateKey.identifier,
-                           privateKey: privateKey.rawKey, keyPassword: nil)
+        try cipher.decrypt(from: stream,
+                           to: outputStream,
+                           recipientId: privateKey.identifier,
+                           privateKey: privateKey.rawKey,
+                           keyPassword: nil)
     }
 
     /// Signs (with private key) Then Encrypts data for passed PublicKeys
@@ -262,8 +267,10 @@ import VirgilCryptoAPI
                                       using signerPublicKey: VirgilPublicKey) throws -> Data {
         let cipher = Cipher()
 
-        let decryptedData = try cipher.decryptData(data, recipientId: privateKey.identifier,
-                                                   privateKey: privateKey.rawKey, keyPassword: nil)
+        let decryptedData = try cipher.decryptData(data,
+                                                   recipientId: privateKey.identifier,
+                                                   privateKey: privateKey.rawKey,
+                                                   keyPassword: nil)
         let signature = try cipher.data(forKey: VirgilCrypto.CustomParamKeySignature)
 
         let signer = Signer()
@@ -294,8 +301,10 @@ import VirgilCryptoAPI
                                       usingOneOf signersPublicKeys: [VirgilPublicKey]) throws -> Data {
         let cipher = Cipher()
 
-        let decryptedData = try cipher.decryptData(data, recipientId: privateKey.identifier,
-                                                   privateKey: privateKey.rawKey, keyPassword: nil)
+        let decryptedData = try cipher.decryptData(data,
+                                                   recipientId: privateKey.identifier,
+                                                   privateKey: privateKey.rawKey,
+                                                   keyPassword: nil)
 
         let signature = try cipher.data(forKey: VirgilCrypto.CustomParamKeySignature)
         let signerId = try cipher.data(forKey: VirgilCrypto.CustomParamKeySignerId)

@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2015-2018 Virgil Security Inc.
+// Copyright (C) 2015-2019 Virgil Security Inc.
 //
 // All rights reserved.
 //
@@ -48,7 +48,7 @@ extension VirgilCrypto {
     @objc open func generateMultipleKeyPairs(numberOfKeyPairs: UInt) throws -> [VirgilKeyPair] {
         return try KeyPair
             .generateMultipleKeys(numberOfKeyPairs, keyPairType: self.defaultKeyType)
-            .map({ try self.wrapKeyPair(keyPair: $0) })
+            .map { try self.wrapKeyPair(keyPair: $0) }
     }
 
     /// Generates KeyPair of default key type
