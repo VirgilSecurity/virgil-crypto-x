@@ -71,7 +71,7 @@ script:
     fi
   
   # Check pod lib
-  - if [ $POD_LIB_LINT == "YES" ]; then
+  - if [ -n "$TRAVIS_TAG" ] && [ $POD_LIB_LINT == "YES" ]; then
       gem install cocoapods --pre;
       pod repo update;
       pod lib lint VirgilCrypto.podspec;
