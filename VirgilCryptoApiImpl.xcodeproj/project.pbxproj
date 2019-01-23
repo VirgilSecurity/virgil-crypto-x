@@ -12,6 +12,10 @@
 		424A7FC321F23135006BED3F /* VirgilCryptoApiImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = 424A7FB521F23135006BED3F /* VirgilCryptoApiImpl.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4250B80121F73C0400852C11 /* VirgilCryptoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4250B7F321F73B9C00852C11 /* VirgilCryptoAPI.framework */; };
 		4250B80E21F73CA700852C11 /* VirgilCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4250B80D21F73CA700852C11 /* VirgilCrypto.swift */; };
+		4250B8A321F8A23300852C11 /* VirgilCryptoCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4250B84421F7536800852C11 /* VirgilCryptoCommon.framework */; };
+		4250B8A421F8A23300852C11 /* VirgilCryptoFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4250B85221F7536800852C11 /* VirgilCryptoFoundation.framework */; };
+		4250B8A721F8A24600852C11 /* VSCCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4250B8A521F8A24600852C11 /* VSCCommon.framework */; };
+		4250B8A821F8A24600852C11 /* VSCFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4250B8A621F8A24600852C11 /* VSCFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -274,6 +278,20 @@
 			remoteGlobalIDString = FR_FF1C9D16CE422D69E6C269C60BD63DFB;
 			remoteInfo = VirgilCryptoRatchet_watchOS;
 		};
+		4250B87721F8A22900852C11 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4250B81921F7536800852C11 /* VirgilCrypto.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = NT_A3E03FC8668DD16EA40581CE69988E7C;
+			remoteInfo = VirgilCryptoCommon_iOS;
+		};
+		4250B87921F8A22900852C11 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4250B81921F7536800852C11 /* VirgilCrypto.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = NT_2ECC5C983A0B6F94596864330BF0CDE9;
+			remoteInfo = VirgilCryptoFoundation_iOS;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -286,6 +304,8 @@
 		4250B7E721F73B9B00852C11 /* VirgilCryptoAPI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VirgilCryptoAPI.xcodeproj; path = "Carthage/Checkouts/virgil-cryptoapi-x/VirgilCryptoAPI.xcodeproj"; sourceTree = "<group>"; };
 		4250B80D21F73CA700852C11 /* VirgilCrypto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirgilCrypto.swift; sourceTree = "<group>"; };
 		4250B81921F7536800852C11 /* VirgilCrypto.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VirgilCrypto.xcodeproj; path = "Carthage/Checkouts/virgil-cryptowrapper-x/VirgilCrypto.xcodeproj"; sourceTree = "<group>"; };
+		4250B8A521F8A24600852C11 /* VSCCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VSCCommon.framework; path = Carthage/Build/iOS/VSCCommon.framework; sourceTree = "<group>"; };
+		4250B8A621F8A24600852C11 /* VSCFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VSCFoundation.framework; path = Carthage/Build/iOS/VSCFoundation.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,6 +313,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4250B8A721F8A24600852C11 /* VSCCommon.framework in Frameworks */,
+				4250B8A821F8A24600852C11 /* VSCFoundation.framework in Frameworks */,
+				4250B8A321F8A23300852C11 /* VirgilCryptoCommon.framework in Frameworks */,
+				4250B8A421F8A23300852C11 /* VirgilCryptoFoundation.framework in Frameworks */,
 				4250B80121F73C0400852C11 /* VirgilCryptoAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -365,6 +389,8 @@
 		4250B80021F73C0400852C11 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4250B8A521F8A24600852C11 /* VSCCommon.framework */,
+				4250B8A621F8A24600852C11 /* VSCFoundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -430,6 +456,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				4250B87821F8A22900852C11 /* PBXTargetDependency */,
+				4250B87A21F8A22900852C11 /* PBXTargetDependency */,
 				4250B80621F73C1200852C11 /* PBXTargetDependency */,
 			);
 			name = VirgilCryptoApiImpl;
@@ -801,6 +829,16 @@
 			name = "VirgilCryptoAPI iOS";
 			targetProxy = 4250B80521F73C1200852C11 /* PBXContainerItemProxy */;
 		};
+		4250B87821F8A22900852C11 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = VirgilCryptoCommon_iOS;
+			targetProxy = 4250B87721F8A22900852C11 /* PBXContainerItemProxy */;
+		};
+		4250B87A21F8A22900852C11 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = VirgilCryptoFoundation_iOS;
+			targetProxy = 4250B87921F8A22900852C11 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -936,6 +974,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = VirgilCryptoApiImpl/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -962,6 +1004,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = VirgilCryptoApiImpl/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
