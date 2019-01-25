@@ -58,6 +58,12 @@
 		4250B8A421F8A23300852C11 /* VirgilCryptoFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4250B85221F7536800852C11 /* VirgilCryptoFoundation.framework */; };
 		4250B8A721F8A24600852C11 /* VSCCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4250B8A521F8A24600852C11 /* VSCCommon.framework */; };
 		4250B8A821F8A24600852C11 /* VSCFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4250B8A621F8A24600852C11 /* VSCFoundation.framework */; };
+		42D91CA821FB673800632073 /* VSCCommon.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4250B8A521F8A24600852C11 /* VSCCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		42D91CA921FB673800632073 /* VSCFoundation.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4250B8A621F8A24600852C11 /* VSCFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		42D91CAF21FB675F00632073 /* VSCCommon.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 420DE7FD21FB40BB00B06435 /* VSCCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		42D91CB021FB675F00632073 /* VSCFoundation.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 420DE7FE21FB40BB00B06435 /* VSCFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		42D91CB621FB678400632073 /* VSCCommon.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 420DE80721FB40F100B06435 /* VSCCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		42D91CB721FB678400632073 /* VSCFoundation.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 420DE80621FB40F100B06435 /* VSCFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -413,6 +419,42 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		42D91C9D21FB66FC00632073 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				42D91CA821FB673800632073 /* VSCCommon.framework in CopyFiles */,
+				42D91CA921FB673800632073 /* VSCFoundation.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42D91CAA21FB675800632073 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				42D91CAF21FB675F00632073 /* VSCCommon.framework in CopyFiles */,
+				42D91CB021FB675F00632073 /* VSCFoundation.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42D91CB321FB677C00632073 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				42D91CB621FB678400632073 /* VSCCommon.framework in CopyFiles */,
+				42D91CB721FB678400632073 /* VSCFoundation.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		420DE79721FB365600B06435 /* VirgilCrypto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirgilCrypto.swift; sourceTree = "<group>"; };
 		420DE79E21FB394300B06435 /* VirgilCryptoApiImpl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilCryptoApiImpl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -529,7 +571,7 @@
 				4250B7E721F73B9B00852C11 /* VirgilCryptoAPI.xcodeproj */,
 				424A7FB421F23135006BED3F /* VirgilCryptoApiImpl */,
 				420DE79621FB365600B06435 /* Source */,
-				424A7FBF21F23135006BED3F /* VirgilCryptoApiImplTests */,
+				424A7FBF21F23135006BED3F /* Tests */,
 				424A7FB321F23135006BED3F /* Products */,
 				4250B80021F73C0400852C11 /* Frameworks */,
 			);
@@ -558,13 +600,12 @@
 			path = VirgilCryptoApiImpl;
 			sourceTree = "<group>";
 		};
-		424A7FBF21F23135006BED3F /* VirgilCryptoApiImplTests */ = {
+		424A7FBF21F23135006BED3F /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				424A7FC021F23135006BED3F /* VirgilCryptoApiImplTests.swift */,
 				424A7FC221F23135006BED3F /* Info.plist */,
 			);
-			name = VirgilCryptoApiImplTests;
 			path = Tests;
 			sourceTree = "<group>";
 		};
@@ -697,6 +738,7 @@
 				420DE7A221FB394300B06435 /* Sources */,
 				420DE7A321FB394300B06435 /* Frameworks */,
 				420DE7A421FB394300B06435 /* Resources */,
+				42D91CAA21FB675800632073 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -735,6 +777,7 @@
 				420DE7BE21FB396500B06435 /* Sources */,
 				420DE7BF21FB396500B06435 /* Frameworks */,
 				420DE7C021FB396500B06435 /* Resources */,
+				42D91CB321FB677C00632073 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -793,6 +836,7 @@
 				424A7FB721F23135006BED3F /* Sources */,
 				424A7FB821F23135006BED3F /* Frameworks */,
 				424A7FB921F23135006BED3F /* Resources */,
+				42D91C9D21FB66FC00632073 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1388,7 +1432,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = VirgilCryptoApiImplTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1409,7 +1453,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = VirgilCryptoApiImplTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1490,7 +1534,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = VirgilCryptoApiImplTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1510,7 +1554,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = VirgilCryptoApiImplTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1793,7 +1837,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = VirgilCryptoApiImplTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1811,7 +1855,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = VirgilCryptoApiImplTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
