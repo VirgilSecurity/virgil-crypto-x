@@ -47,15 +47,62 @@ class VirgilCryptoApiImplTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func test01__key_generation__generate_one_key__should_succeed() {
+        do {
+            let crypto = try VirgilCrypto()
+            
+            _ = try crypto.generateKeyPair(ofType: .ed25519)
+        }
+        catch {
+            XCTFail()
+        }
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    func test02__private_key_import__ed_key__should_match() {
+        do {
+            let crypto = try VirgilCrypto()
+            
+            let keyPair = try crypto.generateKeyPair(ofType: .ed25519)
+            
+            let data = try crypto.exportPrivateKey(keyPair.privateKey)
+            
+            let privateKey = try crypto.importPrivateKey(from: data)
+            
+            XCTAssert(keyPair.privateKey.identifier == privateKey.identifier)
+        }
+        catch {
+            XCTFail()
+        }
+    }
+    
+    func test03__private_key_import__rsa_key__should_match() {
+        
+    }
+    
+    func test04__public_key_import__ed_key__should_match() {
+        
+    }
+    
+    func test05__public_key_import__rsa_key__should_match() {
+        
+    }
+    
+    func test06__encryption__some_data__should_match() {
+        do {
+            let crypto = try VirgilCrypto()
+            
+            let keyPair = try crypto.generateKeyPair(ofType: .ed25519)
+            
+            let data = UUID().uuidString.data(using: .utf8)!
+            
+            let encryptedData = try crypto.encrypt(data, for: [keyPair.publicKey])
+            
+            let decryptedData = try crypto.decrypt(encryptedData, with: keyPair.privateKey)
+            
+            XCTAssert(encryptedData == decryptedData)
+        }
+        catch {
+            XCTFail()
         }
     }
 

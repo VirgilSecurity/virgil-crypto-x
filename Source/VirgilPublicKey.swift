@@ -38,38 +38,16 @@ import Foundation
 import VirgilCryptoFoundation
 import VirgilCryptoAPI
 
-/// Class for high level interactions with crypto library
-@objc(VSMVirgilCrypto) open class VirgilCrypto: NSObject {
-    @objc public let rng: Random
-    @objc public let useSHA256Fingerprints: Bool
+@objc(VSMVirgilPublicKey) public class VirgilPublicKey: NSObject, VirgilCryptoAPI.PublicKey {
+    @objc public let identifier: Data
+    @objc public let publicKey: VirgilCryptoFoundation.PublicKey
+    @objc public let keyType: KeyPairType
     
-    @objc public init(useSHA256Fingerprints: Bool = false) throws {
-        let rng = CtrDrbg()
-        try rng.setupDefaults()
-        
-        self.rng = rng
-        
-        self.useSHA256Fingerprints = useSHA256Fingerprints
+    @objc public init(identifier: Data, publicKey: VirgilCryptoFoundation.PublicKey, keyType: KeyPairType) {
+        self.identifier = identifier
+        self.publicKey = publicKey
+        self.keyType = keyType
         
         super.init()
-    }
-    
-    /// Computes hash
-    ///
-    /// - Parameters:
-    ///   - data: Data to be hashed
-    ///   - algorithm: Hash algorithm to use
-    /// - Returns: Hash value
-    @objc open func computeHash(for data: Data, using algorithm: HashAlgorithm = .sha512) -> Data {
-        let hash: Hash
-        
-        switch algorithm {
-        case .sha224: hash = Sha224()
-        case .sha256: hash = Sha256()
-        case .sha384: hash = Sha384()
-        case .sha512: hash = Sha512()
-        }
-
-        return hash.hash(data: data)
     }
 }
