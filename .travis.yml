@@ -4,12 +4,12 @@ osx_image: xcode10.1
 env:
   global:
     - LC_CTYPE=en_US.UTF-8
-    - PROJECT=VirgilCryptoApiImpl.xcodeproj
+    - PROJECT=VirgilCrypto.xcodeproj
     - IOS_SDK=iphonesimulator12.1
     - MACOS_SDK=macosx10.14
     - TVOS_SDK=appletvsimulator12.1
     - WATCHOS_SDK=watchsimulator5.1
-    - CRYPTO_FRAMEWORK_NAME=VirgilCryptoApiImpl
+    - CRYPTO_FRAMEWORK_NAME=VirgilCrypto
   matrix:
     - DESTINATION="OS=12.1,name=iPhone SE"                   PREFIX="iOS"      SDK="$IOS_SDK"      BUILD="2"  PUBLISH_CARTHAGE="NO"   PUBLISH_POD="NO"   PUBLISH_DOCS="NO"   SWIFT_LINT="NO"
     - DESTINATION="arch=x86_64"                              PREFIX="macOS"    SDK="$MACOS_SDK"    BUILD="2"  PUBLISH_CARTHAGE="NO"   PUBLISH_POD="NO"   PUBLISH_DOCS="NO"   SWIFT_LINT="NO"
@@ -36,7 +36,7 @@ script:
       swiftlint
     fi
 
-  - SCHEME="VirgilCryptoApiImpl ${PREFIX}"
+  - SCHEME="VirgilCrypto ${PREFIX}"
 
   - |
     if [ $BUILD == "2" ]; then

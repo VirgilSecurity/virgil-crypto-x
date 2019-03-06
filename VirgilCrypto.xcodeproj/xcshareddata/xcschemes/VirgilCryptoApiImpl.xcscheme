@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "420DE7E621FB3A6300B06435"
-               BuildableName = "VirgilCryptoApiImpl"
-               BlueprintName = "VirgilCryptoApiImpl"
-               ReferencedContainer = "container:VirgilCryptoApiImpl.xcodeproj">
+               BuildableName = "VirgilCrypto"
+               BlueprintName = "VirgilCrypto"
+               ReferencedContainer = "container:VirgilCrypto.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,9 +46,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "420DE7E621FB3A6300B06435"
-            BuildableName = "VirgilCryptoApiImpl"
-            BlueprintName = "VirgilCryptoApiImpl"
-            ReferencedContainer = "container:VirgilCryptoApiImpl.xcodeproj">
+            BuildableName = "VirgilCrypto"
+            BlueprintName = "VirgilCrypto"
+            ReferencedContainer = "container:VirgilCrypto.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -64,9 +64,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "420DE7E621FB3A6300B06435"
-            BuildableName = "VirgilCryptoApiImpl"
-            BlueprintName = "VirgilCryptoApiImpl"
-            ReferencedContainer = "container:VirgilCryptoApiImpl.xcodeproj">
+            BuildableName = "VirgilCrypto"
+            BlueprintName = "VirgilCrypto"
+            ReferencedContainer = "container:VirgilCrypto.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

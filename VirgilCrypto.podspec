@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name                        = "VirgilCryptoApiImpl"
+  s.name                        = "VirgilCrypto"
   s.version                     = "5.0.0-alpha1"
   s.license                     = { :type => "BSD", :file => "LICENSE" }
   s.summary                     = "Contains implementation of VirgilCryptoAPI using VirgilCrypto library."
