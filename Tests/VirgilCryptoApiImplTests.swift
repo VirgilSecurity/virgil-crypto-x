@@ -35,7 +35,7 @@
 //
 
 import XCTest
-@testable import VirgilCryptoApiImpl
+@testable import VirgilCrypto
 
 extension KeyPairType {
     static func all() -> [KeyPairType] { return [.ed25519, .rsa2048, .rsa4096, .rsa8192] }
