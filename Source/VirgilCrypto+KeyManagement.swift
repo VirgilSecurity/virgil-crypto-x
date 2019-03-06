@@ -130,7 +130,7 @@ extension VirgilCrypto {
             }
         }
         else {
-            keyType = try KeyPairType(from: privateKey.algId())
+            keyType = try KeyPairType(from: publicKey.algId())
         }
         
         let keyId = try self.computeKeyIdentifier(publicKey: publicKey)
