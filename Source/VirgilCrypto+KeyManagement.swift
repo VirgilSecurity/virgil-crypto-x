@@ -40,39 +40,30 @@ import VirgilCryptoFoundation
 // MARK: - Extension for key management
 extension VirgilCrypto {
     @objc open func importPrivateKey(from data: Data) throws -> VirgilPrivateKey {
-        let pkcs8Deserializer = Pkcs8Deserializer()
-        try pkcs8Deserializer.setupDefaults()
+        let keyProvider = KeyProvider()
         
-        // FIXME
-
+        keyProvider.setRandom(random: self.rng)
+        try keyProvider.setupDefaults()
+        
         let err = ErrorCtx()
-
-        let rawPrivateKey = pkcs8Deserializer.deserializePrivateKey(privateKeyData: data, error: err)
-
-        try err.error()
         
-        let privateKey: PrivateKey & Defaults
+        let privateKey = keyProvider.importPrivateKey(pkcs8Data: data, error: err)
+        
         let keyType: KeyPairType
-
-        switch rawPrivateKey.algId() {
-        case .ed25519:
-            keyType = .ed25519
-            let ed25519PrivateKey = Ed25519PrivateKey()
-            try ed25519PrivateKey.importPrivateKey(data: rawPrivateKey.data())
-            ed25519PrivateKey.setRandom(random: self.rng)
-            privateKey = ed25519PrivateKey
-            
-        case .rsa:
-            keyType = .rsa
-            let rsaPrivateKey = RsaPrivateKey()
-            try rsaPrivateKey.importPrivateKey(data: rawPrivateKey.data())
-            rsaPrivateKey.setRandom(random: self.rng)
-            privateKey = rsaPrivateKey
-            
-        default: throw NSError() // FIXME
+        
+        if privateKey.algId() == .rsa {
+            switch privateKey.keyBitlen() {
+            case 2048: keyType = .rsa2048
+            case 4096: keyType = .rsa4096
+            case 8192: keyType = .rsa8192
+            default: throw NSError() // FIXME
+            }
+        }
+        else {
+            keyType = try KeyPairType(from: privateKey.algId())
         }
         
-        try privateKey.setupDefaults()
+        try err.error()
 
         let keyId = try self.computeKeyIdentifier(privateKey: privateKey)
 
@@ -118,39 +109,17 @@ extension VirgilCrypto {
     /// - Returns: Imported Public Key
     /// - Throws: VirgilCryptoError.publicKeyToDERFailed, if public key is corrupted and conversion to DER failed
     @objc open func importPublicKey(from data: Data) throws -> VirgilPublicKey {
-        let pkcs8Deserializer = Pkcs8Deserializer()
-        try pkcs8Deserializer.setupDefaults()
+        let keyProvider = KeyProvider()
+        keyProvider.setRandom(random: self.rng)
+        try keyProvider.setupDefaults()
         
-        // FIXME
-
         let err = ErrorCtx()
-
-        let rawPublicKey = pkcs8Deserializer.deserializePublicKey(publicKeyData: data, error: err)
-
-        try err.error()
-
-        let publicKey: PublicKey & Defaults
-        let keyType: KeyPairType
-
-        switch rawPublicKey.algId() {
-        case .ed25519:
-            keyType = .ed25519
-            let ed25519PublicKey = Ed25519PublicKey()
-            try ed25519PublicKey.importPublicKey(data: rawPublicKey.data())
-            ed25519PublicKey.setRandom(random: self.rng)
-            publicKey = ed25519PublicKey
-            
-        case .rsa:
-            keyType = .rsa
-            let rsaPublicKey = RsaPublicKey()
-            try rsaPublicKey.importPublicKey(data: rawPublicKey.data())
-            rsaPublicKey.setRandom(random: self.rng)
-            publicKey = rsaPublicKey
-            
-        default: throw NSError() // FIXME
-        }
         
-        try publicKey.setupDefaults()
+        let publicKey = keyProvider.importPublicKey(pkcs8Data: data, error: err)
+        
+        try err.error()
+        
+        let keyType = try KeyPairType(from: publicKey.algId())
         
         let keyId = try self.computeKeyIdentifier(publicKey: publicKey)
 
