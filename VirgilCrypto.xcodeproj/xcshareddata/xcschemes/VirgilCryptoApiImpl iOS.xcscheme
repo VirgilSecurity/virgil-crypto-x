@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "424A7FB121F23135006BED3F"
-               BuildableName = "VirgilCryptoApiImpl.framework"
-               BlueprintName = "VirgilCryptoApiImpl iOS"
-               ReferencedContainer = "container:VirgilCryptoApiImpl.xcodeproj">
+               BuildableName = "VirgilCrypto.framework"
+               BlueprintName = "VirgilCrypto iOS"
+               ReferencedContainer = "container:VirgilCrypto.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "424A7FBA21F23135006BED3F"
-               BuildableName = "VirgilCryptoApiImplTests iOS.xctest"
-               BlueprintName = "VirgilCryptoApiImplTests iOS"
-               ReferencedContainer = "container:VirgilCryptoApiImpl.xcodeproj">
+               BuildableName = "VirgilCryptoTests iOS.xctest"
+               BlueprintName = "VirgilCryptoTests iOS"
+               ReferencedContainer = "container:VirgilCrypto.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "424A7FB121F23135006BED3F"
-            BuildableName = "VirgilCryptoApiImpl.framework"
-            BlueprintName = "VirgilCryptoApiImpl iOS"
-            ReferencedContainer = "container:VirgilCryptoApiImpl.xcodeproj">
+            BuildableName = "VirgilCrypto.framework"
+            BlueprintName = "VirgilCrypto iOS"
+            ReferencedContainer = "container:VirgilCrypto.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -65,9 +65,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "424A7FB121F23135006BED3F"
-            BuildableName = "VirgilCryptoApiImpl.framework"
-            BlueprintName = "VirgilCryptoApiImpl iOS"
-            ReferencedContainer = "container:VirgilCryptoApiImpl.xcodeproj">
+            BuildableName = "VirgilCrypto.framework"
+            BlueprintName = "VirgilCrypto iOS"
+            ReferencedContainer = "container:VirgilCrypto.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -83,9 +83,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "424A7FB121F23135006BED3F"
-            BuildableName = "VirgilCryptoApiImpl.framework"
-            BlueprintName = "VirgilCryptoApiImpl iOS"
-            ReferencedContainer = "container:VirgilCryptoApiImpl.xcodeproj">
+            BuildableName = "VirgilCrypto.framework"
+            BlueprintName = "VirgilCrypto iOS"
+            ReferencedContainer = "container:VirgilCrypto.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

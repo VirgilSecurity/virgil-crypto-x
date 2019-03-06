@@ -45,7 +45,7 @@ rm -rf ${HTML_PATH_DST}
 mkdir -p ${HTML_PATH_DST}
 git clone -b gh-pages "${REPO_PATH}" --single-branch ${HTML_PATH_DST}
 
-INFOPLIST_FILE_PATH="${TRAVIS_BUILD_DIR}/VirgilCryptoApiImpl/Info.plist"
+INFOPLIST_FILE_PATH="${TRAVIS_BUILD_DIR}/VirgilCrypto/Info.plist"
 
 # Define SDK versions
 VIRGIL_SDK_VERSION="v"$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "${INFOPLIST_FILE_PATH}")

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "420DE7D521FB397C00B06435"
-               BuildableName = "VirgilCryptoApiImpl.framework"
-               BlueprintName = "VirgilCryptoApiImpl watchOS"
-               ReferencedContainer = "container:VirgilCryptoApiImpl.xcodeproj">
+               BuildableName = "VirgilCrypto.framework"
+               BlueprintName = "VirgilCrypto watchOS"
+               ReferencedContainer = "container:VirgilCrypto.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,9 +46,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "420DE7D521FB397C00B06435"
-            BuildableName = "VirgilCryptoApiImpl.framework"
-            BlueprintName = "VirgilCryptoApiImpl watchOS"
-            ReferencedContainer = "container:VirgilCryptoApiImpl.xcodeproj">
+            BuildableName = "VirgilCrypto.framework"
+            BlueprintName = "VirgilCrypto watchOS"
+            ReferencedContainer = "container:VirgilCrypto.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -64,9 +64,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "420DE7D521FB397C00B06435"
-            BuildableName = "VirgilCryptoApiImpl.framework"
-            BlueprintName = "VirgilCryptoApiImpl watchOS"
-            ReferencedContainer = "container:VirgilCryptoApiImpl.xcodeproj">
+            BuildableName = "VirgilCrypto.framework"
+            BlueprintName = "VirgilCrypto watchOS"
+            ReferencedContainer = "container:VirgilCrypto.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
