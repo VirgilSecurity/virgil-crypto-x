@@ -73,19 +73,19 @@ extension VirgilCrypto {
     @objc open func generateKeyPair(ofType type: KeyPairType = .ed25519) throws -> VirgilKeyPair {
         let keyProvider = KeyProvider()
         
+        let rsaExponent = 65537
+        
+        switch type {
+        case .rsa2048: keyProvider.setRsaParams(bitlen: 2048, exponent: rsaExponent)
+        case .rsa4096: keyProvider.setRsaParams(bitlen: 4096, exponent: rsaExponent)
+        case .rsa8192: keyProvider.setRsaParams(bitlen: 8192, exponent: rsaExponent)
+        default: break
+        }
+        
         keyProvider.setRandom(random: self.rng)
         try keyProvider.setupDefaults()
         
-        let algId: AlgId
-        
-        // TODO: Refactor
-        switch type {
-        case .ed25519:
-            algId = .ed25519
-            
-        case .rsa:
-            algId = .rsa
-        }
+        let algId = type.algId
         
         let errorCtx = ErrorCtx()
         

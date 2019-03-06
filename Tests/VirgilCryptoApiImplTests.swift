@@ -37,6 +37,10 @@
 import XCTest
 @testable import VirgilCryptoApiImpl
 
+extension KeyPairType {
+    static func all() -> [KeyPairType] { return [.ed25519, .rsa2048, .rsa4096, .rsa8192] }
+}
+
 class VirgilCryptoApiImplTests: XCTestCase {
 
     override func setUp() {
@@ -46,60 +50,74 @@ class VirgilCryptoApiImplTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
+    
+    private func checkKeyGeneration(crypto: VirgilCrypto, keyPairType: KeyPairType) throws {
+        let keyPair = try crypto.generateKeyPair(ofType: keyPairType)
+        
+        XCTAssert(keyPair.privateKey.identifier == keyPair.publicKey.identifier)
+    }
 
     func test01__key_generation__generate_one_key__should_succeed() {
         do {
             let crypto = try VirgilCrypto()
             
-            _ = try crypto.generateKeyPair(ofType: .ed25519)
+            for keyType in KeyPairType.all() {
+                try self.checkKeyGeneration(crypto: crypto, keyPairType: keyType)
+            }
         }
         catch {
             XCTFail()
         }
     }
     
-    func test02__private_key_import__ed_key__should_match() {
+    private func checkKeyImport(crypto: VirgilCrypto, keyPairType: KeyPairType) throws {
+        let keyPair = try crypto.generateKeyPair(ofType: keyPairType)
+        
+        let data1 = try crypto.exportPrivateKey(keyPair.privateKey)
+        
+        let privateKey = try crypto.importPrivateKey(from: data1)
+        
+        XCTAssert(keyPair.privateKey.identifier == privateKey.identifier)
+        
+        let data2 = try crypto.exportPublicKey(keyPair.publicKey)
+        
+        let publicKey = try crypto.importPublicKey(from: data2)
+        
+        XCTAssert(keyPair.publicKey.identifier == publicKey.identifier)
+    }
+    
+    func test02__key_import__all_keys__should_match() {
         do {
             let crypto = try VirgilCrypto()
             
-            let keyPair = try crypto.generateKeyPair(ofType: .ed25519)
-            
-            let data = try crypto.exportPrivateKey(keyPair.privateKey)
-            
-            let privateKey = try crypto.importPrivateKey(from: data)
-            
-            XCTAssert(keyPair.privateKey.identifier == privateKey.identifier)
+            for keyType in KeyPairType.all() {
+                try self.checkKeyImport(crypto: crypto, keyPairType: keyType)
+            }
         }
         catch {
             XCTFail()
         }
     }
     
-    func test03__private_key_import__rsa_key__should_match() {
+    private func checkEncryption(crypto: VirgilCrypto, keyPairType: KeyPairType) throws {
+        let keyPair = try crypto.generateKeyPair(ofType: keyPairType)
         
+        let data = UUID().uuidString.data(using: .utf8)!
+        
+        let encryptedData = try crypto.encrypt(data, for: [keyPair.publicKey])
+        
+        let decryptedData = try crypto.decrypt(encryptedData, with: keyPair.privateKey)
+        
+        XCTAssert(data == decryptedData)
     }
     
-    func test04__public_key_import__ed_key__should_match() {
-        
-    }
-    
-    func test05__public_key_import__rsa_key__should_match() {
-        
-    }
-    
-    func test06__encryption__some_data__should_match() {
+    func test03__encryption__some_data__should_match() {
         do {
             let crypto = try VirgilCrypto()
             
-            let keyPair = try crypto.generateKeyPair(ofType: .ed25519)
-            
-            let data = UUID().uuidString.data(using: .utf8)!
-            
-            let encryptedData = try crypto.encrypt(data, for: [keyPair.publicKey])
-            
-            let decryptedData = try crypto.decrypt(encryptedData, with: keyPair.privateKey)
-            
-            XCTAssert(encryptedData == decryptedData)
+            for keyType in KeyPairType.all() {
+                try self.checkEncryption(crypto: crypto, keyPairType: keyType)
+            }
         }
         catch {
             XCTFail()

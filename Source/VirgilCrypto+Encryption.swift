@@ -63,7 +63,7 @@ extension VirgilCrypto {
         let aesGcm = Aes256Gcm()
         let cipher = RecipientCipher()
         
-        cipher.setCipher(cipher: aesGcm)
+        cipher.setEncryptionCipher(encryptionCipher: aesGcm)
         cipher.setRandom(random: self.rng)
         
         recipients.forEach {
@@ -71,14 +71,14 @@ extension VirgilCrypto {
         }
         
         try cipher.startEncryption()
-
-        _ = try cipher.processEncryption(data: data)
         
-        let msgInfo = cipher.packMessageInfo()
-        
-        let encryptedData = try cipher.finishEncryption()
+        var result = cipher.packMessageInfo()
 
-        return msgInfo + encryptedData
+        result += try cipher.processEncryption(data: data)
+        
+        result += try cipher.finishEncryption()
+
+        return result
     }
     
     /// Decrypts data using passed PrivateKey
@@ -94,17 +94,17 @@ extension VirgilCrypto {
     /// - Returns: Decrypted data
     /// - Throws: Rethrows from Cipher
     @objc open func decrypt(_ data: Data, with privateKey: VirgilPrivateKey) throws -> Data {
-        let aesGcm = Aes256Gcm()
         let cipher = RecipientCipher()
-        
-        cipher.setCipher(cipher: aesGcm)
-        cipher.setRandom(random: self.rng)
         
         try cipher.startDecryptionWithKey(recipientId: privateKey.identifier, privateKey: privateKey.privateKey, messageInfo: Data())
         
-        _ = try cipher.processDecryption(data: data)
+        var result = Data()
         
-        return try cipher.finishDecryption()
+        result += try cipher.processDecryption(data: data)
+        
+        result += try cipher.finishDecryption()
+        
+        return result
     }
 
 }

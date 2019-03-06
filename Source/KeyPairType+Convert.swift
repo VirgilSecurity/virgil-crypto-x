@@ -35,10 +35,21 @@
 //
 
 import Foundation
+import VirgilCryptoFoundation
 
-@objc(VSMKeyPairType) public enum KeyPairType: Int {
-    case ed25519
-    case rsa2048
-    case rsa4096
-    case rsa8192
+extension KeyPairType {
+    init(from algId: AlgId) throws {
+        switch algId {
+        case .ed25519: self = .ed25519
+        case .rsa: throw NSError() // FIXME: RSA is not supported here, costruct enum directly
+        default: throw NSError() // FIXME
+        }
+    }
+
+    var algId: AlgId {
+        switch self {
+        case .ed25519: return .ed25519
+        case .rsa2048, .rsa4096, .rsa8192: return .rsa
+        }
+    }
 }
