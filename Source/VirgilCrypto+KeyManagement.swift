@@ -49,6 +49,8 @@ extension VirgilCrypto {
         
         let privateKey = keyProvider.importPrivateKey(pkcs8Data: data, error: err)
         
+        try err.error()
+        
         let keyType: KeyPairType
         
         if privateKey.algId() == .rsa {
@@ -62,8 +64,6 @@ extension VirgilCrypto {
         else {
             keyType = try KeyPairType(from: privateKey.algId())
         }
-        
-        try err.error()
 
         let keyId = try self.computeKeyIdentifier(privateKey: privateKey)
 
@@ -119,7 +119,19 @@ extension VirgilCrypto {
         
         try err.error()
         
-        let keyType = try KeyPairType(from: publicKey.algId())
+        let keyType: KeyPairType
+        
+        if publicKey.algId() == .rsa {
+            switch publicKey.keyBitlen() {
+            case 2048: keyType = .rsa2048
+            case 4096: keyType = .rsa4096
+            case 8192: keyType = .rsa8192
+            default: throw NSError() // FIXME
+            }
+        }
+        else {
+            keyType = try KeyPairType(from: privateKey.algId())
+        }
         
         let keyId = try self.computeKeyIdentifier(publicKey: publicKey)
 
