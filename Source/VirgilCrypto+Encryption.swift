@@ -44,7 +44,7 @@ extension VirgilCrypto {
     /// Key used to embed signer identity into ASN.1 structure
     /// Used in signThenEncrypt & decryptThenVerify
     @objc public static let CustomParamKeySignerId = "VIRGIL-DATA-SIGNER-ID"
-    
+
     /// Encrypts data for passed PublicKeys
     ///
     /// 1. Generates random AES-256 KEY1
@@ -62,25 +62,25 @@ extension VirgilCrypto {
     @objc open func encrypt(_ data: Data, for recipients: [VirgilPublicKey]) throws -> Data {
         let aesGcm = Aes256Gcm()
         let cipher = RecipientCipher()
-        
+
         cipher.setEncryptionCipher(encryptionCipher: aesGcm)
         cipher.setRandom(random: self.rng)
-        
+
         recipients.forEach {
             cipher.addKeyRecipient(recipientId: $0.identifier, publicKey: $0.publicKey)
         }
-        
+
         try cipher.startEncryption()
-        
+
         var result = cipher.packMessageInfo()
 
         result += try cipher.processEncryption(data: data)
-        
+
         result += try cipher.finishEncryption()
 
         return result
     }
-    
+
     /// Decrypts data using passed PrivateKey
     ///
     /// 1. Uses Diffie-Hellman to obtain shared secret with sender ephemeral public key & recipient's private key
@@ -95,15 +95,17 @@ extension VirgilCrypto {
     /// - Throws: Rethrows from Cipher
     @objc open func decrypt(_ data: Data, with privateKey: VirgilPrivateKey) throws -> Data {
         let cipher = RecipientCipher()
-        
-        try cipher.startDecryptionWithKey(recipientId: privateKey.identifier, privateKey: privateKey.privateKey, messageInfo: Data())
-        
+
+        try cipher.startDecryptionWithKey(recipientId: privateKey.identifier,
+                                          privateKey: privateKey.privateKey,
+                                          messageInfo: Data())
+
         var result = Data()
-        
+
         result += try cipher.processDecryption(data: data)
-        
+
         result += try cipher.finishDecryption()
-        
+
         return result
     }
 

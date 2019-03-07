@@ -38,18 +38,23 @@ import Foundation
 import VirgilCryptoFoundation
 
 extension KeyPairType {
-    init(from algId: AlgId) throws {
+    internal init(from algId: AlgId) throws {
         switch algId {
-        case .ed25519: self = .ed25519
-        case .rsa: throw NSError() // FIXME: RSA is not supported here, costruct enum directly
-        default: throw NSError() // FIXME
+        case .ed25519:
+            self = .ed25519
+        case .rsa:
+            throw NSError() // FIXME: RSA is not supported here, costruct enum directly
+        default:
+            throw NSError() // FIXME
         }
     }
 
-    var algId: AlgId {
+    internal var algId: AlgId {
         switch self {
-        case .ed25519: return .ed25519
-        case .rsa2048, .rsa4096, .rsa8192: return .rsa
+        case .ed25519:
+            return .ed25519
+        case .rsa2048, .rsa4096, .rsa8192:
+            return .rsa
         }
     }
 }

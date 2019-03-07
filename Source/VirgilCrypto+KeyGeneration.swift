@@ -41,7 +41,7 @@ extension VirgilCrypto {
     @objc open func computeKeyIdentifier(privateKey: VirgilCryptoFoundation.PrivateKey) throws -> Data {
         return try self.computeKeyIdentifier(publicKey: privateKey.extractPublicKey())
     }
-    
+
     /// Computes key identifiers
     ///
     /// NOTE: Takes first 8 bytes of SHA512 of public key DER if useSHA256Fingerprints=false
@@ -52,9 +52,9 @@ extension VirgilCrypto {
     @objc open func computeKeyIdentifier(publicKey: VirgilCryptoFoundation.PublicKey) throws -> Data {
         let pkcs8DerSerializer = Pkcs8DerSerializer()
         try pkcs8DerSerializer.setupDefaults()
-        
+
         let publicKeyDER = try pkcs8DerSerializer.serializePublicKey(publicKey: publicKey)
-        
+
         if self.useSHA256Fingerprints {
             return self.computeHash(for: publicKeyDER, using: .sha256)
         }
@@ -62,7 +62,7 @@ extension VirgilCrypto {
             return self.computeHash(for: publicKeyDER, using: .sha512).subdata(in: 0..<8)
         }
     }
-    
+
     /// Generates KeyPair of given type
     ///
     /// NOTE: If you need more than 1 keypair, consider using generateMultipleKeyPairs
@@ -72,31 +72,35 @@ extension VirgilCrypto {
     /// - Throws: Rethrows from KeyPair
     @objc open func generateKeyPair(ofType type: KeyPairType = .ed25519) throws -> VirgilKeyPair {
         let keyProvider = KeyProvider()
-        
-        let rsaExponent = 65537
-        
+
+        let rsaExponent = 65_537
+
         switch type {
-        case .rsa2048: keyProvider.setRsaParams(bitlen: 2048, exponent: rsaExponent)
-        case .rsa4096: keyProvider.setRsaParams(bitlen: 4096, exponent: rsaExponent)
-        case .rsa8192: keyProvider.setRsaParams(bitlen: 8192, exponent: rsaExponent)
-        default: break
+        case .rsa2048:
+            keyProvider.setRsaParams(bitlen: 2_048, exponent: rsaExponent)
+        case .rsa4096:
+            keyProvider.setRsaParams(bitlen: 4_096, exponent: rsaExponent)
+        case .rsa8192:
+            keyProvider.setRsaParams(bitlen: 8_192, exponent: rsaExponent)
+        default:
+            break
         }
-        
+
         keyProvider.setRandom(random: self.rng)
         try keyProvider.setupDefaults()
-        
+
         let algId = type.algId
-        
+
         let errorCtx = ErrorCtx()
-        
+
         let privateKey = keyProvider.generatePrivateKey(algId: algId, error: errorCtx)
-        
+
         try errorCtx.error()
-        
+
         let publicKey = privateKey.extractPublicKey()
 
         let keyId = try self.computeKeyIdentifier(publicKey: publicKey)
-        
+
         return VirgilKeyPair(privateKey: VirgilPrivateKey(identifier: keyId, privateKey: privateKey, keyType: type),
                              publicKey: VirgilPublicKey(identifier: keyId, publicKey: publicKey, keyType: type))
     }

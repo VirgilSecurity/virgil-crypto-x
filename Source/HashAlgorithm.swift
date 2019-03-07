@@ -38,10 +38,10 @@ import Foundation
 
 @objc(VSMHashAlgorithm) public enum HashAlgorithm: Int {
     case sha224
-    
+
     case sha256
-    
+
     case sha384
-    
+
     case sha512
 }
