@@ -41,24 +41,28 @@ import VirgilCryptoFoundation
 extension VirgilCrypto {
     @objc open func importPrivateKey(from data: Data) throws -> VirgilPrivateKey {
         let keyProvider = KeyProvider()
-        
+
         keyProvider.setRandom(random: self.rng)
         try keyProvider.setupDefaults()
-        
+
         let err = ErrorCtx()
-        
+
         let privateKey = keyProvider.importPrivateKey(pkcs8Data: data, error: err)
-        
+
         try err.error()
-        
+
         let keyType: KeyPairType
-        
+
         if privateKey.algId() == .rsa {
             switch privateKey.keyBitlen() {
-            case 2048: keyType = .rsa2048
-            case 4096: keyType = .rsa4096
-            case 8192: keyType = .rsa8192
-            default: throw NSError() // FIXME
+            case 2_048:
+                keyType = .rsa2048
+            case 4_096:
+                keyType = .rsa4096
+            case 8_192:
+                keyType = .rsa8192
+            default:
+                throw NSError() // FIXME
             }
         }
         else {
@@ -69,7 +73,7 @@ extension VirgilCrypto {
 
         return VirgilPrivateKey(identifier: keyId, privateKey: privateKey, keyType: keyType)
     }
-    
+
     /// Exports private key to DER foramt
     ///
     /// WARNING: Consider using export with password
@@ -79,19 +83,21 @@ extension VirgilCrypto {
     @objc open func exportPrivateKey(_ privateKey: VirgilPrivateKey) throws -> Data {
         let pkcs8DerSerializer = Pkcs8DerSerializer()
         try pkcs8DerSerializer.setupDefaults()
-        
+
         return try pkcs8DerSerializer.serializePrivateKey(privateKey: privateKey.privateKey)
     }
-    
+
     /// Extracts public key from private key
     ///
     /// - Parameter privateKey: Private key
     /// - Returns: Public Key that matches passed Private Key
     /// - Throws: VirgilCryptoError.extractPublicKeyFailed, if extraction failed
     @objc open func extractPublicKey(from privateKey: VirgilPrivateKey) throws -> VirgilPublicKey {
-        return VirgilPublicKey(identifier: privateKey.identifier, publicKey: privateKey.privateKey.extractPublicKey(), keyType: privateKey.keyType)
+        return VirgilPublicKey(identifier: privateKey.identifier,
+                               publicKey: privateKey.privateKey.extractPublicKey(),
+                               keyType: privateKey.keyType)
     }
-    
+
     /// Exports public key in DER format
     ///
     /// - Parameter publicKey: PublicKey to export
@@ -99,10 +105,10 @@ extension VirgilCrypto {
     @objc open func exportPublicKey(_ publicKey: VirgilPublicKey) throws -> Data {
         let pkcs8DerSerializer = Pkcs8DerSerializer()
         try pkcs8DerSerializer.setupDefaults()
-        
+
         return try pkcs8DerSerializer.serializePublicKey(publicKey: publicKey.publicKey)
     }
-    
+
     /// Imports public key from DER or PEM format
     ///
     /// - Parameter data: Public key in DER or PEM format
@@ -112,27 +118,31 @@ extension VirgilCrypto {
         let keyProvider = KeyProvider()
         keyProvider.setRandom(random: self.rng)
         try keyProvider.setupDefaults()
-        
+
         let err = ErrorCtx()
-        
+
         let publicKey = keyProvider.importPublicKey(pkcs8Data: data, error: err)
-        
+
         try err.error()
-        
+
         let keyType: KeyPairType
-        
+
         if publicKey.algId() == .rsa {
             switch publicKey.keyBitlen() {
-            case 2048: keyType = .rsa2048
-            case 4096: keyType = .rsa4096
-            case 8192: keyType = .rsa8192
-            default: throw NSError() // FIXME
+            case 2_048:
+                keyType = .rsa2048
+            case 4_096:
+                keyType = .rsa4096
+            case 8_192:
+                keyType = .rsa8192
+            default:
+                throw NSError() // FIXME
             }
         }
         else {
             keyType = try KeyPairType(from: publicKey.algId())
         }
-        
+
         let keyId = try self.computeKeyIdentifier(publicKey: publicKey)
 
         return VirgilPublicKey(identifier: keyId, publicKey: publicKey, keyType: keyType)

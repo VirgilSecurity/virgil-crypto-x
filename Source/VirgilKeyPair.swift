@@ -42,7 +42,7 @@ import Foundation
     @objc public let privateKey: VirgilPrivateKey
     /// Public key
     @objc public let publicKey: VirgilPublicKey
-    
+
     /// Initializer
     ///
     /// - Parameters:
@@ -51,7 +51,7 @@ import Foundation
     @objc public init(privateKey: VirgilPrivateKey, publicKey: VirgilPublicKey) {
         self.privateKey = privateKey
         self.publicKey = publicKey
-        
+
         super.init()
     }
 }
