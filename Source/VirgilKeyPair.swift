@@ -43,6 +43,11 @@ import Foundation
     /// Public key
     @objc public let publicKey: VirgilPublicKey
 
+    /// Key id
+    @objc public var identifier: Data {
+        return self.publicKey.identifier
+    }
+
     /// Initializer
     ///
     /// - Parameters:

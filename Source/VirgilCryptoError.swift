@@ -35,27 +35,22 @@
 //
 
 import Foundation
-import VirgilCryptoFoundation
 
-// MARK: - Conversion extension
-extension KeyPairType {
-    internal init(from algId: AlgId) throws {
-        switch algId {
-        case .ed25519:
-            self = .ed25519
-        case .rsa:
-            throw VirgilCryptoError.rsaShouldBeConstructedDirectly
-        default:
-            throw VirgilCryptoError.unknownAlgId
-        }
-    }
-
-    internal var algId: AlgId {
-        switch self {
-        case .ed25519:
-            return .ed25519
-        case .rsa2048, .rsa4096, .rsa8192:
-            return .rsa
-        }
-    }
+/// Errors for this framework
+///
+/// - signerNotFound: signer not found
+/// - signatureNotFound: signature not found
+/// - signatureNotVerified: signature not verifier
+/// - unknownAlgId: unknown alg id
+/// - rsaShouldBeConstructedDirectly: rsa should be constructed directly
+/// - unsupportedRsaLength: unsupported rsa length
+/// - keyDoesntSupportSigning: key doesn't support signing
+@objc(VSMVirgilCryptoError) public enum VirgilCryptoError: Int, Error {
+    case signerNotFound = 1
+    case signatureNotFound = 2
+    case signatureNotVerified = 3
+    case unknownAlgId = 4
+    case rsaShouldBeConstructedDirectly = 5
+    case unsupportedRsaLength = 6
+    case keyDoesntSupportSigning = 7
 }

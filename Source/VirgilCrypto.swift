@@ -40,16 +40,38 @@ import VirgilCryptoAPI
 
 /// Class for high level interactions with crypto library
 @objc(VSMVirgilCrypto) open class VirgilCrypto: NSObject {
+
+    /// Random
     @objc public let rng: Random
+
+    /// Use old algorithm to generate key fingerprints
+    /// Current algorithm: first 8 bytes of SHA512 of public key in DER format
+    /// Old algorithm: SHA256 of public key in DER format
+    /// NOTE: Use SHA256 fingerprint only if you need to work with encrypted data,
+    ///       that was encrypted using those fingerprint. (e.g. version 2 of this library)
     @objc public let useSHA256Fingerprints: Bool
 
-    @objc public init(useSHA256Fingerprints: Bool = false) throws {
+    /// Default key type used to generate keys.
+    @objc public let defaultKeyType: KeyPairType
+
+    /// Init
+    ///
+    /// - Parameters:
+    ///   - useSHA256Fingerprints: Use old algorithm to generate key fingerprints
+    ///                            Current algorithm: first 8 bytes of SHA512 of public key in DER format
+    ///                            Old algorithm SHA256 of public key in DER format
+    ///                            NOTE: Use SHA256 fingerprint only if you need to work with encrypted data,
+    ///                                  that was encrypted using those fingerprint. (e.g. version 2 of this library)
+    ///   - defaultKeyType: Key type used to generate keys by default
+    /// - Throws: Rethrows from CtrDrbg
+    @objc public init(useSHA256Fingerprints: Bool = false, defaultKeyType: KeyPairType = .ed25519) throws {
         let rng = CtrDrbg()
         try rng.setupDefaults()
 
         self.rng = rng
 
         self.useSHA256Fingerprints = useSHA256Fingerprints
+        self.defaultKeyType = defaultKeyType
 
         super.init()
     }

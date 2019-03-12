@@ -37,13 +37,16 @@
 import Foundation
 import VirgilCryptoFoundation
 
+/// MARK: - Extension for assymetric encryption/decryption
 extension VirgilCrypto {
+    // swiftlint:disable force_unwrapping
     /// Key used to embed Data Signature into ASN.1 structure
     /// Used in signThenEncrypt & decryptThenVerify
-    @objc public static let CustomParamKeySignature = "VIRGIL-DATA-SIGNATURE"
+    @objc public static let CustomParamKeySignature = "VIRGIL-DATA-SIGNATURE".data(using: .utf8)!
     /// Key used to embed signer identity into ASN.1 structure
     /// Used in signThenEncrypt & decryptThenVerify
-    @objc public static let CustomParamKeySignerId = "VIRGIL-DATA-SIGNER-ID"
+    @objc public static let CustomParamKeySignerId = "VIRGIL-DATA-SIGNER-ID".data(using: .utf8)!
+    // swiftlint:enable force_unwrapping
 
     /// Encrypts data for passed PublicKeys
     ///
