@@ -57,14 +57,14 @@ import VirgilCryptoAPI
     /// Init
     ///
     /// - Parameters:
+    ///   - defaultKeyType: Key type used to generate keys by default
     ///   - useSHA256Fingerprints: Use old algorithm to generate key fingerprints
     ///                            Current algorithm: first 8 bytes of SHA512 of public key in DER format
     ///                            Old algorithm SHA256 of public key in DER format
     ///                            NOTE: Use SHA256 fingerprint only if you need to work with encrypted data,
     ///                                  that was encrypted using those fingerprint. (e.g. version 2 of this library)
-    ///   - defaultKeyType: Key type used to generate keys by default
     /// - Throws: Rethrows from CtrDrbg
-    @objc public init(useSHA256Fingerprints: Bool = false, defaultKeyType: KeyPairType = .ed25519) throws {
+    @objc public init(defaultKeyType: KeyPairType = .ed25519, useSHA256Fingerprints: Bool = false) throws {
         let rng = CtrDrbg()
         try rng.setupDefaults()
 
