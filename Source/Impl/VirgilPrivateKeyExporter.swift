@@ -36,22 +36,44 @@
 
 import Foundation
 
-/// Errors for this framework
-///
-/// - signerNotFound: signer not found
-/// - signatureNotFound: signature not found
-/// - signatureNotVerified: signature not verifier
-/// - unknownAlgId: unknown alg id
-/// - rsaShouldBeConstructedDirectly: rsa should be constructed directly
-/// - unsupportedRsaLength: unsupported rsa length
-/// - keyDoesntSupportSigning: key doesn't support signing
-@objc(VSMVirgilCryptoError) public enum VirgilCryptoError: Int, Error {
-    case signerNotFound = 1
-    case signatureNotFound = 2
-    case signatureNotVerified = 3
-    case unknownAlgId = 4
-    case rsaShouldBeConstructedDirectly = 5
-    case unsupportedRsaLength = 6
-    case keyDoesntSupportSigning = 7
-    case passedKeyIsNotVirgil = 8
+import VirgilCryptoAPI
+
+/// Adapter for PrivateKeyExporter protocol using VirgilCrypto
+@objc(VSMVirgilPrivateKeyExporter) open class VirgilPrivateKeyExporter: NSObject {
+    /// VirgilCrypto instance
+    @objc public let virgilCrypto: VirgilCrypto
+    
+    /// Init
+    ///
+    /// - Parameter virgilCrypto: VirgilCrypto
+    @objc public init(virgilCrypto: VirgilCrypto) {
+        self.virgilCrypto = virgilCrypto
+    }
+}
+
+// MARK: - Implementation of PrivateKeyExporter protocol
+extension VirgilPrivateKeyExporter: PrivateKeyExporter {
+    /// Exports private key to DER format
+    ///
+    /// - Parameters:
+    ///   - privateKey: Private key to be exported
+    /// - Returns: Exported private key in DER format
+    /// - Throws: Rethrows from VirgilCrypto.
+    ///           VirgilCryptoError.passedKeyIsNotVirgil if passed key is of wrong type
+    @objc open func exportPrivateKey(privateKey: PrivateKey) throws -> Data {
+        guard let privateKey = privateKey as? VirgilPrivateKey else {
+            throw VirgilCryptoError.passedKeyIsNotVirgil
+        }
+        
+        return try self.virgilCrypto.exportPrivateKey(privateKey)
+    }
+
+    /// Imports Private Key from DER or PEM format
+    ///
+    /// - Parameter data: Private key in DER or PEM format
+    /// - Returns: Imported private key
+    /// - Throws: Rethrows from VirgilCrypto
+    @objc open func importPrivateKey(from data: Data) throws -> PrivateKey {
+        return try self.virgilCrypto.importPrivateKey(from: data).privateKey
+    }
 }
