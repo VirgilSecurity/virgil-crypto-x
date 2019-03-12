@@ -38,7 +38,7 @@ import XCTest
 @testable import VirgilCrypto
 
 extension KeyPairType {
-    static func all() -> [KeyPairType] { return [.ed25519, .rsa2048, .rsa4096, .rsa8192] }
+    static func all() -> [KeyPairType] { return [.ed25519, .rsa2048 /*, .rsa4096, .rsa8192 */] }
 }
 
 class VirgilCryptoApiImplTests: XCTestCase {
@@ -123,5 +123,54 @@ class VirgilCryptoApiImplTests: XCTestCase {
             XCTFail()
         }
     }
+    
+    private func checkSignature(crypto: VirgilCrypto, keyPairType: KeyPairType) throws {
+        let data = UUID().uuidString.data(using: .utf8)!
+        
+        let keyPair = try crypto.generateKeyPair(ofType: keyPairType)
 
+        let signature = try crypto.generateSignature(of: data, using: keyPair.privateKey)
+        
+        XCTAssert(try! crypto.verifySignature(signature, of: data, with: keyPair.publicKey))
+    }
+
+    func test04__signature__some_data__should_verify() {
+        do {
+            let crypto = try VirgilCrypto()
+            
+            for keyType in KeyPairType.all() {
+                try self.checkSignature(crypto: crypto, keyPairType: keyType)
+            }
+        }
+        catch {
+            XCTFail()
+        }
+    }
+    
+    private func checkSignThenEncrypt(crypto: VirgilCrypto, keyPairType: KeyPairType) throws {
+        let data = UUID().uuidString.data(using: .utf8)!
+        
+        let keyPair1 = try crypto.generateKeyPair(ofType: keyPairType)
+        let keyPair2 = try crypto.generateKeyPair(ofType: keyPairType)
+        
+        let encrypted = try crypto.signThenEncrypt(data, with: keyPair1.privateKey, for: [keyPair1.publicKey, keyPair2.publicKey])
+        
+        let decrypted = try crypto.decryptThenVerify(encrypted, with: keyPair2.privateKey, usingOneOf: [keyPair1.publicKey, keyPair2.publicKey])
+        
+        XCTAssert(data == decrypted)
+    }
+    
+    // TODO: Add negative cases
+    func test05__sign_then_encrypt__some_data__should_decrypt_then_verify() {
+        do {
+            let crypto = try VirgilCrypto()
+            
+            for keyType in KeyPairType.all() {
+                try self.checkSignThenEncrypt(crypto: crypto, keyPairType: keyType)
+            }
+        }
+        catch {
+            XCTFail()
+        }
+    }
 }

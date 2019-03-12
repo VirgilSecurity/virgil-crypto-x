@@ -36,12 +36,15 @@
 
 import Foundation
 
+/// SHA algs
+///
+/// - sha224: sha224
+/// - sha256: sha256
+/// - sha384: sha384
+/// - sha512: sha512
 @objc(VSMHashAlgorithm) public enum HashAlgorithm: Int {
     case sha224
-
     case sha256
-
     case sha384
-
     case sha512
 }

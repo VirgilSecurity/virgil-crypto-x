@@ -39,17 +39,18 @@ import VirgilCryptoFoundation
 
 // MARK: - Extension for key management
 extension VirgilCrypto {
-    @objc open func importPrivateKey(from data: Data) throws -> VirgilPrivateKey {
+    /// Imports private key from DER or PEM format
+    ///
+    /// - Parameter data: Private key in DER or PEM format
+    /// - Returns: VirgilKeyPair
+    /// - Throws: Rethrows from KeyProvider
+    @objc open func importPrivateKey(from data: Data) throws -> VirgilKeyPair {
         let keyProvider = KeyProvider()
 
         keyProvider.setRandom(random: self.rng)
         try keyProvider.setupDefaults()
 
-        let err = ErrorCtx()
-
-        let privateKey = keyProvider.importPrivateKey(pkcs8Data: data, error: err)
-
-        try err.error()
+        let privateKey = try keyProvider.importPrivateKey(pkcs8Data: data)
 
         let keyType: KeyPairType
 
@@ -62,21 +63,22 @@ extension VirgilCrypto {
             case 8_192:
                 keyType = .rsa8192
             default:
-                throw NSError() // FIXME
+                throw VirgilCryptoError.unsupportedRsaLength
             }
         }
         else {
             keyType = try KeyPairType(from: privateKey.algId())
         }
 
-        let keyId = try self.computeKeyIdentifier(privateKey: privateKey)
+        let publicKey = privateKey.extractPublicKey()
 
-        return VirgilPrivateKey(identifier: keyId, privateKey: privateKey, keyType: keyType)
+        let keyId = try self.computePublicKeyIdentifier(publicKey: publicKey)
+
+        return VirgilKeyPair(privateKey: VirgilPrivateKey(identifier: keyId, privateKey: privateKey, keyType: keyType),
+                             publicKey: VirgilPublicKey(identifier: keyId, publicKey: publicKey, keyType: keyType))
     }
 
     /// Exports private key to DER foramt
-    ///
-    /// WARNING: Consider using export with password
     ///
     /// - Parameter privateKey: Private key to export
     /// - Returns: Private key in DER format
@@ -91,8 +93,7 @@ extension VirgilCrypto {
     ///
     /// - Parameter privateKey: Private key
     /// - Returns: Public Key that matches passed Private Key
-    /// - Throws: VirgilCryptoError.extractPublicKeyFailed, if extraction failed
-    @objc open func extractPublicKey(from privateKey: VirgilPrivateKey) throws -> VirgilPublicKey {
+    @objc open func extractPublicKey(from privateKey: VirgilPrivateKey) -> VirgilPublicKey {
         return VirgilPublicKey(identifier: privateKey.identifier,
                                publicKey: privateKey.privateKey.extractPublicKey(),
                                keyType: privateKey.keyType)
@@ -113,17 +114,13 @@ extension VirgilCrypto {
     ///
     /// - Parameter data: Public key in DER or PEM format
     /// - Returns: Imported Public Key
-    /// - Throws: VirgilCryptoError.publicKeyToDERFailed, if public key is corrupted and conversion to DER failed
+    /// - Throws: Rethrows from KeyProvider
     @objc open func importPublicKey(from data: Data) throws -> VirgilPublicKey {
         let keyProvider = KeyProvider()
         keyProvider.setRandom(random: self.rng)
         try keyProvider.setupDefaults()
 
-        let err = ErrorCtx()
-
-        let publicKey = keyProvider.importPublicKey(pkcs8Data: data, error: err)
-
-        try err.error()
+        let publicKey = try keyProvider.importPublicKey(pkcs8Data: data)
 
         let keyType: KeyPairType
 
@@ -136,14 +133,14 @@ extension VirgilCrypto {
             case 8_192:
                 keyType = .rsa8192
             default:
-                throw NSError() // FIXME
+                throw VirgilCryptoError.unsupportedRsaLength
             }
         }
         else {
             keyType = try KeyPairType(from: publicKey.algId())
         }
 
-        let keyId = try self.computeKeyIdentifier(publicKey: publicKey)
+        let keyId = try self.computePublicKeyIdentifier(publicKey: publicKey)
 
         return VirgilPublicKey(identifier: keyId, publicKey: publicKey, keyType: keyType)
     }

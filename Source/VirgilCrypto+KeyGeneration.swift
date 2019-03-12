@@ -37,19 +37,17 @@
 import Foundation
 import VirgilCryptoFoundation
 
+/// MARK: - Extension for key generation
 extension VirgilCrypto {
-    @objc open func computeKeyIdentifier(privateKey: VirgilCryptoFoundation.PrivateKey) throws -> Data {
-        return try self.computeKeyIdentifier(publicKey: privateKey.extractPublicKey())
-    }
-
-    /// Computes key identifiers
+    /// Computes public key identifier
     ///
     /// NOTE: Takes first 8 bytes of SHA512 of public key DER if useSHA256Fingerprints=false
     ///       and SHA256 of public key der if useSHA256Fingerprints=true
     ///
-    /// - Parameter publicKeyData: Public key data
+    /// - Parameter publicKey: PublicKey
     /// - Returns: Public key identifier
-    @objc open func computeKeyIdentifier(publicKey: VirgilCryptoFoundation.PublicKey) throws -> Data {
+    /// - Throws: Rethrows from Pkcs8DerSerializer
+    @objc open func computePublicKeyIdentifier(publicKey: VirgilCryptoFoundation.PublicKey) throws -> Data {
         let pkcs8DerSerializer = Pkcs8DerSerializer()
         try pkcs8DerSerializer.setupDefaults()
 
@@ -63,14 +61,20 @@ extension VirgilCrypto {
         }
     }
 
-    /// Generates KeyPair of given type
+    /// Generates KeyPair of default type
     ///
-    /// NOTE: If you need more than 1 keypair, consider using generateMultipleKeyPairs
+    /// - Returns: Generated KeyPair
+    /// - Throws: Rethrows from KeyPair
+    @objc open func generateKeyPair() throws -> VirgilKeyPair {
+        return try self.generateKeyPair(ofType: self.defaultKeyType)
+    }
+
+    /// Generates KeyPair of given type
     ///
     /// - Parameter type: KeyPair type
     /// - Returns: Generated KeyPair
     /// - Throws: Rethrows from KeyPair
-    @objc open func generateKeyPair(ofType type: KeyPairType = .ed25519) throws -> VirgilKeyPair {
+    @objc open func generateKeyPair(ofType type: KeyPairType) throws -> VirgilKeyPair {
         let keyProvider = KeyProvider()
 
         let rsaExponent = 65_537
@@ -91,15 +95,11 @@ extension VirgilCrypto {
 
         let algId = type.algId
 
-        let errorCtx = ErrorCtx()
-
-        let privateKey = keyProvider.generatePrivateKey(algId: algId, error: errorCtx)
-
-        try errorCtx.error()
+        let privateKey = try keyProvider.generatePrivateKey(algId: algId)
 
         let publicKey = privateKey.extractPublicKey()
 
-        let keyId = try self.computeKeyIdentifier(publicKey: publicKey)
+        let keyId = try self.computePublicKeyIdentifier(publicKey: publicKey)
 
         return VirgilKeyPair(privateKey: VirgilPrivateKey(identifier: keyId, privateKey: privateKey, keyType: type),
                              publicKey: VirgilPublicKey(identifier: keyId, publicKey: publicKey, keyType: type))
