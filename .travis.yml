@@ -11,7 +11,7 @@ env:
     - WATCHOS_SDK=watchsimulator5.1
     - CRYPTO_FRAMEWORK_NAME=VirgilCrypto
   matrix:
-    - DESTINATION=""                                         PREFIX=""         SDK=""              BUILD="0"  PUBLISH_CARTHAGE="YES"  PUBLISH_POD="YES"  PUBLISH_DOCS="YES"  SWIFT_LINT="YES"
+    - DESTINATION=""                                         PREFIX=""         SDK=""              BUILD="0"  PUBLISH_CARTHAGE="YES"  PUBLISH_POD="NO"  PUBLISH_DOCS="YES"  SWIFT_LINT="YES"
     - DESTINATION="OS=12.1,name=iPhone SE"                   PREFIX="iOS"      SDK="$IOS_SDK"      BUILD="2"  PUBLISH_CARTHAGE="NO"   PUBLISH_POD="NO"   PUBLISH_DOCS="NO"   SWIFT_LINT="NO"
     - DESTINATION="arch=x86_64"                              PREFIX="macOS"    SDK="$MACOS_SDK"    BUILD="2"  PUBLISH_CARTHAGE="NO"   PUBLISH_POD="NO"   PUBLISH_DOCS="NO"   SWIFT_LINT="NO"
     - DESTINATION="OS=12.1,name=Apple TV 4K"                 PREFIX="tvOS"     SDK="$TVOS_SDK"     BUILD="2"  PUBLISH_CARTHAGE="NO"   PUBLISH_POD="NO"   PUBLISH_DOCS="NO"   SWIFT_LINT="NO"
