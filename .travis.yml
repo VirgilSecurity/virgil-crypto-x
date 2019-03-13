@@ -13,7 +13,7 @@ env:
     - REPO=VirgilSecurity/virgil-crypto-x
     - REPO_PATH=https://github.com/VirgilSecurity/virgil-crypto-x.git
   matrix:
-    - DESTINATION=""                                         PREFIX=""         SDK=""              BUILD="0"  PUBLISH_CARTHAGE="YES"  CARTHAGE_PLATFORM_NAME=""         PUBLISH_POD="NO"  PUBLISH_DOCS="YES"  SWIFT_LINT="YES"
+    - DESTINATION=""                                         PREFIX=""         SDK=""              BUILD="0"  PUBLISH_CARTHAGE="YES"  CARTHAGE_PLATFORM_NAME="Mac"         PUBLISH_POD="NO"  PUBLISH_DOCS="YES"  SWIFT_LINT="YES"
     - DESTINATION="OS=12.1,name=iPhone SE"                   PREFIX="iOS"      SDK="$IOS_SDK"      BUILD="2"  PUBLISH_CARTHAGE="NO"   CARTHAGE_PLATFORM_NAME="iOS"      PUBLISH_POD="NO"  PUBLISH_DOCS="NO"   SWIFT_LINT="NO"
     - DESTINATION="arch=x86_64"                              PREFIX="macOS"    SDK="$MACOS_SDK"    BUILD="2"  PUBLISH_CARTHAGE="NO"   CARTHAGE_PLATFORM_NAME="Mac"      PUBLISH_POD="NO"  PUBLISH_DOCS="NO"   SWIFT_LINT="NO"
     - DESTINATION="OS=12.1,name=Apple TV 4K"                 PREFIX="tvOS"     SDK="$TVOS_SDK"     BUILD="2"  PUBLISH_CARTHAGE="NO"   CARTHAGE_PLATFORM_NAME="tvOS"     PUBLISH_POD="NO"  PUBLISH_DOCS="NO"   SWIFT_LINT="NO"
