@@ -43,7 +43,7 @@ extension KeyPairType {
         switch algId {
         case .ed25519:
             self = .ed25519
-        case .x25519:
+        case .curve25519:
             self = .curve25519
         case .rsa:
             throw VirgilCryptoError.rsaShouldBeConstructedDirectly
@@ -57,7 +57,7 @@ extension KeyPairType {
         case .ed25519:
             return .ed25519
         case .curve25519:
-            return .x25519
+            return .curve25519
         case .rsa2048, .rsa4096, .rsa8192:
             return .rsa
         }

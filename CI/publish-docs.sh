@@ -36,23 +36,19 @@
 #
 
 # Settings
-REPO_PATH=https://github.com/VirgilSecurity/virgil-crypto-x.git
-HTML_PATH_DST="${TRAVIS_BUILD_DIR}/docs"
-CHANGESET=$(git rev-parse --verify HEAD)
-
-# Get a clean version of the HTML documentation repo.
-rm -rf ${HTML_PATH_DST}
-mkdir -p ${HTML_PATH_DST}
-git clone -b gh-pages "${REPO_PATH}" --single-branch ${HTML_PATH_DST}
+DOCS_DIR="${TRAVIS_BUILD_DIR}/docs"
+rm -rf ${DOCS_DIR}
+mkdir -p ${DOCS_DIR}
+git clone -b gh-pages "${REPO_PATH}" --single-branch ${DOCS_DIR}
 
 INFOPLIST_FILE_PATH="${TRAVIS_BUILD_DIR}/VirgilCrypto/Info.plist"
 
 # Define SDK versions
 VIRGIL_SDK_VERSION="v"$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "${INFOPLIST_FILE_PATH}")
-VIRGIL_SDK_HTML_PATH_DST="${HTML_PATH_DST}/${VIRGIL_SDK_VERSION}"
+CURRENT_VERSION_DIR="${DOCS_DIR}/${VIRGIL_SDK_VERSION}"
 
 # Generate the HTML documentation.
-VIRGIL_SDK_HTML_PATH_DST=${VIRGIL_SDK_HTML_PATH_DST} ./CI/generate-docs.sh
+OUTPUT="${CURRENT_VERSION_DIR}" ${TRAVIS_BUILD_DIR}/CI/generate-docs.sh
 
 # Generate root HTML file
 function get_dir_names {
@@ -64,7 +60,7 @@ function get_dir_names {
     echo ${DIR_NAMES[*]}
 }
 
-cat >"${HTML_PATH_DST}/index.html" <<EOL
+cat >"${DOCS_DIR}/index.html" <<EOL
 <!DOCTYPE HTML>
 <html>
    <head>
@@ -76,11 +72,11 @@ cat >"${HTML_PATH_DST}/index.html" <<EOL
         <ul>
 EOL
 
-for dir in `get_dir_names "${VIRGIL_SDK_HTML_PATH_DST}/.." "v*"`; do
-    echo "<li><p><a href=\"${dir}/index.html\">${dir}</a></p></li>" >> "${HTML_PATH_DST}/index.html"
+for dir in `get_dir_names "${CURRENT_VERSION_DIR}/.." "v*"`; do
+    echo "<li><p><a href=\"${dir}/index.html\">${dir}</a></p></li>" >> "${DOCS_DIR}/index.html"
 done
 
-cat >>"${HTML_PATH_DST}/index.html" <<EOL
+cat >>"${DOCS_DIR}/index.html" <<EOL
         </ul>
    </body>
 </html>

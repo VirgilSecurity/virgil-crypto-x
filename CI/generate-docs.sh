@@ -5,6 +5,6 @@ jazzy \
 --author_url "https://virgilsecurity.com/" \
 --xcodebuild-arguments -scheme,"VirgilCrypto macOS" \
 --module "VirgilCrypto" \
---output "${VIRGIL_SDK_HTML_PATH_DST}" \
+--output "${OUTPUT}" \
 --hide-documentation-coverage \
 --theme apple
