@@ -10,6 +10,7 @@ env:
     - TVOS_SDK=appletvsimulator12.1
     - WATCHOS_SDK=watchsimulator5.1
     - CRYPTO_FRAMEWORK_NAME=VirgilCrypto
+    - REPO=VirgilSecurity/virgil-crypto-x
   matrix:
     - DESTINATION=""                                         PREFIX=""         SDK=""              BUILD="0"  PUBLISH_CARTHAGE="YES"  PUBLISH_POD="NO"  PUBLISH_DOCS="YES"  SWIFT_LINT="YES"
     - DESTINATION="OS=12.1,name=iPhone SE"                   PREFIX="iOS"      SDK="$IOS_SDK"      BUILD="2"  PUBLISH_CARTHAGE="NO"   PUBLISH_POD="NO"   PUBLISH_DOCS="NO"   SWIFT_LINT="NO"
@@ -20,11 +21,6 @@ env:
 before_install:
   - set -e
   - set -o pipefail
-  - brew update
-  - brew outdated carthage || brew upgrade carthage
-  - xcodebuild -version
-  - xcodebuild -showsdks
-  - instruments -s devices
 
 script:
   - carthage version
@@ -67,15 +63,16 @@ deploy:
       - "$CRYPTO_FRAMEWORK_NAME.framework.zip"
     skip_cleanup: true
     on:
-      repo: VirgilSecurity/virgil-crypto-x
+      repo: $REPO
       tags: true
       condition: $PUBLISH_CARTHAGE = "YES"
 
   - provider: script
     script: bash CI/publish-cocoapods.sh
     on:
+      repo: $REPO
       tags: true
-      condition: $PUBLISH_POD == "YES"
+      condition: $PUBLISH_POD == "YES" && $TRAVIS_TAG =~ ^[0-9]+\.[0-9]+\.[0-9]+
 
   # Upload docs to gh-pages
   # Broken
@@ -84,6 +81,6 @@ deploy:
   #   github-token: $GITHUB_ACCESS_TOKEN
   #   local_dir: "docs"
   #   on:
-  #     repo: VirgilSecurity/virgil-crypto-x
+  #     repo: $REPO
   #     tags: true
-  #     condition: $PUBLISH_DOCS = "YES"
+  #     condition: $PUBLISH_DOCS == "YES" && $TRAVIS_TAG =~ ^[0-9]+\.[0-9]+\.[0-9]+

@@ -35,31 +35,37 @@
 //
 
 import Foundation
-import VirgilCryptoFoundation
 
-// MARK: - Conversion extension
+// MARK: - RSA keys helper
 extension KeyPairType {
-    internal init(from algId: AlgId) throws {
-        switch algId {
-        case .ed25519:
-            self = .ed25519
-        case .x25519:
-            self = .curve25519
-        case .rsa:
-            throw VirgilCryptoError.rsaShouldBeConstructedDirectly
+    /// Returns rsa bit len if key is rsa, nil otherwise
+    public var rsaBitLen: Int? {
+        switch self {
+        case .rsa2048:
+            return 2_048
+        case .rsa4096:
+            return 4_096
+        case .rsa8192:
+            return 8_192
         default:
-            throw VirgilCryptoError.unknownAlgId
+            return nil
         }
     }
-
-    internal var algId: AlgId {
-        switch self {
-        case .ed25519:
-            return .ed25519
-        case .curve25519:
-            return .x25519
-        case .rsa2048, .rsa4096, .rsa8192:
-            return .rsa
+    
+    /// Initializes rsa key type using provided bit len
+    ///
+    /// - Parameter rsaBitLen: rsa bit len
+    /// - Throws: VirgilCryptoError.unsupportedRsaLength
+    public init(fromRsaBitLen rsaBitLen: Int) throws {
+        switch rsaBitLen {
+        case 2_048:
+            self = .rsa2048
+        case 4_096:
+            self = .rsa4096
+        case 8_192:
+            self = .rsa8192
+        default:
+            throw VirgilCryptoError.unsupportedRsaLength
         }
     }
 }

@@ -76,18 +76,9 @@ extension VirgilCrypto {
     /// - Throws: Rethrows from KeyPair
     @objc open func generateKeyPair(ofType type: KeyPairType) throws -> VirgilKeyPair {
         let keyProvider = KeyProvider()
-
-        let rsaExponent = 65_537
-
-        switch type {
-        case .rsa2048:
-            keyProvider.setRsaParams(bitlen: 2_048, exponent: rsaExponent)
-        case .rsa4096:
-            keyProvider.setRsaParams(bitlen: 4_096, exponent: rsaExponent)
-        case .rsa8192:
-            keyProvider.setRsaParams(bitlen: 8_192, exponent: rsaExponent)
-        default:
-            break
+        
+        if let rsaLen = type.rsaBitLen {
+            keyProvider.setRsaParams(bitlen: rsaLen, exponent: 65_537)
         }
 
         keyProvider.setRandom(random: self.rng)

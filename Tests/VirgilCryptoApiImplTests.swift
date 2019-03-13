@@ -37,10 +37,6 @@
 import XCTest
 @testable import VirgilCrypto
 
-extension KeyPairType {
-    static func all() -> [KeyPairType] { return [.ed25519, .rsa2048 /*, .rsa4096, .rsa8192 */] }
-}
-
 class VirgilCryptoApiImplTests: XCTestCase {
 
     override func setUp() {
@@ -61,7 +57,7 @@ class VirgilCryptoApiImplTests: XCTestCase {
         do {
             let crypto = try VirgilCrypto()
             
-            for keyType in KeyPairType.all() {
+            for keyType in [KeyPairType.curve25519, KeyPairType.ed25519, KeyPairType.rsa2048] {
                 try self.checkKeyGeneration(crypto: crypto, keyPairType: keyType)
             }
         }
@@ -90,7 +86,7 @@ class VirgilCryptoApiImplTests: XCTestCase {
         do {
             let crypto = try VirgilCrypto()
             
-            for keyType in KeyPairType.all() {
+            for keyType in [KeyPairType.curve25519, KeyPairType.ed25519, KeyPairType.rsa2048] {
                 try self.checkKeyImport(crypto: crypto, keyPairType: keyType)
             }
         }
@@ -115,7 +111,7 @@ class VirgilCryptoApiImplTests: XCTestCase {
         do {
             let crypto = try VirgilCrypto()
             
-            for keyType in KeyPairType.all() {
+            for keyType in [KeyPairType.curve25519, KeyPairType.ed25519, KeyPairType.rsa2048] {
                 try self.checkEncryption(crypto: crypto, keyPairType: keyType)
             }
         }
@@ -138,7 +134,7 @@ class VirgilCryptoApiImplTests: XCTestCase {
         do {
             let crypto = try VirgilCrypto()
             
-            for keyType in KeyPairType.all() {
+            for keyType in [KeyPairType.ed25519, KeyPairType.rsa2048] {
                 try self.checkSignature(crypto: crypto, keyPairType: keyType)
             }
         }
@@ -165,7 +161,7 @@ class VirgilCryptoApiImplTests: XCTestCase {
         do {
             let crypto = try VirgilCrypto()
             
-            for keyType in KeyPairType.all() {
+            for keyType in [KeyPairType.ed25519, KeyPairType.rsa2048] {
                 try self.checkSignThenEncrypt(crypto: crypto, keyPairType: keyType)
             }
         }
