@@ -44,6 +44,7 @@ import Foundation
 /// - rsa8192: rsa with 8192 length
 @objc(VSMKeyPairType) public enum KeyPairType: Int {
     case ed25519
+    case curve25519
     case rsa2048
     case rsa4096
     case rsa8192

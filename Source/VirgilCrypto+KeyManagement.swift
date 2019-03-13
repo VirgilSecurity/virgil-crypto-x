@@ -55,16 +55,7 @@ extension VirgilCrypto {
         let keyType: KeyPairType
 
         if privateKey.algId() == .rsa {
-            switch privateKey.keyBitlen() {
-            case 2_048:
-                keyType = .rsa2048
-            case 4_096:
-                keyType = .rsa4096
-            case 8_192:
-                keyType = .rsa8192
-            default:
-                throw VirgilCryptoError.unsupportedRsaLength
-            }
+            keyType = try KeyPairType(fromRsaBitLen: privateKey.keyBitlen())
         }
         else {
             keyType = try KeyPairType(from: privateKey.algId())
@@ -125,16 +116,7 @@ extension VirgilCrypto {
         let keyType: KeyPairType
 
         if publicKey.algId() == .rsa {
-            switch publicKey.keyBitlen() {
-            case 2_048:
-                keyType = .rsa2048
-            case 4_096:
-                keyType = .rsa4096
-            case 8_192:
-                keyType = .rsa8192
-            default:
-                throw VirgilCryptoError.unsupportedRsaLength
-            }
+            keyType = try KeyPairType(fromRsaBitLen: publicKey.keyBitlen())
         }
         else {
             keyType = try KeyPairType(from: publicKey.algId())
