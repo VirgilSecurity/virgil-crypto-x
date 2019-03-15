@@ -56,40 +56,42 @@ extension VirgilCrypto {
         guard let signHash = privateKey.privateKey as? SignHash else {
             throw VirgilCryptoError.keyDoesntSupportSigning
         }
-        
+
         let signer = Signer()
-        
+
         signer.setHash(hash: Sha512())
-        
+
         signer.reset()
-    
+
         if stream.streamStatus == .notOpen {
             stream.open()
         }
-        
+
         while stream.hasBytesAvailable {
             let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: VirgilCrypto.chunkSize)
             let actualReadLen = stream.read(buffer, maxLength: VirgilCrypto.chunkSize)
             defer {
                 buffer.deallocate()
             }
-            
+
             guard actualReadLen > 0 else {
                 if actualReadLen < 0 {
                     throw VirgilCryptoError.inputStreamError
                 }
-                
+
                 break
             }
-            
-            let data = Data(bytesNoCopy: UnsafeMutableRawPointer(buffer), count: actualReadLen, deallocator: Data.Deallocator.none)
-            
+
+            let data = Data(bytesNoCopy: UnsafeMutableRawPointer(buffer),
+                            count: actualReadLen,
+                            deallocator: Data.Deallocator.none)
+
             signer.update(data: data)
         }
 
         return try signer.sign(privateKey: signHash)
     }
-    
+
     /// Verifies digital signature of data stream
     ///
     /// Note: Verification algorithm depends on PublicKey type. Default: EdDSA
@@ -100,39 +102,41 @@ extension VirgilCrypto {
     ///   - publicKey: Signed public key
     /// - Returns: True if signature is verified, false otherwise
     @nonobjc open func verifyStreamSignature(_ signature: Data, of stream: InputStream,
-                                          with publicKey: VirgilPublicKey) throws -> Bool {
+                                             with publicKey: VirgilPublicKey) throws -> Bool {
         guard let verifyHash = publicKey.publicKey as? VerifyHash else {
             throw VirgilCryptoError.keyDoesntSupportSigning
         }
-        
+
         let verifier = Verifier()
-        
+
         try verifier.reset(signature: signature)
-        
+
         if stream.streamStatus == .notOpen {
             stream.open()
         }
-        
+
         while stream.hasBytesAvailable {
             let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: VirgilCrypto.chunkSize)
             let actualReadLen = stream.read(buffer, maxLength: VirgilCrypto.chunkSize)
             defer {
                 buffer.deallocate()
             }
-            
+
             guard actualReadLen > 0 else {
                 if actualReadLen < 0 {
                     throw VirgilCryptoError.inputStreamError
                 }
-                
+
                 break
             }
-            
-            let data = Data(bytesNoCopy: UnsafeMutableRawPointer(buffer), count: actualReadLen, deallocator: Data.Deallocator.none)
-            
+
+            let data = Data(bytesNoCopy: UnsafeMutableRawPointer(buffer),
+                            count: actualReadLen,
+                            deallocator: Data.Deallocator.none)
+
             verifier.update(data: data)
         }
-        
+
         return verifier.verify(publicKey: verifyHash)
     }
 
@@ -146,10 +150,12 @@ extension VirgilCrypto {
     ///   - publicKey: Signer public key
     /// - Returns: True if signature is verified, false otherwise
     @available(swift, obsoleted: 1.0)
-    @objc open func verifyStreamSignature_objc(_ signature: Data, of stream: InputStream, with publicKey: VirgilPublicKey) -> Bool {
+    @objc open func verifyStreamSignature_objc(_ signature: Data,
+                                               of stream: InputStream,
+                                               with publicKey: VirgilPublicKey) -> Bool {
         return (try? self.verifyStreamSignature(signature, of: stream, with: publicKey)) ?? false
     }
-    
+
     /// Encrypts data stream for passed PublicKeys
     ///
     /// 1. Generates random AES-256 KEY1
@@ -168,28 +174,28 @@ extension VirgilCrypto {
                             for recipients: [VirgilPublicKey]) throws {
         let aesGcm = Aes256Gcm()
         let cipher = RecipientCipher()
-        
+
         cipher.setEncryptionCipher(encryptionCipher: aesGcm)
         cipher.setRandom(random: self.rng)
-        
+
         recipients.forEach {
             cipher.addKeyRecipient(recipientId: $0.identifier, publicKey: $0.publicKey)
         }
-        
+
         try cipher.startEncryption()
-        
+
         let msgInfo = cipher.packMessageInfo()
-        
+
         var actualWriteLen = 0
-        
+
         if outputStream.streamStatus == .notOpen {
             outputStream.open()
         }
-        
+
         msgInfo.withUnsafeBytes { buffer in
             actualWriteLen = outputStream.write(buffer, maxLength: msgInfo.count)
         }
-        
+
         guard actualWriteLen == msgInfo.count else {
             throw VirgilCryptoError.outputStreamError
         }
@@ -197,47 +203,49 @@ extension VirgilCrypto {
         if stream.streamStatus == .notOpen {
             stream.open()
         }
-        
+
         while stream.hasBytesAvailable {
             let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: VirgilCrypto.chunkSize)
             let actualReadLen = stream.read(buffer, maxLength: VirgilCrypto.chunkSize)
             defer {
                 buffer.deallocate()
             }
-            
+
             guard actualReadLen > 0 else {
                 if actualReadLen < 0 {
                     throw VirgilCryptoError.inputStreamError
                 }
-                
+
                 break
             }
-            
-            let data = Data(bytesNoCopy: UnsafeMutableRawPointer(buffer), count: actualReadLen, deallocator: Data.Deallocator.none)
-            
+
+            let data = Data(bytesNoCopy: UnsafeMutableRawPointer(buffer),
+                            count: actualReadLen,
+                            deallocator: Data.Deallocator.none)
+
             let chunk = try cipher.processEncryption(data: data)
-            
+
             var actualWriteLen = 0
             chunk.withUnsafeBytes { buffer in
                 actualWriteLen = outputStream.write(buffer, maxLength: chunk.count)
             }
-            
+
             guard actualWriteLen == chunk.count else {
                 throw VirgilCryptoError.outputStreamError
             }
         }
-        
+
         let finish = try cipher.finishEncryption()
-        
+
         finish.withUnsafeBytes { buffer in
             actualWriteLen = outputStream.write(buffer, maxLength: finish.count)
         }
-        
+
         guard actualWriteLen == finish.count else {
             throw VirgilCryptoError.outputStreamError
         }
     }
-    
+
     /// Decrypts data stream using passed PrivateKey
     ///
     /// 1. Uses Diffie-Hellman to obtain shared secret with sender ephemeral public key & recipient's private key
@@ -252,58 +260,60 @@ extension VirgilCrypto {
     /// - Throws: Rethrows from ChunkCipher
     @objc open func decrypt(_ stream: InputStream, to outputStream: OutputStream,
                             with privateKey: VirgilPrivateKey) throws {
-        
+
         let cipher = RecipientCipher()
-        
+
         try cipher.startDecryptionWithKey(recipientId: privateKey.identifier,
                                           privateKey: privateKey.privateKey,
                                           messageInfo: Data())
-        
+
         if stream.streamStatus == .notOpen {
             stream.open()
         }
-        
+
         if outputStream.streamStatus == .notOpen {
             outputStream.open()
         }
-        
+
         while stream.hasBytesAvailable {
             let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: VirgilCrypto.chunkSize)
             let actualReadLen = stream.read(buffer, maxLength: VirgilCrypto.chunkSize)
             defer {
                 buffer.deallocate()
             }
-            
+
             guard actualReadLen > 0 else {
                 if actualReadLen < 0 {
                     throw VirgilCryptoError.inputStreamError
                 }
-                
+
                 break
             }
-            
-            let data = Data(bytesNoCopy: UnsafeMutableRawPointer(buffer), count: actualReadLen, deallocator: Data.Deallocator.none)
-            
+
+            let data = Data(bytesNoCopy: UnsafeMutableRawPointer(buffer),
+                            count: actualReadLen,
+                            deallocator: Data.Deallocator.none)
+
             let chunk = try cipher.processDecryption(data: data)
-            
+
             var actualWriteLen = 0
             chunk.withUnsafeBytes { buffer in
                 actualWriteLen = outputStream.write(buffer, maxLength: chunk.count)
             }
-            
+
             guard actualWriteLen == chunk.count else {
                 throw VirgilCryptoError.outputStreamError
             }
         }
-        
+
         let finish = try cipher.finishDecryption()
-        
+
         var actualWriteLen = 0
-        
+
         finish.withUnsafeBytes { buffer in
             actualWriteLen = outputStream.write(buffer, maxLength: finish.count)
         }
-        
+
         guard actualWriteLen == finish.count else {
             throw VirgilCryptoError.outputStreamError
         }

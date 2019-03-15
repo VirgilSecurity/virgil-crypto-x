@@ -49,7 +49,7 @@ extension KeyPairType {
             return nil
         }
     }
-    
+
     /// Initializes rsa key type using provided bit len
     ///
     /// - Parameter rsaBitLen: rsa bit len
