@@ -41,7 +41,7 @@ import VirgilCryptoAPI
 @objc(VSMVirgilPrivateKeyExporter) open class VirgilPrivateKeyExporter: NSObject {
     /// VirgilCrypto instance
     @objc public let virgilCrypto: VirgilCrypto
-    
+
     /// Init
     ///
     /// - Parameter virgilCrypto: VirgilCrypto
@@ -62,7 +62,7 @@ extension VirgilPrivateKeyExporter: PrivateKeyExporter {
         guard let privateKey = privateKey as? VirgilPrivateKey else {
             throw VirgilCryptoError.passedKeyIsNotVirgil
         }
-        
+
         return try self.virgilCrypto.exportPrivateKey(privateKey)
     }
 

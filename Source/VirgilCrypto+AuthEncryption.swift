@@ -152,7 +152,7 @@ extension VirgilCrypto {
 
         return result
     }
-    
+
     /// Decrypts (with private key) Then Verifies data using any of signers' PublicKeys
     ///
     /// 1. Uses Diffie-Hellman to obtain shared secret with sender ephemeral public key & recipient's private key

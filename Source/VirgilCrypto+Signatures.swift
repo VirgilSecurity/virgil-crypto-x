@@ -77,7 +77,9 @@ extension VirgilCrypto {
     ///   - publicKey: Signer public key
     /// - Returns: True if signature is verified, false otherwise
     /// - Throws: VirgilCryptoError.keyDoesntSupportSigning
-    @nonobjc open func verifySignature(_ signature: Data, of data: Data, with publicKey: VirgilPublicKey) throws -> Bool {
+    @nonobjc open func verifySignature(_ signature: Data,
+                                       of data: Data,
+                                       with publicKey: VirgilPublicKey) throws -> Bool {
         guard let verifyHash = publicKey.publicKey as? VerifyHash else {
             throw VirgilCryptoError.keyDoesntSupportSigning
         }
@@ -90,7 +92,7 @@ extension VirgilCrypto {
 
         return verifier.verify(publicKey: verifyHash)
     }
-    
+
     /// Verifies digital signature of data
     ///
     /// - Note: Verification algorithm depends on PublicKey type. Default: EdDSA for ed25519 key
