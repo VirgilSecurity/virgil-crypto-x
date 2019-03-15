@@ -53,6 +53,9 @@ import VirgilCryptoAPI
 
     /// Default key type used to generate keys.
     @objc public let defaultKeyType: KeyPairType
+    
+    /// Size of one chunk for stream operations
+    @objc public static let chunkSize = 1_024
 
     /// Init
     ///

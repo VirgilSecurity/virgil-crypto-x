@@ -44,6 +44,13 @@
 		4233A466223B8E200086E09F /* crypto_compatibility_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 4233A458223B8E200086E09F /* crypto_compatibility_data.json */; };
 		4233A467223B8E200086E09F /* crypto_compatibility_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 4233A458223B8E200086E09F /* crypto_compatibility_data.json */; };
 		4233A469223B8FE70086E09F /* VSM003_CryptoFormatsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4233A453223B8E200086E09F /* VSM003_CryptoFormatsTests.swift */; };
+		4233A46C223BBB430086E09F /* VirgilCrypto+Streams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4233A46B223BBB430086E09F /* VirgilCrypto+Streams.swift */; };
+		4233A46D223BBB430086E09F /* VirgilCrypto+Streams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4233A46B223BBB430086E09F /* VirgilCrypto+Streams.swift */; };
+		4233A46E223BBB430086E09F /* VirgilCrypto+Streams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4233A46B223BBB430086E09F /* VirgilCrypto+Streams.swift */; };
+		4233A46F223BBB430086E09F /* VirgilCrypto+Streams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4233A46B223BBB430086E09F /* VirgilCrypto+Streams.swift */; };
+		4233A475223BBD620086E09F /* testData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4233A470223BBD600086E09F /* testData.txt */; };
+		4233A476223BBD630086E09F /* testData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4233A470223BBD600086E09F /* testData.txt */; };
+		4233A477223BBD640086E09F /* testData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4233A470223BBD600086E09F /* testData.txt */; };
 		423D3E55222D3E34006C7E4C /* VirgilCrypto+Encryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423D3E54222D3E34006C7E4C /* VirgilCrypto+Encryption.swift */; };
 		423D3E56222D3E34006C7E4C /* VirgilCrypto+Encryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423D3E54222D3E34006C7E4C /* VirgilCrypto+Encryption.swift */; };
 		423D3E57222D3E34006C7E4C /* VirgilCrypto+Encryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423D3E54222D3E34006C7E4C /* VirgilCrypto+Encryption.swift */; };
@@ -251,6 +258,8 @@
 		4233A453223B8E200086E09F /* VSM003_CryptoFormatsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSM003_CryptoFormatsTests.swift; sourceTree = "<group>"; };
 		4233A455223B8E200086E09F /* VSM002_CryptoCompatibilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSM002_CryptoCompatibilityTests.swift; sourceTree = "<group>"; };
 		4233A458223B8E200086E09F /* crypto_compatibility_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = crypto_compatibility_data.json; sourceTree = "<group>"; };
+		4233A46B223BBB430086E09F /* VirgilCrypto+Streams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VirgilCrypto+Streams.swift"; sourceTree = "<group>"; };
+		4233A470223BBD600086E09F /* testData.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testData.txt; sourceTree = "<group>"; };
 		423D3E54222D3E34006C7E4C /* VirgilCrypto+Encryption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VirgilCrypto+Encryption.swift"; sourceTree = "<group>"; };
 		423E13C8223903E6004E3D4C /* KeyPairType+RSA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyPairType+RSA.swift"; sourceTree = "<group>"; };
 		424A7FB221F23135006BED3F /* VirgilCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -374,6 +383,7 @@
 				423D3E54222D3E34006C7E4C /* VirgilCrypto+Encryption.swift */,
 				424ACC5C22311FDD00DD5072 /* VirgilCrypto+Signatures.swift */,
 				424ACC832237989000DD5072 /* VirgilCrypto+AuthEncryption.swift */,
+				4233A46B223BBB430086E09F /* VirgilCrypto+Streams.swift */,
 				424ACC8822379A5A00DD5072 /* VirgilCryptoError.swift */,
 				425ED5E522203E49008B84F0 /* VirgilPrivateKey.swift */,
 				425ED5EA22203EAC008B84F0 /* VirgilPublicKey.swift */,
@@ -385,6 +395,7 @@
 		4233A456223B8E200086E09F /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				4233A470223BBD600086E09F /* testData.txt */,
 				4233A458223B8E200086E09F /* crypto_compatibility_data.json */,
 			);
 			path = Data;
@@ -712,6 +723,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4233A476223BBD630086E09F /* testData.txt in Resources */,
 				4233A466223B8E200086E09F /* crypto_compatibility_data.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -727,6 +739,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4233A477223BBD640086E09F /* testData.txt in Resources */,
 				4233A467223B8E200086E09F /* crypto_compatibility_data.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -749,6 +762,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4233A475223BBD620086E09F /* testData.txt in Resources */,
 				4233A465223B8E200086E09F /* crypto_compatibility_data.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -773,6 +787,7 @@
 				424ACC8A22379A5A00DD5072 /* VirgilCryptoError.swift in Sources */,
 				425ED609222056F4008B84F0 /* VirgilCrypto+KeyManagement.swift in Sources */,
 				424ACC922237AB7A00DD5072 /* VirgilCardCrypto.swift in Sources */,
+				4233A46D223BBB430086E09F /* VirgilCrypto+Streams.swift in Sources */,
 				425ED5E722203E49008B84F0 /* VirgilPrivateKey.swift in Sources */,
 				424ACC5922300B7900DD5072 /* KeyPairType+Convert.swift in Sources */,
 				420DE7DE21FB398500B06435 /* VirgilCrypto.swift in Sources */,
@@ -807,6 +822,7 @@
 				424ACC8B22379A5A00DD5072 /* VirgilCryptoError.swift in Sources */,
 				425ED60A222056F4008B84F0 /* VirgilCrypto+KeyManagement.swift in Sources */,
 				424ACC932237AB7A00DD5072 /* VirgilCardCrypto.swift in Sources */,
+				4233A46E223BBB430086E09F /* VirgilCrypto+Streams.swift in Sources */,
 				425ED5E822203E49008B84F0 /* VirgilPrivateKey.swift in Sources */,
 				424ACC5A22300B7900DD5072 /* KeyPairType+Convert.swift in Sources */,
 				420DE7DF21FB398600B06435 /* VirgilCrypto.swift in Sources */,
@@ -841,6 +857,7 @@
 				424ACC8C22379A5A00DD5072 /* VirgilCryptoError.swift in Sources */,
 				425ED60B222056F5008B84F0 /* VirgilCrypto+KeyManagement.swift in Sources */,
 				424ACC942237AB7A00DD5072 /* VirgilCardCrypto.swift in Sources */,
+				4233A46F223BBB430086E09F /* VirgilCrypto+Streams.swift in Sources */,
 				425ED5E922203E49008B84F0 /* VirgilPrivateKey.swift in Sources */,
 				424ACC5B22300B7900DD5072 /* KeyPairType+Convert.swift in Sources */,
 				420DE7E021FB398600B06435 /* VirgilCrypto.swift in Sources */,
@@ -865,6 +882,7 @@
 				424ACC8922379A5A00DD5072 /* VirgilCryptoError.swift in Sources */,
 				425ED608222056F3008B84F0 /* VirgilCrypto+KeyManagement.swift in Sources */,
 				424ACC912237AB7A00DD5072 /* VirgilCardCrypto.swift in Sources */,
+				4233A46C223BBB430086E09F /* VirgilCrypto+Streams.swift in Sources */,
 				425ED5E622203E49008B84F0 /* VirgilPrivateKey.swift in Sources */,
 				424ACC5822300B7900DD5072 /* KeyPairType+Convert.swift in Sources */,
 				420DE79821FB365600B06435 /* VirgilCrypto.swift in Sources */,
