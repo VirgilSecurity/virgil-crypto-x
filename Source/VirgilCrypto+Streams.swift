@@ -41,10 +41,10 @@ import VirgilCryptoFoundation
 extension VirgilCrypto {
     /// Generates digital signature of data stream using private key
     ///
-    /// NOTE: Returned value contains only digital signature, not data itself.
+    /// - Note: Returned value contains only digital signature, not data itself.
     ///
-    /// NOTE: Data inside this function is guaranteed to be hashed with SHA512 at least one time.
-    ///       It's secure to pass raw data here.
+    /// - Note: Data inside this function is guaranteed to be hashed with SHA512 at least one time.
+    ///         It's secure to pass raw data here.
     ///
     /// - Parameters:
     ///   - stream: Data stream to sign
@@ -98,7 +98,7 @@ extension VirgilCrypto {
     ///   - signature: Digital signature
     ///   - stream: Data stream that was signed
     ///   - publicKey: Signed public key
-    /// - Returns: True if signature is verified, else - otherwise
+    /// - Returns: True if signature is verified, false otherwise
     @nonobjc open func verifyStreamSignature(_ signature: Data, of stream: InputStream,
                                           with publicKey: VirgilPublicKey) throws -> Bool {
         guard let verifyHash = publicKey.publicKey as? VerifyHash else {
@@ -138,13 +138,13 @@ extension VirgilCrypto {
 
     /// Verifies digital signature of data
     ///
-    /// NOTE: Verification algorithm depends on PublicKey type. Default: EdDSA for ed25519 key
+    /// - Note: Verification algorithm depends on PublicKey type. Default: EdDSA for ed25519 key
     ///
     /// - Parameters:
     ///   - signature: Digital signature
     ///   - data: Data that was signed
     ///   - publicKey: Signer public key
-    /// - Returns: True if signature is verified, else - otherwise
+    /// - Returns: True if signature is verified, false otherwise
     @available(swift, obsoleted: 1.0)
     @objc open func verifyStreamSignature_objc(_ signature: Data, of stream: InputStream, with publicKey: VirgilPublicKey) -> Bool {
         return (try? self.verifyStreamSignature(signature, of: stream, with: publicKey)) ?? false
