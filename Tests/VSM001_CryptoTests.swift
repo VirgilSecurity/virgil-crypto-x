@@ -190,4 +190,33 @@ class VSM001_CryptoTests: XCTestCase {
             XCTFail()
         }
     }
+    
+    private func checkSteamSign(crypto: VirgilCrypto, keyPairType: KeyPairType) throws {
+        let keyPair1 = try crypto.generateKeyPair(ofType: keyPairType)
+        let keyPair2 = try crypto.generateKeyPair(ofType: keyPairType)
+        
+        let testFileURL = Bundle(for: type(of: self)).url(forResource: "testData", withExtension: "txt")!
+        let inputStream = InputStream(url: testFileURL)!
+        
+        let signature = try crypto.generateStreamSignature(of: inputStream, using: keyPair1.privateKey)
+        
+        let verifyStream1 = InputStream(url: testFileURL)!
+        let verifyStream2 = InputStream(url: testFileURL)!
+
+        XCTAssert(try! crypto.verifyStreamSignature(signature, of: verifyStream1, with: keyPair1.publicKey))
+        XCTAssert(!(try! crypto.verifyStreamSignature(signature, of: verifyStream2, with: keyPair2.publicKey)))
+    }
+    
+    func test06__sign_stream__file__should_verify() {
+        do {
+            let crypto = try VirgilCrypto()
+            
+            for keyType in [KeyPairType.ed25519, KeyPairType.rsa2048] {
+                try self.checkSignThenEncrypt(crypto: crypto, keyPairType: keyType)
+            }
+        }
+        catch {
+            XCTFail()
+        }
+    }
 }
