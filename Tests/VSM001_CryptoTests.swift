@@ -35,7 +35,7 @@
 //
 
 import XCTest
-@testable import VirgilCrypto
+import VirgilCrypto
 
 class VSM001_CryptoTests: XCTestCase {
 

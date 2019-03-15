@@ -40,7 +40,7 @@ import Foundation
 ///
 /// - signerNotFound: signer not found
 /// - signatureNotFound: signature not found
-/// - signatureNotVerified: signature not verifier
+/// - signatureNotVerified: signature not verified
 /// - unknownAlgId: unknown alg id
 /// - rsaShouldBeConstructedDirectly: rsa should be constructed directly
 /// - unsupportedRsaLength: unsupported rsa length

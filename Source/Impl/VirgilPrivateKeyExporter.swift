@@ -35,7 +35,6 @@
 //
 
 import Foundation
-
 import VirgilCryptoAPI
 
 /// Adapter for PrivateKeyExporter protocol using VirgilCrypto
@@ -55,8 +54,7 @@ import VirgilCryptoAPI
 extension VirgilPrivateKeyExporter: PrivateKeyExporter {
     /// Exports private key to DER format
     ///
-    /// - Parameters:
-    ///   - privateKey: Private key to be exported
+    /// - Parameter privateKey: Private key to be exported
     /// - Returns: Exported private key in DER format
     /// - Throws: Rethrows from VirgilCrypto.
     ///           VirgilCryptoError.passedKeyIsNotVirgil if passed key is of wrong type

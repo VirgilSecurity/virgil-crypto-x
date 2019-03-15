@@ -70,7 +70,7 @@ extension VirgilAccessTokenSigner: AccessTokenSigner {
         return try self.virgilCrypto.generateSignature(of: token, using: privateKey)
     }
 
-    /// Verifies token's signature.
+    /// Verifies token's signature
     ///
     /// - Parameters:
     ///   - signature: Digital signature

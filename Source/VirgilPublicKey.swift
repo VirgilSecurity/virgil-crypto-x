@@ -34,13 +34,11 @@
 // Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
 //
 
-import Foundation
 import VirgilCryptoFoundation
 import VirgilCryptoAPI
 
 /// Class represents public key of any type, with identifier
 @objc(VSMVirgilPublicKey) public class VirgilPublicKey: NSObject, VirgilCryptoAPI.PublicKey {
-
     /// Key id
     @objc public let identifier: Data
 
@@ -50,7 +48,7 @@ import VirgilCryptoAPI
     /// Key type
     @objc public let keyType: KeyPairType
 
-    /// Init
+    /// Initializer
     ///
     /// - Parameters:
     ///   - identifier: Key id

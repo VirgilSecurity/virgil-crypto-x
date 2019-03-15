@@ -34,8 +34,6 @@
 // Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
 //
 
-import Foundation
-
 // MARK: - RSA keys helper
 extension KeyPairType {
     /// Returns rsa bit len if key is rsa, nil otherwise
