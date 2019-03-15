@@ -284,17 +284,13 @@
 		425ED5FE222055F1008B84F0 /* KeyPairType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPairType.swift; sourceTree = "<group>"; };
 		425ED60322205607008B84F0 /* HashAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashAlgorithm.swift; sourceTree = "<group>"; };
 		42D91CC221FB770800632073 /* VirgilCryptoAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoAPI.framework; path = Carthage/Build/iOS/VirgilCryptoAPI.framework; sourceTree = "<group>"; };
-		42D91CC321FB770800632073 /* VirgilCryptoCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoCommon.framework; path = Carthage/Build/iOS/VirgilCryptoCommon.framework; sourceTree = "<group>"; };
 		42D91CC421FB770800632073 /* VirgilCryptoFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoFoundation.framework; path = Carthage/Build/iOS/VirgilCryptoFoundation.framework; sourceTree = "<group>"; };
 		42D91CCA21FB771B00632073 /* VirgilCryptoAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoAPI.framework; path = Carthage/Build/Mac/VirgilCryptoAPI.framework; sourceTree = "<group>"; };
-		42D91CCB21FB771B00632073 /* VirgilCryptoCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoCommon.framework; path = Carthage/Build/Mac/VirgilCryptoCommon.framework; sourceTree = "<group>"; };
 		42D91CCC21FB771B00632073 /* VirgilCryptoFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoFoundation.framework; path = Carthage/Build/Mac/VirgilCryptoFoundation.framework; sourceTree = "<group>"; };
 		42D91CD221FB772C00632073 /* VirgilCryptoAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoAPI.framework; path = Carthage/Build/tvOS/VirgilCryptoAPI.framework; sourceTree = "<group>"; };
 		42D91CD321FB772C00632073 /* VirgilCryptoFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoFoundation.framework; path = Carthage/Build/tvOS/VirgilCryptoFoundation.framework; sourceTree = "<group>"; };
-		42D91CD421FB772C00632073 /* VirgilCryptoCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoCommon.framework; path = Carthage/Build/tvOS/VirgilCryptoCommon.framework; sourceTree = "<group>"; };
 		42D91CDA21FB773D00632073 /* VirgilCryptoAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoAPI.framework; path = Carthage/Build/watchOS/VirgilCryptoAPI.framework; sourceTree = "<group>"; };
 		42D91CDB21FB773D00632073 /* VirgilCryptoFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoFoundation.framework; path = Carthage/Build/watchOS/VirgilCryptoFoundation.framework; sourceTree = "<group>"; };
-		42D91CDC21FB773D00632073 /* VirgilCryptoCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoCommon.framework; path = Carthage/Build/watchOS/VirgilCryptoCommon.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -460,12 +456,8 @@
 			isa = PBXGroup;
 			children = (
 				42D91CC221FB770800632073 /* VirgilCryptoAPI.framework */,
-				42D91CC321FB770800632073 /* VirgilCryptoCommon.framework */,
-				42D91CD421FB772C00632073 /* VirgilCryptoCommon.framework */,
-				42D91CDC21FB773D00632073 /* VirgilCryptoCommon.framework */,
 				42D91CC421FB770800632073 /* VirgilCryptoFoundation.framework */,
 				42D91CCA21FB771B00632073 /* VirgilCryptoAPI.framework */,
-				42D91CCB21FB771B00632073 /* VirgilCryptoCommon.framework */,
 				42D91CCC21FB771B00632073 /* VirgilCryptoFoundation.framework */,
 				42D91CD221FB772C00632073 /* VirgilCryptoAPI.framework */,
 				42D91CD321FB772C00632073 /* VirgilCryptoFoundation.framework */,
