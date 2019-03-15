@@ -37,7 +37,7 @@
 import XCTest
 @testable import VirgilCrypto
 
-class VirgilCryptoApiImplTests: XCTestCase {
+class VSM001_CryptoTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -96,15 +96,22 @@ class VirgilCryptoApiImplTests: XCTestCase {
     }
     
     private func checkEncryption(crypto: VirgilCrypto, keyPairType: KeyPairType) throws {
-        let keyPair = try crypto.generateKeyPair(ofType: keyPairType)
+        let keyPair1 = try crypto.generateKeyPair(ofType: keyPairType)
+        let keyPair2 = try crypto.generateKeyPair(ofType: keyPairType)
         
         let data = UUID().uuidString.data(using: .utf8)!
         
-        let encryptedData = try crypto.encrypt(data, for: [keyPair.publicKey])
+        let encryptedData = try crypto.encrypt(data, for: [keyPair1.publicKey])
         
-        let decryptedData = try crypto.decrypt(encryptedData, with: keyPair.privateKey)
+        let decryptedData = try crypto.decrypt(encryptedData, with: keyPair1.privateKey)
         
         XCTAssert(data == decryptedData)
+        
+        do {
+            _ = try crypto.decrypt(encryptedData, with: keyPair2.privateKey)
+            XCTFail()
+        }
+        catch { }
     }
     
     func test03__encryption__some_data__should_match() {
@@ -121,13 +128,15 @@ class VirgilCryptoApiImplTests: XCTestCase {
     }
     
     private func checkSignature(crypto: VirgilCrypto, keyPairType: KeyPairType) throws {
+        let keyPair1 = try crypto.generateKeyPair(ofType: keyPairType)
+        let keyPair2 = try crypto.generateKeyPair(ofType: keyPairType)
+        
         let data = UUID().uuidString.data(using: .utf8)!
-        
-        let keyPair = try crypto.generateKeyPair(ofType: keyPairType)
 
-        let signature = try crypto.generateSignature(of: data, using: keyPair.privateKey)
+        let signature = try crypto.generateSignature(of: data, using: keyPair1.privateKey)
         
-        XCTAssert(try! crypto.verifySignature(signature, of: data, with: keyPair.publicKey))
+        XCTAssert(try! crypto.verifySignature(signature, of: data, with: keyPair1.publicKey))
+        XCTAssert(!(try! crypto.verifySignature(signature, of: data, with: keyPair2.publicKey)))
     }
 
     func test04__signature__some_data__should_verify() {
@@ -148,15 +157,27 @@ class VirgilCryptoApiImplTests: XCTestCase {
         
         let keyPair1 = try crypto.generateKeyPair(ofType: keyPairType)
         let keyPair2 = try crypto.generateKeyPair(ofType: keyPairType)
+        let keyPair3 = try crypto.generateKeyPair(ofType: keyPairType)
         
         let encrypted = try crypto.signThenEncrypt(data, with: keyPair1.privateKey, for: [keyPair1.publicKey, keyPair2.publicKey])
         
         let decrypted = try crypto.decryptThenVerify(encrypted, with: keyPair2.privateKey, usingOneOf: [keyPair1.publicKey, keyPair2.publicKey])
         
         XCTAssert(data == decrypted)
+        
+        do {
+             _ = try crypto.decryptThenVerify(encrypted, with: keyPair3.privateKey, usingOneOf: [keyPair1.publicKey, keyPair2.publicKey])
+            XCTFail()
+        }
+        catch { }
+        
+        do {
+            _ = try crypto.decryptThenVerify(encrypted, with: keyPair2.privateKey, usingOneOf: [keyPair3.publicKey])
+            XCTFail()
+        }
+        catch { }
     }
     
-    // TODO: Add negative cases
     func test05__sign_then_encrypt__some_data__should_decrypt_then_verify() {
         do {
             let crypto = try VirgilCrypto()
