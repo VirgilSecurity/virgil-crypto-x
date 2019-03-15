@@ -34,7 +34,6 @@
 // Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
 //
 
-import Foundation
 import VirgilCryptoFoundation
 
 /// MARK: - Extension for assymetric encryption/decryption
@@ -59,9 +58,9 @@ extension VirgilCrypto {
     ///
     /// - Parameters:
     ///   - data: Data to be encrypted
-    ///   - recipients: Recipients
+    ///   - recipients: Public Keys of recipients
     /// - Returns: Encrypted data
-    /// - Throws: Rethrows from Cipher class
+    /// - Throws: Rethrows from RecipientCipher
     @objc open func encrypt(_ data: Data, for recipients: [VirgilPublicKey]) throws -> Data {
         let aesGcm = Aes256Gcm()
         let cipher = RecipientCipher()
@@ -95,7 +94,7 @@ extension VirgilCrypto {
     ///   - data: Encrypted data
     ///   - privateKey: Recipient's private key
     /// - Returns: Decrypted data
-    /// - Throws: Rethrows from Cipher
+    /// - Throws: Rethrows from RecipientCipher
     @objc open func decrypt(_ data: Data, with privateKey: VirgilPrivateKey) throws -> Data {
         let cipher = RecipientCipher()
 

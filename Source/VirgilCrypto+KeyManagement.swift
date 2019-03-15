@@ -34,7 +34,6 @@
 // Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
 //
 
-import Foundation
 import VirgilCryptoFoundation
 
 // MARK: - Extension for key management
@@ -43,7 +42,7 @@ extension VirgilCrypto {
     ///
     /// - Parameter data: Private key in DER or PEM format
     /// - Returns: VirgilKeyPair
-    /// - Throws: Rethrows from KeyProvider
+    /// - Throws: Rethrows from KeyProvider, Pkcs8DerSerializer
     @objc open func importPrivateKey(from data: Data) throws -> VirgilKeyPair {
         let keyProvider = KeyProvider()
 
@@ -73,6 +72,7 @@ extension VirgilCrypto {
     ///
     /// - Parameter privateKey: Private key to export
     /// - Returns: Private key in DER format
+    /// - Throws: Rethrows from Pkcs8DerSerializer
     @objc open func exportPrivateKey(_ privateKey: VirgilPrivateKey) throws -> Data {
         let pkcs8DerSerializer = Pkcs8DerSerializer()
         try pkcs8DerSerializer.setupDefaults()
@@ -94,6 +94,7 @@ extension VirgilCrypto {
     ///
     /// - Parameter publicKey: PublicKey to export
     /// - Returns: Exported public key in DER format
+    /// - Throws: Rethrows from Pkcs8DerSerializer
     @objc open func exportPublicKey(_ publicKey: VirgilPublicKey) throws -> Data {
         let pkcs8DerSerializer = Pkcs8DerSerializer()
         try pkcs8DerSerializer.setupDefaults()
@@ -105,7 +106,7 @@ extension VirgilCrypto {
     ///
     /// - Parameter data: Public key in DER or PEM format
     /// - Returns: Imported Public Key
-    /// - Throws: Rethrows from KeyProvider
+    /// - Throws: Rethrows from KeyProvider, Pkcs8DerSerializer
     @objc open func importPublicKey(from data: Data) throws -> VirgilPublicKey {
         let keyProvider = KeyProvider()
         keyProvider.setRandom(random: self.rng)

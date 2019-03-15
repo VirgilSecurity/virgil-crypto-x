@@ -34,20 +34,18 @@
 // Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
 //
 
-import Foundation
 import VirgilCryptoFoundation
-import VSCFoundation
 
 /// MARK: - Extension for assymetric signing/verification
 extension VirgilCrypto {
     /// Generates digital signature of data using private key
     ///
-    /// NOTE: Returned value contains only digital signature, not data itself.
+    /// - Note: Returned value contains only digital signature, not data itself.
     ///
-    /// NOTE: Data inside this function is guaranteed to be hashed with SHA512 at least one time.
-    ///       It's secure to pass raw data here.
+    /// - Note: Data inside this function is guaranteed to be hashed with SHA512 at least one time.
+    ///         It's secure to pass raw data here.
     ///
-    /// Note: Verification algorithm depends on PrivateKey type. Default: EdDSA for ed25519 key
+    /// - Note: Verification algorithm depends on PrivateKey type. Default: EdDSA for ed25519 key
     ///
     /// - Parameters:
     ///   - data: Data to sign
@@ -71,13 +69,13 @@ extension VirgilCrypto {
 
     /// Verifies digital signature of data
     ///
-    /// NOTE: Verification algorithm depends on PublicKey type. Default: EdDSA for ed25519 key
+    /// - Note: Verification algorithm depends on PublicKey type. Default: EdDSA for ed25519 key
     ///
     /// - Parameters:
     ///   - signature: Digital signature
     ///   - data: Data that was signed
     ///   - publicKey: Signer public key
-    /// - Returns: True if signature is verified, else - otherwise
+    /// - Returns: True if signature is verified, false otherwise
     /// - Throws: VirgilCryptoError.keyDoesntSupportSigning
     @nonobjc open func verifySignature(_ signature: Data, of data: Data, with publicKey: VirgilPublicKey) throws -> Bool {
         guard let verifyHash = publicKey.publicKey as? VerifyHash else {
@@ -95,7 +93,7 @@ extension VirgilCrypto {
     
     /// Verifies digital signature of data
     ///
-    /// NOTE: Verification algorithm depends on PublicKey type. Default: EdDSA for ed25519 key
+    /// - Note: Verification algorithm depends on PublicKey type. Default: EdDSA for ed25519 key
     ///
     /// - Parameters:
     ///   - signature: Digital signature

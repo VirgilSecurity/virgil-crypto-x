@@ -70,7 +70,7 @@ extension VirgilCardCrypto: CardCrypto {
         return try self.virgilCrypto.generateSignature(of: data, using: privateKey)
     }
 
-    /// Verifies digital signature.
+    /// Verifies digital signature
     ///
     /// - Parameters:
     ///   - signature: Digital signature data
@@ -85,7 +85,7 @@ extension VirgilCardCrypto: CardCrypto {
         return (try? self.virgilCrypto.verifySignature(signature, of: data, with: publicKey)) ?? false
     }
 
-    /// Computes SHA-512.
+    /// Computes SHA-512
     ///
     /// - Parameter data: Data to be hashed
     /// - Returns: Resulting hash value
@@ -107,7 +107,8 @@ extension VirgilCardCrypto: CardCrypto {
     ///
     /// - Parameter publicKey: Public key to be exported
     /// - Returns: Public key in DER format
-    /// - Throws: VirgilCryptoError.passedKeyIsNotVirgil if passed key is of wrong type
+    /// - Throws: Rethrows from VirgilCrypto.
+    ///           VirgilCryptoError.passedKeyIsNotVirgil if passed key is of wrong type
     public func exportPublicKey(_ publicKey: PublicKey) throws -> Data {
         guard let publicKey = publicKey as? VirgilPublicKey else {
             throw VirgilCryptoError.passedKeyIsNotVirgil
