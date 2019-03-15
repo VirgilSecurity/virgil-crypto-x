@@ -191,7 +191,7 @@ class VSM001_CryptoTests: XCTestCase {
         }
     }
     
-    private func checkSteamSign(crypto: VirgilCrypto, keyPairType: KeyPairType) throws {
+    private func checkStreamSign(crypto: VirgilCrypto, keyPairType: KeyPairType) throws {
         let keyPair1 = try crypto.generateKeyPair(ofType: keyPairType)
         let keyPair2 = try crypto.generateKeyPair(ofType: keyPairType)
         
@@ -212,7 +212,53 @@ class VSM001_CryptoTests: XCTestCase {
             let crypto = try VirgilCrypto()
             
             for keyType in [KeyPairType.ed25519, KeyPairType.rsa2048] {
-                try self.checkSignThenEncrypt(crypto: crypto, keyPairType: keyType)
+                try self.checkStreamSign(crypto: crypto, keyPairType: keyType)
+            }
+        }
+        catch {
+            XCTFail()
+        }
+    }
+    
+    private func checkStreamEncryption(crypto: VirgilCrypto, keyPairType: KeyPairType) throws {
+        let keyPair1 = try crypto.generateKeyPair(ofType: keyPairType)
+        let keyPair2 = try crypto.generateKeyPair(ofType: keyPairType)
+        
+        let testFileURL = Bundle(for: type(of: self)).url(forResource: "testData", withExtension: "txt")!
+        let inputStream = InputStream(url: testFileURL)!
+        let data = try Data(contentsOf: testFileURL)
+        
+        let outputStream = OutputStream.toMemory()
+        
+        try crypto.encrypt(inputStream, to: outputStream, for: [keyPair1.publicKey])
+        
+        let encryptedData = outputStream.property(forKey: Stream.PropertyKey.dataWrittenToMemoryStreamKey) as! Data
+        
+        let inputStream1 = InputStream(data: encryptedData)
+        let inputStream2 = InputStream(data: encryptedData)
+        
+        let outputStream1 = OutputStream.toMemory()
+        let outputStream2 = OutputStream.toMemory()
+        
+        try crypto.decrypt(inputStream1, to: outputStream1, with: keyPair1.privateKey)
+        
+        let decrtyptedData = outputStream1.property(forKey: Stream.PropertyKey.dataWrittenToMemoryStreamKey) as! Data
+        
+        XCTAssert(data == decrtyptedData)
+        
+        do {
+            try crypto.decrypt(inputStream2, to: outputStream2, with: keyPair2.privateKey)
+            XCTFail()
+        }
+        catch { }
+    }
+    
+    func test07__encrypt_stream__file__should_decrypt() {
+        do {
+            let crypto = try VirgilCrypto()
+            
+            for keyType in [KeyPairType.curve25519, KeyPairType.ed25519, KeyPairType.rsa2048] {
+                try self.checkStreamEncryption(crypto: crypto, keyPairType: keyType)
             }
         }
         catch {

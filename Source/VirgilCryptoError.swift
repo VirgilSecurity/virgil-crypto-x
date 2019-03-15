@@ -45,6 +45,9 @@ import Foundation
 /// - rsaShouldBeConstructedDirectly: rsa should be constructed directly
 /// - unsupportedRsaLength: unsupported rsa length
 /// - keyDoesntSupportSigning: key doesn't support signing
+/// - passedKeyIsNotVirgil: passed key is not virgil
+/// - outputStreamError: output stream has no space left
+/// - inputStreamError: output stream has no space left
 @objc(VSMVirgilCryptoError) public enum VirgilCryptoError: Int, Error {
     case signerNotFound = 1
     case signatureNotFound = 2
@@ -54,4 +57,6 @@ import Foundation
     case unsupportedRsaLength = 6
     case keyDoesntSupportSigning = 7
     case passedKeyIsNotVirgil = 8
+    case outputStreamError = 9
+    case inputStreamError = 10
 }
