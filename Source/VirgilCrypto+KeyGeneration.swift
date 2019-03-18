@@ -60,6 +60,52 @@ extension VirgilCrypto {
         }
     }
 
+    private func generateKeyPair(ofType type: KeyPairType, using rng: Random) throws -> VirgilKeyPair {
+        let keyProvider = KeyProvider()
+        
+        if let rsaLen = type.rsaBitLen {
+            keyProvider.setRsaParams(bitlen: rsaLen, exponent: 65_537)
+        }
+        
+        keyProvider.setRandom(random: rng)
+        try keyProvider.setupDefaults()
+        
+        let algId = type.algId
+        
+        let privateKey = try keyProvider.generatePrivateKey(algId: algId)
+        
+        let publicKey = privateKey.extractPublicKey()
+        
+        let keyId = try self.computePublicKeyIdentifier(publicKey: publicKey)
+        
+        return VirgilKeyPair(privateKey: VirgilPrivateKey(identifier: keyId, privateKey: privateKey, keyType: type),
+                             publicKey: VirgilPublicKey(identifier: keyId, publicKey: publicKey, keyType: type))
+    }
+    
+    /// Generates KeyPair of default type using seed
+    ///
+    /// - Parameter seed: random value used to generate key
+    /// - Returns: Generated KeyPair
+    /// - Throws: Rethrows from KeyProvider
+    @objc open func generateKeyPair(usingSeed seed: Data) throws -> VirgilKeyPair {
+        return try self.generateKeyPair(ofType: self.defaultKeyType, usingSeed: seed)
+    }
+    
+    /// Generates KeyPair of default type using seed
+    ///
+    /// - Parameters:
+    ///   - type: KeyPair type
+    ///   - seed: random value used to generate key
+    /// - Returns: Generated KeyPair
+    /// - Throws: Rethrows from KeyProvider
+    @objc open func generateKeyPair(ofType type: KeyPairType, usingSeed seed: Data) throws -> VirgilKeyPair {
+        let seedRng = KeyMaterialRng()
+
+        seedRng.resetKeyMaterial(keyMaterial: seed)
+        
+        return try self.generateKeyPair(ofType: type, using: seedRng)
+    }
+    
     /// Generates KeyPair of default type
     ///
     /// - Returns: Generated KeyPair
@@ -72,26 +118,8 @@ extension VirgilCrypto {
     ///
     /// - Parameter type: KeyPair type
     /// - Returns: Generated KeyPair
-    /// - Throws: Rethrows from KeyPair
+    /// - Throws: Rethrows from KeyProvider
     @objc open func generateKeyPair(ofType type: KeyPairType) throws -> VirgilKeyPair {
-        let keyProvider = KeyProvider()
-
-        if let rsaLen = type.rsaBitLen {
-            keyProvider.setRsaParams(bitlen: rsaLen, exponent: 65_537)
-        }
-
-        keyProvider.setRandom(random: self.rng)
-        try keyProvider.setupDefaults()
-
-        let algId = type.algId
-
-        let privateKey = try keyProvider.generatePrivateKey(algId: algId)
-
-        let publicKey = privateKey.extractPublicKey()
-
-        let keyId = try self.computePublicKeyIdentifier(publicKey: publicKey)
-
-        return VirgilKeyPair(privateKey: VirgilPrivateKey(identifier: keyId, privateKey: privateKey, keyType: type),
-                             publicKey: VirgilPublicKey(identifier: keyId, publicKey: publicKey, keyType: type))
+        return try self.generateKeyPair(ofType: type, using: self.rng)
     }
 }

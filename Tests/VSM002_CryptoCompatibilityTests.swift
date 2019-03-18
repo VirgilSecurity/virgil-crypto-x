@@ -51,7 +51,7 @@ class VSM002_CryptoCompatibilityTests: XCTestCase {
     }
     
     func test001_CheckNumberOfTestsInJSON() {
-        XCTAssert(self.testsDict.count == 6)
+        XCTAssert(self.testsDict.count == 7)
     }
     
     func test002_DecryptFromSingleRecipient_ShouldDecrypt() {
@@ -204,5 +204,22 @@ class VSM002_CryptoCompatibilityTests: XCTestCase {
         let decrypteDataStr = decryptedData.base64EncodedString()
         
         XCTAssert(decrypteDataStr == originalDataStr)
+    }
+    
+    func test008_GenerateEd25519UsingSeed__ShouldMatch() {
+        let dict = self.testsDict["generate_ed25519_using_seed"] as! Dictionary<String, Any>
+        
+        let seedStr = dict["seed"] as! String
+        let seed = Data(base64Encoded: seedStr)!
+        
+        let keyPair = try! self.crypto.generateKeyPair(ofType: .ed25519, usingSeed: seed)
+        
+        let privateKeyStr = dict["private_key"] as! String
+        let publicKeyStr = dict["public_key"] as! String
+        let privateKeyData = Data(base64Encoded: privateKeyStr)!
+        let publicKeyData = Data(base64Encoded: publicKeyStr)!
+
+        XCTAssert(try! self.crypto.exportPrivateKey(keyPair.privateKey) == privateKeyData)
+        XCTAssert(try! self.crypto.exportPublicKey(keyPair.publicKey) == publicKeyData)
     }
 }
