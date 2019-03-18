@@ -34,15 +34,14 @@
 // Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
 //
 
-import Foundation
 import VirgilCryptoFoundation
 
 /// MARK: - Extension for key generation
 extension VirgilCrypto {
     /// Computes public key identifier
     ///
-    /// NOTE: Takes first 8 bytes of SHA512 of public key DER if useSHA256Fingerprints=false
-    ///       and SHA256 of public key der if useSHA256Fingerprints=true
+    /// - Note: Takes first 8 bytes of SHA512 of public key DER if useSHA256Fingerprints=false
+    ///         and SHA256 of public key der if useSHA256Fingerprints=true
     ///
     /// - Parameter publicKey: PublicKey
     /// - Returns: Public key identifier

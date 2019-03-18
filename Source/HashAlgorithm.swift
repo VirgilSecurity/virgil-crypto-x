@@ -36,7 +36,7 @@
 
 import Foundation
 
-/// SHA algs
+/// SHA algorithms
 ///
 /// - sha224: sha224
 /// - sha256: sha256

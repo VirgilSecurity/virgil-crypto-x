@@ -32,9 +32,6 @@
 		420DE7E021FB398600B06435 /* VirgilCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420DE79721FB365600B06435 /* VirgilCrypto.swift */; };
 		420DE7E121FB39A100B06435 /* VSM001_CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7FC021F23135006BED3F /* VSM001_CryptoTests.swift */; };
 		420DE7E221FB39A200B06435 /* VSM001_CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7FC021F23135006BED3F /* VSM001_CryptoTests.swift */; };
-		420DE7E321FB39BE00B06435 /* VirgilCryptoApiImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = 424A7FB521F23135006BED3F /* VirgilCryptoApiImpl.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		420DE7E421FB39BE00B06435 /* VirgilCryptoApiImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = 424A7FB521F23135006BED3F /* VirgilCryptoApiImpl.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		420DE7E521FB39BF00B06435 /* VirgilCryptoApiImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = 424A7FB521F23135006BED3F /* VirgilCryptoApiImpl.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4233A459223B8E200086E09F /* VSM003_CryptoFormatsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4233A453223B8E200086E09F /* VSM003_CryptoFormatsTests.swift */; };
 		4233A45B223B8E200086E09F /* VSM003_CryptoFormatsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4233A453223B8E200086E09F /* VSM003_CryptoFormatsTests.swift */; };
 		4233A45F223B8E200086E09F /* VSM002_CryptoCompatibilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4233A455223B8E200086E09F /* VSM002_CryptoCompatibilityTests.swift */; };
@@ -65,7 +62,6 @@
 		423F7181223F8E7500E8CDA9 /* VirgilCrypto+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423F717D223F8E7500E8CDA9 /* VirgilCrypto+Random.swift */; };
 		424A7FBC21F23135006BED3F /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 424A7FB221F23135006BED3F /* VirgilCrypto.framework */; };
 		424A7FC121F23135006BED3F /* VSM001_CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7FC021F23135006BED3F /* VSM001_CryptoTests.swift */; };
-		424A7FC321F23135006BED3F /* VirgilCryptoApiImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = 424A7FB521F23135006BED3F /* VirgilCryptoApiImpl.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		424ACC5822300B7900DD5072 /* KeyPairType+Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC5722300B7900DD5072 /* KeyPairType+Convert.swift */; };
 		424ACC5922300B7900DD5072 /* KeyPairType+Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC5722300B7900DD5072 /* KeyPairType+Convert.swift */; };
 		424ACC5A22300B7900DD5072 /* KeyPairType+Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC5722300B7900DD5072 /* KeyPairType+Convert.swift */; };
@@ -268,7 +264,6 @@
 		423E13C8223903E6004E3D4C /* KeyPairType+RSA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyPairType+RSA.swift"; sourceTree = "<group>"; };
 		423F717D223F8E7500E8CDA9 /* VirgilCrypto+Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VirgilCrypto+Random.swift"; sourceTree = "<group>"; };
 		424A7FB221F23135006BED3F /* VirgilCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		424A7FB521F23135006BED3F /* VirgilCryptoApiImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VirgilCryptoApiImpl.h; sourceTree = "<group>"; };
 		424A7FB621F23135006BED3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		424A7FBB21F23135006BED3F /* VirgilCryptoTests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilCryptoTests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		424A7FC021F23135006BED3F /* VSM001_CryptoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSM001_CryptoTests.swift; sourceTree = "<group>"; };
@@ -289,17 +284,13 @@
 		425ED5FE222055F1008B84F0 /* KeyPairType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPairType.swift; sourceTree = "<group>"; };
 		425ED60322205607008B84F0 /* HashAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashAlgorithm.swift; sourceTree = "<group>"; };
 		42D91CC221FB770800632073 /* VirgilCryptoAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoAPI.framework; path = Carthage/Build/iOS/VirgilCryptoAPI.framework; sourceTree = "<group>"; };
-		42D91CC321FB770800632073 /* VirgilCryptoCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoCommon.framework; path = Carthage/Build/iOS/VirgilCryptoCommon.framework; sourceTree = "<group>"; };
 		42D91CC421FB770800632073 /* VirgilCryptoFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoFoundation.framework; path = Carthage/Build/iOS/VirgilCryptoFoundation.framework; sourceTree = "<group>"; };
 		42D91CCA21FB771B00632073 /* VirgilCryptoAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoAPI.framework; path = Carthage/Build/Mac/VirgilCryptoAPI.framework; sourceTree = "<group>"; };
-		42D91CCB21FB771B00632073 /* VirgilCryptoCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoCommon.framework; path = Carthage/Build/Mac/VirgilCryptoCommon.framework; sourceTree = "<group>"; };
 		42D91CCC21FB771B00632073 /* VirgilCryptoFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoFoundation.framework; path = Carthage/Build/Mac/VirgilCryptoFoundation.framework; sourceTree = "<group>"; };
 		42D91CD221FB772C00632073 /* VirgilCryptoAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoAPI.framework; path = Carthage/Build/tvOS/VirgilCryptoAPI.framework; sourceTree = "<group>"; };
 		42D91CD321FB772C00632073 /* VirgilCryptoFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoFoundation.framework; path = Carthage/Build/tvOS/VirgilCryptoFoundation.framework; sourceTree = "<group>"; };
-		42D91CD421FB772C00632073 /* VirgilCryptoCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoCommon.framework; path = Carthage/Build/tvOS/VirgilCryptoCommon.framework; sourceTree = "<group>"; };
 		42D91CDA21FB773D00632073 /* VirgilCryptoAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoAPI.framework; path = Carthage/Build/watchOS/VirgilCryptoAPI.framework; sourceTree = "<group>"; };
 		42D91CDB21FB773D00632073 /* VirgilCryptoFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoFoundation.framework; path = Carthage/Build/watchOS/VirgilCryptoFoundation.framework; sourceTree = "<group>"; };
-		42D91CDC21FB773D00632073 /* VirgilCryptoCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoCommon.framework; path = Carthage/Build/watchOS/VirgilCryptoCommon.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -377,7 +368,7 @@
 		420DE79621FB365600B06435 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				424ACC8D2237AB4900DD5072 /* Impl */,
+				424ACC8D2237AB4900DD5072 /* Implementation */,
 				425ED5FE222055F1008B84F0 /* KeyPairType.swift */,
 				424ACC5722300B7900DD5072 /* KeyPairType+Convert.swift */,
 				423E13C8223903E6004E3D4C /* KeyPairType+RSA.swift */,
@@ -435,7 +426,6 @@
 		424A7FB421F23135006BED3F /* VirgilCrypto */ = {
 			isa = PBXGroup;
 			children = (
-				424A7FB521F23135006BED3F /* VirgilCryptoApiImpl.h */,
 				424A7FB621F23135006BED3F /* Info.plist */,
 			);
 			path = VirgilCrypto;
@@ -452,26 +442,22 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
-		424ACC8D2237AB4900DD5072 /* Impl */ = {
+		424ACC8D2237AB4900DD5072 /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
 				424ACC902237AB7A00DD5072 /* VirgilAccessTokenSigner.swift */,
 				424ACC8E2237AB7A00DD5072 /* VirgilCardCrypto.swift */,
 				424ACC8F2237AB7A00DD5072 /* VirgilPrivateKeyExporter.swift */,
 			);
-			path = Impl;
+			path = Implementation;
 			sourceTree = "<group>";
 		};
 		4250B80021F73C0400852C11 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				42D91CC221FB770800632073 /* VirgilCryptoAPI.framework */,
-				42D91CC321FB770800632073 /* VirgilCryptoCommon.framework */,
-				42D91CD421FB772C00632073 /* VirgilCryptoCommon.framework */,
-				42D91CDC21FB773D00632073 /* VirgilCryptoCommon.framework */,
 				42D91CC421FB770800632073 /* VirgilCryptoFoundation.framework */,
 				42D91CCA21FB771B00632073 /* VirgilCryptoAPI.framework */,
-				42D91CCB21FB771B00632073 /* VirgilCryptoCommon.framework */,
 				42D91CCC21FB771B00632073 /* VirgilCryptoFoundation.framework */,
 				42D91CD221FB772C00632073 /* VirgilCryptoAPI.framework */,
 				42D91CD321FB772C00632073 /* VirgilCryptoFoundation.framework */,
@@ -496,7 +482,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				420DE7E321FB39BE00B06435 /* VirgilCryptoApiImpl.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,7 +489,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				420DE7E421FB39BE00B06435 /* VirgilCryptoApiImpl.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,7 +496,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				420DE7E521FB39BF00B06435 /* VirgilCryptoApiImpl.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,7 +503,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				424A7FC321F23135006BED3F /* VirgilCryptoApiImpl.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1285,7 +1267,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1343,7 +1326,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

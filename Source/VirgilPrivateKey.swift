@@ -34,7 +34,6 @@
 // Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
 //
 
-import Foundation
 import VirgilCryptoFoundation
 import VirgilCryptoAPI
 
@@ -49,7 +48,7 @@ import VirgilCryptoAPI
     /// Key type
     @objc public let keyType: KeyPairType
 
-    /// Init
+    /// Initializer
     ///
     /// - Parameters:
     ///   - identifier: Key id
