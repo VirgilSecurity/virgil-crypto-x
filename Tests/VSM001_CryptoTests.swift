@@ -265,4 +265,30 @@ class VSM001_CryptoTests: XCTestCase {
             XCTFail()
         }
     }
+    
+    private func checkGenerateKeyUsingSeed(crypto: VirgilCrypto, keyPairType: KeyPairType) throws {
+        let seed = try crypto.generateRandomData(ofSize: 32)
+        
+        let keyId = try crypto.generateKeyPair(ofType: keyPairType, usingSeed: seed).identifier
+        
+        for _ in 0..<5 {
+            let keyPair = try crypto.generateKeyPair(ofType: keyPairType, usingSeed: seed)
+            
+            XCTAssert(keyPair.privateKey.identifier == keyId)
+            XCTAssert(keyPair.privateKey.identifier == keyPair.publicKey.identifier)
+        }
+    }
+    
+    func test08__generate_key_using_seed__fixed_seed__should_match() {
+        do {
+            let crypto = try VirgilCrypto()
+            
+            for keyType in [KeyPairType.curve25519, KeyPairType.ed25519, KeyPairType.rsa2048] {
+                try self.checkStreamEncryption(crypto: crypto, keyPairType: keyType)
+            }
+        }
+        catch {
+            XCTFail()
+        }
+    }
 }
