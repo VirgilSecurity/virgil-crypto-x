@@ -36,7 +36,7 @@
 
 import Foundation
 
-/// Aggregates Private and Public key.
+/// Aggregates Private and Public key
 @objc(VSMVirgilKeyPair) public final class VirgilKeyPair: NSObject {
     /// Private key
     @objc public let privateKey: VirgilPrivateKey
