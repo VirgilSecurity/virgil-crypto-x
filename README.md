@@ -155,8 +155,8 @@ On your application target's “General” settings tab, in the “Linked Framew
  - VirgilCryptoAPI
  - VirgilCrypto
  - VirgilCryptoFoundation
- - VSCCryptoCommon
- - VSCCryptoFoundation
+ - VSCCommon
+ - VSCFoundation
 
 On your application target's “Build Phases” settings tab, click the “+” icon and choose “New Run Script Phase”. Create a Run Script in which you specify your shell (ex: */bin/sh*), add the following contents to the script area below the shell:
 
@@ -170,8 +170,8 @@ and add the paths to the frameworks you want to use under “Input Files”, e.g
 $(SRCROOT)/Carthage/Build/iOS/VirgilCryptoAPI.framework
 $(SRCROOT)/Carthage/Build/iOS/VirgilCrypto.framework
 $(SRCROOT)/Carthage/Build/iOS/VirgilCryptoFoundation.framework
-$(SRCROOT)/Carthage/Build/iOS/VSCCryptoCommon.framework
-$(SRCROOT)/Carthage/Build/iOS/VSCCryptoFoundation.framework
+$(SRCROOT)/Carthage/Build/iOS/VSCCommon.framework
+$(SRCROOT)/Carthage/Build/iOS/VSCFoundation.framework
 ```
 
 ##### Building for macOS
@@ -180,8 +180,8 @@ On your application target's “General” settings tab, in the “Embedded Bina
 - VirgilCryptoAPI
 - VirgilCrypto
 - VirgilCryptoFoundation
-- VSCCryptoCommon
-- VSCCryptoFoundation
+- VSCCommon
+- VSCFoundation
 
 Additionally, you'll need to copy debug symbols for debugging and crash reporting on macOS.
 
@@ -203,8 +203,8 @@ Next, on your application target's “General” settings tab, in the “Embedde
 - VirgilCryptoAPI
 - VirgilCrypto
 - VirgilCryptoFoundation
-- VSCCryptoCommon
-- VSCCryptoFoundation
+- VSCCommon
+- VSCFoundation
 
 ## Docs
 - [Crypto Core Library](https://github.com/VirgilSecurity/virgil-crypto-c)
