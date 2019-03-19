@@ -48,6 +48,7 @@ import Foundation
 /// - passedKeyIsNotVirgil: passed key is not virgil
 /// - outputStreamError: output stream has no space left
 /// - inputStreamError: output stream has no space left
+/// - invalidSeedSize: invalid seed size
 @objc(VSMVirgilCryptoError) public enum VirgilCryptoError: Int, Error {
     case signerNotFound = 1
     case signatureNotFound = 2
@@ -59,4 +60,5 @@ import Foundation
     case passedKeyIsNotVirgil = 8
     case outputStreamError = 9
     case inputStreamError = 10
+    case invalidSeedSize = 11
 }
