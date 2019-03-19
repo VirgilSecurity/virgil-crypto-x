@@ -75,7 +75,7 @@ extension VirgilCrypto {
     /// - Throws: Rethrows from Pkcs8DerSerializer
     @objc open func exportPrivateKey(_ privateKey: VirgilPrivateKey) throws -> Data {
         let pkcs8DerSerializer = Pkcs8DerSerializer()
-        try pkcs8DerSerializer.setupDefaults()
+        pkcs8DerSerializer.setupDefaults()
 
         return try pkcs8DerSerializer.serializePrivateKey(privateKey: privateKey.privateKey)
     }
@@ -97,7 +97,7 @@ extension VirgilCrypto {
     /// - Throws: Rethrows from Pkcs8DerSerializer
     @objc open func exportPublicKey(_ publicKey: VirgilPublicKey) throws -> Data {
         let pkcs8DerSerializer = Pkcs8DerSerializer()
-        try pkcs8DerSerializer.setupDefaults()
+        pkcs8DerSerializer.setupDefaults()
 
         return try pkcs8DerSerializer.serializePublicKey(publicKey: publicKey.publicKey)
     }

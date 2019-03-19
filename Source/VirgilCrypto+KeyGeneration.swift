@@ -48,7 +48,7 @@ extension VirgilCrypto {
     /// - Throws: Rethrows from Pkcs8DerSerializer
     @objc open func computePublicKeyIdentifier(publicKey: VirgilCryptoFoundation.PublicKey) throws -> Data {
         let pkcs8DerSerializer = Pkcs8DerSerializer()
-        try pkcs8DerSerializer.setupDefaults()
+        pkcs8DerSerializer.setupDefaults()
 
         let publicKeyDER = try pkcs8DerSerializer.serializePublicKey(publicKey: publicKey)
 
