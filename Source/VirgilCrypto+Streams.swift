@@ -146,7 +146,7 @@ extension VirgilCrypto {
     ///
     /// - Parameters:
     ///   - signature: Digital signature
-    ///   - data: Data that was signed
+    ///   - stream: Stream that was signed
     ///   - publicKey: Signer public key
     /// - Returns: True if signature is verified, false otherwise
     @available(swift, obsoleted: 1.0)
