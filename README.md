@@ -93,8 +93,8 @@ Need more examples? Visit our [developer documentation](https://developer.virgil
 VirgilCrypto is provided as a set of frameworks. These frameworks are distributed via Carthage and CocoaPods.
 
 All frameworks are available for:
-- iOS 8.0+
-- macOS 10.10+
+- iOS 9.0+
+- macOS 10.9+
 - tvOS 9.0+
 - watchOS 2.0+
 
@@ -112,7 +112,7 @@ To integrate VirgilCrypto into your Xcode project using CocoaPods, specify it in
 target '<Your Target Name>' do
   use_frameworks!
 
-  pod 'VirgilCrypto', '~> 5.0'
+  pod 'VirgilCrypto', '~> 5.0.0-alpha'
 end
 ```
 
@@ -136,7 +136,7 @@ $ brew install carthage
 To integrate VirgilCrypto into your Xcode project using Carthage, create an empty file with name *Cartfile* in your project's root folder and add following lines to your *Cartfile*
 
 ```
-github "VirgilSecurity/virgil-crypto-x" ~> 5.0
+github "VirgilSecurity/virgil-crypto-x" ~> 5.0.0-alpha
 ```
 
 #### Linking against prebuilt binaries
