@@ -13,11 +13,11 @@ env:
     - REPO=VirgilSecurity/virgil-crypto-x
     - REPO_PATH=https://github.com/VirgilSecurity/virgil-crypto-x.git
   matrix:
-    - DESTINATION=""                                         PREFIX=""         SDK=""              BUILD="0"  PUBLISH_CARTHAGE="YES"  CARTHAGE_PLATFORM_NAME="Mac"      PUBLISH_POD="NO"  PUBLISH_DOCS="YES"  SWIFT_LINT="YES"
-    - DESTINATION="OS=12.1,name=iPhone SE"                   PREFIX="iOS"      SDK="$IOS_SDK"      BUILD="2"  PUBLISH_CARTHAGE="NO"   CARTHAGE_PLATFORM_NAME="iOS"      PUBLISH_POD="NO"  PUBLISH_DOCS="NO"   SWIFT_LINT="NO"
-    - DESTINATION="arch=x86_64"                              PREFIX="macOS"    SDK="$MACOS_SDK"    BUILD="2"  PUBLISH_CARTHAGE="NO"   CARTHAGE_PLATFORM_NAME="Mac"      PUBLISH_POD="NO"  PUBLISH_DOCS="NO"   SWIFT_LINT="NO"
-    - DESTINATION="OS=12.1,name=Apple TV 4K"                 PREFIX="tvOS"     SDK="$TVOS_SDK"     BUILD="2"  PUBLISH_CARTHAGE="NO"   CARTHAGE_PLATFORM_NAME="tvOS"     PUBLISH_POD="NO"  PUBLISH_DOCS="NO"   SWIFT_LINT="NO"
-    - DESTINATION="OS=5.1,name=Apple Watch Series 4 - 44mm"  PREFIX="watchOS"  SDK="$WATCHOS_SDK"  BUILD="1"  PUBLISH_CARTHAGE="NO"   CARTHAGE_PLATFORM_NAME="watchOS"  PUBLISH_POD="NO"  PUBLISH_DOCS="NO"   SWIFT_LINT="NO"
+    - DESTINATION=""                                         PREFIX=""         SDK=""              BUILD="0"  PUBLISH_CARTHAGE="YES"  CARTHAGE_PLATFORM_NAME="Mac"      PUBLISH_POD="YES"  PUBLISH_DOCS="YES"  SWIFT_LINT="YES"
+    - DESTINATION="OS=12.1,name=iPhone SE"                   PREFIX="iOS"      SDK="$IOS_SDK"      BUILD="2"  PUBLISH_CARTHAGE="NO"   CARTHAGE_PLATFORM_NAME="iOS"      PUBLISH_POD="NO"   PUBLISH_DOCS="NO"   SWIFT_LINT="NO"
+    - DESTINATION="arch=x86_64"                              PREFIX="macOS"    SDK="$MACOS_SDK"    BUILD="2"  PUBLISH_CARTHAGE="NO"   CARTHAGE_PLATFORM_NAME="Mac"      PUBLISH_POD="NO"   PUBLISH_DOCS="NO"   SWIFT_LINT="NO"
+    - DESTINATION="OS=12.1,name=Apple TV 4K"                 PREFIX="tvOS"     SDK="$TVOS_SDK"     BUILD="2"  PUBLISH_CARTHAGE="NO"   CARTHAGE_PLATFORM_NAME="tvOS"     PUBLISH_POD="NO"   PUBLISH_DOCS="NO"   SWIFT_LINT="NO"
+    - DESTINATION="OS=5.1,name=Apple Watch Series 4 - 44mm"  PREFIX="watchOS"  SDK="$WATCHOS_SDK"  BUILD="1"  PUBLISH_CARTHAGE="NO"   CARTHAGE_PLATFORM_NAME="watchOS"  PUBLISH_POD="NO"   PUBLISH_DOCS="NO"   SWIFT_LINT="NO"
 
 before_install:
   - set -e
