@@ -194,7 +194,7 @@ extension VirgilCrypto {
     private func read(from stream: InputStream) throws -> Data? {
         let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: VirgilCrypto.chunkSize)
         let actualReadLen = stream.read(buffer, maxLength: VirgilCrypto.chunkSize)
-        let deallocator = Data.Deallocator.custom { buffer, size in
+        let deallocator = Data.Deallocator.custom { buffer, _ in
             buffer.deallocate()
         }
 
