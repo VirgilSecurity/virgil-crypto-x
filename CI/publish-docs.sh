@@ -2,10 +2,8 @@
 #
 # Copyright (C) 2015-2016 Virgil Security Inc.
 #
-# Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
-#
 # All rights reserved.
-#PUBLISH_DOCS
+#
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
 # met:
@@ -34,8 +32,11 @@
 # IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
+# Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
+#
 
 # Settings
+REPO_PATH=https://github.com/${REPO}.git
 DOCS_DIR="${TRAVIS_BUILD_DIR}/docs"
 rm -rf ${DOCS_DIR}
 mkdir -p ${DOCS_DIR}
