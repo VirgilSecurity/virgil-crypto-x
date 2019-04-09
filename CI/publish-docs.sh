@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (C) 2015-2016 Virgil Security Inc.
+# Copyright (C) 2015-2019 Virgil Security Inc.
 #
 # All rights reserved.
 #
