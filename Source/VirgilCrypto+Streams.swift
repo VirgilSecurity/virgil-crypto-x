@@ -215,7 +215,9 @@ extension VirgilCrypto {
         var actualWriteLen = 0
 
         chunk.withUnsafeBytes { buffer in
-            actualWriteLen = stream.write(buffer, maxLength: chunk.count)
+            if let pointer = buffer.bindMemory(to: UInt8.self).baseAddress {
+                actualWriteLen = stream.write(pointer, maxLength: chunk.count)
+            }
         }
 
         guard actualWriteLen == chunk.count else {

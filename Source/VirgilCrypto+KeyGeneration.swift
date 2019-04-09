@@ -64,7 +64,7 @@ extension VirgilCrypto {
         let keyProvider = KeyProvider()
 
         if let rsaLen = type.rsaBitLen {
-            keyProvider.setRsaParams(bitlen: rsaLen, exponent: 65_537)
+            keyProvider.setRsaParams(bitlen: rsaLen)
         }
 
         keyProvider.setRandom(random: rng)

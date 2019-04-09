@@ -24,8 +24,6 @@ opt_in_rules:
   - empty_count
   - explicit_acl
   - explicit_init
-  - explicit_top_level_acl
-  - extension_access_modifier
   - file_header
   - first_where
   - force_unwrapping

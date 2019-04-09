@@ -112,7 +112,7 @@ To integrate VirgilCrypto into your Xcode project using CocoaPods, specify it in
 target '<Your Target Name>' do
   use_frameworks!
 
-  pod 'VirgilCrypto', '~> 5.0.0-alpha'
+  pod 'VirgilCrypto', '~> 5.0.0-alpha2'
 end
 ```
 
@@ -136,7 +136,7 @@ $ brew install carthage
 To integrate VirgilCrypto into your Xcode project using Carthage, create an empty file with name *Cartfile* in your project's root folder and add following lines to your *Cartfile*
 
 ```
-github "VirgilSecurity/virgil-crypto-x" ~> 5.0.0-alpha
+github "VirgilSecurity/virgil-crypto-x" ~> 5.0.0-alpha2
 ```
 
 #### Linking against prebuilt binaries
