@@ -101,7 +101,7 @@ extension VirgilCrypto {
     /// 6. Verifies signature
     ///
     /// - Parameters:
-    ///   - data: Signed Then Ecnrypted data
+    ///   - data: Signed Then Encrypted data
     ///   - privateKey: Receiver's private key
     ///   - signersPublicKeys: Array of possible signers public keys.
     ///                        WARNING: Data should have signature of ANY public key from array.
