@@ -47,10 +47,10 @@ extension VirgilCrypto {
     /// - Returns: Public key identifier
     /// - Throws: Rethrows from Pkcs8DerSerializer
     @objc open func computePublicKeyIdentifier(publicKey: VirgilCryptoFoundation.PublicKey) throws -> Data {
-        let pkcs8DerSerializer = Pkcs8DerSerializer()
-        pkcs8DerSerializer.setupDefaults()
+        let pkcs8Serializer = Pkcs8Serializer()
+        pkcs8Serializer.setupDefaults()
 
-        let publicKeyDER = try pkcs8DerSerializer.serializePublicKey(publicKey: publicKey)
+        let publicKeyDER = try pkcs8Serializer.serializePublicKey(publicKey: publicKey)
 
         if self.useSHA256Fingerprints {
             return self.computeHash(for: publicKeyDER, using: .sha256)
