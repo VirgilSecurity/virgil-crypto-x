@@ -35,10 +35,9 @@
 //
 
 import VirgilCryptoFoundation
-import VirgilCryptoAPI
 
 /// Class represents public key of any type, with identifier
-@objc(VSMVirgilPublicKey) public class VirgilPublicKey: NSObject, VirgilCryptoAPI.PublicKey {
+@objc(VSMVirgilPublicKey) public class VirgilPublicKey: NSObject {
     /// Key id
     @objc public let identifier: Data
 
