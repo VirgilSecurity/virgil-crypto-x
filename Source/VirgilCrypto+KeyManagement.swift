@@ -42,7 +42,7 @@ extension VirgilCrypto {
     ///
     /// - Parameter data: Private key in DER or PEM format
     /// - Returns: VirgilKeyPair
-    /// - Throws: Rethrows from KeyProvider, Pkcs8DerSerializer
+    /// - Throws: Rethrows from KeyProvider
     @objc open func importPrivateKey(from data: Data) throws -> VirgilKeyPair {
         let keyProvider = KeyProvider()
 
@@ -72,12 +72,12 @@ extension VirgilCrypto {
     ///
     /// - Parameter privateKey: Private key to export
     /// - Returns: Private key in DER format
-    /// - Throws: Rethrows from Pkcs8DerSerializer
+    /// - Throws: Rethrows from KeyAsn1Serializer
     @objc open func exportPrivateKey(_ privateKey: VirgilPrivateKey) throws -> Data {
-        let pkcs8Serializer = Pkcs8Serializer()
-        pkcs8Serializer.setupDefaults()
+        let serializer = KeyAsn1Serializer()
+        serializer.setupDefaults()
 
-        return try pkcs8Serializer.serializePrivateKey(privateKey: privateKey.privateKey)
+        return try serializer.serializePrivateKey(privateKey: privateKey.privateKey)
     }
 
     /// Extracts public key from private key
@@ -94,19 +94,19 @@ extension VirgilCrypto {
     ///
     /// - Parameter publicKey: PublicKey to export
     /// - Returns: Exported public key in DER format
-    /// - Throws: Rethrows from Pkcs8DerSerializer
+    /// - Throws: Rethrows from KeyAsn1Serializer
     @objc open func exportPublicKey(_ publicKey: VirgilPublicKey) throws -> Data {
-        let pkcs8Serializer = Pkcs8Serializer()
-        pkcs8Serializer.setupDefaults()
+        let serializer = KeyAsn1Serializer()
+        serializer.setupDefaults()
 
-        return try pkcs8Serializer.serializePublicKey(publicKey: publicKey.publicKey)
+        return try serializer.serializePublicKey(publicKey: publicKey.publicKey)
     }
 
     /// Imports public key from DER or PEM format
     ///
     /// - Parameter data: Public key in DER or PEM format
     /// - Returns: Imported Public Key
-    /// - Throws: Rethrows from KeyProvider, Pkcs8DerSerializer
+    /// - Throws: Rethrows from KeyProvider
     @objc open func importPublicKey(from data: Data) throws -> VirgilPublicKey {
         let keyProvider = KeyProvider()
         keyProvider.setRandom(random: self.rng)

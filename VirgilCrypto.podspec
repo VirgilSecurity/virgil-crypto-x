@@ -1,6 +1,7 @@
 Pod::Spec.new do |s|
   s.name                        = "VirgilCrypto"
-  s.version                     = "5.0.0-alpha2"
+  s.version                     = "5.0.0-alpha3"
+  s.swift_version               = "5.0"
   s.license                     = { :type => "BSD", :file => "LICENSE" }
   s.summary                     = "Contains high level crypto operations VirgilCrypto c library."
   s.homepage                    = "https://github.com/VirgilSecurity/virgil-crypto-x"
@@ -12,5 +13,5 @@ Pod::Spec.new do |s|
   s.watchos.deployment_target   = "2.0"
   s.source_files                = "Source/**/*.swift"
   s.dependency 'VirgilCryptoAPI', '~> 1.0'
-  s.dependency 'VirgilCryptoFoundation', '~> 0.6.0'
+  s.dependency 'VirgilCryptoFoundation', '~> 0.7.0'
 end

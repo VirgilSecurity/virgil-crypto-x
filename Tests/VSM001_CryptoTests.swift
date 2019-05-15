@@ -57,7 +57,7 @@ class VSM001_CryptoTests: XCTestCase {
         do {
             let crypto = try VirgilCrypto()
             
-            for keyType in [KeyPairType.curve25519, KeyPairType.ed25519, KeyPairType.rsa2048] {
+            for keyType in [KeyPairType.curve25519, KeyPairType.ed25519, KeyPairType.secp256r1, KeyPairType.rsa2048] {
                 try self.checkKeyGeneration(crypto: crypto, keyPairType: keyType)
             }
         }
@@ -86,7 +86,7 @@ class VSM001_CryptoTests: XCTestCase {
         do {
             let crypto = try VirgilCrypto()
             
-            for keyType in [KeyPairType.curve25519, KeyPairType.ed25519, KeyPairType.rsa2048] {
+            for keyType in [KeyPairType.curve25519, KeyPairType.ed25519, KeyPairType.secp256r1,  KeyPairType.rsa2048] {
                 try self.checkKeyImport(crypto: crypto, keyPairType: keyType)
             }
         }
@@ -118,7 +118,7 @@ class VSM001_CryptoTests: XCTestCase {
         do {
             let crypto = try VirgilCrypto()
             
-            for keyType in [KeyPairType.curve25519, KeyPairType.ed25519, KeyPairType.rsa2048] {
+            for keyType in [KeyPairType.curve25519, KeyPairType.ed25519, KeyPairType.secp256r1, KeyPairType.rsa2048] {
                 try self.checkEncryption(crypto: crypto, keyPairType: keyType)
             }
         }
@@ -143,7 +143,7 @@ class VSM001_CryptoTests: XCTestCase {
         do {
             let crypto = try VirgilCrypto()
             
-            for keyType in [KeyPairType.ed25519, KeyPairType.rsa2048] {
+            for keyType in [KeyPairType.ed25519, KeyPairType.secp256r1, KeyPairType.rsa2048] {
                 try self.checkSignature(crypto: crypto, keyPairType: keyType)
             }
         }
@@ -182,7 +182,7 @@ class VSM001_CryptoTests: XCTestCase {
         do {
             let crypto = try VirgilCrypto()
             
-            for keyType in [KeyPairType.ed25519, KeyPairType.rsa2048] {
+            for keyType in [KeyPairType.ed25519, KeyPairType.secp256r1, KeyPairType.rsa2048] {
                 try self.checkSignThenEncrypt(crypto: crypto, keyPairType: keyType)
             }
         }
@@ -211,7 +211,7 @@ class VSM001_CryptoTests: XCTestCase {
         do {
             let crypto = try VirgilCrypto()
             
-            for keyType in [KeyPairType.ed25519, KeyPairType.rsa2048] {
+            for keyType in [KeyPairType.ed25519, KeyPairType.secp256r1, KeyPairType.rsa2048] {
                 try self.checkStreamSign(crypto: crypto, keyPairType: keyType)
             }
         }
@@ -257,7 +257,7 @@ class VSM001_CryptoTests: XCTestCase {
         do {
             let crypto = try VirgilCrypto()
             
-            for keyType in [KeyPairType.curve25519, KeyPairType.ed25519, KeyPairType.rsa2048] {
+            for keyType in [KeyPairType.curve25519, KeyPairType.ed25519, KeyPairType.secp256r1, KeyPairType.rsa2048] {
                 try self.checkStreamEncryption(crypto: crypto, keyPairType: keyType)
             }
         }
@@ -283,7 +283,7 @@ class VSM001_CryptoTests: XCTestCase {
         do {
             let crypto = try VirgilCrypto()
             
-            for keyType in [KeyPairType.curve25519, KeyPairType.ed25519, KeyPairType.rsa2048] {
+            for keyType in [KeyPairType.curve25519, KeyPairType.ed25519, KeyPairType.secp256r1, KeyPairType.rsa2048] {
                 try self.checkStreamEncryption(crypto: crypto, keyPairType: keyType)
             }
         }
