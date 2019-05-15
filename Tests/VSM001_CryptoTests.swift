@@ -284,7 +284,7 @@ class VSM001_CryptoTests: XCTestCase {
             let crypto = try VirgilCrypto()
             
             for keyType in [KeyPairType.curve25519, KeyPairType.ed25519, KeyPairType.secp256r1, KeyPairType.rsa2048] {
-                try self.checkStreamEncryption(crypto: crypto, keyPairType: keyType)
+                try self.checkGenerateKeyUsingSeed(crypto: crypto, keyPairType: keyType)
             }
         }
         catch {
