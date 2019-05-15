@@ -12,7 +12,7 @@ env:
     - CRYPTO_FRAMEWORK_NAME=VirgilCrypto
     - REPO=VirgilSecurity/virgil-crypto-x
   matrix:
-    - DESTINATION=""                                         PREFIX=""         SDK=""              BUILD="0"  PUBLISH_CARTHAGE="YES"  CARTHAGE_PLATFORM_NAME="Mac"      PUBLISH_POD="YES"  PUBLISH_DOCS="YES"  SWIFT_LINT="YES"
+    - DESTINATION=""                                         PREFIX=""         SDK=""              BUILD="0"  PUBLISH_CARTHAGE="YES"  CARTHAGE_PLATFORM_NAME="Mac"      PUBLISH_POD="YES"  PUBLISH_DOCS="YES"  SWIFT_LINT="NO"
     - DESTINATION="OS=12.2,name=iPhone SE"                   PREFIX="iOS"      SDK="$IOS_SDK"      BUILD="2"  PUBLISH_CARTHAGE="NO"   CARTHAGE_PLATFORM_NAME="iOS"      PUBLISH_POD="NO"   PUBLISH_DOCS="NO"   SWIFT_LINT="NO"
     - DESTINATION="arch=x86_64"                              PREFIX="macOS"    SDK="$MACOS_SDK"    BUILD="2"  PUBLISH_CARTHAGE="NO"   CARTHAGE_PLATFORM_NAME="Mac"      PUBLISH_POD="NO"   PUBLISH_DOCS="NO"   SWIFT_LINT="NO"
     - DESTINATION="OS=12.2,name=Apple TV 4K"                 PREFIX="tvOS"     SDK="$TVOS_SDK"     BUILD="2"  PUBLISH_CARTHAGE="NO"   CARTHAGE_PLATFORM_NAME="tvOS"     PUBLISH_POD="NO"   PUBLISH_DOCS="NO"   SWIFT_LINT="NO"
@@ -47,7 +47,7 @@ script:
 
   # Build with carthage
   - if [ $PUBLISH_CARTHAGE == "YES" ]; then
-      brew update && brew upgrade carthage;
+      brew update && brew upgrade carthage || true;
       carthage build --no-skip-current;
       carthage archive;
     fi

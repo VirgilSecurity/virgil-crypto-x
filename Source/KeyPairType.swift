@@ -40,12 +40,14 @@ import Foundation
 ///
 /// - ed25519: ed25519
 /// - curve25519: curve25519
+/// - secp256r1: secp256r1 (NIST P-256)
 /// - rsa2048: rsa with 2048 length
 /// - rsa4096: rsa with 4096 length
 /// - rsa8192: rsa with 8192 length
 @objc(VSMKeyPairType) public enum KeyPairType: Int {
     case ed25519
     case curve25519
+    case secp256r1
     case rsa2048
     case rsa4096
     case rsa8192
