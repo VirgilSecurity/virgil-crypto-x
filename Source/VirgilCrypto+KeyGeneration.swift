@@ -45,7 +45,7 @@ extension VirgilCrypto {
     ///
     /// - Parameter publicKey: PublicKey
     /// - Returns: Public key identifier
-    /// - Throws: Rethrows from Pkcs8DerSerializer
+    /// - Throws: Rethrows from KeyAsn1Serializer
     @objc open func computePublicKeyIdentifier(publicKey: VirgilCryptoFoundation.PublicKey) throws -> Data {
         let serializer = KeyAsn1Serializer()
         serializer.setupDefaults()
