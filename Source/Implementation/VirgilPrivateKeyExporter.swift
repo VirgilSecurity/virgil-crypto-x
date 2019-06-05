@@ -63,7 +63,7 @@ extension VirgilPrivateKeyExporter: PrivateKeyExporter {
             throw VirgilCryptoError.passedKeyIsNotVirgil
         }
 
-        return try self.virgilCrypto.exportPrivateKey(privateKey)
+        return privateKey.privateKey
     }
 
     /// Imports Private Key from DER or PEM format

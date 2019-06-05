@@ -43,7 +43,7 @@ import VirgilCryptoAPI
     @objc public let identifier: Data
 
     /// Underlying public key
-    @objc public let publicKey: VirgilCryptoFoundation.PublicKey
+    @objc public let publicKey: Data
 
     /// Key type
     @objc public let keyType: KeyPairType
@@ -54,7 +54,7 @@ import VirgilCryptoAPI
     ///   - identifier: Key id
     ///   - publicKey: Underlying public key
     ///   - keyType: Key type
-    @objc public init(identifier: Data, publicKey: VirgilCryptoFoundation.PublicKey, keyType: KeyPairType) {
+    @objc public init(identifier: Data, publicKey: Data, keyType: KeyPairType) {
         self.identifier = identifier
         self.publicKey = publicKey
         self.keyType = keyType

@@ -53,7 +53,9 @@ extension VirgilCrypto {
     /// - Throws: Rethrows from StreamSigner
     @objc open func generateStreamSignature(of stream: InputStream,
                                             using privateKey: VirgilPrivateKey) throws -> Data {
-        guard let signHash = privateKey.privateKey as? SignHash else {
+        let key = try self.importInternalPrivateKey(from: privateKey.privateKey)
+        
+        guard let signHash = key as? SignHash else {
             throw VirgilCryptoError.keyDoesntSupportSigning
         }
 
@@ -82,7 +84,9 @@ extension VirgilCrypto {
     @nonobjc open func verifyStreamSignature(_ signature: Data,
                                              of stream: InputStream,
                                              with publicKey: VirgilPublicKey) throws -> Bool {
-        guard let verifyHash = publicKey.publicKey as? VerifyHash else {
+        let key = try self.importInternalPublicKey(from: publicKey.publicKey)
+        
+        guard let verifyHash = key as? VerifyHash else {
             throw VirgilCryptoError.keyDoesntSupportSigning
         }
 
@@ -135,8 +139,9 @@ extension VirgilCrypto {
         cipher.setEncryptionCipher(encryptionCipher: aesGcm)
         cipher.setRandom(random: self.rng)
 
-        recipients.forEach {
-            cipher.addKeyRecipient(recipientId: $0.identifier, publicKey: $0.publicKey)
+        try recipients.forEach {
+            let key = try self.importInternalPublicKey(from: $0.publicKey)
+            cipher.addKeyRecipient(recipientId: $0.identifier, publicKey: key)
         }
 
         try cipher.startEncryption()
@@ -174,9 +179,11 @@ extension VirgilCrypto {
                             with privateKey: VirgilPrivateKey) throws {
 
         let cipher = RecipientCipher()
+        
+        let key = try self.importInternalPrivateKey(from: privateKey.privateKey)
 
         try cipher.startDecryptionWithKey(recipientId: privateKey.identifier,
-                                          privateKey: privateKey.privateKey,
+                                          privateKey: key,
                                           messageInfo: Data())
 
         try self.forEachChunk(in: stream, to: outputStream) {

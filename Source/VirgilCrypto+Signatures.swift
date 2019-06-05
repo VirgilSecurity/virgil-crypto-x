@@ -53,7 +53,9 @@ extension VirgilCrypto {
     /// - Returns: Digital signature
     /// - Throws: Rethrows from Signer
     @objc open func generateSignature(of data: Data, using privateKey: VirgilPrivateKey) throws -> Data {
-        guard let signHash = privateKey.privateKey as? SignHash else {
+        let key = try self.importInternalPrivateKey(from: privateKey.privateKey)
+        
+        guard let signHash = key as? SignHash else {
             throw VirgilCryptoError.keyDoesntSupportSigning
         }
 
@@ -80,7 +82,9 @@ extension VirgilCrypto {
     @nonobjc open func verifySignature(_ signature: Data,
                                        of data: Data,
                                        with publicKey: VirgilPublicKey) throws -> Bool {
-        guard let verifyHash = publicKey.publicKey as? VerifyHash else {
+        let key = try self.importInternalPublicKey(from: publicKey.publicKey)
+        
+        guard let verifyHash = key as? VerifyHash else {
             throw VirgilCryptoError.keyDoesntSupportSigning
         }
 

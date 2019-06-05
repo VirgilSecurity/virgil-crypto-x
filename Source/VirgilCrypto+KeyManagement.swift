@@ -38,18 +38,31 @@ import VirgilCryptoFoundation
 
 // MARK: - Extension for key management
 extension VirgilCrypto {
+    internal func importInternalPrivateKey(from data: Data) throws -> VirgilCryptoFoundation.PrivateKey {
+        let keyProvider = KeyProvider()
+        
+        keyProvider.setRandom(random: self.rng)
+        try keyProvider.setupDefaults()
+        
+        return try keyProvider.importPrivateKey(keyData: data)
+    }
+    
+    internal func importInternalPublicKey(from data: Data) throws -> VirgilCryptoFoundation.PublicKey {
+        let keyProvider = KeyProvider()
+        
+        keyProvider.setRandom(random: self.rng)
+        try keyProvider.setupDefaults()
+        
+        return try keyProvider.importPublicKey(keyData: data)
+    }
+    
     /// Imports private key from DER or PEM format
     ///
     /// - Parameter data: Private key in DER or PEM format
     /// - Returns: VirgilKeyPair
     /// - Throws: Rethrows from KeyProvider
     @objc open func importPrivateKey(from data: Data) throws -> VirgilKeyPair {
-        let keyProvider = KeyProvider()
-
-        keyProvider.setRandom(random: self.rng)
-        try keyProvider.setupDefaults()
-
-        let privateKey = try keyProvider.importPrivateKey(keyData: data)
+        let privateKey = try importInternalPrivateKey(from: data)
 
         let keyType: KeyPairType
 
@@ -61,45 +74,42 @@ extension VirgilCrypto {
         }
 
         let publicKey = privateKey.extractPublicKey()
+        
+        let privateKeyData = try self.exportInternalPrivateKey(privateKey)
+        let publicKeyData = try self.exportInternalPublicKey(publicKey)
 
-        let keyId = try self.computePublicKeyIdentifier(publicKey: publicKey)
+        let keyId = try self.computePublicKeyIdentifier(publicKeyData: publicKeyData)
 
-        return VirgilKeyPair(privateKey: VirgilPrivateKey(identifier: keyId, privateKey: privateKey, keyType: keyType),
-                             publicKey: VirgilPublicKey(identifier: keyId, publicKey: publicKey, keyType: keyType))
+        return VirgilKeyPair(privateKey: VirgilPrivateKey(identifier: keyId, privateKey: privateKeyData, keyType: keyType),
+                             publicKey: VirgilPublicKey(identifier: keyId, publicKey: publicKeyData, keyType: keyType))
     }
 
-    /// Exports private key to DER foramt
-    ///
-    /// - Parameter privateKey: Private key to export
-    /// - Returns: Private key in DER format
-    /// - Throws: Rethrows from KeyAsn1Serializer
-    @objc open func exportPrivateKey(_ privateKey: VirgilPrivateKey) throws -> Data {
+    internal func exportInternalPrivateKey(_ privateKey: VirgilCryptoFoundation.PrivateKey) throws -> Data {
         let serializer = KeyAsn1Serializer()
         serializer.setupDefaults()
 
-        return try serializer.serializePrivateKey(privateKey: privateKey.privateKey)
+        return try serializer.serializePrivateKey(privateKey: privateKey)
     }
 
     /// Extracts public key from private key
     ///
     /// - Parameter privateKey: Private key
     /// - Returns: Public Key that matches passed Private Key
-    @objc open func extractPublicKey(from privateKey: VirgilPrivateKey) -> VirgilPublicKey {
+    @objc open func extractPublicKey(from privateKey: VirgilPrivateKey) throws -> VirgilPublicKey {
+        let privateKeyInternal = try self.importInternalPrivateKey(from: privateKey.privateKey)
+        let publicKey = privateKeyInternal.extractPublicKey()
+        let publicKeyData = try self.exportInternalPublicKey(publicKey)
+        
         return VirgilPublicKey(identifier: privateKey.identifier,
-                               publicKey: privateKey.privateKey.extractPublicKey(),
+                               publicKey: publicKeyData,
                                keyType: privateKey.keyType)
     }
-
-    /// Exports public key in DER format
-    ///
-    /// - Parameter publicKey: PublicKey to export
-    /// - Returns: Exported public key in DER format
-    /// - Throws: Rethrows from KeyAsn1Serializer
-    @objc open func exportPublicKey(_ publicKey: VirgilPublicKey) throws -> Data {
+    
+    internal func exportInternalPublicKey(_ publicKey: VirgilCryptoFoundation.PublicKey) throws -> Data {
         let serializer = KeyAsn1Serializer()
         serializer.setupDefaults()
 
-        return try serializer.serializePublicKey(publicKey: publicKey.publicKey)
+        return try serializer.serializePublicKey(publicKey: publicKey)
     }
 
     /// Imports public key from DER or PEM format
@@ -122,9 +132,19 @@ extension VirgilCrypto {
         else {
             keyType = try KeyPairType(from: publicKey.algId())
         }
+        
+        let publicKeyData = try self.exportInternalPublicKey(publicKey)
 
-        let keyId = try self.computePublicKeyIdentifier(publicKey: publicKey)
+        let keyId = try self.computePublicKeyIdentifier(publicKeyData: publicKeyData)
 
-        return VirgilPublicKey(identifier: keyId, publicKey: publicKey, keyType: keyType)
+        return VirgilPublicKey(identifier: keyId, publicKey: publicKeyData, keyType: keyType)
+    }
+    
+    @objc public func exportPublicKey(_ publicKey: VirgilPublicKey) throws -> Data {
+        return publicKey.publicKey
+    }
+    
+    @objc public func exportPrivateKey(_ privateKey: VirgilPrivateKey) throws -> Data {
+        return privateKey.privateKey
     }
 }

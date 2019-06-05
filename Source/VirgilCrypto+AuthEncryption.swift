@@ -73,8 +73,9 @@ extension VirgilCrypto {
         cipher.setEncryptionCipher(encryptionCipher: aesGcm)
         cipher.setRandom(random: self.rng)
 
-        recipients.forEach {
-            cipher.addKeyRecipient(recipientId: $0.identifier, publicKey: $0.publicKey)
+        try recipients.forEach {
+            let key = try self.importInternalPublicKey(from: $0.publicKey)
+            cipher.addKeyRecipient(recipientId: $0.identifier, publicKey: key)
         }
 
         cipher.customParams().addData(key: VirgilCrypto.CustomParamKeySignature, value: signature)
@@ -114,8 +115,10 @@ extension VirgilCrypto {
                                       usingOneOf signersPublicKeys: [VirgilPublicKey]) throws -> Data {
         let cipher = RecipientCipher()
 
+        let key = try self.importInternalPrivateKey(from: privateKey.privateKey)
+        
         try cipher.startDecryptionWithKey(recipientId: privateKey.identifier,
-                                          privateKey: privateKey.privateKey,
+                                          privateKey: key,
                                           messageInfo: Data())
 
         var result = Data()
