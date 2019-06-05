@@ -13,6 +13,7 @@ disabled_rules:
   - closure_body_length
   - no_grouping_extension
   - explicit_enum_raw_value
+  - explicit_acl
 
 opt_in_rules:
   - array_init
@@ -22,7 +23,6 @@ opt_in_rules:
   - contains_over_first_not_nil
   - discouraged_object_literal
   - empty_count
-  - explicit_acl
   - explicit_init
   - file_header
   - first_where
