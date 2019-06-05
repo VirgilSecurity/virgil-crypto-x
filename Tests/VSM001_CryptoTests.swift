@@ -291,4 +291,45 @@ class VSM001_CryptoTests: XCTestCase {
             XCTFail()
         }
     }
+    
+    func test09__multithread_sign_then_encrypt__same_key_should_work() {
+        do {
+            let queue1 = DispatchQueue(label: "1")
+            let queue2 = DispatchQueue(label: "2")
+
+            let crypto = try VirgilCrypto()
+
+            let keyPair = try crypto.generateKeyPair()
+            let data = UUID().uuidString.data(using: .utf8)!
+
+            let task = {
+                for _ in 0..<100 {
+                    let encryptedData = try crypto.signThenEncrypt(data, with: keyPair.privateKey, for: [keyPair.publicKey])
+                    let decryptedData = try crypto.decryptThenVerify(encryptedData, with: keyPair.privateKey, usingOneOf: [keyPair.publicKey])
+
+                    XCTAssert(encryptedData == decryptedData)
+                }
+            }
+
+            let semaphore = DispatchSemaphore(value: 2)
+
+            queue1.async {
+                try! task()
+                print("1")
+                semaphore.signal()
+            }
+
+            queue2.async {
+                try! task()
+                print("1")
+                semaphore.signal()
+            }
+
+            semaphore.wait()
+            print("3")
+        }
+        catch {
+            XCTFail()
+        }
+    }
 }
