@@ -212,6 +212,10 @@ extension VirgilCrypto {
     }
 
     private func write(_ chunk: Data, to stream: OutputStream) throws {
+        guard !chunk.isEmpty else {
+            return
+        }
+
         var actualWriteLen = 0
 
         chunk.withUnsafeBytes { buffer in

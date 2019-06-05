@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                        = "VirgilCrypto"
-  s.version                     = "5.0.0-alpha3"
+  s.version                     = "5.0.0-alpha4"
   s.swift_version               = "5.0"
   s.license                     = { :type => "BSD", :file => "LICENSE" }
   s.summary                     = "Contains high level crypto operations VirgilCrypto c library."
