@@ -307,26 +307,25 @@ class VSM001_CryptoTests: XCTestCase {
                     let encryptedData = try crypto.signThenEncrypt(data, with: keyPair.privateKey, for: [keyPair.publicKey])
                     let decryptedData = try crypto.decryptThenVerify(encryptedData, with: keyPair.privateKey, usingOneOf: [keyPair.publicKey])
 
-                    XCTAssert(encryptedData == decryptedData)
+                    XCTAssert(data == decryptedData)
                 }
             }
 
-            let semaphore = DispatchSemaphore(value: 2)
+            let dispatchGroup = DispatchGroup()
 
             queue1.async {
+                dispatchGroup.enter()
                 try! task()
-                print("1")
-                semaphore.signal()
+                dispatchGroup.leave()
             }
 
             queue2.async {
+                dispatchGroup.enter()
                 try! task()
-                print("1")
-                semaphore.signal()
+                dispatchGroup.leave()
             }
 
-            semaphore.wait()
-            print("3")
+            dispatchGroup.wait()
         }
         catch {
             XCTFail()
