@@ -48,23 +48,6 @@ import VSCCrypto
 
 /// Class with Pythia-related crypto operations
 @objc(VSCVirgilPythia) public class VirgilPythia: NSObject {
-    private static func bindBufForRead(buf: UnsafeMutablePointer<pythia_buf_t>, data: Data) {
-        data.withUnsafeBytes { (pointer: UnsafePointer<UInt8>) -> Void in
-            let mutablePointer = UnsafeMutablePointer(mutating: pointer)
-            pythia_buf_setup(buf, mutablePointer, 0, data.count)
-        }
-    }
-
-    private static func bindBufForWrite(buf: UnsafeMutablePointer<pythia_buf_t>, size: Int) -> Data {
-        var data = Data(count: size)
-
-        data.withUnsafeMutableBytes { (mutablePointer: UnsafeMutablePointer<UInt8>) -> Void in
-            pythia_buf_setup(buf, mutablePointer, size, 0)
-        }
-
-        return data
-    }
-
     private static func trim(data: inout Data, from buf: UnsafeMutablePointer<pythia_buf_t>) {
         data.removeLast(data.count - buf.pointee.len)
     }
@@ -78,22 +61,40 @@ import VSCCrypto
     /// - Returns: BlindResult with blinded password and blinding secret
     /// - Throws: VirgilPythiaError.underlyingCryptoError
     @objc public func blind(password: Data) throws -> BlindResult {
-        let passwordBuf = pythia_buf_new()!
+        let blindedPasswordCount = PYTHIA_G1_BUF_SIZE
+        var blindedPassword = Data(count: blindedPasswordCount)
         let blindedPasswordBuf = pythia_buf_new()!
+
+        let blindingSecretCount = PYTHIA_BN_BUF_SIZE
+        var blindingSecret = Data(count: blindingSecretCount)
         let blindingSecretBuf = pythia_buf_new()!
 
+        let passwordBuf = pythia_buf_new()!
+
         defer {
-            pythia_buf_free(passwordBuf)
             pythia_buf_free(blindedPasswordBuf)
             pythia_buf_free(blindingSecretBuf)
+            pythia_buf_free(passwordBuf)
         }
 
-        VirgilPythia.bindBufForRead(buf: passwordBuf, data: password)
+        let proxyResult = password.withUnsafeBytes { (passwordPointer: UnsafePointer<UInt8>) -> Int32 in
 
-        var blindedPassword = VirgilPythia.bindBufForWrite(buf: blindedPasswordBuf, size: PYTHIA_G1_BUF_SIZE)
-        var blindingSecret = VirgilPythia.bindBufForWrite(buf: blindingSecretBuf, size: PYTHIA_BN_BUF_SIZE)
+            blindedPassword.withUnsafeMutableBytes { (blindedPasswordPointer: UnsafeMutablePointer<UInt8>) -> Int32 in
+                blindingSecret.withUnsafeMutableBytes { (blindingSecretPointer: UnsafeMutablePointer<UInt8>) -> Int32 in
 
-        if virgil_pythia_blind(passwordBuf, blindedPasswordBuf, blindingSecretBuf) != 0 {
+                    pythia_buf_setup(blindedPasswordBuf, blindedPasswordPointer, blindedPasswordCount, 0)
+                    pythia_buf_setup(blindingSecretBuf, blindingSecretPointer, blindingSecretCount, 0)
+
+                    let passwordMutable = UnsafeMutablePointer(mutating: passwordPointer)
+                    pythia_buf_setup(passwordBuf, passwordMutable, 0, password.count)
+
+                    return virgil_pythia_blind(passwordBuf, blindedPasswordBuf, blindingSecretBuf)
+
+                }
+            }
+        }
+
+        guard proxyResult == 0 else {
             throw VirgilPythiaError.underlyingCryptoError
         }
 
@@ -111,22 +112,39 @@ import VSCCrypto
     /// - Returns: GT deblinded transformed password
     /// - Throws: VirgilPythiaError.underlyingCryptoError
     @objc public func deblind(transformedPassword: Data, blindingSecret: Data) throws -> Data {
-        let transformedPasswordBuf = pythia_buf_new()!
-        let blindingSecretBuf = pythia_buf_new()!
+        let deblindedPasswordCount = PYTHIA_GT_BUF_SIZE
+        var deblindedPassword = Data(count: deblindedPasswordCount)
         let deblindedPasswordBuf = pythia_buf_new()!
 
+        let transformedPasswordBuf = pythia_buf_new()!
+        let blindingSecretBuf = pythia_buf_new()!
+
         defer {
+            pythia_buf_free(deblindedPasswordBuf)
             pythia_buf_free(transformedPasswordBuf)
             pythia_buf_free(blindingSecretBuf)
-            pythia_buf_free(deblindedPasswordBuf)
         }
 
-        VirgilPythia.bindBufForRead(buf: transformedPasswordBuf, data: transformedPassword)
-        VirgilPythia.bindBufForRead(buf: blindingSecretBuf, data: blindingSecret)
+        let proxyResult = transformedPassword.withUnsafeBytes { (transformedPasswordPointer: UnsafePointer<UInt8>) -> Int32 in
+            blindingSecret.withUnsafeBytes { (blindingSecretPointer: UnsafePointer<UInt8>) -> Int32 in
 
-        var deblindedPassword = VirgilPythia.bindBufForWrite(buf: deblindedPasswordBuf, size: PYTHIA_GT_BUF_SIZE)
+                deblindedPassword.withUnsafeMutableBytes { (deblindedPasswordPointer: UnsafeMutablePointer<UInt8>) -> Int32 in
 
-        if virgil_pythia_deblind(transformedPasswordBuf, blindingSecretBuf, deblindedPasswordBuf) != 0 {
+                    pythia_buf_setup(deblindedPasswordBuf, deblindedPasswordPointer, deblindedPasswordCount, 0)
+
+                    let transformedPasswordMutable = UnsafeMutablePointer(mutating: transformedPasswordPointer)
+                    let blindingSecretMutable = UnsafeMutablePointer(mutating: blindingSecretPointer)
+
+                    pythia_buf_setup(transformedPasswordBuf, transformedPasswordMutable, 0, transformedPassword.count)
+                    pythia_buf_setup(blindingSecretBuf, blindingSecretMutable, 0, blindingSecret.count)
+
+                    return virgil_pythia_deblind(transformedPasswordBuf, blindingSecretBuf, deblindedPasswordBuf)
+
+                }
+            }
+        }
+
+        guard proxyResult == 0 else {
             throw VirgilPythiaError.underlyingCryptoError
         }
 
@@ -138,34 +156,56 @@ import VSCCrypto
     internal func computeTransformationKey(transformationKeyId: Data,
                                            pythiaSecret: Data,
                                            pythiaScopeSecret: Data) throws -> (Data, Data) {
+        let transformationPrivateKeyCount = PYTHIA_BN_BUF_SIZE
+        var transformationPrivateKey = Data(count: transformationPrivateKeyCount)
+        let transformationPrivateKeyBuf = pythia_buf_new()!
+
+        let transformationPublicKeyCount = PYTHIA_G1_BUF_SIZE
+        var transformationPublicKey = Data(count: transformationPublicKeyCount)
+        let transformationPublicKeyBuf = pythia_buf_new()!
+
         let transformationKeyIdBuf = pythia_buf_new()!
         let pythiaSecretBuf = pythia_buf_new()!
         let pythiaScopeSecretBuf = pythia_buf_new()!
-        let transformationPrivateKeyBuf = pythia_buf_new()!
-        let transformationPublicKeyBuf = pythia_buf_new()!
 
         defer {
+            pythia_buf_free(transformationPrivateKeyBuf)
+            pythia_buf_free(transformationPublicKeyBuf)
             pythia_buf_free(transformationKeyIdBuf)
             pythia_buf_free(pythiaSecretBuf)
             pythia_buf_free(pythiaScopeSecretBuf)
-            pythia_buf_free(transformationPrivateKeyBuf)
-            pythia_buf_free(transformationPublicKeyBuf)
         }
 
-        VirgilPythia.bindBufForRead(buf: transformationKeyIdBuf, data: transformationKeyId)
-        VirgilPythia.bindBufForRead(buf: pythiaSecretBuf, data: pythiaSecret)
-        VirgilPythia.bindBufForRead(buf: pythiaScopeSecretBuf, data: pythiaScopeSecret)
+        let proxyResult = transformationKeyId.withUnsafeBytes { (transformationKeyIdPointer: UnsafePointer<UInt8>) -> Int32 in
+            pythiaSecret.withUnsafeBytes { (pythiaSecretPointer: UnsafePointer<UInt8>) -> Int32 in
+                pythiaScopeSecret.withUnsafeBytes { (pythiaScopeSecretPointer: UnsafePointer<UInt8>) -> Int32 in
 
-        var transformationPrivateKey = VirgilPythia.bindBufForWrite(buf: transformationPrivateKeyBuf,
-                                                                    size: PYTHIA_BN_BUF_SIZE)
-        var transformationPublicKey = VirgilPythia.bindBufForWrite(buf: transformationPublicKeyBuf,
-                                                                   size: PYTHIA_G1_BUF_SIZE)
+                    transformationPrivateKey.withUnsafeMutableBytes { (transformationPrivateKeyPointer: UnsafeMutablePointer<UInt8>) -> Int32 in
+                        transformationPublicKey.withUnsafeMutableBytes { (transformationPublicKeyPointer: UnsafeMutablePointer<UInt8>) -> Int32 in
 
-        if virgil_pythia_compute_transformation_key_pair(transformationKeyIdBuf,
-                                                         pythiaSecretBuf,
-                                                         pythiaScopeSecretBuf,
-                                                         transformationPrivateKeyBuf,
-                                                         transformationPublicKeyBuf) != 0 {
+                            pythia_buf_setup(transformationPrivateKeyBuf, transformationPrivateKeyPointer, transformationPrivateKeyCount, 0)
+                            pythia_buf_setup(transformationPublicKeyBuf, transformationPublicKeyPointer, transformationPublicKeyCount, 0)
+
+                            let transformationKeyIdMutable = UnsafeMutablePointer(mutating: transformationKeyIdPointer)
+                            let pythiaSecretMutable = UnsafeMutablePointer(mutating: pythiaSecretPointer)
+                            let pythiaScopeSecretMutable = UnsafeMutablePointer(mutating: pythiaScopeSecretPointer)
+
+                            pythia_buf_setup(transformationKeyIdBuf, transformationKeyIdMutable, 0, transformationKeyId.count)
+                            pythia_buf_setup(pythiaSecretBuf, pythiaSecretMutable, 0, pythiaSecret.count)
+                            pythia_buf_setup(pythiaScopeSecretBuf, pythiaScopeSecretMutable, 0, pythiaScopeSecret.count)
+
+                            return virgil_pythia_compute_transformation_key_pair(transformationKeyIdBuf,
+                                                                                 pythiaSecretBuf,
+                                                                                 pythiaScopeSecretBuf,
+                                                                                 transformationPrivateKeyBuf,
+                                                                                 transformationPublicKeyBuf)
+                        }
+                    }
+                }
+            }
+        }
+
+        guard proxyResult == 0 else {
             throw VirgilPythiaError.underlyingCryptoError
         }
 
@@ -176,34 +216,56 @@ import VSCCrypto
     }
 
     internal func transform(blindedPassword: Data, tweak: Data, transformationPrivateKey: Data) throws -> (Data, Data) {
+        let transformedPasswordBufCount = PYTHIA_GT_BUF_SIZE
+        var transformedPassword = Data(count: transformedPasswordBufCount)
+        let transformedPasswordBuf = pythia_buf_new()!
+
+        let transformedTweakCount = PYTHIA_G2_BUF_SIZE
+        var transformedTweak = Data(count: transformedTweakCount)
+        let transformedTweakBuf = pythia_buf_new()!
+
         let blindedPasswordBuf = pythia_buf_new()!
         let tweakBuf = pythia_buf_new()!
         let transformationPrivateKeyBuf = pythia_buf_new()!
-        let transformedPasswordBuf = pythia_buf_new()!
-        let transformedTweakBuf = pythia_buf_new()!
 
         defer {
+            pythia_buf_free(transformedPasswordBuf)
+            pythia_buf_free(transformedTweakBuf)
             pythia_buf_free(blindedPasswordBuf)
             pythia_buf_free(tweakBuf)
             pythia_buf_free(transformationPrivateKeyBuf)
-            pythia_buf_free(transformedPasswordBuf)
-            pythia_buf_free(transformedTweakBuf)
         }
 
-        VirgilPythia.bindBufForRead(buf: blindedPasswordBuf, data: blindedPassword)
-        VirgilPythia.bindBufForRead(buf: tweakBuf, data: tweak)
-        VirgilPythia.bindBufForRead(buf: transformationPrivateKeyBuf, data: transformationPrivateKey)
+        let proxyResult = blindedPassword.withUnsafeBytes { (blindedPasswordPointer: UnsafePointer<UInt8>) -> Int32 in
+            tweak.withUnsafeBytes { (tweakPointer: UnsafePointer<UInt8>) -> Int32 in
+                transformationPrivateKey.withUnsafeBytes { (transformationPrivateKeyPointer: UnsafePointer<UInt8>) -> Int32 in
 
-        var transformedPassword = VirgilPythia.bindBufForWrite(buf: transformedPasswordBuf,
-                                                               size: PYTHIA_GT_BUF_SIZE)
-        var transformedTweak = VirgilPythia.bindBufForWrite(buf: transformedTweakBuf,
-                                                            size: PYTHIA_G2_BUF_SIZE)
+                    transformedPassword.withUnsafeMutableBytes { (transformedPasswordPointer: UnsafeMutablePointer<UInt8>) -> Int32 in
+                        transformedTweak.withUnsafeMutableBytes { (transformedTweakPointer: UnsafeMutablePointer<UInt8>) -> Int32 in
 
-        if virgil_pythia_transform(blindedPasswordBuf,
-                                   tweakBuf,
-                                   transformationPrivateKeyBuf,
-                                   transformedPasswordBuf,
-                                   transformedTweakBuf) != 0 {
+                            pythia_buf_setup(transformedPasswordBuf, transformedPasswordPointer, transformedPasswordBufCount, 0)
+                            pythia_buf_setup(transformedTweakBuf, transformedTweakPointer, transformedTweakCount, 0)
+
+                            let blindedPasswordMutable = UnsafeMutablePointer(mutating: blindedPasswordPointer)
+                            let tweakMutable = UnsafeMutablePointer(mutating: tweakPointer)
+                            let transformationPrivateKeyMutable = UnsafeMutablePointer(mutating: transformationPrivateKeyPointer)
+
+                            pythia_buf_setup(blindedPasswordBuf, blindedPasswordMutable, 0, blindedPassword.count)
+                            pythia_buf_setup(tweakBuf, tweakMutable, 0, tweak.count)
+                            pythia_buf_setup(transformationPrivateKeyBuf, transformationPrivateKeyMutable, 0, transformationPrivateKey.count)
+
+                            return virgil_pythia_transform(blindedPasswordBuf,
+                                                           tweakBuf,
+                                                           transformationPrivateKeyBuf,
+                                                           transformedPasswordBuf,
+                                                           transformedTweakBuf)
+                        }
+                    }
+                }
+            }
+        }
+
+        guard proxyResult == 0 else {
             throw VirgilPythiaError.underlyingCryptoError
         }
 
@@ -213,43 +275,75 @@ import VSCCrypto
         return (transformedPassword, transformedTweak)
     }
 
-    internal func prove(transformedPassword: Data, blindedPassword: Data,
-                        transformedTweak: Data, transformationPrivateKey: Data,
+    internal func prove(transformedPassword: Data,
+                        blindedPassword: Data,
+                        transformedTweak: Data,
+                        transformationPrivateKey: Data,
                         transformationPublicKey: Data) throws -> (Data, Data) {
+        let proofValueCCount = PYTHIA_BN_BUF_SIZE
+        var proofValueC = Data(count: proofValueCCount)
+        let proofValueCBuf = pythia_buf_new()!
+
+        let proofValueUCount = PYTHIA_BN_BUF_SIZE
+        var proofValueU = Data(count: proofValueUCount)
+        let proofValueUBuf = pythia_buf_new()!
+
         let transformedPasswordBuf = pythia_buf_new()!
         let blindedPasswordBuf = pythia_buf_new()!
         let transformedTweakBuf = pythia_buf_new()!
         let transformationPrivateKeyBuf = pythia_buf_new()!
         let transformationPublicKeyBuf = pythia_buf_new()!
-        let proofValueCBuf = pythia_buf_new()!
-        let proofValueUBuf = pythia_buf_new()!
 
         defer {
+            pythia_buf_free(proofValueCBuf)
+            pythia_buf_free(proofValueUBuf)
             pythia_buf_free(transformedPasswordBuf)
             pythia_buf_free(blindedPasswordBuf)
             pythia_buf_free(transformedTweakBuf)
             pythia_buf_free(transformationPrivateKeyBuf)
             pythia_buf_free(transformationPublicKeyBuf)
-            pythia_buf_free(proofValueCBuf)
-            pythia_buf_free(proofValueUBuf)
         }
 
-        VirgilPythia.bindBufForRead(buf: transformedPasswordBuf, data: transformedPassword)
-        VirgilPythia.bindBufForRead(buf: blindedPasswordBuf, data: blindedPassword)
-        VirgilPythia.bindBufForRead(buf: transformedTweakBuf, data: transformedTweak)
-        VirgilPythia.bindBufForRead(buf: transformationPrivateKeyBuf, data: transformationPrivateKey)
-        VirgilPythia.bindBufForRead(buf: transformationPublicKeyBuf, data: transformationPublicKey)
+        let proxyResult = transformedPassword.withUnsafeBytes { (transformedPasswordPointer: UnsafePointer<UInt8>) -> Int32 in
+            blindedPassword.withUnsafeBytes { (blindedPasswordPointer: UnsafePointer<UInt8>) -> Int32 in
+                transformedTweak.withUnsafeBytes { (transformedTweakPointer: UnsafePointer<UInt8>) -> Int32 in
+                    transformationPrivateKey.withUnsafeBytes { (transformationPrivateKeyPointer: UnsafePointer<UInt8>) -> Int32 in
+                        transformationPublicKey.withUnsafeBytes { (transformationPublicKeyPointer: UnsafePointer<UInt8>) -> Int32 in
 
-        var proofValueC = VirgilPythia.bindBufForWrite(buf: proofValueCBuf, size: PYTHIA_BN_BUF_SIZE)
-        var proofValueU = VirgilPythia.bindBufForWrite(buf: proofValueUBuf, size: PYTHIA_BN_BUF_SIZE)
+                            proofValueC.withUnsafeMutableBytes { (proofValueCPointer: UnsafeMutablePointer<UInt8>) -> Int32 in
+                                proofValueU.withUnsafeMutableBytes { (proofValueUPointer: UnsafeMutablePointer<UInt8>) -> Int32 in
 
-        if virgil_pythia_prove(transformedPasswordBuf,
-                               blindedPasswordBuf,
-                               transformedTweakBuf,
-                               transformationPrivateKeyBuf,
-                               transformationPublicKeyBuf,
-                               proofValueCBuf,
-                               proofValueUBuf) != 0 {
+                                    pythia_buf_setup(proofValueCBuf, proofValueCPointer, proofValueCCount, 0)
+                                    pythia_buf_setup(proofValueUBuf, proofValueUPointer, proofValueUCount, 0)
+
+                                    let transformedPasswordMutable = UnsafeMutablePointer(mutating: transformedPasswordPointer)
+                                    let blindedPasswordMutable = UnsafeMutablePointer(mutating: blindedPasswordPointer)
+                                    let transformedTweakMutable = UnsafeMutablePointer(mutating: transformedTweakPointer)
+                                    let transformationPrivateKeyMutable = UnsafeMutablePointer(mutating: transformationPrivateKeyPointer)
+                                    let transformationPublicKeyMutable = UnsafeMutablePointer(mutating: transformationPublicKeyPointer)
+
+                                    pythia_buf_setup(transformedPasswordBuf, transformedPasswordMutable, 0, transformedPassword.count)
+                                    pythia_buf_setup(blindedPasswordBuf, blindedPasswordMutable, 0, blindedPassword.count)
+                                    pythia_buf_setup(transformedTweakBuf, transformedTweakMutable, 0, transformedTweak.count)
+                                    pythia_buf_setup(transformationPrivateKeyBuf, transformationPrivateKeyMutable, 0, transformationPrivateKey.count)
+                                    pythia_buf_setup(transformationPublicKeyBuf, transformationPublicKeyMutable, 0, transformationPublicKey.count)
+
+                                    return virgil_pythia_prove(transformedPasswordBuf,
+                                                               blindedPasswordBuf,
+                                                               transformedTweakBuf,
+                                                               transformationPrivateKeyBuf,
+                                                               transformationPublicKeyBuf,
+                                                               proofValueCBuf,
+                                                               proofValueUBuf)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        guard proxyResult == 0 else {
             throw VirgilPythiaError.underlyingCryptoError
         }
 
@@ -259,9 +353,12 @@ import VSCCrypto
         return (proofValueC, proofValueU)
     }
 
-    internal func verify(transformedPassword: Data, blindedPassword: Data, tweak: Data,
+    internal func verify(transformedPassword: Data,
+                         blindedPassword: Data,
+                         tweak: Data,
                          transformationPublicKey: Data,
-                         proofValueC: Data, proofValueU: Data) -> Bool {
+                         proofValueC: Data,
+                         proofValueU: Data) -> Bool {
         let transformedPasswordBuf = pythia_buf_new()!
         let blindedPasswordBuf = pythia_buf_new()!
         let tweakBuf = pythia_buf_new()!
@@ -278,22 +375,44 @@ import VSCCrypto
             pythia_buf_free(proofValueUBuf)
         }
 
-        VirgilPythia.bindBufForRead(buf: transformedPasswordBuf, data: transformedPassword)
-        VirgilPythia.bindBufForRead(buf: blindedPasswordBuf, data: blindedPassword)
-        VirgilPythia.bindBufForRead(buf: tweakBuf, data: tweak)
-        VirgilPythia.bindBufForRead(buf: transformationPublicKeyBuf, data: transformationPublicKey)
-        VirgilPythia.bindBufForRead(buf: proofValueCBuf, data: proofValueC)
-        VirgilPythia.bindBufForRead(buf: proofValueUBuf, data: proofValueU)
-
         var verified = Int32()
 
-        if virgil_pythia_verify(transformedPasswordBuf,
-                                blindedPasswordBuf,
-                                tweakBuf,
-                                transformationPublicKeyBuf,
-                                proofValueCBuf,
-                                proofValueUBuf,
-                                &verified) != 0 {
+        let proxyResult = transformedPassword.withUnsafeBytes { (transformedPasswordPointer: UnsafePointer<UInt8>) -> Int32 in
+            blindedPassword.withUnsafeBytes { (blindedPasswordPointer: UnsafePointer<UInt8>) -> Int32 in
+                tweak.withUnsafeBytes { (tweakPointer: UnsafePointer<UInt8>) -> Int32 in
+                    transformationPublicKey.withUnsafeBytes { (transformationPublicKeyPointer: UnsafePointer<UInt8>) -> Int32 in
+                        proofValueC.withUnsafeBytes { (proofValueCPointer: UnsafePointer<UInt8>) -> Int32 in
+                            proofValueU.withUnsafeBytes { (proofValueUPointer: UnsafePointer<UInt8>) -> Int32 in
+
+                                let transformedPasswordMutable = UnsafeMutablePointer(mutating: transformedPasswordPointer)
+                                let blindedPasswordMutable = UnsafeMutablePointer(mutating: blindedPasswordPointer)
+                                let tweakMutable = UnsafeMutablePointer(mutating: tweakPointer)
+                                let transformationPublicKeyMutable = UnsafeMutablePointer(mutating: transformationPublicKeyPointer)
+                                let proofValueCMutable = UnsafeMutablePointer(mutating: proofValueCPointer)
+                                let proofValueUMutable = UnsafeMutablePointer(mutating: proofValueUPointer)
+
+                                pythia_buf_setup(transformedPasswordBuf, transformedPasswordMutable, 0, transformedPassword.count)
+                                pythia_buf_setup(blindedPasswordBuf, blindedPasswordMutable, 0, blindedPassword.count)
+                                pythia_buf_setup(tweakBuf, tweakMutable, 0, tweak.count)
+                                pythia_buf_setup(transformationPublicKeyBuf, transformationPublicKeyMutable, 0, transformationPublicKey.count)
+                                pythia_buf_setup(proofValueCBuf, proofValueCMutable, 0, proofValueC.count)
+                                pythia_buf_setup(proofValueUBuf, proofValueUMutable, 0, proofValueU.count)
+
+                                return virgil_pythia_verify(transformedPasswordBuf,
+                                                            blindedPasswordBuf,
+                                                            tweakBuf,
+                                                            transformationPublicKeyBuf,
+                                                            proofValueCBuf,
+                                                            proofValueUBuf,
+                                                            &verified)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        guard proxyResult == 0 else {
             return false
         }
 
