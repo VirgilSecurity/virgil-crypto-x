@@ -53,23 +53,18 @@ extension VirgilCrypto {
     /// - Throws: Rethrows from StreamSigner
     @objc open func generateStreamSignature(of stream: InputStream,
                                             using privateKey: VirgilPrivateKey) throws -> Data {
-        let key = try self.importInternalPrivateKey(from: privateKey.privateKey)
-        
-        guard let signHash = key as? SignHash else {
-            throw VirgilCryptoError.keyDoesntSupportSigning
-        }
-
         let signer = Signer()
 
+        signer.setRandom(random: self.rng)
         signer.setHash(hash: Sha512())
 
         signer.reset()
 
         try self.forEachChunk(in: stream) {
-            signer.update(data: $0)
+            signer.appendData(data: $0)
         }
 
-        return try signer.sign(privateKey: signHash)
+        return try signer.sign(privateKey: privateKey.key)
     }
 
     /// Verifies digital signature of data stream
@@ -84,21 +79,15 @@ extension VirgilCrypto {
     @nonobjc open func verifyStreamSignature(_ signature: Data,
                                              of stream: InputStream,
                                              with publicKey: VirgilPublicKey) throws -> Bool {
-        let key = try self.importInternalPublicKey(from: publicKey.publicKey)
-        
-        guard let verifyHash = key as? VerifyHash else {
-            throw VirgilCryptoError.keyDoesntSupportSigning
-        }
-
         let verifier = Verifier()
 
         try verifier.reset(signature: signature)
 
         try self.forEachChunk(in: stream) {
-            verifier.update(data: $0)
+            verifier.appendData(data: $0)
         }
 
-        return verifier.verify(publicKey: verifyHash)
+        return verifier.verify(publicKey: publicKey.key)
     }
 
     /// Verifies digital signature of data
@@ -139,9 +128,8 @@ extension VirgilCrypto {
         cipher.setEncryptionCipher(encryptionCipher: aesGcm)
         cipher.setRandom(random: self.rng)
 
-        try recipients.forEach {
-            let key = try self.importInternalPublicKey(from: $0.publicKey)
-            cipher.addKeyRecipient(recipientId: $0.identifier, publicKey: key)
+        recipients.forEach {
+            cipher.addKeyRecipient(recipientId: $0.identifier, publicKey: $0.key)
         }
 
         try cipher.startEncryption()
@@ -179,11 +167,9 @@ extension VirgilCrypto {
                             with privateKey: VirgilPrivateKey) throws {
 
         let cipher = RecipientCipher()
-        
-        let key = try self.importInternalPrivateKey(from: privateKey.privateKey)
 
         try cipher.startDecryptionWithKey(recipientId: privateKey.identifier,
-                                          privateKey: key,
+                                          privateKey: privateKey.key,
                                           messageInfo: Data())
 
         try self.forEachChunk(in: stream, to: outputStream) {

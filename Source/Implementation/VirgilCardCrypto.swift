@@ -114,6 +114,6 @@ extension VirgilCardCrypto: CardCrypto {
             throw VirgilCryptoError.passedKeyIsNotVirgil
         }
 
-        return publicKey.publicKey
+        return try self.virgilCrypto.exportPublicKey(publicKey)
     }
 }

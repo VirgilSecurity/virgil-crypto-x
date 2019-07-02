@@ -38,8 +38,9 @@ import VirgilCryptoFoundation
 
 /// MARK: - Extension for key generation
 extension VirgilCrypto {
-    
-    internal func computePublicKeyIdentifier(publicKeyData: Data) throws -> Data {
+    internal func computePublicKeyIdentifier(publicKey: VirgilCryptoFoundation.PublicKey) throws -> Data {
+        let publicKeyData = try self.exportInternalPublicKey(publicKey)
+
         if self.useSHA256Fingerprints {
             return self.computeHash(for: publicKeyData, using: .sha256)
         }
@@ -63,14 +64,11 @@ extension VirgilCrypto {
         let privateKey = try keyProvider.generatePrivateKey(algId: algId)
 
         let publicKey = privateKey.extractPublicKey()
-        
-        let privateKeyData = try self.exportInternalPrivateKey(privateKey)
-        let publicKeyData = try self.exportInternalPublicKey(publicKey)
-        
-        let keyId = try self.computePublicKeyIdentifier(publicKeyData: publicKeyData)
 
-        return VirgilKeyPair(privateKey: VirgilPrivateKey(identifier: keyId, privateKey: privateKeyData, keyType: type),
-                             publicKey: VirgilPublicKey(identifier: keyId, publicKey: publicKeyData, keyType: type))
+        let keyId = try self.computePublicKeyIdentifier(publicKey: publicKey)
+
+        return VirgilKeyPair(privateKey: VirgilPrivateKey(identifier: keyId, key: privateKey, keyType: type),
+                             publicKey: VirgilPublicKey(identifier: keyId, key: publicKey, keyType: type))
     }
 
     /// Generates KeyPair of default type using seed
