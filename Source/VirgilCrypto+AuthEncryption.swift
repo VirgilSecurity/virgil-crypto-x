@@ -74,7 +74,7 @@ extension VirgilCrypto {
         cipher.setRandom(random: self.rng)
 
         recipients.forEach {
-            cipher.addKeyRecipient(recipientId: $0.identifier, publicKey: $0.publicKey)
+            cipher.addKeyRecipient(recipientId: $0.identifier, publicKey: $0.key)
         }
 
         cipher.customParams().addData(key: VirgilCrypto.CustomParamKeySignature, value: signature)
@@ -115,7 +115,7 @@ extension VirgilCrypto {
         let cipher = RecipientCipher()
 
         try cipher.startDecryptionWithKey(recipientId: privateKey.identifier,
-                                          privateKey: privateKey.privateKey,
+                                          privateKey: privateKey.key,
                                           messageInfo: Data())
 
         var result = Data()
