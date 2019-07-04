@@ -51,7 +51,7 @@ import VirgilCryptoFoundation
     ///
     /// - Parameters:
     ///   - identifier: Key id
-    ///   - publicKey: Underlying public key
+    ///   - key: Underlying public key
     ///   - keyType: Key type
     @objc public init(identifier: Data, key: VirgilCryptoFoundation.PublicKey, keyType: KeyPairType) {
         self.identifier = identifier
