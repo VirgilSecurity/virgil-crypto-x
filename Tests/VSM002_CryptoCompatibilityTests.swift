@@ -118,7 +118,7 @@ class VSM002_CryptoCompatibilityTests: XCTestCase {
         let cipherDataStr = dict["cipher_data"]!
         let cipherData = Data(base64Encoded: cipherDataStr)!
         
-        let decryptedData = try! self.crypto.decryptThenVerify(cipherData, with: privateKey, using: publicKey)
+        let decryptedData = try! self.crypto.decryptAndVerify(cipherData, with: privateKey, using: publicKey)
         
         let decryptedStr = String(data: decryptedData, encoding: .utf8)!
         
@@ -148,7 +148,7 @@ class VSM002_CryptoCompatibilityTests: XCTestCase {
         let signerPublicKey = try! self.crypto.extractPublicKey(from: privateKeys[0])
         
         for privateKey in privateKeys {
-            let decryptedData = try! self.crypto.decryptThenVerify(cipherData, with: privateKey, using: signerPublicKey)
+            let decryptedData = try! self.crypto.decryptAndVerify(cipherData, with: privateKey, using: signerPublicKey)
             let decrypteDataStr = decryptedData.base64EncodedString()
             
             XCTAssert(decrypteDataStr == originalDataStr)
@@ -200,7 +200,7 @@ class VSM002_CryptoCompatibilityTests: XCTestCase {
         let cipherDataStr = dict["cipher_data"] as! String
         let cipherData = Data(base64Encoded: cipherDataStr)!
         
-        let decryptedData = try! self.crypto.decryptThenVerify(cipherData, with: privateKey, usingOneOf: publicKeys)
+        let decryptedData = try! self.crypto.decryptAndVerify(cipherData, with: privateKey, usingOneOf: publicKeys)
         let decrypteDataStr = decryptedData.base64EncodedString()
         
         XCTAssert(decrypteDataStr == originalDataStr)

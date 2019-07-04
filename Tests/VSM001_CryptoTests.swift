@@ -159,20 +159,20 @@ class VSM001_CryptoTests: XCTestCase {
         let keyPair2 = try crypto.generateKeyPair(ofType: keyPairType)
         let keyPair3 = try crypto.generateKeyPair(ofType: keyPairType)
         
-        let encrypted = try crypto.signThenEncrypt(data, with: keyPair1.privateKey, for: [keyPair1.publicKey, keyPair2.publicKey])
+        let encrypted = try crypto.signAndEncrypt(data, with: keyPair1.privateKey, for: [keyPair1.publicKey, keyPair2.publicKey])
         
-        let decrypted = try crypto.decryptThenVerify(encrypted, with: keyPair2.privateKey, usingOneOf: [keyPair1.publicKey, keyPair2.publicKey])
+        let decrypted = try crypto.decryptAndVerify(encrypted, with: keyPair2.privateKey, usingOneOf: [keyPair1.publicKey, keyPair2.publicKey])
         
         XCTAssert(data == decrypted)
         
         do {
-             _ = try crypto.decryptThenVerify(encrypted, with: keyPair3.privateKey, usingOneOf: [keyPair1.publicKey, keyPair2.publicKey])
+             _ = try crypto.decryptAndVerify(encrypted, with: keyPair3.privateKey, usingOneOf: [keyPair1.publicKey, keyPair2.publicKey])
             XCTFail()
         }
         catch { }
         
         do {
-            _ = try crypto.decryptThenVerify(encrypted, with: keyPair2.privateKey, usingOneOf: [keyPair3.publicKey])
+            _ = try crypto.decryptAndVerify(encrypted, with: keyPair2.privateKey, usingOneOf: [keyPair3.publicKey])
             XCTFail()
         }
         catch { }
@@ -304,8 +304,8 @@ class VSM001_CryptoTests: XCTestCase {
 
             let task = {
                 for _ in 0..<100 {
-                    let encryptedData = try crypto.signThenEncrypt(data, with: keyPair.privateKey, for: [keyPair.publicKey])
-                    let decryptedData = try crypto.decryptThenVerify(encryptedData, with: keyPair.privateKey, usingOneOf: [keyPair.publicKey])
+                    let encryptedData = try crypto.signAndEncrypt(data, with: keyPair.privateKey, for: [keyPair.publicKey])
+                    let decryptedData = try crypto.decryptAndVerify(encryptedData, with: keyPair.privateKey, usingOneOf: [keyPair.publicKey])
 
                     XCTAssert(data == decryptedData)
                 }
