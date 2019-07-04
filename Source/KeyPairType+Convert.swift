@@ -44,6 +44,8 @@ extension KeyPairType {
             self = .ed25519
         case .curve25519:
             self = .curve25519
+        case .secp256r1:
+            self = .secp256r1
         case .rsa:
             throw VirgilCryptoError.rsaShouldBeConstructedDirectly
         default:
@@ -57,6 +59,8 @@ extension KeyPairType {
             return .ed25519
         case .curve25519:
             return .curve25519
+        case .secp256r1:
+            return .secp256r1
         case .rsa2048, .rsa4096, .rsa8192:
             return .rsa
         }

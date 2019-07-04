@@ -1,2 +1,2 @@
-github "VirgilSecurity/virgil-crypto-c" "v0.7.0-alpha1"
-github "VirgilSecurity/virgil-cryptowrapper-x" "9b5cdb612e50183f34b8a62c3331891a32ba6171"
+github "VirgilSecurity/virgil-crypto-c" "v0.8.0-alpha"
+github "VirgilSecurity/virgil-cryptowrapper-x" "a79b11c2a023927744542544b5eaa3f061c140b2"

@@ -38,25 +38,14 @@ import VirgilCryptoFoundation
 
 /// MARK: - Extension for key generation
 extension VirgilCrypto {
-    /// Computes public key identifier
-    ///
-    /// - Note: Takes first 8 bytes of SHA512 of public key DER if useSHA256Fingerprints=false
-    ///         and SHA256 of public key der if useSHA256Fingerprints=true
-    ///
-    /// - Parameter publicKey: PublicKey
-    /// - Returns: Public key identifier
-    /// - Throws: Rethrows from Pkcs8DerSerializer
-    @objc open func computePublicKeyIdentifier(publicKey: VirgilCryptoFoundation.PublicKey) throws -> Data {
-        let pkcs8Serializer = Pkcs8Serializer()
-        pkcs8Serializer.setupDefaults()
-
-        let publicKeyDER = try pkcs8Serializer.serializePublicKey(publicKey: publicKey)
+    internal func computePublicKeyIdentifier(publicKey: VirgilCryptoFoundation.PublicKey) throws -> Data {
+        let publicKeyData = try self.exportInternalPublicKey(publicKey)
 
         if self.useSHA256Fingerprints {
-            return self.computeHash(for: publicKeyDER, using: .sha256)
+            return self.computeHash(for: publicKeyData, using: .sha256)
         }
         else {
-            return self.computeHash(for: publicKeyDER, using: .sha512).subdata(in: 0..<8)
+            return self.computeHash(for: publicKeyData, using: .sha512).subdata(in: 0..<8)
         }
     }
 
@@ -78,8 +67,8 @@ extension VirgilCrypto {
 
         let keyId = try self.computePublicKeyIdentifier(publicKey: publicKey)
 
-        return VirgilKeyPair(privateKey: VirgilPrivateKey(identifier: keyId, privateKey: privateKey, keyType: type),
-                             publicKey: VirgilPublicKey(identifier: keyId, publicKey: publicKey, keyType: type))
+        return VirgilKeyPair(privateKey: VirgilPrivateKey(identifier: keyId, key: privateKey, keyType: type),
+                             publicKey: VirgilPublicKey(identifier: keyId, key: publicKey, keyType: type))
     }
 
     /// Generates KeyPair of default type using seed
