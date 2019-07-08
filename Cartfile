@@ -1,2 +1,2 @@
-github "VirgilSecurity/virgil-cryptowrapper-x" "develop"
+github "VirgilSecurity/virgil-cryptowrapper-x" ~> 0.8.0
 github "VirgilSecurity/virgil-cryptoapi-x" ~> 1.0
