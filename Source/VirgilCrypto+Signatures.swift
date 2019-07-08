@@ -92,7 +92,7 @@ extension VirgilCrypto {
     ///
     /// - Parameters:
     ///   - signature: Digital signature
-    ///   - data: Data that was signed
+    ///   - data: signed Data
     ///   - publicKey: Signer public key
     /// - Returns: True if signature is verified, false otherwise
     @available(swift, obsoleted: 1.0)

@@ -51,7 +51,7 @@ extension VirgilCrypto {
     ///
     /// 1. Generates signature depending on KeyType
     /// 2. Generates random AES-256 KEY1
-    /// 3. Encrypts both data and signature with KEY1 using AES-256-GCM
+    /// 3. Encrypts data with KEY1 using AES-256-GCM
     /// 4. Generates ephemeral key pair for each recipient
     /// 5. Uses Diffie-Hellman to obtain shared secret with each recipient's public key & each ephemeral private key
     /// 6. Computes KDF to obtain AES-256 key from shared secret for each recipient
@@ -63,7 +63,7 @@ extension VirgilCrypto {
     ///   - recipients: Recipients' public keys
     /// - Returns: SignedThenEncrypted data
     /// - Throws: Rethrows from Signer and Cipher
-    @objc open func signThenEncrypt(_ data: Data, with privateKey: VirgilPrivateKey,
+    @objc open func signAndEncrypt(_ data: Data, with privateKey: VirgilPrivateKey,
                                     for recipients: [VirgilPublicKey]) throws -> Data {
         let signature = try self.generateSignature(of: data, using: privateKey)
 
@@ -96,7 +96,7 @@ extension VirgilCrypto {
     /// 1. Uses Diffie-Hellman to obtain shared secret with sender ephemeral public key & recipient's private key
     /// 2. Computes KDF to obtain AES-256 KEY2 from shared secret
     /// 3. Decrypts KEY1 using AES-256-CBC
-    /// 4. Decrypts both data and signature using KEY1 and AES-256-GCM
+    /// 4. Decrypts data using KEY1 and AES-256-GCM
     /// 5. Finds corresponding PublicKey according to signer id inside data
     /// 6. Verifies signature
     ///
@@ -110,7 +110,7 @@ extension VirgilCrypto {
     ///           Throws VirgilCryptoError.signerNotFound if signer with such id is not found
     ///           Throws VirgilCryptoError.signatureNotFound if signer was not found
     ///           Throws VirgilCryptoError.signatureNotValid if signature did not pass verification
-    @objc open func decryptThenVerify(_ data: Data, with privateKey: VirgilPrivateKey,
+    @objc open func decryptAndVerify(_ data: Data, with privateKey: VirgilPrivateKey,
                                       usingOneOf signersPublicKeys: [VirgilPublicKey]) throws -> Data {
         let cipher = RecipientCipher()
 
@@ -167,7 +167,7 @@ extension VirgilCrypto {
     /// 1. Uses Diffie-Hellman to obtain shared secret with sender ephemeral public key & recipient's private key
     /// 2. Computes KDF to obtain AES-256 KEY2 from shared secret
     /// 3. Decrypts KEY1 using AES-256-CBC
-    /// 4. Decrypts both data and signature using KEY1 and AES-256-GCM
+    /// 4. Decrypts data using KEY1 and AES-256-GCM
     /// 5. Finds corresponding PublicKey according to signer id inside data
     /// 6. Verifies signature
     ///
@@ -182,8 +182,8 @@ extension VirgilCrypto {
     ///   - Throws `VirgilCryptoError.signerNotFound` if signer with such id is not found
     ///   - Throws `VirgilCryptoError.signatureNotFound` if signer was not found
     ///   - Throws `VirgilCryptoError.signatureNotValid` if signature did not pass verification
-    @objc open func decryptThenVerify(_ data: Data, with privateKey: VirgilPrivateKey,
+    @objc open func decryptAndVerify(_ data: Data, with privateKey: VirgilPrivateKey,
                                       using signerPublicKey: VirgilPublicKey) throws -> Data {
-        return try self.decryptThenVerify(data, with: privateKey, usingOneOf: [signerPublicKey])
+        return try self.decryptAndVerify(data, with: privateKey, usingOneOf: [signerPublicKey])
     }
 }

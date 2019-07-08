@@ -35,10 +35,9 @@
 //
 
 import VirgilCryptoFoundation
-import VirgilCryptoAPI
 
 /// Class represent private key of any type, with identifier
-@objc(VSMVirgilPrivateKey) public class VirgilPrivateKey: NSObject, VirgilCryptoAPI.PrivateKey {
+@objc(VSMVirgilPrivateKey) public class VirgilPrivateKey: NSObject {
     /// Key id
     @objc public let identifier: Data
 

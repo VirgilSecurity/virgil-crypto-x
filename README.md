@@ -112,7 +112,7 @@ To integrate VirgilCrypto into your Xcode project using CocoaPods, specify it in
 target '<Your Target Name>' do
   use_frameworks!
 
-  pod 'VirgilCrypto', '~> 5.0.0-alpha3'
+  pod 'VirgilCrypto', '~> 5.0.0'
 end
 ```
 
@@ -136,7 +136,7 @@ $ brew install carthage
 To integrate VirgilCrypto into your Xcode project using Carthage, create an empty file with name *Cartfile* in your project's root folder and add following lines to your *Cartfile*
 
 ```
-github "VirgilSecurity/virgil-crypto-x" ~> 5.0.0-alpha3
+github "VirgilSecurity/virgil-crypto-x" ~> 5.0.0
 ```
 
 #### Linking against prebuilt binaries
@@ -152,7 +152,6 @@ This will build each dependency or download a pre-compiled framework from github
 ##### Building for iOS/tvOS/watchOS
 
 On your application target's “General” settings tab, in the “Linked Frameworks and Libraries” section, add following frameworks from the *Carthage/Build* folder inside your project's folder:
- - VirgilCryptoAPI
  - VirgilCrypto
  - VirgilCryptoFoundation
  - VSCCommon
@@ -167,7 +166,6 @@ On your application target's “Build Phases” settings tab, click the “+” 
 and add the paths to the frameworks you want to use under “Input Files”, e.g.:
 
 ```
-$(SRCROOT)/Carthage/Build/iOS/VirgilCryptoAPI.framework
 $(SRCROOT)/Carthage/Build/iOS/VirgilCrypto.framework
 $(SRCROOT)/Carthage/Build/iOS/VirgilCryptoFoundation.framework
 $(SRCROOT)/Carthage/Build/iOS/VSCCommon.framework
@@ -177,7 +175,6 @@ $(SRCROOT)/Carthage/Build/iOS/VSCFoundation.framework
 ##### Building for macOS
 
 On your application target's “General” settings tab, in the “Embedded Binaries” section, drag and drop following frameworks from the Carthage/Build folder on disk:
-- VirgilCryptoAPI
 - VirgilCrypto
 - VirgilCryptoFoundation
 - VSCCommon
@@ -187,24 +184,6 @@ Additionally, you'll need to copy debug symbols for debugging and crash reportin
 
 On your application target’s “Build Phases” settings tab, click the “+” icon and choose “New Copy Files Phase”.
 Click the “Destination” drop-down menu and select “Products Directory”. For each framework, drag and drop the corresponding dSYM file.
-
-#### Integrating as subproject
-
-It is possible to use carthage just for fetching the right sources for further integration into your project.
-Run following command:
-
-```bash
-$ carthage update
-```
-
-This will fetch dependencies into a *Carthage/Checkouts* folder inside your project's folder. Then, drag and drop VirgilCrypto.xcodeproj and VirgilCryptoAPI.xcodeproj from corresponding folders inside Carthage/Checkouts folder to your Xcode Project Navigator sidebar.
-
-Next, on your application target's “General” settings tab, in the “Embedded Binaries” section add following frameworks from subprojects:
-- VirgilCryptoAPI
-- VirgilCrypto
-- VirgilCryptoFoundation
-- VSCCommon
-- VSCFoundation
 
 ## Docs
 - [Crypto Core Library](https://github.com/VirgilSecurity/virgil-crypto-c)
