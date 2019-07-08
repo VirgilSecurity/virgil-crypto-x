@@ -174,12 +174,14 @@ extension VirgilCrypto {
     /// - Parameters:
     ///   - data: Signed Then Ecnrypted data
     ///   - privateKey: Receiver's private key
-    ///   - signerPublicKey: Signer public key.
+    ///   - signerPublicKey: Signer public key
     /// - Returns: DecryptedThenVerified data
-    /// - Throws: Rethrows from RecipientCipher and Verifier.
-    ///           Throws VirgilCryptoError.signerNotFound if signer with such id is not found
-    ///           Throws VirgilCryptoError.signatureNotFound if signer was not found
-    ///           Throws VirgilCryptoError.signatureNotValid if signature did not pass verification
+    /// - Throws:
+    ///   - Rethrows from `RecipientCipher`
+    ///   - Rethrows from `Verifier`
+    ///   - Throws `VirgilCryptoError.signerNotFound` if signer with such id is not found
+    ///   - Throws `VirgilCryptoError.signatureNotFound` if signer was not found
+    ///   - Throws `VirgilCryptoError.signatureNotValid` if signature did not pass verification
     @objc open func decryptThenVerify(_ data: Data, with privateKey: VirgilPrivateKey,
                                       using signerPublicKey: VirgilPublicKey) throws -> Data {
         return try self.decryptThenVerify(data, with: privateKey, usingOneOf: [signerPublicKey])

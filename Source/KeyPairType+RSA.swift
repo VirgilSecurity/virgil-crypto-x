@@ -53,7 +53,7 @@ extension KeyPairType {
     /// Initializes rsa key type using provided bit len
     ///
     /// - Parameter rsaBitLen: rsa bit len
-    /// - Throws: VirgilCryptoError.unsupportedRsaLength
+    /// - Throws: `VirgilCryptoError.unsupportedRsaLength`
     public init(fromRsaBitLen rsaBitLen: Int) throws {
         switch rsaBitLen {
         case 2_048:

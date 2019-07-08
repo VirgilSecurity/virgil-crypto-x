@@ -60,8 +60,9 @@ extension VirgilCardCrypto: CardCrypto {
     ///   - data: Data to be signed
     ///   - privateKey: Signer's private key
     /// - Returns: Digitar signature data
-    /// - Throws: Rethrows from VirgilCrypto.
-    ///           VirgilCryptoError.passedKeyIsNotVirgil if passed key is of wrong type
+    /// - Throws:
+    ///   - Rethrows from `VirgilCrypto`
+    ///   - `VirgilCryptoError.passedKeyIsNotVirgil` if passed key is of wrong type
     public func generateSignature(of data: Data, using privateKey: PrivateKey) throws -> Data {
         guard let privateKey = privateKey as? VirgilPrivateKey else {
             throw VirgilCryptoError.passedKeyIsNotVirgil
@@ -98,7 +99,7 @@ extension VirgilCardCrypto: CardCrypto {
     ///
     /// - Parameter data: Public key data in DER or PEM format
     /// - Returns: Imported public key
-    /// - Throws: Rethrows from VirgilCrypto
+    /// - Throws: Rethrows from `VirgilCrypto`
     public func importPublicKey(from data: Data) throws -> PublicKey {
         return try self.virgilCrypto.importPublicKey(from: data)
     }
@@ -107,8 +108,9 @@ extension VirgilCardCrypto: CardCrypto {
     ///
     /// - Parameter publicKey: Public key to be exported
     /// - Returns: Public key in DER format
-    /// - Throws: Rethrows from VirgilCrypto.
-    ///           VirgilCryptoError.passedKeyIsNotVirgil if passed key is of wrong type
+    /// - Throws:
+    ///   - Rethrows from `VirgilCrypto`
+    ///   - `VirgilCryptoError.passedKeyIsNotVirgil` if passed key is of wrong type
     public func exportPublicKey(_ publicKey: PublicKey) throws -> Data {
         guard let publicKey = publicKey as? VirgilPublicKey else {
             throw VirgilCryptoError.passedKeyIsNotVirgil
