@@ -38,19 +38,8 @@ import VirgilCryptoFoundation
 
 /// MARK: - Extension for key generation
 extension VirgilCrypto {
-    /// Computes public key identifier
-    ///
-    /// - Note: Takes first 8 bytes of SHA512 of public key DER if useSHA256Fingerprints=false
-    ///         and SHA256 of public key der if useSHA256Fingerprints=true
-    ///
-    /// - Parameter publicKey: PublicKey
-    /// - Returns: Public key identifier
-    /// - Throws: Rethrows from KeyAsn1Serializer
-    @objc open func computePublicKeyIdentifier(publicKey: VirgilCryptoFoundation.PublicKey) throws -> Data {
-        let serializer = KeyAsn1Serializer()
-        serializer.setupDefaults()
-
-        let publicKeyData = try serializer.serializePublicKey(publicKey: publicKey)
+    internal func computePublicKeyIdentifier(publicKey: VirgilCryptoFoundation.PublicKey) throws -> Data {
+        let publicKeyData = try self.exportInternalPublicKey(publicKey)
 
         if self.useSHA256Fingerprints {
             return self.computeHash(for: publicKeyData, using: .sha256)
@@ -78,15 +67,15 @@ extension VirgilCrypto {
 
         let keyId = try self.computePublicKeyIdentifier(publicKey: publicKey)
 
-        return VirgilKeyPair(privateKey: VirgilPrivateKey(identifier: keyId, privateKey: privateKey, keyType: type),
-                             publicKey: VirgilPublicKey(identifier: keyId, publicKey: publicKey, keyType: type))
+        return VirgilKeyPair(privateKey: VirgilPrivateKey(identifier: keyId, key: privateKey, keyType: type),
+                             publicKey: VirgilPublicKey(identifier: keyId, key: publicKey, keyType: type))
     }
 
     /// Generates KeyPair of default type using seed
     ///
     /// - Parameter seed: random value used to generate key
     /// - Returns: Generated KeyPair
-    /// - Throws: Rethrows from KeyProvider
+    /// - Throws: Rethrows from `KeyProvider`
     @objc open func generateKeyPair(usingSeed seed: Data) throws -> VirgilKeyPair {
         return try self.generateKeyPair(ofType: self.defaultKeyType, usingSeed: seed)
     }
@@ -97,7 +86,7 @@ extension VirgilCrypto {
     ///   - type: KeyPair type
     ///   - seed: random value used to generate key
     /// - Returns: Generated KeyPair
-    /// - Throws: Rethrows from KeyProvider
+    /// - Throws: Rethrows from `KeyProvider`
     @objc open func generateKeyPair(ofType type: KeyPairType, usingSeed seed: Data) throws -> VirgilKeyPair {
         guard KeyMaterialRng.keyMaterialLenMin...KeyMaterialRng.keyMaterialLenMax ~= seed.count else {
             throw VirgilCryptoError.invalidSeedSize
@@ -113,7 +102,7 @@ extension VirgilCrypto {
     /// Generates KeyPair of default type
     ///
     /// - Returns: Generated KeyPair
-    /// - Throws: Rethrows from KeyPair
+    /// - Throws: Rethrows from `KeyPair`
     @objc open func generateKeyPair() throws -> VirgilKeyPair {
         return try self.generateKeyPair(ofType: self.defaultKeyType)
     }
@@ -122,7 +111,7 @@ extension VirgilCrypto {
     ///
     /// - Parameter type: KeyPair type
     /// - Returns: Generated KeyPair
-    /// - Throws: Rethrows from KeyProvider
+    /// - Throws: Rethrows from `KeyProvider`
     @objc open func generateKeyPair(ofType type: KeyPairType) throws -> VirgilKeyPair {
         return try self.generateKeyPair(ofType: type, using: self.rng)
     }

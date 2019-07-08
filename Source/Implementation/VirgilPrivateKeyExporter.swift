@@ -56,8 +56,9 @@ extension VirgilPrivateKeyExporter: PrivateKeyExporter {
     ///
     /// - Parameter privateKey: Private key to be exported
     /// - Returns: Exported private key in DER format
-    /// - Throws: Rethrows from VirgilCrypto.
-    ///           VirgilCryptoError.passedKeyIsNotVirgil if passed key is of wrong type
+    /// - Throws:
+    ///   - Rethrows from `VirgilCrypto`
+    ///   - `VirgilCryptoError.passedKeyIsNotVirgil` if passed key is of wrong type
     @objc open func exportPrivateKey(privateKey: PrivateKey) throws -> Data {
         guard let privateKey = privateKey as? VirgilPrivateKey else {
             throw VirgilCryptoError.passedKeyIsNotVirgil
@@ -70,7 +71,7 @@ extension VirgilPrivateKeyExporter: PrivateKeyExporter {
     ///
     /// - Parameter data: Private key in DER or PEM format
     /// - Returns: Imported private key
-    /// - Throws: Rethrows from VirgilCrypto
+    /// - Throws: Rethrows from `VirgilCrypto`
     @objc open func importPrivateKey(from data: Data) throws -> PrivateKey {
         return try self.virgilCrypto.importPrivateKey(from: data).privateKey
     }

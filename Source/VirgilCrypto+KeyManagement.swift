@@ -38,23 +38,36 @@ import VirgilCryptoFoundation
 
 // MARK: - Extension for key management
 extension VirgilCrypto {
-    /// Imports private key from DER or PEM format
-    ///
-    /// - Parameter data: Private key in DER or PEM format
-    /// - Returns: VirgilKeyPair
-    /// - Throws: Rethrows from KeyProvider
-    @objc open func importPrivateKey(from data: Data) throws -> VirgilKeyPair {
+    private func importInternalPrivateKey(from data: Data) throws -> VirgilCryptoFoundation.PrivateKey {
         let keyProvider = KeyProvider()
 
         keyProvider.setRandom(random: self.rng)
         try keyProvider.setupDefaults()
 
-        let privateKey = try keyProvider.importPrivateKey(keyData: data)
+        return try keyProvider.importPrivateKey(keyData: data)
+    }
+
+    private func importInternalPublicKey(from data: Data) throws -> VirgilCryptoFoundation.PublicKey {
+        let keyProvider = KeyProvider()
+
+        keyProvider.setRandom(random: self.rng)
+        try keyProvider.setupDefaults()
+
+        return try keyProvider.importPublicKey(keyData: data)
+    }
+
+    /// Imports private key from DER or PEM format
+    ///
+    /// - Parameter data: Private key in DER or PEM format
+    /// - Returns: VirgilKeyPair
+    /// - Throws: Rethrows from `KeyProvider`
+    @objc open func importPrivateKey(from data: Data) throws -> VirgilKeyPair {
+        let privateKey = try self.importInternalPrivateKey(from: data)
 
         let keyType: KeyPairType
 
         if privateKey.algId() == .rsa {
-            keyType = try KeyPairType(fromRsaBitLen: privateKey.keyBitlen())
+            keyType = try KeyPairType(fromRsaBitLen: privateKey.bitlen())
         }
         else {
             keyType = try KeyPairType(from: privateKey.algId())
@@ -64,49 +77,43 @@ extension VirgilCrypto {
 
         let keyId = try self.computePublicKeyIdentifier(publicKey: publicKey)
 
-        return VirgilKeyPair(privateKey: VirgilPrivateKey(identifier: keyId, privateKey: privateKey, keyType: keyType),
-                             publicKey: VirgilPublicKey(identifier: keyId, publicKey: publicKey, keyType: keyType))
+        return VirgilKeyPair(privateKey: VirgilPrivateKey(identifier: keyId, key: privateKey, keyType: keyType),
+                             publicKey: VirgilPublicKey(identifier: keyId, key: publicKey, keyType: keyType))
     }
 
-    /// Exports private key to DER foramt
-    ///
-    /// - Parameter privateKey: Private key to export
-    /// - Returns: Private key in DER format
-    /// - Throws: Rethrows from KeyAsn1Serializer
-    @objc open func exportPrivateKey(_ privateKey: VirgilPrivateKey) throws -> Data {
-        let serializer = KeyAsn1Serializer()
-        serializer.setupDefaults()
+    internal func exportInternalPrivateKey(_ privateKey: VirgilCryptoFoundation.PrivateKey) throws -> Data {
+        let keyProvider = KeyProvider()
+        keyProvider.setRandom(random: self.rng)
+        try keyProvider.setupDefaults()
 
-        return try serializer.serializePrivateKey(privateKey: privateKey.privateKey)
+        return try keyProvider.exportPrivateKey(privateKey: privateKey)
     }
 
     /// Extracts public key from private key
     ///
     /// - Parameter privateKey: Private key
     /// - Returns: Public Key that matches passed Private Key
-    @objc open func extractPublicKey(from privateKey: VirgilPrivateKey) -> VirgilPublicKey {
+    @objc open func extractPublicKey(from privateKey: VirgilPrivateKey) throws -> VirgilPublicKey {
+        let publicKey = privateKey.key.extractPublicKey()
+
         return VirgilPublicKey(identifier: privateKey.identifier,
-                               publicKey: privateKey.privateKey.extractPublicKey(),
+                               key: publicKey,
                                keyType: privateKey.keyType)
     }
 
-    /// Exports public key in DER format
-    ///
-    /// - Parameter publicKey: PublicKey to export
-    /// - Returns: Exported public key in DER format
-    /// - Throws: Rethrows from KeyAsn1Serializer
-    @objc open func exportPublicKey(_ publicKey: VirgilPublicKey) throws -> Data {
-        let serializer = KeyAsn1Serializer()
-        serializer.setupDefaults()
+    internal func exportInternalPublicKey(_ publicKey: VirgilCryptoFoundation.PublicKey) throws -> Data {
+        let keyProvider = KeyProvider()
+        keyProvider.setRandom(random: self.rng)
+        try keyProvider.setupDefaults()
 
-        return try serializer.serializePublicKey(publicKey: publicKey.publicKey)
+        return try keyProvider.exportPublicKey(publicKey: publicKey)
     }
 
     /// Imports public key from DER or PEM format
     ///
     /// - Parameter data: Public key in DER or PEM format
     /// - Returns: Imported Public Key
-    /// - Throws: Rethrows from KeyProvider
+    /// - Throws: Rethrows from `KeyProvider`
     @objc open func importPublicKey(from data: Data) throws -> VirgilPublicKey {
         let keyProvider = KeyProvider()
         keyProvider.setRandom(random: self.rng)
@@ -117,7 +124,7 @@ extension VirgilCrypto {
         let keyType: KeyPairType
 
         if publicKey.algId() == .rsa {
-            keyType = try KeyPairType(fromRsaBitLen: publicKey.keyBitlen())
+            keyType = try KeyPairType(fromRsaBitLen: publicKey.bitlen())
         }
         else {
             keyType = try KeyPairType(from: publicKey.algId())
@@ -125,6 +132,24 @@ extension VirgilCrypto {
 
         let keyId = try self.computePublicKeyIdentifier(publicKey: publicKey)
 
-        return VirgilPublicKey(identifier: keyId, publicKey: publicKey, keyType: keyType)
+        return VirgilPublicKey(identifier: keyId, key: publicKey, keyType: keyType)
+    }
+
+    /// Exports public key
+    ///
+    /// - Parameter publicKey: Public key
+    /// - Returns: Exported public key
+    /// - Throws: Rethrows from `KeyProvider`
+    @objc public func exportPublicKey(_ publicKey: VirgilPublicKey) throws -> Data {
+        return try self.exportInternalPublicKey(publicKey.key)
+    }
+
+    /// Export private key
+    ///
+    /// - Parameter privateKey: Private key
+    /// - Returns: Exported private key
+    /// - Throws: Rethrows from `KeyProvider`
+    @objc public func exportPrivateKey(_ privateKey: VirgilPrivateKey) throws -> Data {
+        return try self.exportInternalPrivateKey(privateKey.key)
     }
 }

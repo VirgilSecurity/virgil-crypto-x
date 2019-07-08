@@ -50,24 +50,21 @@ extension VirgilCrypto {
     ///   - stream: Data stream to sign
     ///   - privateKey: Private key used to generate signature
     /// - Returns: Digital signature
-    /// - Throws: Rethrows from StreamSigner
+    /// - Throws: Rethrows from `StreamSigner`
     @objc open func generateStreamSignature(of stream: InputStream,
                                             using privateKey: VirgilPrivateKey) throws -> Data {
-        guard let signHash = privateKey.privateKey as? SignHash else {
-            throw VirgilCryptoError.keyDoesntSupportSigning
-        }
-
         let signer = Signer()
 
+        signer.setRandom(random: self.rng)
         signer.setHash(hash: Sha512())
 
         signer.reset()
 
         try self.forEachChunk(in: stream) {
-            signer.update(data: $0)
+            signer.appendData(data: $0)
         }
 
-        return try signer.sign(privateKey: signHash)
+        return try signer.sign(privateKey: privateKey.key)
     }
 
     /// Verifies digital signature of data stream
@@ -82,19 +79,15 @@ extension VirgilCrypto {
     @nonobjc open func verifyStreamSignature(_ signature: Data,
                                              of stream: InputStream,
                                              with publicKey: VirgilPublicKey) throws -> Bool {
-        guard let verifyHash = publicKey.publicKey as? VerifyHash else {
-            throw VirgilCryptoError.keyDoesntSupportSigning
-        }
-
         let verifier = Verifier()
 
         try verifier.reset(signature: signature)
 
         try self.forEachChunk(in: stream) {
-            verifier.update(data: $0)
+            verifier.appendData(data: $0)
         }
 
-        return verifier.verify(publicKey: verifyHash)
+        return verifier.verify(publicKey: publicKey.key)
     }
 
     /// Verifies digital signature of data
@@ -126,7 +119,7 @@ extension VirgilCrypto {
     ///   - stream: data Stream to be encrypted
     ///   - outputStream: Stream with encrypted data
     ///   - recipients: Recipients
-    /// - Throws: Rethrows from ChunkCipher
+    /// - Throws: Rethrows from `RecipientCipher`
     @objc open func encrypt(_ stream: InputStream, to outputStream: OutputStream,
                             for recipients: [VirgilPublicKey]) throws {
         let aesGcm = Aes256Gcm()
@@ -136,7 +129,7 @@ extension VirgilCrypto {
         cipher.setRandom(random: self.rng)
 
         recipients.forEach {
-            cipher.addKeyRecipient(recipientId: $0.identifier, publicKey: $0.publicKey)
+            cipher.addKeyRecipient(recipientId: $0.identifier, publicKey: $0.key)
         }
 
         try cipher.startEncryption()
@@ -169,14 +162,14 @@ extension VirgilCrypto {
     ///   - stream: Stream with encrypted data
     ///   - outputStream: Stream with decrypted data
     ///   - privateKey: Recipient's private key
-    /// - Throws: Rethrows from ChunkCipher
+    /// - Throws: Rethrows from `RecipientCipher`
     @objc open func decrypt(_ stream: InputStream, to outputStream: OutputStream,
                             with privateKey: VirgilPrivateKey) throws {
 
         let cipher = RecipientCipher()
 
         try cipher.startDecryptionWithKey(recipientId: privateKey.identifier,
-                                          privateKey: privateKey.privateKey,
+                                          privateKey: privateKey.key,
                                           messageInfo: Data())
 
         try self.forEachChunk(in: stream, to: outputStream) {

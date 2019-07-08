@@ -60,8 +60,9 @@ extension VirgilAccessTokenSigner: AccessTokenSigner {
     ///   - token: Token to be signed
     ///   - privateKey: Private key
     /// - Returns: Digital signature data
-    /// - Throws: Rethrows from VirgilCrypto.
-    ///           VirgilCryptoError.passedKeyIsNotVirgil if passed key is of wrong type
+    /// - Throws:
+    ///   - Rethrows from `VirgilCrypto`
+    ///   - `VirgilCryptoError.passedKeyIsNotVirgil` if passed key is of wrong type
     public func generateTokenSignature(of token: Data, using privateKey: PrivateKey) throws -> Data {
         guard let privateKey = privateKey as? VirgilPrivateKey else {
             throw VirgilCryptoError.passedKeyIsNotVirgil

@@ -47,9 +47,9 @@ import Foundation
 /// - keyDoesntSupportSigning: key doesn't support signing
 /// - passedKeyIsNotVirgil: passed key is not virgil
 /// - outputStreamError: output stream has no space left
-/// - inputStreamError: output stream has no space left
+/// - inputStreamError: input stream has no space left
 /// - invalidSeedSize: invalid seed size
-@objc(VSMVirgilCryptoError) public enum VirgilCryptoError: Int, Error {
+@objc(VSMVirgilCryptoError) public enum VirgilCryptoError: Int, LocalizedError {
     case signerNotFound = 1
     case signatureNotFound = 2
     case signatureNotVerified = 3
@@ -61,4 +61,32 @@ import Foundation
     case outputStreamError = 9
     case inputStreamError = 10
     case invalidSeedSize = 11
+
+    /// Human-readable localized description
+    public var errorDescription: String? {
+        switch self {
+        case .signerNotFound:
+            return "Signer not found"
+        case .signatureNotFound:
+            return "Signature not found"
+        case .signatureNotVerified:
+            return "Signature not verified"
+        case .unknownAlgId:
+            return "Unknown alg id"
+        case .rsaShouldBeConstructedDirectly:
+            return "rsa should be constructed directly"
+        case .unsupportedRsaLength:
+            return "Unsupported rsa length"
+        case .keyDoesntSupportSigning:
+            return "Key doesn't support signing"
+        case .passedKeyIsNotVirgil:
+            return "Passed key is not virgil"
+        case .outputStreamError:
+            return "Output stream has no space left"
+        case .inputStreamError:
+            return "Input stream has no space left"
+        case .invalidSeedSize:
+            return "Invalid seed size"
+        }
+    }
 }

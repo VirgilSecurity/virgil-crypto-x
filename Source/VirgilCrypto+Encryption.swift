@@ -51,7 +51,7 @@ extension VirgilCrypto {
     ///   - data: Data to be encrypted
     ///   - recipients: Public Keys of recipients
     /// - Returns: Encrypted data
-    /// - Throws: Rethrows from RecipientCipher
+    /// - Throws: Rethrows from `RecipientCipher`
     @objc open func encrypt(_ data: Data, for recipients: [VirgilPublicKey]) throws -> Data {
         let aesGcm = Aes256Gcm()
         let cipher = RecipientCipher()
@@ -60,7 +60,7 @@ extension VirgilCrypto {
         cipher.setRandom(random: self.rng)
 
         recipients.forEach {
-            cipher.addKeyRecipient(recipientId: $0.identifier, publicKey: $0.publicKey)
+            cipher.addKeyRecipient(recipientId: $0.identifier, publicKey: $0.key)
         }
 
         try cipher.startEncryption()
@@ -85,12 +85,14 @@ extension VirgilCrypto {
     ///   - data: Encrypted data
     ///   - privateKey: Recipient's private key
     /// - Returns: Decrypted data
-    /// - Throws: Rethrows from RecipientCipher
+    /// - Throws: Rethrows from `RecipientCipher`
     @objc open func decrypt(_ data: Data, with privateKey: VirgilPrivateKey) throws -> Data {
         let cipher = RecipientCipher()
 
+        cipher.setRandom(random: self.rng)
+
         try cipher.startDecryptionWithKey(recipientId: privateKey.identifier,
-                                          privateKey: privateKey.privateKey,
+                                          privateKey: privateKey.key,
                                           messageInfo: Data())
 
         var result = Data()
@@ -101,5 +103,4 @@ extension VirgilCrypto {
 
         return result
     }
-
 }

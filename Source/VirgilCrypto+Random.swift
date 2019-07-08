@@ -42,7 +42,7 @@ extension VirgilCrypto {
     ///
     /// - Parameter size: size needed
     /// - Returns: Random data
-    /// - Throws: Rethrows from RNG
+    /// - Throws: Rethrows from `Random`
     @objc public func generateRandomData(ofSize size: Int) throws -> Data {
         return try self.rng.random(dataLen: size)
     }

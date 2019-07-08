@@ -51,20 +51,17 @@ extension VirgilCrypto {
     ///   - data: Data to sign
     ///   - privateKey: Private key used to generate signature
     /// - Returns: Digital signature
-    /// - Throws: Rethrows from Signer
+    /// - Throws: Rethrows from `Signer`
     @objc open func generateSignature(of data: Data, using privateKey: VirgilPrivateKey) throws -> Data {
-        guard let signHash = privateKey.privateKey as? SignHash else {
-            throw VirgilCryptoError.keyDoesntSupportSigning
-        }
-
         let signer = Signer()
 
+        signer.setRandom(random: self.rng)
         signer.setHash(hash: Sha512())
 
         signer.reset()
-        signer.update(data: data)
+        signer.appendData(data: data)
 
-        return try signer.sign(privateKey: signHash)
+        return try signer.sign(privateKey: privateKey.key)
     }
 
     /// Verifies digital signature of data
@@ -76,21 +73,17 @@ extension VirgilCrypto {
     ///   - data: Data that was signed
     ///   - publicKey: Signer public key
     /// - Returns: True if signature is verified, false otherwise
-    /// - Throws: VirgilCryptoError.keyDoesntSupportSigning
+    /// - Throws: `VirgilCryptoError.keyDoesntSupportSigning`
     @nonobjc open func verifySignature(_ signature: Data,
                                        of data: Data,
                                        with publicKey: VirgilPublicKey) throws -> Bool {
-        guard let verifyHash = publicKey.publicKey as? VerifyHash else {
-            throw VirgilCryptoError.keyDoesntSupportSigning
-        }
-
         let verifier = Verifier()
 
         try verifier.reset(signature: signature)
 
-        verifier.update(data: data)
+        verifier.appendData(data: data)
 
-        return verifier.verify(publicKey: verifyHash)
+        return verifier.verify(publicKey: publicKey.key)
     }
 
     /// Verifies digital signature of data
@@ -101,7 +94,7 @@ extension VirgilCrypto {
     ///   - signature: Digital signature
     ///   - data: Data that was signed
     ///   - publicKey: Signer public key
-    /// - Returns: True if signature is verified, else - otherwise
+    /// - Returns: True if signature is verified, false otherwise
     @available(swift, obsoleted: 1.0)
     @objc open func verifySignature_objc(_ signature: Data, of data: Data, with publicKey: VirgilPublicKey) -> Bool {
         return (try? self.verifySignature(signature, of: data, with: publicKey)) ?? false
