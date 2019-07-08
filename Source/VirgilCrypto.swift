@@ -56,13 +56,15 @@ import VirgilCryptoFoundation
 
     /// Initializer
     ///
+    /// - Note: Use SHA256 fingerprint only if you need to work with encrypted data,
+    ///         that was encrypted using those fingerprint. (e.g. version 2 of this library)
+    ///
     /// - Parameters:
     ///   - defaultKeyType: Key type used to generate keys by default
     ///   - useSHA256Fingerprints: Use old algorithm to generate key fingerprints
     ///                            Current algorithm: first 8 bytes of SHA512 of public key in DER format
     ///                            Old algorithm SHA256 of public key in DER format
-    ///                            NOTE: Use SHA256 fingerprint only if you need to work with encrypted data,
-    ///                                  that was encrypted using those fingerprint. (e.g. version 2 of this library)
+    ///
     /// - Throws: Rethrows from CtrDrbg
     @objc public init(defaultKeyType: KeyPairType = .ed25519, useSHA256Fingerprints: Bool = false) throws {
         let rng = CtrDrbg()

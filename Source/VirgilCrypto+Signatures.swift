@@ -51,7 +51,7 @@ extension VirgilCrypto {
     ///   - data: Data to sign
     ///   - privateKey: Private key used to generate signature
     /// - Returns: Digital signature
-    /// - Throws: Rethrows from Signer
+    /// - Throws: Rethrows from `Signer`
     @objc open func generateSignature(of data: Data, using privateKey: VirgilPrivateKey) throws -> Data {
         let signer = Signer()
 
@@ -73,7 +73,7 @@ extension VirgilCrypto {
     ///   - data: Data that was signed
     ///   - publicKey: Signer public key
     /// - Returns: True if signature is verified, false otherwise
-    /// - Throws: VirgilCryptoError.keyDoesntSupportSigning
+    /// - Throws: `VirgilCryptoError.keyDoesntSupportSigning`
     @nonobjc open func verifySignature(_ signature: Data,
                                        of data: Data,
                                        with publicKey: VirgilPublicKey) throws -> Bool {
@@ -94,7 +94,7 @@ extension VirgilCrypto {
     ///   - signature: Digital signature
     ///   - data: Data that was signed
     ///   - publicKey: Signer public key
-    /// - Returns: True if signature is verified, else - otherwise
+    /// - Returns: True if signature is verified, false otherwise
     @available(swift, obsoleted: 1.0)
     @objc open func verifySignature_objc(_ signature: Data, of data: Data, with publicKey: VirgilPublicKey) -> Bool {
         return (try? self.verifySignature(signature, of: data, with: publicKey)) ?? false

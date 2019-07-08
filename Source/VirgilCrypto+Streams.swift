@@ -50,7 +50,7 @@ extension VirgilCrypto {
     ///   - stream: Data stream to sign
     ///   - privateKey: Private key used to generate signature
     /// - Returns: Digital signature
-    /// - Throws: Rethrows from StreamSigner
+    /// - Throws: Rethrows from `StreamSigner`
     @objc open func generateStreamSignature(of stream: InputStream,
                                             using privateKey: VirgilPrivateKey) throws -> Data {
         let signer = Signer()
@@ -119,7 +119,7 @@ extension VirgilCrypto {
     ///   - stream: data Stream to be encrypted
     ///   - outputStream: Stream with encrypted data
     ///   - recipients: Recipients
-    /// - Throws: Rethrows from ChunkCipher
+    /// - Throws: Rethrows from `RecipientCipher`
     @objc open func encrypt(_ stream: InputStream, to outputStream: OutputStream,
                             for recipients: [VirgilPublicKey]) throws {
         let aesGcm = Aes256Gcm()
@@ -162,7 +162,7 @@ extension VirgilCrypto {
     ///   - stream: Stream with encrypted data
     ///   - outputStream: Stream with decrypted data
     ///   - privateKey: Recipient's private key
-    /// - Throws: Rethrows from ChunkCipher
+    /// - Throws: Rethrows from `RecipientCipher`
     @objc open func decrypt(_ stream: InputStream, to outputStream: OutputStream,
                             with privateKey: VirgilPrivateKey) throws {
 

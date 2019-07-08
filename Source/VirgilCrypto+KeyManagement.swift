@@ -60,9 +60,9 @@ extension VirgilCrypto {
     ///
     /// - Parameter data: Private key in DER or PEM format
     /// - Returns: VirgilKeyPair
-    /// - Throws: Rethrows from KeyProvider
+    /// - Throws: Rethrows from `KeyProvider`
     @objc open func importPrivateKey(from data: Data) throws -> VirgilKeyPair {
-        let privateKey = try importInternalPrivateKey(from: data)
+        let privateKey = try self.importInternalPrivateKey(from: data)
 
         let keyType: KeyPairType
 
@@ -113,7 +113,7 @@ extension VirgilCrypto {
     ///
     /// - Parameter data: Public key in DER or PEM format
     /// - Returns: Imported Public Key
-    /// - Throws: Rethrows from KeyProvider
+    /// - Throws: Rethrows from `KeyProvider`
     @objc open func importPublicKey(from data: Data) throws -> VirgilPublicKey {
         let keyProvider = KeyProvider()
         keyProvider.setRandom(random: self.rng)
@@ -139,7 +139,7 @@ extension VirgilCrypto {
     ///
     /// - Parameter publicKey: Public key
     /// - Returns: Exported public key
-    /// - Throws: Underlying crypto error
+    /// - Throws: Rethrows from `KeyProvider`
     @objc public func exportPublicKey(_ publicKey: VirgilPublicKey) throws -> Data {
         return try self.exportInternalPublicKey(publicKey.key)
     }
@@ -148,7 +148,7 @@ extension VirgilCrypto {
     ///
     /// - Parameter privateKey: Private key
     /// - Returns: Exported private key
-    /// - Throws: Underlying crypto error
+    /// - Throws: Rethrows from `KeyProvider`
     @objc public func exportPrivateKey(_ privateKey: VirgilPrivateKey) throws -> Data {
         return try self.exportInternalPrivateKey(privateKey.key)
     }

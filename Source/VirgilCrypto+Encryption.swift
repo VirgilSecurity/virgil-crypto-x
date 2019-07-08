@@ -51,7 +51,7 @@ extension VirgilCrypto {
     ///   - data: Data to be encrypted
     ///   - recipients: Public Keys of recipients
     /// - Returns: Encrypted data
-    /// - Throws: Rethrows from RecipientCipher
+    /// - Throws: Rethrows from `RecipientCipher`
     @objc open func encrypt(_ data: Data, for recipients: [VirgilPublicKey]) throws -> Data {
         let aesGcm = Aes256Gcm()
         let cipher = RecipientCipher()
@@ -85,7 +85,7 @@ extension VirgilCrypto {
     ///   - data: Encrypted data
     ///   - privateKey: Recipient's private key
     /// - Returns: Decrypted data
-    /// - Throws: Rethrows from RecipientCipher
+    /// - Throws: Rethrows from `RecipientCipher`
     @objc open func decrypt(_ data: Data, with privateKey: VirgilPrivateKey) throws -> Data {
         let cipher = RecipientCipher()
 
