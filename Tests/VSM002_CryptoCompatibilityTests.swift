@@ -101,7 +101,7 @@ class VSM002_CryptoCompatibilityTests: XCTestCase {
         }
     }
     
-    func test004_DecryptThenVerifySingleRecipient_ShouldDecryptThenVerify() {
+    func test004_DecryptAndVerifySingleRecipient_ShouldDecryptAndVerify() {
         let dict = self.testsDict["sign_then_encrypt_single_recipient"] as! Dictionary<String, String>
         
         let privateKeyStr = dict["private_key"]!
@@ -125,7 +125,7 @@ class VSM002_CryptoCompatibilityTests: XCTestCase {
         XCTAssert(originalStr == decryptedStr)
     }
     
-    func test005_DecryptThenVerifyMultipleRecipients_ShouldDecryptThenVerify() {
+    func test005_DecryptAndVerifyMultipleRecipients_ShouldDecryptAndVerify() {
         let dict = self.testsDict["sign_then_encrypt_multiple_recipients"] as! Dictionary<String, Any>
         
         var privateKeys = Array<VirgilPrivateKey>()
@@ -177,7 +177,7 @@ class VSM002_CryptoCompatibilityTests: XCTestCase {
         XCTAssert(originalSignatureStr == signatureStr)
     }
     
-    func test007_DecryptThenVerifyMultipleSigners_ShouldDecryptThenVerify() {
+    func test007_DecryptAndVerifyMultipleSigners_ShouldDecryptAndVerify() {
         let dict = self.testsDict["sign_then_encrypt_multiple_signers"] as! Dictionary<String, Any>
         
         let privateKeyStr = dict["private_key"] as! String

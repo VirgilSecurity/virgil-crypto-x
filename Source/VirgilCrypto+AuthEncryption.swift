@@ -40,14 +40,14 @@ import VirgilCryptoFoundation
 extension VirgilCrypto {
     // swiftlint:disable force_unwrapping
     /// Key used to embed Data Signature into ASN.1 structure
-    /// Used in signThenEncrypt & decryptThenVerify
+    /// Used in signAndEncrypt & decryptAndVerify
     @objc public static let CustomParamKeySignature = "VIRGIL-DATA-SIGNATURE".data(using: .utf8)!
     /// Key used to embed signer identity into ASN.1 structure
-    /// Used in signThenEncrypt & decryptThenVerify
+    /// Used in signAndEncrypt & decryptAndVerify
     @objc public static let CustomParamKeySignerId = "VIRGIL-DATA-SIGNER-ID".data(using: .utf8)!
     // swiftlint:enable force_unwrapping
 
-    /// Signs (with private key) Then Encrypts data for passed PublicKeys
+    /// Signs (with private key) And Encrypts data for passed PublicKeys
     ///
     /// 1. Generates signature depending on KeyType
     /// 2. Generates random AES-256 KEY1
@@ -58,10 +58,10 @@ extension VirgilCrypto {
     /// 7. Encrypts KEY1 with this key using AES-256-CBC for each recipient
     ///
     /// - Parameters:
-    ///   - data: Data to be signedThenEncrypted
+    ///   - data: Data to be signedAndEncrypted
     ///   - privateKey: Sender private key
     ///   - recipients: Recipients' public keys
-    /// - Returns: SignedThenEncrypted data
+    /// - Returns: SignedAndEncrypted data
     /// - Throws: Rethrows from Signer and Cipher
     @objc open func signAndEncrypt(_ data: Data, with privateKey: VirgilPrivateKey,
                                     for recipients: [VirgilPublicKey]) throws -> Data {
@@ -91,7 +91,7 @@ extension VirgilCrypto {
         return result
     }
 
-    /// Decrypts (with private key) Then Verifies data using any of signers' PublicKeys
+    /// Decrypts (with private key) And Verifies data using any of signers' PublicKeys
     ///
     /// 1. Uses Diffie-Hellman to obtain shared secret with sender ephemeral public key & recipient's private key
     /// 2. Computes KDF to obtain AES-256 KEY2 from shared secret
@@ -101,11 +101,11 @@ extension VirgilCrypto {
     /// 6. Verifies signature
     ///
     /// - Parameters:
-    ///   - data: Signed Then Encrypted data
+    ///   - data: Signed And Encrypted data
     ///   - privateKey: Receiver's private key
     ///   - signersPublicKeys: Array of possible signers public keys.
     ///                        WARNING: Data should have signature of ANY public key from array.
-    /// - Returns: DecryptedThenVerified data
+    /// - Returns: DecryptedAndVerified data
     /// - Throws: Rethrows from RecipientCipher and Verifier.
     ///           Throws VirgilCryptoError.signerNotFound if signer with such id is not found
     ///           Throws VirgilCryptoError.signatureNotFound if signer was not found
@@ -162,7 +162,7 @@ extension VirgilCrypto {
         return result
     }
 
-    /// Decrypts (with private key) Then Verifies data using any of signers' PublicKeys
+    /// Decrypts (with private key) And Verifies data using any of signers' PublicKeys
     ///
     /// 1. Uses Diffie-Hellman to obtain shared secret with sender ephemeral public key & recipient's private key
     /// 2. Computes KDF to obtain AES-256 KEY2 from shared secret
@@ -172,10 +172,10 @@ extension VirgilCrypto {
     /// 6. Verifies signature
     ///
     /// - Parameters:
-    ///   - data: Signed Then Ecnrypted data
+    ///   - data: Signed And Ecnrypted data
     ///   - privateKey: Receiver's private key
     ///   - signerPublicKey: Signer public key
-    /// - Returns: DecryptedThenVerified data
+    /// - Returns: DecryptedAndVerified data
     /// - Throws:
     ///   - Rethrows from `RecipientCipher`
     ///   - Rethrows from `Verifier`
