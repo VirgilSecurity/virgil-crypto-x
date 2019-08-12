@@ -62,7 +62,7 @@ class VSM001_CryptoTests: XCTestCase {
             }
         }
         catch {
-            XCTFail()
+            XCTFail(error.localizedDescription)
         }
     }
     
@@ -91,7 +91,7 @@ class VSM001_CryptoTests: XCTestCase {
             }
         }
         catch {
-            XCTFail()
+            XCTFail(error.localizedDescription)
         }
     }
     
@@ -123,7 +123,7 @@ class VSM001_CryptoTests: XCTestCase {
             }
         }
         catch {
-            XCTFail()
+            XCTFail(error.localizedDescription)
         }
     }
     
@@ -148,11 +148,11 @@ class VSM001_CryptoTests: XCTestCase {
             }
         }
         catch {
-            XCTFail()
+            XCTFail(error.localizedDescription)
         }
     }
     
-    private func checkSignThenEncrypt(crypto: VirgilCrypto, keyPairType: KeyPairType) throws {
+    private func checkSignAndEncrypt(crypto: VirgilCrypto, keyPairType: KeyPairType) throws {
         let data = UUID().uuidString.data(using: .utf8)!
         
         let keyPair1 = try crypto.generateKeyPair(ofType: keyPairType)
@@ -178,16 +178,16 @@ class VSM001_CryptoTests: XCTestCase {
         catch { }
     }
     
-    func test05__sign_then_encrypt__some_data__should_decrypt_then_verify() {
+    func test05__sign_and_encrypt__some_data__should_decrypt_and_verify() {
         do {
             let crypto = try VirgilCrypto()
             
             for keyType in [KeyPairType.ed25519, KeyPairType.secp256r1, KeyPairType.rsa2048] {
-                try self.checkSignThenEncrypt(crypto: crypto, keyPairType: keyType)
+                try self.checkSignAndEncrypt(crypto: crypto, keyPairType: keyType)
             }
         }
         catch {
-            XCTFail()
+            XCTFail(error.localizedDescription)
         }
     }
     
@@ -216,7 +216,7 @@ class VSM001_CryptoTests: XCTestCase {
             }
         }
         catch {
-            XCTFail()
+            XCTFail(error.localizedDescription)
         }
     }
     
@@ -262,7 +262,7 @@ class VSM001_CryptoTests: XCTestCase {
             }
         }
         catch {
-            XCTFail()
+            XCTFail(error.localizedDescription)
         }
     }
     
@@ -288,11 +288,11 @@ class VSM001_CryptoTests: XCTestCase {
             }
         }
         catch {
-            XCTFail()
+            XCTFail(error.localizedDescription)
         }
     }
     
-    func test09__multithread_sign_then_encrypt__same_key_should_work() {
+    func test09__multithread_sign_and_encrypt__same_key_should_work() {
         do {
             let queue1 = DispatchQueue(label: "1")
             let queue2 = DispatchQueue(label: "2")
@@ -326,6 +326,31 @@ class VSM001_CryptoTests: XCTestCase {
             }
 
             dispatchGroup.wait()
+        }
+        catch {
+            XCTFail(error.localizedDescription)
+        }
+    }
+    
+    private func checkKeyExportImport(crypto: VirgilCrypto, keyPairType: KeyPairType) throws {
+        let keyPair = try crypto.generateKeyPair(ofType: keyPairType)
+        
+        let publicKeyData = try crypto.exportPublicKey(keyPair.publicKey)
+        let privateKeyData = try crypto.exportPrivateKey(keyPair.privateKey)
+        
+        let publicKey = try crypto.importPublicKey(from: publicKeyData)
+        let privateKey = try crypto.importPrivateKey(from: privateKeyData).privateKey
+        
+        _ = try crypto.signAndEncrypt(UUID().uuidString.data(using: .utf8)!, with: privateKey, for: [publicKey])
+    }
+    
+    func test08__imprort_export_key__random_key__should_match() {
+        do {
+            let crypto = try VirgilCrypto()
+            
+            for keyType in [KeyPairType.ed25519, KeyPairType.secp256r1, KeyPairType.rsa2048] {
+                try self.checkKeyExportImport(crypto: crypto, keyPairType: keyType)
+            }
         }
         catch {
             XCTFail()
