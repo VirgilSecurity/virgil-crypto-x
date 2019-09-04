@@ -38,7 +38,7 @@ import XCTest
 import VirgilCrypto
 @testable import VirgilCryptoApiImpl
 
-class VSM012_Benchmarks: XCTestCase {
+class VSM004_CryptoBenchmarks: XCTestCase {
     private let crypto = VirgilCrypto()
 
     private let invocationCount: UInt64 = 10
@@ -89,9 +89,7 @@ class VSM012_Benchmarks: XCTestCase {
 
         for algorithm: VSCHashAlgorithm in [.SHA512, .SHA256] {
             let block = {
-                let hash = Hash(algorithm: algorithm)
-
-                _ = hash.hash(data)
+                _ = self.crypto.computeHash(for: data, using: algorithm)
             }
 
             self.measure(title: "computation \(algorithm.rawStrValue)", maxTime: nil, block: block)
@@ -103,12 +101,7 @@ class VSM012_Benchmarks: XCTestCase {
             let keyPair = try! self.crypto.generateKeyPair(ofType: keyType)
 
             let block = {
-                let cipher = Cipher()
-
-                try! cipher.addKeyRecipient(keyPair.publicKey.identifier,
-                                            publicKey: keyPair.publicKey.rawKey)
-
-                _ = try! cipher.encryptData(self.toEncrypt, embedContentInfo: true)
+                _ = try! self.crypto.encrypt(self.toEncrypt, for: [keyPair.publicKey])
             }
 
             self.measure(title: "encryption with \(keyType.rawStrValue)", maxTime: nil, block: block)
@@ -122,12 +115,7 @@ class VSM012_Benchmarks: XCTestCase {
             let encrypted = try! self.crypto.encrypt(self.toEncrypt, for: [keyPair.publicKey])
 
             let block = {
-                let cipher = Cipher()
-
-                _ = try! cipher.decryptData(encrypted,
-                                            recipientId: keyPair.privateKey.identifier,
-                                            privateKey: keyPair.privateKey.rawKey,
-                                            keyPassword: nil)
+                _ = try! self.crypto.decrypt(encrypted, with: keyPair.privateKey)
             }
 
             self.measure(title: "decryption with \(keyType.rawStrValue)", maxTime: nil, block: block)
@@ -139,9 +127,7 @@ class VSM012_Benchmarks: XCTestCase {
             let keyPair = try! self.crypto.generateKeyPair()
 
             let block = {
-                let signer = Signer(hash: kHashNameSHA384)
-
-                _ = try! signer.sign(self.toSign, privateKey: keyPair.privateKey.rawKey, keyPassword: nil)
+                _ = try! self.crypto.generateSignature(of: self.toSign, using: keyPair.privateKey)
             }
 
             self.measure(title: "signing with \(keyType.rawStrValue)", maxTime: nil, block: block)
@@ -156,9 +142,7 @@ class VSM012_Benchmarks: XCTestCase {
             let signature = try! signer.sign(self.toSign, privateKey: keyPair.privateKey.rawKey, keyPassword: nil)
 
             let block = {
-                let signer = Signer()
-
-                try! signer.verifySignature(signature, data: self.toSign, publicKey: keyPair.publicKey.rawKey)
+                _ = self.crypto.verifySignature(signature, of: self.toSign, with: keyPair.publicKey)
             }
 
             self.measure(title: "verifying with \(keyType.rawStrValue)", maxTime: nil, block: block)

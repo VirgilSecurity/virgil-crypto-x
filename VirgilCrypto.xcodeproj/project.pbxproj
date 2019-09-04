@@ -52,9 +52,9 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		16E7F563231FEA2B0038E0E9 /* VSC012_Benchmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E7F562231FEA2B0038E0E9 /* VSC012_Benchmarks.swift */; };
-		16E7F564231FEA2B0038E0E9 /* VSC012_Benchmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E7F562231FEA2B0038E0E9 /* VSC012_Benchmarks.swift */; };
-		16E7F565231FEA2B0038E0E9 /* VSC012_Benchmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E7F562231FEA2B0038E0E9 /* VSC012_Benchmarks.swift */; };
+		167E7A0623200294004B93E7 /* VSM004_CryptoBenchmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167E7A0523200294004B93E7 /* VSM004_CryptoBenchmarks.swift */; };
+		167E7A0723200294004B93E7 /* VSM004_CryptoBenchmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167E7A0523200294004B93E7 /* VSM004_CryptoBenchmarks.swift */; };
+		167E7A0823200294004B93E7 /* VSM004_CryptoBenchmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167E7A0523200294004B93E7 /* VSM004_CryptoBenchmarks.swift */; };
 		420D102D1EF140A5002A9C22 /* VSCPfsPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D102C1EF14090002A9C22 /* VSCPfsPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		420D102E1EF140A5002A9C22 /* VSCPfs.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D102B1EF14074002A9C22 /* VSCPfs.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		420D102F1EF140A6002A9C22 /* VSCPfsPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D102C1EF14090002A9C22 /* VSCPfsPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -682,7 +682,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		16E7F562231FEA2B0038E0E9 /* VSC012_Benchmarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSC012_Benchmarks.swift; sourceTree = "<group>"; };
+		167E7A0523200294004B93E7 /* VSM004_CryptoBenchmarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSM004_CryptoBenchmarks.swift; sourceTree = "<group>"; };
 		420D102B1EF14074002A9C22 /* VSCPfs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCPfs.h; sourceTree = "<group>"; };
 		420D102C1EF14090002A9C22 /* VSCPfsPublic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSCPfsPublic.h; sourceTree = "<group>"; };
 		420D10311EF14176002A9C22 /* VSCPfs.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VSCPfs.mm; sourceTree = "<group>"; };
@@ -1104,7 +1104,6 @@
 				42B12B2C201FDC800082F9BC /* VSP001_PFSTests.swift */,
 				42792F1C20AA278700C95A29 /* VSY001_PythiaTests.swift */,
 				42792F7620AB2A8500C95A29 /* VSC011_VirgilRandomTests.swift */,
-				16E7F562231FEA2B0038E0E9 /* VSC012_Benchmarks.swift */,
 			);
 			path = VirgilCrypto;
 			sourceTree = "<group>";
@@ -1116,6 +1115,7 @@
 				42B12B38201FDC800082F9BC /* VSM001_CryptoTests.swift */,
 				4282E3AD2021FBF800FD7C7A /* VSM002_CryptoCompatibilityTests.swift */,
 				4282E3B620220D6800FD7C7A /* VSM003_CryptoFormatsTests.swift */,
+				167E7A0523200294004B93E7 /* VSM004_CryptoBenchmarks.swift */,
 			);
 			path = VirgilCryptoApiImpl;
 			sourceTree = "<group>";
@@ -2218,7 +2218,6 @@
 				4282E3BD20248DB400FD7C7A /* VSC000_VirgilVersion.swift in Sources */,
 				42B12B5A201FDCAD0082F9BC /* VSP001_PFSTests.swift in Sources */,
 				42B12B51201FDCAD0082F9BC /* VSC002_CryptorTests.swift in Sources */,
-				16E7F564231FEA2B0038E0E9 /* VSC012_Benchmarks.swift in Sources */,
 				42B12B53201FDCAD0082F9BC /* VSC004_StreamCryptorTests.swift in Sources */,
 				42B12B54201FDCAD0082F9BC /* VSC005_ChunkCryptorTests.swift in Sources */,
 				42B12B57201FDCAD0082F9BC /* VSC008_TinyCryptorTests.swift in Sources */,
@@ -2332,6 +2331,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				167E7A0623200294004B93E7 /* VSM004_CryptoBenchmarks.swift in Sources */,
 				42B12B86201FDCFC0082F9BC /* VSM001_CryptoTests.swift in Sources */,
 				4282E3B820220D7400FD7C7A /* VSM003_CryptoFormatsTests.swift in Sources */,
 				4282E3AF2021FC2F00FD7C7A /* VSM002_CryptoCompatibilityTests.swift in Sources */,
@@ -2342,6 +2342,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				167E7A0723200294004B93E7 /* VSM004_CryptoBenchmarks.swift in Sources */,
 				42B12B85201FDCFC0082F9BC /* VSM001_CryptoTests.swift in Sources */,
 				4282E3B920220D7400FD7C7A /* VSM003_CryptoFormatsTests.swift in Sources */,
 				4282E3B02021FC3000FD7C7A /* VSM002_CryptoCompatibilityTests.swift in Sources */,
@@ -2352,6 +2353,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				167E7A0823200294004B93E7 /* VSM004_CryptoBenchmarks.swift in Sources */,
 				42B12B84201FDCFB0082F9BC /* VSM001_CryptoTests.swift in Sources */,
 				4282E3BA20220D7500FD7C7A /* VSM003_CryptoFormatsTests.swift in Sources */,
 				4282E3B12021FC3100FD7C7A /* VSM002_CryptoCompatibilityTests.swift in Sources */,
@@ -2402,7 +2404,6 @@
 				4282E3BE20248DB400FD7C7A /* VSC000_VirgilVersion.swift in Sources */,
 				42B12B65201FDCAD0082F9BC /* VSP001_PFSTests.swift in Sources */,
 				42B12B5C201FDCAD0082F9BC /* VSC002_CryptorTests.swift in Sources */,
-				16E7F565231FEA2B0038E0E9 /* VSC012_Benchmarks.swift in Sources */,
 				42B12B5E201FDCAD0082F9BC /* VSC004_StreamCryptorTests.swift in Sources */,
 				42B12B5F201FDCAD0082F9BC /* VSC005_ChunkCryptorTests.swift in Sources */,
 				42B12B62201FDCAD0082F9BC /* VSC008_TinyCryptorTests.swift in Sources */,
@@ -2484,7 +2485,6 @@
 				4282E3BC20248DB400FD7C7A /* VSC000_VirgilVersion.swift in Sources */,
 				42B12B4F201FDCAC0082F9BC /* VSP001_PFSTests.swift in Sources */,
 				42B12B46201FDCAC0082F9BC /* VSC002_CryptorTests.swift in Sources */,
-				16E7F563231FEA2B0038E0E9 /* VSC012_Benchmarks.swift in Sources */,
 				42B12B48201FDCAC0082F9BC /* VSC004_StreamCryptorTests.swift in Sources */,
 				42B12B49201FDCAC0082F9BC /* VSC005_ChunkCryptorTests.swift in Sources */,
 				42B12B4C201FDCAC0082F9BC /* VSC008_TinyCryptorTests.swift in Sources */,
