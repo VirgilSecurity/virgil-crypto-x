@@ -45,9 +45,7 @@ class VSM004_CryptoBenchmarks: XCTestCase {
     private let toEncrypt = "this string will be encrypted".data(using: .utf8)!
     private let toSign = "this string will be signed".data(using: .utf8)!
 
-    private func generateRandomData() throws -> Data {
-        let count = 8192
-
+    private func generateRandomData(count: Int) throws -> Data {
         var bytes = [UInt8](repeating: 0, count: count)
         let status = SecRandomCopyBytes(kSecRandomDefault, count, &bytes)
 
@@ -63,6 +61,7 @@ class VSM004_CryptoBenchmarks: XCTestCase {
 
         print()
         print("Measurement of \(title)")
+
         for i in 1...self.invocationCount {
             let start = DispatchTime.now()
             block()
@@ -86,13 +85,13 @@ class VSM004_CryptoBenchmarks: XCTestCase {
 
     func test01_hash() {
         for algorithm: HashAlgorithm in [.sha512, .sha256] {
-            let data = try! self.generateRandomData()
+            let data = try! self.generateRandomData(count: 8192)
 
             let block = {
                 _ = self.crypto.computeHash(for: data, using: algorithm)
             }
 
-            self.measure(title: "compution \(algorithm.rawStrValue)", maxTime: nil, block: block)
+            self.measure(title: "computation \(algorithm.rawStrValue)", maxTime: nil, block: block)
         }
     }
 
