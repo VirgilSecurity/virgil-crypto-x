@@ -75,7 +75,7 @@ class VSM004_CryptoBenchmarks: XCTestCase {
 
         let average = sum / self.invocationCount
 
-        print("Avarage: \(average) ns")
+        print("Average: \(average) ns")
         print()
 
         XCTAssert(maxTime > average)
