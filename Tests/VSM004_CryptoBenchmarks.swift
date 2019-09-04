@@ -56,7 +56,7 @@ class VSM004_CryptoBenchmarks: XCTestCase {
         return Data(bytes)
     }
 
-    private func measure(title: String, maxTime: Int?, block: () -> Void) {
+    private func measure(title: String, maxTime: Int, block: () -> Void) {
         var sum: UInt64 = 0
 
         print()
@@ -78,20 +78,18 @@ class VSM004_CryptoBenchmarks: XCTestCase {
         print("Avarage: \(average) ns")
         print()
 
-        if let maxTime = maxTime {
-            XCTAssert(maxTime > average)
-        }
+        XCTAssert(maxTime > average)
     }
 
     func test01_hash() {
-        for algorithm: HashAlgorithm in [.sha512, .sha256] {
-            let data = try! self.generateRandomData(count: 8192)
+        let data = try! self.generateRandomData(count: 8192)
 
+        for algorithm: HashAlgorithm in [.sha512, .sha256] {
             let block = {
                 _ = self.crypto.computeHash(for: data, using: algorithm)
             }
 
-            self.measure(title: "computation \(algorithm.rawStrValue)", maxTime: nil, block: block)
+            self.measure(title: "computation \(algorithm.rawStrValue)", maxTime: 1_000_000, block: block)
         }
     }
 
@@ -103,7 +101,7 @@ class VSM004_CryptoBenchmarks: XCTestCase {
                 _ = try! self.crypto.encrypt(self.toEncrypt, for: [keyPair.publicKey])
             }
 
-            self.measure(title: "encryption with \(keyType.rawStrValue)", maxTime: nil, block: block)
+            self.measure(title: "encryption with \(keyType.rawStrValue)", maxTime: 10_000_000, block: block)
         }
     }
 
@@ -117,7 +115,7 @@ class VSM004_CryptoBenchmarks: XCTestCase {
                 _ = try! self.crypto.decrypt(encrypted, with: keyPair.privateKey)
             }
 
-            self.measure(title: "decryption with \(keyType.rawStrValue)", maxTime: nil, block: block)
+            self.measure(title: "decryption with \(keyType.rawStrValue)", maxTime: 100_000_000, block: block)
         }
     }
 
@@ -129,7 +127,7 @@ class VSM004_CryptoBenchmarks: XCTestCase {
                 _ = try! self.crypto.generateSignature(of: self.toSign, using: keyPair.privateKey)
             }
 
-            self.measure(title: "signing with \(keyType.rawStrValue)", maxTime: nil, block: block)
+            self.measure(title: "signing with \(keyType.rawStrValue)", maxTime: 1_000_000, block: block)
         }
     }
 
@@ -143,7 +141,7 @@ class VSM004_CryptoBenchmarks: XCTestCase {
                 _ = try! self.crypto.verifySignature(signature, of: self.toSign, with: keyPair.publicKey)
             }
 
-            self.measure(title: "verifying with \(keyType.rawStrValue)", maxTime: nil, block: block)
+            self.measure(title: "verifying with \(keyType.rawStrValue)", maxTime: 10_000_000, block: block)
         }
     }
 }
