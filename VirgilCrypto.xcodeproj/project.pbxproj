@@ -24,9 +24,15 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		16E3C7882321763F00C3B56C /* VirgilCrypto.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 424A7FB221F23135006BED3F /* VirgilCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		16E7F552231EA7AD0038E0E9 /* VSM004_CryptoBenchmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E7F551231EA7AD0038E0E9 /* VSM004_CryptoBenchmarks.swift */; };
 		16E7F553231EA7AD0038E0E9 /* VSM004_CryptoBenchmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E7F551231EA7AD0038E0E9 /* VSM004_CryptoBenchmarks.swift */; };
 		16E7F554231EA7AD0038E0E9 /* VSM004_CryptoBenchmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E7F551231EA7AD0038E0E9 /* VSM004_CryptoBenchmarks.swift */; };
+		16F6C2DE23217383000AF650 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F6C2DD23217383000AF650 /* AppDelegate.swift */; };
+		16F6C2E023217383000AF650 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F6C2DF23217383000AF650 /* ViewController.swift */; };
+		16F6C2E323217383000AF650 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16F6C2E123217383000AF650 /* Main.storyboard */; };
+		16F6C2E523217384000AF650 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16F6C2E423217384000AF650 /* Assets.xcassets */; };
+		16F6C2E823217384000AF650 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16F6C2E623217384000AF650 /* LaunchScreen.storyboard */; };
 		420DE79821FB365600B06435 /* VirgilCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420DE79721FB365600B06435 /* VirgilCrypto.swift */; };
 		420DE7A721FB394300B06435 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 420DE79E21FB394300B06435 /* VirgilCrypto.framework */; };
 		420DE7C321FB396500B06435 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 420DE7BA21FB396500B06435 /* VirgilCrypto.framework */; };
@@ -133,6 +139,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		16F6C2ED2321738E000AF650 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 424A7FA921F23135006BED3F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 16F6C2DA23217383000AF650;
+			remoteInfo = "VirgilCrypto TestApp iOS";
+		};
 		420DE7A821FB394300B06435 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 424A7FA921F23135006BED3F /* Project object */;
@@ -191,6 +204,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				16E3C7882321763F00C3B56C /* VirgilCrypto.framework in CopyFiles */,
 				42D91CFA21FB778200632073 /* VSCFoundation.framework in CopyFiles */,
 				42D91CE421FB775800632073 /* VirgilCryptoFoundation.framework in CopyFiles */,
 				42D91CF221FB775800632073 /* VSCCommon.framework in CopyFiles */,
@@ -225,6 +239,13 @@
 
 /* Begin PBXFileReference section */
 		16E7F551231EA7AD0038E0E9 /* VSM004_CryptoBenchmarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSM004_CryptoBenchmarks.swift; sourceTree = "<group>"; };
+		16F6C2DB23217383000AF650 /* VirgilCrypto TestApp iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VirgilCrypto TestApp iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		16F6C2DD23217383000AF650 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		16F6C2DF23217383000AF650 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		16F6C2E223217383000AF650 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		16F6C2E423217384000AF650 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		16F6C2E723217384000AF650 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		16F6C2E923217384000AF650 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		420DE79721FB365600B06435 /* VirgilCrypto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirgilCrypto.swift; sourceTree = "<group>"; };
 		420DE79E21FB394300B06435 /* VirgilCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		420DE7A621FB394300B06435 /* VirgilCryptoTests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilCryptoTests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -273,6 +294,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		16F6C2D823217383000AF650 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		420DE79B21FB394300B06435 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -340,6 +368,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16F6C2DC23217383000AF650 /* VirgilCrypto TestApp iOS */ = {
+			isa = PBXGroup;
+			children = (
+				16F6C2DD23217383000AF650 /* AppDelegate.swift */,
+				16F6C2DF23217383000AF650 /* ViewController.swift */,
+				16F6C2E123217383000AF650 /* Main.storyboard */,
+				16F6C2E423217384000AF650 /* Assets.xcassets */,
+				16F6C2E623217384000AF650 /* LaunchScreen.storyboard */,
+				16F6C2E923217384000AF650 /* Info.plist */,
+			);
+			path = "VirgilCrypto TestApp iOS";
+			sourceTree = "<group>";
+		};
 		420DE79621FB365600B06435 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -378,6 +419,7 @@
 				424A7FB421F23135006BED3F /* VirgilCrypto */,
 				420DE79621FB365600B06435 /* Source */,
 				424A7FBF21F23135006BED3F /* Tests */,
+				16F6C2DC23217383000AF650 /* VirgilCrypto TestApp iOS */,
 				424A7FB321F23135006BED3F /* Products */,
 				4250B80021F73C0400852C11 /* Frameworks */,
 			);
@@ -393,6 +435,7 @@
 				420DE7BA21FB396500B06435 /* VirgilCrypto.framework */,
 				420DE7C221FB396500B06435 /* VirgilCryptoTests tvOS.xctest */,
 				420DE7D621FB397C00B06435 /* VirgilCrypto.framework */,
+				16F6C2DB23217383000AF650 /* VirgilCrypto TestApp iOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -474,6 +517,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		16F6C2DA23217383000AF650 /* VirgilCrypto TestApp iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 16F6C2EC23217384000AF650 /* Build configuration list for PBXNativeTarget "VirgilCrypto TestApp iOS" */;
+			buildPhases = (
+				16F6C2D723217383000AF650 /* Sources */,
+				16F6C2D823217383000AF650 /* Frameworks */,
+				16F6C2D923217383000AF650 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "VirgilCrypto TestApp iOS";
+			productName = "VirgilCrypto TestApp iOS";
+			productReference = 16F6C2DB23217383000AF650 /* VirgilCrypto TestApp iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
 		420DE79D21FB394300B06435 /* VirgilCrypto macOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 420DE7AF21FB394300B06435 /* Build configuration list for PBXNativeTarget "VirgilCrypto macOS" */;
@@ -597,6 +657,7 @@
 			);
 			dependencies = (
 				424A7FBE21F23135006BED3F /* PBXTargetDependency */,
+				16F6C2EE2321738E000AF650 /* PBXTargetDependency */,
 			);
 			name = "VirgilCryptoTests iOS";
 			productName = VirgilCryptoApiImplTests;
@@ -609,10 +670,13 @@
 		424A7FA921F23135006BED3F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1010;
+				LastSwiftUpdateCheck = 1030;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Oleksandr Deundiak";
 				TargetAttributes = {
+					16F6C2DA23217383000AF650 = {
+						CreatedOnToolsVersion = 10.3;
+					};
 					420DE79D21FB394300B06435 = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1020;
@@ -643,6 +707,7 @@
 					424A7FBA21F23135006BED3F = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1020;
+						TestTargetID = 16F6C2DA23217383000AF650;
 					};
 				};
 			};
@@ -667,11 +732,22 @@
 				420DE7C121FB396500B06435 /* VirgilCryptoTests tvOS */,
 				420DE7D521FB397C00B06435 /* VirgilCrypto watchOS */,
 				420DE7E621FB3A6300B06435 /* VirgilCrypto */,
+				16F6C2DA23217383000AF650 /* VirgilCrypto TestApp iOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		16F6C2D923217383000AF650 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				16F6C2E823217384000AF650 /* LaunchScreen.storyboard in Resources */,
+				16F6C2E523217384000AF650 /* Assets.xcassets in Resources */,
+				16F6C2E323217383000AF650 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		420DE79C21FB394300B06435 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -730,6 +806,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		16F6C2D723217383000AF650 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				16F6C2E023217383000AF650 /* ViewController.swift in Sources */,
+				16F6C2DE23217383000AF650 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		420DE79A21FB394300B06435 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -858,6 +943,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		16F6C2EE2321738E000AF650 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 16F6C2DA23217383000AF650 /* VirgilCrypto TestApp iOS */;
+			targetProxy = 16F6C2ED2321738E000AF650 /* PBXContainerItemProxy */;
+		};
 		420DE7A921FB394300B06435 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 420DE79D21FB394300B06435 /* VirgilCrypto macOS */;
@@ -895,7 +985,64 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		16F6C2E123217383000AF650 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				16F6C2E223217383000AF650 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		16F6C2E623217384000AF650 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				16F6C2E723217384000AF650 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		16F6C2EA23217384000AF650 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "VirgilCrypto TestApp iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.VirgilCrypto-TestApp-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		16F6C2EB23217384000AF650 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "VirgilCrypto TestApp iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.VirgilCrypto-TestApp-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		420DE7B021FB394300B06435 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1369,7 +1516,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1380,6 +1529,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VirgilCrypto TestApp iOS.app/VirgilCrypto TestApp iOS";
 			};
 			name = Debug;
 		};
@@ -1387,7 +1537,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1398,12 +1550,22 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VirgilCrypto TestApp iOS.app/VirgilCrypto TestApp iOS";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		16F6C2EC23217384000AF650 /* Build configuration list for PBXNativeTarget "VirgilCrypto TestApp iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				16F6C2EA23217384000AF650 /* Debug */,
+				16F6C2EB23217384000AF650 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		420DE7AF21FB394300B06435 /* Build configuration list for PBXNativeTarget "VirgilCrypto macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
