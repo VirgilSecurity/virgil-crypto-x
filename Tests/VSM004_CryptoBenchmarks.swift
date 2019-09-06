@@ -40,7 +40,7 @@ import VirgilCrypto
 class VSM004_CryptoBenchmarks: XCTestCase {
     private let crypto = try! VirgilCrypto()
 
-    private let invocationCount: UInt64 = 10
+    private let invocationCount: UInt64 = 1000
 
     private let toEncrypt = "this string will be encrypted".data(using: .utf8)!
     private let toSign = "this string will be signed".data(using: .utf8)!
@@ -62,7 +62,7 @@ class VSM004_CryptoBenchmarks: XCTestCase {
         print()
         print("Measurement of \(title)")
 
-        for i in 1...self.invocationCount {
+        for _ in 1...self.invocationCount {
             let start = DispatchTime.now()
             block()
             let end = DispatchTime.now()
@@ -70,7 +70,6 @@ class VSM004_CryptoBenchmarks: XCTestCase {
             let elapsed = end.uptimeNanoseconds - start.uptimeNanoseconds
 
             sum += elapsed
-            print("\(i) atempt: \(elapsed) ns")
         }
 
         let average = sum / self.invocationCount
@@ -84,7 +83,7 @@ class VSM004_CryptoBenchmarks: XCTestCase {
     func test01_hash() {
         let data = try! self.generateRandomData(count: 8192)
 
-        for algorithm: HashAlgorithm in [.sha512, .sha256] {
+        for algorithm: HashAlgorithm in [.sha256, .sha512] {
             let block = {
                 _ = self.crypto.computeHash(for: data, using: algorithm)
             }
