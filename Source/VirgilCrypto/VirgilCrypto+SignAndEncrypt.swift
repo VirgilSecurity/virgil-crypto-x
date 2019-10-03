@@ -38,14 +38,12 @@ import VirgilCryptoFoundation
 
 /// MARK: - Extension for assymetric authenticated encryption/decryption
 extension VirgilCrypto {
-    // swiftlint:disable force_unwrapping
     /// Key used to embed Data Signature into ASN.1 structure
     /// Used in signAndEncrypt & decryptAndVerify
     @objc public static let CustomParamKeySignature = "VIRGIL-DATA-SIGNATURE".data(using: .utf8)!
     /// Key used to embed signer identity into ASN.1 structure
     /// Used in signAndEncrypt & decryptAndVerify
     @objc public static let CustomParamKeySignerId = "VIRGIL-DATA-SIGNER-ID".data(using: .utf8)!
-    // swiftlint:enable force_unwrapping
 
     /// Signs (with private key) And Encrypts data for passed PublicKeys
     ///
@@ -62,33 +60,13 @@ extension VirgilCrypto {
     ///   - privateKey: Sender private key
     ///   - recipients: Recipients' public keys
     /// - Returns: SignedAndEncrypted data
-    /// - Throws: Rethrows from Signer and Cipher
+    /// - Throws: Rethrows from `Signer` and `RecipientCipher`
+    @available(*, deprecated, message: "use signThenEncrypt instead")
     @objc open func signAndEncrypt(_ data: Data, with privateKey: VirgilPrivateKey,
-                                    for recipients: [VirgilPublicKey]) throws -> Data {
-        let signature = try self.generateSignature(of: data, using: privateKey)
-
-        let aesGcm = Aes256Gcm()
-        let cipher = RecipientCipher()
-
-        cipher.setEncryptionCipher(encryptionCipher: aesGcm)
-        cipher.setRandom(random: self.rng)
-
-        recipients.forEach {
-            cipher.addKeyRecipient(recipientId: $0.identifier, publicKey: $0.key)
-        }
-
-        cipher.customParams().addData(key: VirgilCrypto.CustomParamKeySignature, value: signature)
-        cipher.customParams().addData(key: VirgilCrypto.CustomParamKeySignerId, value: privateKey.identifier)
-
-        try cipher.startEncryption()
-
-        var result = cipher.packMessageInfo()
-
-        result += try cipher.processEncryption(data: data)
-
-        result += try cipher.finishEncryption()
-
-        return result
+                                   for recipients: [VirgilPublicKey]) throws -> Data {
+        return try self.encrypt(inputOutput: .data(input: data),
+                                signingOptions: SigningOptions(privateKey: privateKey, mode: .signAndEncrypt),
+                                recipients: recipients)!
     }
 
     /// Decrypts (with private key) And Verifies data using any of signers' PublicKeys
@@ -106,60 +84,17 @@ extension VirgilCrypto {
     ///   - signersPublicKeys: Array of possible signers public keys.
     ///                        WARNING: Data should have signature of ANY public key from array.
     /// - Returns: DecryptedAndVerified data
-    /// - Throws: Rethrows from RecipientCipher and Verifier.
+    /// - Throws: Rethrows from `RecipientCipher` and `Verifier`.
     ///           Throws VirgilCryptoError.signerNotFound if signer with such id is not found
     ///           Throws VirgilCryptoError.signatureNotFound if signer was not found
-    ///           Throws VirgilCryptoError.signatureNotValid if signature did not pass verification
+    ///           Throws VirgilCryptoError.signatureNotVerified if signature did not pass verification
+    @available(*, deprecated, message: "use decryptThenVerify instead")
     @objc open func decryptAndVerify(_ data: Data, with privateKey: VirgilPrivateKey,
-                                      usingOneOf signersPublicKeys: [VirgilPublicKey]) throws -> Data {
-        let cipher = RecipientCipher()
-
-        try cipher.startDecryptionWithKey(recipientId: privateKey.identifier,
-                                          privateKey: privateKey.key,
-                                          messageInfo: Data())
-
-        var result = Data()
-
-        result += try cipher.processDecryption(data: data)
-
-        result += try cipher.finishDecryption()
-
-        let signerPublicKey: VirgilPublicKey
-
-        if signersPublicKeys.count == 1 {
-            signerPublicKey = signersPublicKeys[0]
-        }
-        else {
-            let signerId: Data
-
-            do {
-                signerId = try cipher.customParams().findData(key: VirgilCrypto.CustomParamKeySignerId)
-            }
-            catch {
-                throw VirgilCryptoError.signerNotFound
-            }
-
-            guard let publicKey = signersPublicKeys.first(where: { $0.identifier == signerId }) else {
-                throw VirgilCryptoError.signerNotFound
-            }
-
-            signerPublicKey = publicKey
-        }
-
-        let signature: Data
-
-        do {
-            signature = try cipher.customParams().findData(key: VirgilCrypto.CustomParamKeySignature)
-        }
-        catch {
-            throw VirgilCryptoError.signatureNotFound
-        }
-
-        guard try self.verifySignature(signature, of: result, with: signerPublicKey) else {
-            throw VirgilCryptoError.signatureNotVerified
-        }
-
-        return result
+                                     usingOneOf signersPublicKeys: [VirgilPublicKey]) throws -> Data {
+        return try self.decrypt(inputOutput: .data(input: data),
+                                verifyingOptions: VerifyingOptions(publicKeys: signersPublicKeys,
+                                                                   mode: .decryptAndVerify),
+                                privateKey: privateKey)!
     }
 
     /// Decrypts (with private key) And Verifies data using any of signers' PublicKeys
@@ -181,9 +116,10 @@ extension VirgilCrypto {
     ///   - Rethrows from `Verifier`
     ///   - Throws `VirgilCryptoError.signerNotFound` if signer with such id is not found
     ///   - Throws `VirgilCryptoError.signatureNotFound` if signer was not found
-    ///   - Throws `VirgilCryptoError.signatureNotValid` if signature did not pass verification
+    ///   - Throws `VirgilCryptoError.signatureNotVerified` if signature did not pass verification
+    @available(*, deprecated, message: "use decryptThenVerify instead")
     @objc open func decryptAndVerify(_ data: Data, with privateKey: VirgilPrivateKey,
-                                      using signerPublicKey: VirgilPublicKey) throws -> Data {
+                                     using signerPublicKey: VirgilPublicKey) throws -> Data {
         return try self.decryptAndVerify(data, with: privateKey, usingOneOf: [signerPublicKey])
     }
 }

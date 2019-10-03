@@ -44,7 +44,6 @@ import Foundation
 /// - unknownAlgId: unknown alg id
 /// - rsaShouldBeConstructedDirectly: rsa should be constructed directly
 /// - unsupportedRsaLength: unsupported rsa length
-/// - keyDoesntSupportSigning: key doesn't support signing
 /// - passedKeyIsNotVirgil: passed key is not virgil
 /// - outputStreamError: output stream has no space left
 /// - inputStreamError: input stream has no space left
@@ -56,11 +55,12 @@ import Foundation
     case unknownAlgId = 4
     case rsaShouldBeConstructedDirectly = 5
     case unsupportedRsaLength = 6
-    case keyDoesntSupportSigning = 7
     case passedKeyIsNotVirgil = 8
     case outputStreamError = 9
     case inputStreamError = 10
     case invalidSeedSize = 11
+    case dataIsNotSigned = 12
+    case invalidStreamSize = 13
 
     /// Human-readable localized description
     public var errorDescription: String? {
@@ -77,8 +77,6 @@ import Foundation
             return "rsa should be constructed directly"
         case .unsupportedRsaLength:
             return "Unsupported rsa length"
-        case .keyDoesntSupportSigning:
-            return "Key doesn't support signing"
         case .passedKeyIsNotVirgil:
             return "Passed key is not virgil"
         case .outputStreamError:
@@ -87,6 +85,10 @@ import Foundation
             return "Input stream has no space left"
         case .invalidSeedSize:
             return "Invalid seed size"
+        case .dataIsNotSigned:
+            return "Data has no signature to verify"
+        case .invalidStreamSize:
+            return "Actual stream size doesn't match with given value"
         }
     }
 }
