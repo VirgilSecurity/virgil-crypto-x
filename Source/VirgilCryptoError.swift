@@ -48,6 +48,8 @@ import Foundation
 /// - outputStreamError: output stream has no space left
 /// - inputStreamError: input stream has no space left
 /// - invalidSeedSize: invalid seed size
+/// - dataIsNotSigned: required signature is not present
+/// - invalidStreamSize: actual stream size doesn't match with provided
 @objc(VSMVirgilCryptoError) public enum VirgilCryptoError: Int, LocalizedError {
     case signerNotFound = 1
     case signatureNotFound = 2
