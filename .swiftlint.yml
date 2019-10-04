@@ -15,10 +15,10 @@ disabled_rules:
   - explicit_enum_raw_value
   - explicit_acl
   - force_unwrapping
-  - cyclomatic_complexity
-  - function_body_length
 
 opt_in_rules:
+  - cyclomatic_complexity
+  - function_body_length
   - array_init
   - closure_end_indentation
   - closure_spacing

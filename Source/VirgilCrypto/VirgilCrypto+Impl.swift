@@ -64,19 +64,9 @@ extension VirgilCrypto {
         let mode: VerifyingMode
     }
 
-    internal func encrypt(inputOutput: InputOutput,
-                          signingOptions: SigningOptions?,
-                          recipients: [VirgilPublicKey]) throws -> Data? {
-        let aesGcm = Aes256Gcm()
-        let cipher = RecipientCipher()
-
-        cipher.setEncryptionCipher(encryptionCipher: aesGcm)
-        cipher.setRandom(random: self.rng)
-
-        recipients.forEach {
-            cipher.addKeyRecipient(recipientId: $0.identifier, publicKey: $0.key)
-        }
-
+    private func startEncryption(cipher: RecipientCipher,
+                                 inputOutput: InputOutput,
+                                 signingOptions: SigningOptions?) throws {
         if let signingOpt = signingOptions {
             switch signingOpt.mode {
             case .signAndEncrypt:
@@ -114,20 +104,24 @@ extension VirgilCrypto {
         else {
             try cipher.startEncryption()
         }
+    }
 
-        var result: Data? = nil
-
+    private func processEncryption(cipher: RecipientCipher,
+                                   inputOutput: InputOutput,
+                                   signingOptions: SigningOptions?) throws -> Data? {
         switch inputOutput {
         case let .data(inputData):
-            result = cipher.packMessageInfo()
+            var result = cipher.packMessageInfo()
 
-            result! += try cipher.processEncryption(data: inputData)
+            result += try cipher.processEncryption(data: inputData)
 
-            result! += try cipher.finishEncryption()
+            result += try cipher.finishEncryption()
 
             if let signingOpt = signingOptions, signingOpt.mode == .signThenEncrypt {
-                result! += try cipher.packMessageInfoFooter()
+                result += try cipher.packMessageInfoFooter()
             }
+
+            return result
 
         case let .stream(inputStream, streamSize, outputStream):
             if inputStream.streamStatus == .notOpen {
@@ -148,23 +142,31 @@ extension VirgilCrypto {
             if let signingOpt = signingOptions, signingOpt.mode == .signThenEncrypt {
                 try StreamUtils.write(try cipher.packMessageInfoFooter(), to: outputStream)
             }
-        }
 
-        return result
+            return nil
+        }
     }
 
-    internal func decrypt(inputOutput: InputOutput,
-                          verifyingOptions: VerifyingOptions?,
-                          privateKey: VirgilPrivateKey) throws -> Data? {
+    internal func encrypt(inputOutput: InputOutput,
+                          signingOptions: SigningOptions?,
+                          recipients: [VirgilPublicKey]) throws -> Data? {
+        let aesGcm = Aes256Gcm()
         let cipher = RecipientCipher()
+
+        cipher.setEncryptionCipher(encryptionCipher: aesGcm)
         cipher.setRandom(random: self.rng)
 
-        try cipher.startDecryptionWithKey(recipientId: privateKey.identifier,
-                                          privateKey: privateKey.key,
-                                          messageInfo: Data())
+        recipients.forEach {
+            cipher.addKeyRecipient(recipientId: $0.identifier, publicKey: $0.key)
+        }
 
-        var result: Data? = nil
+        try self.startEncryption(cipher: cipher, inputOutput: inputOutput, signingOptions: signingOptions)
 
+        return try self.processEncryption(cipher: cipher, inputOutput: inputOutput, signingOptions: signingOptions)
+    }
+
+    private func processDecryption(cipher: RecipientCipher,
+                                   inputOutput: InputOutput) throws -> Data? {
         switch inputOutput {
         case let .stream(inputStream, _, outputStream):
             if inputStream.streamStatus == .notOpen {
@@ -179,88 +181,130 @@ extension VirgilCrypto {
             }
             try StreamUtils.write(try cipher.finishDecryption(), to: outputStream)
 
+            return nil
+
         case let .data(input):
-            result = Data()
+            var result = try cipher.processDecryption(data: input)
 
-            result! += try cipher.processDecryption(data: input)
+            result += try cipher.finishDecryption()
 
-            result! += try cipher.finishDecryption()
+            return result
+        }
+    }
+
+    private func verifyPlainSignature(cipher: RecipientCipher,
+                                      inputOutput: InputOutput,
+                                      result: Data?,
+                                      publicKeys: [VirgilPublicKey]) throws {
+        guard case InputOutput.data(_) = inputOutput else {
+            fatalError("signAndEncrypt is not supported for streams")
         }
 
-        if let verifyingOpt = verifyingOptions {
-            var mode = verifyingOpt.mode
+        let signerPublicKey: VirgilPublicKey
 
-            if mode == .any {
-                mode = cipher.isDataSigned() ? .decryptThenVerify : .decryptAndVerify
-            }
-
-            switch mode {
-            case .decryptAndVerify:
-                guard case InputOutput.data(_) = inputOutput else {
-                    fatalError("signAndEncrypt is not supported for streams")
-                }
-
-                let signerPublicKey: VirgilPublicKey
-
-                if verifyingOpt.publicKeys.count == 1 {
-                    signerPublicKey = verifyingOpt.publicKeys[0]
-                }
-                else {
-                    let signerId: Data
-
-                    do {
-                        signerId = try cipher.customParams().findData(key: VirgilCrypto.CustomParamKeySignerId)
-                    }
-                    catch {
-                        throw VirgilCryptoError.signerNotFound
-                    }
-
-                    guard let publicKey = verifyingOpt.publicKeys.first(where: { $0.identifier == signerId }) else {
-                        throw VirgilCryptoError.signerNotFound
-                    }
-
-                    signerPublicKey = publicKey
-                }
-
-                let signature: Data
-
-                do {
-                    signature = try cipher.customParams().findData(key: VirgilCrypto.CustomParamKeySignature)
-                }
-                catch {
-                    throw VirgilCryptoError.signatureNotFound
-                }
-
-                guard try self.verifySignature(signature, of: result!, with: signerPublicKey) else {
-                    throw VirgilCryptoError.signatureNotVerified
-                }
-
-            case .decryptThenVerify:
-                guard cipher.isDataSigned() else {
-                    throw VirgilCryptoError.dataIsNotSigned
-                }
-
-                let signerInfoList = cipher.signerInfos()
-
-                guard signerInfoList.hasItem() && !signerInfoList.hasNext() else {
-                    throw VirgilCryptoError.dataIsNotSigned
-                }
-
-                let signerInfo = signerInfoList.item()
-
-                guard let signerPublicKey = verifyingOpt.publicKeys
-                    .first(where: { $0.identifier == signerInfo.signerId() }) else {
-                    throw VirgilCryptoError.signerNotFound
-                }
-
-                guard cipher.verifySignerInfo(signerInfo: signerInfo, publicKey: signerPublicKey.key) else {
-                    throw VirgilCryptoError.signatureNotVerified
-                }
-
-            case .any:
-                fatalError()
-            }
+        if publicKeys.count == 1 {
+            signerPublicKey = publicKeys[0]
         }
+        else {
+            let signerId: Data
+
+            do {
+                signerId = try cipher.customParams().findData(key: VirgilCrypto.CustomParamKeySignerId)
+            }
+            catch {
+                throw VirgilCryptoError.signerNotFound
+            }
+
+            guard let publicKey = publicKeys.first(where: { $0.identifier == signerId }) else {
+                throw VirgilCryptoError.signerNotFound
+            }
+
+            signerPublicKey = publicKey
+        }
+
+        let signature: Data
+
+        do {
+            signature = try cipher.customParams().findData(key: VirgilCrypto.CustomParamKeySignature)
+        }
+        catch {
+            throw VirgilCryptoError.signatureNotFound
+        }
+
+        guard try self.verifySignature(signature, of: result!, with: signerPublicKey) else {
+            throw VirgilCryptoError.signatureNotVerified
+        }
+    }
+
+    private func verifyEncryptedSignature(cipher: RecipientCipher,
+                                          publicKeys: [VirgilPublicKey]) throws {
+        guard cipher.isDataSigned() else {
+            throw VirgilCryptoError.dataIsNotSigned
+        }
+
+        let signerInfoList = cipher.signerInfos()
+
+        guard signerInfoList.hasItem() && !signerInfoList.hasNext() else {
+            throw VirgilCryptoError.dataIsNotSigned
+        }
+
+        let signerInfo = signerInfoList.item()
+
+        guard let signerPublicKey = publicKeys
+            .first(where: { $0.identifier == signerInfo.signerId() }) else {
+            throw VirgilCryptoError.signerNotFound
+        }
+
+        guard cipher.verifySignerInfo(signerInfo: signerInfo, publicKey: signerPublicKey.key) else {
+            throw VirgilCryptoError.signatureNotVerified
+        }
+    }
+
+    private func finishDecryption(cipher: RecipientCipher,
+                                  inputOutput: InputOutput,
+                                  result: Data?,
+                                  verifyingOptions: VerifyingOptions?) throws {
+        guard let verifyingOptions = verifyingOptions else {
+            return
+        }
+
+        var mode = verifyingOptions.mode
+
+        if mode == .any {
+            mode = cipher.isDataSigned() ? .decryptThenVerify : .decryptAndVerify
+        }
+
+        switch mode {
+        case .decryptAndVerify:
+            try self.verifyPlainSignature(cipher: cipher,
+                                          inputOutput: inputOutput,
+                                          result: result,
+                                          publicKeys: verifyingOptions.publicKeys)
+
+        case .decryptThenVerify:
+            try self.verifyEncryptedSignature(cipher: cipher, publicKeys: verifyingOptions.publicKeys)
+
+        case .any:
+            fatalError()
+        }
+    }
+
+    internal func decrypt(inputOutput: InputOutput,
+                          verifyingOptions: VerifyingOptions?,
+                          privateKey: VirgilPrivateKey) throws -> Data? {
+        let cipher = RecipientCipher()
+        cipher.setRandom(random: self.rng)
+
+        try cipher.startDecryptionWithKey(recipientId: privateKey.identifier,
+                                          privateKey: privateKey.key,
+                                          messageInfo: Data())
+
+        let result = try self.processDecryption(cipher: cipher, inputOutput: inputOutput)
+
+        try self.finishDecryption(cipher: cipher,
+                                  inputOutput: inputOutput,
+                                  result: result,
+                                  verifyingOptions: verifyingOptions)
 
         return result
     }

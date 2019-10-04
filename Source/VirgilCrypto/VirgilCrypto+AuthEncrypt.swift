@@ -80,7 +80,10 @@ extension VirgilCrypto {
     /// - Throws: Rethrows from `RecipientCipher`.
     @objc open func authDecrypt(_ data: Data, with privateKey: VirgilPrivateKey,
                                 usingOneOf signersPublicKeys: [VirgilPublicKey]) throws -> Data {
-        return try self.authDecrypt(data, with: privateKey, usingOneOf: signersPublicKeys, allowNotEncryptedSignature: false)
+        return try self.authDecrypt(data,
+                                    with: privateKey,
+                                    usingOneOf: signersPublicKeys,
+                                    allowNotEncryptedSignature: false)
     }
 
     /// Decrypts (with private key) data and signature and Verifies signature using any of signers' PublicKeys
@@ -97,7 +100,8 @@ extension VirgilCrypto {
     ///   - privateKey: Receiver's private key
     ///   - signersPublicKeys: Array of possible signers public keys.
     ///                        WARNING: Data should have signature of ANY public key from array.
-    ///   - allowNotEncryptedSignature: Allows storing signature in plain text for compatibility with deprecated signAndEncrypt
+    ///   - allowNotEncryptedSignature: Allows storing signature in plain text
+    ///                                 for compatibility with deprecated signAndEncrypt
     /// - Returns: DecryptedThenVerified data
     /// - Throws: Rethrows from `RecipientCipher`.
     @objc open func authDecrypt(_ data: Data, with privateKey: VirgilPrivateKey,
@@ -165,7 +169,8 @@ extension VirgilCrypto {
                                 with privateKey: VirgilPrivateKey,
                                 usingOneOf signersPublicKeys: [VirgilPublicKey]) throws {
         _ = try self.decrypt(inputOutput: .stream(input: stream, streamSize: nil, output: outputStream),
-                             verifyingOptions: VerifyingOptions(publicKeys: signersPublicKeys, mode: .decryptThenVerify),
+                             verifyingOptions: VerifyingOptions(publicKeys: signersPublicKeys,
+                                                                mode: .decryptThenVerify),
                              privateKey: privateKey)
     }
 }
