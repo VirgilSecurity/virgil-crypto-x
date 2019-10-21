@@ -61,7 +61,7 @@ extension VirgilCrypto {
     ///   - recipients: Recipients' public keys
     /// - Returns: SignedAndEncrypted data
     /// - Throws: Rethrows from `Signer` and `RecipientCipher`
-    @available(*, deprecated, message: "use signThenEncrypt instead")
+    @available(*, deprecated, message: "use authEncrypt instead")
     @objc open func signAndEncrypt(_ data: Data, with privateKey: VirgilPrivateKey,
                                    for recipients: [VirgilPublicKey]) throws -> Data {
         return try self.encrypt(inputOutput: .data(input: data),
@@ -88,7 +88,7 @@ extension VirgilCrypto {
     ///           Throws VirgilCryptoError.signerNotFound if signer with such id is not found
     ///           Throws VirgilCryptoError.signatureNotFound if signer was not found
     ///           Throws VirgilCryptoError.signatureNotVerified if signature did not pass verification
-    @available(*, deprecated, message: "use decryptThenVerify instead")
+    @available(*, deprecated, message: "use authDecrypt instead")
     @objc open func decryptAndVerify(_ data: Data, with privateKey: VirgilPrivateKey,
                                      usingOneOf signersPublicKeys: [VirgilPublicKey]) throws -> Data {
         return try self.decrypt(inputOutput: .data(input: data),
@@ -117,7 +117,7 @@ extension VirgilCrypto {
     ///   - Throws `VirgilCryptoError.signerNotFound` if signer with such id is not found
     ///   - Throws `VirgilCryptoError.signatureNotFound` if signer was not found
     ///   - Throws `VirgilCryptoError.signatureNotVerified` if signature did not pass verification
-    @available(*, deprecated, message: "use decryptThenVerify instead")
+    @available(*, deprecated, message: "use authDecrypt instead")
     @objc open func decryptAndVerify(_ data: Data, with privateKey: VirgilPrivateKey,
                                      using signerPublicKey: VirgilPublicKey) throws -> Data {
         return try self.decryptAndVerify(data, with: privateKey, usingOneOf: [signerPublicKey])
