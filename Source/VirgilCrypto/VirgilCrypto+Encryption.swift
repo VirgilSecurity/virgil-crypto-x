@@ -53,25 +53,7 @@ extension VirgilCrypto {
     /// - Returns: Encrypted data
     /// - Throws: Rethrows from `RecipientCipher`
     @objc open func encrypt(_ data: Data, for recipients: [VirgilPublicKey]) throws -> Data {
-        let aesGcm = Aes256Gcm()
-        let cipher = RecipientCipher()
-
-        cipher.setEncryptionCipher(encryptionCipher: aesGcm)
-        cipher.setRandom(random: self.rng)
-
-        recipients.forEach {
-            cipher.addKeyRecipient(recipientId: $0.identifier, publicKey: $0.key)
-        }
-
-        try cipher.startEncryption()
-
-        var result = cipher.packMessageInfo()
-
-        result += try cipher.processEncryption(data: data)
-
-        result += try cipher.finishEncryption()
-
-        return result
+        return try self.encrypt(inputOutput: .data(input: data), signingOptions: nil, recipients: recipients)!
     }
 
     /// Decrypts data using passed PrivateKey
@@ -87,20 +69,49 @@ extension VirgilCrypto {
     /// - Returns: Decrypted data
     /// - Throws: Rethrows from `RecipientCipher`
     @objc open func decrypt(_ data: Data, with privateKey: VirgilPrivateKey) throws -> Data {
-        let cipher = RecipientCipher()
+        return try self.decrypt(inputOutput: .data(input: data), verifyingOptions: nil, privateKey: privateKey)!
+    }
 
-        cipher.setRandom(random: self.rng)
+    /// Encrypts data stream for passed PublicKeys
+    ///
+    /// 1. Generates random AES-256 KEY1
+    /// 2. Encrypts data with KEY1 using AES-256-GCM
+    /// 3. Generates ephemeral key pair for each recipient
+    /// 4. Uses Diffie-Hellman to obtain shared secret with each recipient's public key & each ephemeral private key
+    /// 5. Computes KDF to obtain AES-256 key from shared secret for each recipient
+    /// 6. Encrypts KEY1 with this key using AES-256-CBC for each recipient
+    ///
+    /// - Parameters:
+    ///   - stream: data Stream to be encrypted
+    ///   - outputStream: Stream with encrypted data
+    ///   - recipients: Recipients
+    /// - Throws: Rethrows from `RecipientCipher`
+    @objc open func encrypt(_ stream: InputStream, to outputStream: OutputStream,
+                            for recipients: [VirgilPublicKey]) throws {
+        _ = try self.encrypt(inputOutput: .stream(input: stream, streamSize: nil, output: outputStream),
+                             signingOptions: nil,
+                             recipients: recipients)
+    }
 
-        try cipher.startDecryptionWithKey(recipientId: privateKey.identifier,
-                                          privateKey: privateKey.key,
-                                          messageInfo: Data())
-
-        var result = Data()
-
-        result += try cipher.processDecryption(data: data)
-
-        result += try cipher.finishDecryption()
-
-        return result
+    /// Decrypts data stream using passed PrivateKey
+    ///
+    /// - Note: Decrypted stream should not be used until decryption
+    ///         of whole InputStream completed due to security reasons
+    ///
+    /// 1. Uses Diffie-Hellman to obtain shared secret with sender ephemeral public key & recipient's private key
+    /// 2. Computes KDF to obtain AES-256 KEY2 from shared secret
+    /// 3. Decrypts KEY1 using AES-256-CBC
+    /// 4. Decrypts data using KEY1 and AES-256-GCM
+    ///
+    /// - Parameters:
+    ///   - stream: Stream with encrypted data
+    ///   - outputStream: Stream with decrypted data
+    ///   - privateKey: Recipient's private key
+    /// - Throws: Rethrows from `RecipientCipher`
+    @objc open func decrypt(_ stream: InputStream, to outputStream: OutputStream,
+                            with privateKey: VirgilPrivateKey) throws {
+        _ = try self.decrypt(inputOutput: .stream(input: stream, streamSize: nil, output: outputStream),
+                             verifyingOptions: nil,
+                             privateKey: privateKey)
     }
 }
