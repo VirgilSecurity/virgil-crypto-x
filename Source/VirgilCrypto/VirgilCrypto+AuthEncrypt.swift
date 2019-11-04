@@ -158,12 +158,6 @@ extension VirgilCrypto {
     /// - Parameter privateKey: Recipient's private key
     /// - Parameter signersPublicKeys: Array of possible signers public keys.
     ///                                WARNING: Stream should have signature of ANY public key from array.
-    ///
-    /// - Parameter stream: Input stream
-    /// - Parameter outputStream: Output stream
-    /// - Parameter privateKey: Private key to decrypr
-    /// - Parameter signersPublicKeys: Array of possible signers public keys.
-    ///                                WARNING: Data should have signature of ANY public key from array.
     /// - Throws: Rethrows from `RecipientCipher`.
     @objc open func authDecrypt(_ stream: InputStream, to outputStream: OutputStream,
                                 with privateKey: VirgilPrivateKey,
