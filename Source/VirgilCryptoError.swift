@@ -55,7 +55,6 @@ import Foundation
     case signatureNotFound = 2
     case signatureNotVerified = 3
     case unknownAlgId = 4
-    case rsaShouldBeConstructedDirectly = 5
     case unsupportedRsaLength = 6
     case passedKeyIsNotVirgil = 8
     case outputStreamError = 9
@@ -63,6 +62,10 @@ import Foundation
     case invalidSeedSize = 11
     case dataIsNotSigned = 12
     case invalidStreamSize = 13
+    case chainedKeyShouldBeConstructedDirectly = 14
+    case compundKeyShouldBeGeneratedDirectly = 15
+    case unknownCompoundKey = 16
+    case keyIsNotCompound = 17
 
     /// Human-readable localized description
     public var errorDescription: String? {
@@ -75,8 +78,6 @@ import Foundation
             return "Signature not verified"
         case .unknownAlgId:
             return "Unknown alg id"
-        case .rsaShouldBeConstructedDirectly:
-            return "rsa should be constructed directly"
         case .unsupportedRsaLength:
             return "Unsupported rsa length"
         case .passedKeyIsNotVirgil:
@@ -91,6 +92,14 @@ import Foundation
             return "Data has no signature to verify"
         case .invalidStreamSize:
             return "Actual stream size doesn't match with given value"
+        case .chainedKeyShouldBeConstructedDirectly:
+            return "chained key should be constructed directly"
+        case .compundKeyShouldBeGeneratedDirectly:
+            return "compund key should be generated directly"
+        case .unknownCompoundKey:
+            return "unknown compound key"
+        case .keyIsNotCompound :
+            return "key is not compound"
         }
     }
 }

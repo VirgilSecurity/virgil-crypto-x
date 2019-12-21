@@ -52,12 +52,15 @@ class VSM001_CryptoTests: XCTestCase {
         
         XCTAssert(keyPair.privateKey.identifier == keyPair.publicKey.identifier)
     }
+    
+    private static let allKeyTypes: [KeyPairType] = [.curve25519, .ed25519, .secp256r1, .rsa2048, .curve25519Round5Ed25519Falcon, .curve25519Ed25519]
+    private static let signingKeyTypes: [KeyPairType] = [.ed25519, .secp256r1, .rsa2048, .curve25519Round5Ed25519Falcon, .curve25519Ed25519]
 
     func test01__key_generation__generate_one_key__should_succeed() {
         do {
             let crypto = try VirgilCrypto()
             
-            for keyType in [KeyPairType.curve25519, KeyPairType.ed25519, KeyPairType.secp256r1, KeyPairType.rsa2048] {
+            for keyType in VSM001_CryptoTests.allKeyTypes {
                 try self.checkKeyGeneration(crypto: crypto, keyPairType: keyType)
             }
         }
@@ -86,7 +89,7 @@ class VSM001_CryptoTests: XCTestCase {
         do {
             let crypto = try VirgilCrypto()
             
-            for keyType in [KeyPairType.curve25519, KeyPairType.ed25519, KeyPairType.secp256r1,  KeyPairType.rsa2048] {
+            for keyType in VSM001_CryptoTests.allKeyTypes {
                 try self.checkKeyImport(crypto: crypto, keyPairType: keyType)
             }
         }
@@ -118,7 +121,7 @@ class VSM001_CryptoTests: XCTestCase {
         do {
             let crypto = try VirgilCrypto()
             
-            for keyType in [KeyPairType.curve25519, KeyPairType.ed25519, KeyPairType.secp256r1, KeyPairType.rsa2048] {
+            for keyType in VSM001_CryptoTests.allKeyTypes {
                 try self.checkEncryption(crypto: crypto, keyPairType: keyType)
             }
         }
@@ -143,7 +146,7 @@ class VSM001_CryptoTests: XCTestCase {
         do {
             let crypto = try VirgilCrypto()
             
-            for keyType in [KeyPairType.ed25519, KeyPairType.secp256r1, KeyPairType.rsa2048] {
+            for keyType in VSM001_CryptoTests.signingKeyTypes {
                 try self.checkSignature(crypto: crypto, keyPairType: keyType)
             }
         }
@@ -182,7 +185,7 @@ class VSM001_CryptoTests: XCTestCase {
         do {
             let crypto = try VirgilCrypto()
             
-            for keyType in [KeyPairType.ed25519, KeyPairType.secp256r1, KeyPairType.rsa2048] {
+            for keyType in VSM001_CryptoTests.signingKeyTypes {
                 try self.checkSignAndEncrypt(crypto: crypto, keyPairType: keyType)
             }
         }
@@ -211,7 +214,7 @@ class VSM001_CryptoTests: XCTestCase {
         do {
             let crypto = try VirgilCrypto()
             
-            for keyType in [KeyPairType.ed25519, KeyPairType.secp256r1, KeyPairType.rsa2048] {
+            for keyType in VSM001_CryptoTests.signingKeyTypes {
                 try self.checkStreamSign(crypto: crypto, keyPairType: keyType)
             }
         }
@@ -257,7 +260,7 @@ class VSM001_CryptoTests: XCTestCase {
         do {
             let crypto = try VirgilCrypto()
             
-            for keyType in [KeyPairType.curve25519, KeyPairType.ed25519, KeyPairType.secp256r1, KeyPairType.rsa2048] {
+            for keyType in VSM001_CryptoTests.allKeyTypes {
                 try self.checkStreamEncryption(crypto: crypto, keyPairType: keyType)
             }
         }
@@ -283,7 +286,7 @@ class VSM001_CryptoTests: XCTestCase {
         do {
             let crypto = try VirgilCrypto()
             
-            for keyType in [KeyPairType.curve25519, KeyPairType.ed25519, KeyPairType.secp256r1, KeyPairType.rsa2048] {
+            for keyType in VSM001_CryptoTests.allKeyTypes {
                 try self.checkGenerateKeyUsingSeed(crypto: crypto, keyPairType: keyType)
             }
         }
@@ -348,7 +351,7 @@ class VSM001_CryptoTests: XCTestCase {
         do {
             let crypto = try VirgilCrypto()
             
-            for keyType in [KeyPairType.ed25519, KeyPairType.secp256r1, KeyPairType.rsa2048] {
+            for keyType in VSM001_CryptoTests.signingKeyTypes {
                 try self.checkKeyExportImport(crypto: crypto, keyPairType: keyType)
             }
         }
@@ -364,8 +367,7 @@ class VSM001_CryptoTests: XCTestCase {
         let keyPair2 = try crypto.generateKeyPair(ofType: keyPairType)
         let keyPair3 = try crypto.generateKeyPair(ofType: keyPairType)
         
-        let encrypted = try crypto.authEncrypt(data, with: keyPair1.privateKey, for: [keyPair2.publicKey])
-        
+        let encrypted = try crypto.authEncrypt(data, with: keyPair1.privateKey, for: [keyPair2.publicKey], enablePadding: false)
         let decrypted = try crypto.authDecrypt(encrypted, with: keyPair2.privateKey, usingOneOf: [keyPair1.publicKey])
         
         XCTAssert(data == decrypted)
@@ -387,7 +389,7 @@ class VSM001_CryptoTests: XCTestCase {
         do {
             let crypto = try VirgilCrypto()
             
-            for keyType in [KeyPairType.ed25519, KeyPairType.secp256r1, KeyPairType.rsa2048] {
+            for keyType in VSM001_CryptoTests.signingKeyTypes {
                 try self.checkAuthEncrypt(crypto: crypto, keyPairType: keyType)
             }
         }
@@ -444,7 +446,7 @@ class VSM001_CryptoTests: XCTestCase {
         do {
             let crypto = try VirgilCrypto()
             
-            for keyType in [KeyPairType.ed25519, KeyPairType.secp256r1, KeyPairType.rsa2048] {
+            for keyType in VSM001_CryptoTests.signingKeyTypes {
                 try self.checkAuthEncryptStream(crypto: crypto, keyPairType: keyType)
             }
         }
@@ -454,6 +456,41 @@ class VSM001_CryptoTests: XCTestCase {
     }
     
     private func checkAuthEncryptDeprecated(crypto: VirgilCrypto, keyPairType: KeyPairType) throws {
+        let data = UUID().uuidString.data(using: .utf8)!
+        
+        let keyPair1 = try crypto.generateKeyPair(ofType: keyPairType)
+        let keyPair2 = try crypto.generateKeyPair(ofType: keyPairType)
+        
+        let encrypted1 = try crypto.authEncrypt(data, with: keyPair1.privateKey, for: [keyPair2.publicKey], enablePadding: false)
+        let encrypted2 = try crypto.signAndEncrypt(data, with: keyPair1.privateKey, for: [keyPair2.publicKey])
+        
+        let decrypted1 = try crypto.authDecrypt(encrypted1,
+                                                with: keyPair2.privateKey,
+                                                usingOneOf: [keyPair1.publicKey],
+                                                allowNotEncryptedSignature: true)
+        let decrypted2 = try crypto.authDecrypt(encrypted2,
+                                                with: keyPair2.privateKey,
+                                                usingOneOf: [keyPair1.publicKey],
+                                                allowNotEncryptedSignature: true)
+        
+        XCTAssert(data == decrypted1)
+        XCTAssert(data == decrypted2)
+    }
+    
+    func test13__auth_encrypt__deprecated__should_work() {
+        do {
+            let crypto = try VirgilCrypto()
+            
+            for keyType in VSM001_CryptoTests.signingKeyTypes {
+                try self.checkAuthEncryptDeprecated(crypto: crypto, keyPairType: keyType)
+            }
+        }
+        catch {
+            XCTFail(error.localizedDescription)
+        }
+    }
+    
+    private func checkAuthEncryptPadding(crypto: VirgilCrypto, keyPairType: KeyPairType) throws {
         let data = UUID().uuidString.data(using: .utf8)!
         
         let keyPair1 = try crypto.generateKeyPair(ofType: keyPairType)
@@ -469,12 +506,12 @@ class VSM001_CryptoTests: XCTestCase {
         XCTAssert(data == decrypted2)
     }
     
-    func test13__auth_encrypt__deprecated__should_work() {
+    func test14__auth_encrypt__padding__should_match() {
         do {
             let crypto = try VirgilCrypto()
             
-            for keyType in [KeyPairType.ed25519, KeyPairType.secp256r1, KeyPairType.rsa2048] {
-                try self.checkAuthEncryptDeprecated(crypto: crypto, keyPairType: keyType)
+            for keyType in VSM001_CryptoTests.signingKeyTypes {
+                try self.checkAuthEncryptPadding(crypto: crypto, keyPairType: keyType)
             }
         }
         catch {

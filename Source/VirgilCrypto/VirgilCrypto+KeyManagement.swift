@@ -64,14 +64,7 @@ extension VirgilCrypto {
     @objc open func importPrivateKey(from data: Data) throws -> VirgilKeyPair {
         let privateKey = try self.importInternalPrivateKey(from: data)
 
-        let keyType: KeyPairType
-
-        if privateKey.algId() == .rsa {
-            keyType = try KeyPairType(fromRsaBitLen: privateKey.bitlen())
-        }
-        else {
-            keyType = try KeyPairType(from: privateKey.algId())
-        }
+        let keyType = try KeyPairType(from: privateKey)
 
         let publicKey = privateKey.extractPublicKey()
 
@@ -121,14 +114,7 @@ extension VirgilCrypto {
 
         let publicKey = try keyProvider.importPublicKey(keyData: data)
 
-        let keyType: KeyPairType
-
-        if publicKey.algId() == .rsa {
-            keyType = try KeyPairType(fromRsaBitLen: publicKey.bitlen())
-        }
-        else {
-            keyType = try KeyPairType(from: publicKey.algId())
-        }
+        let keyType = try KeyPairType(from: publicKey)
 
         let keyId = try self.computePublicKeyIdentifier(publicKey: publicKey)
 
