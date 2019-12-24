@@ -40,12 +40,12 @@ import VirgilCryptoFoundation
 extension KeyPairType {
     internal init(from key: Key) throws {
         let keyInfo = KeyInfo(algInfo: key.algInfo())
-        
+
         if keyInfo.isCompound() {
-            if keyInfo.compoundCipherL1AlgId() == .curve25519
-                && keyInfo.compoundCipherL2AlgId() == .round5Nd5pke5d
-                && keyInfo.compoundSignerL1AlgId() == .ed25519
-                && keyInfo.compoundSignerL2AlgId() == .falcon {
+            if keyInfo.compoundHybridCipherFirstKeyAlgId() == .curve25519
+                && keyInfo.compoundHybridCipherSecondKeyAlgId() == .round5Nd5kem5d
+                && keyInfo.compoundHybridSignerFirstKeyAlgId() == .ed25519
+                && keyInfo.compoundHybridSignerSecondKeyAlgId() == .falcon {
                 self = .curve25519Round5Ed25519Falcon
             }
             else if keyInfo.compoundCipherAlgId() == .curve25519
@@ -55,17 +55,17 @@ extension KeyPairType {
             else {
                 throw VirgilCryptoError.unknownCompoundKey
             }
-            
+
             return
         }
-            
+
         let algId = keyInfo.algId()
-        
+
         if algId == .rsa {
             self = try KeyPairType(fromRsaBitLen: key.bitlen())
             return
         }
-        
+
         switch algId {
         case .ed25519:
             self = .ed25519
@@ -73,8 +73,8 @@ extension KeyPairType {
             self = .curve25519
         case .secp256r1:
             self = .secp256r1
-        case .chainedKey:
-            throw VirgilCryptoError.chainedKeyShouldBeConstructedDirectly
+        case .hybridKey:
+            throw VirgilCryptoError.hybridKeyShouldBeConstructedDirectly
         default:
             throw VirgilCryptoError.unknownAlgId
         }
@@ -94,7 +94,7 @@ extension KeyPairType {
             throw VirgilCryptoError.compundKeyShouldBeGeneratedDirectly
         }
     }
-    
+
     internal var isCompound: Bool {
         switch self {
         case .curve25519Ed25519, .curve25519Round5Ed25519Falcon:
@@ -103,7 +103,7 @@ extension KeyPairType {
             return false
         }
     }
-    
+
     internal func getSignerKeysAlgIds() throws -> (l1: AlgId, l2: AlgId) {
         switch self {
         case .curve25519Ed25519:
@@ -114,13 +114,13 @@ extension KeyPairType {
             throw VirgilCryptoError.keyIsNotCompound
         }
     }
-    
+
     internal func getCipherKeysAlgIds() throws -> (l1: AlgId, l2: AlgId) {
         switch self {
         case .curve25519Ed25519:
             return (.curve25519, .none)
         case .curve25519Round5Ed25519Falcon:
-            return (.curve25519, .round5Nd5pke5d)
+            return (.curve25519, .round5Nd5kem5d)
         case .curve25519, .ed25519, .rsa2048, .rsa4096, .rsa8192, .secp256r1:
             throw VirgilCryptoError.keyIsNotCompound
         }

@@ -62,7 +62,7 @@ import Foundation
     case invalidSeedSize = 11
     case dataIsNotSigned = 12
     case invalidStreamSize = 13
-    case chainedKeyShouldBeConstructedDirectly = 14
+    case hybridKeyShouldBeConstructedDirectly = 14
     case compundKeyShouldBeGeneratedDirectly = 15
     case unknownCompoundKey = 16
     case keyIsNotCompound = 17
@@ -92,8 +92,8 @@ import Foundation
             return "Data has no signature to verify"
         case .invalidStreamSize:
             return "Actual stream size doesn't match with given value"
-        case .chainedKeyShouldBeConstructedDirectly:
-            return "chained key should be constructed directly"
+        case .hybridKeyShouldBeConstructedDirectly:
+            return "hybrid key should be constructed directly"
         case .compundKeyShouldBeGeneratedDirectly:
             return "compund key should be generated directly"
         case .unknownCompoundKey:

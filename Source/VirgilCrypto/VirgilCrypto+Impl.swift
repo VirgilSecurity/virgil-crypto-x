@@ -146,7 +146,8 @@ extension VirgilCrypto {
             return nil
         }
     }
-    
+
+    /// Padding length
     @objc public static let paddingLen = 160
 
     internal func encrypt(inputOutput: InputOutput,
@@ -158,12 +159,14 @@ extension VirgilCrypto {
 
         cipher.setEncryptionCipher(encryptionCipher: aesGcm)
         cipher.setRandom(random: self.rng)
-        
+
         if enablePadding {
             let padding = RandomPadding()
             padding.setRandom(random: self.rng)
             cipher.setEncryptionPadding(encryptionPadding: padding)
-            let paddingParams = PaddingParams(frame: VirgilCrypto.paddingLen, frameMin: VirgilCrypto.paddingLen, frameMax: VirgilCrypto.paddingLen)
+            let paddingParams = PaddingParams(frame: VirgilCrypto.paddingLen,
+                                              frameMin: VirgilCrypto.paddingLen,
+                                              frameMax: VirgilCrypto.paddingLen)
             cipher.setPaddingParams(paddingParams: paddingParams)
         }
 
@@ -305,8 +308,10 @@ extension VirgilCrypto {
                           privateKey: VirgilPrivateKey) throws -> Data? {
         let cipher = RecipientCipher()
         cipher.setRandom(random: self.rng)
-        
-        let paddingParams = PaddingParams(frame: VirgilCrypto.paddingLen, frameMin: VirgilCrypto.paddingLen, frameMax: VirgilCrypto.paddingLen)
+
+        let paddingParams = PaddingParams(frame: VirgilCrypto.paddingLen,
+                                          frameMin: VirgilCrypto.paddingLen,
+                                          frameMax: VirgilCrypto.paddingLen)
         cipher.setPaddingParams(paddingParams: paddingParams)
 
         try cipher.startDecryptionWithKey(recipientId: privateKey.identifier,

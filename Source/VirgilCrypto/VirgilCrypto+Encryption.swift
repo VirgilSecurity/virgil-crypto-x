@@ -36,7 +36,7 @@
 
 import VirgilCryptoFoundation
 
-/// MARK: - Extension for assymetric encryption/decryption
+// MARK: - Extension for assymetric encryption/decryption
 extension VirgilCrypto {
     /// Encrypts data for passed PublicKeys
     ///
@@ -50,11 +50,18 @@ extension VirgilCrypto {
     /// - Parameters:
     ///   - data: Data to be encrypted
     ///   - recipients: Public Keys of recipients
-    ///   - enablePadding:If true, will add padding to plain text before encryption. This is recommended for data for which exposing length can cause security issues (e.g. text messages)
+    ///   - enablePadding: If true, will add padding to plain text before encryption.
+    ///                    This is recommended for data for which exposing length can
+    ///                    cause security issues (e.g. text messages)
     /// - Returns: Encrypted data
     /// - Throws: Rethrows from `RecipientCipher`
-    @objc open func encrypt(_ data: Data, for recipients: [VirgilPublicKey], enablePadding: Bool = false) throws -> Data {
-        return try self.encrypt(inputOutput: .data(input: data), signingOptions: nil, recipients: recipients, enablePadding: enablePadding)!
+    @objc open func encrypt(_ data: Data,
+                            for recipients: [VirgilPublicKey],
+                            enablePadding: Bool = false) throws -> Data {
+        return try self.encrypt(inputOutput: .data(input: data),
+                                signingOptions: nil,
+                                recipients: recipients,
+                                enablePadding: enablePadding)!
     }
 
     /// Decrypts data using passed PrivateKey
@@ -86,7 +93,9 @@ extension VirgilCrypto {
     ///   - stream: data Stream to be encrypted
     ///   - outputStream: Stream with encrypted data
     ///   - recipients: Recipients
-    ///   - enablePadding:If true, will add padding to plain text before encryption. This is recommended for data for which exposing length can cause security issues (e.g. text messages)
+    ///   - enablePadding: If true, will add padding to plain text before encryption.
+    ///                    This is recommended for data for which exposing length can
+    ///                    cause security issues (e.g. text messages)
     /// - Throws: Rethrows from `RecipientCipher`
     @objc open func encrypt(_ stream: InputStream, to outputStream: OutputStream,
                             for recipients: [VirgilPublicKey], enablePadding: Bool = false) throws {
