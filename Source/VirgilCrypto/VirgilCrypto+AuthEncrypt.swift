@@ -106,7 +106,6 @@ extension VirgilCrypto {
     ///                        WARNING: Data should have signature of ANY public key from array.
     ///   - allowNotEncryptedSignature: Allows storing signature in plain text
     ///                                 for compatibility with deprecated signAndEncrypt
-    ///   - enablePadding: should be set to the same value as during encryption
     /// - Returns: DecryptedThenVerified data
     /// - Throws: Rethrows from `RecipientCipher`.
     @objc open func authDecrypt(_ data: Data, with privateKey: VirgilPrivateKey,

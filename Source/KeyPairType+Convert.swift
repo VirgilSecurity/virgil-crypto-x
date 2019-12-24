@@ -73,8 +73,6 @@ extension KeyPairType {
             self = .curve25519
         case .secp256r1:
             self = .secp256r1
-        case .hybridKey:
-            throw VirgilCryptoError.hybridKeyShouldBeConstructedDirectly
         default:
             throw VirgilCryptoError.unknownAlgId
         }
@@ -104,7 +102,7 @@ extension KeyPairType {
         }
     }
 
-    internal func getSignerKeysAlgIds() throws -> (l1: AlgId, l2: AlgId) {
+    internal func getSignerKeysAlgIds() throws -> (first: AlgId, second: AlgId) {
         switch self {
         case .curve25519Ed25519:
             return (.ed25519, .none)
@@ -115,7 +113,7 @@ extension KeyPairType {
         }
     }
 
-    internal func getCipherKeysAlgIds() throws -> (l1: AlgId, l2: AlgId) {
+    internal func getCipherKeysAlgIds() throws -> (first: AlgId, second: AlgId) {
         switch self {
         case .curve25519Ed25519:
             return (.curve25519, .none)

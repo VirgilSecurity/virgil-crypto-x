@@ -62,10 +62,9 @@ import Foundation
     case invalidSeedSize = 11
     case dataIsNotSigned = 12
     case invalidStreamSize = 13
-    case hybridKeyShouldBeConstructedDirectly = 14
-    case compundKeyShouldBeGeneratedDirectly = 15
-    case unknownCompoundKey = 16
-    case keyIsNotCompound = 17
+    case compundKeyShouldBeGeneratedDirectly = 14
+    case unknownCompoundKey = 15
+    case keyIsNotCompound = 16
 
     /// Human-readable localized description
     public var errorDescription: String? {
@@ -92,8 +91,6 @@ import Foundation
             return "Data has no signature to verify"
         case .invalidStreamSize:
             return "Actual stream size doesn't match with given value"
-        case .hybridKeyShouldBeConstructedDirectly:
-            return "hybrid key should be constructed directly"
         case .compundKeyShouldBeGeneratedDirectly:
             return "compund key should be generated directly"
         case .unknownCompoundKey:
