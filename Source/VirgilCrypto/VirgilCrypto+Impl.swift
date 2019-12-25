@@ -165,7 +165,6 @@ extension VirgilCrypto {
             padding.setRandom(random: self.rng)
             cipher.setEncryptionPadding(encryptionPadding: padding)
             let paddingParams = PaddingParams(frame: VirgilCrypto.paddingLen,
-                                              frameMin: VirgilCrypto.paddingLen,
                                               frameMax: VirgilCrypto.paddingLen)
             cipher.setPaddingParams(paddingParams: paddingParams)
         }
@@ -310,7 +309,6 @@ extension VirgilCrypto {
         cipher.setRandom(random: self.rng)
 
         let paddingParams = PaddingParams(frame: VirgilCrypto.paddingLen,
-                                          frameMin: VirgilCrypto.paddingLen,
                                           frameMax: VirgilCrypto.paddingLen)
         cipher.setPaddingParams(paddingParams: paddingParams)
 
