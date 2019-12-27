@@ -58,4 +58,14 @@ class VSM003_CryptoFormatsTests: XCTestCase {
         
         XCTAssert(crypto1.computeHash(for: try! crypto1.exportPublicKey(keyPair2.publicKey), using: .sha256) == keyPair2.privateKey.identifier)
     }
+    
+    func test005_KeyPairTypeName() {
+        let keyStr = KeyPairType.ed25519.getStringRepresentation()
+        
+        XCTAssert(keyStr == "ed25519")
+        
+        let keyType = try! KeyPairType(from: keyStr)
+        
+        XCTAssert(keyType == .ed25519)
+    }
 }

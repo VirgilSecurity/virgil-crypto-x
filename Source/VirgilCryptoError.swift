@@ -65,6 +65,7 @@ import Foundation
     case compundKeyShouldBeGeneratedDirectly = 14
     case unknownCompoundKey = 15
     case keyIsNotCompound = 16
+    case unknownKeyType = 17
 
     /// Human-readable localized description
     public var errorDescription: String? {
@@ -97,6 +98,8 @@ import Foundation
             return "unknown compound key"
         case .keyIsNotCompound :
             return "key is not compound"
+        case .unknownKeyType:
+            return "Unknown key type"
         }
     }
 }
