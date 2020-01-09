@@ -23,7 +23,6 @@ before_install:
   - set -o pipefail
 
 script:
-  - instruments -s devices
   - carthage version
   - carthage bootstrap --platform ${CARTHAGE_PLATFORM_NAME}
 
