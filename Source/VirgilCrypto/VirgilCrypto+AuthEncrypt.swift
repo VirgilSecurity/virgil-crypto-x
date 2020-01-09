@@ -53,13 +53,17 @@ extension VirgilCrypto {
     ///   - data: Data to be signedThenEncrypted
     ///   - privateKey: Sender private key
     ///   - recipients: Recipients' public keys
+    ///   - enablePadding: If true, will add padding to plain text before encryption.
+    ///                    This is recommended for data for which exposing length can
+    ///                    cause security issues (e.g. text messages)
     /// - Returns: SignedThenEncrypted data
     /// - Throws: Rethrows from `RecipientCipher`.
     @objc open func authEncrypt(_ data: Data, with privateKey: VirgilPrivateKey,
-                                for recipients: [VirgilPublicKey]) throws -> Data {
+                                for recipients: [VirgilPublicKey], enablePadding: Bool = true) throws -> Data {
         return try self.encrypt(inputOutput: .data(input: data),
                                 signingOptions: SigningOptions(privateKey: privateKey, mode: .signThenEncrypt),
-                                recipients: recipients)!
+                                recipients: recipients,
+                                enablePadding: enablePadding)!
     }
 
     /// Decrypts (with private key) data and signature and Verifies signature using any of signers' PublicKeys
@@ -125,20 +129,26 @@ extension VirgilCrypto {
     /// 7. Computes KDF to obtain AES-256 key from shared secret for each recipient
     /// 8. Encrypts KEY1 with this key using AES-256-CBC for each recipient
     /// 
-    /// - Parameter stream: Input stream
-    /// - Parameter streamSize: Input stream size
-    /// - Parameter outputStream: Output stream
-    /// - Parameter privateKey: Private key to generate signatures
-    /// - Parameter recipients: Recipients public keys
+    /// - Parameters:
+    ///   - stream: Input stream
+    ///   - streamSize: Input stream size
+    ///   - outputStream: Output stream
+    ///   - privateKey: Private key to generate signatures
+    ///   - recipients: Recipients public keys
+    ///   - enablePadding: If true, will add padding to plain text before encryption.
+    ///                    This is recommended for data for which exposing length can
+    ///                    cause security issues (e.g. text messages)
     /// - Throws: Rethrows from `RecipientCipher`.
     @objc open func authEncrypt(_ stream: InputStream,
                                 streamSize: Int,
                                 to outputStream: OutputStream,
                                 with privateKey: VirgilPrivateKey,
-                                for recipients: [VirgilPublicKey]) throws {
+                                for recipients: [VirgilPublicKey],
+                                enablePadding: Bool = false) throws {
         _ = try self.encrypt(inputOutput: .stream(input: stream, streamSize: streamSize, output: outputStream),
                              signingOptions: SigningOptions(privateKey: privateKey, mode: .signThenEncrypt),
-                             recipients: recipients)
+                             recipients: recipients,
+                             enablePadding: enablePadding)
     }
 
     /// Decrypts (using passed PrivateKey) then verifies (using one of public keys) stream
@@ -153,11 +163,12 @@ extension VirgilCrypto {
     /// 5. Finds corresponding PublicKey according to signer id inside data
     /// 6. Verifies signature
     ///
-    /// - Parameter stream: Stream with encrypted data
-    /// - Parameter outputStream: Stream with decrypted data
-    /// - Parameter privateKey: Recipient's private key
-    /// - Parameter signersPublicKeys: Array of possible signers public keys.
-    ///                                WARNING: Stream should have signature of ANY public key from array.
+    /// - Parameters:
+    ///   - stream: Stream with encrypted data
+    ///   - outputStream: Stream with decrypted data
+    ///   - privateKey: Recipient's private key
+    ///   - signersPublicKeys: Array of possible signers public keys.
+    ///                        WARNING: Stream should have signature of ANY public key from array.
     /// - Throws: Rethrows from `RecipientCipher`.
     @objc open func authDecrypt(_ stream: InputStream, to outputStream: OutputStream,
                                 with privateKey: VirgilPrivateKey,
