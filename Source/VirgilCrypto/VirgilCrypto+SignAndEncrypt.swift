@@ -36,7 +36,7 @@
 
 import VirgilCryptoFoundation
 
-/// MARK: - Extension for assymetric authenticated encryption/decryption
+// MARK: - Extension for assymetric authenticated encryption/decryption
 extension VirgilCrypto {
     /// Key used to embed Data Signature into ASN.1 structure
     /// Used in signAndEncrypt & decryptAndVerify
@@ -66,7 +66,8 @@ extension VirgilCrypto {
                                    for recipients: [VirgilPublicKey]) throws -> Data {
         return try self.encrypt(inputOutput: .data(input: data),
                                 signingOptions: SigningOptions(privateKey: privateKey, mode: .signAndEncrypt),
-                                recipients: recipients)!
+                                recipients: recipients,
+                                enablePadding: false)!
     }
 
     /// Decrypts (with private key) And Verifies data using any of signers' PublicKeys

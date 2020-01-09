@@ -36,7 +36,7 @@
 
 import VirgilCryptoFoundation
 
-/// MARK: - Extension for assymetric signing/verification
+// MARK: - Extension for assymetric signing/verification
 extension VirgilCrypto {
     /// Generates digital signature of data using private key
     ///
