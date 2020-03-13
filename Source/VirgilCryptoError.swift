@@ -44,23 +44,28 @@ import Foundation
 /// - unknownAlgId: unknown alg id
 /// - rsaShouldBeConstructedDirectly: rsa should be constructed directly
 /// - unsupportedRsaLength: unsupported rsa length
-/// - keyDoesntSupportSigning: key doesn't support signing
 /// - passedKeyIsNotVirgil: passed key is not virgil
 /// - outputStreamError: output stream has no space left
 /// - inputStreamError: input stream has no space left
 /// - invalidSeedSize: invalid seed size
+/// - dataIsNotSigned: required signature is not present
+/// - invalidStreamSize: actual stream size doesn't match with provided
 @objc(VSMVirgilCryptoError) public enum VirgilCryptoError: Int, LocalizedError {
     case signerNotFound = 1
     case signatureNotFound = 2
     case signatureNotVerified = 3
     case unknownAlgId = 4
-    case rsaShouldBeConstructedDirectly = 5
     case unsupportedRsaLength = 6
-    case keyDoesntSupportSigning = 7
     case passedKeyIsNotVirgil = 8
     case outputStreamError = 9
     case inputStreamError = 10
     case invalidSeedSize = 11
+    case dataIsNotSigned = 12
+    case invalidStreamSize = 13
+    case compundKeyShouldBeGeneratedDirectly = 14
+    case unknownCompoundKey = 15
+    case keyIsNotCompound = 16
+    case unknownKeyType = 17
 
     /// Human-readable localized description
     public var errorDescription: String? {
@@ -73,12 +78,8 @@ import Foundation
             return "Signature not verified"
         case .unknownAlgId:
             return "Unknown alg id"
-        case .rsaShouldBeConstructedDirectly:
-            return "rsa should be constructed directly"
         case .unsupportedRsaLength:
             return "Unsupported rsa length"
-        case .keyDoesntSupportSigning:
-            return "Key doesn't support signing"
         case .passedKeyIsNotVirgil:
             return "Passed key is not virgil"
         case .outputStreamError:
@@ -87,6 +88,18 @@ import Foundation
             return "Input stream has no space left"
         case .invalidSeedSize:
             return "Invalid seed size"
+        case .dataIsNotSigned:
+            return "Data has no signature to verify"
+        case .invalidStreamSize:
+            return "Actual stream size doesn't match with given value"
+        case .compundKeyShouldBeGeneratedDirectly:
+            return "compund key should be generated directly"
+        case .unknownCompoundKey:
+            return "unknown compound key"
+        case .keyIsNotCompound :
+            return "key is not compound"
+        case .unknownKeyType:
+            return "Unknown key type"
         }
     }
 }

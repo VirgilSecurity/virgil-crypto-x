@@ -51,4 +51,6 @@ import Foundation
     case rsa2048
     case rsa4096
     case rsa8192
+    case curve25519Round5Ed25519Falcon
+    case curve25519Ed25519
 }

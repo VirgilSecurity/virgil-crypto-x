@@ -175,6 +175,10 @@ private extension KeyPairType {
             return "rsa8192"
         case .secp256r1:
             return "secp256r1"
+        case .curve25519Round5Ed25519Falcon:
+            return "curve25519Round5Ed25519Falcon"
+        case .curve25519Ed25519:
+            return "curve25519Ed25519"
         }
     }
 }

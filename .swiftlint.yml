@@ -14,8 +14,11 @@ disabled_rules:
   - no_grouping_extension
   - explicit_enum_raw_value
   - explicit_acl
+  - force_unwrapping
 
 opt_in_rules:
+  - cyclomatic_complexity
+  - function_body_length
   - array_init
   - closure_end_indentation
   - closure_spacing
@@ -26,7 +29,6 @@ opt_in_rules:
   - explicit_init
   - file_header
   - first_where
-  - force_unwrapping
   - implicitly_unwrapped_optional
   - joined_default_parameter
   - literal_expression_end_indentation
@@ -49,7 +51,6 @@ opt_in_rules:
   - comma
   - control_statement
   - convenience_type
-  - cyclomatic_complexity
   - discouraged_direct_init
   - discouraged_optional_boolean
   - empty_enum_arguments
@@ -63,7 +64,6 @@ opt_in_rules:
   - for_where
   - force_cast
   - force_try
-  - function_body_length
   - function_parameter_count
   - identical_operands
   - identifier_name

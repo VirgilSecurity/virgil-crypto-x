@@ -36,7 +36,7 @@
 
 import VirgilCryptoFoundation
 
-/// MARK: - Extension for key generation
+// MARK: - Extension for key generation
 extension VirgilCrypto {
     internal func computePublicKeyIdentifier(publicKey: VirgilCryptoFoundation.PublicKey) throws -> Data {
         let publicKeyData = try self.exportInternalPublicKey(publicKey)
@@ -59,9 +59,19 @@ extension VirgilCrypto {
         keyProvider.setRandom(random: rng)
         try keyProvider.setupDefaults()
 
-        let algId = type.algId
+        let privateKey: PrivateKey
 
-        let privateKey = try keyProvider.generatePrivateKey(algId: algId)
+        if type.isCompound {
+            let cipherKeysAlgIds = try type.getCipherKeysAlgIds()
+            let signerKeysAlgIds = try type.getSignerKeysAlgIds()
+            privateKey = try keyProvider.generateCompoundHybridPrivateKey(cipherFirstKeyAlgId: cipherKeysAlgIds.first,
+                                                                          cipherSecondKeyAlgId: cipherKeysAlgIds.second,
+                                                                          signerFirstKeyAlgId: signerKeysAlgIds.first,
+                                                                          signerSecondKeyAlgId: signerKeysAlgIds.second)
+        }
+        else {
+            privateKey = try keyProvider.generatePrivateKey(algId: try type.getAlgId())
+        }
 
         let publicKey = privateKey.extractPublicKey()
 

@@ -36,7 +36,7 @@
 
 import VirgilCryptoFoundation
 
-/// MARK: - Extension for assymetric signing/verification
+// MARK: - Extension for assymetric signing/verification
 extension VirgilCrypto {
     /// Generates digital signature of data using private key
     ///
@@ -73,7 +73,7 @@ extension VirgilCrypto {
     ///   - data: Data that was signed
     ///   - publicKey: Signer public key
     /// - Returns: True if signature is verified, false otherwise
-    /// - Throws: `VirgilCryptoError.keyDoesntSupportSigning`
+    /// - Throws: Rethrows from `Verifier`
     @nonobjc open func verifySignature(_ signature: Data,
                                        of data: Data,
                                        with publicKey: VirgilPublicKey) throws -> Bool {
@@ -98,5 +98,73 @@ extension VirgilCrypto {
     @available(swift, obsoleted: 1.0)
     @objc open func verifySignature_objc(_ signature: Data, of data: Data, with publicKey: VirgilPublicKey) -> Bool {
         return (try? self.verifySignature(signature, of: data, with: publicKey)) ?? false
+    }
+
+    /// Generates digital signature of data stream using private key
+    ///
+    /// - Note: Returned value contains only digital signature, not data itself.
+    ///
+    /// - Note: Data inside this function is guaranteed to be hashed with SHA512 at least one time.
+    ///         It's secure to pass raw data here.
+    ///
+    /// - Parameters:
+    ///   - stream: Data stream to sign
+    ///   - privateKey: Private key used to generate signature
+    /// - Returns: Digital signature
+    /// - Throws: Rethrows from `Signer`
+    @objc open func generateStreamSignature(of stream: InputStream,
+                                            using privateKey: VirgilPrivateKey) throws -> Data {
+        let signer = Signer()
+
+        signer.setRandom(random: self.rng)
+        signer.setHash(hash: Sha512())
+
+        signer.reset()
+
+        try StreamUtils.forEachChunk(in: stream, streamSize: nil) {
+            signer.appendData(data: $0)
+        }
+
+        return try signer.sign(privateKey: privateKey.key)
+    }
+
+    /// Verifies digital signature of data stream
+    ///
+    /// - Note: Verification algorithm depends on PublicKey type. Default: EdDSA
+    ///
+    /// - Parameters:
+    ///   - signature: Digital signature
+    ///   - stream: Data stream that was signed
+    ///   - publicKey: Signer public key
+    /// - Returns: True if signature is verified, false otherwise
+    /// - Throws: Rethrows from `Verifier`
+    @nonobjc open func verifyStreamSignature(_ signature: Data,
+                                             of stream: InputStream,
+                                             with publicKey: VirgilPublicKey) throws -> Bool {
+        let verifier = Verifier()
+
+        try verifier.reset(signature: signature)
+
+        try StreamUtils.forEachChunk(in: stream, streamSize: nil) {
+            verifier.appendData(data: $0)
+        }
+
+        return verifier.verify(publicKey: publicKey.key)
+    }
+
+    /// Verifies digital signature of data
+    ///
+    /// - Note: Verification algorithm depends on PublicKey type. Default: EdDSA for ed25519 key
+    ///
+    /// - Parameters:
+    ///   - signature: Digital signature
+    ///   - stream: Stream that was signed
+    ///   - publicKey: Signer public key
+    /// - Returns: True if signature is verified, false otherwise
+    @available(swift, obsoleted: 1.0)
+    @objc open func verifyStreamSignature_objc(_ signature: Data,
+                                               of stream: InputStream,
+                                               with publicKey: VirgilPublicKey) -> Bool {
+        return (try? self.verifyStreamSignature(signature, of: stream, with: publicKey)) ?? false
     }
 }
