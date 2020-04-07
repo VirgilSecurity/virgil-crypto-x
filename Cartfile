@@ -1,1 +1,1 @@
-github "VirgilSecurity/virgil-cryptowrapper-x" ~> 0.12.0
+github "VirgilSecurity/virgil-cryptowrapper-x" "develop-pqc-ratchet"
