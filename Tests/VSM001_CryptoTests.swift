@@ -53,7 +53,7 @@ class VSM001_CryptoTests: XCTestCase {
         XCTAssert(keyPair.privateKey.identifier == keyPair.publicKey.identifier)
     }
     
-    private static let allKeyTypes: [KeyPairType] = [.curve25519, .ed25519, .secp256r1, .rsa2048, .curve25519Round5Ed25519Falcon, .curve25519Ed25519]
+    private static let allKeyTypes: [KeyPairType] = [.curve25519, .ed25519, .secp256r1, .rsa2048, .curve25519Round5Ed25519Falcon, .curve25519Ed25519, .curve25519Round5]
     private static let signingKeyTypes: [KeyPairType] = [.ed25519, .secp256r1, .rsa2048, .curve25519Round5Ed25519Falcon, .curve25519Ed25519]
 
     func test01__key_generation__generate_one_key__should_succeed() {

@@ -69,6 +69,18 @@ extension VirgilCrypto {
                                                                           signerFirstKeyAlgId: signerKeysAlgIds.first,
                                                                           signerSecondKeyAlgId: signerKeysAlgIds.second)
         }
+        else if type.isHybrid {
+            let cipherKeysAlgIds = try type.getCipherKeysAlgIds()
+            let signerKeysAlgIds = try type.getSignerKeysAlgIds()
+            
+            var ids = cipherKeysAlgIds
+            
+            if cipherKeysAlgIds.first == .none && cipherKeysAlgIds.second == .none {
+                ids = signerKeysAlgIds
+            }
+            
+            privateKey = try keyProvider.generateHybridPrivateKey(firstKeyAlgId: ids.first, secondKeyAlgId: ids.second)
+        }
         else {
             privateKey = try keyProvider.generatePrivateKey(algId: try type.getAlgId())
         }

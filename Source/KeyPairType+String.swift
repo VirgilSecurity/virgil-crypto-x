@@ -46,6 +46,7 @@ extension KeyPairType {
         case rsa2048
         case rsa4096
         case rsa8192
+        case curve25519Round5
         case curve25519Round5Ed25519Falcon
         case curve25519Ed25519
     }
@@ -67,6 +68,8 @@ extension KeyPairType {
             self = .rsa4096
         case KeyPairTypeStr.rsa8192.rawValue:
             self = .rsa8192
+        case KeyPairTypeStr.curve25519Round5.rawValue:
+            self = .curve25519Round5
         case KeyPairTypeStr.curve25519Round5Ed25519Falcon.rawValue:
             self = .curve25519Round5Ed25519Falcon
         case KeyPairTypeStr.curve25519Ed25519.rawValue:
@@ -92,6 +95,8 @@ extension KeyPairType {
             return KeyPairTypeStr.rsa4096.rawValue
         case .rsa8192:
             return KeyPairTypeStr.rsa8192.rawValue
+        case .curve25519Round5:
+            return KeyPairTypeStr.curve25519Round5.rawValue
         case .curve25519Round5Ed25519Falcon:
             return KeyPairTypeStr.curve25519Round5Ed25519Falcon.rawValue
         case .curve25519Ed25519:
