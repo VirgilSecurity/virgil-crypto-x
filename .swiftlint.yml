@@ -67,8 +67,6 @@ opt_in_rules:
   - function_parameter_count
   - identical_operands
   - identifier_name
-  - implicit_getter
-  - implicit_return
   - inert_defer
   - is_disjoint
   - large_tuple

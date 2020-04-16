@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                        = "VirgilCrypto"
-  s.version                     = "5.3.0"
+  s.version                     = "5.4.0"
   s.swift_version               = "5.0"
   s.license                     = { :type => "BSD", :file => "LICENSE" }
   s.summary                     = "Contains high level crypto operations VirgilCrypto c library."
@@ -12,5 +12,5 @@ Pod::Spec.new do |s|
   s.tvos.deployment_target      = "9.0"
   s.watchos.deployment_target   = "2.0"
   s.source_files                = "Source/**/*.swift"
-  s.dependency 'VirgilCryptoFoundation', '~> 0.12.0'
+  s.dependency 'VirgilCryptoFoundation', '~> 0.14.0'
 end

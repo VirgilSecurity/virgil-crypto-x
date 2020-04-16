@@ -59,6 +59,17 @@ extension KeyPairType {
             return
         }
 
+        if keyInfo.isHybrid() {
+            if keyInfo.hybridFirstKeyAlgId() == .curve25519 && keyInfo.hybridSecondKeyAlgId() == .round5Nd5kem5d {
+                self = .curve25519Round5
+            }
+            else {
+                throw VirgilCryptoError.unknownCompoundKey
+            }
+
+            return
+        }
+
         let algId = keyInfo.algId()
 
         if algId == .rsa {
@@ -88,8 +99,17 @@ extension KeyPairType {
             return .secp256r1
         case .rsa2048, .rsa4096, .rsa8192:
             return .rsa
-        case .curve25519Round5Ed25519Falcon, .curve25519Ed25519:
+        case .curve25519Round5Ed25519Falcon, .curve25519Ed25519, .curve25519Round5:
             throw VirgilCryptoError.compundKeyShouldBeGeneratedDirectly
+        }
+    }
+
+    internal var isHybrid: Bool {
+        switch self {
+        case .curve25519Ed25519, .curve25519Round5Ed25519Falcon, .curve25519Round5:
+            return true
+        case .curve25519, .ed25519, .rsa2048, .rsa4096, .rsa8192, .secp256r1:
+            return false
         }
     }
 
@@ -97,13 +117,15 @@ extension KeyPairType {
         switch self {
         case .curve25519Ed25519, .curve25519Round5Ed25519Falcon:
             return true
-        case .curve25519, .ed25519, .rsa2048, .rsa4096, .rsa8192, .secp256r1:
+        case .curve25519, .ed25519, .rsa2048, .rsa4096, .rsa8192, .secp256r1, .curve25519Round5:
             return false
         }
     }
 
     internal func getSignerKeysAlgIds() throws -> (first: AlgId, second: AlgId) {
         switch self {
+        case .curve25519Round5:
+            return (.none, .none)
         case .curve25519Ed25519:
             return (.ed25519, .none)
         case .curve25519Round5Ed25519Falcon:
@@ -117,7 +139,7 @@ extension KeyPairType {
         switch self {
         case .curve25519Ed25519:
             return (.curve25519, .none)
-        case .curve25519Round5Ed25519Falcon:
+        case .curve25519Round5Ed25519Falcon, .curve25519Round5:
             return (.curve25519, .round5Nd5kem5d)
         case .curve25519, .ed25519, .rsa2048, .rsa4096, .rsa8192, .secp256r1:
             throw VirgilCryptoError.keyIsNotCompound

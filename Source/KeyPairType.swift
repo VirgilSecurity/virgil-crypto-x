@@ -44,6 +44,9 @@ import Foundation
 /// - rsa2048: rsa with 2048 length
 /// - rsa4096: rsa with 4096 length
 /// - rsa8192: rsa with 8192 length
+/// - curve25519Round5: curve25519 and round5
+/// - curve25519Round5Ed25519Falcon: ed25519 and falcon used for signing, curve25519 and round used for hybrid ECIES
+/// - curve25519Ed25519: ed25519 used for signing, curve25519 used for ECIES
 @objc(VSMKeyPairType) public enum KeyPairType: Int {
     case ed25519
     case curve25519
@@ -51,6 +54,7 @@ import Foundation
     case rsa2048
     case rsa4096
     case rsa8192
+    case curve25519Round5
     case curve25519Round5Ed25519Falcon
     case curve25519Ed25519
 }
