@@ -74,7 +74,7 @@ extension KeyPairType {
             self = .curve25519Round5Ed25519Falcon
         case KeyPairTypeStr.curve25519Ed25519.rawValue:
             self = .curve25519Ed25519
-            
+
         default:
             throw VirgilCryptoError.unknownKeyType
         }

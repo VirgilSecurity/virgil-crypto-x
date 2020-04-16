@@ -58,7 +58,7 @@ extension KeyPairType {
 
             return
         }
-        
+
         if keyInfo.isHybrid() {
             if keyInfo.hybridFirstKeyAlgId() == .curve25519 && keyInfo.hybridSecondKeyAlgId() == .round5Nd5kem5d {
                 self = .curve25519Round5
@@ -66,7 +66,7 @@ extension KeyPairType {
             else {
                 throw VirgilCryptoError.unknownCompoundKey
             }
-            
+
             return
         }
 
@@ -103,7 +103,7 @@ extension KeyPairType {
             throw VirgilCryptoError.compundKeyShouldBeGeneratedDirectly
         }
     }
-    
+
     internal var isHybrid: Bool {
         switch self {
         case .curve25519Ed25519, .curve25519Round5Ed25519Falcon, .curve25519Round5:
@@ -112,7 +112,6 @@ extension KeyPairType {
             return false
         }
     }
-
 
     internal var isCompound: Bool {
         switch self {
