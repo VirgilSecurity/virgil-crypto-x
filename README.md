@@ -188,7 +188,6 @@ let decryptedData = try! crypto.decrypt(encryptedData, with: receiverPrivateKey)
 // decrypt the encrypted data using a private key
 let decryptedMessage = String(data: decryptedData, encoding: .utf8)!
 ```
-Need more examples? Visit our [developer documentation](https://developer.virgilsecurity.com/docs/how-to#cryptography).
 
 ### Import and export keys
 
