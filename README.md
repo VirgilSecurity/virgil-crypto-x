@@ -19,9 +19,9 @@ Virgil Security Objective-C/Swift Crypto Library uses swift wrapper [Virgil Secu
 * Asymmetric Key Generation
 * Encryption/Decryption of data and streams
 * Generation/Verification of digital signatures
-* Double Ratchet
+* Double Ratchet algorithm support
 * **Post quantum algorithms support**: [Round5](https://round5.org/) (ecnryption) and [Falcon](https://falcon-sign.info/) (signature) 
-* Crypto for using VirgilSDK
+* Crypto for using [Virgil Core SDK](https://github.com/VirgilSecurity/virgil-sdk-x)
 
 ## Installation
 
@@ -122,9 +122,9 @@ Click the “Destination” drop-down menu and select “Products Directory”. 
 
 ## Usage examples
 
-#### Generate a key pair
+### Generate a key pair
 
-Generate a Private Key with the default algorithm (EC_X25519):
+Generate a private key using the default algorithm (EC_X25519):
 
 ```swift
 import VirgilCrypto
@@ -133,9 +133,10 @@ let crypto = try! VirgilCrypto()
 let keyPair = try! crypto.generateKeyPair()
 ```
 
-#### Generate and verify a signature
+### Generate and verify a signature
 
 Generate signature and sign data with a private key:
+
 ```swift
 import VirgilCrypto
 
@@ -150,6 +151,7 @@ let signature = try! crypto.generateSignature(of: dataToSign, using: senderPriva
 ```
 
 Verify a signature with a public key:
+
 ```swift
 import VirgilCrypto
 
@@ -158,9 +160,9 @@ let crypto = try! VirgilCrypto()
 // verify a signature
 let verified = try! crypto.verifySignature(signature, of: dataToSign, with: senderPublicKey)
 ```
-#### Encrypt and decrypt data
+### Encrypt and decrypt data
 
-Encrypt Data on a Public Key:
+Encrypt data with a public key:
 
 ```swift
 import VirgilCrypto
@@ -188,10 +190,53 @@ let decryptedMessage = String(data: decryptedData, encoding: .utf8)!
 ```
 Need more examples? Visit our [developer documentation](https://developer.virgilsecurity.com/docs/how-to#cryptography).
 
+### Import and export keys
+
+Export keys:
+
+```
+import VirgilCrypto
+
+// generate a Key Pair
+let crypto = VirgilCrypto()
+let keyPair = try! crypto.generateKeyPair()
+
+// export a Private key
+let privateKeyData = try! crypto.exportPrivateKey(keyPair.privateKey, password: "YOUR_PASSWORD")
+let privateKeyStr = privateKeyData.base64EncodedString()
+
+// export a Public key
+let publicKeyData = crypto.exportPublicKey(keyPair.publicKey)
+let publicKeyStr = publicKeyData.base64EncodedString()
+```
+
+Import keys:
+
+```
+import VirgilCrypto
+
+let crypto = VirgilCrypto()
+
+let privateKeyStr = "MIGhMF0GCSqGSIb3DQEFDTBQMC8GCSqGSIb3DQEFDDAiBBBtfBoM7VfmWPlvyHuGWvMSAgIZ6zAKBggqhkiG9w0CCjAdBglghkgBZQMEASoEECwaKJKWFNn3OMVoUXEcmqcEQMZ+WWkmPqzwzJXGFrgS/+bEbr2DvreVgEUiLKrggmXL9ZKugPKG0VhNY0omnCNXDzkXi5dCFp25RLqbbSYsCyw="
+
+let privateKeyData = Data(base64Encoded: privateKeyStr)!
+
+// import a Private key
+let privateKey = try! crypto.importPrivateKey(from: privateKeyData, password: "YOUR_PASSWORD")
+
+//-----------------------------------------------------
+
+let publicKeyStr = "MCowBQYDK2VwAyEA9IVUzsQENtRVzhzraTiEZZy7YLq5LDQOXGQG/q0t0kE="
+
+let publicKeyData = Data(base64Encoded: publicKeyStr)!
+
+// import a Public key
+let publicKey = try! crypto.importPublicKey(from: publicKeyData)
+```
 
 ## Docs
 - [Crypto Core Library C](https://github.com/VirgilSecurity/virgil-crypto-c)
-- [Developer Documentation](https://developer.virgilsecurity.com/docs/how-to#cryptography)
+- [Developer Documentation](https://developer.virgilsecurity.com/docs/)
 
 ## License
 
