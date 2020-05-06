@@ -12,7 +12,7 @@
 
 Virgil Crypto Library Objective-C/Swift is a small, flexible and convenient wrapper for a variety of crypto algorithms. It can be used in a small microcontroller as well as in a high load server application. Also, it provides a bunch of custom hybrid algorithms that combine different crypto algorithms to solve common complex cryptographic problems in an easy way. That eliminates requirement for developers to have a strong cryptographic skills.
 
-Virgil Security Objective-C/Swift Crypto Library uses swift wrapper [Virgil Security Crypto Library Wrapper](https://github.com/VirgilSecurity/virgil-cryptowrapper-x) over C library [Virgil Security Crypto Library](https://github.com/VirgilSecurity/virgil-crypto-c). 
+Virgil Security Objective-C/Swift Crypto Library uses Swift wrapper [Virgil Security Crypto Library Wrapper](https://github.com/VirgilSecurity/virgil-cryptowrapper-x) over C library [Virgil Security Crypto Library](https://github.com/VirgilSecurity/virgil-crypto-c). 
 
 ## Library purposes
 
