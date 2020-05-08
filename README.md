@@ -20,7 +20,7 @@ Virgil Security Objective-C/Swift Crypto Library uses Swift wrapper [Virgil Secu
 * Encryption/Decryption of data and streams
 * Generation/Verification of digital signatures
 * Double Ratchet algorithm support
-* **Post quantum algorithms support**: [Round5](https://round5.org/) (ecnryption) and [Falcon](https://falcon-sign.info/) (signature) 
+* **Post-quantum algorithms support**: [Round5](https://round5.org/) (encryption) and [Falcon](https://falcon-sign.info/) (signature) 
 * Crypto for using [Virgil Core SDK](https://github.com/VirgilSecurity/virgil-sdk-x)
 
 ## Installation
