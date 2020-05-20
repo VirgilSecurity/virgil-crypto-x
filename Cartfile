@@ -1,1 +1,1 @@
-github "VirgilSecurity/virgil-cryptowrapper-x" ~> 0.14.0
+github "VirgilSecurity/virgil-cryptowrapper-x" "0.15.2"

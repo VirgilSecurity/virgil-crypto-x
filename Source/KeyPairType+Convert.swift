@@ -43,7 +43,7 @@ extension KeyPairType {
 
         if keyInfo.isCompound() {
             if keyInfo.compoundHybridCipherFirstKeyAlgId() == .curve25519
-                && keyInfo.compoundHybridCipherSecondKeyAlgId() == .round5Nd5kem5d
+                && keyInfo.compoundHybridCipherSecondKeyAlgId() == .round5Nd1cca5d
                 && keyInfo.compoundHybridSignerFirstKeyAlgId() == .ed25519
                 && keyInfo.compoundHybridSignerSecondKeyAlgId() == .falcon {
                 self = .curve25519Round5Ed25519Falcon
@@ -60,7 +60,7 @@ extension KeyPairType {
         }
 
         if keyInfo.isHybrid() {
-            if keyInfo.hybridFirstKeyAlgId() == .curve25519 && keyInfo.hybridSecondKeyAlgId() == .round5Nd5kem5d {
+            if keyInfo.hybridFirstKeyAlgId() == .curve25519 && keyInfo.hybridSecondKeyAlgId() == .round5Nd1cca5d {
                 self = .curve25519Round5
             }
             else {
@@ -140,7 +140,7 @@ extension KeyPairType {
         case .curve25519Ed25519:
             return (.curve25519, .none)
         case .curve25519Round5Ed25519Falcon, .curve25519Round5:
-            return (.curve25519, .round5Nd5kem5d)
+            return (.curve25519, .round5Nd1cca5d)
         case .curve25519, .ed25519, .rsa2048, .rsa4096, .rsa8192, .secp256r1:
             throw VirgilCryptoError.keyIsNotCompound
         }
