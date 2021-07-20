@@ -115,7 +115,6 @@ opt_in_rules:
   - unused_enumerated
   - unused_import
   - unused_optional_binding
-  - unused_private_declaration
   - vertical_parameter_alignment
   - vertical_whitespace
   - void_return
@@ -130,7 +129,7 @@ warning_threshold: 15
 file_header:
   required_pattern: |
                     \/\/
-                    \/\/ Copyright \(C\) 2015-2019 Virgil Security Inc.
+                    \/\/ Copyright \(C\) 2015-2021 Virgil Security Inc.
                     \/\/
                     \/\/ All rights reserved.
                     \/\/
