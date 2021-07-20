@@ -47,7 +47,7 @@ script:
     fi
 
   # Build with carthage
-  - if [ $PUBLISH_CARTHAGE == "YES" ]; then
+  - if [[ $PUBLISH_CARTHAGE == "YES" && $TRAVIS_TAG =~ ^[0-9]+\.[0-9]+\.[0-9]+ ]]; then
       ./CI/publish-carthage.sh;
     fi
   
