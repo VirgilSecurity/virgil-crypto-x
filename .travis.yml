@@ -60,7 +60,7 @@ deploy:
   # Upload prebuilt binary to releases
   - provider: releases
     api_key: $GITHUB_ACCESS_TOKEN
-    file: "$CRYPTO_FRAMEWORK_NAME.framework.zip"
+    file: "$CRYPTO_FRAMEWORK_NAME.xcframework.zip"
     skip_cleanup: true
     on:
       repo: $REPO
