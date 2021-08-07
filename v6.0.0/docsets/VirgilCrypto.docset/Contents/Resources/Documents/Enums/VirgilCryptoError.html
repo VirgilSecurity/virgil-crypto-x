@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>VirgilCryptoError Enumeration Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Enum/VirgilCryptoError" class="dashAnchor"></a>
+    <a title="VirgilCryptoError Enumeration Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">VirgilCrypto 6.0.0 Docs</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">VirgilCrypto Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        VirgilCryptoError Enumeration Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/VirgilCrypto.html">VirgilCrypto</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/VirgilKeyPair.html">VirgilKeyPair</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/VirgilPrivateKey.html">VirgilPrivateKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/VirgilPublicKey.html">VirgilPublicKey</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/HashAlgorithm.html">HashAlgorithm</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/KeyPairType.html">KeyPairType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/VirgilCryptoError.html">VirgilCryptoError</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>VirgilCryptoError</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">@objc</span><span class="p">(</span><span class="kt">VSMVirgilCryptoError</span><span class="p">)</span>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">VirgilCryptoError</span> <span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">LocalizedError</span></code></pre>
+
+                </div>
+              </div>
+            <p>Errors for this framework</p>
+
+<ul>
+<li>signerNotFound: signer not found</li>
+<li>signatureNotFound: signature not found</li>
+<li>signatureNotVerified: signature not verified</li>
+<li>unknownAlgId: unknown alg id</li>
+<li>rsaShouldBeConstructedDirectly: rsa should be constructed directly</li>
+<li>unsupportedRsaLength: unsupported rsa length</li>
+<li>passedKeyIsNotVirgil: passed key is not virgil</li>
+<li>outputStreamError: output stream has no space left</li>
+<li>inputStreamError: input stream has no space left</li>
+<li>invalidSeedSize: invalid seed size</li>
+<li>dataIsNotSigned: required signature is not present</li>
+<li>invalidStreamSize: actual stream size doesn&rsquo;t match with provided</li>
+</ul>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilCrypto@E@VSMVirgilCryptoError@VSMVirgilCryptoErrorSignerNotFound"></a>
+                    <a name="//apple_ref/swift/Element/signerNotFound" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilCrypto@E@VSMVirgilCryptoError@VSMVirgilCryptoErrorSignerNotFound">signerNotFound</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">signerNotFound</span> <span class="o">=</span> <span class="mi">1</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilCrypto@E@VSMVirgilCryptoError@VSMVirgilCryptoErrorSignatureNotFound"></a>
+                    <a name="//apple_ref/swift/Element/signatureNotFound" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilCrypto@E@VSMVirgilCryptoError@VSMVirgilCryptoErrorSignatureNotFound">signatureNotFound</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">signatureNotFound</span> <span class="o">=</span> <span class="mi">2</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilCrypto@E@VSMVirgilCryptoError@VSMVirgilCryptoErrorSignatureNotVerified"></a>
+                    <a name="//apple_ref/swift/Element/signatureNotVerified" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilCrypto@E@VSMVirgilCryptoError@VSMVirgilCryptoErrorSignatureNotVerified">signatureNotVerified</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">signatureNotVerified</span> <span class="o">=</span> <span class="mi">3</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilCrypto@E@VSMVirgilCryptoError@VSMVirgilCryptoErrorUnknownAlgId"></a>
+                    <a name="//apple_ref/swift/Element/unknownAlgId" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilCrypto@E@VSMVirgilCryptoError@VSMVirgilCryptoErrorUnknownAlgId">unknownAlgId</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">unknownAlgId</span> <span class="o">=</span> <span class="mi">4</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilCrypto@E@VSMVirgilCryptoError@VSMVirgilCryptoErrorUnsupportedRsaLength"></a>
+                    <a name="//apple_ref/swift/Element/unsupportedRsaLength" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilCrypto@E@VSMVirgilCryptoError@VSMVirgilCryptoErrorUnsupportedRsaLength">unsupportedRsaLength</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">unsupportedRsaLength</span> <span class="o">=</span> <span class="mi">6</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilCrypto@E@VSMVirgilCryptoError@VSMVirgilCryptoErrorPassedKeyIsNotVirgil"></a>
+                    <a name="//apple_ref/swift/Element/passedKeyIsNotVirgil" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilCrypto@E@VSMVirgilCryptoError@VSMVirgilCryptoErrorPassedKeyIsNotVirgil">passedKeyIsNotVirgil</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">passedKeyIsNotVirgil</span> <span class="o">=</span> <span class="mi">8</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilCrypto@E@VSMVirgilCryptoError@VSMVirgilCryptoErrorOutputStreamError"></a>
+                    <a name="//apple_ref/swift/Element/outputStreamError" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilCrypto@E@VSMVirgilCryptoError@VSMVirgilCryptoErrorOutputStreamError">outputStreamError</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">outputStreamError</span> <span class="o">=</span> <span class="mi">9</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilCrypto@E@VSMVirgilCryptoError@VSMVirgilCryptoErrorInputStreamError"></a>
+                    <a name="//apple_ref/swift/Element/inputStreamError" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilCrypto@E@VSMVirgilCryptoError@VSMVirgilCryptoErrorInputStreamError">inputStreamError</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">inputStreamError</span> <span class="o">=</span> <span class="mi">10</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilCrypto@E@VSMVirgilCryptoError@VSMVirgilCryptoErrorInvalidSeedSize"></a>
+                    <a name="//apple_ref/swift/Element/invalidSeedSize" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilCrypto@E@VSMVirgilCryptoError@VSMVirgilCryptoErrorInvalidSeedSize">invalidSeedSize</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">invalidSeedSize</span> <span class="o">=</span> <span class="mi">11</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilCrypto@E@VSMVirgilCryptoError@VSMVirgilCryptoErrorDataIsNotSigned"></a>
+                    <a name="//apple_ref/swift/Element/dataIsNotSigned" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilCrypto@E@VSMVirgilCryptoError@VSMVirgilCryptoErrorDataIsNotSigned">dataIsNotSigned</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">dataIsNotSigned</span> <span class="o">=</span> <span class="mi">12</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilCrypto@E@VSMVirgilCryptoError@VSMVirgilCryptoErrorInvalidStreamSize"></a>
+                    <a name="//apple_ref/swift/Element/invalidStreamSize" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilCrypto@E@VSMVirgilCryptoError@VSMVirgilCryptoErrorInvalidStreamSize">invalidStreamSize</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">invalidStreamSize</span> <span class="o">=</span> <span class="mi">13</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilCrypto@E@VSMVirgilCryptoError@VSMVirgilCryptoErrorCompundKeyShouldBeGeneratedDirectly"></a>
+                    <a name="//apple_ref/swift/Element/compundKeyShouldBeGeneratedDirectly" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilCrypto@E@VSMVirgilCryptoError@VSMVirgilCryptoErrorCompundKeyShouldBeGeneratedDirectly">compundKeyShouldBeGeneratedDirectly</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">compundKeyShouldBeGeneratedDirectly</span> <span class="o">=</span> <span class="mi">14</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilCrypto@E@VSMVirgilCryptoError@VSMVirgilCryptoErrorUnknownCompoundKey"></a>
+                    <a name="//apple_ref/swift/Element/unknownCompoundKey" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilCrypto@E@VSMVirgilCryptoError@VSMVirgilCryptoErrorUnknownCompoundKey">unknownCompoundKey</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">unknownCompoundKey</span> <span class="o">=</span> <span class="mi">15</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilCrypto@E@VSMVirgilCryptoError@VSMVirgilCryptoErrorKeyIsNotCompound"></a>
+                    <a name="//apple_ref/swift/Element/keyIsNotCompound" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilCrypto@E@VSMVirgilCryptoError@VSMVirgilCryptoErrorKeyIsNotCompound">keyIsNotCompound</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">keyIsNotCompound</span> <span class="o">=</span> <span class="mi">16</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilCrypto@E@VSMVirgilCryptoError@VSMVirgilCryptoErrorUnknownKeyType"></a>
+                    <a name="//apple_ref/swift/Element/unknownKeyType" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilCrypto@E@VSMVirgilCryptoError@VSMVirgilCryptoErrorUnknownKeyType">unknownKeyType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">unknownKeyType</span> <span class="o">=</span> <span class="mi">17</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12VirgilCrypto0aB5ErrorO16errorDescriptionSSSgvp"></a>
+                    <a name="//apple_ref/swift/Property/errorDescription" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12VirgilCrypto0aB5ErrorO16errorDescriptionSSSgvp">errorDescription</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Human-readable localized description</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">errorDescription</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2021 <a class="link" href="https://virgilsecurity.com/" target="_blank" rel="external">Virgil Security</a>. All rights reserved. (Last updated: 2021-08-07)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.7</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
