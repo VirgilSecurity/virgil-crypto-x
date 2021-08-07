@@ -47,7 +47,7 @@ To integrate VirgilCrypto into your Xcode project using CocoaPods, specify it in
 target '<Your Target Name>' do
   use_frameworks!
 
-  pod 'VirgilCrypto', '~> 5.5.0'
+  pod 'VirgilCrypto', '~> 6.0.0'
 end
 ```
 
@@ -71,7 +71,7 @@ $ brew install carthage
 To integrate VirgilCrypto into your Xcode project using Carthage, create an empty file with name *Cartfile* in your project's root folder and add following lines to your *Cartfile*
 
 ```
-github "VirgilSecurity/virgil-crypto-x" ~> 5.5.0
+github "VirgilSecurity/virgil-crypto-x" ~> 6.0.0
 ```
 
 #### Linking against prebuilt binaries
@@ -79,7 +79,7 @@ github "VirgilSecurity/virgil-crypto-x" ~> 5.5.0
 To link prebuilt frameworks to your app, run following command:
 
 ```bash
-$ carthage update
+$ carthage update --use-xcframeworks
 ```
 
 This will build each dependency or download a pre-compiled framework from github Releases.
@@ -91,21 +91,8 @@ On your application target's “General” settings tab, in the “Linked Framew
  - VirgilCryptoFoundation
  - VSCCommon
  - VSCFoundation
-
-On your application target's “Build Phases” settings tab, click the “+” icon and choose “New Run Script Phase”. Create a Run Script in which you specify your shell (ex: */bin/sh*), add the following contents to the script area below the shell:
-
-```bash
-/usr/local/bin/carthage copy-frameworks
-```
-
-and add the paths to the frameworks you want to use under “Input Files”, e.g.:
-
-```
-$(SRCROOT)/Carthage/Build/iOS/VirgilCrypto.framework
-$(SRCROOT)/Carthage/Build/iOS/VirgilCryptoFoundation.framework
-$(SRCROOT)/Carthage/Build/iOS/VSCCommon.framework
-$(SRCROOT)/Carthage/Build/iOS/VSCFoundation.framework
-```
+ 
+ Check Embed & sign for each.
 
 ##### Building for macOS
 
