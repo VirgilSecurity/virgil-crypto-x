@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "virgil-cryptowrapper-x",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/VirgilSecurity/virgil-cryptowrapper-x.git",
+      "state" : {
+        "branch" : "develop",
+        "revision" : "aa65889e563b99527aefa8b53af4b769a92fbf21"
+      }
+    }
+  ],
+  "version" : 2
+}

@@ -34,6 +34,7 @@
 // Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
 //
 
+import Foundation
 import VirgilCryptoFoundation
 
 // MARK: - Extension for key management
