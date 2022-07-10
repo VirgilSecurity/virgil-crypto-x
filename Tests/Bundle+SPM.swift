@@ -39,7 +39,7 @@ import Foundation
 // Note: SPM can access resources only by it's extended Bundle.module, which is not accessable from xcodeproj.
 // Added this trick in order to not transfer whole project & targets from xcodeproj to module structure
 
-#if NOT_SPM_BUILD
+#if !SPM_BUILD
 
 class BundleToken { }
 

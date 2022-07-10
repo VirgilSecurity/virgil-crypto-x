@@ -995,7 +995,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilCryptoApiImplTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "NOT_SPM_BUILD DEBUG";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;

@@ -28,7 +28,6 @@ let package = Package(
             ],
             path: "Source"
         ),
-
         .testTarget(
             name: "VirgilCryptoTests",
             dependencies: ["VirgilCrypto"],
@@ -36,6 +35,9 @@ let package = Package(
             resources: [
                 .process("Data/testData.txt"),
                 .process("Data/crypto_compatibility_data.json")
+            ],
+            swiftSettings: [
+                .define("SPM_BUILD")
             ]
         ),
     ]
