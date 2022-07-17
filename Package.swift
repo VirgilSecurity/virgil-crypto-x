@@ -39,6 +39,6 @@ let package = Package(
             swiftSettings: [
                 .define("SPM_BUILD")
             ]
-        ),
+        )
     ]
 )

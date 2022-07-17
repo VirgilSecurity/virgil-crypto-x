@@ -1,0 +1,45 @@
+name: deploy
+
+on:
+  push:
+    tags:
+    - '*'
+
+jobs:
+  Deploy:
+    name: Deploy
+    runs-on: macOS-12
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_13.4.1.app/Contents/Developer
+    steps:
+      - uses: actions/checkout@v2
+      - name: Prepare Dependencies
+        env:
+            GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+            set -o pipefail
+            carthage version
+            carthage bootstrap --use-xcframeworks
+
+      - name: Generate Docs
+        run: ./CI/publish-docs.sh
+
+      - name: Publish Docs
+        uses: EdricChan03/action-build-deploy-ghpages@v2.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Carthage Binary
+        run: |
+            ./CI/publish-carthage.sh;
+      - name: Upload Carthage Binary
+        uses: AButler/upload-release-assets@v2.0
+        with:
+          files: 'VirgilCrypto.xcframework.zip'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish Cocoapods
+        run: ./CI/publish-cocoapods.sh
+        env:
+          COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
+
