@@ -37,19 +37,19 @@
 
 # Settings
 REPO_PATH=https://github.com/${REPO}.git
-DOCS_DIR="${TRAVIS_BUILD_DIR}/docs"
+DOCS_DIR="${GITHUB_WORKSPACE}/docs"
 rm -rf ${DOCS_DIR}
 mkdir -p ${DOCS_DIR}
 git clone -b gh-pages "${REPO_PATH}" --single-branch ${DOCS_DIR}
 
-INFOPLIST_FILE_PATH="${TRAVIS_BUILD_DIR}/VirgilCrypto/Info.plist"
+INFOPLIST_FILE_PATH="${GITHUB_WORKSPACE}/VirgilCrypto/Info.plist"
 
 # Define SDK versions
 VIRGIL_SDK_VERSION="v"$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "${INFOPLIST_FILE_PATH}")
 CURRENT_VERSION_DIR="${DOCS_DIR}/${VIRGIL_SDK_VERSION}"
 
 # Generate the HTML documentation.
-OUTPUT="${CURRENT_VERSION_DIR}" ${TRAVIS_BUILD_DIR}/CI/generate-docs.sh
+OUTPUT="${CURRENT_VERSION_DIR}" ${GITHUB_WORKSPACE}/CI/generate-docs.sh
 
 # Generate root HTML file
 function get_dir_names {
