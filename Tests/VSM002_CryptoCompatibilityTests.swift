@@ -34,6 +34,7 @@
 // Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
 //
 
+import Foundation
 import XCTest
 import VirgilCrypto
 import VirgilCryptoFoundation
@@ -45,7 +46,7 @@ class VSM002_CryptoCompatibilityTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        let testFileURL = Bundle(for: type(of: self)).url(forResource: "crypto_compatibility_data", withExtension: "json")!
+        let testFileURL = Bundle.module.url(forResource: "crypto_compatibility_data", withExtension: "json")!
         let testFileData = try! Data(contentsOf: testFileURL)
         
         self.testsDict = try! JSONSerialization.jsonObject(with: testFileData, options: JSONSerialization.ReadingOptions.init(rawValue: 0)) as! Dictionary<String, Any>

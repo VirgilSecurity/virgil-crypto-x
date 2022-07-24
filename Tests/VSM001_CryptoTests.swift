@@ -197,8 +197,8 @@ class VSM001_CryptoTests: XCTestCase {
     private func checkStreamSign(crypto: VirgilCrypto, keyPairType: KeyPairType) throws {
         let keyPair1 = try crypto.generateKeyPair(ofType: keyPairType)
         let keyPair2 = try crypto.generateKeyPair(ofType: keyPairType)
-        
-        let testFileURL = Bundle(for: type(of: self)).url(forResource: "testData", withExtension: "txt")!
+
+        let testFileURL = Bundle.module.url(forResource: "testData", withExtension: "txt")!
         let inputStream = InputStream(url: testFileURL)!
         
         let signature = try crypto.generateStreamSignature(of: inputStream, using: keyPair1.privateKey)
@@ -227,7 +227,7 @@ class VSM001_CryptoTests: XCTestCase {
         let keyPair1 = try crypto.generateKeyPair(ofType: keyPairType)
         let keyPair2 = try crypto.generateKeyPair(ofType: keyPairType)
         
-        let testFileURL = Bundle(for: type(of: self)).url(forResource: "testData", withExtension: "txt")!
+        let testFileURL = Bundle.module.url(forResource: "testData", withExtension: "txt")!
         let inputStream = InputStream(url: testFileURL)!
         let data = try Data(contentsOf: testFileURL)
         
@@ -403,7 +403,7 @@ class VSM001_CryptoTests: XCTestCase {
         let keyPair2 = try crypto.generateKeyPair(ofType: keyPairType)
         let keyPair3 = try crypto.generateKeyPair(ofType: keyPairType)
         
-        let testFileURL = Bundle(for: type(of: self)).url(forResource: "testData", withExtension: "txt")!
+        let testFileURL = Bundle.module.url(forResource: "testData", withExtension: "txt")!
         let inputStream = InputStream(url: testFileURL)!
         let data = try Data(contentsOf: testFileURL)
         

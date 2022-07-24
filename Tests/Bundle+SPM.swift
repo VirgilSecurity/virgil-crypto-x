@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2015-2021 Virgil Security Inc.
+// Copyright (C) 2015-2022 Virgil Security Inc.
 //
 // All rights reserved.
 //
@@ -35,30 +35,18 @@
 //
 
 import Foundation
-import VirgilCryptoFoundation
 
-/// Class represent private key of any type, with identifier
-@objc(VSMVirgilPrivateKey) public class VirgilPrivateKey: NSObject {
-    /// Key id
-    @objc public let identifier: Data
+// Note: SPM can access resources only by it's extended Bundle.module, which is not accessable from xcodeproj.
+// Added this trick in order to not transfer whole project & targets from xcodeproj to module structure
 
-    /// Underlying private key
-    @objc public let key: VirgilCryptoFoundation.PrivateKey
+#if !SPM_BUILD
 
-    /// Key type
-    @objc public let keyType: KeyPairType
+class BundleToken { }
 
-    /// Initializer
-    ///
-    /// - Parameters:
-    ///   - identifier: Key id
-    ///   - key: Underlying private key
-    ///   - keyType: Key type
-    @objc public init(identifier: Data, key: VirgilCryptoFoundation.PrivateKey, keyType: KeyPairType) {
-        self.identifier = identifier
-        self.key = key
-        self.keyType = keyType
-
-        super.init()
-    }
+extension Foundation.Bundle {
+    static var module: Bundle = {
+        Bundle(for: BundleToken.self)
+    }()
 }
+
+#endif
