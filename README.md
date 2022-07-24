@@ -107,6 +107,12 @@ Additionally, you'll need to copy debug symbols for debugging and crash reportin
 On your application target’s “Build Phases” settings tab, click the “+” icon and choose “New Copy Files Phase”.
 Click the “Destination” drop-down menu and select “Products Directory”. For each framework, drag and drop the corresponding dSYM file.
 
+### Swift Package Manager
+
+[Swift Package Manager](https://www.swift.org/package-manager) is an official Apple tool for managing the distribution of Swift code.
+
+[The Apple documentation](https://developer.apple.com/documentation/swift_packages/adding_package_dependencies_to_your_app) can be used to add frameworks to an Xcode project.
+
 ## Usage examples
 
 ### Generate a key pair
