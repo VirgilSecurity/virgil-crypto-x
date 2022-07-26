@@ -40,7 +40,7 @@ jobs:
             set -o pipefail
             SCHEME="VirgilCrypto ${{ matrix.prefix }}"
 
-            if  "${{ matrix.test }}" == "1"; then
+            if [ "${{ matrix.test }}" == "1" ]; then
                 # Build Framework
                 xcodebuild -verbose -project "$PROJECT" -scheme "$SCHEME" -destination "${{ matrix.destination }}" -configuration Debug clean build-for-testing | xcpretty;
                 # Run Tests
