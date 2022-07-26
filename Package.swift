@@ -22,9 +22,7 @@ let package = Package(
         .target(
             name: "VirgilCrypto",
             dependencies: [
-                .product(name: "VirgilCryptoFoundation", package: "virgil-cryptowrapper-x"),
-                .product(name: "VirgilCryptoPythia", package: "virgil-cryptowrapper-x"),
-                .product(name: "VirgilCryptoRatchet", package: "virgil-cryptowrapper-x")
+                .product(name: "VirgilCryptoFoundation", package: "virgil-cryptowrapper-x")
             ],
             path: "Source"
         ),
