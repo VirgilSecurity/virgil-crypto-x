@@ -14,7 +14,7 @@ jobs:
     name: Tests
     runs-on: macOS-12
     env:
-      PROJECT: VirgilCryptoWrapper.xcodeproj
+      PROJECT: VirgilCrypto.xcodeproj
     strategy:
       matrix:
         include:
