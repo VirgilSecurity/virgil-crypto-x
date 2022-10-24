@@ -40,7 +40,12 @@ jobs:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
           xcode-version: 14.0.1
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+        with:
+          repository: VirgilSecurity/Carthage
+      - name: Install carthage fork VirgilSecurity/Carthage
+        run: brew uninstall carthage && make install
+      - uses: actions/checkout@v3
       - name: Prepare Dependencies
         env:
             GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -66,7 +71,7 @@ jobs:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
           xcode-version: 14.0.1
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - run: brew install coreutils # install 'timeout' utility
       - run: swift --version
       - run: timeout 5m bash -c 'until swift build; do rm -fr .build && sleep 10; done' # fix for Swift Package Manager when it fails to download binary targets
