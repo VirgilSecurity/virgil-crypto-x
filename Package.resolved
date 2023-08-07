@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/VirgilSecurity/virgil-cryptowrapper-x.git",
       "state" : {
-        "revision" : "957bf2113ea570f1b934ffab5bbfbc8e12c7e6a3",
-        "version" : "0.16.1"
+        "revision" : "dbc77649bbc166c4a3b5df956e1bdcee67b8d1f0",
+        "version" : "0.16.3"
       }
     }
   ],

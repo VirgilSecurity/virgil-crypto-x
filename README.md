@@ -28,10 +28,10 @@ Virgil Security Objective-C/Swift Crypto Library uses Swift wrapper [Virgil Secu
 VirgilCrypto is provided as a set of frameworks. These frameworks are distributed via Carthage and CocoaPods.
 
 All frameworks are available for:
-- iOS 9.0+
+- iOS 11.0+
 - macOS 10.10+
-- tvOS 9.0+
-- watchOS 2.0+
+- tvOS 11.0+
+- watchOS 4.0+
 
 ### COCOAPODS
 
@@ -47,7 +47,7 @@ To integrate VirgilCrypto into your Xcode project using CocoaPods, specify it in
 target '<Your Target Name>' do
   use_frameworks!
 
-  pod 'VirgilCrypto', '~> 6.0.0'
+  pod 'VirgilCrypto', '~> 6.1.0'
 end
 ```
 
@@ -71,7 +71,7 @@ $ brew install carthage
 To integrate VirgilCrypto into your Xcode project using Carthage, create an empty file with name *Cartfile* in your project's root folder and add following lines to your *Cartfile*
 
 ```
-github "VirgilSecurity/virgil-crypto-x" ~> 6.0.0
+github "VirgilSecurity/virgil-crypto-x" ~> 6.1.0
 ```
 
 #### Linking against prebuilt binaries

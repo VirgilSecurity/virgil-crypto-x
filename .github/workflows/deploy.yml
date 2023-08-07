@@ -9,10 +9,18 @@ jobs:
   Deploy:
     name: Deploy
     runs-on: macOS-12
-    env:
-      DEVELOPER_DIR: /Applications/Xcode_13.4.1.app/Contents/Developer
     steps:
-      - uses: actions/checkout@v2
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: 14.0.1
+
+      - uses: actions/checkout@v3
+        with:
+          repository: VirgilSecurity/Carthage
+      - name: Install carthage fork VirgilSecurity/Carthage
+        run: brew uninstall carthage && make install
+
+      - uses: actions/checkout@v3
       - name: Prepare Dependencies
         env:
             GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -25,21 +33,21 @@ jobs:
         run: ./CI/publish-docs.sh
 
       - name: Publish Docs
-        uses: EdricChan03/action-build-deploy-ghpages@v2.6.0
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
 
       - name: Build Carthage Binary
-        run: |
-            ./CI/publish-carthage.sh;
+        run: ./CI/publish-carthage.sh;
+
       - name: Upload Carthage Binary
-        uses: AButler/upload-release-assets@v2.0
+        uses: softprops/action-gh-release@v1
         with:
+          draft: true
           files: 'VirgilCrypto.xcframework.zip'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish Cocoapods
         run: ./CI/publish-cocoapods.sh
         env:
           COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
-
