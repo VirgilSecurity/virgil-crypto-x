@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "VirgilCrypto",
     platforms: [
-        .macOS(.v10_10), .iOS(.v11), .tvOS(.v11), .watchOS(.v4)
+        .macOS(.v10_13), .iOS(.v11), .tvOS(.v11), .watchOS(.v4)
     ],
     products: [
         .library(
@@ -15,16 +15,14 @@ let package = Package(
     ],
 
     dependencies: [
-        .package(url: "https://github.com/VirgilSecurity/virgil-cryptowrapper-x.git", exact: .init(0, 16, 3))
+        .package(url: "https://github.com/VirgilSecurity/virgil-crypto-c.git", exact: .init(0, 17, 0))
     ],
 
     targets: [
         .target(
             name: "VirgilCrypto",
             dependencies: [
-                .product(name: "VirgilCryptoFoundation", package: "virgil-cryptowrapper-x"),
-                .product(name: "VirgilCryptoPythia", package: "virgil-cryptowrapper-x"),
-                .product(name: "VirgilCryptoRatchet", package: "virgil-cryptowrapper-x")
+                .product(name: "VirgilCryptoFoundation", package: "virgil-crypto-c")
             ],
             path: "Source"
         ),

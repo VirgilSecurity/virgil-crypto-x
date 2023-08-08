@@ -1,5 +1,0 @@
-binary "https://raw.githubusercontent.com/VirgilSecurity/virgil-crypto-c/v0.16.3/carthage-specs/VSCCommon.json" "0.16.3"
-binary "https://raw.githubusercontent.com/VirgilSecurity/virgil-crypto-c/v0.16.3/carthage-specs/VSCFoundation.json" "0.16.3"
-binary "https://raw.githubusercontent.com/VirgilSecurity/virgil-crypto-c/v0.16.3/carthage-specs/VSCPythia.json" "0.16.3"
-binary "https://raw.githubusercontent.com/VirgilSecurity/virgil-crypto-c/v0.16.3/carthage-specs/VSCRatchet.json" "0.16.3"
-github "VirgilSecurity/virgil-cryptowrapper-x" "0.16.3"

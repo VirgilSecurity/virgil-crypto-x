@@ -75,7 +75,7 @@ extension VirgilCrypto {
     ///   - publicKey: Signer public key
     /// - Returns: True if signature is verified, false otherwise
     /// - Throws: Rethrows from `Verifier`
-    @nonobjc open func verifySignature(_ signature: Data,
+    @nonobjc public func verifySignature(_ signature: Data,
                                        of data: Data,
                                        with publicKey: VirgilPublicKey) throws -> Bool {
         let verifier = Verifier()
@@ -139,7 +139,7 @@ extension VirgilCrypto {
     ///   - publicKey: Signer public key
     /// - Returns: True if signature is verified, false otherwise
     /// - Throws: Rethrows from `Verifier`
-    @nonobjc open func verifyStreamSignature(_ signature: Data,
+    @nonobjc public func verifyStreamSignature(_ signature: Data,
                                              of stream: InputStream,
                                              with publicKey: VirgilPublicKey) throws -> Bool {
         let verifier = Verifier()
