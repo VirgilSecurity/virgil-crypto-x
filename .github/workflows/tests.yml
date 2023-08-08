@@ -46,7 +46,7 @@ jobs:
         uses: nick-fields/retry@v2
         with:
           max_attempts: 10
-          timeout_minutes: 1
+          timeout_minutes: 10
           retry_on: error
           command: |
             set -o pipefail
