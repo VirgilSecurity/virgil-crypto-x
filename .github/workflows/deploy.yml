@@ -23,9 +23,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
 
-      - name: Build Carthage Binary
-        run: ./CI/publish-carthage.sh;
-
       - name: Publish Cocoapods
         run: ./CI/publish-cocoapods.sh
         env:
