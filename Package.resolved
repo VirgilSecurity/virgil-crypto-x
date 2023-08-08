@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/VirgilSecurity/virgil-crypto-c.git",
       "state" : {
-        "revision" : "abf2fd17e39e3f10f63af5fefea3b32b449bb56c",
-        "version" : "0.17.0-dev.2"
+        "revision" : "8cce0e3114c1266b85e0e8fd54b83b5faa19dff9",
+        "version" : "0.17.0-dev.3"
       }
     }
   ],
