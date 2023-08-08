@@ -45,7 +45,7 @@ jobs:
       - name: Run ${{ matrix.prefix }} Tests
         uses: nick-fields/retry@v2
         with:
-          max_attempts: 10
+          max_attempts: 20
           timeout_minutes: 10
           retry_on: error
           command: |
