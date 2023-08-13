@@ -1435,7 +1435,7 @@
 			repositoryURL = "https://github.com/VirgilSecurity/virgil-crypto-c";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.17.0;
+				minimumVersion = 0.17.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
