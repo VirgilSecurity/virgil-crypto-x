@@ -47,7 +47,7 @@ To integrate VirgilCrypto into your Xcode project using CocoaPods, specify it in
 target '<Your Target Name>' do
   use_frameworks!
 
-  pod 'VirgilCrypto', '~> 7.0.0'
+  pod 'VirgilCrypto', '~> 7.0.1'
 end
 ```
 
