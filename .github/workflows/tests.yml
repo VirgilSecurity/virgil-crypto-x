@@ -3,6 +3,7 @@ name: tests
 on:
   push:
     branches:
+      - 'main'
       - 'master'
       - 'develop'
       - 'release/**'
@@ -13,9 +14,8 @@ on:
 jobs:
   Tests:
     name: Tests
-    runs-on: macOS-13
+    runs-on: macos-latest
     env:
-      DEVELOPER_DIR: /Applications/Xcode_14.3.1.app/Contents/Developer
       PROJECT: VirgilCrypto.xcodeproj
     strategy:
       matrix:
@@ -42,7 +42,7 @@ jobs:
             prefix: "watchOS"
             test: "0"
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Run ${{ matrix.prefix }} Tests
         uses: nick-fields/retry@v2
         with:
@@ -60,11 +60,9 @@ jobs:
                 xcodebuild -verbose -project "$PROJECT" -scheme "$SCHEME" -destination "${{ matrix.destination }}" -configuration Release clean build | xcpretty;
             fi
   SPM:
-    runs-on: macOS-13
-    env:
-      DEVELOPER_DIR: /Applications/Xcode_14.3.1.app/Contents/Developer
+    runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: brew install coreutils # install 'timeout' utility
       - run: swift --version
       - run: timeout 5m bash -c 'until swift build; do rm -fr .build && sleep 10; done' # fix for Swift Package Manager when it fails to download binary targets

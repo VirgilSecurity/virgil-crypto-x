@@ -8,11 +8,9 @@ on:
 jobs:
   Deploy:
     name: Deploy
-    runs-on: macOS-13
-    env:
-      DEVELOPER_DIR: /Applications/Xcode_14.3.1.app/Contents/Developer
+    runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Generate Docs
         run: ./CI/publish-docs.sh
@@ -22,8 +20,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
-
-      - name: Publish Cocoapods
-        run: ./CI/publish-cocoapods.sh
-        env:
-          COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
