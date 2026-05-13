@@ -20,16 +20,16 @@ jobs:
     strategy:
       matrix:
         include:
-          - destination: "platform=iOS Simulator,name=iPhone 16"
+          - destination: "platform=iOS Simulator,name=iPhone 16,arch=arm64"
             prefix: "iOS"
             test: "1"
           - destination: "arch=x86_64"
             prefix: "macOS"
             test: "1"
-          - destination: "platform=tvOS Simulator,name=Apple TV 4K (3rd generation)"
+          - destination: "platform=tvOS Simulator,name=Apple TV 4K (3rd generation),arch=arm64"
             prefix: "tvOS"
             test: "1"
-          - destination: "platform=watchOS Simulator,name=Apple Watch Series 10 (46mm)"
+          - destination: "platform=watchOS Simulator,name=Apple Watch Series 10 (46mm),arch=arm64"
             prefix: "watchOS"
             test: "0"
           - destination: "generic/platform=iOS"
