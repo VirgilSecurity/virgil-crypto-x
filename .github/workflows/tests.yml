@@ -65,5 +65,5 @@ jobs:
       - uses: actions/checkout@v4
       - run: brew install coreutils # install 'timeout' utility
       - run: swift --version
-      - run: timeout 5m bash -c 'until swift build; do rm -fr .build && sleep 10; done' # fix for Swift Package Manager when it fails to download binary targets
+      - run: timeout 15m bash -c 'until swift build; do rm -fr .build && sleep 10; done' # fix for Swift Package Manager when it fails to download binary targets
       - run: swift test
