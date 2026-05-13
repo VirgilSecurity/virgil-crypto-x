@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "VirgilCrypto",
     platforms: [
-        .macOS(.v10_13), .iOS(.v11), .tvOS(.v11), .watchOS(.v4)
+        .macOS(.v10_13), .iOS(.v12), .tvOS(.v12), .watchOS(.v4)
     ],
     products: [
         .library(

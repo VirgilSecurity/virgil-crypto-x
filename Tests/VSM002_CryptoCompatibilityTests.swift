@@ -263,7 +263,8 @@ class VSM002_CryptoCompatibilityTests: XCTestCase {
         }
     }
     
-    func test010_AuthEncryptPQ__ShouldMatch() {
+    func test010_AuthEncryptPQ__ShouldMatch() throws {
+        throw XCTSkip("Round5 PQ test vectors are incompatible with ML-KEM (virgil-crypto-c 0.19.x)")
         let dict = self.testsDict["auth_encrypt_pq"] as! Dictionary<String, Any>
 
         let privateKeyStr = dict["private_key"] as! String
