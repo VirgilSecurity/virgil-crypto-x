@@ -91,8 +91,8 @@
 <li>rsa2048: rsa with 2048 length</li>
 <li>rsa4096: rsa with 4096 length</li>
 <li>rsa8192: rsa with 8192 length</li>
-<li>curve25519Round5: curve25519 and round5</li>
-<li>curve25519Round5Ed25519Falcon: ed25519 and falcon used for signing, curve25519 and round used for hybrid ECIES</li>
+<li>curve25519MlKem768: curve25519 (DH) + ML-KEM-768 (PQC KEM)</li>
+<li>curve25519MlKem768Ed25519Falcon: curve25519 + ML-KEM-768 (cipher), ed25519 + Falcon (signer)</li>
 <li>curve25519Ed25519: ed25519 used for signing, curve25519 used for ECIES</li>
 </ul>
 
@@ -265,9 +265,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@VirgilCrypto@E@VSMKeyPairType@VSMKeyPairTypeCurve25519Round5"></a>
-                    <a name="//apple_ref/swift/Element/curve25519Round5" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@VirgilCrypto@E@VSMKeyPairType@VSMKeyPairTypeCurve25519Round5">curve25519Round5</a>
+                    <a name="/c:@M@VirgilCrypto@E@VSMKeyPairType@VSMKeyPairTypeCurve25519MlKem768"></a>
+                    <a name="//apple_ref/swift/Element/curve25519MlKem768" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilCrypto@E@VSMKeyPairType@VSMKeyPairTypeCurve25519MlKem768">curve25519MlKem768</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -282,7 +282,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">curve25519Round5</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">curve25519MlKem768</span></code></pre>
 
                         </div>
                       </div>
@@ -292,9 +292,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@VirgilCrypto@E@VSMKeyPairType@VSMKeyPairTypeCurve25519Round5Ed25519Falcon"></a>
-                    <a name="//apple_ref/swift/Element/curve25519Round5Ed25519Falcon" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@VirgilCrypto@E@VSMKeyPairType@VSMKeyPairTypeCurve25519Round5Ed25519Falcon">curve25519Round5Ed25519Falcon</a>
+                    <a name="/c:@M@VirgilCrypto@E@VSMKeyPairType@VSMKeyPairTypeCurve25519MlKem768Ed25519Falcon"></a>
+                    <a name="//apple_ref/swift/Element/curve25519MlKem768Ed25519Falcon" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilCrypto@E@VSMKeyPairType@VSMKeyPairTypeCurve25519MlKem768Ed25519Falcon">curve25519MlKem768Ed25519Falcon</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -309,7 +309,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">curve25519Round5Ed25519Falcon</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">curve25519MlKem768Ed25519Falcon</span></code></pre>
 
                         </div>
                       </div>

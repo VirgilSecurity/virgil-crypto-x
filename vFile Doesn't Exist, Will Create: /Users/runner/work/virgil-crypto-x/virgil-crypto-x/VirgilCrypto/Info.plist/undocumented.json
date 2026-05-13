@@ -73,14 +73,14 @@
     {
       "file": "/Users/runner/work/virgil-crypto-x/virgil-crypto-x/Source/KeyPairType.swift",
       "line": 57,
-      "symbol": "KeyPairType.curve25519Round5",
+      "symbol": "KeyPairType.curve25519MlKem768",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/virgil-crypto-x/virgil-crypto-x/Source/KeyPairType.swift",
       "line": 58,
-      "symbol": "KeyPairType.curve25519Round5Ed25519Falcon",
+      "symbol": "KeyPairType.curve25519MlKem768Ed25519Falcon",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
