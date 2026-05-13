@@ -26,7 +26,7 @@ jobs:
           - destination: "arch=x86_64"
             prefix: "macOS"
             test: "1"
-          - destination: "platform=tvOS Simulator,name=Apple TV 4K (3rd generation) Wi-Fi"
+          - destination: "platform=tvOS Simulator,name=Apple TV 4K (3rd generation)"
             prefix: "tvOS"
             test: "1"
           - destination: "platform=watchOS Simulator,name=Apple Watch Series 10 (46mm)"
