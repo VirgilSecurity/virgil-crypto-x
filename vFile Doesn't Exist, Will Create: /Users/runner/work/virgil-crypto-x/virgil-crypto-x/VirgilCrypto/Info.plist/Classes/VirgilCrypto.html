@@ -17,7 +17,7 @@
     <a title="VirgilCrypto Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">VirgilCrypto 7.0.1 Docs</a></p>
+        <p><a href="../index.html">VirgilCrypto Docs</a></p>
         <div class="header-right">
           <form role="search" action="../search.json">
             <input type="text" placeholder="Search documentation" data-typeahead>
@@ -27,7 +27,9 @@
     </header>
     <div class="content-wrapper">
       <p id="breadcrumbs">
-        <a href="../index.html">VirgilCrypto Reference</a>
+        <a href="../index.html">VirgilCrypto</a>
+        <img id="carat" src="../img/carat.png" alt=""/>
+        <a href="../Classes.html">Classes</a>
         <img id="carat" src="../img/carat.png" alt=""/>
         VirgilCrypto Class Reference
       </p>
@@ -75,7 +77,7 @@
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">@objc(VSMVirgilCrypto)</span>
+                  <pre class="highlight swift"><code><span class="kd">@objc</span><span class="p">(</span><span class="kt">VSMVirgilCrypto</span><span class="p">)</span>
 <span class="kd">open</span> <span class="kd">class</span> <span class="kt">VirgilCrypto</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
 
                 </div>
@@ -1970,7 +1972,7 @@ Used in signAndEncrypt &amp; decryptAndVerify</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@available(*, deprecated, message: "use authEncrypt instead")</span>
+                          <pre class="highlight swift"><code><span class="kd">@available</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">,</span> <span class="nv">message</span><span class="p">:</span> <span class="s">"use authEncrypt instead"</span><span class="p">)</span>
 <span class="kd">@objc</span>
 <span class="kd">open</span> <span class="kd">func</span> <span class="nf">signAndEncrypt</span><span class="p">(</span><span class="n">_</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="n">with</span> <span class="nv">privateKey</span><span class="p">:</span> <span class="kt"><a href="../Classes/VirgilPrivateKey.html">VirgilPrivateKey</a></span><span class="p">,</span>
                          <span class="k">for</span> <span class="nv">recipients</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/VirgilPublicKey.html">VirgilPublicKey</a></span><span class="p">])</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
@@ -2064,7 +2066,7 @@ Used in signAndEncrypt &amp; decryptAndVerify</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@available(*, deprecated, message: "use authDecrypt instead")</span>
+                          <pre class="highlight swift"><code><span class="kd">@available</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">,</span> <span class="nv">message</span><span class="p">:</span> <span class="s">"use authDecrypt instead"</span><span class="p">)</span>
 <span class="kd">@objc</span>
 <span class="kd">open</span> <span class="kd">func</span> <span class="nf">decryptAndVerify</span><span class="p">(</span><span class="n">_</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="n">with</span> <span class="nv">privateKey</span><span class="p">:</span> <span class="kt"><a href="../Classes/VirgilPrivateKey.html">VirgilPrivateKey</a></span><span class="p">,</span>
                            <span class="n">usingOneOf</span> <span class="nv">signersPublicKeys</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/VirgilPublicKey.html">VirgilPublicKey</a></span><span class="p">])</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
@@ -2171,7 +2173,7 @@ Used in signAndEncrypt &amp; decryptAndVerify</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@available(*, deprecated, message: "use authDecrypt instead")</span>
+                          <pre class="highlight swift"><code><span class="kd">@available</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">,</span> <span class="nv">message</span><span class="p">:</span> <span class="s">"use authDecrypt instead"</span><span class="p">)</span>
 <span class="kd">@objc</span>
 <span class="kd">open</span> <span class="kd">func</span> <span class="nf">decryptAndVerify</span><span class="p">(</span><span class="n">_</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="n">with</span> <span class="nv">privateKey</span><span class="p">:</span> <span class="kt"><a href="../Classes/VirgilPrivateKey.html">VirgilPrivateKey</a></span><span class="p">,</span>
                            <span class="n">using</span> <span class="nv">signerPublicKey</span><span class="p">:</span> <span class="kt"><a href="../Classes/VirgilPublicKey.html">VirgilPublicKey</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
@@ -2577,8 +2579,8 @@ Used in signAndEncrypt &amp; decryptAndVerify</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2023 <a class="link" href="https://virgilsecurity.com/" target="_blank" rel="external noopener">Virgil Security</a>. All rights reserved. (Last updated: 2023-08-13)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+          <p>&copy; 2026 <a class="link" href="https://virgilsecurity.com/" target="_blank" rel="external noopener">Virgil Security</a>. All rights reserved. (Last updated: 2026-05-13)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </article>
     </div>
