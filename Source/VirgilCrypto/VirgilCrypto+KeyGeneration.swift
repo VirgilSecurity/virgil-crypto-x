@@ -111,11 +111,11 @@ extension VirgilCrypto {
     /// - Returns: Generated KeyPair
     /// - Throws: Rethrows from `KeyProvider`
     @objc open func generateKeyPair(ofType type: KeyPairType, usingSeed seed: Data) throws -> VirgilKeyPair {
-        guard KeyMaterialRng.keyMaterialLenMin...KeyMaterialRng.keyMaterialLenMax ~= seed.count else {
+        let seedRng = KeyMaterialRng()
+
+        guard seedRng.keyMaterialLenMin...seedRng.keyMaterialLenMax ~= seed.count else {
             throw VirgilCryptoError.invalidSeedSize
         }
-
-        let seedRng = KeyMaterialRng()
 
         seedRng.resetKeyMaterial(keyMaterial: seed)
 

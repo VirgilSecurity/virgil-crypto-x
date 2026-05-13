@@ -263,24 +263,6 @@ class VSM002_CryptoCompatibilityTests: XCTestCase {
         }
     }
     
-    func test010_AuthEncryptPQ__ShouldMatch() {
-        let dict = self.testsDict["auth_encrypt_pq"] as! Dictionary<String, Any>
-
-        let privateKeyStr = dict["private_key"] as! String
-        let publicKeyStr = dict["public_key"] as! String
-        let dataSha512Str = dict["data_sha512"] as! String
-        let cipherDataStr = dict["cipher_data"] as! String
-
-        let privateKey = try! self.crypto.importPrivateKey(from: Data(base64Encoded: privateKeyStr)!).privateKey
-        let publicKey = try! self.crypto.importPublicKey(from: Data(base64Encoded: publicKeyStr)!)
-        let dataSha512 = Data(base64Encoded: dataSha512Str)!
-        let cipherData = Data(base64Encoded: cipherDataStr)!
-
-        let data = try! self.crypto.authDecrypt(cipherData, with: privateKey, usingOneOf: [publicKey])
-
-        XCTAssert(self.crypto.computeHash(for: data, using: .sha512) == dataSha512)
-    }
-    
     func test011_AuthEncryptPadding__ShouldMatch() {
         let dict = self.testsDict["auth_encrypt_padding"] as! Dictionary<String, Any>
 

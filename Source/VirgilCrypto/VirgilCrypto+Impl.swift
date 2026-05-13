@@ -164,8 +164,7 @@ extension VirgilCrypto {
             let padding = RandomPadding()
             padding.setRandom(random: self.rng)
             cipher.setEncryptionPadding(encryptionPadding: padding)
-            let paddingParams = PaddingParams(frame: VirgilCrypto.paddingLen,
-                                              frameMax: VirgilCrypto.paddingLen)
+            let paddingParams = PaddingParams()
             cipher.setPaddingParams(paddingParams: paddingParams)
         }
 
@@ -308,8 +307,7 @@ extension VirgilCrypto {
         let cipher = RecipientCipher()
         cipher.setRandom(random: self.rng)
 
-        let paddingParams = PaddingParams(frame: VirgilCrypto.paddingLen,
-                                          frameMax: VirgilCrypto.paddingLen)
+        let paddingParams = PaddingParams()
         cipher.setPaddingParams(paddingParams: paddingParams)
 
         try cipher.startDecryptionWithKey(recipientId: privateKey.identifier,

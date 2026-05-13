@@ -3,6 +3,7 @@ name: tests
 on:
   push:
     branches:
+      - 'main'
       - 'master'
       - 'develop'
       - 'release/**'
@@ -13,23 +14,22 @@ on:
 jobs:
   Tests:
     name: Tests
-    runs-on: macOS-13
+    runs-on: macos-latest
     env:
-      DEVELOPER_DIR: /Applications/Xcode_14.3.1.app/Contents/Developer
       PROJECT: VirgilCrypto.xcodeproj
     strategy:
       matrix:
         include:
-          - destination: "OS=17.0,name=iPhone 14 Pro"
+          - destination: "platform=iOS Simulator,name=iPhone 16,arch=arm64"
             prefix: "iOS"
             test: "1"
           - destination: "arch=x86_64"
             prefix: "macOS"
             test: "1"
-          - destination: "OS=17.0,name=Apple TV"
+          - destination: "platform=tvOS Simulator,name=Apple TV 4K (3rd generation),arch=arm64"
             prefix: "tvOS"
             test: "1"
-          - destination: "OS=10.0,name=Apple Watch Series 7 - 45mm"
+          - destination: "platform=watchOS Simulator,name=Apple Watch Series 10 (46mm),arch=arm64"
             prefix: "watchOS"
             test: "0"
           - destination: "generic/platform=iOS"
@@ -42,7 +42,7 @@ jobs:
             prefix: "watchOS"
             test: "0"
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Run ${{ matrix.prefix }} Tests
         uses: nick-fields/retry@v2
         with:
@@ -60,12 +60,10 @@ jobs:
                 xcodebuild -verbose -project "$PROJECT" -scheme "$SCHEME" -destination "${{ matrix.destination }}" -configuration Release clean build | xcpretty;
             fi
   SPM:
-    runs-on: macOS-13
-    env:
-      DEVELOPER_DIR: /Applications/Xcode_14.3.1.app/Contents/Developer
+    runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: brew install coreutils # install 'timeout' utility
       - run: swift --version
-      - run: timeout 5m bash -c 'until swift build; do rm -fr .build && sleep 10; done' # fix for Swift Package Manager when it fails to download binary targets
+      - run: timeout 15m bash -c 'until swift build; do rm -fr .build && sleep 10; done' # fix for Swift Package Manager when it fails to download binary targets
       - run: swift test
