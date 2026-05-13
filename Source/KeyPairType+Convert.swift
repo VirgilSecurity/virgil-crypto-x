@@ -40,38 +40,54 @@ import VirgilCryptoFoundation
 // MARK: - Conversion extension
 extension KeyPairType {
     internal init(from key: Key) throws {
-        let keyInfo = KeyInfo(algInfo: key.algInfo())
+        let algInfo = key.algInfo()
+        let algId = algInfo.algId()
 
-        if keyInfo.isCompound() {
-            if keyInfo.compoundHybridCipherFirstKeyAlgId() == .curve25519
-                && keyInfo.compoundHybridCipherSecondKeyAlgId() == .round5Nd1cca5d
-                && keyInfo.compoundHybridSignerFirstKeyAlgId() == .ed25519
-                && keyInfo.compoundHybridSignerSecondKeyAlgId() == .falcon {
-                self = .curve25519Round5Ed25519Falcon
+        if algId == .compoundKey {
+            guard let compoundInfo = algInfo as? CompoundKeyAlgInfo else {
+                throw VirgilCryptoError.unknownCompoundKey
             }
-            else if keyInfo.compoundCipherAlgId() == .curve25519
-                && keyInfo.compoundSignerAlgId() == .ed25519 {
+
+            let cipherAlgId = compoundInfo.cipherAlgInfo().algId()
+            let signerAlgId = compoundInfo.signerAlgInfo().algId()
+
+            if cipherAlgId == .hybridKey && signerAlgId == .hybridKey {
+                guard let cipherHybrid = compoundInfo.cipherAlgInfo() as? HybridKeyAlgInfo,
+                      let signerHybrid = compoundInfo.signerAlgInfo() as? HybridKeyAlgInfo else {
+                    throw VirgilCryptoError.unknownCompoundKey
+                }
+
+                if cipherHybrid.firstKeyAlgInfo().algId() == .curve25519
+                    && cipherHybrid.secondKeyAlgInfo().algId() == .mlKem768
+                    && signerHybrid.firstKeyAlgInfo().algId() == .ed25519
+                    && signerHybrid.secondKeyAlgInfo().algId() == .falcon {
+                    self = .curve25519Round5Ed25519Falcon
+                } else {
+                    throw VirgilCryptoError.unknownCompoundKey
+                }
+            } else if cipherAlgId == .curve25519 && signerAlgId == .ed25519 {
                 self = .curve25519Ed25519
-            }
-            else {
+            } else {
                 throw VirgilCryptoError.unknownCompoundKey
             }
 
             return
         }
 
-        if keyInfo.isHybrid() {
-            if keyInfo.hybridFirstKeyAlgId() == .curve25519 && keyInfo.hybridSecondKeyAlgId() == .round5Nd1cca5d {
+        if algId == .hybridKey {
+            guard let hybridInfo = algInfo as? HybridKeyAlgInfo else {
+                throw VirgilCryptoError.unknownCompoundKey
+            }
+
+            if hybridInfo.firstKeyAlgInfo().algId() == .curve25519
+                && hybridInfo.secondKeyAlgInfo().algId() == .mlKem768 {
                 self = .curve25519Round5
-            }
-            else {
+            } else {
                 throw VirgilCryptoError.unknownCompoundKey
             }
 
             return
         }
-
-        let algId = keyInfo.algId()
 
         if algId == .rsa {
             self = try KeyPairType(fromRsaBitLen: key.bitlen())
@@ -141,7 +157,7 @@ extension KeyPairType {
         case .curve25519Ed25519:
             return (.curve25519, .none)
         case .curve25519Round5Ed25519Falcon, .curve25519Round5:
-            return (.curve25519, .round5Nd1cca5d)
+            return (.curve25519, .mlKem768)
         case .curve25519, .ed25519, .rsa2048, .rsa4096, .rsa8192, .secp256r1:
             throw VirgilCryptoError.keyIsNotCompound
         }
